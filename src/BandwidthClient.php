@@ -25,7 +25,7 @@ class BandwidthClient
 
     /**
      * Provides access to Messaging client
-     * @return Messaging\Messaging
+     * @return Messaging\MessagingClient
      */
     public function getMessaging()
     {
@@ -37,7 +37,7 @@ class BandwidthClient
 
     /**
      * Provides access to Voice client
-     * @return Voice\Voice
+     * @return Voice\VoiceClient
      */
     public function getVoice()
     {
