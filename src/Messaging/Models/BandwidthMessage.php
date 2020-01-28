@@ -38,7 +38,7 @@ class BandwidthMessage implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var string|null $segmentCount public property
+     * @var integer|null $segmentCount public property
      */
     public $segmentCount;
 

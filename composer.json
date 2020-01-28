@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "ext-SimpleXML": "^7.3",
+    "ext-SimpleXML": "*",
     "php": ">=5.4.0",
     "ext-curl": "*",
     "ext-json": "*",
