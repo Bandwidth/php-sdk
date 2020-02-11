@@ -10,20 +10,30 @@ namespace BandwidthLib\Voice\Models;
 /**
  * @todo Write general description for this enumeration
  */
-class StateEnum
+class StatusEnum
 {
     /**
      * TODO: Write general description for this element
      */
-    const DISCONNECTED = "DISCONNECTED";
+    const PROCESSING = "processing";
 
     /**
      * TODO: Write general description for this element
      */
-    const ANSWERED = "ANSWERED";
+    const PARTIAL = "partial";
 
     /**
      * TODO: Write general description for this element
      */
-    const INITIATED = "INITIATED";
+    const COMPLETE = "complete";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const DELETED = "deleted";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const ERROR = "error";
 }

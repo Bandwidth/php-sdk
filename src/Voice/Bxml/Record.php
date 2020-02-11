@@ -105,6 +105,33 @@ class Record extends Verb {
         $this->fileFormat = $fileFormat;
     }
 
+    /**
+     * Sets the transcribe attribute for Record
+     *
+     * @param boolean $transcribe True to submit the recording for transcription, false otherwise
+     */
+    public function transcribe($transcribe) {
+        $this->transcribe = $transcribe;
+    }
+
+    /**
+     * Sets the transcriptionAvailableUrl for Record
+     *
+     * @param string $transcriptionAvailableUrl URL to send transcription available events to
+     */
+    public function transcriptionAvailableUrl($transcriptionAvailableUrl) {
+        $this->transcriptionAvailableUrl = $transcriptionAvailableUrl;
+    }
+
+    /**
+     * Sets the transcriptionAvailableMethod for Record
+     *
+     * @param string $transcriptionAvailableMethod HTTP method (GET or POST) to send the transcription available event as
+     */
+    public function transcriptionAvailableMethod($transcriptionAvailableMethod) {
+        $this->transcriptionAvailableMethod = $transcriptionAvailableMethod;
+    }
+
     public function toBxml($doc) {
         $element = $doc->createElement("Record");
 
@@ -146,6 +173,22 @@ class Record extends Verb {
 
         if(isset($this->fileFormat)) {
             $element->setattribute("fileFormat", $this->fileFormat);
+        }
+
+        if(isset($this->transcribe)) {
+            if ($this->transcribe) {
+                $element->setattribute("transcribe", "true");
+            } else {
+                $element->setattribute("transcribe", "false");
+            }
+        }
+
+        if(isset($this->transcriptionAvailableUrl)) {
+            $element->setattribute("transcriptionAvailableUrl", $this->transcriptionAvailableUrl);
+        }
+
+        if(isset($this->transcriptionAvailableMethod)) {
+            $element->setattribute("transcriptionAvailableMethod", $this->transcriptionAvailableMethod);
         }
 
         return $element;

@@ -15,15 +15,10 @@ class State1Enum
     /**
      * TODO: Write general description for this element
      */
-    const NOT_RECORDING = "NOT_RECORDING";
+    const ACTIVE = "active";
 
     /**
      * TODO: Write general description for this element
      */
-    const PAUSED = "PAUSED";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const RECORDING = "RECORDING";
+    const COMPLETED = "completed";
 }

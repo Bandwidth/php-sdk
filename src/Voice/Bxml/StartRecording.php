@@ -77,6 +77,33 @@ class StartRecording extends Verb {
         $this->multiChannel = $multiChannel;
     }
 
+    /**
+     * Sets the transcribe attribute for StartRecording
+     *
+     * @param boolean $transcribe True to submit the recording for transcription, false otherwise
+     */
+    public function transcribe($transcribe) {
+        $this->transcribe = $transcribe;
+    }
+
+    /**
+     * Sets the transcriptionAvailableUrl for StartRecording
+     *
+     * @param string $transcriptionAvailableUrl URL to send transcription available events to
+     */
+    public function transcriptionAvailableUrl($transcriptionAvailableUrl) {
+        $this->transcriptionAvailableUrl = $transcriptionAvailableUrl;
+    }
+
+    /**
+     * Sets the transcriptionAvailableMethod for StartRecording
+     *
+     * @param string $transcriptionAvailableMethod HTTP method (GET or POST) to send the transcription available event as
+     */
+    public function transcriptionAvailableMethod($transcriptionAvailableMethod) {
+        $this->transcriptionAvailableMethod = $transcriptionAvailableMethod;
+    }
+
     public function toBxml($doc) {
         $element = $doc->createElement("StartRecording");
 
@@ -111,6 +138,22 @@ class StartRecording extends Verb {
                 $element->setattribute("multiChannel", "false");
             }
         }
+
+        if(isset($this->transcribe)) {
+            if ($this->transcribe) {
+                $element->setattribute("transcribe", "true");
+            } else {
+                $element->setattribute("transcribe", "false");
+            }
+        }
+
+        if(isset($this->transcriptionAvailableUrl)) {
+            $element->setattribute("transcriptionAvailableUrl", $this->transcriptionAvailableUrl);
+        }
+
+        if(isset($this->transcriptionAvailableMethod)) {
+            $element->setattribute("transcriptionAvailableMethod", $this->transcriptionAvailableMethod);
+        } 
 
         return $element;
     }

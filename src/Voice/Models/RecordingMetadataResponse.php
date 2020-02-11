@@ -14,6 +14,12 @@ class RecordingMetadataResponse implements \JsonSerializable
 {
     /**
      * @todo Write general description for this property
+     * @var string|null $applicationId public property
+     */
+    public $applicationId;
+
+    /**
+     * @todo Write general description for this property
      * @var string|null $accountId public property
      */
     public $accountId;
@@ -43,7 +49,7 @@ class RecordingMetadataResponse implements \JsonSerializable
     public $from;
 
     /**
-     * @todo Write general description for this property
+     * Format is ISO-8601
      * @var string|null $duration public property
      */
     public $duration;
@@ -80,9 +86,9 @@ class RecordingMetadataResponse implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $transcriptionStatus public property
+     * @var mixed|null $status public property
      */
-    public $transcriptionStatus;
+    public $status;
 
     /**
      * @todo Write general description for this property
@@ -92,30 +98,31 @@ class RecordingMetadataResponse implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var string|null $transcriptionUrl public property
+     * @var \BandwidthLib\Models\mixed|null $transcription public property
      */
-    public $transcriptionUrl;
+    public $transcription;
 
     /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (14 == func_num_args()) {
-            $this->accountId           = func_get_arg(0);
-            $this->callId              = func_get_arg(1);
-            $this->recordingId         = func_get_arg(2);
-            $this->to                  = func_get_arg(3);
-            $this->from                = func_get_arg(4);
-            $this->duration            = func_get_arg(5);
-            $this->direction           = func_get_arg(6);
-            $this->channels            = func_get_arg(7);
-            $this->startTime           = func_get_arg(8);
-            $this->endTime             = func_get_arg(9);
-            $this->fileFormat          = func_get_arg(10);
-            $this->transcriptionStatus = func_get_arg(11);
-            $this->mediaUrl            = func_get_arg(12);
-            $this->transcriptionUrl    = func_get_arg(13);
+        if (15 == func_num_args()) {
+            $this->applicationId = func_get_arg(0);
+            $this->accountId     = func_get_arg(1);
+            $this->callId        = func_get_arg(2);
+            $this->recordingId   = func_get_arg(3);
+            $this->to            = func_get_arg(4);
+            $this->from          = func_get_arg(5);
+            $this->duration      = func_get_arg(6);
+            $this->direction     = func_get_arg(7);
+            $this->channels      = func_get_arg(8);
+            $this->startTime     = func_get_arg(9);
+            $this->endTime       = func_get_arg(10);
+            $this->fileFormat    = func_get_arg(11);
+            $this->status        = func_get_arg(12);
+            $this->mediaUrl      = func_get_arg(13);
+            $this->transcription = func_get_arg(14);
         }
     }
 
@@ -125,20 +132,21 @@ class RecordingMetadataResponse implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['accountId']           = $this->accountId;
-        $json['callId']              = $this->callId;
-        $json['recordingId']         = $this->recordingId;
-        $json['to']                  = $this->to;
-        $json['from']                = $this->from;
-        $json['duration']            = $this->duration;
-        $json['direction']           = $this->direction;
-        $json['channels']            = $this->channels;
-        $json['startTime']           = $this->startTime;
-        $json['endTime']             = $this->endTime;
-        $json['fileFormat']          = $this->fileFormat;
-        $json['transcriptionStatus'] = $this->transcriptionStatus;
-        $json['mediaUrl']            = $this->mediaUrl;
-        $json['transcriptionUrl']    = $this->transcriptionUrl;
+        $json['applicationId'] = $this->applicationId;
+        $json['accountId']     = $this->accountId;
+        $json['callId']        = $this->callId;
+        $json['recordingId']   = $this->recordingId;
+        $json['to']            = $this->to;
+        $json['from']          = $this->from;
+        $json['duration']      = $this->duration;
+        $json['direction']     = $this->direction;
+        $json['channels']      = $this->channels;
+        $json['startTime']     = $this->startTime;
+        $json['endTime']       = $this->endTime;
+        $json['fileFormat']    = $this->fileFormat;
+        $json['status']        = $this->status;
+        $json['mediaUrl']      = $this->mediaUrl;
+        $json['transcription'] = $this->transcription;
 
         return array_filter($json);
     }

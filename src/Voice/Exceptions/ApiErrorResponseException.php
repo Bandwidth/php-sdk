@@ -12,11 +12,11 @@ use BandwidthLib\APIHelper;
 /**
  * @todo Write general description for this model
  */
-class ErrorResponseException extends \BandwidthLib\APIException
+class ApiErrorResponseException extends \BandwidthLib\APIException
 {
     /**
      * @todo Write general description for this property
-     * @var mixed|null $type public property
+     * @var string|null $type public property
      */
     public $type;
 

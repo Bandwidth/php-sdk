@@ -10,27 +10,22 @@ namespace BandwidthLib\Voice\Models;
 /**
  * @todo Write general description for this enumeration
  */
-class TypeEnum
+class DisconnectCauseEnum
 {
     /**
      * TODO: Write general description for this element
      */
-    const VALIDATION = "validation";
+    const BUSY = "busy";
 
     /**
      * TODO: Write general description for this element
      */
-    const AUTHENTICATIONERROR = "authentication-error";
+    const CALLBACKERROR = "callback-error";
 
     /**
      * TODO: Write general description for this element
      */
-    const AUTHORIZATIONERROR = "authorization-error";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const INTERNALERROR = "internal-error";
+    const CANCEL = "cancel";
 
     /**
      * TODO: Write general description for this element
@@ -40,10 +35,35 @@ class TypeEnum
     /**
      * TODO: Write general description for this element
      */
-    const RATELIMITEXCEEDED = "rate-limit-exceeded";
+    const HANGUP = "hangup";
 
     /**
      * TODO: Write general description for this element
      */
-    const SYSTEMOVERLOADED = "system-overloaded";
+    const INVALIDBXML = "invalid-bxml";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const REJECTED = "rejected";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const TIMEOUT = "timeout";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const ACCOUNTLIMIT = "account-limit";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const NODECAPACITYEXCEEDED = "node-capacity-exceeded";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const UNKNOWN = "unknown";
 }

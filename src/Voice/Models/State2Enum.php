@@ -10,20 +10,20 @@ namespace BandwidthLib\Voice\Models;
 /**
  * @todo Write general description for this enumeration
  */
-class TranscriptionStatusEnum
+class State2Enum
 {
     /**
      * TODO: Write general description for this element
      */
-    const NONE = "none";
+    const NOT_RECORDING = "NOT_RECORDING";
 
     /**
      * TODO: Write general description for this element
      */
-    const REQUESTED = "requested";
+    const PAUSED = "PAUSED";
 
     /**
      * TODO: Write general description for this element
      */
-    const AVAILABLE = "available";
+    const RECORDING = "RECORDING";
 }

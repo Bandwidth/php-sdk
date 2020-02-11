@@ -31,7 +31,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Creates a call request
+     * Creates an outbound call
      *
      * @param string       $accountId TODO: type description here
      * @param Models\mixed $body      (optional) TODO: type description here
@@ -89,32 +89,41 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ErrorResponseException(
-                'Something didn\'t look right about that request. Please fix it before trying again.',
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
                 $_httpContext
             );
         }
 
         if ($response->code == 401) {
-            throw new APIException('Please authenticate yourself', $_httpContext);
+            throw new APIException('Please authenticate yourself.', $_httpContext);
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
                 $_httpContext
             );
         }
 
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
         if ($response->code == 415) {
-            throw new Exceptions\ErrorResponseException(
-                'We don\'t support that media type. Please send us `application/json`.',
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
                 $_httpContext
             );
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -122,7 +131,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -132,6 +141,117 @@ class APIController extends BaseController
         $this->validateResponse($_httpResponse, $_httpContext);
         $mapper = $this->getJsonMapper();
         $deserializedResponse = $mapper->mapClass($response->body, 'BandwidthLib\\Voice\\Models\\ApiCallResponse');
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Returns near-realtime metadata about the specified call
+     *
+     * @param string $accountId TODO: type description here
+     * @param string $callId    TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getCallState(
+        $accountId,
+        $callId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/api/v2/accounts/{accountId}/calls/{callId}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId' => $accountId,
+            'callId'    => $callId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException('Please authenticate yourself.', $_httpContext);
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClass($response->body, 'BandwidthLib\\Voice\\Models\\ApiCallStateResponse');
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
     }
 
@@ -196,36 +316,41 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new APIException('The call can\'t be modified in its current state', $_httpContext);
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
+                $_httpContext
+            );
         }
 
         if ($response->code == 401) {
-            throw new APIException('Please authenticate yourself', $_httpContext);
+            throw new APIException('Please authenticate yourself.', $_httpContext);
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
                 $_httpContext
             );
         }
 
         if ($response->code == 404) {
-            throw new APIException(
-                'The call never existed, no longer exists, or is inaccessible to you',
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ErrorResponseException(
-                'We don\'t support that media type. Please send us `application/json`.',
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
                 $_httpContext
             );
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -233,7 +358,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -305,36 +430,41 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new APIException('The call can\'t be modified in its current state', $_httpContext);
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
+                $_httpContext
+            );
         }
 
         if ($response->code == 401) {
-            throw new APIException('Please authenticate yourself', $_httpContext);
+            throw new APIException('Please authenticate yourself.', $_httpContext);
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
                 $_httpContext
             );
         }
 
         if ($response->code == 404) {
-            throw new APIException(
-                'The call never existed, no longer exists, or is inaccessible to you',
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ErrorResponseException(
-                'We don\'t support that media type. Please send us `application/json`.',
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
                 $_httpContext
             );
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -342,7 +472,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -357,14 +487,22 @@ class APIController extends BaseController
      * Returns a (potentially empty) list of metadata for the recordings that took place during the
      * specified call
      *
-     * @param string $accountId TODO: type description here
-     * @param string $callId    TODO: type description here
+     * @param string $accountId    TODO: type description here
+     * @param string $callId       TODO: type description here
+     * @param string $from         (optional) TODO: type description here
+     * @param string $to           (optional) TODO: type description here
+     * @param string $minStartTime (optional) TODO: type description here
+     * @param string $maxStartTime (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function getQueryMetadataForAccountAndCall(
         $accountId,
-        $callId
+        $callId,
+        $from = null,
+        $to = null,
+        $minStartTime = null,
+        $maxStartTime = null
     ) {
 
         //prepare query string for API call
@@ -372,9 +510,17 @@ class APIController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'accountId' => $accountId,
-            'callId'    => $callId,
+            'accountId'    => $accountId,
+            'callId'       => $callId,
             ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'from'         => $from,
+            'to'           => $to,
+            'minStartTime' => $minStartTime,
+            'maxStartTime' => $maxStartTime,
+        ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
@@ -410,32 +556,41 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ErrorResponseException(
-                'Something didn\'t look right about that request. Please fix it before trying again.',
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
                 $_httpContext
             );
         }
 
         if ($response->code == 401) {
-            throw new APIException('Please authenticate yourself', $_httpContext);
+            throw new APIException('Please authenticate yourself.', $_httpContext);
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
                 $_httpContext
             );
         }
 
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
         if ($response->code == 415) {
-            throw new Exceptions\ErrorResponseException(
-                'We don\'t support that media type. Please send us `application/json`.',
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
                 $_httpContext
             );
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -443,7 +598,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -518,39 +673,41 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ErrorResponseException(
-                'Something didn\'t look right about that request. Please fix it before trying again.',
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
                 $_httpContext
             );
         }
 
         if ($response->code == 401) {
-            throw new APIException('Please authenticate yourself', $_httpContext);
+            throw new APIException('Please authenticate yourself.', $_httpContext);
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
                 $_httpContext
             );
         }
 
         if ($response->code == 404) {
-            throw new APIException(
-                'The recording never existed, no longer exists, or is inaccessible to you',
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ErrorResponseException(
-                'We don\'t support that media type. Please send us `application/json`.',
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
                 $_httpContext
             );
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -558,7 +715,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -632,39 +789,41 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ErrorResponseException(
-                'Something didn\'t look right about that request. Please fix it before trying again.',
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
                 $_httpContext
             );
         }
 
         if ($response->code == 401) {
-            throw new APIException('Please authenticate yourself', $_httpContext);
+            throw new APIException('Please authenticate yourself.', $_httpContext);
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
                 $_httpContext
             );
         }
 
         if ($response->code == 404) {
-            throw new APIException(
-                'The recording never existed, no longer exists, or is inaccessible to you',
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ErrorResponseException(
-                'We don\'t support that media type. Please send us `application/json`.',
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
                 $_httpContext
             );
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -672,7 +831,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -742,39 +901,41 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ErrorResponseException(
-                'Something didn\'t look right about that request. Please fix it before trying again.',
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
                 $_httpContext
             );
         }
 
         if ($response->code == 401) {
-            throw new APIException('Please authenticate yourself', $_httpContext);
+            throw new APIException('Please authenticate yourself.', $_httpContext);
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
                 $_httpContext
             );
         }
 
         if ($response->code == 404) {
-            throw new APIException(
-                'The recording never existed, no longer exists, or is inaccessible to you',
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ErrorResponseException(
-                'We don\'t support that media type. Please send us `application/json`.',
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
                 $_httpContext
             );
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -782,7 +943,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -795,23 +956,141 @@ class APIController extends BaseController
     }
 
     /**
-     * Returns a (potentially empty; capped at 1000) list of metadata for the recordings associated with
-     * the specified account
+     * Deletes the specified recording's media
      *
-     * @param string $accountId TODO: type description here
+     * @param string $accountId   TODO: type description here
+     * @param string $callId      TODO: type description here
+     * @param string $recordingId TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getQueryMetadataForAccount(
-        $accountId
+    public function deleteRecordingMedia(
+        $accountId,
+        $callId,
+        $recordingId
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/api/v2/accounts/{accountId}/recordings';
+        $_queryBuilder = 
+            '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'accountId' => $accountId,
+            'accountId'   => $accountId,
+            'callId'      => $callId,
+            'recordingId' => $recordingId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::delete($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException('Please authenticate yourself.', $_httpContext);
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        return new ApiResponse($response->code, $response->headers, null);
+    }
+
+    /**
+     * Downloads the specified transcription
+     *
+     * @param string $accountId   TODO: type description here
+     * @param string $callId      TODO: type description here
+     * @param string $recordingId TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getRecordingTranscription(
+        $accountId,
+        $callId,
+        $recordingId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = 
+            '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId'   => $accountId,
+            'callId'      => $callId,
+            'recordingId' => $recordingId,
             ));
 
         //validate and preprocess url
@@ -848,32 +1127,41 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ErrorResponseException(
-                'Something didn\'t look right about that request. Please fix it before trying again.',
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
                 $_httpContext
             );
         }
 
         if ($response->code == 401) {
-            throw new APIException('Please authenticate yourself', $_httpContext);
+            throw new APIException('Please authenticate yourself.', $_httpContext);
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
                 $_httpContext
             );
         }
 
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
         if ($response->code == 415) {
-            throw new Exceptions\ErrorResponseException(
-                'We don\'t support that media type. Please send us `application/json`.',
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
                 $_httpContext
             );
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -881,7 +1169,373 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorResponseException(
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClass(
+            $response->body,
+            'BandwidthLib\\Voice\\Models\\TranscriptionResponse'
+        );
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Requests that the specified recording be transcribed
+     *
+     * @param string       $accountId   TODO: type description here
+     * @param string       $callId      TODO: type description here
+     * @param string       $recordingId TODO: type description here
+     * @param Models\mixed $body        (optional) TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createTranscribeRecording(
+        $accountId,
+        $callId,
+        $recordingId,
+        $body = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = 
+            '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId'   => $accountId,
+            'callId'      => $callId,
+            'recordingId' => $recordingId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException('Please authenticate yourself.', $_httpContext);
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 410) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The media for this recording has been deleted, so we can\'t transcribe it',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        return new ApiResponse($response->code, $response->headers, null);
+    }
+
+    /**
+     * Deletes the specified recording's transcription
+     *
+     * @param string $accountId   TODO: type description here
+     * @param string $callId      TODO: type description here
+     * @param string $recordingId TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function deleteRecordingTranscription(
+        $accountId,
+        $callId,
+        $recordingId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = 
+            '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId'   => $accountId,
+            'callId'      => $callId,
+            'recordingId' => $recordingId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::delete($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException('Please authenticate yourself.', $_httpContext);
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        return new ApiResponse($response->code, $response->headers, null);
+    }
+
+    /**
+     * Returns a list of metadata for the recordings associated with the specified account. The list can be
+     * filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at
+     * 1000 entries and may be empty if no recordings match the specified criteria.
+     *
+     * @param string $accountId    TODO: type description here
+     * @param string $from         (optional) TODO: type description here
+     * @param string $to           (optional) TODO: type description here
+     * @param string $minStartTime (optional) TODO: type description here
+     * @param string $maxStartTime (optional) TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getQueryMetadataForAccount(
+        $accountId,
+        $from = null,
+        $to = null,
+        $minStartTime = null,
+        $maxStartTime = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/api/v2/accounts/{accountId}/recordings';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId'    => $accountId,
+            ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'from'         => $from,
+            'to'           => $to,
+            'minStartTime' => $minStartTime,
+            'maxStartTime' => $maxStartTime,
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Either your request is invalid or you\'re requesting it at a bad ' .
+                'time. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException('Please authenticate yourself.', $_httpContext);
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
