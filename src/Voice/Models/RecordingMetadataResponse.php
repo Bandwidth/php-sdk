@@ -56,7 +56,7 @@ class RecordingMetadataResponse implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $direction public property
+     * @var string|null $direction public property
      */
     public $direction;
 
@@ -80,13 +80,13 @@ class RecordingMetadataResponse implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $fileFormat public property
+     * @var string|null $fileFormat public property
      */
     public $fileFormat;
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $status public property
+     * @var string|null $status public property
      */
     public $status;
 
@@ -98,7 +98,7 @@ class RecordingMetadataResponse implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \BandwidthLib\Models\mixed|null $transcription public property
+     * @var \BandwidthLib\Voice\Models\Transcription|null $transcription public property
      */
     public $transcription;
 

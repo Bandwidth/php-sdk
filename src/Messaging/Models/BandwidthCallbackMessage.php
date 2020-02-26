@@ -44,7 +44,7 @@ class BandwidthCallbackMessage implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \BandwidthLib\Models\mixed|null $message public property
+     * @var \BandwidthLib\Messaging\Models\BandwidthMessage|null $message public property
      */
     public $message;
 

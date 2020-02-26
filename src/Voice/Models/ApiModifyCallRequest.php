@@ -14,7 +14,7 @@ class ApiModifyCallRequest implements \JsonSerializable
 {
     /**
      * @todo Write general description for this property
-     * @var mixed|null $state public property
+     * @var string|null $state public property
      */
     public $state;
 
@@ -27,7 +27,7 @@ class ApiModifyCallRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $redirectMethod public property
+     * @var string|null $redirectMethod public property
      */
     public $redirectMethod;
 

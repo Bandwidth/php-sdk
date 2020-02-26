@@ -14,7 +14,7 @@ class TranscriptionResponse implements \JsonSerializable
 {
     /**
      * @todo Write general description for this property
-     * @var \BandwidthLib\Models\mixed[]|null $transcripts public property
+     * @var \BandwidthLib\Voice\Models\Transcript[]|null $transcripts public property
      */
     public $transcripts;
 

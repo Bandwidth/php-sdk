@@ -20,7 +20,7 @@ class Transcription implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $status public property
+     * @var string|null $status public property
      */
     public $status;
 

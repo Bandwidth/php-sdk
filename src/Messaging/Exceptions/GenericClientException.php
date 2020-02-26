@@ -30,7 +30,7 @@ class GenericClientException extends \BandwidthLib\APIException
 
     /**
      * @todo Write general description for this property
-     * @var \BandwidthLib\Models\mixed[]|null $fieldErrors public property
+     * @var \BandwidthLib\Messaging\Models\FieldError[]|null $fieldErrors public property
      */
     public $fieldErrors;
 

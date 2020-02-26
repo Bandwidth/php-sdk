@@ -33,8 +33,8 @@ class APIController extends BaseController
     /**
      * Creates an outbound call
      *
-     * @param string       $accountId TODO: type description here
-     * @param Models\mixed $body      (optional) TODO: type description here
+     * @param string                      $accountId TODO: type description here
+     * @param Models\ApiCreateCallRequest $body      (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
@@ -258,9 +258,9 @@ class APIController extends BaseController
     /**
      * Interrupts and replaces an active call's BXML document
      *
-     * @param string       $accountId TODO: type description here
-     * @param string       $callId    TODO: type description here
-     * @param Models\mixed $body      (optional) TODO: type description here
+     * @param string                      $accountId TODO: type description here
+     * @param string                      $callId    TODO: type description here
+     * @param Models\ApiModifyCallRequest $body      (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
@@ -372,9 +372,9 @@ class APIController extends BaseController
     /**
      * Pauses or resumes a recording
      *
-     * @param string       $accountId TODO: type description here
-     * @param string       $callId    TODO: type description here
-     * @param Models\mixed $body      (optional) TODO: type description here
+     * @param string                          $accountId TODO: type description here
+     * @param string                          $callId    TODO: type description here
+     * @param Models\ModifyCallRecordingState $body      (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
@@ -1188,10 +1188,10 @@ class APIController extends BaseController
     /**
      * Requests that the specified recording be transcribed
      *
-     * @param string       $accountId   TODO: type description here
-     * @param string       $callId      TODO: type description here
-     * @param string       $recordingId TODO: type description here
-     * @param Models\mixed $body        (optional) TODO: type description here
+     * @param string                               $accountId   TODO: type description here
+     * @param string                               $callId      TODO: type description here
+     * @param string                               $recordingId TODO: type description here
+     * @param Models\ApiTranscribeRecordingRequest $body        (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */

@@ -58,7 +58,7 @@ class ApiCallStateResponse implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $state public property
+     * @var string|null $state public property
      */
     public $state;
 
@@ -85,7 +85,7 @@ class ApiCallStateResponse implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $disconnectCause public property
+     * @var string|null $disconnectCause public property
      */
     public $disconnectCause;
 

@@ -59,6 +59,24 @@ class PhoneNumber extends Verb {
     }
 
     /**
+     * Sets the transferDisconnectUrl attribute for PhoneNumber
+     *
+     * @param string $transferDisconnectUrl The url to receive the transfer disconnect callback 
+     */
+    public function transferDisconnectUrl($transferDisconnectUrl) {
+        $this->transferDisconnectUrl = $transferDisconnectUrl;
+    }
+
+    /**
+     * Sets the transferDisconnectMethod attribute for PhoneNumber
+     *
+     * @param string $transferDisconnectMethod The http method to send the transfer disconnect callback 
+     */
+    public function transferDisconnectMethod($transferDisconnectMethod) {
+        $this->transferDisconnectMethod = $transferDisconnectMethod;
+    }
+
+    /**
      * Sets the tag attribute for PhoneNumber
      *
      * @param string $tag A custom string to be included in callbacks 
@@ -88,6 +106,14 @@ class PhoneNumber extends Verb {
 
         if(isset($this->transferAnswerMethod)) {
             $element->setAttribute("transferAnswerMethod", $this->transferAnswerMethod);
+        }
+
+        if(isset($this->transferDisconnectUrl)) {
+            $element->setAttribute("transferDisconnectUrl", $this->transferDisconnectUrl);
+        }
+
+        if(isset($this->transferDisconnectMethod)) {
+            $element->setAttribute("transferDisconnectMethod", $this->transferDisconnectMethod);
         }
 
         return $element;

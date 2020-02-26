@@ -20,7 +20,7 @@ class ApiTranscribeRecordingRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $callbackMethod public property
+     * @var string|null $callbackMethod public property
      */
     public $callbackMethod;
 

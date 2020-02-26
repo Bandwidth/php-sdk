@@ -44,7 +44,7 @@ class Media implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \BandwidthLib\Models\mixed[]|null $tags public property
+     * @var \BandwidthLib\Messaging\Models\Tag[]|null $tags public property
      */
     public $tags;
 

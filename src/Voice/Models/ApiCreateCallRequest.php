@@ -53,7 +53,7 @@ class ApiCreateCallRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $answerMethod public property
+     * @var string|null $answerMethod public property
      */
     public $answerMethod;
 
@@ -65,7 +65,7 @@ class ApiCreateCallRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var mixed|null $disconnectMethod public property
+     * @var string|null $disconnectMethod public property
      */
     public $disconnectMethod;
 

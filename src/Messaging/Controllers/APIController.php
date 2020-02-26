@@ -298,7 +298,7 @@ class APIController extends BaseController
      * @param string  $mediaId        TODO: type description here
      * @param integer $contentLength  TODO: type description here
      * @param string  $body           TODO: type description here
-     * @param string  $contentType    (optional) TODO: type description here
+     * @param string  $contentType    (optional) Example: application/octet-stream
      * @param string  $cacheControl   (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
@@ -308,7 +308,7 @@ class APIController extends BaseController
         $mediaId,
         $contentLength,
         $body,
-        $contentType = null,
+        $contentType = 'application/octet-stream',
         $cacheControl = null
     ) {
 
@@ -328,7 +328,7 @@ class APIController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Content-Length'  => $contentLength,
-            'Content-Type'    => $contentType,
+            'Content-Type'    => (null != $contentType) ? $contentType : 'application/octet-stream',
             'Cache-Control'   => $cacheControl
         );
 
@@ -486,8 +486,8 @@ class APIController extends BaseController
     /**
      * createMessage
      *
-     * @param string       $userId TODO: type description here
-     * @param Models\mixed $body   (optional) TODO: type description here
+     * @param string                $userId TODO: type description here
+     * @param Models\MessageRequest $body   (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */

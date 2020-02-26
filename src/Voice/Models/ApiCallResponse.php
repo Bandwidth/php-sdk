@@ -79,7 +79,7 @@ class ApiCallResponse implements \JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var mixed $answerMethod public property
+     * @var string $answerMethod public property
      */
     public $answerMethod;
 
@@ -92,7 +92,7 @@ class ApiCallResponse implements \JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var mixed $disconnectMethod public property
+     * @var string $disconnectMethod public property
      */
     public $disconnectMethod;
 
