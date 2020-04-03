@@ -12,7 +12,7 @@ use BandwidthLib\APIHelper;
 /**
  * @todo Write general description for this model
  */
-class GenericClientException extends \BandwidthLib\APIException
+class MessagingException extends \BandwidthLib\APIException
 {
     /**
      * @todo Write general description for this property
@@ -27,12 +27,6 @@ class GenericClientException extends \BandwidthLib\APIException
      * @var string $description public property
      */
     public $description;
-
-    /**
-     * @todo Write general description for this property
-     * @var \BandwidthLib\Messaging\Models\FieldError[]|null $fieldErrors public property
-     */
-    public $fieldErrors;
 
     /**
      * Constructor to set initial or default values of member properties

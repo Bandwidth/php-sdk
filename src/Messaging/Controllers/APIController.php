@@ -31,85 +31,6 @@ class APIController extends BaseController
     }
 
     /**
-     * getMessage
-     *
-     * @return ApiResponse response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getMessage()
-    {
-
-        //prepare query string for API call
-        $_queryBuilder = '/ping';
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth($this->config->getMessagingBasicAuthUserName(), $this->config->getMessagingBasicAuthPassword());
-
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-
-        //call on-before Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-        // Set request timeout
-        Request::timeout($this->config->getTimeout());
-
-        // and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //Error handling using HTTP status codes
-        if ($response->code == 400) {
-            throw new Exceptions\GenericClientException('400 Request is malformed or invalid', $_httpContext);
-        }
-
-        if ($response->code == 401) {
-            throw new Exceptions\PathClientException(
-                '401 The specified user does not have access to the account',
-                $_httpContext
-            );
-        }
-
-        if ($response->code == 403) {
-            throw new Exceptions\PathClientException('403 The user does not have access to this API', $_httpContext);
-        }
-
-        if ($response->code == 404) {
-            throw new Exceptions\PathClientException('404 Path not found', $_httpContext);
-        }
-
-        if ($response->code == 415) {
-            throw new Exceptions\GenericClientException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
-        }
-
-        if ($response->code == 429) {
-            throw new Exceptions\GenericClientException('429 The rate limit has been reached', $_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-        return new ApiResponse($response->code, $response->headers, null);
-    }
-
-    /**
      * listMedia
      *
      * @param string $userId             TODO: type description here
@@ -165,33 +86,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\GenericClientException('400 Request is malformed or invalid', $_httpContext);
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\PathClientException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\PathClientException('403 The user does not have access to this API', $_httpContext);
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\PathClientException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\GenericClientException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\GenericClientException('429 The rate limit has been reached', $_httpContext);
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -256,33 +174,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\GenericClientException('400 Request is malformed or invalid', $_httpContext);
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\PathClientException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\PathClientException('403 The user does not have access to this API', $_httpContext);
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\PathClientException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\GenericClientException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\GenericClientException('429 The rate limit has been reached', $_httpContext);
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -360,33 +275,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\GenericClientException('400 Request is malformed or invalid', $_httpContext);
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\PathClientException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\PathClientException('403 The user does not have access to this API', $_httpContext);
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\PathClientException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\GenericClientException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\GenericClientException('429 The rate limit has been reached', $_httpContext);
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -449,33 +361,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\GenericClientException('400 Request is malformed or invalid', $_httpContext);
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\PathClientException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\PathClientException('403 The user does not have access to this API', $_httpContext);
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\PathClientException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\GenericClientException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\GenericClientException('429 The rate limit has been reached', $_httpContext);
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -542,33 +451,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\GenericClientException('400 Request is malformed or invalid', $_httpContext);
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\PathClientException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\PathClientException('403 The user does not have access to this API', $_httpContext);
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\PathClientException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\GenericClientException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\GenericClientException('429 The rate limit has been reached', $_httpContext);
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level

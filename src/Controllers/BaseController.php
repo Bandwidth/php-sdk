@@ -22,7 +22,7 @@ class BaseController
      * User-agent to be sent with API calls
      * @var string
      */
-    const USER_AGENT = 'APIMATIC 2.0';
+    const USER_AGENT = 'php-sdk-refs/tags/php2.0.0';
 
     /**
      * HttpCallBack instance associated with this controller
