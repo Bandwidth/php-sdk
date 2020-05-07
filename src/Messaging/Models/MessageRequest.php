@@ -70,10 +70,12 @@ class MessageRequest implements \JsonSerializable
     {
         $json = array();
         $json['applicationId'] = $this->applicationId;
-        $json['to']            = $this->to;
+        $json['to']            = isset($this->to) ?
+            array_values($this->to) : null;
         $json['from']          = $this->from;
         $json['text']          = $this->text;
-        $json['media']         = $this->media;
+        $json['media']         = isset($this->media) ?
+            array_values($this->media) : null;
         $json['tag']           = $this->tag;
 
         return array_filter($json);

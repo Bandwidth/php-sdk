@@ -132,6 +132,15 @@ class Record extends Verb {
         $this->transcriptionAvailableMethod = $transcriptionAvailableMethod;
     }
 
+    /**
+     * Sets the silenceTimeout for Record
+     *
+     * @param int $silenceTimeout Number of seconds of silence that ends the recording
+     */
+    public function silenceTimeout($silenceTimeout) {
+        $this->silenceTimeout = $silenceTimeout;
+    }
+
     public function toBxml($doc) {
         $element = $doc->createElement("Record");
 
@@ -189,6 +198,10 @@ class Record extends Verb {
 
         if(isset($this->transcriptionAvailableMethod)) {
             $element->setattribute("transcriptionAvailableMethod", $this->transcriptionAvailableMethod);
+        }
+
+        if(isset($this->silenceTimeout)) {
+            $element->setattribute("silenceTimeout", $this->silenceTimeout);
         }
 
         return $element;

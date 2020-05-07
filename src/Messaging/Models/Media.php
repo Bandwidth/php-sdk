@@ -102,7 +102,8 @@ class Media implements \JsonSerializable
         $json['url']           = $this->url;
         $json['contentLength'] = $this->contentLength;
         $json['contentType']   = $this->contentType;
-        $json['tags']          = $this->tags;
+        $json['tags']          = isset($this->tags) ?
+            array_values($this->tags) : null;
         $json['userId']        = $this->userId;
         $json['mediaName']     = $this->mediaName;
         $json['mediaId']       = $this->mediaId;

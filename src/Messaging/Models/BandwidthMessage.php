@@ -110,9 +110,11 @@ class BandwidthMessage implements \JsonSerializable
         $json['time']          = $this->time;
         $json['segmentCount']  = $this->segmentCount;
         $json['direction']     = $this->direction;
-        $json['to']            = $this->to;
+        $json['to']            = isset($this->to) ?
+            array_values($this->to) : null;
         $json['from']          = $this->from;
-        $json['media']         = $this->media;
+        $json['media']         = isset($this->media) ?
+            array_values($this->media) : null;
         $json['text']          = $this->text;
         $json['tag']           = $this->tag;
 

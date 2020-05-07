@@ -16,7 +16,7 @@ class Pause extends Verb {
     /**
      * Sets the duration attribute for Pause
      *
-     * @param string $duration The duration in seconds for the pause 
+     * @param float $duration The duration in seconds for the pause 
      */
     public function duration($duration) {
         $this->duration = $duration;

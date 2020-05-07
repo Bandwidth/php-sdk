@@ -34,7 +34,8 @@ class TranscriptionResponse implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['transcripts'] = $this->transcripts;
+        $json['transcripts'] = isset($this->transcripts) ?
+            array_values($this->transcripts) : null;
 
         return array_filter($json);
     }
