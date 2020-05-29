@@ -103,6 +103,7 @@ class Gather extends Verb {
      */
     public function playAudio($playAudio) {
         $this->playAudio = $playAudio;
+        $this->addNestableVerb($playAudio);
     }
 
     /**
@@ -115,12 +116,25 @@ class Gather extends Verb {
     }
 
     /**
-     * Sets the SpeakSentence tag for Gather
+     * Sets the SpeakSentence tag for Gather.
      *
      * @param SpeakSentence $speakSentence The SpeakSentence tag to include in the Gather
      */
     public function speakSentence($speakSentence) {
         $this->speakSentence = $speakSentence;
+        $this->addNestableVerb($speakSentence);
+    }
+
+    /**
+     * Adds a nestable verb being one of SpeakSentence or PlayAudio.
+     *
+     * @param SpeakSentence|PlayAudio $verb The nestable verb to add
+     */
+    private function addNestableVerb($verb) {
+        if(!isset($this->nestableVerbs)) {
+            $this->nestableVerbs = [];
+        }
+        array_push($this->nestableVerbs, $verb);
     }
 
     public function toBxml($doc) {
@@ -165,13 +179,11 @@ class Gather extends Verb {
         if(isset($this->repeatCount)) {
             $element->setAttribute("repeatCount", $this->repeatCount);
         }
-        
-        if(isset($this->playAudio)) {
-            $element->appendChild($this->playAudio->toBxml($doc));
-        }
 
-        if(isset($this->speakSentence)) {
-            $element->appendChild($this->speakSentence->toBxml($doc));
+        if(isset($this->nestableVerbs)) {
+            foreach ($this->nestableVerbs as $verb) {
+                $element->appendChild($verb->toBxml($doc));
+            }
         }
 
         return $element;

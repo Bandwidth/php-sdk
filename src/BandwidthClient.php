@@ -21,6 +21,7 @@ class BandwidthClient
     }
 
     private $messaging;
+    private $twoFactorAuth;
     private $voice;
 
     /**
@@ -33,6 +34,18 @@ class BandwidthClient
             $this->messaging = new Messaging\MessagingClient($this->config);
         }
         return $this->messaging;
+    }
+
+    /**
+     * Provides access to TwoFactorAuth client
+     * @return TwoFactorAuth\TwoFactorAuthClient
+     */
+    public function getTwoFactorAuth()
+    {
+        if ($this->twoFactorAuth == null) {
+            $this->twoFactorAuth = new TwoFactorAuth\TwoFactorAuthClient($this->config);
+        }
+        return $this->twoFactorAuth;
     }
 
     /**

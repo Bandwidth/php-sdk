@@ -35,6 +35,18 @@ class Configuration
      * The username to use with basic authentication
      * @var string
      */
+    private $twoFactorAuthBasicAuthUserName = 'TODO: Replace';
+
+    /**
+     * The password to use with basic authentication
+     * @var string
+     */
+    private $twoFactorAuthBasicAuthPassword = 'TODO: Replace';
+
+    /**
+     * The username to use with basic authentication
+     * @var string
+     */
     private $voiceBasicAuthUserName = 'TODO: Replace';
 
     /**
@@ -60,6 +72,12 @@ class Configuration
         if (isset($configOptions['messagingBasicAuthPassword'])) {
             $this->messagingBasicAuthPassword = $configOptions['messagingBasicAuthPassword'];
         }
+        if (isset($configOptions['twoFactorAuthBasicAuthUserName'])) {
+            $this->twoFactorAuthBasicAuthUserName = $configOptions['twoFactorAuthBasicAuthUserName'];
+        }
+        if (isset($configOptions['twoFactorAuthBasicAuthPassword'])) {
+            $this->twoFactorAuthBasicAuthPassword = $configOptions['twoFactorAuthBasicAuthPassword'];
+        }
         if (isset($configOptions['voiceBasicAuthUserName'])) {
             $this->voiceBasicAuthUserName = $configOptions['voiceBasicAuthUserName'];
         }
@@ -83,6 +101,12 @@ class Configuration
         }
         if (isset($this->messagingBasicAuthPassword)) {
             $configMap['messagingBasicAuthPassword'] = $this->messagingBasicAuthPassword;
+        }
+        if (isset($this->twoFactorAuthBasicAuthUserName)) {
+            $configMap['twoFactorAuthBasicAuthUserName'] = $this->twoFactorAuthBasicAuthUserName;
+        }
+        if (isset($this->twoFactorAuthBasicAuthPassword)) {
+            $configMap['twoFactorAuthBasicAuthPassword'] = $this->twoFactorAuthBasicAuthPassword;
         }
         if (isset($this->voiceBasicAuthUserName)) {
             $configMap['voiceBasicAuthUserName'] = $this->voiceBasicAuthUserName;
@@ -113,6 +137,18 @@ class Configuration
     public function getMessagingBasicAuthPassword()
     {
         return $this->messagingBasicAuthPassword;
+    }
+
+    // Getter for twoFactorAuthBasicAuthUserName
+    public function getTwoFactorAuthBasicAuthUserName()
+    {
+        return $this->twoFactorAuthBasicAuthUserName;
+    }
+
+    // Getter for twoFactorAuthBasicAuthPassword
+    public function getTwoFactorAuthBasicAuthPassword()
+    {
+        return $this->twoFactorAuthBasicAuthPassword;
     }
 
     // Getter for voiceBasicAuthUserName
@@ -151,6 +187,7 @@ class Configuration
         Environments::PRODUCTION => array(
             Servers::DEFAULT_ => 'api.bandwidth.com',
             Servers::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
+            Servers::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1/',
             Servers::VOICEDEFAULT => 'https://voice.bandwidth.com',
         ),
     );
