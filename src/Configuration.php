@@ -56,10 +56,28 @@ class Configuration
     private $voiceBasicAuthPassword = 'TODO: Replace';
 
     /**
+     * The username to use with basic authentication
+     * @var string
+     */
+    private $webRtcBasicAuthUserName = 'TODO: Replace';
+
+    /**
+     * The password to use with basic authentication
+     * @var string
+     */
+    private $webRtcBasicAuthPassword = 'TODO: Replace';
+
+    /**
      * Current API environment
      * @var Environments
      */
     private $environment = Environments::PRODUCTION;
+
+    /**
+     * @todo Add description for parameter
+     * @var string
+     */
+    private $webRtcServer = 'https://api.webrtc.bandwidth.com';
 
     public function __construct($configOptions = null)
     {
@@ -84,8 +102,17 @@ class Configuration
         if (isset($configOptions['voiceBasicAuthPassword'])) {
             $this->voiceBasicAuthPassword = $configOptions['voiceBasicAuthPassword'];
         }
+        if (isset($configOptions['webRtcBasicAuthUserName'])) {
+            $this->webRtcBasicAuthUserName = $configOptions['webRtcBasicAuthUserName'];
+        }
+        if (isset($configOptions['webRtcBasicAuthPassword'])) {
+            $this->webRtcBasicAuthPassword = $configOptions['webRtcBasicAuthPassword'];
+        }
         if (isset($configOptions['environment'])) {
             $this->environment = $configOptions['environment'];
+        }
+        if (isset($configOptions['webRtcServer'])) {
+            $this->webRtcServer = $configOptions['webRtcServer'];
         }
     }
 
@@ -114,8 +141,17 @@ class Configuration
         if (isset($this->voiceBasicAuthPassword)) {
             $configMap['voiceBasicAuthPassword'] = $this->voiceBasicAuthPassword;
         }
+        if (isset($this->webRtcBasicAuthUserName)) {
+            $configMap['webRtcBasicAuthUserName'] = $this->webRtcBasicAuthUserName;
+        }
+        if (isset($this->webRtcBasicAuthPassword)) {
+            $configMap['webRtcBasicAuthPassword'] = $this->webRtcBasicAuthPassword;
+        }
         if (isset($this->environment)) {
             $configMap['environment'] = $this->environment;
+        }
+        if (isset($this->webRtcServer)) {
+            $configMap['webRtcServer'] = $this->webRtcServer;
         }
 
         return $configMap;
@@ -163,10 +199,28 @@ class Configuration
         return $this->voiceBasicAuthPassword;
     }
 
+    // Getter for webRtcBasicAuthUserName
+    public function getWebRtcBasicAuthUserName()
+    {
+        return $this->webRtcBasicAuthUserName;
+    }
+
+    // Getter for webRtcBasicAuthPassword
+    public function getWebRtcBasicAuthPassword()
+    {
+        return $this->webRtcBasicAuthPassword;
+    }
+
     // Getter for environment
     public function getEnvironment()
     {
         return $this->environment;
+    }
+
+    // Getter for webRtcServer
+    public function getWebRtcServer()
+    {
+        return $this->webRtcServer;
     }
 
     /**
@@ -176,7 +230,12 @@ class Configuration
      */
     public function getBaseUri($server = Servers::DEFAULT_)
     {
-        return static::$environmentsMap[$this->environment][$server];
+        return APIHelper::appendUrlWithTemplateParameters(
+            static::$environmentsMap[$this->environment][$server],
+            array(
+                'WebRtcServer' => $this->webRtcServer,
+            )
+        );
     }
 
     /**
@@ -189,6 +248,7 @@ class Configuration
             Servers::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
             Servers::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1/',
             Servers::VOICEDEFAULT => 'https://voice.bandwidth.com',
+            Servers::WEBRTCDEFAULT => '{WebRtcServer}/v1',
         ),
     );
 }

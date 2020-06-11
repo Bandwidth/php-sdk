@@ -23,6 +23,7 @@ class BandwidthClient
     private $messaging;
     private $twoFactorAuth;
     private $voice;
+    private $webRtc;
 
     /**
      * Provides access to Messaging client
@@ -58,6 +59,18 @@ class BandwidthClient
             $this->voice = new Voice\VoiceClient($this->config);
         }
         return $this->voice;
+    }
+
+    /**
+     * Provides access to WebRtc client
+     * @return WebRtc\WebRtcClient
+     */
+    public function getWebRtc()
+    {
+        if ($this->webRtc == null) {
+            $this->webRtc = new WebRtc\WebRtcClient($this->config);
+        }
+        return $this->webRtc;
     }
 
 }

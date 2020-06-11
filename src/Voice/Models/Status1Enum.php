@@ -15,35 +15,25 @@ class Status1Enum
     /**
      * TODO: Write general description for this element
      */
-    const REQUESTED = "requested";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const NONE = "none";
-
-    /**
-     * TODO: Write general description for this element
-     */
     const PROCESSING = "processing";
 
     /**
      * TODO: Write general description for this element
      */
-    const AVAILABLE = "available";
+    const PARTIAL = "partial";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const COMPLETE = "complete";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const DELETED = "deleted";
 
     /**
      * TODO: Write general description for this element
      */
     const ERROR = "error";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const TIMEOUT = "timeout";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const FILESIZETOOBIG = "file-size-too-big";
 }

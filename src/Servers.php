@@ -31,4 +31,9 @@ class Servers
      * TODO: Write general description for this element
      */
     const VOICEDEFAULT = "VoiceDefault";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const WEBRTCDEFAULT = "WebRtcDefault";
 }

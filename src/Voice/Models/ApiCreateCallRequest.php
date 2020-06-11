@@ -83,11 +83,23 @@ class ApiCreateCallRequest implements \JsonSerializable
     public $applicationId;
 
     /**
+     * @todo Write general description for this property
+     * @var string|null $obfuscatedTo public property
+     */
+    public $obfuscatedTo;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $obfuscatedFrom public property
+     */
+    public $obfuscatedFrom;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (11 == func_num_args()) {
+        if (13 == func_num_args()) {
             $this->from             = func_get_arg(0);
             $this->to               = func_get_arg(1);
             $this->callTimeout      = func_get_arg(2);
@@ -99,6 +111,8 @@ class ApiCreateCallRequest implements \JsonSerializable
             $this->disconnectMethod = func_get_arg(8);
             $this->tag              = func_get_arg(9);
             $this->applicationId    = func_get_arg(10);
+            $this->obfuscatedTo     = func_get_arg(11);
+            $this->obfuscatedFrom   = func_get_arg(12);
         }
     }
 
@@ -119,6 +133,8 @@ class ApiCreateCallRequest implements \JsonSerializable
         $json['disconnectMethod'] = $this->disconnectMethod;
         $json['tag']              = $this->tag;
         $json['applicationId']    = $this->applicationId;
+        $json['obfuscatedTo']     = $this->obfuscatedTo;
+        $json['obfuscatedFrom']   = $this->obfuscatedFrom;
 
         return array_filter($json);
     }
