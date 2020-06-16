@@ -8,11 +8,9 @@
 namespace BandwidthLib\WebRtc\Models;
 
 /**
- * The type of media the participant is allowed to publish
- *
- * VIDEO permission implies AUDIO permission as well
+ * @todo Write general description for this enumeration
  */
-class MediaTypeEnum
+class PublishPermissionEnum
 {
     /**
      * TODO: Write general description for this element

@@ -26,9 +26,9 @@ class Participant implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \BandwidthLib\WebRtc\Models\Permissions|null $permissions public property
+     * @var array|null $publishPermissions public property
      */
-    public $permissions;
+    public $publishPermissions;
 
     /**
      * List of session ids this participant is associated with
@@ -56,12 +56,12 @@ class Participant implements \JsonSerializable
     public function __construct()
     {
         if (6 == func_num_args()) {
-            $this->id            = func_get_arg(0);
-            $this->callbackUrl   = func_get_arg(1);
-            $this->permissions   = func_get_arg(2);
-            $this->sessions      = func_get_arg(3);
-            $this->subscriptions = func_get_arg(4);
-            $this->tag           = func_get_arg(5);
+            $this->id                 = func_get_arg(0);
+            $this->callbackUrl        = func_get_arg(1);
+            $this->publishPermissions = func_get_arg(2);
+            $this->sessions           = func_get_arg(3);
+            $this->subscriptions      = func_get_arg(4);
+            $this->tag                = func_get_arg(5);
         }
     }
 
@@ -71,13 +71,15 @@ class Participant implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['id']            = $this->id;
-        $json['callbackUrl']   = $this->callbackUrl;
-        $json['permissions']   = $this->permissions;
-        $json['sessions']      = isset($this->sessions) ?
+        $json['id']                 = $this->id;
+        $json['callbackUrl']        = $this->callbackUrl;
+        $json['publishPermissions'] =
+            isset($this->publishPermissions) ?
+            array_values($this->publishPermissions) : null;
+        $json['sessions']           = isset($this->sessions) ?
             array_values($this->sessions) : null;
-        $json['subscriptions'] = $this->subscriptions;
-        $json['tag']           = $this->tag;
+        $json['subscriptions']      = $this->subscriptions;
+        $json['tag']                = $this->tag;
 
         return array_filter($json);
     }
