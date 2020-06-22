@@ -13,32 +13,53 @@ namespace BandwidthLib\TwoFactorAuth\Models;
 class TwoFactorVerifyRequestSchema implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var string|null $to public property
+     * The phone number to send the 2fa code to.
+     * @required
+     * @var string $to public property
      */
     public $to;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $from public property
+     * The application phone number, the sender of the 2fa code.
+     * @required
+     * @var string $from public property
      */
     public $from;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $applicationId public property
+     * The application unique ID, obtained from Bandwidth.
+     * @required
+     * @var string $applicationId public property
      */
     public $applicationId;
 
     /**
-     * @todo Write general description for this property
+     * An optional field to denote what scope or action the 2fa code is addressing.  If not supplied,
+     * defaults to "2FA".
      * @var string|null $scope public property
      */
     public $scope;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $code public property
+     * The number of digits for your 2fa code.  The valid number ranges from 2 to 8, inclusively.
+     * @required
+     * @var double $digits public property
+     */
+    public $digits;
+
+    /**
+     * The time period, in minutes, to validate the 2fa code.  By setting this to 3 minutes, it will mean
+     * any code generated within the last 3 minutes are still valid.  The valid range for expiration time
+     * is between 0 and 15 minutes, exclusively and inclusively, respectively.
+     * @required
+     * @var double $expirationTimeInMinutes public property
+     */
+    public $expirationTimeInMinutes;
+
+    /**
+     * The generated 2fa code to check if valid
+     * @required
+     * @var string $code public property
      */
     public $code;
 
@@ -47,12 +68,14 @@ class TwoFactorVerifyRequestSchema implements \JsonSerializable
      */
     public function __construct()
     {
-        if (5 == func_num_args()) {
-            $this->to            = func_get_arg(0);
-            $this->from          = func_get_arg(1);
-            $this->applicationId = func_get_arg(2);
-            $this->scope         = func_get_arg(3);
-            $this->code          = func_get_arg(4);
+        if (7 == func_num_args()) {
+            $this->to                      = func_get_arg(0);
+            $this->from                    = func_get_arg(1);
+            $this->applicationId           = func_get_arg(2);
+            $this->scope                   = func_get_arg(3);
+            $this->digits                  = func_get_arg(4);
+            $this->expirationTimeInMinutes = func_get_arg(5);
+            $this->code                    = func_get_arg(6);
         }
     }
 
@@ -62,11 +85,13 @@ class TwoFactorVerifyRequestSchema implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['to']            = $this->to;
-        $json['from']          = $this->from;
-        $json['applicationId'] = $this->applicationId;
-        $json['scope']         = $this->scope;
-        $json['code']          = $this->code;
+        $json['to']                      = $this->to;
+        $json['from']                    = $this->from;
+        $json['applicationId']           = $this->applicationId;
+        $json['scope']                   = $this->scope;
+        $json['digits']                  = $this->digits;
+        $json['expirationTimeInMinutes'] = $this->expirationTimeInMinutes;
+        $json['code']                    = $this->code;
 
         return array_filter($json);
     }

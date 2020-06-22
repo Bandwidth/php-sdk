@@ -9,6 +9,7 @@ namespace BandwidthLib\TwoFactorAuth\Controllers;
 
 use BandwidthLib\APIException;
 use BandwidthLib\APIHelper;
+use BandwidthLib\TwoFactorAuth\Exceptions;
 use BandwidthLib\TwoFactorAuth\Models;
 use BandwidthLib\Controllers\BaseController;
 use BandwidthLib\Http\ApiResponse;
@@ -86,6 +87,11 @@ class APIController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\InvalidRequestException('client request error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
         $mapper = $this->getJsonMapper();
@@ -153,6 +159,11 @@ class APIController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\InvalidRequestException('client request error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
         $mapper = $this->getJsonMapper();
@@ -218,6 +229,11 @@ class APIController extends BaseController
         //call on-after Http callback
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\InvalidRequestException('client request error', $_httpContext);
         }
 
         //handle errors defined at the API level
