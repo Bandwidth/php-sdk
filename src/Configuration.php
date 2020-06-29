@@ -73,12 +73,6 @@ class Configuration
      */
     private $environment = Environments::PRODUCTION;
 
-    /**
-     * @todo Add description for parameter
-     * @var string
-     */
-    private $webRtcServer = 'https://api.webrtc.bandwidth.com';
-
     public function __construct($configOptions = null)
     {
         if (isset($configOptions['timeout'])) {
@@ -110,9 +104,6 @@ class Configuration
         }
         if (isset($configOptions['environment'])) {
             $this->environment = $configOptions['environment'];
-        }
-        if (isset($configOptions['webRtcServer'])) {
-            $this->webRtcServer = $configOptions['webRtcServer'];
         }
     }
 
@@ -149,9 +140,6 @@ class Configuration
         }
         if (isset($this->environment)) {
             $configMap['environment'] = $this->environment;
-        }
-        if (isset($this->webRtcServer)) {
-            $configMap['webRtcServer'] = $this->webRtcServer;
         }
 
         return $configMap;
@@ -217,12 +205,6 @@ class Configuration
         return $this->environment;
     }
 
-    // Getter for webRtcServer
-    public function getWebRtcServer()
-    {
-        return $this->webRtcServer;
-    }
-
     /**
      * Get the base uri for a given server in the current environment
      * @param  string $server Server name
@@ -230,12 +212,7 @@ class Configuration
      */
     public function getBaseUri($server = Servers::DEFAULT_)
     {
-        return APIHelper::appendUrlWithTemplateParameters(
-            static::$environmentsMap[$this->environment][$server],
-            array(
-                'WebRtcServer' => $this->webRtcServer,
-            )
-        );
+        return static::$environmentsMap[$this->environment][$server];
     }
 
     /**
@@ -248,7 +225,7 @@ class Configuration
             Servers::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
             Servers::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1/',
             Servers::VOICEDEFAULT => 'https://voice.bandwidth.com',
-            Servers::WEBRTCDEFAULT => '{WebRtcServer}/v1',
+            Servers::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1',
         ),
     );
 }

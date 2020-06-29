@@ -13,7 +13,7 @@ namespace BandwidthLib\WebRtc\Models;
 class AccountsParticipantsResponse implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
+     * A participant object
      * @var \BandwidthLib\WebRtc\Models\Participant|null $participant public property
      */
     public $participant;

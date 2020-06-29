@@ -13,7 +13,7 @@ namespace BandwidthLib\WebRtc\Models;
 class Subscriptions implements \JsonSerializable
 {
     /**
-     * Session the subscriptions are associated with.
+     * Session the subscriptions are associated with
      *
      * If this is the only field, the subscriber will be subscribed to all participants in the session
      * (including any participants that are later added to the session)

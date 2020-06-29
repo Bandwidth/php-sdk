@@ -8,12 +8,12 @@
 namespace BandwidthLib\WebRtc\Models;
 
 /**
- * @todo Write general description for this model
+ *A participant object
  */
 class Participant implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
+     * Unique id of the participant
      * @var string|null $id public property
      */
     public $id;
@@ -25,7 +25,7 @@ class Participant implements \JsonSerializable
     public $callbackUrl;
 
     /**
-     * @todo Write general description for this property
+     * Defines if this participant can publish audio or video
      * @var array|null $publishPermissions public property
      */
     public $publishPermissions;

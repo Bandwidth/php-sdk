@@ -8,21 +8,15 @@
 namespace BandwidthLib\WebRtc\Models;
 
 /**
- * @todo Write general description for this model
+ *A session object
  */
 class Session implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
+     * Unique id of the session
      * @var string|null $id public property
      */
     public $id;
-
-    /**
-     * The list of participants associated with this session
-     * @var \BandwidthLib\WebRtc\Models\Participant[]|null $participants public property
-     */
-    public $participants;
 
     /**
      * User defined tag to associate with the session
@@ -35,10 +29,9 @@ class Session implements \JsonSerializable
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
-            $this->id           = func_get_arg(0);
-            $this->participants = func_get_arg(1);
-            $this->tag          = func_get_arg(2);
+        if (2 == func_num_args()) {
+            $this->id  = func_get_arg(0);
+            $this->tag = func_get_arg(1);
         }
     }
 
@@ -48,10 +41,8 @@ class Session implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['id']           = $this->id;
-        $json['participants'] = isset($this->participants) ?
-            array_values($this->participants) : null;
-        $json['tag']          = $this->tag;
+        $json['id']  = $this->id;
+        $json['tag'] = $this->tag;
 
         return array_filter($json);
     }

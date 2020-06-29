@@ -508,6 +508,84 @@ class APIController extends BaseController
     }
 
     /**
+     * List participants in a session
+     *
+     * @param string $accountId Account ID
+     * @param string $sessionId Session ID
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function listSessionParticipants(
+        $accountId,
+        $sessionId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/accounts/{accountId}/sessions/{sessionId}/participants';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId' => $accountId,
+            'sessionId' => $sessionId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::WEBRTCDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getWebRtcBasicAuthUserName(), $this->config->getWebRtcBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 401) {
+            throw new APIException('Unauthorized', $_httpContext);
+        }
+
+        if ($response->code == 403) {
+            throw new APIException('Access Denied', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new APIException('Not Found', $_httpContext);
+        }
+
+        if (($response->code < 200) || ($response->code > 208)) {
+            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClassArray($response->body, 'BandwidthLib\\WebRtc\\Models\\Participant');
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
      * Add a participant to a session
      *
      * Subscriptions can optionally be provided as part of this call
