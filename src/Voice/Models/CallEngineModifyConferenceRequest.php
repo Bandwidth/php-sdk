@@ -19,12 +19,41 @@ class CallEngineModifyConferenceRequest implements \JsonSerializable
     public $status;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var string $redirectUrl public property
+     */
+    public $redirectUrl;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $redirectMethod public property
+     */
+    public $redirectMethod;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $username public property
+     */
+    public $username;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $password public property
+     */
+    public $password;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (1 == func_num_args()) {
-            $this->status = func_get_arg(0);
+        if (5 == func_num_args()) {
+            $this->status         = func_get_arg(0);
+            $this->redirectUrl    = func_get_arg(1);
+            $this->redirectMethod = func_get_arg(2);
+            $this->username       = func_get_arg(3);
+            $this->password       = func_get_arg(4);
         }
     }
 
@@ -34,7 +63,11 @@ class CallEngineModifyConferenceRequest implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['status'] = $this->status;
+        $json['status']         = $this->status;
+        $json['redirectUrl']    = $this->redirectUrl;
+        $json['redirectMethod'] = $this->redirectMethod;
+        $json['username']       = $this->username;
+        $json['password']       = $this->password;
 
         return array_filter($json);
     }

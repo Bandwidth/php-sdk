@@ -36,4 +36,9 @@ class Status1Enum
      * TODO: Write general description for this element
      */
     const ERROR = "error";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const ALREADYINPROGRESS = "already-in-progress";
 }

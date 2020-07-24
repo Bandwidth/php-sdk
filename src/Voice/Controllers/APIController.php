@@ -487,22 +487,14 @@ class APIController extends BaseController
      * Returns a (potentially empty) list of metadata for the recordings that took place during the
      * specified call
      *
-     * @param string $accountId    TODO: type description here
-     * @param string $callId       TODO: type description here
-     * @param string $from         (optional) TODO: type description here
-     * @param string $to           (optional) TODO: type description here
-     * @param string $minStartTime (optional) TODO: type description here
-     * @param string $maxStartTime (optional) TODO: type description here
+     * @param string $accountId TODO: type description here
+     * @param string $callId    TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function getQueryMetadataForAccountAndCall(
         $accountId,
-        $callId,
-        $from = null,
-        $to = null,
-        $minStartTime = null,
-        $maxStartTime = null
+        $callId
     ) {
 
         //prepare query string for API call
@@ -510,17 +502,9 @@ class APIController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'accountId'    => $accountId,
-            'callId'       => $callId,
+            'accountId' => $accountId,
+            'callId'    => $callId,
             ));
-
-        //process optional query parameters
-        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'from'         => $from,
-            'to'           => $to,
-            'minStartTime' => $minStartTime,
-            'maxStartTime' => $maxStartTime,
-        ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
@@ -1423,6 +1407,136 @@ class APIController extends BaseController
     }
 
     /**
+     * Returns information about the conferences in the account
+     *
+     * @param string  $accountId      TODO: type description here
+     * @param integer $pageSize       (optional) Example: 1000
+     * @param string  $pageToken      (optional) TODO: type description here
+     * @param string  $name           (optional) TODO: type description here
+     * @param string  $minCreatedTime (optional) TODO: type description here
+     * @param string  $maxCreatedTime (optional) TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getConferencesByAccount(
+        $accountId,
+        $pageSize = 1000,
+        $pageToken = null,
+        $name = null,
+        $minCreatedTime = null,
+        $maxCreatedTime = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/api/v2/accounts/{accountId}/conferences';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId'      => $accountId,
+            ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'pageSize'       => (null != $pageSize) ? $pageSize : 1000,
+            'pageToken'      => $pageToken,
+            'name'           => $name,
+            'minCreatedTime' => $minCreatedTime,
+            'maxCreatedTime' => $maxCreatedTime,
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException(
+                'Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to ' .
+                'the API.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClassArray(
+            $response->body,
+            'BandwidthLib\\Voice\\Models\\ConferenceDetail'
+        );
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
      * Returns information about the specified conference
      *
      * @param string $accountId    TODO: type description here
@@ -1648,6 +1762,123 @@ class APIController extends BaseController
     }
 
     /**
+     * Updates settings for a particular conference member
+     *
+     * @param string                        $accountId    TODO: type description here
+     * @param string                        $conferenceId TODO: type description here
+     * @param string                        $callId       TODO: type description here
+     * @param Models\ConferenceMemberDetail $body         (optional) TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function modifyConferenceMember(
+        $accountId,
+        $conferenceId,
+        $callId,
+        $body = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/api/v2/accounts/{accountId}/conferences/{conferenceId}/members/{callId}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId'    => $accountId,
+            'conferenceId' => $conferenceId,
+            'callId'       => $callId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException(
+                'Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to ' .
+                'the API.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        return new ApiResponse($response->code, $response->headers, null);
+    }
+
+    /**
      * Returns information about the specified conference member
      *
      * @param string $accountId    TODO: type description here
@@ -1762,6 +1993,352 @@ class APIController extends BaseController
             $response->body,
             'BandwidthLib\\Voice\\Models\\ConferenceMemberDetail'
         );
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Returns a (potentially empty) list of metadata for the recordings that took place during the
+     * specified conference
+     *
+     * @param string $accountId    TODO: type description here
+     * @param string $conferenceId TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getQueryMetadataForAccountAndConference(
+        $accountId,
+        $conferenceId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId'    => $accountId,
+            'conferenceId' => $conferenceId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException(
+                'Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to ' .
+                'the API.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClassArray(
+            $response->body,
+            'BandwidthLib\\Voice\\Models\\ConferenceRecordingMetadataResponse'
+        );
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Returns metadata for the specified recording
+     *
+     * @param string $accountId    TODO: type description here
+     * @param string $conferenceId TODO: type description here
+     * @param string $recordingId  TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getMetadataForConferenceRecording(
+        $accountId,
+        $conferenceId,
+        $recordingId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = 
+            '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId'    => $accountId,
+            'conferenceId' => $conferenceId,
+            'recordingId'  => $recordingId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException(
+                'Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to ' .
+                'the API.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClass(
+            $response->body,
+            'BandwidthLib\\Voice\\Models\\RecordingMetadataResponse'
+        );
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Downloads the specified recording
+     *
+     * @param string $accountId    TODO: type description here
+     * @param string $conferenceId TODO: type description here
+     * @param string $recordingId  TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getStreamConferenceRecordingMedia(
+        $accountId,
+        $conferenceId,
+        $recordingId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = 
+            '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}/media';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId'    => $accountId,
+            'conferenceId' => $conferenceId,
+            'recordingId'  => $recordingId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException(
+                'Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to ' .
+                'the API.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorResponseException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorResponseException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorResponseException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorResponseException(
+                'Something unexpected happened. Please try again.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $deserializedResponse = $response->body;
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
     }
 

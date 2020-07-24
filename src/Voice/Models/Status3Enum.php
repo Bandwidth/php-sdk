@@ -10,7 +10,7 @@ namespace BandwidthLib\Voice\Models;
 /**
  * @todo Write general description for this enumeration
  */
-class Status2Enum
+class Status3Enum
 {
     /**
      * TODO: Write general description for this element
