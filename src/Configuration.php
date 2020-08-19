@@ -73,6 +73,12 @@ class Configuration
      */
     private $environment = Environments::PRODUCTION;
 
+    /**
+     * @todo Add description for parameter
+     * @var string
+     */
+    private $baseUrl = 'https://www.example.com';
+
     public function __construct($configOptions = null)
     {
         if (isset($configOptions['timeout'])) {
@@ -104,6 +110,9 @@ class Configuration
         }
         if (isset($configOptions['environment'])) {
             $this->environment = $configOptions['environment'];
+        }
+        if (isset($configOptions['baseUrl'])) {
+            $this->baseUrl = $configOptions['baseUrl'];
         }
     }
 
@@ -140,6 +149,9 @@ class Configuration
         }
         if (isset($this->environment)) {
             $configMap['environment'] = $this->environment;
+        }
+        if (isset($this->baseUrl)) {
+            $configMap['baseUrl'] = $this->baseUrl;
         }
 
         return $configMap;
@@ -205,6 +217,12 @@ class Configuration
         return $this->environment;
     }
 
+    // Getter for baseUrl
+    public function getBaseUrl()
+    {
+        return $this->baseUrl;
+    }
+
     /**
      * Get the base uri for a given server in the current environment
      * @param  string $server Server name
@@ -212,7 +230,12 @@ class Configuration
      */
     public function getBaseUri($server = Servers::DEFAULT_)
     {
-        return static::$environmentsMap[$this->environment][$server];
+        return APIHelper::appendUrlWithTemplateParameters(
+            static::$environmentsMap[$this->environment][$server],
+            array(
+                'base_url' => $this->baseUrl,
+            )
+        );
     }
 
     /**
@@ -226,6 +249,13 @@ class Configuration
             Servers::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1/',
             Servers::VOICEDEFAULT => 'https://voice.bandwidth.com',
             Servers::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1',
+        ),
+        Environments::CUSTOM => array(
+            Servers::DEFAULT_ => '{base_url}',
+            Servers::MESSAGINGDEFAULT => '{base_url}',
+            Servers::TWOFACTORAUTHDEFAULT => '{base_url}',
+            Servers::VOICEDEFAULT => '{base_url}',
+            Servers::WEBRTCDEFAULT => '{base_url}',
         ),
     );
 }

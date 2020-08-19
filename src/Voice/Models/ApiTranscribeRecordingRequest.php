@@ -43,16 +43,23 @@ class ApiTranscribeRecordingRequest implements \JsonSerializable
     public $tag;
 
     /**
+     * @todo Write general description for this property
+     * @var double|null $callbackTimeout public property
+     */
+    public $callbackTimeout;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (5 == func_num_args()) {
-            $this->callbackUrl    = func_get_arg(0);
-            $this->callbackMethod = func_get_arg(1);
-            $this->username       = func_get_arg(2);
-            $this->password       = func_get_arg(3);
-            $this->tag            = func_get_arg(4);
+        if (6 == func_num_args()) {
+            $this->callbackUrl     = func_get_arg(0);
+            $this->callbackMethod  = func_get_arg(1);
+            $this->username        = func_get_arg(2);
+            $this->password        = func_get_arg(3);
+            $this->tag             = func_get_arg(4);
+            $this->callbackTimeout = func_get_arg(5);
         }
     }
 
@@ -62,11 +69,12 @@ class ApiTranscribeRecordingRequest implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['callbackUrl']    = $this->callbackUrl;
-        $json['callbackMethod'] = $this->callbackMethod;
-        $json['username']       = $this->username;
-        $json['password']       = $this->password;
-        $json['tag']            = $this->tag;
+        $json['callbackUrl']     = $this->callbackUrl;
+        $json['callbackMethod']  = $this->callbackMethod;
+        $json['username']        = $this->username;
+        $json['password']        = $this->password;
+        $json['tag']             = $this->tag;
+        $json['callbackTimeout'] = $this->callbackTimeout;
 
         return array_filter($json);
     }

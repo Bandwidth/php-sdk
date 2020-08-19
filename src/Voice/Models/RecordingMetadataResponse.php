@@ -7,6 +7,8 @@
 
 namespace BandwidthLib\Voice\Models;
 
+use BandwidthLib\Utils\DateTimeHelper;
+
 /**
  * @todo Write general description for this model
  */
@@ -86,13 +88,15 @@ class RecordingMetadataResponse implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var integer|null $startTime public property
+     * @factory \BandwidthLib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $startTime public property
      */
     public $startTime;
 
     /**
      * @todo Write general description for this property
-     * @var integer|null $endTime public property
+     * @factory \BandwidthLib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $endTime public property
      */
     public $endTime;
 
@@ -165,8 +169,12 @@ class RecordingMetadataResponse implements \JsonSerializable
         $json['duration']         = $this->duration;
         $json['direction']        = $this->direction;
         $json['channels']         = $this->channels;
-        $json['startTime']        = $this->startTime;
-        $json['endTime']          = $this->endTime;
+        $json['startTime']        =
+            isset($this->startTime) ?
+            DateTimeHelper::toRfc3339DateTime($this->startTime) : null;
+        $json['endTime']          =
+            isset($this->endTime) ?
+            DateTimeHelper::toRfc3339DateTime($this->endTime) : null;
         $json['fileFormat']       = $this->fileFormat;
         $json['status']           = $this->status;
         $json['mediaUrl']         = $this->mediaUrl;

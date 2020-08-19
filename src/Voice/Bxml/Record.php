@@ -16,7 +16,7 @@ class Record extends Verb {
     /**
      * Sets the tag attribute for Record
      *
-     * @param string $tag A custom string to be included in callbacks 
+     * @param string $tag A custom string to be included in callbacks
      */
     public function tag($tag) {
         $this->tag = $tag;
@@ -141,6 +141,42 @@ class Record extends Verb {
         $this->silenceTimeout = $silenceTimeout;
     }
 
+    /**
+     * Sets the recordCompleteFallbackUrl attribute for Record
+     *
+     * @param string $recordCompleteFallbackUrl Fallback URL for record complete events 
+     */
+    public function recordCompleteFallbackUrl($recordCompleteFallbackUrl) {
+        $this->recordCompleteFallbackUrl = $recordCompleteFallbackUrl;
+    }
+
+    /**
+     * Sets the recordCompleteFallbackMethod attribute for Record
+     *
+     * @param string $recordCompleteFallbackMethod HTTP method for fallback events 
+     */
+    public function recordCompleteFallbackMethod($recordCompleteFallbackMethod) {
+        $this->recordCompleteFallbackMethod = $recordCompleteFallbackMethod;
+    }
+
+    /**
+     * Sets the fallbackUsername attribute for Record
+     *
+     * @param string $fallbackUsername HTTP basic auth username for fallback events 
+     */
+    public function fallbackUsername($fallbackUsername) {
+        $this->fallbackUsername = $fallbackUsername;
+    }
+
+    /**
+     * Sets the fallbackPassword attribute for Record
+     *
+     * @param string $fallbackPassword HTTP basic auth password for fallback events 
+     */
+    public function fallbackPassword($fallbackPassword) {
+        $this->fallbackPassword = $fallbackPassword;
+    }
+
     public function toBxml($doc) {
         $element = $doc->createElement("Record");
 
@@ -202,6 +238,22 @@ class Record extends Verb {
 
         if(isset($this->silenceTimeout)) {
             $element->setattribute("silenceTimeout", $this->silenceTimeout);
+        }
+
+        if(isset($this->recordCompleteFallbackUrl)) {
+            $element->setattribute("recordCompleteFallbackUrl", $this->recordCompleteFallbackUrl);
+        }
+
+        if(isset($this->recordCompleteFallbackMethod)) {
+            $element->setattribute("recordCompleteFallbackMethod", $this->recordCompleteFallbackMethod);
+        }
+
+        if(isset($this->fallbackUsername)) {
+            $element->setattribute("fallbackUsername", $this->fallbackUsername);
+        }
+
+        if(isset($this->fallbackPassword)) {
+            $element->setattribute("fallbackPassword", $this->fallbackPassword);
         }
 
         return $element;

@@ -126,6 +126,42 @@ class Gather extends Verb {
     }
 
     /**
+     * Sets the gatherFallbackUrl attribute for Gather
+     *
+     * @param string $gatherFallbackUrl Fallback url for gather events
+     */
+    public function gatherFallbackUrl($gatherFallbackUrl) {
+        $this->gatherFallbackUrl = $gatherFallbackUrl;
+    }
+
+    /**
+     * Sets the gatherFallbackMethod attribute for Gather
+     *
+     * @param string $gatherFallbackMethod HTTP method for fallback events
+     */
+    public function gatherFallbackMethod($gatherFallbackMethod) {
+        $this->gatherFallbackMethod = $gatherFallbackMethod;
+    }
+
+    /**
+     * Sets the fallbackUsername attribute for Gather
+     *
+     * @param string $fallbackUsername HTTP basic auth username for fallback events
+     */
+    public function fallbackUsername($fallbackUsername) {
+        $this->fallbackUsername = $fallbackUsername;
+    }
+
+    /**
+     * Sets the fallbackPassword attribute for Gather
+     *
+     * @param string $fallbackPassword HTTP basic auth password for fallback events
+     */
+    public function fallbackPassword($fallbackPassword) {
+        $this->fallbackPassword = $fallbackPassword;
+    }
+
+    /**
      * Adds a nestable verb being one of SpeakSentence or PlayAudio.
      *
      * @param SpeakSentence|PlayAudio $verb The nestable verb to add
@@ -178,6 +214,22 @@ class Gather extends Verb {
 
         if(isset($this->repeatCount)) {
             $element->setAttribute("repeatCount", $this->repeatCount);
+        }
+
+        if(isset($this->gatherFallbackUrl)) {
+            $element->setAttribute("gatherFallbackUrl", $this->gatherFallbackUrl);
+        }
+
+        if(isset($this->gatherFallbackMethod)) {
+            $element->setAttribute("gatherFallbackMethod", $this->gatherFallbackMethod);
+        }
+
+        if(isset($this->fallbackUsername)) {
+            $element->setAttribute("fallbackUsername", $this->fallbackUsername);
+        }
+
+        if(isset($this->fallbackPassword)) {
+            $element->setAttribute("fallbackPassword", $this->fallbackPassword);
         }
 
         if(isset($this->nestableVerbs)) {

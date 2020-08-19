@@ -16,4 +16,9 @@ class Environments
      * TODO: Write general description for this element
      */
     const PRODUCTION = "production";
+
+    /**
+     * TODO: Write general description for this element
+     */
+    const CUSTOM = "custom";
 }

@@ -10,20 +10,15 @@ namespace BandwidthLib\Voice\Models;
 /**
  * @todo Write general description for this enumeration
  */
-class StateEnum
+class AnswerFallbackMethodEnum
 {
     /**
      * TODO: Write general description for this element
      */
-    const DISCONNECTED = "disconnected";
+    const POST = "POST";
 
     /**
      * TODO: Write general description for this element
      */
-    const ANSWERED = "answered";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const INITIATED = "initiated";
+    const GET = "GET";
 }

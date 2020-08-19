@@ -27,9 +27,21 @@ class CallEngineModifyConferenceRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
+     * @var string|null $redirectFallbackUrl public property
+     */
+    public $redirectFallbackUrl;
+
+    /**
+     * @todo Write general description for this property
      * @var string|null $redirectMethod public property
      */
     public $redirectMethod;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $redirectFallbackMethod public property
+     */
+    public $redirectFallbackMethod;
 
     /**
      * @todo Write general description for this property
@@ -44,16 +56,32 @@ class CallEngineModifyConferenceRequest implements \JsonSerializable
     public $password;
 
     /**
+     * @todo Write general description for this property
+     * @var string|null $fallbackUsername public property
+     */
+    public $fallbackUsername;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $fallbackPassword public property
+     */
+    public $fallbackPassword;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (5 == func_num_args()) {
-            $this->status         = func_get_arg(0);
-            $this->redirectUrl    = func_get_arg(1);
-            $this->redirectMethod = func_get_arg(2);
-            $this->username       = func_get_arg(3);
-            $this->password       = func_get_arg(4);
+        if (9 == func_num_args()) {
+            $this->status                 = func_get_arg(0);
+            $this->redirectUrl            = func_get_arg(1);
+            $this->redirectFallbackUrl    = func_get_arg(2);
+            $this->redirectMethod         = func_get_arg(3);
+            $this->redirectFallbackMethod = func_get_arg(4);
+            $this->username               = func_get_arg(5);
+            $this->password               = func_get_arg(6);
+            $this->fallbackUsername       = func_get_arg(7);
+            $this->fallbackPassword       = func_get_arg(8);
         }
     }
 
@@ -63,11 +91,15 @@ class CallEngineModifyConferenceRequest implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['status']         = $this->status;
-        $json['redirectUrl']    = $this->redirectUrl;
-        $json['redirectMethod'] = $this->redirectMethod;
-        $json['username']       = $this->username;
-        $json['password']       = $this->password;
+        $json['status']                 = $this->status;
+        $json['redirectUrl']            = $this->redirectUrl;
+        $json['redirectFallbackUrl']    = $this->redirectFallbackUrl;
+        $json['redirectMethod']         = $this->redirectMethod;
+        $json['redirectFallbackMethod'] = $this->redirectFallbackMethod;
+        $json['username']               = $this->username;
+        $json['password']               = $this->password;
+        $json['fallbackUsername']       = $this->fallbackUsername;
+        $json['fallbackPassword']       = $this->fallbackPassword;
 
         return array_filter($json);
     }

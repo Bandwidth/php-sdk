@@ -27,9 +27,21 @@ class ApiModifyCallRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
+     * @var string|null $redirectFallbackUrl public property
+     */
+    public $redirectFallbackUrl;
+
+    /**
+     * @todo Write general description for this property
      * @var string|null $redirectMethod public property
      */
     public $redirectMethod;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $redirectFallbackMethod public property
+     */
+    public $redirectFallbackMethod;
 
     /**
      * @todo Write general description for this property
@@ -45,6 +57,18 @@ class ApiModifyCallRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
+     * @var string|null $fallbackUsername public property
+     */
+    public $fallbackUsername;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $fallbackPassword public property
+     */
+    public $fallbackPassword;
+
+    /**
+     * @todo Write general description for this property
      * @var string|null $tag public property
      */
     public $tag;
@@ -54,13 +78,17 @@ class ApiModifyCallRequest implements \JsonSerializable
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
-            $this->state          = func_get_arg(0);
-            $this->redirectUrl    = func_get_arg(1);
-            $this->redirectMethod = func_get_arg(2);
-            $this->username       = func_get_arg(3);
-            $this->password       = func_get_arg(4);
-            $this->tag            = func_get_arg(5);
+        if (10 == func_num_args()) {
+            $this->state                  = func_get_arg(0);
+            $this->redirectUrl            = func_get_arg(1);
+            $this->redirectFallbackUrl    = func_get_arg(2);
+            $this->redirectMethod         = func_get_arg(3);
+            $this->redirectFallbackMethod = func_get_arg(4);
+            $this->username               = func_get_arg(5);
+            $this->password               = func_get_arg(6);
+            $this->fallbackUsername       = func_get_arg(7);
+            $this->fallbackPassword       = func_get_arg(8);
+            $this->tag                    = func_get_arg(9);
         }
     }
 
@@ -70,12 +98,16 @@ class ApiModifyCallRequest implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['state']          = $this->state;
-        $json['redirectUrl']    = $this->redirectUrl;
-        $json['redirectMethod'] = $this->redirectMethod;
-        $json['username']       = $this->username;
-        $json['password']       = $this->password;
-        $json['tag']            = $this->tag;
+        $json['state']                  = $this->state;
+        $json['redirectUrl']            = $this->redirectUrl;
+        $json['redirectFallbackUrl']    = $this->redirectFallbackUrl;
+        $json['redirectMethod']         = $this->redirectMethod;
+        $json['redirectFallbackMethod'] = $this->redirectFallbackMethod;
+        $json['username']               = $this->username;
+        $json['password']               = $this->password;
+        $json['fallbackUsername']       = $this->fallbackUsername;
+        $json['fallbackPassword']       = $this->fallbackPassword;
+        $json['tag']                    = $this->tag;
 
         return array_filter($json);
     }

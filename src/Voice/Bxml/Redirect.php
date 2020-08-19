@@ -58,6 +58,42 @@ class Redirect extends Verb {
         $this->tag = $tag;
     }
 
+    /**
+     * Sets the redirectFallbackUrl attribute for Redirect
+     *
+     * @param string $redirectFallbackUrl Fallback url for redirect events 
+     */
+    public function redirectFallbackUrl($redirectFallbackUrl) {
+        $this->redirectFallbackUrl = $redirectFallbackUrl;
+    }
+
+    /**
+     * Sets the redirectFallbackMethod attribute for Redirect
+     *
+     * @param string $redirectFallbackMethod HTTP method for fallback events 
+     */
+    public function redirectFallbackMethod($redirectFallbackMethod) {
+        $this->redirectFallbackMethod = $redirectFallbackMethod;
+    }
+
+    /**
+     * Sets the fallbackUsername attribute for Redirect
+     *
+     * @param string $fallbackUsername HTTP basic auth username for fallback events
+     */
+    public function fallbackUsername($fallbackUsername) {
+        $this->fallbackUsername = $fallbackUsername;
+    }
+
+    /**
+     * Sets the fallbackPassword attribute for Redirect
+     *
+     * @param string $fallbackPassword HTTP basic auth password for fallback events 
+     */
+    public function fallbackPassword($fallbackPassword) {
+        $this->fallbackPassword = $fallbackPassword;
+    }
+
     public function toBxml($doc) {
         $element = $doc->createElement("Redirect");
 
@@ -79,6 +115,22 @@ class Redirect extends Verb {
 
         if(isset($this->redirectMethod)) {
             $element->setAttribute("redirectMethod", $this->redirectMethod);
+        }
+
+        if(isset($this->redirectFallbackUrl)) {
+            $element->setAttribute("redirectFallbackUrl", $this->redirectFallbackUrl);
+        }
+
+        if(isset($this->redirectFallbackMethod)) {
+            $element->setAttribute("redirectFallbackMethod", $this->redirectFallbackMethod);
+        }
+
+        if(isset($this->fallbackUsername)) {
+            $element->setAttribute("fallbackUsername", $this->fallbackUsername);
+        }
+
+        if(isset($this->fallbackPassword)) {
+            $element->setAttribute("fallbackPassword", $this->fallbackPassword);
         }
 
         return $element;

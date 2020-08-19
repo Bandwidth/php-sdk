@@ -7,6 +7,8 @@
 
 namespace BandwidthLib\Voice\Models;
 
+use BandwidthLib\Utils\DateTimeHelper;
+
 /**
  * @todo Write general description for this model
  */
@@ -26,13 +28,15 @@ class ConferenceDetail implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var integer|null $createdTime public property
+     * @factory \BandwidthLib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $createdTime public property
      */
     public $createdTime;
 
     /**
      * @todo Write general description for this property
-     * @var integer|null $completedTime public property
+     * @factory \BandwidthLib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $completedTime public property
      */
     public $completedTime;
 
@@ -85,8 +89,12 @@ class ConferenceDetail implements \JsonSerializable
         $json = array();
         $json['id']                    = $this->id;
         $json['name']                  = $this->name;
-        $json['createdTime']           = $this->createdTime;
-        $json['completedTime']         = $this->completedTime;
+        $json['createdTime']           =
+            isset($this->createdTime) ?
+            DateTimeHelper::toRfc3339DateTime($this->createdTime) : null;
+        $json['completedTime']         =
+            isset($this->completedTime) ?
+            DateTimeHelper::toRfc3339DateTime($this->completedTime) : null;
         $json['conferenceEventUrl']    = $this->conferenceEventUrl;
         $json['conferenceEventMethod'] = $this->conferenceEventMethod;
         $json['tag']                   = $this->tag;

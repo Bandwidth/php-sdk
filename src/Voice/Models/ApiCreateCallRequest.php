@@ -34,10 +34,22 @@ class ApiCreateCallRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
+     * @var double|null $callbackTimeout public property
+     */
+    public $callbackTimeout;
+
+    /**
+     * @todo Write general description for this property
      * @required
      * @var string $answerUrl public property
      */
     public $answerUrl;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $answerFallbackUrl public property
+     */
+    public $answerFallbackUrl;
 
     /**
      * @todo Write general description for this property
@@ -53,9 +65,27 @@ class ApiCreateCallRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
+     * @var string|null $fallbackUsername public property
+     */
+    public $fallbackUsername;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $fallbackPassword public property
+     */
+    public $fallbackPassword;
+
+    /**
+     * @todo Write general description for this property
      * @var string|null $answerMethod public property
      */
     public $answerMethod;
+
+    /**
+     * @todo Write general description for this property
+     * @var string|null $answerFallbackMethod public property
+     */
+    public $answerFallbackMethod;
 
     /**
      * @todo Write general description for this property
@@ -99,20 +129,25 @@ class ApiCreateCallRequest implements \JsonSerializable
      */
     public function __construct()
     {
-        if (13 == func_num_args()) {
-            $this->from             = func_get_arg(0);
-            $this->to               = func_get_arg(1);
-            $this->callTimeout      = func_get_arg(2);
-            $this->answerUrl        = func_get_arg(3);
-            $this->username         = func_get_arg(4);
-            $this->password         = func_get_arg(5);
-            $this->answerMethod     = func_get_arg(6);
-            $this->disconnectUrl    = func_get_arg(7);
-            $this->disconnectMethod = func_get_arg(8);
-            $this->tag              = func_get_arg(9);
-            $this->applicationId    = func_get_arg(10);
-            $this->obfuscatedTo     = func_get_arg(11);
-            $this->obfuscatedFrom   = func_get_arg(12);
+        if (18 == func_num_args()) {
+            $this->from                 = func_get_arg(0);
+            $this->to                   = func_get_arg(1);
+            $this->callTimeout          = func_get_arg(2);
+            $this->callbackTimeout      = func_get_arg(3);
+            $this->answerUrl            = func_get_arg(4);
+            $this->answerFallbackUrl    = func_get_arg(5);
+            $this->username             = func_get_arg(6);
+            $this->password             = func_get_arg(7);
+            $this->fallbackUsername     = func_get_arg(8);
+            $this->fallbackPassword     = func_get_arg(9);
+            $this->answerMethod         = func_get_arg(10);
+            $this->answerFallbackMethod = func_get_arg(11);
+            $this->disconnectUrl        = func_get_arg(12);
+            $this->disconnectMethod     = func_get_arg(13);
+            $this->tag                  = func_get_arg(14);
+            $this->applicationId        = func_get_arg(15);
+            $this->obfuscatedTo         = func_get_arg(16);
+            $this->obfuscatedFrom       = func_get_arg(17);
         }
     }
 
@@ -122,19 +157,24 @@ class ApiCreateCallRequest implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['from']             = $this->from;
-        $json['to']               = $this->to;
-        $json['callTimeout']      = $this->callTimeout;
-        $json['answerUrl']        = $this->answerUrl;
-        $json['username']         = $this->username;
-        $json['password']         = $this->password;
-        $json['answerMethod']     = $this->answerMethod;
-        $json['disconnectUrl']    = $this->disconnectUrl;
-        $json['disconnectMethod'] = $this->disconnectMethod;
-        $json['tag']              = $this->tag;
-        $json['applicationId']    = $this->applicationId;
-        $json['obfuscatedTo']     = $this->obfuscatedTo;
-        $json['obfuscatedFrom']   = $this->obfuscatedFrom;
+        $json['from']                 = $this->from;
+        $json['to']                   = $this->to;
+        $json['callTimeout']          = $this->callTimeout;
+        $json['callbackTimeout']      = $this->callbackTimeout;
+        $json['answerUrl']            = $this->answerUrl;
+        $json['answerFallbackUrl']    = $this->answerFallbackUrl;
+        $json['username']             = $this->username;
+        $json['password']             = $this->password;
+        $json['fallbackUsername']     = $this->fallbackUsername;
+        $json['fallbackPassword']     = $this->fallbackPassword;
+        $json['answerMethod']         = $this->answerMethod;
+        $json['answerFallbackMethod'] = $this->answerFallbackMethod;
+        $json['disconnectUrl']        = $this->disconnectUrl;
+        $json['disconnectMethod']     = $this->disconnectMethod;
+        $json['tag']                  = $this->tag;
+        $json['applicationId']        = $this->applicationId;
+        $json['obfuscatedTo']         = $this->obfuscatedTo;
+        $json['obfuscatedFrom']       = $this->obfuscatedFrom;
 
         return array_filter($json);
     }

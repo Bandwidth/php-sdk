@@ -85,6 +85,60 @@ class Bridge extends Verb {
         $this->tag = $tag;
     }
 
+    /**
+     * Sets the bridgeCompleteFallbackUrl attribute for Bridge
+     *
+     * @param string $bridgeCompleteFallbackUrl Fallback URL for bridge complete callback events
+     */
+    public function bridgeCompleteFallbackUrl($bridgeCompleteFallbackUrl) {
+        $this->bridgeCompleteFallbackUrl = $bridgeCompleteFallbackUrl;
+    }
+
+    /**
+     * Sets the bridgeCompleteFallbackMethod attribute for Bridge
+     *
+     * @param string $bridgeCompleteFallbackMethod HTTP method for bridge complete fallback requests 
+     */
+    public function bridgeCompleteFallbackMethod($bridgeCompleteFallbackMethod) {
+        $this->bridgeCompleteFallbackMethod = $bridgeCompleteFallbackMethod;
+    }
+
+    /**
+     * Sets the bridgeTargetCompleteFallbackUrl attribute for Bridge
+     *
+     * @param string $bridgeTargetCompleteFallbackUrl Fallback URL for bridge target complete callback events 
+     */
+    public function bridgeTargetCompleteFallbackUrl($bridgeTargetCompleteFallbackUrl) {
+        $this->bridgeTargetCompleteFallbackUrl = $bridgeTargetCompleteFallbackUrl;
+    }
+
+    /**
+     * Sets the bridgeTargetCompleteFallbackMethod attribute for Bridge
+     *
+     * @param string $bridgeTargetCompleteFallbackMethod HTTP method for bridge target complete fallback events 
+     */
+    public function bridgeTargetCompleteFallbackMethod($bridgeTargetCompleteFallbackMethod) {
+        $this->bridgeTargetCompleteFallbackMethod = $bridgeTargetCompleteFallbackMethod;
+    }
+
+    /**
+     * Sets the fallbackUsername attribute for Bridge
+     *
+     * @param string $fallbackUsername HTTP basic auth username for fallback events
+     */
+    public function fallbackUsername($fallbackUsername) {
+        $this->fallbackUsername = $fallbackUsername;
+    }
+
+    /**
+     * Sets the fallbackPassword attribute for Bridge
+     *
+     * @param string $fallbackPassword HTTP basic auth password 
+     */
+    public function fallbackPassword($fallbackPassword) {
+        $this->fallbackPassword = $fallbackPassword;
+    }
+
     public function toBxml($doc) {
         $element = $doc->createElement("Bridge", $this->targetCall);
 
@@ -114,6 +168,30 @@ class Bridge extends Verb {
 
         if(isset($this->tag)) {
             $element->setAttribute("tag", $this->tag);
+        }
+
+        if(isset($this->bridgeCompleteFallbackUrl)) {
+            $element->setAttribute("bridgeCompleteFallbackUrl", $this->bridgeCompleteFallbackUrl);
+        }
+
+        if(isset($this->bridgeCompleteFallbackMethod)) {
+            $element->setAttribute("bridgeCompleteFallbackMethod", $this->bridgeCompleteFallbackMethod);
+        }
+
+        if(isset($this->bridgeTargetCompleteFallbackUrl)) {
+            $element->setAttribute("bridgeTargetCompleteFallbackUrl", $this->bridgeTargetCompleteFallbackUrl);
+        }
+
+        if(isset($this->bridgeTargetCompleteFallbackMethod)) {
+            $element->setAttribute("bridgeTargetCompleteFallbackMethod", $this->bridgeTargetCompleteFallbackMethod);
+        }
+
+        if(isset($this->fallbackUsername)) {
+            $element->setAttribute("fallbackUsername", $this->fallbackUsername);
+        }
+
+        if(isset($this->fallbackPassword)) {
+            $element->setAttribute("fallbackPassword", $this->fallbackPassword);
         }
 
         return $element;

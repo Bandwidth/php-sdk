@@ -103,6 +103,42 @@ class Conference extends Verb {
         $this->hold = $hold;
     }
 
+    /**
+     * Sets the conferenceEventFallbackUrl attribute for Conference
+     *
+     * @param string $conferenceEventFallbackUrl Fallback url for conference events
+     */
+    public function conferenceEventFallbackUrl($conferenceEventFallbackUrl) {
+        $this->conferenceEventFallbackUrl = $conferenceEventFallbackUrl;
+    }
+
+    /**
+     * Sets the conferenceEventFallbackMethod attribute for Conference
+     *
+     * @param string $conferenceEventFallbackMethod HTTP method for fallback events 
+     */
+    public function conferenceEventFallbackMethod($conferenceEventFallbackMethod) {
+        $this->conferenceEventFallbackMethod = $conferenceEventFallbackMethod;
+    }
+
+    /**
+     * Sets the fallbackUsername attribute for Conference
+     *
+     * @param string $fallbackUsername HTTP basic auth username for fallback events
+     */
+    public function fallbackUsername($fallbackUsername) {
+        $this->fallbackUsername = $fallbackUsername;
+    }
+
+    /**
+     * Sets the fallbackPassword attribute for Conference
+     *
+     * @param string $fallbackPassword HTTP basic auth password for fallback events
+     */
+    public function fallbackPassword($fallbackPassword) {
+        $this->fallbackPassword = $fallbackPassword;
+    }
+
     public function toBxml($doc) {
         $element = $doc->createElement("Conference", $this->conferenceName);
 
@@ -144,6 +180,22 @@ class Conference extends Verb {
 
         if(isset($this->conferenceEventMethod)) {
             $element->setattribute("conferenceEventMethod", $this->conferenceEventMethod);
+        }
+
+        if(isset($this->conferenceEventFallbackUrl)) {
+            $element->setattribute("conferenceEventFallbackUrl", $this->conferenceEventFallbackUrl);
+        }
+
+        if(isset($this->conferenceEventFallbackMethod)) {
+            $element->setattribute("conferenceEventFallbackMethod", $this->conferenceEventFallbackMethod);
+        }
+
+        if(isset($this->fallbackUsername)) {
+            $element->setattribute("fallbackUsername", $this->fallbackUsername);
+        }
+
+        if(isset($this->fallbackPassword)) {
+            $element->setattribute("fallbackPassword", $this->fallbackPassword);
         }
 
         return $element;

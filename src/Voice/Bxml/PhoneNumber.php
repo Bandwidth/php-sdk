@@ -85,6 +85,42 @@ class PhoneNumber extends Verb {
         $this->tag = $tag;
     }
 
+    /**
+     * Sets the transferAnswerFallbackUrl attribute for PhoneNumber
+     *
+     * @param string $transferAnswerFallbackUrl Fallback URL for transfer answer events 
+     */
+    public function transferAnswerFallbackUrl($transferAnswerFallbackUrl) {
+        $this->transferAnswerFallbackUrl = $transferAnswerFallbackUrl;
+    }
+
+    /**
+     * Sets the transferAnswerFallbackMethod attribute for PhoneNumber
+     *
+     * @param string $transferAnswerFallbackMethod HTTP method for fallback events 
+     */
+    public function transferAnswerFallbackMethod($transferAnswerFallbackMethod) {
+        $this->transferAnswerFallbackMethod = $transferAnswerFallbackMethod;
+    }
+
+    /**
+     * Sets the fallbackUsername attribute for PhoneNumber
+     *
+     * @param string $fallbackUsername HTTP basic auth username for fallback events 
+     */
+    public function fallbackUsername($fallbackUsername) {
+        $this->fallbackUsername = $fallbackUsername;
+    }
+
+    /**
+     * Sets the fallbackPassword attribute for PhoneNumber
+     *
+     * @param string $fallbackPassword HTTP basic auth password for fallback events
+     */
+    public function fallbackPassword($fallbackPassword) {
+        $this->fallbackPassword = $fallbackPassword;
+    }
+
     public function toBxml($doc) {
         $element = $doc->createElement("PhoneNumber", $this->phoneNumber);
 
@@ -114,6 +150,22 @@ class PhoneNumber extends Verb {
 
         if(isset($this->transferDisconnectMethod)) {
             $element->setAttribute("transferDisconnectMethod", $this->transferDisconnectMethod);
+        }
+
+        if(isset($this->transferAnswerFallbackUrl)) {
+            $element->setAttribute("transferAnswerFallbackUrl", $this->transferAnswerFallbackUrl);
+        }
+
+        if(isset($this->transferAnswerFallbackMethod)) {
+            $element->setAttribute("transferAnswerFallbackMethod", $this->transferAnswerFallbackMethod);
+        }
+
+        if(isset($this->fallbackUsername)) {
+            $element->setAttribute("fallbackUsername", $this->fallbackUsername);
+        }
+
+        if(isset($this->fallbackPassword)) {
+            $element->setAttribute("fallbackPassword", $this->fallbackPassword);
         }
 
         return $element;
