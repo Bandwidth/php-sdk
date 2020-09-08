@@ -234,7 +234,8 @@ class Configuration
             static::$environmentsMap[$this->environment][$server],
             array(
                 'base_url' => $this->baseUrl,
-            )
+            ),
+            false
         );
     }
 

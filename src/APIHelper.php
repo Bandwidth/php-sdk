@@ -21,7 +21,7 @@ class APIHelper
     * @param    array   $parameters  The parameters to replace in the url
     * @return   string  The processed url
     */
-    public static function appendUrlWithTemplateParameters($url, $parameters)
+    public static function appendUrlWithTemplateParameters($url, $parameters, $encode = true)
     {
         //perform parameter validation
         if (is_null($url) || !is_string($url)) {
@@ -42,8 +42,9 @@ class APIHelper
             } elseif (is_array($value)) {
                 $replaceValue = implode("/", array_map("urlencode", $value));
             } else {
-                $replaceValue = urlencode(strval($value));
-            }
+                $val = strval($value);
+                $replaceValue = $encode ? urlencode($val) : $val;
+           }
 
             //find the template parameter and replace it with its value
             $url = str_replace('{' . strval($key) . '}', $replaceValue, $url);
