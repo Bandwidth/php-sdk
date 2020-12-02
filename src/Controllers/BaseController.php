@@ -22,7 +22,7 @@ class BaseController
      * User-agent to be sent with API calls
      * @var string
      */
-    const USER_AGENT = 'php-sdk-refs/tags/phpold2.13.2';
+    const USER_AGENT = 'php-sdk-refs/tags/phpold2.13.3';
 
     /**
      * HttpCallBack instance associated with this controller
