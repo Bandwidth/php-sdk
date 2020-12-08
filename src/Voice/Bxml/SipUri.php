@@ -16,10 +16,10 @@ class SipUri extends Verb {
     /**
      * Constructor for SipUri
      *
-     * @param string $phoneNumber The phone number for the tag
+     * @param string $sip The sip uri destination 
      */
-    public function __construct($phoneNumber) {
-        $this->phoneNumber = $phoneNumber;
+    public function __construct($sip) {
+        $this->sip = $sip;
     }
 
     /**
@@ -131,7 +131,7 @@ class SipUri extends Verb {
     }
 
     public function toBxml($doc) {
-        $element = $doc->createElement("SipUri", $this->phoneNumber);
+        $element = $doc->createElement("SipUri", $this->sip);
 
         if(isset($this->username)) {
             $element->setAttribute("username", $this->username);
