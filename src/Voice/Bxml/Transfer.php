@@ -104,6 +104,15 @@ class Transfer extends Verb {
     }
 
     /**
+     * Sets the SipUri tags to be included in the Transfer
+     *
+     * @param list<SipUri> $sipUris The list of SipUri tags
+     */
+    public function sipUris($sipUris) {
+        $this->sipUris = $sipUris;
+    }
+
+    /**
      * Sets the transferCompleteFallbackUrl attribute for Transfer
      *
      * @param string $transferCompleteFallbackUrl Fallback url for transfer complete events 
@@ -197,6 +206,12 @@ class Transfer extends Verb {
         if(isset($this->phoneNumbers)) {
             foreach ($this->phoneNumbers as $phoneNumber) {
                 $element->appendChild($phoneNumber->toBxml($doc));
+            }
+        }
+
+        if(isset($this->sipUris)) {
+            foreach ($this->sipUris as $sipUri) {
+                $element->appendChild($sipUri->toBxml($doc));
             }
         }
 
