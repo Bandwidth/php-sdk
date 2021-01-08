@@ -140,7 +140,7 @@ class APIController extends BaseController
             'userId'  => $userId,
             'mediaId' => $mediaId,
             ), false
-        ));
+        );
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
@@ -236,7 +236,7 @@ class APIController extends BaseController
             'userId'  => $userId,
             'mediaId' => $mediaId,
             ), false
-        ));
+        );
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
@@ -329,7 +329,7 @@ class APIController extends BaseController
             'userId'  => $userId,
             'mediaId' => $mediaId,
             ), false
-        ));
+        );
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
