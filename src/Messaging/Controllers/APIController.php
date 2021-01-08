@@ -139,7 +139,8 @@ class APIController extends BaseController
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'userId'  => $userId,
             'mediaId' => $mediaId,
-            ));
+            ), false
+        ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
@@ -232,9 +233,10 @@ class APIController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'userId'         => $userId,
-            'mediaId'        => $mediaId,
-            ));
+            'userId'  => $userId,
+            'mediaId' => $mediaId,
+            ), false
+        ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
@@ -326,7 +328,8 @@ class APIController extends BaseController
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'userId'  => $userId,
             'mediaId' => $mediaId,
-            ));
+            ), false
+        ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
