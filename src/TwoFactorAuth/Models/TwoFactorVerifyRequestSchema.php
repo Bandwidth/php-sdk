@@ -20,13 +20,6 @@ class TwoFactorVerifyRequestSchema implements \JsonSerializable
     public $to;
 
     /**
-     * The application phone number, the sender of the 2fa code.
-     * @required
-     * @var string $from public property
-     */
-    public $from;
-
-    /**
      * The application unique ID, obtained from Bandwidth.
      * @required
      * @var string $applicationId public property
@@ -39,13 +32,6 @@ class TwoFactorVerifyRequestSchema implements \JsonSerializable
      * @var string|null $scope public property
      */
     public $scope;
-
-    /**
-     * The number of digits for your 2fa code.  The valid number ranges from 2 to 8, inclusively.
-     * @required
-     * @var double $digits public property
-     */
-    public $digits;
 
     /**
      * The time period, in minutes, to validate the 2fa code.  By setting this to 3 minutes, it will mean
@@ -68,14 +54,12 @@ class TwoFactorVerifyRequestSchema implements \JsonSerializable
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
+        if (5 == func_num_args()) {
             $this->to                      = func_get_arg(0);
-            $this->from                    = func_get_arg(1);
-            $this->applicationId           = func_get_arg(2);
-            $this->scope                   = func_get_arg(3);
-            $this->digits                  = func_get_arg(4);
-            $this->expirationTimeInMinutes = func_get_arg(5);
-            $this->code                    = func_get_arg(6);
+            $this->applicationId           = func_get_arg(1);
+            $this->scope                   = func_get_arg(2);
+            $this->expirationTimeInMinutes = func_get_arg(3);
+            $this->code                    = func_get_arg(4);
         }
     }
 
@@ -86,10 +70,8 @@ class TwoFactorVerifyRequestSchema implements \JsonSerializable
     {
         $json = array();
         $json['to']                      = $this->to;
-        $json['from']                    = $this->from;
         $json['applicationId']           = $this->applicationId;
         $json['scope']                   = $this->scope;
-        $json['digits']                  = $this->digits;
         $json['expirationTimeInMinutes'] = $this->expirationTimeInMinutes;
         $json['code']                    = $this->code;
 

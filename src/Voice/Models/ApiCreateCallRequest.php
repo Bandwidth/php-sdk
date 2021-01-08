@@ -20,11 +20,19 @@ class ApiCreateCallRequest implements \JsonSerializable
     public $from;
 
     /**
-     * Format is E164
+     * Format is E164 or SIP URI
      * @required
      * @var string $to public property
      */
     public $to;
+
+    /**
+     * When calling a SIP URI, this will be sent as the 'User-To-User' header within the initial INVITE. An
+     * 'encoding' parameter must be specified as described in https://tools.ietf.org/html/rfc7433. This
+     * header cannot exceed 256 characters, including the encoding parameter.
+     * @var string|null $uui public property
+     */
+    public $uui;
 
     /**
      * @todo Write general description for this property
@@ -129,25 +137,26 @@ class ApiCreateCallRequest implements \JsonSerializable
      */
     public function __construct()
     {
-        if (18 == func_num_args()) {
+        if (19 == func_num_args()) {
             $this->from                 = func_get_arg(0);
             $this->to                   = func_get_arg(1);
-            $this->callTimeout          = func_get_arg(2);
-            $this->callbackTimeout      = func_get_arg(3);
-            $this->answerUrl            = func_get_arg(4);
-            $this->answerFallbackUrl    = func_get_arg(5);
-            $this->username             = func_get_arg(6);
-            $this->password             = func_get_arg(7);
-            $this->fallbackUsername     = func_get_arg(8);
-            $this->fallbackPassword     = func_get_arg(9);
-            $this->answerMethod         = func_get_arg(10);
-            $this->answerFallbackMethod = func_get_arg(11);
-            $this->disconnectUrl        = func_get_arg(12);
-            $this->disconnectMethod     = func_get_arg(13);
-            $this->tag                  = func_get_arg(14);
-            $this->applicationId        = func_get_arg(15);
-            $this->obfuscatedTo         = func_get_arg(16);
-            $this->obfuscatedFrom       = func_get_arg(17);
+            $this->uui                  = func_get_arg(2);
+            $this->callTimeout          = func_get_arg(3);
+            $this->callbackTimeout      = func_get_arg(4);
+            $this->answerUrl            = func_get_arg(5);
+            $this->answerFallbackUrl    = func_get_arg(6);
+            $this->username             = func_get_arg(7);
+            $this->password             = func_get_arg(8);
+            $this->fallbackUsername     = func_get_arg(9);
+            $this->fallbackPassword     = func_get_arg(10);
+            $this->answerMethod         = func_get_arg(11);
+            $this->answerFallbackMethod = func_get_arg(12);
+            $this->disconnectUrl        = func_get_arg(13);
+            $this->disconnectMethod     = func_get_arg(14);
+            $this->tag                  = func_get_arg(15);
+            $this->applicationId        = func_get_arg(16);
+            $this->obfuscatedTo         = func_get_arg(17);
+            $this->obfuscatedFrom       = func_get_arg(18);
         }
     }
 
@@ -159,6 +168,7 @@ class ApiCreateCallRequest implements \JsonSerializable
         $json = array();
         $json['from']                 = $this->from;
         $json['to']                   = $this->to;
+        $json['uui']                  = $this->uui;
         $json['callTimeout']          = $this->callTimeout;
         $json['callbackTimeout']      = $this->callbackTimeout;
         $json['answerUrl']            = $this->answerUrl;
