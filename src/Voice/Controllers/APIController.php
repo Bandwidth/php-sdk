@@ -1650,9 +1650,9 @@ class APIController extends BaseController
     /**
      * Modify the conference state
      *
-     * @param string                                   $accountId    TODO: type description here
-     * @param string                                   $conferenceId TODO: type description here
-     * @param Models\CallEngineModifyConferenceRequest $body         (optional) TODO: type description here
+     * @param string                            $accountId    TODO: type description here
+     * @param string                            $conferenceId TODO: type description here
+     * @param Models\ApiModifyConferenceRequest $body         (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */

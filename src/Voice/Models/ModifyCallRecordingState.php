@@ -14,7 +14,8 @@ class ModifyCallRecordingState implements \JsonSerializable
 {
     /**
      * @todo Write general description for this property
-     * @var string|null $state public property
+     * @required
+     * @var string $state public property
      */
     public $state;
 

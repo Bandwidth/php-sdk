@@ -15,15 +15,15 @@ class StateEnum
     /**
      * TODO: Write general description for this element
      */
-    const DISCONNECTED = "disconnected";
+    const DISCONNECTED = "DISCONNECTED";
 
     /**
      * TODO: Write general description for this element
      */
-    const ANSWERED = "answered";
+    const ANSWERED = "ANSWERED";
 
     /**
      * TODO: Write general description for this element
      */
-    const INITIATED = "initiated";
+    const INITIATED = "INITIATED";
 }
