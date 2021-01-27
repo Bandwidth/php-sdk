@@ -13,37 +13,41 @@ namespace BandwidthLib\Messaging\Models;
 class MessageRequest implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var string|null $applicationId public property
+     * The ID of the Application your from number is associated with in the Bandwidth Phone Number
+     * Dashboard.
+     * @required
+     * @var string $applicationId public property
      */
     public $applicationId;
 
     /**
-     * @todo Write general description for this property
-     * @var array|null $to public property
+     * The phone number(s) the message should be sent to in E164 format
+     * @required
+     * @var array $to public property
      */
     public $to;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $from public property
+     * One of your telephone numbers the message should come from in E164 format
+     * @required
+     * @var string $from public property
      */
     public $from;
 
     /**
-     * @todo Write general description for this property
+     * The contents of the text message. Must be 2048 characters or less.
      * @var string|null $text public property
      */
     public $text;
 
     /**
-     * @todo Write general description for this property
+     * A list of URLs to include as media attachments as part of the message.
      * @var array|null $media public property
      */
     public $media;
 
     /**
-     * @todo Write general description for this property
+     * A custom string that will be included in callback events of the message. Max 1024 characters
      * @var string|null $tag public property
      */
     public $tag;
@@ -70,8 +74,7 @@ class MessageRequest implements \JsonSerializable
     {
         $json = array();
         $json['applicationId'] = $this->applicationId;
-        $json['to']            = isset($this->to) ?
-            array_values($this->to) : null;
+        $json['to']            = array_values($this->to);
         $json['from']          = $this->from;
         $json['text']          = $this->text;
         $json['media']         = isset($this->media) ?
