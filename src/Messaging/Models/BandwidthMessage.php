@@ -13,67 +13,68 @@ namespace BandwidthLib\Messaging\Models;
 class BandwidthMessage implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
+     * The id of the message
      * @var string|null $id public property
      */
     public $id;
 
     /**
-     * @todo Write general description for this property
+     * The Bandwidth phone number associated with the message
      * @var string|null $owner public property
      */
     public $owner;
 
     /**
-     * @todo Write general description for this property
+     * The application ID associated with the message
      * @var string|null $applicationId public property
      */
     public $applicationId;
 
     /**
-     * @todo Write general description for this property
+     * The datetime stamp of the message in ISO 8601
      * @var string|null $time public property
      */
     public $time;
 
     /**
-     * @todo Write general description for this property
+     * The number of segments the original message from the user is broken into before sending over to
+     * carrier networks
      * @var integer|null $segmentCount public property
      */
     public $segmentCount;
 
     /**
-     * @todo Write general description for this property
+     * The direction of the message relative to Bandwidth. Can be in or out
      * @var string|null $direction public property
      */
     public $direction;
 
     /**
-     * @todo Write general description for this property
+     * The phone number recipients of the message
      * @var array|null $to public property
      */
     public $to;
 
     /**
-     * @todo Write general description for this property
+     * The phone number the message was sent from
      * @var string|null $from public property
      */
     public $from;
 
     /**
-     * @todo Write general description for this property
+     * The list of media URLs sent in the message
      * @var array|null $media public property
      */
     public $media;
 
     /**
-     * @todo Write general description for this property
+     * The contents of the message
      * @var string|null $text public property
      */
     public $text;
 
     /**
-     * @todo Write general description for this property
+     * The custom string set by the user
      * @var string|null $tag public property
      */
     public $tag;

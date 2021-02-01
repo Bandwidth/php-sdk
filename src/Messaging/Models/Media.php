@@ -49,7 +49,7 @@ class Media implements \JsonSerializable
     public $tags;
 
     /**
-     * @todo Write general description for this property
+     * User's account ID
      * @var string|null $userId public property
      */
     public $userId;
