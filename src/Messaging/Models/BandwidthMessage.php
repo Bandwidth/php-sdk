@@ -80,11 +80,17 @@ class BandwidthMessage implements \JsonSerializable
     public $tag;
 
     /**
+     * The priority specified by the user
+     * @var string|null $priority public property
+     */
+    public $priority;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (11 == func_num_args()) {
+        if (12 == func_num_args()) {
             $this->id            = func_get_arg(0);
             $this->owner         = func_get_arg(1);
             $this->applicationId = func_get_arg(2);
@@ -96,6 +102,7 @@ class BandwidthMessage implements \JsonSerializable
             $this->media         = func_get_arg(8);
             $this->text          = func_get_arg(9);
             $this->tag           = func_get_arg(10);
+            $this->priority      = func_get_arg(11);
         }
     }
 
@@ -118,6 +125,7 @@ class BandwidthMessage implements \JsonSerializable
             array_values($this->media) : null;
         $json['text']          = $this->text;
         $json['tag']           = $this->tag;
+        $json['priority']      = $this->priority;
 
         return array_filter($json);
     }
