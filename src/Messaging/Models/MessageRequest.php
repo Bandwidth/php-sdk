@@ -53,17 +53,25 @@ class MessageRequest implements \JsonSerializable
     public $tag;
 
     /**
+     * The message's priority, currently for toll-free or short code SMS only. Messages with a priority
+     * value of `"high"` are given preference over your other traffic.
+     * @var string|null $priority public property
+     */
+    public $priority;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
+        if (7 == func_num_args()) {
             $this->applicationId = func_get_arg(0);
             $this->to            = func_get_arg(1);
             $this->from          = func_get_arg(2);
             $this->text          = func_get_arg(3);
             $this->media         = func_get_arg(4);
             $this->tag           = func_get_arg(5);
+            $this->priority      = func_get_arg(6);
         }
     }
 
@@ -80,6 +88,7 @@ class MessageRequest implements \JsonSerializable
         $json['media']         = isset($this->media) ?
             array_values($this->media) : null;
         $json['tag']           = $this->tag;
+        $json['priority']      = $this->priority;
 
         return array_filter($json);
     }

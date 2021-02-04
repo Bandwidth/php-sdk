@@ -12,13 +12,14 @@ use BandwidthLib\APIHelper;
 /**
  * @todo Write general description for this model
  */
-class InvalidRequestException extends \BandwidthLib\APIException
+class ForbiddenRequestException extends \BandwidthLib\APIException
 {
     /**
-     * An error message pertaining to what the issue could be
-     * @var string|null $result public property
+     * The message containing the reason behind the request being forbidden
+     * @maps Message
+     * @var string|null $message public property
      */
-    public $result;
+    public $message;
 
     /**
      * Constructor to set initial or default values of member properties

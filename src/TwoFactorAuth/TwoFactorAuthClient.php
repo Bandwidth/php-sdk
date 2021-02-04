@@ -21,17 +21,17 @@ class TwoFactorAuthClient
     }
 
 
-    private $client;
+    private $mFA;
 
     /**
-     * Provides access to API controller
-     * @return Controllers\APIController
+     * Provides access to MFA controller
+     * @return Controllers\MFAController
      */
-    public function getClient()
+    public function getMFA()
     {
-        if ($this->client == null) {
-            $this->client = new Controllers\APIController($this->config);
+        if ($this->mFA == null) {
+            $this->mFA = new Controllers\MFAController($this->config);
         }
-        return $this->client;
+        return $this->mFA;
     }
 }

@@ -23,7 +23,7 @@ use Unirest\Request;
 /**
  * @todo Add a general description for this controller.
  */
-class APIController extends BaseController
+class MFAController extends BaseController
 {
     public function __construct($config, $httpCallBack = null)
     {
@@ -31,7 +31,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Two-Factor authentication with Bandwidth Voice services
+     * Allows a user to send a MFA code through a phone call
      *
      * @param string                            $accountId Bandwidth Account ID with Voice service enabled
      * @param Models\TwoFactorCodeRequestSchema $body      TODO: type description here
@@ -89,7 +89,28 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\InvalidRequestException('client request error', $_httpContext);
+            throw new Exceptions\ErrorWithRequestException(
+                'If there is any issue with values passed in by the user',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\UnauthorizedRequestException(
+                'Authentication is either incorrect or not present',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ForbiddenRequestException(
+                'The user is not authorized to access this resource',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorWithRequestException('An internal server error occurred', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -103,7 +124,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Two-Factor authentication with Bandwidth messaging services
+     * Allows a user to send a MFA code through a text message (SMS)
      *
      * @param string                            $accountId Bandwidth Account ID with Messaging service enabled
      * @param Models\TwoFactorCodeRequestSchema $body      TODO: type description here
@@ -161,7 +182,28 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\InvalidRequestException('client request error', $_httpContext);
+            throw new Exceptions\ErrorWithRequestException(
+                'If there is any issue with values passed in by the user',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\UnauthorizedRequestException(
+                'Authentication is either incorrect or not present',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ForbiddenRequestException(
+                'The user is not authorized to access this resource',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorWithRequestException('An internal server error occurred', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -175,7 +217,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Verify a previously sent two-factor authentication code
+     * Allows a user to verify an MFA code
      *
      * @param string                              $accountId Bandwidth Account ID with Two-Factor enabled
      * @param Models\TwoFactorVerifyRequestSchema $body      TODO: type description here
@@ -233,7 +275,35 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\InvalidRequestException('client request error', $_httpContext);
+            throw new Exceptions\ErrorWithRequestException(
+                'If there is any issue with values passed in by the user',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\UnauthorizedRequestException(
+                'Authentication is either incorrect or not present',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ForbiddenRequestException(
+                'The user is not authorized to access this resource',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ErrorWithRequestException(
+                'The user has made too many bad requests and is temporarily locked out',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorWithRequestException('An internal server error occurred', $_httpContext);
         }
 
         //handle errors defined at the API level
