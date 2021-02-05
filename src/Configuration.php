@@ -247,7 +247,7 @@ class Configuration
         Environments::PRODUCTION => array(
             Servers::DEFAULT_ => 'api.bandwidth.com',
             Servers::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
-            Servers::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1/',
+            Servers::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1',
             Servers::VOICEDEFAULT => 'https://voice.bandwidth.com',
             Servers::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1',
         ),
