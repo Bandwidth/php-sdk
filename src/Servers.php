@@ -25,7 +25,7 @@ class Servers
     /**
      * TODO: Write general description for this element
      */
-    const TWOFACTORAUTHDEFAULT = "TwoFactorAuthDefault";
+    const MULTIFACTORAUTHDEFAULT = "MultiFactorAuthDefault";
 
     /**
      * TODO: Write general description for this element

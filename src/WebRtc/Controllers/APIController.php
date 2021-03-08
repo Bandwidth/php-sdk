@@ -104,7 +104,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -185,7 +185,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -262,7 +262,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -344,7 +344,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -422,7 +422,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -499,7 +499,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -575,7 +575,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -664,7 +664,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -745,7 +745,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -825,7 +825,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -921,7 +921,7 @@ class APIController extends BaseController
         }
 
         if (($response->code < 200) || ($response->code > 208)) {
-            throw new Exceptions\ErrorException('Unexpected Error', $_httpContext);
+            throw new Exceptions\ErrorErrorException('Unexpected Error', $_httpContext);
         }
 
         //handle errors defined at the API level
