@@ -12,7 +12,7 @@ use BandwidthLib\APIHelper;
 /**
  * @todo Write general description for this model
  */
-class ApiErrorResponseErrorException extends \BandwidthLib\APIException
+class ApiErrorResponseException extends \BandwidthLib\APIException
 {
     /**
      * @todo Write general description for this property
