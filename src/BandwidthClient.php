@@ -21,7 +21,7 @@ class BandwidthClient
     }
 
     private $messaging;
-    private $multiFactorAuth;
+    private $twoFactorAuth;
     private $voice;
     private $webRtc;
 
@@ -38,15 +38,15 @@ class BandwidthClient
     }
 
     /**
-     * Provides access to MultiFactorAuth client
-     * @return MultiFactorAuth\MultiFactorAuthClient
+     * Provides access to TwoFactorAuth client
+     * @return TwoFactorAuth\TwoFactorAuthClient
      */
-    public function getMultiFactorAuth()
+    public function getTwoFactorAuth()
     {
-        if ($this->multiFactorAuth == null) {
-            $this->multiFactorAuth = new MultiFactorAuth\MultiFactorAuthClient($this->config);
+        if ($this->twoFactorAuth == null) {
+            $this->twoFactorAuth = new TwoFactorAuth\TwoFactorAuthClient($this->config);
         }
-        return $this->multiFactorAuth;
+        return $this->twoFactorAuth;
     }
 
     /**

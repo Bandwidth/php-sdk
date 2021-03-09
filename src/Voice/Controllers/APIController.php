@@ -89,7 +89,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -104,21 +104,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -126,7 +123,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -134,7 +131,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -203,7 +200,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -218,21 +215,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -240,7 +234,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -248,7 +242,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -322,7 +316,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -337,21 +331,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -359,7 +350,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -367,7 +358,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -439,7 +430,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -454,21 +445,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -476,7 +464,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -484,7 +472,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -552,7 +540,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -567,21 +555,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -589,7 +574,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -597,7 +582,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -672,7 +657,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -687,21 +672,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -709,7 +691,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -717,7 +699,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -791,7 +773,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -806,21 +788,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -828,7 +807,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -836,7 +815,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -906,7 +885,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -921,21 +900,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -943,7 +919,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -951,7 +927,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -1022,7 +998,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -1037,21 +1013,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -1059,7 +1032,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -1067,7 +1040,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -1138,7 +1111,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -1153,21 +1126,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -1175,7 +1145,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -1183,7 +1153,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -1264,7 +1234,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -1279,28 +1249,25 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 410) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The media for this recording has been deleted, so we can\'t transcribe it',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -1308,7 +1275,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -1316,7 +1283,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -1386,7 +1353,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -1401,21 +1368,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -1423,7 +1387,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -1431,7 +1395,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -1514,7 +1478,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -1529,21 +1493,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -1551,7 +1512,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -1559,7 +1520,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -1631,7 +1592,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -1646,21 +1607,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -1668,7 +1626,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -1676,7 +1634,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -1750,7 +1708,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -1765,21 +1723,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -1787,7 +1742,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -1795,7 +1750,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -1870,7 +1825,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -1885,21 +1840,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -1907,7 +1859,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -1915,7 +1867,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -1986,7 +1938,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -2001,21 +1953,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -2023,7 +1972,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -2031,7 +1980,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -2104,7 +2053,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -2119,21 +2068,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -2141,7 +2087,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -2149,7 +2095,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -2225,7 +2171,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -2240,21 +2186,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -2262,7 +2205,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -2270,7 +2213,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -2345,7 +2288,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -2360,21 +2303,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -2382,7 +2322,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -2390,7 +2330,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );
@@ -2473,7 +2413,7 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
                 $_httpContext
             );
@@ -2488,21 +2428,18 @@ class APIController extends BaseController
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ApiErrorResponseErrorException(
-                'User unauthorized to perform this action.',
-                $_httpContext
-            );
+            throw new Exceptions\ApiErrorResponseException('User unauthorized to perform this action.', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'The resource specified cannot be found or does not belong to you.',
                 $_httpContext
             );
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'We don\'t support that media type. If a request body is required, please send it to us as ' .
                 '`application/json`.',
                 $_httpContext
@@ -2510,7 +2447,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
                 'try again.',
                 $_httpContext
@@ -2518,7 +2455,7 @@ class APIController extends BaseController
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ApiErrorResponseErrorException(
+            throw new Exceptions\ApiErrorResponseException(
                 'Something unexpected happened. Please try again.',
                 $_httpContext
             );

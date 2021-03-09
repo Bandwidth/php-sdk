@@ -33,22 +33,22 @@ class APIController extends BaseController
     /**
      * listMedia
      *
-     * @param string $accountId          User's account ID
+     * @param string $userId             User's account ID
      * @param string $continuationToken  (optional) Continuation token used to retrieve subsequent media.
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function listMedia(
-        $accountId,
+        $userId,
         $continuationToken = null
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/users/{accountId}/media';
+        $_queryBuilder = '/users/{userId}/media';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'accountId'          => $accountId,
+            'userId'             => $userId,
             ));
 
         //validate and preprocess url
@@ -86,42 +86,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '400 Request is malformed or invalid',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\MessagingExceptionErrorException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '403 The user does not have access to this API',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\MessagingExceptionErrorException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '429 The rate limit has been reached',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -134,24 +122,25 @@ class APIController extends BaseController
     /**
      * getMedia
      *
-     * @param string $accountId User's account ID
-     * @param string $mediaId   Media ID to retrieve
+     * @param string $userId  User's account ID
+     * @param string $mediaId Media ID to retrieve
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function getMedia(
-        $accountId,
+        $userId,
         $mediaId
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/users/{accountId}/media/{mediaId}';
+        $_queryBuilder = '/users/{userId}/media/{mediaId}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'accountId' => $accountId,
-            'mediaId'   => $mediaId,
-            ));
+            'userId'  => $userId,
+            'mediaId' => $mediaId,
+            ), false
+        );
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
@@ -186,42 +175,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '400 Request is malformed or invalid',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\MessagingExceptionErrorException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '403 The user does not have access to this API',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\MessagingExceptionErrorException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '429 The rate limit has been reached',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -233,31 +210,34 @@ class APIController extends BaseController
     /**
      * uploadMedia
      *
-     * @param string $accountId     User's account ID
-     * @param string $mediaId       The user supplied custom media ID
-     * @param string $body          TODO: type description here
-     * @param string $contentType   (optional) The media type of the entity-body
-     * @param string $cacheControl  (optional) General-header field is used to specify directives that MUST be obeyed
-     *                              by all caching mechanisms along the request/response chain.
+     * @param string  $userId         User's account ID
+     * @param string  $mediaId        The user supplied custom media ID
+     * @param integer $contentLength  The size of the entity-body
+     * @param string  $body           TODO: type description here
+     * @param string  $contentType    (optional) The media type of the entity-body
+     * @param string  $cacheControl   (optional) General-header field is used to specify directives that MUST be obeyed
+     *                                by all caching mechanisms along the request/response chain.
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function uploadMedia(
-        $accountId,
+        $userId,
         $mediaId,
+        $contentLength,
         $body,
         $contentType = 'application/octet-stream',
         $cacheControl = null
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/users/{accountId}/media/{mediaId}';
+        $_queryBuilder = '/users/{userId}/media/{mediaId}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'accountId'     => $accountId,
-            'mediaId'       => $mediaId,
-            ));
+            'userId'         => $userId,
+            'mediaId'        => $mediaId,
+            ), false
+        );
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
@@ -265,6 +245,7 @@ class APIController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
+            'Content-Length'  => $contentLength,
             'Content-Type'    => (null != $contentType) ? $contentType : 'application/octet-stream',
             'Cache-Control'   => $cacheControl
         );
@@ -297,42 +278,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '400 Request is malformed or invalid',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\MessagingExceptionErrorException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '403 The user does not have access to this API',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\MessagingExceptionErrorException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '429 The rate limit has been reached',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -343,24 +312,25 @@ class APIController extends BaseController
     /**
      * deleteMedia
      *
-     * @param string $accountId User's account ID
-     * @param string $mediaId   The media ID to delete
+     * @param string $userId  User's account ID
+     * @param string $mediaId The media ID to delete
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function deleteMedia(
-        $accountId,
+        $userId,
         $mediaId
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/users/{accountId}/media/{mediaId}';
+        $_queryBuilder = '/users/{userId}/media/{mediaId}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'accountId' => $accountId,
-            'mediaId'   => $mediaId,
-            ));
+            'userId'  => $userId,
+            'mediaId' => $mediaId,
+            ), false
+        );
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::MESSAGINGDEFAULT) . $_queryBuilder);
@@ -395,42 +365,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '400 Request is malformed or invalid',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\MessagingExceptionErrorException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '403 The user does not have access to this API',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\MessagingExceptionErrorException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '429 The rate limit has been reached',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -441,13 +399,13 @@ class APIController extends BaseController
     /**
      * getMessages
      *
-     * @param string  $accountId     User's account ID
+     * @param string  $userId        User's account ID
      * @param string  $messageId     (optional) The ID of the message to search for. Special characters need to be
      *                               encoded using URL encoding
      * @param string  $sourceTn      (optional) The phone number that sent the message
      * @param string  $destinationTn (optional) The phone number that received the message
      * @param string  $messageStatus (optional) The status of the message. One of RECEIVED, QUEUED, SENDING, SENT,
-     *                               FAILED, DELIVERED, ACCEPTED, UNDELIVERED
+     *                               FAILED, DELIVERED, DLR_EXPIRED
      * @param integer $errorCode     (optional) The error code of the message
      * @param string  $fromDateTime  (optional) The start of the date range to search in ISO 8601 format. Uses the
      *                               message receive time. The date range to search in is currently 14 days.
@@ -460,7 +418,7 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getMessages(
-        $accountId,
+        $userId,
         $messageId = null,
         $sourceTn = null,
         $destinationTn = null,
@@ -473,11 +431,11 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/users/{accountId}/messages';
+        $_queryBuilder = '/users/{userId}/messages';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'accountId'     => $accountId,
+            'userId'        => $userId,
             ));
 
         //process optional query parameters
@@ -527,42 +485,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '400 Request is malformed or invalid',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\MessagingExceptionErrorException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '403 The user does not have access to this API',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\MessagingExceptionErrorException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '429 The rate limit has been reached',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -578,22 +524,22 @@ class APIController extends BaseController
     /**
      * createMessage
      *
-     * @param string                $accountId User's account ID
-     * @param Models\MessageRequest $body      TODO: type description here
+     * @param string                $userId User's account ID
+     * @param Models\MessageRequest $body   TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createMessage(
-        $accountId,
+        $userId,
         $body
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/users/{accountId}/messages';
+        $_queryBuilder = '/users/{userId}/messages';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'accountId' => $accountId,
+            'userId' => $userId,
             ));
 
         //validate and preprocess url
@@ -634,42 +580,30 @@ class APIController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '400 Request is malformed or invalid',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('400 Request is malformed or invalid', $_httpContext);
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\MessagingExceptionErrorException(
+            throw new Exceptions\MessagingException(
                 '401 The specified user does not have access to the account',
                 $_httpContext
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '403 The user does not have access to this API',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('403 The user does not have access to this API', $_httpContext);
         }
 
         if ($response->code == 404) {
-            throw new Exceptions\MessagingExceptionErrorException('404 Path not found', $_httpContext);
+            throw new Exceptions\MessagingException('404 Path not found', $_httpContext);
         }
 
         if ($response->code == 415) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '415 The content-type of the request is incorrect',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('415 The content-type of the request is incorrect', $_httpContext);
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\MessagingExceptionErrorException(
-                '429 The rate limit has been reached',
-                $_httpContext
-            );
+            throw new Exceptions\MessagingException('429 The rate limit has been reached', $_httpContext);
         }
 
         //handle errors defined at the API level

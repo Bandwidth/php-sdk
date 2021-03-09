@@ -64,18 +64,6 @@ class ApiCallStateResponse implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var string|null $identity public property
-     */
-    public $identity;
-
-    /**
-     * @todo Write general description for this property
-     * @var array|null $pai public property
-     */
-    public $pai;
-
-    /**
-     * @todo Write general description for this property
      * @factory \BandwidthLib\Utils\DateTimeHelper::fromRfc3339DateTime
      * @var \DateTime|null $startTime public property
      */
@@ -125,7 +113,7 @@ class ApiCallStateResponse implements \JsonSerializable
      */
     public function __construct()
     {
-        if (17 == func_num_args()) {
+        if (15 == func_num_args()) {
             $this->callId          = func_get_arg(0);
             $this->parentCallId    = func_get_arg(1);
             $this->applicationId   = func_get_arg(2);
@@ -134,15 +122,13 @@ class ApiCallStateResponse implements \JsonSerializable
             $this->from            = func_get_arg(5);
             $this->direction       = func_get_arg(6);
             $this->state           = func_get_arg(7);
-            $this->identity        = func_get_arg(8);
-            $this->pai             = func_get_arg(9);
-            $this->startTime       = func_get_arg(10);
-            $this->answerTime      = func_get_arg(11);
-            $this->endTime         = func_get_arg(12);
-            $this->disconnectCause = func_get_arg(13);
-            $this->errorMessage    = func_get_arg(14);
-            $this->errorId         = func_get_arg(15);
-            $this->lastUpdate      = func_get_arg(16);
+            $this->startTime       = func_get_arg(8);
+            $this->answerTime      = func_get_arg(9);
+            $this->endTime         = func_get_arg(10);
+            $this->disconnectCause = func_get_arg(11);
+            $this->errorMessage    = func_get_arg(12);
+            $this->errorId         = func_get_arg(13);
+            $this->lastUpdate      = func_get_arg(14);
         }
     }
 
@@ -160,8 +146,6 @@ class ApiCallStateResponse implements \JsonSerializable
         $json['from']            = $this->from;
         $json['direction']       = $this->direction;
         $json['state']           = $this->state;
-        $json['identity']        = $this->identity;
-        $json['pai']             = $this->pai;
         $json['startTime']       =
             isset($this->startTime) ?
             DateTimeHelper::toRfc3339DateTime($this->startTime) : null;

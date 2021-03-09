@@ -35,13 +35,13 @@ class Configuration
      * The username to use with basic authentication
      * @var string
      */
-    private $multiFactorAuthBasicAuthUserName = 'TODO: Replace';
+    private $twoFactorAuthBasicAuthUserName = 'TODO: Replace';
 
     /**
      * The password to use with basic authentication
      * @var string
      */
-    private $multiFactorAuthBasicAuthPassword = 'TODO: Replace';
+    private $twoFactorAuthBasicAuthPassword = 'TODO: Replace';
 
     /**
      * The username to use with basic authentication
@@ -90,11 +90,11 @@ class Configuration
         if (isset($configOptions['messagingBasicAuthPassword'])) {
             $this->messagingBasicAuthPassword = $configOptions['messagingBasicAuthPassword'];
         }
-        if (isset($configOptions['multiFactorAuthBasicAuthUserName'])) {
-            $this->multiFactorAuthBasicAuthUserName = $configOptions['multiFactorAuthBasicAuthUserName'];
+        if (isset($configOptions['twoFactorAuthBasicAuthUserName'])) {
+            $this->twoFactorAuthBasicAuthUserName = $configOptions['twoFactorAuthBasicAuthUserName'];
         }
-        if (isset($configOptions['multiFactorAuthBasicAuthPassword'])) {
-            $this->multiFactorAuthBasicAuthPassword = $configOptions['multiFactorAuthBasicAuthPassword'];
+        if (isset($configOptions['twoFactorAuthBasicAuthPassword'])) {
+            $this->twoFactorAuthBasicAuthPassword = $configOptions['twoFactorAuthBasicAuthPassword'];
         }
         if (isset($configOptions['voiceBasicAuthUserName'])) {
             $this->voiceBasicAuthUserName = $configOptions['voiceBasicAuthUserName'];
@@ -129,11 +129,11 @@ class Configuration
         if (isset($this->messagingBasicAuthPassword)) {
             $configMap['messagingBasicAuthPassword'] = $this->messagingBasicAuthPassword;
         }
-        if (isset($this->multiFactorAuthBasicAuthUserName)) {
-            $configMap['multiFactorAuthBasicAuthUserName'] = $this->multiFactorAuthBasicAuthUserName;
+        if (isset($this->twoFactorAuthBasicAuthUserName)) {
+            $configMap['twoFactorAuthBasicAuthUserName'] = $this->twoFactorAuthBasicAuthUserName;
         }
-        if (isset($this->multiFactorAuthBasicAuthPassword)) {
-            $configMap['multiFactorAuthBasicAuthPassword'] = $this->multiFactorAuthBasicAuthPassword;
+        if (isset($this->twoFactorAuthBasicAuthPassword)) {
+            $configMap['twoFactorAuthBasicAuthPassword'] = $this->twoFactorAuthBasicAuthPassword;
         }
         if (isset($this->voiceBasicAuthUserName)) {
             $configMap['voiceBasicAuthUserName'] = $this->voiceBasicAuthUserName;
@@ -175,16 +175,16 @@ class Configuration
         return $this->messagingBasicAuthPassword;
     }
 
-    // Getter for multiFactorAuthBasicAuthUserName
-    public function getMultiFactorAuthBasicAuthUserName()
+    // Getter for twoFactorAuthBasicAuthUserName
+    public function getTwoFactorAuthBasicAuthUserName()
     {
-        return $this->multiFactorAuthBasicAuthUserName;
+        return $this->twoFactorAuthBasicAuthUserName;
     }
 
-    // Getter for multiFactorAuthBasicAuthPassword
-    public function getMultiFactorAuthBasicAuthPassword()
+    // Getter for twoFactorAuthBasicAuthPassword
+    public function getTwoFactorAuthBasicAuthPassword()
     {
-        return $this->multiFactorAuthBasicAuthPassword;
+        return $this->twoFactorAuthBasicAuthPassword;
     }
 
     // Getter for voiceBasicAuthUserName
@@ -247,14 +247,14 @@ class Configuration
         Environments::PRODUCTION => array(
             Servers::DEFAULT_ => 'api.bandwidth.com',
             Servers::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
-            Servers::MULTIFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1',
+            Servers::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1',
             Servers::VOICEDEFAULT => 'https://voice.bandwidth.com',
             Servers::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1',
         ),
         Environments::CUSTOM => array(
             Servers::DEFAULT_ => '{base_url}',
             Servers::MESSAGINGDEFAULT => '{base_url}',
-            Servers::MULTIFACTORAUTHDEFAULT => '{base_url}',
+            Servers::TWOFACTORAUTHDEFAULT => '{base_url}',
             Servers::VOICEDEFAULT => '{base_url}',
             Servers::WEBRTCDEFAULT => '{base_url}',
         ),
