@@ -51,17 +51,30 @@ class Participant implements \JsonSerializable
     public $tag;
 
     /**
+     * Optional field to define the device api version of this participant
+     * @var string|null $deviceApiVersion public property
+     */
+    public $deviceApiVersion;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
-            $this->id                 = func_get_arg(0);
-            $this->callbackUrl        = func_get_arg(1);
-            $this->publishPermissions = func_get_arg(2);
-            $this->sessions           = func_get_arg(3);
-            $this->subscriptions      = func_get_arg(4);
-            $this->tag                = func_get_arg(5);
+        switch (func_num_args()) {
+            case 7:
+                $this->id                 = func_get_arg(0);
+                $this->callbackUrl        = func_get_arg(1);
+                $this->publishPermissions = func_get_arg(2);
+                $this->sessions           = func_get_arg(3);
+                $this->subscriptions      = func_get_arg(4);
+                $this->tag                = func_get_arg(5);
+                $this->deviceApiVersion   = func_get_arg(6);
+                break;
+
+            default:
+                $this->deviceApiVersion = DeviceApiVersionEnum::V2;
+                break;
         }
     }
 
@@ -80,6 +93,7 @@ class Participant implements \JsonSerializable
             array_values($this->sessions) : null;
         $json['subscriptions']      = $this->subscriptions;
         $json['tag']                = $this->tag;
+        $json['deviceApiVersion']   = $this->deviceApiVersion;
 
         return array_filter($json);
     }
