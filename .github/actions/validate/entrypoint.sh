@@ -1,3 +1,4 @@
 #!/bin/sh
 
-composer -h
+composer require
+./vendor/bin/phpunit tests
