@@ -76,7 +76,7 @@ final class ApiTest extends TestCase
         $body->from = getenv("PHONE_NUMBER_INBOUND");
         $body->to = getenv("PHONE_NUMBER_OUTBOUND");
         $body->applicationId = getenv("VOICE_APPLICATION_ID");
-        $body->answerUrl = getenv("CALLBACK_URL");
+        $body->answerUrl = getenv("VOICE_CALLBACK_URL");
         $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("ACCOUNT_ID"), $body);
         $callId = $response->getResult()->callId;
         $this->assertTrue(strlen($callId) > 0);
@@ -91,7 +91,7 @@ final class ApiTest extends TestCase
         $body->from = getenv("PHONE_NUMBER_INBOUND");
         $body->to = "+1invalid";
         $body->applicationId = getenv("VOICE_APPLICATION_ID");
-        $body->answerUrl = getenv("CALLBACK_URL");
+        $body->answerUrl = getenv("VOICE_CALLBACK_URL");
 
         try {
             $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("ACCOUNT_ID"), $body);
