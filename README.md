@@ -15,10 +15,12 @@ require "vendor/autoload.php";
 
 $config = new BandwidthLib\Configuration(
     array(
-        'messagingBasicAuthUserName' => 'token',
-        'messagingBasicAuthPassword' => 'secret',
+        'messagingBasicAuthUserName' => 'username',
+        'messagingBasicAuthPassword' => 'password',
         'voiceBasicAuthUserName' => 'username',
         'voiceBasicAuthPassword' => 'password',
+        'twoFactorAuthBasicAuthUserName' => 'username',
+        'twoFactorAuthBasicAuthPassword' => 'password'
     )
 );
 $client = new BandwidthLib\BandwidthClient($config);
@@ -72,6 +74,33 @@ $speakSentence->gender("female");
 $response = new BandwidthLib\Voice\Bxml\Response();
 $response->addVerb($speakSentence);
 echo $response->toBxml();
+```
+
+### Create A MFA Request
+
+```
+$mfaClient = $client->getTwoFactorAuth()->getMFA();
+
+$body = new BandwidthLib\TwoFactorAuth\Models\TwoFactorCodeRequestSchema();
+$body->from = "+15554443333";
+$body->to = "+15553334444";
+$body->applicationId = "3-a-b-d";
+$body->scope = "scope";
+$body->digits = 6;
+$body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
+$mfaClient->createVoiceTwoFactor($accountId, $body);
+
+$body = new BandwidthLib\TwoFactorAuth\Models\TwoFactorVerifyRequestSchema();
+$body->from = "+15554443333";
+$body->to = "+15553334444";
+$body->applicationId = "3-a-b-d";
+$body->scope = "scope";
+$body->code = "123456";
+$body->digits = 6;
+$body->expirationTimeInMinutes = 3;
+
+$response = $mfaClient->createVerifyTwoFactor($accountId, $body);
+echo $response->getResult()->valid;
 ```
 
 ## Supported PHP Versions
