@@ -20,7 +20,9 @@ $config = new BandwidthLib\Configuration(
         'voiceBasicAuthUserName' => 'username',
         'voiceBasicAuthPassword' => 'password',
         'twoFactorAuthBasicAuthUserName' => 'username',
-        'twoFactorAuthBasicAuthPassword' => 'password'
+        'twoFactorAuthBasicAuthPassword' => 'password',
+        'webRtcBasicAuthUserName' => 'username',
+        'webRtcBasicAuthPassword' => 'password'
     )
 );
 $client = new BandwidthLib\BandwidthClient($config);
