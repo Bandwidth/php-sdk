@@ -103,6 +103,30 @@ $response = $mfaClient->createVerifyTwoFactor($accountId, $body);
 echo $response->getResult()->valid;
 ```
 
+### WebRtc Participant & Session Management
+
+```
+$webRtcClient = $client->getWebRtc()->getClient();
+
+$createSessionBody = new BandwidthLib\WebRtc\Models\Session();
+$createSessionBody->tag = 'new-session';
+
+$createSessionResponse = $webRtcClient->createSession($accountId, $createSessionBody);
+$sessionId = $createSessionResponse->getResult()->id;
+
+$createParticipantBody = new BandwidthLib\WebRtc\Models\Participant();
+$createParticipantBody->callbackurl = 'https://sample.com';
+$createParticipantBody->publishPermissions = array(
+    BandwidthLib\WebRtc\Models\PublishPermissionEnum::AUDIO,
+    BandwidthLib\WebRtc\Models\PublishPermissionEnum::VIDEO
+);
+
+$createParticipantResponse = $webRtcClient->createParticipant($accountId, $createParticipantBody);
+$participantId = $createParticipantResponse->getResult()->participant->id;
+
+$webRtcClient->addParticipantToSession($accountId, $sessionId, $participantId);
+```
+
 ## Supported PHP Versions
 
 This package can be used with PHP >= 5.4
