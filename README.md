@@ -26,6 +26,7 @@ $config = new BandwidthLib\Configuration(
     )
 );
 $client = new BandwidthLib\BandwidthClient($config);
+$accountId = "12345";
 ```
 
 ### Create A Phone Call
@@ -117,7 +118,7 @@ $createSessionResponse = $webRtcClient->createSession($accountId, $createSession
 $sessionId = $createSessionResponse->getResult()->id;
 
 $createParticipantBody = new BandwidthLib\WebRtc\Models\Participant();
-$createParticipantBody->callbackurl = 'https://sample.com';
+$createParticipantBody->callbackUrl = 'https://sample.com';
 $createParticipantBody->publishPermissions = array(
     BandwidthLib\WebRtc\Models\PublishPermissionEnum::AUDIO,
     BandwidthLib\WebRtc\Models\PublishPermissionEnum::VIDEO
