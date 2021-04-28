@@ -1,12 +1,8 @@
 # Bandwidth PHP SDK
 
-Bandwidth's API docs can be found at https://dev.bandwidth.com
+## Getting Started
 
-PHP specific docs can be found at https://dev.bandwidth.com/sdks/php.html
-
-## Get Started
-
-### Install
+### Installation
 
 ```
 composer require bandwidth/sdk
@@ -19,13 +15,18 @@ require "vendor/autoload.php";
 
 $config = new BandwidthLib\Configuration(
     array(
-        'messagingBasicAuthUserName' => 'token',
-        'messagingBasicAuthPassword' => 'secret',
+        'messagingBasicAuthUserName' => 'username',
+        'messagingBasicAuthPassword' => 'password',
         'voiceBasicAuthUserName' => 'username',
         'voiceBasicAuthPassword' => 'password',
+        'twoFactorAuthBasicAuthUserName' => 'username',
+        'twoFactorAuthBasicAuthPassword' => 'password',
+        'webRtcBasicAuthUserName' => 'username',
+        'webRtcBasicAuthPassword' => 'password'
     )
 );
 $client = new BandwidthLib\BandwidthClient($config);
+$accountId = "12345";
 ```
 
 ### Create A Phone Call
@@ -77,3 +78,66 @@ $response = new BandwidthLib\Voice\Bxml\Response();
 $response->addVerb($speakSentence);
 echo $response->toBxml();
 ```
+
+### Create A MFA Request
+
+```
+$mfaClient = $client->getTwoFactorAuth()->getMFA();
+
+$body = new BandwidthLib\TwoFactorAuth\Models\TwoFactorCodeRequestSchema();
+$body->from = "+15554443333";
+$body->to = "+15553334444";
+$body->applicationId = "3-a-b-d";
+$body->scope = "scope";
+$body->digits = 6;
+$body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
+$mfaClient->createVoiceTwoFactor($accountId, $body);
+
+$body = new BandwidthLib\TwoFactorAuth\Models\TwoFactorVerifyRequestSchema();
+$body->from = "+15554443333";
+$body->to = "+15553334444";
+$body->applicationId = "3-a-b-d";
+$body->scope = "scope";
+$body->code = "123456";
+$body->digits = 6;
+$body->expirationTimeInMinutes = 3;
+
+$response = $mfaClient->createVerifyTwoFactor($accountId, $body);
+echo $response->getResult()->valid;
+```
+
+### WebRtc Participant & Session Management
+
+```
+$webRtcClient = $client->getWebRtc()->getClient();
+
+$createSessionBody = new BandwidthLib\WebRtc\Models\Session();
+$createSessionBody->tag = 'new-session';
+
+$createSessionResponse = $webRtcClient->createSession($accountId, $createSessionBody);
+$sessionId = $createSessionResponse->getResult()->id;
+
+$createParticipantBody = new BandwidthLib\WebRtc\Models\Participant();
+$createParticipantBody->callbackUrl = 'https://sample.com';
+$createParticipantBody->publishPermissions = array(
+    BandwidthLib\WebRtc\Models\PublishPermissionEnum::AUDIO,
+    BandwidthLib\WebRtc\Models\PublishPermissionEnum::VIDEO
+);
+
+$createParticipantResponse = $webRtcClient->createParticipant($accountId, $createParticipantBody);
+$participantId = $createParticipantResponse->getResult()->participant->id;
+
+$webRtcClient->addParticipantToSession($accountId, $sessionId, $participantId);
+```
+
+## Supported PHP Versions
+
+This package can be used with PHP >= 5.4
+
+## Documentation
+
+Documentation for this package can be found at https://dev.bandwidth.com/sdks/php.html
+
+## Credentials
+
+Information for credentials for this package can be found at https://dev.bandwidth.com/guides/accountCredentials.html
