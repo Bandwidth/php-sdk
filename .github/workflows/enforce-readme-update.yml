@@ -1,0 +1,19 @@
+# All PRs require an update to the readme. This should at least be a changelog update, but also include code updates
+
+name: Enforce readme update 
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  enforce_readme_update:
+    name: Changelog Validate
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Confirm Release Notes Update
+      uses: dangoslen/changelog-enforcer@v2
+      with:
+        changeLogPath: 'README.md'
