@@ -1,15 +1,5 @@
 # Bandwidth PHP SDK
 
-## Changelog
-
-| Version | Description |
-|--|--|
-| v5.1.0 | Added webrtc participant version |
-| v5.0.0 | MFA error update and message priority |
-| v4.0.0 | Added get messages and updated request bodies to required in the methods |
-| v3.0.0 | Updated MFA verify schema and renamed CallEngineModifyConferenceRequest to ApiModifyConferenceRequest |
-| v2.14.0 | Added sip uir and tag BXML verbs |
-
 ## Getting Started
 
 ### Installation
