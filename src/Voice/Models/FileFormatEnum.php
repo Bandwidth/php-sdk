@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,18 +10,9 @@
 
 namespace BandwidthLib\Voice\Models;
 
-/**
- * @todo Write general description for this enumeration
- */
 class FileFormatEnum
 {
-    /**
-     * TODO: Write general description for this element
-     */
-    const MP3 = "mp3";
+    public const MP3 = 'mp3';
 
-    /**
-     * TODO: Write general description for this element
-     */
-    const WAV = "wav";
+    public const WAV = 'wav';
 }

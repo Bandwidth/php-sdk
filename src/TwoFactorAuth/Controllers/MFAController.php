@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,25 +10,22 @@
 
 namespace BandwidthLib\TwoFactorAuth\Controllers;
 
-use BandwidthLib\APIException;
-use BandwidthLib\APIHelper;
-use BandwidthLib\TwoFactorAuth\Exceptions;
-use BandwidthLib\TwoFactorAuth\Models;
+use BandwidthLib\Exceptions\ApiException;
+use BandwidthLib\ApiHelper;
+use BandwidthLib\ConfigurationInterface;
 use BandwidthLib\Controllers\BaseController;
 use BandwidthLib\Http\ApiResponse;
 use BandwidthLib\Http\HttpRequest;
 use BandwidthLib\Http\HttpResponse;
 use BandwidthLib\Http\HttpMethod;
 use BandwidthLib\Http\HttpContext;
-use BandwidthLib\Servers;
+use BandwidthLib\Http\HttpCallBack;
+use BandwidthLib\Server;
 use Unirest\Request;
 
-/**
- * @todo Add a general description for this controller.
- */
 class MFAController extends BaseController
 {
-    public function __construct($config, $httpCallBack = null)
+    public function __construct(ConfigurationInterface $config, ?HttpCallBack $httpCallBack = null)
     {
         parent::__construct($config, $httpCallBack);
     }
@@ -33,33 +33,34 @@ class MFAController extends BaseController
     /**
      * Allows a user to send a MFA code through a phone call
      *
-     * @param string                            $accountId Bandwidth Account ID with Voice service enabled
-     * @param Models\TwoFactorCodeRequestSchema $body      TODO: type description here
-     * @return ApiResponse response from the API call
-     * @throws APIException Thrown if API call fails
+     * @param string $accountId Bandwidth Account ID with Voice service enabled
+     * @param \BandwidthLib\TwoFactorAuth\Models\TwoFactorCodeRequestSchema $body
+     *
+     * @return ApiResponse Response from the API call
+     *
+     * @throws ApiException Thrown if API call fails
      */
     public function createVoiceTwoFactor(
-        $accountId,
-        $body
-    ) {
-
+        string $accountId,
+        \BandwidthLib\TwoFactorAuth\Models\TwoFactorCodeRequestSchema $body
+    ): ApiResponse {
         //prepare query string for API call
         $_queryBuilder = '/accounts/{accountId}/code/voice';
 
         //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = ApiHelper::appendUrlWithTemplateParameters($_queryBuilder, [
             'accountId' => $accountId,
-            ));
+        ]);
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::TWOFACTORAUTHDEFAULT) . $_queryBuilder);
+        $_queryUrl = ApiHelper::cleanUrl($this->config->getBaseUri(Server::TWOFACTORAUTHDEFAULT) . $_queryBuilder);
 
         //prepare headers
-        $_headers = array (
+        $_headers = [
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
-        );
+            'content-type'  => 'application/json'
+        ];
 
         //json encode body
         $_bodyJson = Request\Body::Json($body);
@@ -77,7 +78,11 @@ class MFAController extends BaseController
         Request::timeout($this->config->getTimeout());
 
         // and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+        try {
+            $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+        } catch (\Unirest\Exception $ex) {
+            throw new ApiException($ex->getMessage(), $_httpRequest);
+        }
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -89,70 +94,82 @@ class MFAController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ErrorWithRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ErrorWithRequestException',
                 'If there is any issue with values passed in by the user',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\UnauthorizedRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\UnauthorizedRequestException',
                 'Authentication is either incorrect or not present',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ForbiddenRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ForbiddenRequestException',
                 'The user is not authorized to access this resource',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorWithRequestException('An internal server error occurred', $_httpContext);
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ErrorWithRequestException',
+                'An internal server error occurred',
+                $_httpRequest,
+                $_httpResponse
+            );
         }
 
         //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
+        $this->validateResponse($_httpResponse, $_httpRequest);
         $mapper = $this->getJsonMapper();
         $deserializedResponse = $mapper->mapClass(
             $response->body,
             'BandwidthLib\\TwoFactorAuth\\Models\\TwoFactorVoiceResponse'
         );
-        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+        return ApiResponse::createFromContext($response->body, $deserializedResponse, $_httpContext);
     }
 
     /**
      * Allows a user to send a MFA code through a text message (SMS)
      *
-     * @param string                            $accountId Bandwidth Account ID with Messaging service enabled
-     * @param Models\TwoFactorCodeRequestSchema $body      TODO: type description here
-     * @return ApiResponse response from the API call
-     * @throws APIException Thrown if API call fails
+     * @param string $accountId Bandwidth Account ID with Messaging service enabled
+     * @param \BandwidthLib\TwoFactorAuth\Models\TwoFactorCodeRequestSchema $body
+     *
+     * @return ApiResponse Response from the API call
+     *
+     * @throws ApiException Thrown if API call fails
      */
     public function createMessagingTwoFactor(
-        $accountId,
-        $body
-    ) {
-
+        string $accountId,
+        \BandwidthLib\TwoFactorAuth\Models\TwoFactorCodeRequestSchema $body
+    ): ApiResponse {
         //prepare query string for API call
         $_queryBuilder = '/accounts/{accountId}/code/messaging';
 
         //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = ApiHelper::appendUrlWithTemplateParameters($_queryBuilder, [
             'accountId' => $accountId,
-            ));
+        ]);
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::TWOFACTORAUTHDEFAULT) . $_queryBuilder);
+        $_queryUrl = ApiHelper::cleanUrl($this->config->getBaseUri(Server::TWOFACTORAUTHDEFAULT) . $_queryBuilder);
 
         //prepare headers
-        $_headers = array (
+        $_headers = [
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
-        );
+            'content-type'  => 'application/json'
+        ];
 
         //json encode body
         $_bodyJson = Request\Body::Json($body);
@@ -170,7 +187,11 @@ class MFAController extends BaseController
         Request::timeout($this->config->getTimeout());
 
         // and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+        try {
+            $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+        } catch (\Unirest\Exception $ex) {
+            throw new ApiException($ex->getMessage(), $_httpRequest);
+        }
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -182,70 +203,82 @@ class MFAController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ErrorWithRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ErrorWithRequestException',
                 'If there is any issue with values passed in by the user',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\UnauthorizedRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\UnauthorizedRequestException',
                 'Authentication is either incorrect or not present',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ForbiddenRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ForbiddenRequestException',
                 'The user is not authorized to access this resource',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorWithRequestException('An internal server error occurred', $_httpContext);
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ErrorWithRequestException',
+                'An internal server error occurred',
+                $_httpRequest,
+                $_httpResponse
+            );
         }
 
         //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
+        $this->validateResponse($_httpResponse, $_httpRequest);
         $mapper = $this->getJsonMapper();
         $deserializedResponse = $mapper->mapClass(
             $response->body,
             'BandwidthLib\\TwoFactorAuth\\Models\\TwoFactorMessagingResponse'
         );
-        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+        return ApiResponse::createFromContext($response->body, $deserializedResponse, $_httpContext);
     }
 
     /**
      * Allows a user to verify an MFA code
      *
-     * @param string                              $accountId Bandwidth Account ID with Two-Factor enabled
-     * @param Models\TwoFactorVerifyRequestSchema $body      TODO: type description here
-     * @return ApiResponse response from the API call
-     * @throws APIException Thrown if API call fails
+     * @param string $accountId Bandwidth Account ID with Two-Factor enabled
+     * @param \BandwidthLib\TwoFactorAuth\Models\TwoFactorVerifyRequestSchema $body
+     *
+     * @return ApiResponse Response from the API call
+     *
+     * @throws ApiException Thrown if API call fails
      */
     public function createVerifyTwoFactor(
-        $accountId,
-        $body
-    ) {
-
+        string $accountId,
+        \BandwidthLib\TwoFactorAuth\Models\TwoFactorVerifyRequestSchema $body
+    ): ApiResponse {
         //prepare query string for API call
         $_queryBuilder = '/accounts/{accountId}/code/verify';
 
         //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = ApiHelper::appendUrlWithTemplateParameters($_queryBuilder, [
             'accountId' => $accountId,
-            ));
+        ]);
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::TWOFACTORAUTHDEFAULT) . $_queryBuilder);
+        $_queryUrl = ApiHelper::cleanUrl($this->config->getBaseUri(Server::TWOFACTORAUTHDEFAULT) . $_queryBuilder);
 
         //prepare headers
-        $_headers = array (
+        $_headers = [
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
-        );
+            'content-type'  => 'application/json'
+        ];
 
         //json encode body
         $_bodyJson = Request\Body::Json($body);
@@ -263,7 +296,11 @@ class MFAController extends BaseController
         Request::timeout($this->config->getTimeout());
 
         // and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+        try {
+            $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+        } catch (\Unirest\Exception $ex) {
+            throw new ApiException($ex->getMessage(), $_httpRequest);
+        }
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -275,44 +312,57 @@ class MFAController extends BaseController
 
         //Error handling using HTTP status codes
         if ($response->code == 400) {
-            throw new Exceptions\ErrorWithRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ErrorWithRequestException',
                 'If there is any issue with values passed in by the user',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 401) {
-            throw new Exceptions\UnauthorizedRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\UnauthorizedRequestException',
                 'Authentication is either incorrect or not present',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 403) {
-            throw new Exceptions\ForbiddenRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ForbiddenRequestException',
                 'The user is not authorized to access this resource',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 429) {
-            throw new Exceptions\ErrorWithRequestException(
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ErrorWithRequestException',
                 'The user has made too many bad requests and is temporarily locked out',
-                $_httpContext
+                $_httpRequest,
+                $_httpResponse
             );
         }
 
         if ($response->code == 500) {
-            throw new Exceptions\ErrorWithRequestException('An internal server error occurred', $_httpContext);
+            throw $this->createExceptionFromJson(
+                '\\BandwidthLib\\TwoFactorAuth\\Exceptions\\ErrorWithRequestException',
+                'An internal server error occurred',
+                $_httpRequest,
+                $_httpResponse
+            );
         }
 
         //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
+        $this->validateResponse($_httpResponse, $_httpRequest);
         $mapper = $this->getJsonMapper();
         $deserializedResponse = $mapper->mapClass(
             $response->body,
             'BandwidthLib\\TwoFactorAuth\\Models\\TwoFactorVerifyCodeResponse'
         );
-        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+        return ApiResponse::createFromContext($response->body, $deserializedResponse, $_httpContext);
     }
 }

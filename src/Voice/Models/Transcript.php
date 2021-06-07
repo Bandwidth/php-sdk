@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,43 +10,67 @@
 
 namespace BandwidthLib\Voice\Models;
 
-/**
- * @todo Write general description for this model
- */
 class Transcript implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var string|null $text public property
+     * @var string|null
      */
-    public $text;
+    private $text;
 
     /**
-     * @todo Write general description for this property
-     * @var double|null $confidence public property
+     * @var float|null
      */
-    public $confidence;
+    private $confidence;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Returns Text.
      */
-    public function __construct()
+    public function getText(): ?string
     {
-        if (2 == func_num_args()) {
-            $this->text       = func_get_arg(0);
-            $this->confidence = func_get_arg(1);
-        }
+        return $this->text;
+    }
+
+    /**
+     * Sets Text.
+     *
+     * @maps text
+     */
+    public function setText(?string $text): void
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * Returns Confidence.
+     */
+    public function getConfidence(): ?float
+    {
+        return $this->confidence;
+    }
+
+    /**
+     * Sets Confidence.
+     *
+     * @maps confidence
+     */
+    public function setConfidence(?float $confidence): void
+    {
+        $this->confidence = $confidence;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['text']       = $this->text;
         $json['confidence'] = $this->confidence;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

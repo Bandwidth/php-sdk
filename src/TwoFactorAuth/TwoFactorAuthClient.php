@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -14,20 +17,18 @@ use BandwidthLib\TwoFactorAuth\Controllers;
  */
 class TwoFactorAuthClient
 {
+    private $mFA;
     private $config;
-    public function __construct($config)
+
+    public function __construct(\BandwidthLib\ConfigurationInterface $config)
     {
         $this->config = $config;
     }
 
-
-    private $mFA;
-
     /**
-     * Provides access to MFA controller
-     * @return Controllers\MFAController
+     * Returns MFA Controller
      */
-    public function getMFA()
+    public function getMFAController(): Controllers\MFAController
     {
         if ($this->mFA == null) {
             $this->mFA = new Controllers\MFAController($this->config);

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -8,93 +11,225 @@
 namespace BandwidthLib\WebRtc\Models;
 
 /**
- *A participant object
+ * A participant object
  */
 class Participant implements \JsonSerializable
 {
     /**
+     * @var string|null
+     */
+    private $id;
+
+    /**
+     * @var string|null
+     */
+    private $callbackUrl;
+
+    /**
+     * @var string[]|null
+     */
+    private $publishPermissions;
+
+    /**
+     * @var string[]|null
+     */
+    private $sessions;
+
+    /**
+     * @var Subscriptions|null
+     */
+    private $subscriptions;
+
+    /**
+     * @var string|null
+     */
+    private $tag;
+
+    /**
+     * @var string|null
+     */
+    private $deviceApiVersion;
+
+    /**
+     * Returns Id.
+     *
      * Unique id of the participant
-     * @var string|null $id public property
      */
-    public $id;
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
 
     /**
+     * Sets Id.
+     *
+     * Unique id of the participant
+     *
+     * @maps id
+     */
+    public function setId(?string $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Returns Callback Url.
+     *
      * Full callback url to use for notifications about this participant
-     * @var string|null $callbackUrl public property
      */
-    public $callbackUrl;
+    public function getCallbackUrl(): ?string
+    {
+        return $this->callbackUrl;
+    }
 
     /**
+     * Sets Callback Url.
+     *
+     * Full callback url to use for notifications about this participant
+     *
+     * @maps callbackUrl
+     */
+    public function setCallbackUrl(?string $callbackUrl): void
+    {
+        $this->callbackUrl = $callbackUrl;
+    }
+
+    /**
+     * Returns Publish Permissions.
+     *
      * Defines if this participant can publish audio or video
-     * @var array|null $publishPermissions public property
+     *
+     * @return string[]|null
      */
-    public $publishPermissions;
+    public function getPublishPermissions(): ?array
+    {
+        return $this->publishPermissions;
+    }
 
     /**
+     * Sets Publish Permissions.
+     *
+     * Defines if this participant can publish audio or video
+     *
+     * @maps publishPermissions
+     *
+     * @param string[]|null $publishPermissions
+     */
+    public function setPublishPermissions(?array $publishPermissions): void
+    {
+        $this->publishPermissions = $publishPermissions;
+    }
+
+    /**
+     * Returns Sessions.
+     *
      * List of session ids this participant is associated with
      *
      * Capped to one
-     * @var array|null $sessions public property
+     *
+     * @return string[]|null
      */
-    public $sessions;
-
-    /**
-     * @todo Write general description for this property
-     * @var \BandwidthLib\WebRtc\Models\Subscriptions|null $subscriptions public property
-     */
-    public $subscriptions;
-
-    /**
-     * User defined tag to associate with the participant
-     * @var string|null $tag public property
-     */
-    public $tag;
-
-    /**
-     * Optional field to define the device api version of this participant
-     * @var string|null $deviceApiVersion public property
-     */
-    public $deviceApiVersion;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getSessions(): ?array
     {
-        switch (func_num_args()) {
-            case 7:
-                $this->id                 = func_get_arg(0);
-                $this->callbackUrl        = func_get_arg(1);
-                $this->publishPermissions = func_get_arg(2);
-                $this->sessions           = func_get_arg(3);
-                $this->subscriptions      = func_get_arg(4);
-                $this->tag                = func_get_arg(5);
-                $this->deviceApiVersion   = func_get_arg(6);
-                break;
+        return $this->sessions;
+    }
 
-            default:
-                $this->deviceApiVersion = DeviceApiVersionEnum::V2;
-                break;
-        }
+    /**
+     * Sets Sessions.
+     *
+     * List of session ids this participant is associated with
+     *
+     * Capped to one
+     *
+     * @maps sessions
+     *
+     * @param string[]|null $sessions
+     */
+    public function setSessions(?array $sessions): void
+    {
+        $this->sessions = $sessions;
+    }
+
+    /**
+     * Returns Subscriptions.
+     */
+    public function getSubscriptions(): ?Subscriptions
+    {
+        return $this->subscriptions;
+    }
+
+    /**
+     * Sets Subscriptions.
+     *
+     * @maps subscriptions
+     */
+    public function setSubscriptions(?Subscriptions $subscriptions): void
+    {
+        $this->subscriptions = $subscriptions;
+    }
+
+    /**
+     * Returns Tag.
+     *
+     * User defined tag to associate with the participant
+     */
+    public function getTag(): ?string
+    {
+        return $this->tag;
+    }
+
+    /**
+     * Sets Tag.
+     *
+     * User defined tag to associate with the participant
+     *
+     * @maps tag
+     */
+    public function setTag(?string $tag): void
+    {
+        $this->tag = $tag;
+    }
+
+    /**
+     * Returns Device Api Version.
+     *
+     * Optional field to define the device api version of this participant
+     */
+    public function getDeviceApiVersion(): ?string
+    {
+        return $this->deviceApiVersion;
+    }
+
+    /**
+     * Sets Device Api Version.
+     *
+     * Optional field to define the device api version of this participant
+     *
+     * @maps deviceApiVersion
+     */
+    public function setDeviceApiVersion(?string $deviceApiVersion): void
+    {
+        $this->deviceApiVersion = $deviceApiVersion;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['id']                 = $this->id;
         $json['callbackUrl']        = $this->callbackUrl;
-        $json['publishPermissions'] =
-            isset($this->publishPermissions) ?
-            array_values($this->publishPermissions) : null;
-        $json['sessions']           = isset($this->sessions) ?
-            array_values($this->sessions) : null;
+        $json['publishPermissions'] = $this->publishPermissions;
+        $json['sessions']           = $this->sessions;
         $json['subscriptions']      = $this->subscriptions;
         $json['tag']                = $this->tag;
         $json['deviceApiVersion']   = $this->deviceApiVersion;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

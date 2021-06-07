@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,18 +10,9 @@
 
 namespace BandwidthLib\Voice\Models;
 
-/**
- * @todo Write general description for this enumeration
- */
 class DisconnectMethodEnum
 {
-    /**
-     * TODO: Write general description for this element
-     */
-    const POST = "POST";
+    public const POST = 'POST';
 
-    /**
-     * TODO: Write general description for this element
-     */
-    const GET = "GET";
+    public const GET = 'GET';
 }

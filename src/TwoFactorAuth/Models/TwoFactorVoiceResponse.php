@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,35 +10,43 @@
 
 namespace BandwidthLib\TwoFactorAuth\Models;
 
-/**
- * @todo Write general description for this model
- */
 class TwoFactorVoiceResponse implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var string|null $callId public property
+     * @var string|null
      */
-    public $callId;
+    private $callId;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Returns Call Id.
      */
-    public function __construct()
+    public function getCallId(): ?string
     {
-        if (1 == func_num_args()) {
-            $this->callId = func_get_arg(0);
-        }
+        return $this->callId;
+    }
+
+    /**
+     * Sets Call Id.
+     *
+     * @maps callId
+     */
+    public function setCallId(?string $callId): void
+    {
+        $this->callId = $callId;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['callId'] = $this->callId;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

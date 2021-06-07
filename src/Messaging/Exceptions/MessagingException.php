@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,40 +10,72 @@
 
 namespace BandwidthLib\Messaging\Exceptions;
 
-use BandwidthLib\APIHelper;
-
-/**
- * @todo Write general description for this model
- */
-class MessagingException extends \BandwidthLib\APIException
+class MessagingException extends \BandwidthLib\Exceptions\ApiException
 {
     /**
-     * @todo Write general description for this property
-     * @required
-     * @var string $type public property
+     * @var string
      */
-    public $type;
+    private $type;
 
     /**
-     * @todo Write general description for this property
-     * @required
-     * @var string $description public property
+     * @var string
      */
-    public $description;
+    private $description;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * @param string $reason
+     * @param \BandwidthLib\Http\HttpRequest $request
+     * @param \BandwidthLib\Http\HttpResponse $response
+     * @param string $type
+     * @param string $description
      */
-    public function __construct($reason, $context)
-    {
-        parent::__construct($reason, $context);
+    public function __construct(
+        string $reason,
+        \BandwidthLib\Http\HttpRequest $request,
+        \BandwidthLib\Http\HttpResponse $response,
+        string $type,
+        string $description
+    ) {
+        parent::__construct($reason, $request, $response);
+        $this->type = $type;
+        $this->description = $description;
     }
 
     /**
-     * Unbox response into this exception class
+     * Returns Type.
      */
-    public function unbox()
+    public function getType(): string
     {
-        APIHelper::deserialize(self::getResponseBody(), $this, false);
+        return $this->type;
+    }
+
+    /**
+     * Sets Type.
+     *
+     * @required
+     * @maps type
+     */
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Returns Description.
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * Sets Description.
+     *
+     * @required
+     * @maps description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 }

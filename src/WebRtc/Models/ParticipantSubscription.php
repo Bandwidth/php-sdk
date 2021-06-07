@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,36 +10,56 @@
 
 namespace BandwidthLib\WebRtc\Models;
 
-/**
- * @todo Write general description for this model
- */
 class ParticipantSubscription implements \JsonSerializable
 {
     /**
-     * Participant the subscriber should be subscribed to
-     * @required
-     * @var string $participantId public property
+     * @var string
      */
-    public $participantId;
+    private $participantId;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * @param string $participantId
      */
-    public function __construct()
+    public function __construct(string $participantId)
     {
-        if (1 == func_num_args()) {
-            $this->participantId = func_get_arg(0);
-        }
+        $this->participantId = $participantId;
+    }
+
+    /**
+     * Returns Participant Id.
+     *
+     * Participant the subscriber should be subscribed to
+     */
+    public function getParticipantId(): string
+    {
+        return $this->participantId;
+    }
+
+    /**
+     * Sets Participant Id.
+     *
+     * Participant the subscriber should be subscribed to
+     *
+     * @required
+     * @maps participantId
+     */
+    public function setParticipantId(string $participantId): void
+    {
+        $this->participantId = $participantId;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['participantId'] = $this->participantId;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

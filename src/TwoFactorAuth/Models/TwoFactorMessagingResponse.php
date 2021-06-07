@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,35 +10,43 @@
 
 namespace BandwidthLib\TwoFactorAuth\Models;
 
-/**
- * @todo Write general description for this model
- */
 class TwoFactorMessagingResponse implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var string|null $messageId public property
+     * @var string|null
      */
-    public $messageId;
+    private $messageId;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Returns Message Id.
      */
-    public function __construct()
+    public function getMessageId(): ?string
     {
-        if (1 == func_num_args()) {
-            $this->messageId = func_get_arg(0);
-        }
+        return $this->messageId;
+    }
+
+    /**
+     * Sets Message Id.
+     *
+     * @maps messageId
+     */
+    public function setMessageId(?string $messageId): void
+    {
+        $this->messageId = $messageId;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['messageId'] = $this->messageId;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

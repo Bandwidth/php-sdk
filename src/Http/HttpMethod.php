@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -8,14 +11,14 @@
 namespace BandwidthLib\Http;
 
 /**
-* HTTP Methods Enumeration
-*/
+ * HTTP Methods Enumeration
+ */
 class HttpMethod
 {
-    const GET = "Get";
-    const POST = "Post";
-    const PUT = "Put";
-    const PATCH = "Patch";
-    const DELETE = "Delete";
-    const HEAD = "Head";
+    public const GET = "Get";
+    public const POST = "Post";
+    public const PUT = "Put";
+    public const PATCH = "Patch";
+    public const DELETE = "Delete";
+    public const HEAD = "Head";
 }

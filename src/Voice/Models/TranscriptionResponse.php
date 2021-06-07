@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,36 +10,47 @@
 
 namespace BandwidthLib\Voice\Models;
 
-/**
- * @todo Write general description for this model
- */
 class TranscriptionResponse implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var \BandwidthLib\Voice\Models\Transcript[]|null $transcripts public property
+     * @var Transcript[]|null
      */
-    public $transcripts;
+    private $transcripts;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Returns Transcripts.
+     *
+     * @return Transcript[]|null
      */
-    public function __construct()
+    public function getTranscripts(): ?array
     {
-        if (1 == func_num_args()) {
-            $this->transcripts = func_get_arg(0);
-        }
+        return $this->transcripts;
+    }
+
+    /**
+     * Sets Transcripts.
+     *
+     * @maps transcripts
+     *
+     * @param Transcript[]|null $transcripts
+     */
+    public function setTranscripts(?array $transcripts): void
+    {
+        $this->transcripts = $transcripts;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
-        $json['transcripts'] = isset($this->transcripts) ?
-            array_values($this->transcripts) : null;
+        $json = [];
+        $json['transcripts'] = $this->transcripts;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

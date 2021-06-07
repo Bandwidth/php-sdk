@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,126 +10,365 @@
 
 namespace BandwidthLib\Messaging\Models;
 
-/**
- * @todo Write general description for this model
- */
 class BandwidthMessage implements \JsonSerializable
 {
     /**
+     * @var string|null
+     */
+    private $id;
+
+    /**
+     * @var string|null
+     */
+    private $owner;
+
+    /**
+     * @var string|null
+     */
+    private $applicationId;
+
+    /**
+     * @var string|null
+     */
+    private $time;
+
+    /**
+     * @var int|null
+     */
+    private $segmentCount;
+
+    /**
+     * @var string|null
+     */
+    private $direction;
+
+    /**
+     * @var string[]|null
+     */
+    private $to;
+
+    /**
+     * @var string|null
+     */
+    private $from;
+
+    /**
+     * @var string[]|null
+     */
+    private $media;
+
+    /**
+     * @var string|null
+     */
+    private $text;
+
+    /**
+     * @var string|null
+     */
+    private $tag;
+
+    /**
+     * @var string|null
+     */
+    private $priority;
+
+    /**
+     * Returns Id.
+     *
      * The id of the message
-     * @var string|null $id public property
      */
-    public $id;
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
 
     /**
+     * Sets Id.
+     *
+     * The id of the message
+     *
+     * @maps id
+     */
+    public function setId(?string $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Returns Owner.
+     *
      * The Bandwidth phone number associated with the message
-     * @var string|null $owner public property
      */
-    public $owner;
+    public function getOwner(): ?string
+    {
+        return $this->owner;
+    }
 
     /**
+     * Sets Owner.
+     *
+     * The Bandwidth phone number associated with the message
+     *
+     * @maps owner
+     */
+    public function setOwner(?string $owner): void
+    {
+        $this->owner = $owner;
+    }
+
+    /**
+     * Returns Application Id.
+     *
      * The application ID associated with the message
-     * @var string|null $applicationId public property
      */
-    public $applicationId;
+    public function getApplicationId(): ?string
+    {
+        return $this->applicationId;
+    }
 
     /**
+     * Sets Application Id.
+     *
+     * The application ID associated with the message
+     *
+     * @maps applicationId
+     */
+    public function setApplicationId(?string $applicationId): void
+    {
+        $this->applicationId = $applicationId;
+    }
+
+    /**
+     * Returns Time.
+     *
      * The datetime stamp of the message in ISO 8601
-     * @var string|null $time public property
      */
-    public $time;
+    public function getTime(): ?string
+    {
+        return $this->time;
+    }
 
     /**
+     * Sets Time.
+     *
+     * The datetime stamp of the message in ISO 8601
+     *
+     * @maps time
+     */
+    public function setTime(?string $time): void
+    {
+        $this->time = $time;
+    }
+
+    /**
+     * Returns Segment Count.
+     *
      * The number of segments the original message from the user is broken into before sending over to
      * carrier networks
-     * @var integer|null $segmentCount public property
      */
-    public $segmentCount;
-
-    /**
-     * The direction of the message relative to Bandwidth. Can be in or out
-     * @var string|null $direction public property
-     */
-    public $direction;
-
-    /**
-     * The phone number recipients of the message
-     * @var array|null $to public property
-     */
-    public $to;
-
-    /**
-     * The phone number the message was sent from
-     * @var string|null $from public property
-     */
-    public $from;
-
-    /**
-     * The list of media URLs sent in the message
-     * @var array|null $media public property
-     */
-    public $media;
-
-    /**
-     * The contents of the message
-     * @var string|null $text public property
-     */
-    public $text;
-
-    /**
-     * The custom string set by the user
-     * @var string|null $tag public property
-     */
-    public $tag;
-
-    /**
-     * The priority specified by the user
-     * @var string|null $priority public property
-     */
-    public $priority;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getSegmentCount(): ?int
     {
-        if (12 == func_num_args()) {
-            $this->id            = func_get_arg(0);
-            $this->owner         = func_get_arg(1);
-            $this->applicationId = func_get_arg(2);
-            $this->time          = func_get_arg(3);
-            $this->segmentCount  = func_get_arg(4);
-            $this->direction     = func_get_arg(5);
-            $this->to            = func_get_arg(6);
-            $this->from          = func_get_arg(7);
-            $this->media         = func_get_arg(8);
-            $this->text          = func_get_arg(9);
-            $this->tag           = func_get_arg(10);
-            $this->priority      = func_get_arg(11);
-        }
+        return $this->segmentCount;
+    }
+
+    /**
+     * Sets Segment Count.
+     *
+     * The number of segments the original message from the user is broken into before sending over to
+     * carrier networks
+     *
+     * @maps segmentCount
+     */
+    public function setSegmentCount(?int $segmentCount): void
+    {
+        $this->segmentCount = $segmentCount;
+    }
+
+    /**
+     * Returns Direction.
+     *
+     * The direction of the message relative to Bandwidth. Can be in or out
+     */
+    public function getDirection(): ?string
+    {
+        return $this->direction;
+    }
+
+    /**
+     * Sets Direction.
+     *
+     * The direction of the message relative to Bandwidth. Can be in or out
+     *
+     * @maps direction
+     */
+    public function setDirection(?string $direction): void
+    {
+        $this->direction = $direction;
+    }
+
+    /**
+     * Returns To.
+     *
+     * The phone number recipients of the message
+     *
+     * @return string[]|null
+     */
+    public function getTo(): ?array
+    {
+        return $this->to;
+    }
+
+    /**
+     * Sets To.
+     *
+     * The phone number recipients of the message
+     *
+     * @maps to
+     *
+     * @param string[]|null $to
+     */
+    public function setTo(?array $to): void
+    {
+        $this->to = $to;
+    }
+
+    /**
+     * Returns From.
+     *
+     * The phone number the message was sent from
+     */
+    public function getFrom(): ?string
+    {
+        return $this->from;
+    }
+
+    /**
+     * Sets From.
+     *
+     * The phone number the message was sent from
+     *
+     * @maps from
+     */
+    public function setFrom(?string $from): void
+    {
+        $this->from = $from;
+    }
+
+    /**
+     * Returns Media.
+     *
+     * The list of media URLs sent in the message
+     *
+     * @return string[]|null
+     */
+    public function getMedia(): ?array
+    {
+        return $this->media;
+    }
+
+    /**
+     * Sets Media.
+     *
+     * The list of media URLs sent in the message
+     *
+     * @maps media
+     *
+     * @param string[]|null $media
+     */
+    public function setMedia(?array $media): void
+    {
+        $this->media = $media;
+    }
+
+    /**
+     * Returns Text.
+     *
+     * The contents of the message
+     */
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    /**
+     * Sets Text.
+     *
+     * The contents of the message
+     *
+     * @maps text
+     */
+    public function setText(?string $text): void
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * Returns Tag.
+     *
+     * The custom string set by the user
+     */
+    public function getTag(): ?string
+    {
+        return $this->tag;
+    }
+
+    /**
+     * Sets Tag.
+     *
+     * The custom string set by the user
+     *
+     * @maps tag
+     */
+    public function setTag(?string $tag): void
+    {
+        $this->tag = $tag;
+    }
+
+    /**
+     * Returns Priority.
+     *
+     * The priority specified by the user
+     */
+    public function getPriority(): ?string
+    {
+        return $this->priority;
+    }
+
+    /**
+     * Sets Priority.
+     *
+     * The priority specified by the user
+     *
+     * @maps priority
+     */
+    public function setPriority(?string $priority): void
+    {
+        $this->priority = $priority;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['id']            = $this->id;
         $json['owner']         = $this->owner;
         $json['applicationId'] = $this->applicationId;
         $json['time']          = $this->time;
         $json['segmentCount']  = $this->segmentCount;
         $json['direction']     = $this->direction;
-        $json['to']            = isset($this->to) ?
-            array_values($this->to) : null;
+        $json['to']            = $this->to;
         $json['from']          = $this->from;
-        $json['media']         = isset($this->media) ?
-            array_values($this->media) : null;
+        $json['media']         = $this->media;
         $json['text']          = $this->text;
         $json['tag']           = $this->tag;
         $json['priority']      = $this->priority;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

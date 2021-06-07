@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,48 +10,9 @@
 
 namespace BandwidthLib\Voice\Models;
 
-/**
- * @todo Write general description for this enumeration
- */
 class CallbackMethodEnum
 {
-    /**
-     * TODO: Write general description for this element
-     */
-    const GET = "GET";
+    public const POST = 'POST';
 
-    /**
-     * TODO: Write general description for this element
-     */
-    const HEAD = "HEAD";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const POST = "POST";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const PUT = "PUT";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const PATCH = "PATCH";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const DELETE = "DELETE";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const OPTIONS = "OPTIONS";
-
-    /**
-     * TODO: Write general description for this element
-     */
-    const TRACE = "TRACE";
+    public const GET = 'GET';
 }

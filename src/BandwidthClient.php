@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,70 +10,265 @@
 
 namespace BandwidthLib;
 
-use BandwidthLib\Controllers;
-
 /**
  * BandwidthLib client class
  */
-class BandwidthClient
+class BandwidthClient implements ConfigurationInterface
 {
-    private $config;
-    public function __construct($config)
-    {
-        $this->config = $config;
-    }
-
     private $messaging;
     private $twoFactorAuth;
+    private $phoneNumberLookup;
     private $voice;
     private $webRtc;
 
+    private $timeout = ConfigurationDefaults::TIMEOUT;
+    private $messagingBasicAuthUserName = ConfigurationDefaults::MESSAGING_BASIC_AUTH_USER_NAME;
+    private $messagingBasicAuthPassword = ConfigurationDefaults::MESSAGING_BASIC_AUTH_PASSWORD;
+    private $twoFactorAuthBasicAuthUserName = ConfigurationDefaults::TWO_FACTOR_AUTH_BASIC_AUTH_USER_NAME;
+    private $twoFactorAuthBasicAuthPassword = ConfigurationDefaults::TWO_FACTOR_AUTH_BASIC_AUTH_PASSWORD;
+    private $voiceBasicAuthUserName = ConfigurationDefaults::VOICE_BASIC_AUTH_USER_NAME;
+    private $voiceBasicAuthPassword = ConfigurationDefaults::VOICE_BASIC_AUTH_PASSWORD;
+    private $webRtcBasicAuthUserName = ConfigurationDefaults::WEB_RTC_BASIC_AUTH_USER_NAME;
+    private $webRtcBasicAuthPassword = ConfigurationDefaults::WEB_RTC_BASIC_AUTH_PASSWORD;
+    private $environment = ConfigurationDefaults::ENVIRONMENT;
+    private $baseUrl = ConfigurationDefaults::BASE_URL;
+
+    public function __construct(array $configOptions = null)
+    {
+        if (isset($configOptions['timeout'])) {
+            $this->timeout = $configOptions['timeout'];
+        }
+        if (isset($configOptions['messagingBasicAuthUserName'])) {
+            $this->messagingBasicAuthUserName = $configOptions['messagingBasicAuthUserName'];
+        }
+        if (isset($configOptions['messagingBasicAuthPassword'])) {
+            $this->messagingBasicAuthPassword = $configOptions['messagingBasicAuthPassword'];
+        }
+        if (isset($configOptions['twoFactorAuthBasicAuthUserName'])) {
+            $this->twoFactorAuthBasicAuthUserName = $configOptions['twoFactorAuthBasicAuthUserName'];
+        }
+        if (isset($configOptions['twoFactorAuthBasicAuthPassword'])) {
+            $this->twoFactorAuthBasicAuthPassword = $configOptions['twoFactorAuthBasicAuthPassword'];
+        }
+        if (isset($configOptions['voiceBasicAuthUserName'])) {
+            $this->voiceBasicAuthUserName = $configOptions['voiceBasicAuthUserName'];
+        }
+        if (isset($configOptions['voiceBasicAuthPassword'])) {
+            $this->voiceBasicAuthPassword = $configOptions['voiceBasicAuthPassword'];
+        }
+        if (isset($configOptions['webRtcBasicAuthUserName'])) {
+            $this->webRtcBasicAuthUserName = $configOptions['webRtcBasicAuthUserName'];
+        }
+        if (isset($configOptions['webRtcBasicAuthPassword'])) {
+            $this->webRtcBasicAuthPassword = $configOptions['webRtcBasicAuthPassword'];
+        }
+        if (isset($configOptions['environment'])) {
+            $this->environment = $configOptions['environment'];
+        }
+        if (isset($configOptions['baseUrl'])) {
+            $this->baseUrl = $configOptions['baseUrl'];
+        }
+    }
+
+    /**
+     * Get the client configuration as an associative array
+     */
+    public function getConfiguration(): array
+    {
+        $configMap = [];
+
+        if (isset($this->timeout)) {
+            $configMap['timeout'] = $this->timeout;
+        }
+        if (isset($this->messagingBasicAuthUserName)) {
+            $configMap['messagingBasicAuthUserName'] = $this->messagingBasicAuthUserName;
+        }
+        if (isset($this->messagingBasicAuthPassword)) {
+            $configMap['messagingBasicAuthPassword'] = $this->messagingBasicAuthPassword;
+        }
+        if (isset($this->twoFactorAuthBasicAuthUserName)) {
+            $configMap['twoFactorAuthBasicAuthUserName'] = $this->twoFactorAuthBasicAuthUserName;
+        }
+        if (isset($this->twoFactorAuthBasicAuthPassword)) {
+            $configMap['twoFactorAuthBasicAuthPassword'] = $this->twoFactorAuthBasicAuthPassword;
+        }
+        if (isset($this->voiceBasicAuthUserName)) {
+            $configMap['voiceBasicAuthUserName'] = $this->voiceBasicAuthUserName;
+        }
+        if (isset($this->voiceBasicAuthPassword)) {
+            $configMap['voiceBasicAuthPassword'] = $this->voiceBasicAuthPassword;
+        }
+        if (isset($this->webRtcBasicAuthUserName)) {
+            $configMap['webRtcBasicAuthUserName'] = $this->webRtcBasicAuthUserName;
+        }
+        if (isset($this->webRtcBasicAuthPassword)) {
+            $configMap['webRtcBasicAuthPassword'] = $this->webRtcBasicAuthPassword;
+        }
+        if (isset($this->environment)) {
+            $configMap['environment'] = $this->environment;
+        }
+        if (isset($this->baseUrl)) {
+            $configMap['baseUrl'] = $this->baseUrl;
+        }
+
+        return $configMap;
+    }
+
+    /**
+     * Clone this client and override given configuration options
+     */
+    public function withConfiguration(array $configOptions): self
+    {
+        return new self(\array_merge($this->getConfiguration(), $configOptions));
+    }
+
+    public function getTimeout(): int
+    {
+        return $this->timeout;
+    }
+
+    public function getMessagingBasicAuthUserName(): string
+    {
+        return $this->messagingBasicAuthUserName;
+    }
+
+    public function getMessagingBasicAuthPassword(): string
+    {
+        return $this->messagingBasicAuthPassword;
+    }
+
+    public function getTwoFactorAuthBasicAuthUserName(): string
+    {
+        return $this->twoFactorAuthBasicAuthUserName;
+    }
+
+    public function getTwoFactorAuthBasicAuthPassword(): string
+    {
+        return $this->twoFactorAuthBasicAuthPassword;
+    }
+
+    public function getVoiceBasicAuthUserName(): string
+    {
+        return $this->voiceBasicAuthUserName;
+    }
+
+    public function getVoiceBasicAuthPassword(): string
+    {
+        return $this->voiceBasicAuthPassword;
+    }
+
+    public function getWebRtcBasicAuthUserName(): string
+    {
+        return $this->webRtcBasicAuthUserName;
+    }
+
+    public function getWebRtcBasicAuthPassword(): string
+    {
+        return $this->webRtcBasicAuthPassword;
+    }
+
+    public function getEnvironment(): string
+    {
+        return $this->environment;
+    }
+
+    public function getBaseUrl(): string
+    {
+        return $this->baseUrl;
+    }
+    /**
+     * Get the base uri for a given server in the current environment
+     *
+     * @param  string $server Server name
+     *
+     * @return string         Base URI
+     */
+    public function getBaseUri(string $server = Server::DEFAULT_): string
+    {
+        return ApiHelper::appendUrlWithTemplateParameters(
+            static::ENVIRONMENT_MAP[$this->environment][$server],
+            [
+                'base_url' => $this->baseUrl,
+            ],
+            false
+        );
+    }
+
     /**
      * Provides access to Messaging client
-     * @return Messaging\MessagingClient
      */
-    public function getMessaging()
+    public function getMessaging(): \BandwidthLib\Messaging\MessagingClient
     {
         if ($this->messaging == null) {
-            $this->messaging = new Messaging\MessagingClient($this->config);
+            $this->messaging = new Messaging\MessagingClient($this);
         }
         return $this->messaging;
     }
 
     /**
      * Provides access to TwoFactorAuth client
-     * @return TwoFactorAuth\TwoFactorAuthClient
      */
-    public function getTwoFactorAuth()
+    public function getTwoFactorAuth(): \BandwidthLib\TwoFactorAuth\TwoFactorAuthClient
     {
         if ($this->twoFactorAuth == null) {
-            $this->twoFactorAuth = new TwoFactorAuth\TwoFactorAuthClient($this->config);
+            $this->twoFactorAuth = new TwoFactorAuth\TwoFactorAuthClient($this);
         }
         return $this->twoFactorAuth;
     }
 
     /**
-     * Provides access to Voice client
-     * @return Voice\VoiceClient
+     * Provides access to PhoneNumberLookup client
      */
-    public function getVoice()
+    public function getPhoneNumberLookup(): \BandwidthLib\PhoneNumberLookup\PhoneNumberLookupClient
+    {
+        if ($this->phoneNumberLookup == null) {
+            $this->phoneNumberLookup = new PhoneNumberLookup\PhoneNumberLookupClient($this);
+        }
+        return $this->phoneNumberLookup;
+    }
+
+    /**
+     * Provides access to Voice client
+     */
+    public function getVoice(): \BandwidthLib\Voice\VoiceClient
     {
         if ($this->voice == null) {
-            $this->voice = new Voice\VoiceClient($this->config);
+            $this->voice = new Voice\VoiceClient($this);
         }
         return $this->voice;
     }
 
     /**
      * Provides access to WebRtc client
-     * @return WebRtc\WebRtcClient
      */
-    public function getWebRtc()
+    public function getWebRtc(): \BandwidthLib\WebRtc\WebRtcClient
     {
         if ($this->webRtc == null) {
-            $this->webRtc = new WebRtc\WebRtcClient($this->config);
+            $this->webRtc = new WebRtc\WebRtcClient($this);
         }
         return $this->webRtc;
     }
 
+    /**
+     * A map of all baseurls used in different environments and servers
+     *
+     * @var array
+     */
+    private const ENVIRONMENT_MAP = [
+        Environment::PRODUCTION => [
+            Server::DEFAULT_ => 'api.bandwidth.com',
+            Server::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
+            Server::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1',
+            Server::PHONENUMBERLOOKUPDEFAULT => 'https://uat.numbers.bandwidth.com/api/v1',
+            Server::VOICEDEFAULT => 'https://voice.bandwidth.com',
+            Server::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1',
+        ],
+        Environment::CUSTOM => [
+            Server::DEFAULT_ => '{base_url}',
+            Server::MESSAGINGDEFAULT => '{base_url}',
+            Server::TWOFACTORAUTHDEFAULT => '{base_url}',
+            Server::VOICEDEFAULT => '{base_url}',
+            Server::WEBRTCDEFAULT => '{base_url}',
+        ],
+    ];
 }

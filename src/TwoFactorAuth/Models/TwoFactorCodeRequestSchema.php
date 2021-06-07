@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,78 +10,209 @@
 
 namespace BandwidthLib\TwoFactorAuth\Models;
 
-/**
- * @todo Write general description for this model
- */
 class TwoFactorCodeRequestSchema implements \JsonSerializable
 {
     /**
+     * @var string
+     */
+    private $to;
+
+    /**
+     * @var string
+     */
+    private $from;
+
+    /**
+     * @var string
+     */
+    private $applicationId;
+
+    /**
+     * @var string|null
+     */
+    private $scope;
+
+    /**
+     * @var string
+     */
+    private $message;
+
+    /**
+     * @var float
+     */
+    private $digits;
+
+    /**
+     * @param string $to
+     * @param string $from
+     * @param string $applicationId
+     * @param string $message
+     * @param float $digits
+     */
+    public function __construct(string $to, string $from, string $applicationId, string $message, float $digits)
+    {
+        $this->to = $to;
+        $this->from = $from;
+        $this->applicationId = $applicationId;
+        $this->message = $message;
+        $this->digits = $digits;
+    }
+
+    /**
+     * Returns To.
+     *
      * The phone number to send the 2fa code to.
-     * @required
-     * @var string $to public property
      */
-    public $to;
+    public function getTo(): string
+    {
+        return $this->to;
+    }
 
     /**
+     * Sets To.
+     *
+     * The phone number to send the 2fa code to.
+     *
+     * @required
+     * @maps to
+     */
+    public function setTo(string $to): void
+    {
+        $this->to = $to;
+    }
+
+    /**
+     * Returns From.
+     *
      * The application phone number, the sender of the 2fa code.
-     * @required
-     * @var string $from public property
      */
-    public $from;
+    public function getFrom(): string
+    {
+        return $this->from;
+    }
 
     /**
+     * Sets From.
+     *
+     * The application phone number, the sender of the 2fa code.
+     *
+     * @required
+     * @maps from
+     */
+    public function setFrom(string $from): void
+    {
+        $this->from = $from;
+    }
+
+    /**
+     * Returns Application Id.
+     *
      * The application unique ID, obtained from Bandwidth.
-     * @required
-     * @var string $applicationId public property
      */
-    public $applicationId;
+    public function getApplicationId(): string
+    {
+        return $this->applicationId;
+    }
 
     /**
+     * Sets Application Id.
+     *
+     * The application unique ID, obtained from Bandwidth.
+     *
+     * @required
+     * @maps applicationId
+     */
+    public function setApplicationId(string $applicationId): void
+    {
+        $this->applicationId = $applicationId;
+    }
+
+    /**
+     * Returns Scope.
+     *
      * An optional field to denote what scope or action the 2fa code is addressing.  If not supplied,
      * defaults to "2FA".
-     * @var string|null $scope public property
      */
-    public $scope;
+    public function getScope(): ?string
+    {
+        return $this->scope;
+    }
 
     /**
+     * Sets Scope.
+     *
+     * An optional field to denote what scope or action the 2fa code is addressing.  If not supplied,
+     * defaults to "2FA".
+     *
+     * @maps scope
+     */
+    public function setScope(?string $scope): void
+    {
+        $this->scope = $scope;
+    }
+
+    /**
+     * Returns Message.
+     *
      * The message format of the 2fa code.  There are three values that the system will replace "{CODE}",
      * "{NAME}", "{SCOPE}".  The "{SCOPE}" and "{NAME} value template are optional, while "{CODE}" must be
      * supplied.  As the name would suggest, code will be replace with the actual 2fa code.  Name is
      * replaced with the application name, configured during provisioning of 2fa.  The scope value is the
      * same value sent during the call and partitioned by the server.
-     * @required
-     * @var string $message public property
      */
-    public $message;
-
-    /**
-     * The number of digits for your 2fa code.  The valid number ranges from 2 to 8, inclusively.
-     * @required
-     * @var double $digits public property
-     */
-    public $digits;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getMessage(): string
     {
-        if (6 == func_num_args()) {
-            $this->to            = func_get_arg(0);
-            $this->from          = func_get_arg(1);
-            $this->applicationId = func_get_arg(2);
-            $this->scope         = func_get_arg(3);
-            $this->message       = func_get_arg(4);
-            $this->digits        = func_get_arg(5);
-        }
+        return $this->message;
+    }
+
+    /**
+     * Sets Message.
+     *
+     * The message format of the 2fa code.  There are three values that the system will replace "{CODE}",
+     * "{NAME}", "{SCOPE}".  The "{SCOPE}" and "{NAME} value template are optional, while "{CODE}" must be
+     * supplied.  As the name would suggest, code will be replace with the actual 2fa code.  Name is
+     * replaced with the application name, configured during provisioning of 2fa.  The scope value is the
+     * same value sent during the call and partitioned by the server.
+     *
+     * @required
+     * @maps message
+     */
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * Returns Digits.
+     *
+     * The number of digits for your 2fa code.  The valid number ranges from 2 to 8, inclusively.
+     */
+    public function getDigits(): float
+    {
+        return $this->digits;
+    }
+
+    /**
+     * Sets Digits.
+     *
+     * The number of digits for your 2fa code.  The valid number ranges from 2 to 8, inclusively.
+     *
+     * @required
+     * @maps digits
+     */
+    public function setDigits(float $digits): void
+    {
+        $this->digits = $digits;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['to']            = $this->to;
         $json['from']          = $this->from;
         $json['applicationId'] = $this->applicationId;
@@ -86,6 +220,8 @@ class TwoFactorCodeRequestSchema implements \JsonSerializable
         $json['message']       = $this->message;
         $json['digits']        = $this->digits;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,52 +10,99 @@
 
 namespace BandwidthLib\Messaging\Models;
 
-/**
- * @todo Write general description for this model
- */
 class BandwidthMessagesList implements \JsonSerializable
 {
     /**
+     * @var int|null
+     */
+    private $totalCount;
+
+    /**
+     * @var PageInfo|null
+     */
+    private $pageInfo;
+
+    /**
+     * @var BandwidthMessageItem[]|null
+     */
+    private $messages;
+
+    /**
+     * Returns Total Count.
+     *
      * Total number of messages matched by the search
-     * @var integer|null $totalCount public property
      */
-    public $totalCount;
-
-    /**
-     * @todo Write general description for this property
-     * @var \BandwidthLib\Messaging\Models\PageInfo|null $pageInfo public property
-     */
-    public $pageInfo;
-
-    /**
-     * @todo Write general description for this property
-     * @var \BandwidthLib\Messaging\Models\BandwidthMessageItem[]|null $messages public property
-     */
-    public $messages;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getTotalCount(): ?int
     {
-        if (3 == func_num_args()) {
-            $this->totalCount = func_get_arg(0);
-            $this->pageInfo   = func_get_arg(1);
-            $this->messages   = func_get_arg(2);
-        }
+        return $this->totalCount;
+    }
+
+    /**
+     * Sets Total Count.
+     *
+     * Total number of messages matched by the search
+     *
+     * @maps totalCount
+     */
+    public function setTotalCount(?int $totalCount): void
+    {
+        $this->totalCount = $totalCount;
+    }
+
+    /**
+     * Returns Page Info.
+     */
+    public function getPageInfo(): ?PageInfo
+    {
+        return $this->pageInfo;
+    }
+
+    /**
+     * Sets Page Info.
+     *
+     * @maps pageInfo
+     */
+    public function setPageInfo(?PageInfo $pageInfo): void
+    {
+        $this->pageInfo = $pageInfo;
+    }
+
+    /**
+     * Returns Messages.
+     *
+     * @return BandwidthMessageItem[]|null
+     */
+    public function getMessages(): ?array
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Sets Messages.
+     *
+     * @maps messages
+     *
+     * @param BandwidthMessageItem[]|null $messages
+     */
+    public function setMessages(?array $messages): void
+    {
+        $this->messages = $messages;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['totalCount'] = $this->totalCount;
         $json['pageInfo']   = $this->pageInfo;
-        $json['messages']   = isset($this->messages) ?
-            array_values($this->messages) : null;
+        $json['messages']   = $this->messages;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

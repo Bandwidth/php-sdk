@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,43 +10,67 @@
 
 namespace BandwidthLib\Messaging\Models;
 
-/**
- * @todo Write general description for this model
- */
 class Tag implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var string|null $key public property
+     * @var string|null
      */
-    public $key;
+    private $key;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $value public property
+     * @var string|null
      */
-    public $value;
+    private $value;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Returns Key.
      */
-    public function __construct()
+    public function getKey(): ?string
     {
-        if (2 == func_num_args()) {
-            $this->key   = func_get_arg(0);
-            $this->value = func_get_arg(1);
-        }
+        return $this->key;
+    }
+
+    /**
+     * Sets Key.
+     *
+     * @maps key
+     */
+    public function setKey(?string $key): void
+    {
+        $this->key = $key;
+    }
+
+    /**
+     * Returns Value.
+     */
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    /**
+     * Sets Value.
+     *
+     * @maps value
+     */
+    public function setValue(?string $value): void
+    {
+        $this->value = $value;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['key']   = $this->key;
         $json['value'] = $this->value;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

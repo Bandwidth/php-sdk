@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,89 +10,242 @@
 
 namespace BandwidthLib\Messaging\Models;
 
-/**
- * @todo Write general description for this model
- */
 class MessageRequest implements \JsonSerializable
 {
     /**
+     * @var string
+     */
+    private $applicationId;
+
+    /**
+     * @var string[]
+     */
+    private $to;
+
+    /**
+     * @var string
+     */
+    private $from;
+
+    /**
+     * @var string|null
+     */
+    private $text;
+
+    /**
+     * @var string[]|null
+     */
+    private $media;
+
+    /**
+     * @var string|null
+     */
+    private $tag;
+
+    /**
+     * @var string|null
+     */
+    private $priority;
+
+    /**
+     * @param string $applicationId
+     * @param string[] $to
+     * @param string $from
+     */
+    public function __construct(string $applicationId, array $to, string $from)
+    {
+        $this->applicationId = $applicationId;
+        $this->to = $to;
+        $this->from = $from;
+    }
+
+    /**
+     * Returns Application Id.
+     *
      * The ID of the Application your from number is associated with in the Bandwidth Phone Number
      * Dashboard.
-     * @required
-     * @var string $applicationId public property
      */
-    public $applicationId;
+    public function getApplicationId(): string
+    {
+        return $this->applicationId;
+    }
 
     /**
+     * Sets Application Id.
+     *
+     * The ID of the Application your from number is associated with in the Bandwidth Phone Number
+     * Dashboard.
+     *
+     * @required
+     * @maps applicationId
+     */
+    public function setApplicationId(string $applicationId): void
+    {
+        $this->applicationId = $applicationId;
+    }
+
+    /**
+     * Returns To.
+     *
      * The phone number(s) the message should be sent to in E164 format
-     * @required
-     * @var array $to public property
+     *
+     * @return string[]
      */
-    public $to;
+    public function getTo(): array
+    {
+        return $this->to;
+    }
 
     /**
+     * Sets To.
+     *
+     * The phone number(s) the message should be sent to in E164 format
+     *
+     * @required
+     * @maps to
+     *
+     * @param string[] $to
+     */
+    public function setTo(array $to): void
+    {
+        $this->to = $to;
+    }
+
+    /**
+     * Returns From.
+     *
      * One of your telephone numbers the message should come from in E164 format
+     */
+    public function getFrom(): string
+    {
+        return $this->from;
+    }
+
+    /**
+     * Sets From.
+     *
+     * One of your telephone numbers the message should come from in E164 format
+     *
      * @required
-     * @var string $from public property
+     * @maps from
      */
-    public $from;
+    public function setFrom(string $from): void
+    {
+        $this->from = $from;
+    }
 
     /**
+     * Returns Text.
+     *
      * The contents of the text message. Must be 2048 characters or less.
-     * @var string|null $text public property
      */
-    public $text;
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
 
     /**
+     * Sets Text.
+     *
+     * The contents of the text message. Must be 2048 characters or less.
+     *
+     * @maps text
+     */
+    public function setText(?string $text): void
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * Returns Media.
+     *
      * A list of URLs to include as media attachments as part of the message.
-     * @var array|null $media public property
+     *
+     * @return string[]|null
      */
-    public $media;
+    public function getMedia(): ?array
+    {
+        return $this->media;
+    }
 
     /**
+     * Sets Media.
+     *
+     * A list of URLs to include as media attachments as part of the message.
+     *
+     * @maps media
+     *
+     * @param string[]|null $media
+     */
+    public function setMedia(?array $media): void
+    {
+        $this->media = $media;
+    }
+
+    /**
+     * Returns Tag.
+     *
      * A custom string that will be included in callback events of the message. Max 1024 characters
-     * @var string|null $tag public property
      */
-    public $tag;
+    public function getTag(): ?string
+    {
+        return $this->tag;
+    }
 
     /**
+     * Sets Tag.
+     *
+     * A custom string that will be included in callback events of the message. Max 1024 characters
+     *
+     * @maps tag
+     */
+    public function setTag(?string $tag): void
+    {
+        $this->tag = $tag;
+    }
+
+    /**
+     * Returns Priority.
+     *
      * The message's priority, currently for toll-free or short code SMS only. Messages with a priority
      * value of `"high"` are given preference over your other traffic.
-     * @var string|null $priority public property
      */
-    public $priority;
+    public function getPriority(): ?string
+    {
+        return $this->priority;
+    }
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Sets Priority.
+     *
+     * The message's priority, currently for toll-free or short code SMS only. Messages with a priority
+     * value of `"high"` are given preference over your other traffic.
+     *
+     * @maps priority
      */
-    public function __construct()
+    public function setPriority(?string $priority): void
     {
-        if (7 == func_num_args()) {
-            $this->applicationId = func_get_arg(0);
-            $this->to            = func_get_arg(1);
-            $this->from          = func_get_arg(2);
-            $this->text          = func_get_arg(3);
-            $this->media         = func_get_arg(4);
-            $this->tag           = func_get_arg(5);
-            $this->priority      = func_get_arg(6);
-        }
+        $this->priority = $priority;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['applicationId'] = $this->applicationId;
-        $json['to']            = array_values($this->to);
+        $json['to']            = $this->to;
         $json['from']          = $this->from;
         $json['text']          = $this->text;
-        $json['media']         = isset($this->media) ?
-            array_values($this->media) : null;
+        $json['media']         = $this->media;
         $json['tag']           = $this->tag;
         $json['priority']      = $this->priority;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

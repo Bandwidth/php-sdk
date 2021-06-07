@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,68 +10,154 @@
 
 namespace BandwidthLib\Messaging\Models;
 
-/**
- * @todo Write general description for this model
- */
 class BandwidthCallbackMessage implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var string|null $time public property
+     * @var string|null
      */
-    public $time;
+    private $time;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $type public property
+     * @var string|null
      */
-    public $type;
+    private $type;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $to public property
+     * @var string|null
      */
-    public $to;
+    private $to;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $errorCode public property
+     * @var string|null
      */
-    public $errorCode;
+    private $errorCode;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $description public property
+     * @var string|null
      */
-    public $description;
+    private $description;
 
     /**
-     * @todo Write general description for this property
-     * @var \BandwidthLib\Messaging\Models\BandwidthMessage|null $message public property
+     * @var BandwidthMessage|null
      */
-    public $message;
+    private $message;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Returns Time.
      */
-    public function __construct()
+    public function getTime(): ?string
     {
-        if (6 == func_num_args()) {
-            $this->time        = func_get_arg(0);
-            $this->type        = func_get_arg(1);
-            $this->to          = func_get_arg(2);
-            $this->errorCode   = func_get_arg(3);
-            $this->description = func_get_arg(4);
-            $this->message     = func_get_arg(5);
-        }
+        return $this->time;
+    }
+
+    /**
+     * Sets Time.
+     *
+     * @maps time
+     */
+    public function setTime(?string $time): void
+    {
+        $this->time = $time;
+    }
+
+    /**
+     * Returns Type.
+     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    /**
+     * Sets Type.
+     *
+     * @maps type
+     */
+    public function setType(?string $type): void
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Returns To.
+     */
+    public function getTo(): ?string
+    {
+        return $this->to;
+    }
+
+    /**
+     * Sets To.
+     *
+     * @maps to
+     */
+    public function setTo(?string $to): void
+    {
+        $this->to = $to;
+    }
+
+    /**
+     * Returns Error Code.
+     */
+    public function getErrorCode(): ?string
+    {
+        return $this->errorCode;
+    }
+
+    /**
+     * Sets Error Code.
+     *
+     * @maps errorCode
+     */
+    public function setErrorCode(?string $errorCode): void
+    {
+        $this->errorCode = $errorCode;
+    }
+
+    /**
+     * Returns Description.
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * Sets Description.
+     *
+     * @maps description
+     */
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Returns Message.
+     */
+    public function getMessage(): ?BandwidthMessage
+    {
+        return $this->message;
+    }
+
+    /**
+     * Sets Message.
+     *
+     * @maps message
+     */
+    public function setMessage(?BandwidthMessage $message): void
+    {
+        $this->message = $message;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['time']        = $this->time;
         $json['type']        = $this->type;
         $json['to']          = $this->to;
@@ -76,6 +165,8 @@ class BandwidthCallbackMessage implements \JsonSerializable
         $json['description'] = $this->description;
         $json['message']     = $this->message;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

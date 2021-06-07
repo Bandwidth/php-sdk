@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,74 +10,183 @@
 
 namespace BandwidthLib\TwoFactorAuth\Models;
 
-/**
- * @todo Write general description for this model
- */
 class TwoFactorVerifyRequestSchema implements \JsonSerializable
 {
     /**
+     * @var string
+     */
+    private $to;
+
+    /**
+     * @var string
+     */
+    private $applicationId;
+
+    /**
+     * @var string|null
+     */
+    private $scope;
+
+    /**
+     * @var float
+     */
+    private $expirationTimeInMinutes;
+
+    /**
+     * @var string
+     */
+    private $code;
+
+    /**
+     * @param string $to
+     * @param string $applicationId
+     * @param float $expirationTimeInMinutes
+     * @param string $code
+     */
+    public function __construct(string $to, string $applicationId, float $expirationTimeInMinutes, string $code)
+    {
+        $this->to = $to;
+        $this->applicationId = $applicationId;
+        $this->expirationTimeInMinutes = $expirationTimeInMinutes;
+        $this->code = $code;
+    }
+
+    /**
+     * Returns To.
+     *
      * The phone number to send the 2fa code to.
-     * @required
-     * @var string $to public property
      */
-    public $to;
+    public function getTo(): string
+    {
+        return $this->to;
+    }
 
     /**
+     * Sets To.
+     *
+     * The phone number to send the 2fa code to.
+     *
+     * @required
+     * @maps to
+     */
+    public function setTo(string $to): void
+    {
+        $this->to = $to;
+    }
+
+    /**
+     * Returns Application Id.
+     *
      * The application unique ID, obtained from Bandwidth.
-     * @required
-     * @var string $applicationId public property
      */
-    public $applicationId;
+    public function getApplicationId(): string
+    {
+        return $this->applicationId;
+    }
 
     /**
+     * Sets Application Id.
+     *
+     * The application unique ID, obtained from Bandwidth.
+     *
+     * @required
+     * @maps applicationId
+     */
+    public function setApplicationId(string $applicationId): void
+    {
+        $this->applicationId = $applicationId;
+    }
+
+    /**
+     * Returns Scope.
+     *
      * An optional field to denote what scope or action the 2fa code is addressing.  If not supplied,
      * defaults to "2FA".
-     * @var string|null $scope public property
      */
-    public $scope;
+    public function getScope(): ?string
+    {
+        return $this->scope;
+    }
 
     /**
+     * Sets Scope.
+     *
+     * An optional field to denote what scope or action the 2fa code is addressing.  If not supplied,
+     * defaults to "2FA".
+     *
+     * @maps scope
+     */
+    public function setScope(?string $scope): void
+    {
+        $this->scope = $scope;
+    }
+
+    /**
+     * Returns Expiration Time in Minutes.
+     *
      * The time period, in minutes, to validate the 2fa code.  By setting this to 3 minutes, it will mean
      * any code generated within the last 3 minutes are still valid.  The valid range for expiration time
      * is between 0 and 15 minutes, exclusively and inclusively, respectively.
-     * @required
-     * @var double $expirationTimeInMinutes public property
      */
-    public $expirationTimeInMinutes;
-
-    /**
-     * The generated 2fa code to check if valid
-     * @required
-     * @var string $code public property
-     */
-    public $code;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getExpirationTimeInMinutes(): float
     {
-        if (5 == func_num_args()) {
-            $this->to                      = func_get_arg(0);
-            $this->applicationId           = func_get_arg(1);
-            $this->scope                   = func_get_arg(2);
-            $this->expirationTimeInMinutes = func_get_arg(3);
-            $this->code                    = func_get_arg(4);
-        }
+        return $this->expirationTimeInMinutes;
+    }
+
+    /**
+     * Sets Expiration Time in Minutes.
+     *
+     * The time period, in minutes, to validate the 2fa code.  By setting this to 3 minutes, it will mean
+     * any code generated within the last 3 minutes are still valid.  The valid range for expiration time
+     * is between 0 and 15 minutes, exclusively and inclusively, respectively.
+     *
+     * @required
+     * @maps expirationTimeInMinutes
+     */
+    public function setExpirationTimeInMinutes(float $expirationTimeInMinutes): void
+    {
+        $this->expirationTimeInMinutes = $expirationTimeInMinutes;
+    }
+
+    /**
+     * Returns Code.
+     *
+     * The generated 2fa code to check if valid
+     */
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    /**
+     * Sets Code.
+     *
+     * The generated 2fa code to check if valid
+     *
+     * @required
+     * @maps code
+     */
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['to']                      = $this->to;
         $json['applicationId']           = $this->applicationId;
         $json['scope']                   = $this->scope;
         $json['expirationTimeInMinutes'] = $this->expirationTimeInMinutes;
         $json['code']                    = $this->code;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

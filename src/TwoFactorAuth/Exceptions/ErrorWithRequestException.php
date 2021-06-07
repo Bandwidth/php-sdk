@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,38 +10,59 @@
 
 namespace BandwidthLib\TwoFactorAuth\Exceptions;
 
-use BandwidthLib\APIHelper;
-
-/**
- * @todo Write general description for this model
- */
-class ErrorWithRequestException extends \BandwidthLib\APIException
+class ErrorWithRequestException extends \BandwidthLib\Exceptions\ApiException
 {
     /**
+     * @var string|null
+     */
+    private $error;
+
+    /**
+     * @var string|null
+     */
+    private $requestId;
+
+    /**
+     * Returns Error.
+     *
      * An error message pertaining to what the issue could be
-     * @var string|null $error public property
      */
-    public $error;
-
-    /**
-     * The associated requestId from AWS
-     * @var string|null $requestId public property
-     */
-    public $requestId;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct($reason, $context)
+    public function getError(): ?string
     {
-        parent::__construct($reason, $context);
+        return $this->error;
     }
 
     /**
-     * Unbox response into this exception class
+     * Sets Error.
+     *
+     * An error message pertaining to what the issue could be
+     *
+     * @maps error
      */
-    public function unbox()
+    public function setError(?string $error): void
     {
-        APIHelper::deserialize(self::getResponseBody(), $this, false);
+        $this->error = $error;
+    }
+
+    /**
+     * Returns Request Id.
+     *
+     * The associated requestId from AWS
+     */
+    public function getRequestId(): ?string
+    {
+        return $this->requestId;
+    }
+
+    /**
+     * Sets Request Id.
+     *
+     * The associated requestId from AWS
+     *
+     * @maps requestId
+     */
+    public function setRequestId(?string $requestId): void
+    {
+        $this->requestId = $requestId;
     }
 }

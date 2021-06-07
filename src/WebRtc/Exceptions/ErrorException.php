@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,40 +10,72 @@
 
 namespace BandwidthLib\WebRtc\Exceptions;
 
-use BandwidthLib\APIHelper;
-
-/**
- * @todo Write general description for this model
- */
-class ErrorException extends \BandwidthLib\APIException
+class ErrorException extends \BandwidthLib\Exceptions\ApiException
 {
     /**
-     * @todo Write general description for this property
-     * @required
-     * @var integer $code public property
+     * @var int
      */
-    public $code;
+    private $codeProperty;
 
     /**
-     * @todo Write general description for this property
-     * @required
-     * @var string $message public property
+     * @var string
      */
-    public $message;
+    private $messageProperty;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * @param string $reason
+     * @param \BandwidthLib\Http\HttpRequest $request
+     * @param \BandwidthLib\Http\HttpResponse $response
+     * @param int $codeProperty
+     * @param string $messageProperty
      */
-    public function __construct($reason, $context)
-    {
-        parent::__construct($reason, $context);
+    public function __construct(
+        string $reason,
+        \BandwidthLib\Http\HttpRequest $request,
+        \BandwidthLib\Http\HttpResponse $response,
+        int $codeProperty,
+        string $messageProperty
+    ) {
+        parent::__construct($reason, $request, $response);
+        $this->codeProperty = $codeProperty;
+        $this->messageProperty = $messageProperty;
     }
 
     /**
-     * Unbox response into this exception class
+     * Returns Code Property.
      */
-    public function unbox()
+    public function getCodeProperty(): int
     {
-        APIHelper::deserialize(self::getResponseBody(), $this, false);
+        return $this->codeProperty;
+    }
+
+    /**
+     * Sets Code Property.
+     *
+     * @required
+     * @maps code
+     */
+    public function setCodeProperty(int $codeProperty): void
+    {
+        $this->codeProperty = $codeProperty;
+    }
+
+    /**
+     * Returns Message Property.
+     */
+    public function getMessageProperty(): string
+    {
+        return $this->messageProperty;
+    }
+
+    /**
+     * Sets Message Property.
+     *
+     * @required
+     * @maps message
+     */
+    public function setMessageProperty(string $messageProperty): void
+    {
+        $this->messageProperty = $messageProperty;
     }
 }

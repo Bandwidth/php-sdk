@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -8,42 +11,77 @@
 namespace BandwidthLib\WebRtc\Models;
 
 /**
- *A session object
+ * A session object
  */
 class Session implements \JsonSerializable
 {
     /**
+     * @var string|null
+     */
+    private $id;
+
+    /**
+     * @var string|null
+     */
+    private $tag;
+
+    /**
+     * Returns Id.
+     *
      * Unique id of the session
-     * @var string|null $id public property
      */
-    public $id;
-
-    /**
-     * User defined tag to associate with the session
-     * @var string|null $tag public property
-     */
-    public $tag;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getId(): ?string
     {
-        if (2 == func_num_args()) {
-            $this->id  = func_get_arg(0);
-            $this->tag = func_get_arg(1);
-        }
+        return $this->id;
+    }
+
+    /**
+     * Sets Id.
+     *
+     * Unique id of the session
+     *
+     * @maps id
+     */
+    public function setId(?string $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Returns Tag.
+     *
+     * User defined tag to associate with the session
+     */
+    public function getTag(): ?string
+    {
+        return $this->tag;
+    }
+
+    /**
+     * Sets Tag.
+     *
+     * User defined tag to associate with the session
+     *
+     * @maps tag
+     */
+    public function setTag(?string $tag): void
+    {
+        $this->tag = $tag;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['id']  = $this->id;
         $json['tag'] = $this->tag;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

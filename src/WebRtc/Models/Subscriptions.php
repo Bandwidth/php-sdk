@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,48 +10,94 @@
 
 namespace BandwidthLib\WebRtc\Models;
 
-/**
- * @todo Write general description for this model
- */
 class Subscriptions implements \JsonSerializable
 {
     /**
+     * @var string
+     */
+    private $sessionId;
+
+    /**
+     * @var ParticipantSubscription[]|null
+     */
+    private $participants;
+
+    /**
+     * @param string $sessionId
+     */
+    public function __construct(string $sessionId)
+    {
+        $this->sessionId = $sessionId;
+    }
+
+    /**
+     * Returns Session Id.
+     *
      * Session the subscriptions are associated with
      *
      * If this is the only field, the subscriber will be subscribed to all participants in the session
      * (including any participants that are later added to the session)
-     * @required
-     * @var string $sessionId public property
      */
-    public $sessionId;
-
-    /**
-     * Subset of participants to subscribe to in the session. Optional.
-     * @var \BandwidthLib\WebRtc\Models\ParticipantSubscription[]|null $participants public property
-     */
-    public $participants;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getSessionId(): string
     {
-        if (2 == func_num_args()) {
-            $this->sessionId    = func_get_arg(0);
-            $this->participants = func_get_arg(1);
-        }
+        return $this->sessionId;
+    }
+
+    /**
+     * Sets Session Id.
+     *
+     * Session the subscriptions are associated with
+     *
+     * If this is the only field, the subscriber will be subscribed to all participants in the session
+     * (including any participants that are later added to the session)
+     *
+     * @required
+     * @maps sessionId
+     */
+    public function setSessionId(string $sessionId): void
+    {
+        $this->sessionId = $sessionId;
+    }
+
+    /**
+     * Returns Participants.
+     *
+     * Subset of participants to subscribe to in the session. Optional.
+     *
+     * @return ParticipantSubscription[]|null
+     */
+    public function getParticipants(): ?array
+    {
+        return $this->participants;
+    }
+
+    /**
+     * Sets Participants.
+     *
+     * Subset of participants to subscribe to in the session. Optional.
+     *
+     * @maps participants
+     *
+     * @param ParticipantSubscription[]|null $participants
+     */
+    public function setParticipants(?array $participants): void
+    {
+        $this->participants = $participants;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['sessionId']    = $this->sessionId;
-        $json['participants'] = isset($this->participants) ?
-            array_values($this->participants) : null;
+        $json['participants'] = $this->participants;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

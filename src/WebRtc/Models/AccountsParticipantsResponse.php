@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,45 +10,79 @@
 
 namespace BandwidthLib\WebRtc\Models;
 
-/**
- * @todo Write general description for this model
- */
 class AccountsParticipantsResponse implements \JsonSerializable
 {
     /**
-     * A participant object
-     * @var \BandwidthLib\WebRtc\Models\Participant|null $participant public property
+     * @var Participant|null
      */
-    public $participant;
+    private $participant;
 
     /**
+     * @var string|null
+     */
+    private $token;
+
+    /**
+     * Returns Participant.
+     *
+     * A participant object
+     */
+    public function getParticipant(): ?Participant
+    {
+        return $this->participant;
+    }
+
+    /**
+     * Sets Participant.
+     *
+     * A participant object
+     *
+     * @maps participant
+     */
+    public function setParticipant(?Participant $participant): void
+    {
+        $this->participant = $participant;
+    }
+
+    /**
+     * Returns Token.
+     *
      * Auth token for the returned participant
      *
      * This should be passed to the participant so that they can connect to the platform
-     * @var string|null $token public property
      */
-    public $token;
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Sets Token.
+     *
+     * Auth token for the returned participant
+     *
+     * This should be passed to the participant so that they can connect to the platform
+     *
+     * @maps token
      */
-    public function __construct()
+    public function setToken(?string $token): void
     {
-        if (2 == func_num_args()) {
-            $this->participant = func_get_arg(0);
-            $this->token       = func_get_arg(1);
-        }
+        $this->token = $token;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['participant'] = $this->participant;
         $json['token']       = $this->token;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

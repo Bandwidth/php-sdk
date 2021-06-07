@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,18 +10,9 @@
 
 namespace BandwidthLib\Voice\Models;
 
-/**
- * @todo Write general description for this enumeration
- */
 class StatusEnum
 {
-    /**
-     * TODO: Write general description for this element
-     */
-    const ACTIVE = "active";
+    public const ACTIVE = 'active';
 
-    /**
-     * TODO: Write general description for this element
-     */
-    const COMPLETED = "completed";
+    public const COMPLETED = 'completed';
 }

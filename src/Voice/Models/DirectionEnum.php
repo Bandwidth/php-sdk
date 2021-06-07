@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,18 +10,9 @@
 
 namespace BandwidthLib\Voice\Models;
 
-/**
- * @todo Write general description for this enumeration
- */
 class DirectionEnum
 {
-    /**
-     * TODO: Write general description for this element
-     */
-    const INBOUND = "inbound";
+    public const INBOUND = 'inbound';
 
-    /**
-     * TODO: Write general description for this element
-     */
-    const OUTBOUND = "outbound";
+    public const OUTBOUND = 'outbound';
 }

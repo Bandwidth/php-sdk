@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,35 +10,43 @@
 
 namespace BandwidthLib\TwoFactorAuth\Models;
 
-/**
- * @todo Write general description for this model
- */
 class TwoFactorVerifyCodeResponse implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var bool|null $valid public property
+     * @var bool|null
      */
-    public $valid;
+    private $valid;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Returns Valid.
      */
-    public function __construct()
+    public function getValid(): ?bool
     {
-        if (1 == func_num_args()) {
-            $this->valid = func_get_arg(0);
-        }
+        return $this->valid;
+    }
+
+    /**
+     * Sets Valid.
+     *
+     * @maps valid
+     */
+    public function setValid(?bool $valid): void
+    {
+        $this->valid = $valid;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['valid'] = $this->valid;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

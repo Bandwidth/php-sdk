@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,103 +10,448 @@
 
 namespace BandwidthLib\Messaging\Models;
 
-/**
- * @todo Write general description for this model
- */
 class BandwidthMessageItem implements \JsonSerializable
 {
     /**
+     * @var string|null
+     */
+    private $messageId;
+
+    /**
+     * @var string|null
+     */
+    private $accountId;
+
+    /**
+     * @var string|null
+     */
+    private $sourceTn;
+
+    /**
+     * @var string|null
+     */
+    private $destinationTn;
+
+    /**
+     * @var string|null
+     */
+    private $messageStatus;
+
+    /**
+     * @var string|null
+     */
+    private $messageDirection;
+
+    /**
+     * @var string|null
+     */
+    private $messageType;
+
+    /**
+     * @var int|null
+     */
+    private $segmentCount;
+
+    /**
+     * @var int|null
+     */
+    private $errorCode;
+
+    /**
+     * @var string|null
+     */
+    private $receiveTime;
+
+    /**
+     * @var string|null
+     */
+    private $carrierName;
+
+    /**
+     * @var int|null
+     */
+    private $messageSize;
+
+    /**
+     * @var int|null
+     */
+    private $messageLength;
+
+    /**
+     * @var int|null
+     */
+    private $attachmentCount;
+
+    /**
+     * @var int|null
+     */
+    private $recipientCount;
+
+    /**
+     * @var string|null
+     */
+    private $campaignClass;
+
+    /**
+     * Returns Message Id.
+     *
      * The message id
-     * @var string|null $messageId public property
      */
-    public $messageId;
-
-    /**
-     * The account id of the message
-     * @var string|null $accountId public property
-     */
-    public $accountId;
-
-    /**
-     * The source phone number of the message
-     * @var string|null $sourceTn public property
-     */
-    public $sourceTn;
-
-    /**
-     * The recipient phone number of the message
-     * @var string|null $destinationTn public property
-     */
-    public $destinationTn;
-
-    /**
-     * The status of the message
-     * @var string|null $messageStatus public property
-     */
-    public $messageStatus;
-
-    /**
-     * The direction of the message relative to Bandwidth. INBOUND or OUTBOUND
-     * @var string|null $messageDirection public property
-     */
-    public $messageDirection;
-
-    /**
-     * The type of message. sms or mms
-     * @var string|null $messageType public property
-     */
-    public $messageType;
-
-    /**
-     * The number of segments the message was sent as
-     * @var integer|null $segmentCount public property
-     */
-    public $segmentCount;
-
-    /**
-     * The numeric error code of the message
-     * @var integer|null $errorCode public property
-     */
-    public $errorCode;
-
-    /**
-     * The ISO 8601 datetime of the message
-     * @var string|null $receiveTime public property
-     */
-    public $receiveTime;
-
-    /**
-     * The name of the carrier. Not currently supported for MMS, coming soon
-     * @var string|null $carrierName public property
-     */
-    public $carrierName;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getMessageId(): ?string
     {
-        if (11 == func_num_args()) {
-            $this->messageId        = func_get_arg(0);
-            $this->accountId        = func_get_arg(1);
-            $this->sourceTn         = func_get_arg(2);
-            $this->destinationTn    = func_get_arg(3);
-            $this->messageStatus    = func_get_arg(4);
-            $this->messageDirection = func_get_arg(5);
-            $this->messageType      = func_get_arg(6);
-            $this->segmentCount     = func_get_arg(7);
-            $this->errorCode        = func_get_arg(8);
-            $this->receiveTime      = func_get_arg(9);
-            $this->carrierName      = func_get_arg(10);
-        }
+        return $this->messageId;
+    }
+
+    /**
+     * Sets Message Id.
+     *
+     * The message id
+     *
+     * @maps messageId
+     */
+    public function setMessageId(?string $messageId): void
+    {
+        $this->messageId = $messageId;
+    }
+
+    /**
+     * Returns Account Id.
+     *
+     * The account id of the message
+     */
+    public function getAccountId(): ?string
+    {
+        return $this->accountId;
+    }
+
+    /**
+     * Sets Account Id.
+     *
+     * The account id of the message
+     *
+     * @maps accountId
+     */
+    public function setAccountId(?string $accountId): void
+    {
+        $this->accountId = $accountId;
+    }
+
+    /**
+     * Returns Source Tn.
+     *
+     * The source phone number of the message
+     */
+    public function getSourceTn(): ?string
+    {
+        return $this->sourceTn;
+    }
+
+    /**
+     * Sets Source Tn.
+     *
+     * The source phone number of the message
+     *
+     * @maps sourceTn
+     */
+    public function setSourceTn(?string $sourceTn): void
+    {
+        $this->sourceTn = $sourceTn;
+    }
+
+    /**
+     * Returns Destination Tn.
+     *
+     * The recipient phone number of the message
+     */
+    public function getDestinationTn(): ?string
+    {
+        return $this->destinationTn;
+    }
+
+    /**
+     * Sets Destination Tn.
+     *
+     * The recipient phone number of the message
+     *
+     * @maps destinationTn
+     */
+    public function setDestinationTn(?string $destinationTn): void
+    {
+        $this->destinationTn = $destinationTn;
+    }
+
+    /**
+     * Returns Message Status.
+     *
+     * The status of the message
+     */
+    public function getMessageStatus(): ?string
+    {
+        return $this->messageStatus;
+    }
+
+    /**
+     * Sets Message Status.
+     *
+     * The status of the message
+     *
+     * @maps messageStatus
+     */
+    public function setMessageStatus(?string $messageStatus): void
+    {
+        $this->messageStatus = $messageStatus;
+    }
+
+    /**
+     * Returns Message Direction.
+     *
+     * The direction of the message relative to Bandwidth. INBOUND or OUTBOUND
+     */
+    public function getMessageDirection(): ?string
+    {
+        return $this->messageDirection;
+    }
+
+    /**
+     * Sets Message Direction.
+     *
+     * The direction of the message relative to Bandwidth. INBOUND or OUTBOUND
+     *
+     * @maps messageDirection
+     */
+    public function setMessageDirection(?string $messageDirection): void
+    {
+        $this->messageDirection = $messageDirection;
+    }
+
+    /**
+     * Returns Message Type.
+     *
+     * The type of message. sms or mms
+     */
+    public function getMessageType(): ?string
+    {
+        return $this->messageType;
+    }
+
+    /**
+     * Sets Message Type.
+     *
+     * The type of message. sms or mms
+     *
+     * @maps messageType
+     */
+    public function setMessageType(?string $messageType): void
+    {
+        $this->messageType = $messageType;
+    }
+
+    /**
+     * Returns Segment Count.
+     *
+     * The number of segments the message was sent as
+     */
+    public function getSegmentCount(): ?int
+    {
+        return $this->segmentCount;
+    }
+
+    /**
+     * Sets Segment Count.
+     *
+     * The number of segments the message was sent as
+     *
+     * @maps segmentCount
+     */
+    public function setSegmentCount(?int $segmentCount): void
+    {
+        $this->segmentCount = $segmentCount;
+    }
+
+    /**
+     * Returns Error Code.
+     *
+     * The numeric error code of the message
+     */
+    public function getErrorCode(): ?int
+    {
+        return $this->errorCode;
+    }
+
+    /**
+     * Sets Error Code.
+     *
+     * The numeric error code of the message
+     *
+     * @maps errorCode
+     */
+    public function setErrorCode(?int $errorCode): void
+    {
+        $this->errorCode = $errorCode;
+    }
+
+    /**
+     * Returns Receive Time.
+     *
+     * The ISO 8601 datetime of the message
+     */
+    public function getReceiveTime(): ?string
+    {
+        return $this->receiveTime;
+    }
+
+    /**
+     * Sets Receive Time.
+     *
+     * The ISO 8601 datetime of the message
+     *
+     * @maps receiveTime
+     */
+    public function setReceiveTime(?string $receiveTime): void
+    {
+        $this->receiveTime = $receiveTime;
+    }
+
+    /**
+     * Returns Carrier Name.
+     *
+     * The name of the carrier. Not currently supported for MMS, coming soon
+     */
+    public function getCarrierName(): ?string
+    {
+        return $this->carrierName;
+    }
+
+    /**
+     * Sets Carrier Name.
+     *
+     * The name of the carrier. Not currently supported for MMS, coming soon
+     *
+     * @maps carrierName
+     */
+    public function setCarrierName(?string $carrierName): void
+    {
+        $this->carrierName = $carrierName;
+    }
+
+    /**
+     * Returns Message Size.
+     *
+     * The size of the message including message content and headers
+     */
+    public function getMessageSize(): ?int
+    {
+        return $this->messageSize;
+    }
+
+    /**
+     * Sets Message Size.
+     *
+     * The size of the message including message content and headers
+     *
+     * @maps messageSize
+     */
+    public function setMessageSize(?int $messageSize): void
+    {
+        $this->messageSize = $messageSize;
+    }
+
+    /**
+     * Returns Message Length.
+     *
+     * The length of the message content
+     */
+    public function getMessageLength(): ?int
+    {
+        return $this->messageLength;
+    }
+
+    /**
+     * Sets Message Length.
+     *
+     * The length of the message content
+     *
+     * @maps messageLength
+     */
+    public function setMessageLength(?int $messageLength): void
+    {
+        $this->messageLength = $messageLength;
+    }
+
+    /**
+     * Returns Attachment Count.
+     *
+     * The number of attachments the message has
+     */
+    public function getAttachmentCount(): ?int
+    {
+        return $this->attachmentCount;
+    }
+
+    /**
+     * Sets Attachment Count.
+     *
+     * The number of attachments the message has
+     *
+     * @maps attachmentCount
+     */
+    public function setAttachmentCount(?int $attachmentCount): void
+    {
+        $this->attachmentCount = $attachmentCount;
+    }
+
+    /**
+     * Returns Recipient Count.
+     *
+     * The number of recipients the message has
+     */
+    public function getRecipientCount(): ?int
+    {
+        return $this->recipientCount;
+    }
+
+    /**
+     * Sets Recipient Count.
+     *
+     * The number of recipients the message has
+     *
+     * @maps recipientCount
+     */
+    public function setRecipientCount(?int $recipientCount): void
+    {
+        $this->recipientCount = $recipientCount;
+    }
+
+    /**
+     * Returns Campaign Class.
+     *
+     * The campaign class of the message, if it has one
+     */
+    public function getCampaignClass(): ?string
+    {
+        return $this->campaignClass;
+    }
+
+    /**
+     * Sets Campaign Class.
+     *
+     * The campaign class of the message, if it has one
+     *
+     * @maps campaignClass
+     */
+    public function setCampaignClass(?string $campaignClass): void
+    {
+        $this->campaignClass = $campaignClass;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['messageId']        = $this->messageId;
         $json['accountId']        = $this->accountId;
         $json['sourceTn']         = $this->sourceTn;
@@ -115,7 +463,14 @@ class BandwidthMessageItem implements \JsonSerializable
         $json['errorCode']        = $this->errorCode;
         $json['receiveTime']      = $this->receiveTime;
         $json['carrierName']      = $this->carrierName;
+        $json['messageSize']      = $this->messageSize;
+        $json['messageLength']    = $this->messageLength;
+        $json['attachmentCount']  = $this->attachmentCount;
+        $json['recipientCount']   = $this->recipientCount;
+        $json['campaignClass']    = $this->campaignClass;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

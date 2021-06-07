@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -12,13 +15,7 @@ namespace BandwidthLib\WebRtc\Models;
  */
 class DeviceApiVersionEnum
 {
-    /**
-     * TODO: Write general description for this element
-     */
-    const V3 = "v3";
+    public const V3 = 'V3';
 
-    /**
-     * TODO: Write general description for this element
-     */
-    const V2 = "v2";
+    public const V2 = 'V2';
 }

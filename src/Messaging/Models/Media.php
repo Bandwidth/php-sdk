@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,108 +10,91 @@
 
 namespace BandwidthLib\Messaging\Models;
 
-/**
- * @todo Write general description for this model
- */
 class Media implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var object|null $inputStream public property
+     * @var string|null
      */
-    public $inputStream;
+    private $content;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $content public property
+     * @var int|null
      */
-    public $content;
+    private $contentLength;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $url public property
+     * @var string|null
      */
-    public $url;
+    private $mediaName;
 
     /**
-     * @todo Write general description for this property
-     * @var string|null $contentLength public property
+     * Returns Content.
      */
-    public $contentLength;
-
-    /**
-     * @todo Write general description for this property
-     * @var string|null $contentType public property
-     */
-    public $contentType;
-
-    /**
-     * @todo Write general description for this property
-     * @var \BandwidthLib\Messaging\Models\Tag[]|null $tags public property
-     */
-    public $tags;
-
-    /**
-     * User's account ID
-     * @var string|null $userId public property
-     */
-    public $userId;
-
-    /**
-     * @todo Write general description for this property
-     * @var string|null $mediaName public property
-     */
-    public $mediaName;
-
-    /**
-     * @todo Write general description for this property
-     * @var string|null $mediaId public property
-     */
-    public $mediaId;
-
-    /**
-     * @todo Write general description for this property
-     * @var string|null $cacheControl public property
-     */
-    public $cacheControl;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getContent(): ?string
     {
-        if (10 == func_num_args()) {
-            $this->inputStream   = func_get_arg(0);
-            $this->content       = func_get_arg(1);
-            $this->url           = func_get_arg(2);
-            $this->contentLength = func_get_arg(3);
-            $this->contentType   = func_get_arg(4);
-            $this->tags          = func_get_arg(5);
-            $this->userId        = func_get_arg(6);
-            $this->mediaName     = func_get_arg(7);
-            $this->mediaId       = func_get_arg(8);
-            $this->cacheControl  = func_get_arg(9);
-        }
+        return $this->content;
+    }
+
+    /**
+     * Sets Content.
+     *
+     * @maps content
+     */
+    public function setContent(?string $content): void
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * Returns Content Length.
+     */
+    public function getContentLength(): ?int
+    {
+        return $this->contentLength;
+    }
+
+    /**
+     * Sets Content Length.
+     *
+     * @maps contentLength
+     */
+    public function setContentLength(?int $contentLength): void
+    {
+        $this->contentLength = $contentLength;
+    }
+
+    /**
+     * Returns Media Name.
+     */
+    public function getMediaName(): ?string
+    {
+        return $this->mediaName;
+    }
+
+    /**
+     * Sets Media Name.
+     *
+     * @maps mediaName
+     */
+    public function setMediaName(?string $mediaName): void
+    {
+        $this->mediaName = $mediaName;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
-        $json['inputStream']   = $this->inputStream;
+        $json = [];
         $json['content']       = $this->content;
-        $json['url']           = $this->url;
         $json['contentLength'] = $this->contentLength;
-        $json['contentType']   = $this->contentType;
-        $json['tags']          = isset($this->tags) ?
-            array_values($this->tags) : null;
-        $json['userId']        = $this->userId;
         $json['mediaName']     = $this->mediaName;
-        $json['mediaId']       = $this->mediaId;
-        $json['cacheControl']  = $this->cacheControl;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

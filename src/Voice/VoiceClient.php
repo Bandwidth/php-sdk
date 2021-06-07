@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -14,20 +17,18 @@ use BandwidthLib\Voice\Controllers;
  */
 class VoiceClient
 {
+    private $client;
     private $config;
-    public function __construct($config)
+
+    public function __construct(\BandwidthLib\ConfigurationInterface $config)
     {
         $this->config = $config;
     }
 
-
-    private $client;
-
     /**
-     * Provides access to API controller
-     * @return Controllers\APIController
+     * Returns API Controller
      */
-    public function getClient()
+    public function getAPIController(): Controllers\APIController
     {
         if ($this->client == null) {
             $this->client = new Controllers\APIController($this->config);

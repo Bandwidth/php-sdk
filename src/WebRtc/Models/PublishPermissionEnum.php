@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,18 +10,9 @@
 
 namespace BandwidthLib\WebRtc\Models;
 
-/**
- * @todo Write general description for this enumeration
- */
 class PublishPermissionEnum
 {
-    /**
-     * TODO: Write general description for this element
-     */
-    const AUDIO = "AUDIO";
+    public const AUDIO = 'AUDIO';
 
-    /**
-     * TODO: Write general description for this element
-     */
-    const VIDEO = "VIDEO";
+    public const VIDEO = 'VIDEO';
 }

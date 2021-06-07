@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,59 +10,131 @@
 
 namespace BandwidthLib\Messaging\Models;
 
-/**
- * @todo Write general description for this model
- */
 class PageInfo implements \JsonSerializable
 {
     /**
+     * @var string|null
+     */
+    private $prevPage;
+
+    /**
+     * @var string|null
+     */
+    private $nextPage;
+
+    /**
+     * @var string|null
+     */
+    private $prevPageToken;
+
+    /**
+     * @var string|null
+     */
+    private $nextPageToken;
+
+    /**
+     * Returns Prev Page.
+     *
      * The link to the previous page for pagination
-     * @var string|null $prevPage public property
      */
-    public $prevPage;
-
-    /**
-     * The link to the next page for pagination
-     * @var string|null $nextPage public property
-     */
-    public $nextPage;
-
-    /**
-     * The isolated pagination token for the previous page
-     * @var string|null $prevPageToken public property
-     */
-    public $prevPageToken;
-
-    /**
-     * The isolated pagination token for the next page
-     * @var string|null $nextPageToken public property
-     */
-    public $nextPageToken;
-
-    /**
-     * Constructor to set initial or default values of member properties
-     */
-    public function __construct()
+    public function getPrevPage(): ?string
     {
-        if (4 == func_num_args()) {
-            $this->prevPage      = func_get_arg(0);
-            $this->nextPage      = func_get_arg(1);
-            $this->prevPageToken = func_get_arg(2);
-            $this->nextPageToken = func_get_arg(3);
-        }
+        return $this->prevPage;
+    }
+
+    /**
+     * Sets Prev Page.
+     *
+     * The link to the previous page for pagination
+     *
+     * @maps prevPage
+     */
+    public function setPrevPage(?string $prevPage): void
+    {
+        $this->prevPage = $prevPage;
+    }
+
+    /**
+     * Returns Next Page.
+     *
+     * The link to the next page for pagination
+     */
+    public function getNextPage(): ?string
+    {
+        return $this->nextPage;
+    }
+
+    /**
+     * Sets Next Page.
+     *
+     * The link to the next page for pagination
+     *
+     * @maps nextPage
+     */
+    public function setNextPage(?string $nextPage): void
+    {
+        $this->nextPage = $nextPage;
+    }
+
+    /**
+     * Returns Prev Page Token.
+     *
+     * The isolated pagination token for the previous page
+     */
+    public function getPrevPageToken(): ?string
+    {
+        return $this->prevPageToken;
+    }
+
+    /**
+     * Sets Prev Page Token.
+     *
+     * The isolated pagination token for the previous page
+     *
+     * @maps prevPageToken
+     */
+    public function setPrevPageToken(?string $prevPageToken): void
+    {
+        $this->prevPageToken = $prevPageToken;
+    }
+
+    /**
+     * Returns Next Page Token.
+     *
+     * The isolated pagination token for the next page
+     */
+    public function getNextPageToken(): ?string
+    {
+        return $this->nextPageToken;
+    }
+
+    /**
+     * Sets Next Page Token.
+     *
+     * The isolated pagination token for the next page
+     *
+     * @maps nextPageToken
+     */
+    public function setNextPageToken(?string $nextPageToken): void
+    {
+        $this->nextPageToken = $nextPageToken;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['prevPage']      = $this->prevPage;
         $json['nextPage']      = $this->nextPage;
         $json['prevPageToken'] = $this->prevPageToken;
         $json['nextPageToken'] = $this->nextPageToken;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

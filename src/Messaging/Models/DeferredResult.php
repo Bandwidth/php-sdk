@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,43 +10,67 @@
 
 namespace BandwidthLib\Messaging\Models;
 
-/**
- * @todo Write general description for this model
- */
 class DeferredResult implements \JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @var object|null $result public property
+     * @var array|null
      */
-    public $result;
+    private $result;
 
     /**
-     * @todo Write general description for this property
-     * @var bool|null $setOrExpired public property
+     * @var bool|null
      */
-    public $setOrExpired;
+    private $setOrExpired;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Returns Result.
      */
-    public function __construct()
+    public function getResult(): ?array
     {
-        if (2 == func_num_args()) {
-            $this->result       = func_get_arg(0);
-            $this->setOrExpired = func_get_arg(1);
-        }
+        return $this->result;
+    }
+
+    /**
+     * Sets Result.
+     *
+     * @maps result
+     */
+    public function setResult(?array $result): void
+    {
+        $this->result = $result;
+    }
+
+    /**
+     * Returns Set or Expired.
+     */
+    public function getSetOrExpired(): ?bool
+    {
+        return $this->setOrExpired;
+    }
+
+    /**
+     * Sets Set or Expired.
+     *
+     * @maps setOrExpired
+     */
+    public function setSetOrExpired(?bool $setOrExpired): void
+    {
+        $this->setOrExpired = $setOrExpired;
     }
 
     /**
      * Encode this object to JSON
+     *
+     * @return mixed
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
         $json['result']       = $this->result;
         $json['setOrExpired'] = $this->setOrExpired;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

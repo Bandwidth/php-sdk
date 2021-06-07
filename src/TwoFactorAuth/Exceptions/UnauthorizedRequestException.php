@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -7,32 +10,32 @@
 
 namespace BandwidthLib\TwoFactorAuth\Exceptions;
 
-use BandwidthLib\APIHelper;
-
-/**
- * @todo Write general description for this model
- */
-class UnauthorizedRequestException extends \BandwidthLib\APIException
+class UnauthorizedRequestException extends \BandwidthLib\Exceptions\ApiException
 {
     /**
-     * The message containing the reason behind the request being unauthorized
-     * @var string|null $message public property
+     * @var string|null
      */
-    public $message;
+    private $messageProperty;
 
     /**
-     * Constructor to set initial or default values of member properties
+     * Returns Message Property.
+     *
+     * The message containing the reason behind the request being unauthorized
      */
-    public function __construct($reason, $context)
+    public function getMessageProperty(): ?string
     {
-        parent::__construct($reason, $context);
+        return $this->messageProperty;
     }
 
     /**
-     * Unbox response into this exception class
+     * Sets Message Property.
+     *
+     * The message containing the reason behind the request being unauthorized
+     *
+     * @maps message
      */
-    public function unbox()
+    public function setMessageProperty(?string $messageProperty): void
     {
-        APIHelper::deserialize(self::getResponseBody(), $this, false);
+        $this->messageProperty = $messageProperty;
     }
 }

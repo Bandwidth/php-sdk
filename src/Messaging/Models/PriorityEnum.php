@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * BandwidthLib
  *
@@ -13,13 +16,7 @@ namespace BandwidthLib\Messaging\Models;
  */
 class PriorityEnum
 {
-    /**
-     * TODO: Write general description for this element
-     */
-    const DEFAULT_ = "default";
+    public const DEFAULT_ = 'default';
 
-    /**
-     * TODO: Write general description for this element
-     */
-    const HIGH = "high";
+    public const HIGH = 'high';
 }
