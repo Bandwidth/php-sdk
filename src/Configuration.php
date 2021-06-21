@@ -47,6 +47,18 @@ class Configuration
      * The username to use with basic authentication
      * @var string
      */
+    private $phoneNumberLookupBasicAuthUserName = 'TODO: Replace';
+
+    /**
+     * The password to use with basic authentication
+     * @var string
+     */
+    private $phoneNumberLookupBasicAuthPassword = 'TODO: Replace';
+
+    /**
+     * The username to use with basic authentication
+     * @var string
+     */
     private $voiceBasicAuthUserName = 'TODO: Replace';
 
     /**
@@ -96,6 +108,12 @@ class Configuration
         if (isset($configOptions['twoFactorAuthBasicAuthPassword'])) {
             $this->twoFactorAuthBasicAuthPassword = $configOptions['twoFactorAuthBasicAuthPassword'];
         }
+        if (isset($configOptions['phoneNumberLookupBasicAuthUserName'])) {
+            $this->phoneNumberLookupBasicAuthUserName = $configOptions['phoneNumberLookupBasicAuthUserName'];
+        }
+        if (isset($configOptions['phoneNumberLookupBasicAuthPassword'])) {
+            $this->phoneNumberLookupBasicAuthPassword = $configOptions['phoneNumberLookupBasicAuthPassword'];
+        }
         if (isset($configOptions['voiceBasicAuthUserName'])) {
             $this->voiceBasicAuthUserName = $configOptions['voiceBasicAuthUserName'];
         }
@@ -134,6 +152,12 @@ class Configuration
         }
         if (isset($this->twoFactorAuthBasicAuthPassword)) {
             $configMap['twoFactorAuthBasicAuthPassword'] = $this->twoFactorAuthBasicAuthPassword;
+        }
+        if (isset($this->phoneNumberLookupBasicAuthUserName)) {
+            $configMap['phoneNumberLookupBasicAuthUserName'] = $this->phoneNumberLookupBasicAuthUserName;
+        }
+        if (isset($this->phoneNumberLookupBasicAuthPassword)) {
+            $configMap['phoneNumberLookupBasicAuthPassword'] = $this->phoneNumberLookupBasicAuthPassword;
         }
         if (isset($this->voiceBasicAuthUserName)) {
             $configMap['voiceBasicAuthUserName'] = $this->voiceBasicAuthUserName;
@@ -185,6 +209,18 @@ class Configuration
     public function getTwoFactorAuthBasicAuthPassword()
     {
         return $this->twoFactorAuthBasicAuthPassword;
+    }
+
+    // Getter for phoneNumberLookupBasicAuthUserName
+    public function getPhoneNumberLookupBasicAuthUserName()
+    {
+        return $this->phoneNumberLookupBasicAuthUserName;
+    }
+
+    // Getter for phoneNumberLookupBasicAuthPassword
+    public function getPhoneNumberLookupBasicAuthPassword()
+    {
+        return $this->phoneNumberLookupBasicAuthPassword;
     }
 
     // Getter for voiceBasicAuthUserName
@@ -248,6 +284,7 @@ class Configuration
             Servers::DEFAULT_ => 'api.bandwidth.com',
             Servers::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
             Servers::TWOFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1',
+            Servers::PHONENUMBERLOOKUPDEFAULT => 'https://numbers.bandwidth.com/api/v1',
             Servers::VOICEDEFAULT => 'https://voice.bandwidth.com',
             Servers::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1',
         ),
@@ -255,6 +292,7 @@ class Configuration
             Servers::DEFAULT_ => '{base_url}',
             Servers::MESSAGINGDEFAULT => '{base_url}',
             Servers::TWOFACTORAUTHDEFAULT => '{base_url}',
+            Servers::PHONENUMBERLOOKUPDEFAULT => '{base_url}',
             Servers::VOICEDEFAULT => '{base_url}',
             Servers::WEBRTCDEFAULT => '{base_url}',
         ),

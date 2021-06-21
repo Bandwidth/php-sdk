@@ -30,6 +30,11 @@ class Servers
     /**
      * TODO: Write general description for this element
      */
+    const PHONENUMBERLOOKUPDEFAULT = "PhoneNumberLookupDefault";
+
+    /**
+     * TODO: Write general description for this element
+     */
     const VOICEDEFAULT = "VoiceDefault";
 
     /**

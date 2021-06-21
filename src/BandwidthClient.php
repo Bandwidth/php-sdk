@@ -22,6 +22,7 @@ class BandwidthClient
 
     private $messaging;
     private $twoFactorAuth;
+    private $phoneNumberLookup;
     private $voice;
     private $webRtc;
 
@@ -47,6 +48,18 @@ class BandwidthClient
             $this->twoFactorAuth = new TwoFactorAuth\TwoFactorAuthClient($this->config);
         }
         return $this->twoFactorAuth;
+    }
+
+    /**
+     * Provides access to PhoneNumberLookup client
+     * @return PhoneNumberLookup\PhoneNumberLookupClient
+     */
+    public function getPhoneNumberLookup()
+    {
+        if ($this->phoneNumberLookup == null) {
+            $this->phoneNumberLookup = new PhoneNumberLookup\PhoneNumberLookupClient($this->config);
+        }
+        return $this->phoneNumberLookup;
     }
 
     /**
