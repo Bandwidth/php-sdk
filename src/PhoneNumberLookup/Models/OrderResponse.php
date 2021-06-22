@@ -8,18 +8,19 @@
 namespace BandwidthLib\PhoneNumberLookup\Models;
 
 /**
- * @todo Write general description for this model
+ *The request has been accepted for processing but not yet finished and in a terminal state (COMPLETE,
+ * PARTIAL_COMPLETE, or FAILED)
  */
-class AccountsTnlookupResponse implements \JsonSerializable
+class OrderResponse implements \JsonSerializable
 {
     /**
-     * The requestId.
+     * @todo Write general description for this property
      * @var string|null $requestId public property
      */
     public $requestId;
 
     /**
-     * The status of the request.
+     * @todo Write general description for this property
      * @var string|null $status public property
      */
     public $status;

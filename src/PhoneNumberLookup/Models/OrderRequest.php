@@ -8,9 +8,9 @@
 namespace BandwidthLib\PhoneNumberLookup\Models;
 
 /**
- * @todo Write general description for this model
+ *Create TN Lookup Request
  */
-class AccountsTnlookupRequest implements \JsonSerializable
+class OrderRequest implements \JsonSerializable
 {
     /**
      * @todo Write general description for this property

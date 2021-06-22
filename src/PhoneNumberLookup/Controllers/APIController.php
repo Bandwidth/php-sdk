@@ -31,14 +31,14 @@ class APIController extends BaseController
     }
 
     /**
-     * Creates a request for a given TN, or batch of TNs.
+     * Create a TN Lookup Order
      *
-     * @param string                         $accountId The ID of the Bandwidth account that the user belongs to.
-     * @param Models\AccountsTnlookupRequest $body      TODO: type description here
+     * @param string              $accountId The ID of the Bandwidth account that the user belongs to.
+     * @param Models\OrderRequest $body      TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function createTnLookupRequest(
+    public function createLookupRequest(
         $accountId,
         $body
     ) {
@@ -925,20 +925,20 @@ class APIController extends BaseController
         $mapper = $this->getJsonMapper();
         $deserializedResponse = $mapper->mapClass(
             $response->body,
-            'BandwidthLib\\PhoneNumberLookup\\Models\\AccountsTnlookupResponse'
+            'BandwidthLib\\PhoneNumberLookup\\Models\\OrderResponse'
         );
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
     }
 
     /**
-     * Returns the result of a request by id.
+     * Query an existing TN Lookup Order
      *
      * @param string $accountId The ID of the Bandwidth account that the user belongs to.
      * @param string $requestId TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getTnLookupResult(
+    public function getLookupRequestStatus(
         $accountId,
         $requestId
     ) {
@@ -1822,7 +1822,7 @@ class APIController extends BaseController
         $mapper = $this->getJsonMapper();
         $deserializedResponse = $mapper->mapClass(
             $response->body,
-            'BandwidthLib\\PhoneNumberLookup\\Models\\AccountsTnlookupResponse1'
+            'BandwidthLib\\PhoneNumberLookup\\Models\\OrderStatus'
         );
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
     }
