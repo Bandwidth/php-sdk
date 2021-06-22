@@ -15,10 +15,10 @@ class DeviceApiVersionEnum
     /**
      * TODO: Write general description for this element
      */
-    const V3 = "v3";
+    const V3 = "V3";
 
     /**
      * TODO: Write general description for this element
      */
-    const V2 = "v2";
+    const V2 = "V2";
 }

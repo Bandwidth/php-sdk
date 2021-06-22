@@ -22,7 +22,9 @@ final class ApiTest extends TestCase
                 'voiceBasicAuthUserName' => getenv("USERNAME"),
                 'voiceBasicAuthPassword' => getenv("PASSWORD"),
                 'twoFactorAuthBasicAuthUserName' => getenv("USERNAME"),
-                'twoFactorAuthBasicAuthPassword' => getenv("PASSWORD")
+                'twoFactorAuthBasicAuthPassword' => getenv("PASSWORD"),
+                'phoneNumberLookupBasicAuthUserName' => getenv("USERNAME"),
+                'phoneNumberLookupBasicAuthPassword' => getenv("PASSWORD")
             )
         );
         $this->bandwidthClient = new BandwidthLib\BandwidthClient($config);
@@ -140,5 +142,16 @@ final class ApiTest extends TestCase
 
         $response = $this->bandwidthClient->getTwoFactorAuth()->getMFA()->createVerifyTwoFactor(getenv("ACCOUNT_ID"), $body);
         $this->assertTrue(is_bool($response->getResult()->valid));
+    }
+
+    public function testTnLookup() {
+        $body = new BandwidthLib\PhoneNumberLookup\Models\OrderRequest();
+        $body->tns = [getenv("PHONE_NUMBER_OUTBOUND")];
+        $createResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createLookupRequest(getenv("ACCOUNT_ID"), $body);
+        $this->assertTrue(strlen($createResponse->getResult()->requestId) > 0);
+
+        $requestId = $createResponse->getResult()->requestId;
+        $getResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getLookupRequestStatus(getenv("ACCOUNT_ID"), $requestId);
+        $this->assertTrue(strlen($getResponse->getResult()->status) > 0);
     }
 }
