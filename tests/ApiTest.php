@@ -84,7 +84,7 @@ final class ApiTest extends TestCase
         $this->assertTrue(strlen($callId) > 0);
 
         //get phone call information
-        $response = $this->bandwidthClient->getVoice()->getClient()->getCallState(getenv("ACCOUNT_ID"), $callId);
+        $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("ACCOUNT_ID"), $callId);
         $this->assertTrue(strlen($response->getResult()->state) > 0); 
     }
 
