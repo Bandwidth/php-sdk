@@ -21,8 +21,8 @@ final class ApiTest extends TestCase
                 'messagingBasicAuthPassword' => getenv("PASSWORD"),
                 'voiceBasicAuthUserName' => getenv("USERNAME"),
                 'voiceBasicAuthPassword' => getenv("PASSWORD"),
-                'twoFactorAuthBasicAuthUserName' => getenv("USERNAME"),
-                'twoFactorAuthBasicAuthPassword' => getenv("PASSWORD"),
+                'multiFactorAuthBasicAuthUserName' => getenv("USERNAME"),
+                'multiFactorAuthBasicAuthPassword' => getenv("PASSWORD"),
                 'phoneNumberLookupBasicAuthUserName' => getenv("USERNAME"),
                 'phoneNumberLookupBasicAuthPassword' => getenv("PASSWORD")
             )
@@ -64,7 +64,7 @@ final class ApiTest extends TestCase
         $mediaFileName = "php_monitoring";
         $mediaFile = "12345"; //todo: confirm binary string?
         //media upload
-        $this->bandwidthClient->getMessaging()->getClient()->uploadMedia(getenv("ACCOUNT_ID"), $mediaFileName, strlen($mediaFile), $mediaFile);
+        $this->bandwidthClient->getMessaging()->getClient()->uploadMedia(getenv("ACCOUNT_ID"), $mediaFileName, $mediaFile);
         
         //media download
         $downloadedMediaFile = $this->bandwidthClient->getMessaging()->getClient()->getMedia(getenv("ACCOUNT_ID"), $mediaFileName)->getResult();
@@ -74,7 +74,7 @@ final class ApiTest extends TestCase
     }
 
     public function testCreateCallAndGetCallState() {
-        $body = new BandwidthLib\Voice\Models\ApiCreateCallRequest();
+        $body = new BandwidthLib\Voice\Models\CreateCallRequest();
         $body->from = getenv("PHONE_NUMBER_INBOUND");
         $body->to = getenv("PHONE_NUMBER_OUTBOUND");
         $body->applicationId = getenv("VOICE_APPLICATION_ID");
@@ -84,12 +84,12 @@ final class ApiTest extends TestCase
         $this->assertTrue(strlen($callId) > 0);
 
         //get phone call information
-        $response = $this->bandwidthClient->getVoice()->getClient()->getCallState(getenv("ACCOUNT_ID"), $callId);
+        $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("ACCOUNT_ID"), $callId);
         $this->assertTrue(strlen($response->getResult()->state) > 0); 
     }
 
     public function testCreateCallInvalidPhoneNumber() {
-        $body = new BandwidthLib\Voice\Models\ApiCreateCallRequest();
+        $body = new BandwidthLib\Voice\Models\CreateCallRequest();
         $body->from = getenv("PHONE_NUMBER_INBOUND");
         $body->to = "+1invalid";
         $body->applicationId = getenv("VOICE_APPLICATION_ID");
@@ -99,13 +99,13 @@ final class ApiTest extends TestCase
             $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("ACCOUNT_ID"), $body);
             //workaround to make sure that if the above error is not raised, the build will fail
             $this->assertTrue(false);
-        } catch (BandwidthLib\Voice\Exceptions\ApiErrorResponseException $e) {
+        } catch (BandwidthLib\Voice\Exceptions\ApiErrorException $e) {
             $this->assertTrue(strlen($e->description) > 0);
         }
     }
 
     public function testMfaMessaging() {
-        $body = new BandwidthLib\TwoFactorAuth\Models\TwoFactorCodeRequestSchema();
+        $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorCodeRequestSchema();
         $body->from = getenv("PHONE_NUMBER_MFA");
         $body->to = getenv("PHONE_NUMBER_INBOUND");
         $body->applicationId = getenv("MFA_MESSAGING_APPLICATION_ID");
@@ -113,12 +113,12 @@ final class ApiTest extends TestCase
         $body->digits = 6;
         $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
 
-        $response = $this->bandwidthClient->getTwoFactorAuth()->getMFA()->createMessagingTwoFactor(getenv("ACCOUNT_ID"), $body);
+        $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createMessagingTwoFactor(getenv("ACCOUNT_ID"), $body);
         $this->assertTrue(strlen($response->getResult()->messageId) > 0); //validate that _some_ id was returned
     }
 
     public function testMfaVoice() {
-        $body = new BandwidthLib\TwoFactorAuth\Models\TwoFactorCodeRequestSchema();
+        $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorCodeRequestSchema();
         $body->from = getenv("PHONE_NUMBER_MFA");
         $body->to = getenv("PHONE_NUMBER_INBOUND");
         $body->applicationId = getenv("MFA_VOICE_APPLICATION_ID");
@@ -126,12 +126,12 @@ final class ApiTest extends TestCase
         $body->digits = 6;
         $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
 
-        $response = $this->bandwidthClient->getTwoFactorAuth()->getMFA()->createVoiceTwoFactor(getenv("ACCOUNT_ID"), $body);
+        $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createVoiceTwoFactor(getenv("ACCOUNT_ID"), $body);
         $this->assertTrue(strlen($response->getResult()->callId) > 0); //validate that _some_ id was returned
     }
 
     public function testMfaVerify() {
-        $body = new BandwidthLib\TwoFactorAuth\Models\TwoFactorVerifyRequestSchema();
+        $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorVerifyRequestSchema();
         $body->from = getenv("PHONE_NUMBER_MFA");
         $body->to = getenv("PHONE_NUMBER_INBOUND");
         $body->applicationId = getenv("MFA_VOICE_APPLICATION_ID");
@@ -140,7 +140,7 @@ final class ApiTest extends TestCase
         $body->digits = 6;
         $body->expirationTimeInMinutes = 3;
 
-        $response = $this->bandwidthClient->getTwoFactorAuth()->getMFA()->createVerifyTwoFactor(getenv("ACCOUNT_ID"), $body);
+        $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createVerifyTwoFactor(getenv("ACCOUNT_ID"), $body);
         $this->assertTrue(is_bool($response->getResult()->valid));
     }
 

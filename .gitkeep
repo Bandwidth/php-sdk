@@ -1,3 +1,4 @@
 README.md
 src/Voice/Bxml/*
 src/WebRtc/Utils/*
+tests/*
