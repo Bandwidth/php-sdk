@@ -28,6 +28,6 @@ class WebRtcTransfer {
         * @return   string  $sipUri The SIP URI to transfer the call to 
         */
         $formattedCallId = substr(str_replace("-", "", $voiceCallId), 1);
-        return '<Transfer><SipUri uui="' . $formattedCallId . ';encoding=base64' . $deviceToken . ';encoding=jwt">' . $sipUri . '</SipUri></Transfer>'; 
+        return '<Transfer><SipUri uui="' . $formattedCallId . ';encoding=base64,' . $deviceToken . ';encoding=jwt">' . $sipUri . '</SipUri></Transfer>'; 
     }
 }
