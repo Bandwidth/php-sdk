@@ -62,7 +62,9 @@ class BandwidthMessage implements \JsonSerializable
     public $from;
 
     /**
-     * The list of media URLs sent in the message
+     * The list of media URLs sent in the message. Including a `filename` field in the `Content-
+     * Disposition` header of the media linked with a URL will set the displayed file name. This is a best
+     * practice to ensure that your media has a readable file name.
      * @var array|null $media public property
      */
     public $media;

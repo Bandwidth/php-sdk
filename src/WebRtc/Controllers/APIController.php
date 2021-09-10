@@ -31,9 +31,9 @@ class APIController extends BaseController
     }
 
     /**
-     * Create a new participant under this account
+     * Create a new participant under this account.
      *
-     * Participants are idempotent, so relevant parameters must be set in this function if desired
+     * Participants are idempotent, so relevant parameters must be set in this function if desired.
      *
      *
      * @param string             $accountId Account ID
@@ -118,7 +118,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Get participant by ID
+     * Get participant by ID.
      *
      * @param string $accountId     Account ID
      * @param string $participantId Participant ID
@@ -196,7 +196,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Delete participant by ID
+     * Delete participant by ID.
      *
      * @param string $accountId     Account ID
      * @param string $participantId TODO: type description here
@@ -271,9 +271,9 @@ class APIController extends BaseController
     }
 
     /**
-     * Create a new session
+     * Create a new session.
      *
-     * Sessions are idempotent, so relevant parameters must be set in this function if desired
+     * Sessions are idempotent, so relevant parameters must be set in this function if desired.
      *
      *
      * @param string         $accountId Account ID
@@ -355,7 +355,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Get session by ID
+     * Get session by ID.
      *
      * @param string $accountId Account ID
      * @param string $sessionId Session ID
@@ -433,7 +433,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Delete session by ID
+     * Delete session by ID.
      *
      * @param string $accountId Account ID
      * @param string $sessionId Session ID
@@ -508,7 +508,7 @@ class APIController extends BaseController
     }
 
     /**
-     * List participants in a session
+     * List participants in a session.
      *
      * @param string $accountId Account ID
      * @param string $sessionId Session ID
@@ -586,9 +586,9 @@ class APIController extends BaseController
     }
 
     /**
-     * Add a participant to a session
+     * Add a participant to a session.
      *
-     * Subscriptions can optionally be provided as part of this call
+     * Subscriptions can optionally be provided as part of this call.
      *
      *
      * @param string               $accountId     Account ID
@@ -673,9 +673,9 @@ class APIController extends BaseController
     }
 
     /**
-     * Remove a participant from a session
+     * Remove a participant from a session.
      *
-     * This will automatically remove any subscriptions the participant has associated with this session
+     * This will automatically remove any subscriptions the participant has associated with this session.
      *
      *
      * @param string $accountId     Account ID
@@ -754,7 +754,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Get a participant's subscriptions
+     * Get a participant's subscriptions.
      *
      * @param string $accountId     Account ID
      * @param string $sessionId     Session ID
@@ -836,11 +836,11 @@ class APIController extends BaseController
     }
 
     /**
-     * Update a participant's subscriptions
+     * Update a participant's subscriptions.
      *
      * This is a full update that will replace the participant's subscriptions. First call
      * `getParticipantSubscriptions` if you need the current subscriptions. Call this function with no
-     * `Subscriptions` object to remove all subscriptions
+     * `Subscriptions` object to remove all subscriptions.
      *
      *
      * @param string               $accountId     Account ID

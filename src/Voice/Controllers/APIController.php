@@ -31,7 +31,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Creates an outbound call.
+     * Creates an outbound phone call.
      *
      * @param string                   $accountId TODO: type description here
      * @param Models\CreateCallRequest $body      TODO: type description here
@@ -473,7 +473,7 @@ class APIController extends BaseController
 
     /**
      * Returns a (potentially empty) list of metadata for the recordings that took place during the
-     * specified call
+     * specified call.
      *
      * @param string $accountId TODO: type description here
      * @param string $callId    TODO: type description here

@@ -31,7 +31,7 @@ class APIController extends BaseController
     }
 
     /**
-     * listMedia
+     * Gets a list of your media files. No query parameters are supported.
      *
      * @param string $accountId          User's account ID
      * @param string $continuationToken  (optional) Continuation token used to retrieve subsequent media.
@@ -120,7 +120,7 @@ class APIController extends BaseController
     }
 
     /**
-     * getMedia
+     * Downloads a media file you previously uploaded.
      *
      * @param string $accountId User's account ID
      * @param string $mediaId   Media ID to retrieve
@@ -207,7 +207,8 @@ class APIController extends BaseController
     }
 
     /**
-     * uploadMedia
+     * Uploads a file the normal HTTP way. You may add headers to the request in order to provide some
+     * control to your media-file.
      *
      * @param string $accountId     User's account ID
      * @param string $mediaId       The user supplied custom media ID
@@ -305,7 +306,9 @@ class APIController extends BaseController
     }
 
     /**
-     * deleteMedia
+     * Deletes a media file from Bandwidth API server. Make sure you don't have any application scripts
+     * still using the media before you delete. If you accidentally delete a media file, you can
+     * immediately upload a new file with the same name.
      *
      * @param string $accountId User's account ID
      * @param string $mediaId   The media ID to delete
@@ -391,7 +394,7 @@ class APIController extends BaseController
     }
 
     /**
-     * getMessages
+     * Gets a list of messages based on query parameters.
      *
      * @param string  $accountId     User's account ID
      * @param string  $messageId     (optional) The ID of the message to search for. Special characters need to be
@@ -516,7 +519,7 @@ class APIController extends BaseController
     }
 
     /**
-     * createMessage
+     * Endpoint for sending text messages and picture messages using V2 messaging.
      *
      * @param string                $accountId User's account ID
      * @param Models\MessageRequest $body      TODO: type description here
