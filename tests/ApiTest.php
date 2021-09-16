@@ -98,7 +98,7 @@ final class ApiTest extends TestCase
         $machineDetection->speechThreshold = 5.0;
         $machineDetection->speechEndThreshold = 5.0;
         $machineDetection->delayResult = true;
-        $machineDetection->callbackUrl = 5.0;
+        $machineDetection->callbackUrl = getenv("BASE_CALLBACK_URL") . "/callbacks/machine-detection";
         $machineDetection->callbackMethod = "POST";
 
         $body->from = getenv("BW_NUMBER");
