@@ -34,7 +34,7 @@ final class ApiTest extends TestCase
         $body = new BandwidthLib\Messaging\Models\MessageRequest();
         $body->from = getenv("BW_NUMBER");
         $body->to = [getenv("USER_NUMBER")];
-        $body->applicationId = getenv("MESSAGING_APPLICATION_ID");
+        $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
         $body->text = "PHP Monitoring";
 
         $response = $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
