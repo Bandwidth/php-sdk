@@ -65,7 +65,7 @@ final class ApiTest extends TestCase
         $mediaFile = "12345"; //todo: confirm binary string?
         //media upload
         $this->bandwidthClient->getMessaging()->getClient()->uploadMedia(getenv("ACCOUNT_ID"), $mediaFileName, $mediaFile);
-        
+
         //media download
         $downloadedMediaFile = $this->bandwidthClient->getMessaging()->getClient()->getMedia(getenv("ACCOUNT_ID"), $mediaFileName)->getResult();
 
@@ -85,7 +85,34 @@ final class ApiTest extends TestCase
 
         //get phone call information
         $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("ACCOUNT_ID"), $callId);
-        $this->assertTrue(strlen($response->getResult()->state) > 0); 
+        $this->assertTrue(strlen($response->getResult()->state) > 0);
+    }
+
+    public function testCreateCallWithAmdAndGetCallState() {
+        $body = new BandwidthLib\Voice\Models\CreateCallRequest();
+        $machineDetection = new BandwidthLib\Voice\Models\MachineDetectionRequest();
+
+        $machineDetection->mode = BandwidthLib\Voice\Models\ModeEnum::ASYNC
+        $machineDetection->detectionTimeout = 5.0
+        $machineDetection->silenceTimeout = 5.0
+        $machineDetection->speechThreshold = 5.0
+        $machineDetection->speechEndThreshold = 5.0
+        $machineDetection->delayResult = true
+        $machineDetection->callbackUrl = 5.0
+        $machineDetection->callbackMethod = "POST"
+
+        $body->from = getenv("PHONE_NUMBER_INBOUND");
+        $body->to = getenv("PHONE_NUMBER_OUTBOUND");
+        $body->applicationId = getenv("VOICE_APPLICATION_ID");
+        $body->answerUrl = getenv("VOICE_CALLBACK_URL");
+        $body->machineDetection = $machineDetection;
+        $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("ACCOUNT_ID"), $body);
+        $callId = $response->getResult()->callId;
+        $this->assertTrue(strlen($callId) > 0);
+
+        //get phone call information
+        $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("ACCOUNT_ID"), $callId);
+        $this->assertTrue(strlen($response->getResult()->state) > 0);
     }
 
     public function testCreateCallInvalidPhoneNumber() {
