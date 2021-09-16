@@ -72,9 +72,9 @@ class CallState implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var array|null $pai public property
+     * @var array|null $stirShaken public property
      */
-    public $pai;
+    public $stirShaken;
 
     /**
      * @todo Write general description for this property
@@ -140,7 +140,7 @@ class CallState implements \JsonSerializable
             $this->direction       = func_get_arg(6);
             $this->state           = func_get_arg(7);
             $this->identity        = func_get_arg(8);
-            $this->pai             = func_get_arg(9);
+            $this->stirShaken      = func_get_arg(9);
             $this->startTime       = func_get_arg(10);
             $this->answerTime      = func_get_arg(11);
             $this->endTime         = func_get_arg(12);
@@ -166,7 +166,7 @@ class CallState implements \JsonSerializable
         $json['direction']       = $this->direction;
         $json['state']           = $this->state;
         $json['identity']        = $this->identity;
-        $json['pai']             = $this->pai;
+        $json['stirShaken']      = $this->stirShaken;
         $json['startTime']       =
             isset($this->startTime) ?
             DateTimeHelper::toRfc3339DateTime($this->startTime) : null;

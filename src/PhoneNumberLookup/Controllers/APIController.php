@@ -31,7 +31,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Create a TN Lookup Order
+     * Create a TN Lookup Order.
      *
      * @param string              $accountId The ID of the Bandwidth account that the user belongs to.
      * @param Models\OrderRequest $body      TODO: type description here
@@ -931,7 +931,7 @@ class APIController extends BaseController
     }
 
     /**
-     * Query an existing TN Lookup Order
+     * Query an existing TN Lookup Order.
      *
      * @param string $accountId The ID of the Bandwidth account that the user belongs to.
      * @param string $requestId TODO: type description here

@@ -3,14 +3,14 @@
     "type": "library",
     "description": "Bandwidth's set of APIs",
     "keywords": ["bandwidth","API","SDK"],
-    "homepage": "https://apimatic.io",
+    "homepage": "https://www.bandwidth.com/",
     "license": "MIT",
     "authors": [
         {
-            "name": "APIMatic SDK Generator",
-            "email": "support@apimatic.io",
-            "homepage": "https://apimatic.io",
-            "role": "API Tool"
+            "name": "Bandwidth Inc.",
+            "email": "support@bandwidth.com",
+            "homepage": "https://www.bandwidth.com/",
+            "role": "Owner"
         }
     ],
     "require": {

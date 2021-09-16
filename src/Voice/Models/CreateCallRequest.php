@@ -27,9 +27,10 @@ class CreateCallRequest implements \JsonSerializable
     public $to;
 
     /**
-     * When calling a SIP URI, this will be sent as the 'User-To-User' header within the initial INVITE. It
-     * must end with an 'encoding' parameter as described in https://tools.ietf.org/html/rfc7433. This
-     * header cannot exceed 256 characters, including the encoding parameter.
+     * A comma-separated list of 'User-To-User' headers to be sent in the INVITE when calling a SIP URI.
+     * Each value must end with an 'encoding' parameter as described in https://tools.ietf.org/html/rfc7433.
+     * Only 'jwt' and 'base64' encodings are allowed. The entire value cannot exceed 350 characters,
+     * including parameters and separators.
      * @var string|null $uui public property
      */
     public $uui;
@@ -121,11 +122,17 @@ class CreateCallRequest implements \JsonSerializable
     public $applicationId;
 
     /**
+     * @todo Write general description for this property
+     * @var \BandwidthLib\Voice\Models\MachineDetectionRequest|null $machineDetection public property
+     */
+    public $machineDetection;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (17 == func_num_args()) {
+        if (18 == func_num_args()) {
             $this->from                 = func_get_arg(0);
             $this->to                   = func_get_arg(1);
             $this->uui                  = func_get_arg(2);
@@ -143,6 +150,7 @@ class CreateCallRequest implements \JsonSerializable
             $this->disconnectMethod     = func_get_arg(14);
             $this->tag                  = func_get_arg(15);
             $this->applicationId        = func_get_arg(16);
+            $this->machineDetection     = func_get_arg(17);
         }
     }
 
@@ -169,6 +177,7 @@ class CreateCallRequest implements \JsonSerializable
         $json['disconnectMethod']     = $this->disconnectMethod;
         $json['tag']                  = $this->tag;
         $json['applicationId']        = $this->applicationId;
+        $json['machineDetection']     = $this->machineDetection;
 
         return array_filter($json);
     }

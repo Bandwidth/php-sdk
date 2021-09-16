@@ -31,7 +31,8 @@ class MFAController extends BaseController
     }
 
     /**
-     * Allows a user to send a MFA code through a phone call
+     * Multi-Factor authentication with Bandwidth Voice services. Allows for a user to send an MFA code via
+     * a phone call.
      *
      * @param string                            $accountId Bandwidth Account ID with Voice service enabled
      * @param Models\TwoFactorCodeRequestSchema $body      TODO: type description here
@@ -124,7 +125,8 @@ class MFAController extends BaseController
     }
 
     /**
-     * Allows a user to send a MFA code through a text message (SMS)
+     * Multi-Factor authentication with Bandwidth Messaging services. Allows a user to send an MFA code via
+     * a text message (SMS).
      *
      * @param string                            $accountId Bandwidth Account ID with Messaging service enabled
      * @param Models\TwoFactorCodeRequestSchema $body      TODO: type description here
@@ -217,7 +219,7 @@ class MFAController extends BaseController
     }
 
     /**
-     * Allows a user to verify an MFA code
+     * Allows a user to verify an MFA code.
      *
      * @param string                              $accountId Bandwidth Account ID with Two-Factor enabled
      * @param Models\TwoFactorVerifyRequestSchema $body      TODO: type description here
