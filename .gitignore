@@ -1,3 +1,4 @@
 # PHP Dev Resources
 vendor
 composer.lock
+.phpunit.result.cache
