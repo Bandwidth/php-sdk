@@ -10,7 +10,7 @@ namespace BandwidthLib\Voice\Models;
 /**
  * @todo Write general description for this model
  */
-class MachineDetectionRequest implements \JsonSerializable
+class MachineDetectionConfiguration implements \JsonSerializable
 {
     /**
      * The machine detection mode. If set to 'async', the detection result will be sent in a
