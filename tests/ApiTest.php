@@ -61,7 +61,7 @@ final class ApiTest extends TestCase
     public function testUploadDownloadMedia() {
         //constants
 
-        $mediaFileName = "php/monitoring";
+        $mediaFileName = "php-monitoring";
         $mediaFile = "12345"; //todo: confirm binary string?
         //media upload
         $this->bandwidthClient->getMessaging()->getClient()->uploadMedia(getenv("BW_ACCOUNT_ID"), $mediaFileName, $mediaFile);
