@@ -24,41 +24,39 @@ final class ApiTest extends TestCase
                 'multiFactorAuthBasicAuthUserName' => getenv("BW_USERNAME"),
                 'multiFactorAuthBasicAuthPassword' => getenv("BW_PASSWORD"),
                 'phoneNumberLookupBasicAuthUserName' => getenv("BW_USERNAME"),
-                'phoneNumberLookupBasicAuthPassword' => getenv("BW_PASSWORD"),
-                'environment' => BandwidthLib\Environments::CUSTOM,
-                'baseUrl' => 'https://8acab6efc65e187ebdcd4ebafa7e5a30.m.pipedream.net'
+                'phoneNumberLookupBasicAuthPassword' => getenv("BW_PASSWORD")
             )
         );
         $this->bandwidthClient = new BandwidthLib\BandwidthClient($config);
     }
 
-    // public function testCreateMessage() {
-    //     $body = new BandwidthLib\Messaging\Models\MessageRequest();
-    //     $body->from = getenv("BW_NUMBER");
-    //     $body->to = [getenv("USER_NUMBER")];
-    //     $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
-    //     $body->text = "PHP Monitoring";
+    public function testCreateMessage() {
+        $body = new BandwidthLib\Messaging\Models\MessageRequest();
+        $body->from = getenv("BW_NUMBER");
+        $body->to = [getenv("USER_NUMBER")];
+        $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
+        $body->text = "PHP Monitoring";
 
-    //     $response = $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
+        $response = $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
 
-    //     $this->assertTrue(strlen($response->getResult()->id) > 0); //validate that _some_ id was returned
-    // }
+        $this->assertTrue(strlen($response->getResult()->id) > 0); //validate that _some_ id was returned
+    }
 
-    // public function testCreateMessageInvalidPhoneNumber() {
-    //     $body = new BandwidthLib\Messaging\Models\MessageRequest();
-    //     $body->from = getenv("BW_NUMBER");
-    //     $body->to = ["+1invalid"];
-    //     $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
-    //     $body->text = "PHP Monitoring";
+    public function testCreateMessageInvalidPhoneNumber() {
+        $body = new BandwidthLib\Messaging\Models\MessageRequest();
+        $body->from = getenv("BW_NUMBER");
+        $body->to = ["+1invalid"];
+        $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
+        $body->text = "PHP Monitoring";
 
-    //     try {
-    //         $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
-    //         //workaround to make sure that if the above error is not raised, the build will fail
-    //         $this->assertTrue(false);
-    //     } catch (BandwidthLib\Messaging\Exceptions\MessagingException $e) {
-    //         $this->assertTrue(strlen($e->description) > 0);
-    //     }
-    // }
+        try {
+            $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
+            //workaround to make sure that if the above error is not raised, the build will fail
+            $this->assertTrue(false);
+        } catch (BandwidthLib\Messaging\Exceptions\MessagingException $e) {
+            $this->assertTrue(strlen($e->description) > 0);
+        }
+    }
 
     public function testUploadDownloadMedia() {
         //constants
@@ -78,112 +76,112 @@ final class ApiTest extends TestCase
         $this->assertEquals($downloadedMediaFile, $mediaFile);
     }
 
-    // public function testCreateCallAndGetCallState() {
-    //     $body = new BandwidthLib\Voice\Models\CreateCallRequest();
-    //     $body->from = getenv("BW_NUMBER");
-    //     $body->to = getenv("USER_NUMBER");
-    //     $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
-    //     $body->answerUrl = getenv("BASE_CALLBACK_URL");
-    //     $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
-    //     $callId = $response->getResult()->callId;
-    //     $this->assertTrue(strlen($callId) > 0);
+    public function testCreateCallAndGetCallState() {
+        $body = new BandwidthLib\Voice\Models\CreateCallRequest();
+        $body->from = getenv("BW_NUMBER");
+        $body->to = getenv("USER_NUMBER");
+        $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
+        $body->answerUrl = getenv("BASE_CALLBACK_URL");
+        $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
+        $callId = $response->getResult()->callId;
+        $this->assertTrue(strlen($callId) > 0);
 
-    //     //get phone call information
-    //     $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
-    //     $this->assertTrue(strlen($response->getResult()->state) > 0);
-    // }
+        //get phone call information
+        $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
+        $this->assertTrue(strlen($response->getResult()->state) > 0);
+    }
 
-    // public function testCreateCallWithAmdAndGetCallState() {
-    //     $body = new BandwidthLib\Voice\Models\CreateCallRequest();
-    //     $machineDetection = new BandwidthLib\Voice\Models\MachineDetectionConfiguration();
+    public function testCreateCallWithAmdAndGetCallState() {
+        $body = new BandwidthLib\Voice\Models\CreateCallRequest();
+        $machineDetection = new BandwidthLib\Voice\Models\MachineDetectionConfiguration();
 
-    //     $machineDetection->mode = BandwidthLib\Voice\Models\ModeEnum::ASYNC;
-    //     $machineDetection->detectionTimeout = 5.0;
-    //     $machineDetection->silenceTimeout = 5.0;
-    //     $machineDetection->speechThreshold = 5.0;
-    //     $machineDetection->speechEndThreshold = 5.0;
-    //     $machineDetection->delayResult = true;
-    //     $machineDetection->callbackUrl = getenv("BASE_CALLBACK_URL") . "/callbacks/machine-detection";
-    //     $machineDetection->callbackMethod = "POST";
+        $machineDetection->mode = BandwidthLib\Voice\Models\ModeEnum::ASYNC;
+        $machineDetection->detectionTimeout = 5.0;
+        $machineDetection->silenceTimeout = 5.0;
+        $machineDetection->speechThreshold = 5.0;
+        $machineDetection->speechEndThreshold = 5.0;
+        $machineDetection->delayResult = true;
+        $machineDetection->callbackUrl = getenv("BASE_CALLBACK_URL") . "/callbacks/machine-detection";
+        $machineDetection->callbackMethod = "POST";
 
-    //     $body->from = getenv("BW_NUMBER");
-    //     $body->to = getenv("USER_NUMBER");
-    //     $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
-    //     $body->answerUrl = getenv("BASE_CALLBACK_URL");
-    //     $body->machineDetection = $machineDetection;
-    //     $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
-    //     $callId = $response->getResult()->callId;
-    //     $this->assertTrue(strlen($callId) > 0);
+        $body->from = getenv("BW_NUMBER");
+        $body->to = getenv("USER_NUMBER");
+        $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
+        $body->answerUrl = getenv("BASE_CALLBACK_URL");
+        $body->machineDetection = $machineDetection;
+        $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
+        $callId = $response->getResult()->callId;
+        $this->assertTrue(strlen($callId) > 0);
 
-    //     //get phone call information
-    //     $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
-    //     $this->assertTrue(strlen($response->getResult()->state) > 0);
-    // }
+        //get phone call information
+        $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
+        $this->assertTrue(strlen($response->getResult()->state) > 0);
+    }
 
-    // public function testCreateCallInvalidPhoneNumber() {
-    //     $body = new BandwidthLib\Voice\Models\CreateCallRequest();
-    //     $body->from = getenv("BW_NUMBER");
-    //     $body->to = "+1invalid";
-    //     $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
-    //     $body->answerUrl = getenv("BASE_CALLBACK_URL");
+    public function testCreateCallInvalidPhoneNumber() {
+        $body = new BandwidthLib\Voice\Models\CreateCallRequest();
+        $body->from = getenv("BW_NUMBER");
+        $body->to = "+1invalid";
+        $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
+        $body->answerUrl = getenv("BASE_CALLBACK_URL");
 
-    //     try {
-    //         $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
-    //         //workaround to make sure that if the above error is not raised, the build will fail
-    //         $this->assertTrue(false);
-    //     } catch (BandwidthLib\Voice\Exceptions\ApiErrorException $e) {
-    //         $this->assertTrue(strlen($e->description) > 0);
-    //     }
-    // }
+        try {
+            $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
+            //workaround to make sure that if the above error is not raised, the build will fail
+            $this->assertTrue(false);
+        } catch (BandwidthLib\Voice\Exceptions\ApiErrorException $e) {
+            $this->assertTrue(strlen($e->description) > 0);
+        }
+    }
 
-    // public function testMfaMessaging() {
-    //     $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorCodeRequestSchema();
-    //     $body->from = getenv("BW_NUMBER");
-    //     $body->to = getenv("USER_NUMBER");
-    //     $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
-    //     $body->scope = "scope";
-    //     $body->digits = 6;
-    //     $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
+    public function testMfaMessaging() {
+        $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorCodeRequestSchema();
+        $body->from = getenv("BW_NUMBER");
+        $body->to = getenv("USER_NUMBER");
+        $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
+        $body->scope = "scope";
+        $body->digits = 6;
+        $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
 
-    //     $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createMessagingTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
-    //     $this->assertTrue(strlen($response->getResult()->messageId) > 0); //validate that _some_ id was returned
-    // }
+        $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createMessagingTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
+        $this->assertTrue(strlen($response->getResult()->messageId) > 0); //validate that _some_ id was returned
+    }
 
-    // public function testMfaVoice() {
-    //     $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorCodeRequestSchema();
-    //     $body->from = getenv("BW_NUMBER");
-    //     $body->to = getenv("USER_NUMBER");
-    //     $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
-    //     $body->scope = "scope";
-    //     $body->digits = 6;
-    //     $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
+    public function testMfaVoice() {
+        $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorCodeRequestSchema();
+        $body->from = getenv("BW_NUMBER");
+        $body->to = getenv("USER_NUMBER");
+        $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
+        $body->scope = "scope";
+        $body->digits = 6;
+        $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
 
-    //     $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createVoiceTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
-    //     $this->assertTrue(strlen($response->getResult()->callId) > 0); //validate that _some_ id was returned
-    // }
+        $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createVoiceTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
+        $this->assertTrue(strlen($response->getResult()->callId) > 0); //validate that _some_ id was returned
+    }
 
-    // public function testMfaVerify() {
-    //     $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorVerifyRequestSchema();
-    //     $body->from = getenv("BW_NUMBER");
-    //     $body->to = getenv("USER_NUMBER");
-    //     $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
-    //     $body->scope = "scope";
-    //     $body->code = "123456";
-    //     $body->digits = 6;
-    //     $body->expirationTimeInMinutes = 3;
+    public function testMfaVerify() {
+        $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorVerifyRequestSchema();
+        $body->from = getenv("BW_NUMBER");
+        $body->to = getenv("USER_NUMBER");
+        $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
+        $body->scope = "scope";
+        $body->code = "123456";
+        $body->digits = 6;
+        $body->expirationTimeInMinutes = 3;
 
-    //     $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createVerifyTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
-    //     $this->assertTrue(is_bool($response->getResult()->valid));
-    // }
+        $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createVerifyTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
+        $this->assertTrue(is_bool($response->getResult()->valid));
+    }
 
-    // public function testTnLookup() {
-    //     $body = new BandwidthLib\PhoneNumberLookup\Models\OrderRequest();
-    //     $body->tns = [getenv("USER_NUMBER")];
-    //     $createResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
-    //     $this->assertTrue(strlen($createResponse->getResult()->requestId) > 0);
+    public function testTnLookup() {
+        $body = new BandwidthLib\PhoneNumberLookup\Models\OrderRequest();
+        $body->tns = [getenv("USER_NUMBER")];
+        $createResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
+        $this->assertTrue(strlen($createResponse->getResult()->requestId) > 0);
 
-    //     $requestId = $createResponse->getResult()->requestId;
-    //     $getResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $requestId);
-    //     $this->assertTrue(strlen($getResponse->getResult()->status) > 0);
-    // }
+        $requestId = $createResponse->getResult()->requestId;
+        $getResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $requestId);
+        $this->assertTrue(strlen($getResponse->getResult()->status) > 0);
+    }
 }
