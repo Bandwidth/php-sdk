@@ -90,7 +90,7 @@ final class ApiTest extends TestCase
 
     public function testCreateCallWithAmdAndGetCallState() {
         $body = new BandwidthLib\Voice\Models\CreateCallRequest();
-        $machineDetection = new BandwidthLib\Voice\Models\MachineDetectionRequest();
+        $machineDetection = new BandwidthLib\Voice\Models\MachineDetectionConfiguration();
 
         $machineDetection->mode = BandwidthLib\Voice\Models\ModeEnum::ASYNC;
         $machineDetection->detectionTimeout = 5.0;

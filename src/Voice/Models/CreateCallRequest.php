@@ -123,7 +123,7 @@ class CreateCallRequest implements \JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \BandwidthLib\Voice\Models\MachineDetectionRequest|null $machineDetection public property
+     * @var \BandwidthLib\Voice\Models\MachineDetectionConfiguration|null $machineDetection public property
      */
     public $machineDetection;
 
