@@ -27,7 +27,6 @@ jobs:
       run: composer install
 
     - name: Test
-      uses: ./.github/actions/validate
       env:
         BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
         BW_USERNAME: ${{ secrets.BW_USERNAME }}
