@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Validate SDK
+    name: Test
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
