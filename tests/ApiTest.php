@@ -162,8 +162,7 @@ final class ApiTest extends TestCase
 
     public function testMfaVerify() {
         $body = new BandwidthLib\MultiFactorAuth\Models\TwoFactorVerifyRequestSchema();
-        $body->from = getenv("BW_NUMBER");
-        $body->to = getenv("USER_NUMBER");
+        $body->to = rand(10000000000, 19999999999);
         $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
         $body->scope = "scope";
         $body->code = "123456";
