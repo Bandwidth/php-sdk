@@ -1,5 +1,14 @@
 # Bandwidth PHP SDK
 
+[![Test](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yaml/badge.svg)](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yaml)
+
+| **OS** | **PHP** |
+|:---:|:---:|
+| Windows 2016 | 7.4, 8.0 |
+| Windows 2019 | 7.4, 8.0 |
+| Ubuntu 18.04 | 7.4, 8.0 |
+| Ubuntu 20.04 | 7.4, 8.0 |
+
 ## Getting Started
 
 ### Installation
