@@ -1,6 +1,6 @@
 # Bandwidth PHP SDK
 
-[![Test](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yaml/badge.svg)](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yaml)
+[![Test](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yml)
 
 | **OS** | **PHP** |
 |:---:|:---:|
