@@ -13,6 +13,11 @@ use PHPUnit\Framework\TestCase;
 final class ApiTest extends TestCase
 {
     protected $bandwidthClient;
+    protected $bwNumber;
+    protected $userNumber;
+    protected $bwMessagingApplicationId;
+    protected $bwVoiceApplicationId;
+    protected $baseCallbackUrl;
 
     protected function setUp(): void {
         $config = new BandwidthLib\Configuration(
@@ -28,33 +33,45 @@ final class ApiTest extends TestCase
             )
         );
         $this->bandwidthClient = new BandwidthLib\BandwidthClient($config);
+        $this->bwNumber = getenv("BW_NUMBER");
+        $this->userNumber = getenv("USER_NUMBER");
+        $this->bwMessagingApplicationId = getenv("BW_MESSAGING_APPLICATION_ID");
+        $this->bwVoiceApplicationId = getenv("BW_VOICE_APPLICATION_ID");
+        $this->baseCallbackUrl = getenv("BASE_CALLBACK_URL");
     }
 
-    public function testCreateMessage() {
+    public function testSuccessfulCreateMessage() {
         $body = new BandwidthLib\Messaging\Models\MessageRequest();
-        $body->from = getenv("BW_NUMBER");
-        $body->to = [getenv("USER_NUMBER")];
-        $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
+        $body->from = $this->bwNumber;
+        $body->to = [$this->userNumber];
+        $body->applicationId = $this->bwMessagingApplicationId;
         $body->text = "PHP Monitoring";
 
         $response = $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
 
-        $this->assertTrue(strlen($response->getResult()->id) > 0); //validate that _some_ id was returned
+        $this->assertTrue($response->getStatusCode() == 202);
+        $this->assertTrue(strlen($response->getResult()->id) == 29);
+        $this->assertTrue($response->getResult()->owner == $this->bwNumber);
+        $this->assertTrue($response->getResult()->to == [$this->userNumber]);
+        $this->assertTrue($response->getResult()->applicationId == $this->bwMessagingApplicationId);
+        $dt = new DateTime($response->getResult()->time); // assigns the time to a datetime object - if this fails then time is not a valid datetime
+        $this->assertIsNumeric($response->getResult()->segmentCount);
     }
 
-    public function testCreateMessageInvalidPhoneNumber() {
+    public function testFailedCreateMessage() {
         $body = new BandwidthLib\Messaging\Models\MessageRequest();
-        $body->from = getenv("BW_NUMBER");
+        $body->from = $this->bwNumber;
         $body->to = ["+1invalid"];
-        $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
+        $body->applicationId = $this->bwMessagingApplicationId;
         $body->text = "PHP Monitoring";
 
         try {
-            $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
-            //workaround to make sure that if the above error is not raised, the build will fail
+            $response = $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
+            //workaround to make sure that if the error is not raised, the build will fail
             $this->assertTrue(false);
         } catch (BandwidthLib\Messaging\Exceptions\MessagingException $e) {
-            $this->assertTrue(strlen($e->description) > 0);
+            $this->assertTrue($e->type == "request-validation");
+            $this->assertIsString($e->description);
         }
     }
 
