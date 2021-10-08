@@ -43,7 +43,7 @@ $accountId = "12345";
 ```
 $voiceClient = $client->getVoice()->getClient();
 
-$body = new BandwidthLib\Voice\Models\ApiCreateCallRequest();
+$body = new BandwidthLib\Voice\Models\CreateCallRequest();
 $body->from = "+15554443333";
 $body->to = "+15554442222";
 $body->answerUrl = "https://test.com";
