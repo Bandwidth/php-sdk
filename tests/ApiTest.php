@@ -60,20 +60,20 @@ final class ApiTest extends TestCase
 
     public function testUploadDownloadMedia() {
         //constants
-
-        $mediaFileName = "php-monitoring";
-        $mediaFile = "12345"; //todo: confirm binary string?
+        $mediaId = "text-media-id-" . uniqid();
+        $content = "Hello world";
+        
         //media upload
-        $this->bandwidthClient->getMessaging()->getClient()->uploadMedia(getenv("BW_ACCOUNT_ID"), $mediaFileName, $mediaFile);
+        $this->bandwidthClient->getMessaging()->getClient()->uploadMedia(getenv("BW_ACCOUNT_ID"), $mediaId, $content);
 
         //media download
-        $downloadedMediaFile = $this->bandwidthClient->getMessaging()->getClient()->getMedia(getenv("BW_ACCOUNT_ID"), $mediaFileName)->getResult();
+        $downloadedContent = $this->bandwidthClient->getMessaging()->getClient()->getMedia(getenv("BW_ACCOUNT_ID"), $mediaId)->getResult();
 
         //media delete
-        $deleteMedaiFile = $this->bandwidthClient->getMessaging()->getClient()->deleteMedia(getenv("BW_ACCOUNT_ID"), $mediaFileName);
+        $this->bandwidthClient->getMessaging()->getClient()->deleteMedia(getenv("BW_ACCOUNT_ID"), $mediaId);
 
         //validate that response is the same
-        $this->assertEquals($downloadedMediaFile, $mediaFile);
+        $this->assertEquals($downloadedContent, $content);
     }
 
     public function testCreateCallAndGetCallState() {
