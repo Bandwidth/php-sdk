@@ -370,11 +370,12 @@ final class BxmlTest extends TestCase
     public function testRing() {
         $ring = new BandwidthLib\Voice\Bxml\Ring();
         $ring->duration(5);
+        $ring->answerCall(false);
 
         $response = new BandwidthLib\Voice\Bxml\Response();
         $response->addVerb($ring);
 
-        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Ring duration="5"/></Response>';
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Ring duration="5" answerCall="false"/></Response>';
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }
