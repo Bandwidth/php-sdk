@@ -39,7 +39,11 @@ class Ring extends Verb {
         }
 
         if(isset($this->answerCall)) {
-            $element->setAttribute("answerCall", $this->answerCall);
+            if ($this->answerCall) {
+                $element->setattribute("answerCall", "true");
+            } else {
+                $element->setattribute("answerCall", "false");
+            }
         }
 
         return $element;

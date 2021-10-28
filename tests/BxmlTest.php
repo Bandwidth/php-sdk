@@ -370,7 +370,7 @@ final class BxmlTest extends TestCase
     public function testRing() {
         $ring = new BandwidthLib\Voice\Bxml\Ring();
         $ring->duration(5);
-        $ring->answerCall("false");
+        $ring->answerCall(false);
 
         $response = new BandwidthLib\Voice\Bxml\Response();
         $response->addVerb($ring);
