@@ -16,10 +16,19 @@ class Ring extends Verb {
     /**
      * Sets the duration attribute for Ring
      *
-     * @param float $duration The duration in seconds for the ring 
+     * @param float $duration The duration in seconds for the ring
      */
     public function duration($duration) {
         $this->duration = $duration;
+    }
+
+    /**
+     * Sets the answerCall attribute for Ring
+     *
+     * @param boolean $answerCall Determines whether or not to answer the call when Ring is executed on an unanswered incoming call
+     */
+    public function answerCall($answerCall) {
+        $this->answerCall = $answerCall;
     }
 
     public function toBxml($doc) {
@@ -27,6 +36,14 @@ class Ring extends Verb {
 
         if(isset($this->duration)) {
             $element->setAttribute("duration", $this->duration);
+        }
+
+        if(isset($this->answerCall)) {
+            if ($this->answerCall) {
+                $element->setattribute("answerCall", "true");
+            } else {
+                $element->setattribute("answerCall", "false");
+            }
         }
 
         return $element;
