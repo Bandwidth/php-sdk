@@ -24,7 +24,9 @@ final class ApiTest extends TestCase
                 'multiFactorAuthBasicAuthUserName' => getenv("BW_USERNAME"),
                 'multiFactorAuthBasicAuthPassword' => getenv("BW_PASSWORD"),
                 'phoneNumberLookupBasicAuthUserName' => getenv("BW_USERNAME"),
-                'phoneNumberLookupBasicAuthPassword' => getenv("BW_PASSWORD")
+                'phoneNumberLookupBasicAuthPassword' => getenv("BW_PASSWORD"),
+                'webRtcBasicAuthUserName' => getenv("BW_USERNAME"),
+                'webRtcBasicAuthPassword' => getenv("BW_PASSWORD"),
             )
         );
         $this->bandwidthClient = new BandwidthLib\BandwidthClient($config);
