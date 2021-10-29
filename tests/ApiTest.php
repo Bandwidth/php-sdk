@@ -173,6 +173,16 @@ final class ApiTest extends TestCase
         $this->assertTrue(is_bool($response->getResult()->valid));
     }
 
+    public function testWebRtcCreateSession() {
+        $body = new BandwidthLib\WebRtc\Models\Session();
+        $body->tag = 'new-session';
+
+        $response = $this->bandwidthClient->getWebRtc()->getClient()->createSession(getenv("BW_ACCOUNT_ID"), $body);
+        $this->assertTrue(strlen($response->getResult()->id) > 0);
+
+        $this->bandwidthClient->getWebRtc()->getClient()->deleteSession(getenv("BW_ACCOUNT_ID"), $response->getResult()->id);
+    }
+
     public function testTnLookup() {
         $body = new BandwidthLib\PhoneNumberLookup\Models\OrderRequest();
         $body->tns = [getenv("USER_NUMBER")];
