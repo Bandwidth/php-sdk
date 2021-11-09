@@ -26,6 +26,11 @@ class Response {
      * @param Verb $verb The verb to add to the list
      */
     public function addVerb($verb) {
+        foreach($verb as $key => $value) {
+            if(gettype($value) == "string") {
+                $verb->$key = htmlspecialchars($value, ENT_XML1 | ENT_QUOTES, 'UTF-8');
+            }
+        }
         array_push($this->verbs, $verb);
     }
 
