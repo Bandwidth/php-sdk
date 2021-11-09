@@ -178,6 +178,18 @@ final class BxmlTest extends TestCase
         $this->assertEquals($expectedXml, $responseXml);
     }
 
+    public function testSpeakSentenceEncode() {
+        $speakSentence = new BandwidthLib\Voice\Bxml\SpeakSentence("These characters cause problems < > &");
+        $speakSentence->voice("susan");
+        $speakSentence->locale("en_US");
+        $speakSentence->gender("female");
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($speakSentence);
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><SpeakSentence locale="en_US" gender="female" voice="susan">These characters cause problems &lt; &gt; &amp;</SpeakSentence></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
+
     public function testSpeakSentenceSSML() {
         $speakSentence = new BandwidthLib\Voice\Bxml\SpeakSentence('Hello, you have reached the home of <lang xml:lang="es-MX">Antonio Mendoza</lang>.Please leave a message.');
         $response = new BandwidthLib\Voice\Bxml\Response();
