@@ -140,7 +140,9 @@ class Bridge extends Verb {
     }
 
     public function toBxml($doc) {
-        $element = $doc->createElement("Bridge", $this->targetCall);
+        $element = $doc->createElement("Bridge");
+
+        $element->appendChild($doc->createTextNode($this->targetCall));
 
         if(isset($this->bridgeCompleteUrl)) {
             $element->setAttribute("bridgeCompleteUrl", $this->bridgeCompleteUrl);

@@ -23,7 +23,9 @@ class Tag extends Verb {
     }
 
     public function toBxml($doc) {
-        $element = $doc->createElement("Tag", $this->tag);
+        $element = $doc->createElement("Tag");
+
+        $element->appendChild($doc->createTextNode($this->tag));
 
         return $element;
     }

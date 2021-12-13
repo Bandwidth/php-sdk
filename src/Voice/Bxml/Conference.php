@@ -140,7 +140,9 @@ class Conference extends Verb {
     }
 
     public function toBxml($doc) {
-        $element = $doc->createElement("Conference", $this->conferenceName);
+        $element = $doc->createElement("Conference");
+
+        $element->appendChild($doc->createTextNode($this->conferenceName));
 
         if(isset($this->username)) {
             $element->setattribute("username", $this->username);
