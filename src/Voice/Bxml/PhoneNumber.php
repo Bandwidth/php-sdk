@@ -122,7 +122,9 @@ class PhoneNumber extends Verb {
     }
 
     public function toBxml($doc) {
-        $element = $doc->createElement("PhoneNumber", $this->phoneNumber);
+        $element = $doc->createElement("PhoneNumber");
+
+        $element->appendChild($doc->createTextNode($this->phoneNumber));
 
         if(isset($this->username)) {
             $element->setAttribute("username", $this->username);

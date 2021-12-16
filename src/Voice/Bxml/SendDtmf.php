@@ -41,7 +41,9 @@ class SendDtmf extends Verb {
     }
 
     public function toBxml($doc) {
-        $element = $doc->createElement("SendDtmf", $this->digits);
+        $element = $doc->createElement("SendDtmf");
+
+        $element->appendChild($doc->createTextNode($this->digits));
 
         if(isset($this->toneDuration)) {
             $element->setattribute("toneDuration", $this->toneDuration);

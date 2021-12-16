@@ -131,7 +131,9 @@ class SipUri extends Verb {
     }
 
     public function toBxml($doc) {
-        $element = $doc->createElement("SipUri", $this->sip);
+        $element = $doc->createElement("SipUri");
+
+        $element->appendChild($doc->createTextNode($this->sip));
 
         if(isset($this->username)) {
             $element->setAttribute("username", $this->username);

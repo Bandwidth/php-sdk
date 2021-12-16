@@ -49,6 +49,29 @@ final class BxmlTest extends TestCase
         $this->assertEquals($expectedXml, $responseXml);
     }
 
+    public function testGatherEncodedURL() {
+        $gather = new BandwidthLib\Voice\Bxml\Gather();
+        $gather->gatherUrl("https://test.com?param1=test1&param2=test2");
+        $gather->gatherMethod("GET");
+        $gather->username("user");
+        $gather->password("pass");
+        $gather->tag("tag");
+        $gather->terminatingDigits("123");
+        $gather->maxDigits(3);
+        $gather->interDigitTimeout(4);
+        $gather->firstDigitTimeout(5);
+        $gather->repeatCount(3);
+        $gather->gatherFallbackUrl("https://test.com");
+        $gather->gatherFallbackMethod("GET");
+        $gather->fallbackUsername("fuser");
+        $gather->fallbackPassword("fpass");
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($gather);
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Gather username="user" password="pass" tag="tag" gatherUrl="https://test.com?param1=test1&amp;param2=test2" gatherMethod="GET" terminatingDigits="123" maxDigits="3" interDigitTimeout="4" firstDigitTimeout="5" repeatCount="3" gatherFallbackUrl="https://test.com" gatherFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass"/></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
+
     public function testGatherNestedSpeakSentence() {
         $gather = new BandwidthLib\Voice\Bxml\Gather();
         $speakSentence = new BandwidthLib\Voice\Bxml\SpeakSentence("Test");
@@ -206,6 +229,17 @@ final class BxmlTest extends TestCase
         $response = new BandwidthLib\Voice\Bxml\Response();
         $response->addVerb($playAudio);
         $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><PlayAudio username="user" password="pass">https://test.com</PlayAudio></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
+
+    public function testPlayAudioEncodedURL() {
+        $playAudio = new BandwidthLib\Voice\Bxml\PlayAudio("https://test.com?param1=test1&param2=test2");
+        $playAudio->username("user");
+        $playAudio->password("pass");
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($playAudio);
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><PlayAudio username="user" password="pass">https://test.com?param1=test1&amp;param2=test2</PlayAudio></Response>';
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }

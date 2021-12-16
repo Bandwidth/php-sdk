@@ -41,7 +41,9 @@ class PlayAudio extends Verb {
     }
 
     public function toBxml($doc) {
-        $element = $doc->createElement("PlayAudio", $this->url);
+        $element = $doc->createElement("PlayAudio");
+
+        $element->appendChild($doc->createTextNode($this->url));
 
         if(isset($this->username)) {
             $element->setAttribute("username", $this->username);

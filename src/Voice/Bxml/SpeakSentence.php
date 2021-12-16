@@ -50,7 +50,9 @@ class SpeakSentence extends Verb {
     }
 
     public function toBxml($doc) {
-        $element = $doc->createElement("SpeakSentence", $this->sentence);
+        $element = $doc->createElement("SpeakSentence");
+
+        $element->appendChild($doc->createTextNode($this->sentence));
 
         if(isset($this->locale)) {
             $element->setAttribute("locale", $this->locale);
