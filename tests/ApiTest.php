@@ -124,10 +124,11 @@ final class ApiTest extends TestCase
         $body->to = getenv("USER_NUMBER");
         $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
         $body->answerUrl = getenv("BASE_CALLBACK_URL");
+        $body->priority = 1;
         $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
         $callId = $response->getResult()->callId;
         $this->assertTrue(strlen($callId) > 0);
-        $this->assertTrue($response->getResult()->priority == 1);
+        $this->assertTrue($response->getResult()->priority == $body->priority);
     }
 
     public function testCreateCallInvalidPhoneNumber() {
