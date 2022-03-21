@@ -85,6 +85,8 @@ final class ApiTest extends TestCase
         $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
         $callId = $response->getResult()->callId;
         $this->assertTrue(strlen($callId) > 0);
+        
+        sleep(1);
 
         //get phone call information
         $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
@@ -113,9 +115,24 @@ final class ApiTest extends TestCase
         $callId = $response->getResult()->callId;
         $this->assertTrue(strlen($callId) > 0);
 
+        sleep(1);
+
         //get phone call information
         $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
         $this->assertTrue(strlen($response->getResult()->state) > 0);
+    }
+
+    public function testCreateCallWithPriority() {
+        $body = new BandwidthLib\Voice\Models\CreateCallRequest();
+        $body->from = getenv("BW_NUMBER");
+        $body->to = getenv("USER_NUMBER");
+        $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
+        $body->answerUrl = getenv("BASE_CALLBACK_URL");
+        $body->priority = 1;
+        $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
+        $callId = $response->getResult()->callId;
+        $this->assertTrue(strlen($callId) > 0);
+        $this->assertTrue($response->getResult()->priority == $body->priority);
     }
 
     public function testCreateCallInvalidPhoneNumber() {

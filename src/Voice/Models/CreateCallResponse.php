@@ -145,11 +145,17 @@ class CreateCallResponse implements \JsonSerializable
     public $tag;
 
     /**
+     * The priority of this call over other calls from 
+     * @var int $priority public property
+     */
+    public $priority;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (20 == func_num_args()) {
+        if (21 == func_num_args()) {
             $this->accountId            = func_get_arg(0);
             $this->callId               = func_get_arg(1);
             $this->applicationId        = func_get_arg(2);
@@ -170,6 +176,7 @@ class CreateCallResponse implements \JsonSerializable
             $this->fallbackUsername     = func_get_arg(17);
             $this->fallbackPassword     = func_get_arg(18);
             $this->tag                  = func_get_arg(19);
+            $this->priority             = func_get_arg(20);
         }
     }
 
@@ -201,6 +208,7 @@ class CreateCallResponse implements \JsonSerializable
         $json['fallbackUsername']     = $this->fallbackUsername;
         $json['fallbackPassword']     = $this->fallbackPassword;
         $json['tag']                  = $this->tag;
+        $json['priority']             = $this->priority;
 
         return array_filter($json);
     }

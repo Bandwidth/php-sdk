@@ -128,11 +128,17 @@ class CreateCallRequest implements \JsonSerializable
     public $machineDetection;
 
     /**
+     * The priority of this call over other calls from 
+     * @var int $priority public property
+     */
+    public $priority;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (18 == func_num_args()) {
+        if (19 == func_num_args()) {
             $this->from                 = func_get_arg(0);
             $this->to                   = func_get_arg(1);
             $this->uui                  = func_get_arg(2);
@@ -151,6 +157,7 @@ class CreateCallRequest implements \JsonSerializable
             $this->tag                  = func_get_arg(15);
             $this->applicationId        = func_get_arg(16);
             $this->machineDetection     = func_get_arg(17);
+            $this->priority             = func_get_arg(18);
         }
     }
 
@@ -178,6 +185,7 @@ class CreateCallRequest implements \JsonSerializable
         $json['tag']                  = $this->tag;
         $json['applicationId']        = $this->applicationId;
         $json['machineDetection']     = $this->machineDetection;
+        $json['priority']             = $this->priority;
 
         return array_filter($json);
     }
