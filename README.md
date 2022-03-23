@@ -141,7 +141,7 @@ $webRtcClient->addParticipantToSession($accountId, $sessionId, $participantId);
 
 ## Supported PHP Versions
 
-This package can be used with PHP >= 5.4
+This package can be used with PHP >= 7.2
 
 ## Documentation
 
