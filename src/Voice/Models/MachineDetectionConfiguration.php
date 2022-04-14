@@ -107,25 +107,33 @@ class MachineDetectionConfiguration implements \JsonSerializable
     public $fallbackPassword;
 
     /**
+     * When an answering machine is detected, the amount of silence (in seconds) 
+     * before assuming the message has finished playing.
+     * @var double|null $machineSpeechEndThreshold public property
+     */
+    public $machineSpeechEndThreshold;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
     {
-        if (14 == func_num_args()) {
-            $this->mode               = func_get_arg(0);
-            $this->detectionTimeout   = func_get_arg(1);
-            $this->silenceTimeout     = func_get_arg(2);
-            $this->speechThreshold    = func_get_arg(3);
-            $this->speechEndThreshold = func_get_arg(4);
-            $this->delayResult        = func_get_arg(5);
-            $this->callbackUrl        = func_get_arg(6);
-            $this->callbackMethod     = func_get_arg(7);
-            $this->fallbackUrl        = func_get_arg(8);
-            $this->fallbackMethod     = func_get_arg(9);
-            $this->username           = func_get_arg(10);
-            $this->password           = func_get_arg(11);
-            $this->fallbackUsername   = func_get_arg(12);
-            $this->fallbackPassword   = func_get_arg(13);
+        if (15 == func_num_args()) {
+            $this->mode                         = func_get_arg(0);
+            $this->detectionTimeout             = func_get_arg(1);
+            $this->silenceTimeout               = func_get_arg(2);
+            $this->speechThreshold              = func_get_arg(3);
+            $this->speechEndThreshold           = func_get_arg(4);
+            $this->delayResult                  = func_get_arg(5);
+            $this->callbackUrl                  = func_get_arg(6);
+            $this->callbackMethod               = func_get_arg(7);
+            $this->fallbackUrl                  = func_get_arg(8);
+            $this->fallbackMethod               = func_get_arg(9);
+            $this->username                     = func_get_arg(10);
+            $this->password                     = func_get_arg(11);
+            $this->fallbackUsername             = func_get_arg(12);
+            $this->fallbackPassword             = func_get_arg(13);
+            $this->machineSpeechEndThreshold    = func_get_arg(14);
         }
     }
 
@@ -135,20 +143,21 @@ class MachineDetectionConfiguration implements \JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['mode']               = $this->mode;
-        $json['detectionTimeout']   = $this->detectionTimeout;
-        $json['silenceTimeout']     = $this->silenceTimeout;
-        $json['speechThreshold']    = $this->speechThreshold;
-        $json['speechEndThreshold'] = $this->speechEndThreshold;
-        $json['delayResult']        = $this->delayResult;
-        $json['callbackUrl']        = $this->callbackUrl;
-        $json['callbackMethod']     = $this->callbackMethod;
-        $json['fallbackUrl']        = $this->fallbackUrl;
-        $json['fallbackMethod']     = $this->fallbackMethod;
-        $json['username']           = $this->username;
-        $json['password']           = $this->password;
-        $json['fallbackUsername']   = $this->fallbackUsername;
-        $json['fallbackPassword']   = $this->fallbackPassword;
+        $json['mode']                       = $this->mode;
+        $json['detectionTimeout']           = $this->detectionTimeout;
+        $json['silenceTimeout']             = $this->silenceTimeout;
+        $json['speechThreshold']            = $this->speechThreshold;
+        $json['speechEndThreshold']         = $this->speechEndThreshold;
+        $json['delayResult']                = $this->delayResult;
+        $json['callbackUrl']                = $this->callbackUrl;
+        $json['callbackMethod']             = $this->callbackMethod;
+        $json['fallbackUrl']                = $this->fallbackUrl;
+        $json['fallbackMethod']             = $this->fallbackMethod;
+        $json['username']                   = $this->username;
+        $json['password']                   = $this->password;
+        $json['fallbackUsername']           = $this->fallbackUsername;
+        $json['fallbackPassword']           = $this->fallbackPassword;
+        $json['machineSpeechEndThreshold']  = $this->machineSpeechEndThreshold;
 
         return array_filter($json);
     }
