@@ -249,6 +249,113 @@ class APIController extends BaseController
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
     }
 
+/**
+     * Replaces the bxml for an active call
+     *
+     * @param string                   $accountId TODO: type description here
+     * @param string                   $callId    TODO: type description here
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function modifyCallBxml(
+        $accountId,
+        $callId,
+        $body
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/api/v2/accounts/{accountId}/calls/{callId}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId' => $accountId,
+            'callId' => $callId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'content-type'  => 'application/xml; charset=utf-8'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, $body);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ApiErrorException(
+                'Something\'s not quite right... Your request is invalid. Please fix it before trying again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException(
+                'Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to ' .
+                'the API.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 403) {
+            throw new Exceptions\ApiErrorException('User unauthorized to perform this action.', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ApiErrorException(
+                'The resource specified cannot be found or does not belong to you.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new Exceptions\ApiErrorException(
+                'We don\'t support that media type. If a request body is required, please send it to us as ' .
+                '`application/json`.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new Exceptions\ApiErrorException(
+                'You\'re sending requests to this endpoint too frequently. Please slow your request rate down and ' .
+                'try again.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ApiErrorException('Something unexpected happened. Please try again.', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        return new ApiResponse($response->code, $response->headers, null);
+    }
+
     /**
      * Interrupts and replaces an active call's BXML document.
      *
