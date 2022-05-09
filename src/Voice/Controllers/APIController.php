@@ -333,8 +333,8 @@ class APIController extends BaseController
 
         if ($response->code == 415) {
             throw new Exceptions\ApiErrorException(
-                'We don\'t support that media type. If a request body is required, please send it to us as ' .
-                '`application/json`.',
+                'We don\'t support that media type for this endpoint. If a request body is required, please send it to us as ' .
+                '`application/xml`.',
                 $_httpContext
             );
         }
