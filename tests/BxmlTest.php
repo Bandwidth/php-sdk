@@ -12,6 +12,21 @@ use PHPUnit\Framework\TestCase;
 
 final class BxmlTest extends TestCase
 {
+    public function testBxml() {
+        $speakSentence = new BandwidthLib\Voice\Bxml\SpeakSentence("Test");
+        $pause = new BandwidthLib\Voice\Bxml\Pause();
+        $pause->duration("3");
+        $speakSentence->voice("susan");
+        $speakSentence->locale("en_US");
+        $speakSentence->gender("female");
+        $bxml = new BandwidthLib\Voice\Bxml\Bxml();
+        $bxml->addVerb($speakSentence, $pause);
+        $bxml->addVerb($pause);
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence locale="en_US" gender="female" voice="susan">Test</SpeakSentence><Pause duration="3"/></Bxml>';
+        $responseXml = $bxml->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
+
     public function testForward() {
         $forward = new BandwidthLib\Voice\Bxml\Forward();
         $forward->to("+18888888888");
