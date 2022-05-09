@@ -254,6 +254,7 @@ class APIController extends BaseController
      *
      * @param string                   $accountId TODO: type description here
      * @param string                   $callId    TODO: type description here
+     * @param string                   $body      Valid BXML string 
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
