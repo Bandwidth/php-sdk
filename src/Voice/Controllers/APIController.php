@@ -284,7 +284,7 @@ class APIController extends BaseController
         //set HTTP basic auth parameters
         Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
 
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
 
         //call on-before Http callback
         if ($this->getHttpCallBack() != null) {
