@@ -264,7 +264,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/api/v2/accounts/{accountId}/calls/{callId}';
+        $_queryBuilder = '/api/v2/accounts/{accountId}/calls/{callId}/bxml';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
