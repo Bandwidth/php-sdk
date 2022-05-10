@@ -265,7 +265,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/api/v2/accounts/{accountId}/calls/{callId}';
+        $_queryBuilder = '/api/v2/accounts/{accountId}/calls/{callId}/bxml';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -285,7 +285,7 @@ class APIController extends BaseController
         //set HTTP basic auth parameters
         Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
 
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
 
         //call on-before Http callback
         if ($this->getHttpCallBack() != null) {
