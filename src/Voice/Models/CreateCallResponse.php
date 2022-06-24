@@ -54,7 +54,7 @@ class CreateCallResponse implements \JsonSerializable
      * @factory \BandwidthLib\Utils\DateTimeHelper::fromRfc3339DateTime
      * @var \DateTime|null $enqueuedTime public property
      */
-    public $enqueuedTime;    
+    public $enqueuedTime;
 
     /**
      * @todo Write general description for this property
