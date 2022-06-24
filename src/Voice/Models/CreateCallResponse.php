@@ -193,7 +193,7 @@ class CreateCallResponse implements \JsonSerializable
         $json['from']                 = $this->from;
         $json['enqueuedTime']            =
             isset($this->enqueuedTime) ?
-            DateTimeHelper::toRfc3339DateTime($this->enqueuedTime) : null;            
+            DateTimeHelper::toRfc3339DateTime($this->enqueuedTime) : null;
         $json['callUrl']              = $this->callUrl;
         $json['callTimeout']          = $this->callTimeout;
         $json['callbackTimeout']      = $this->callbackTimeout;
