@@ -121,6 +121,7 @@ final class ApiTest extends TestCase
         //get phone call information
         $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
         $this->assertTrue(strlen($response->getResult()->state) > 0);
+        $this->assertTrue(strlen($response->getResult()->enqueuedTime) > 0);
     }
 
     public function testCreateCallWithPriority() {

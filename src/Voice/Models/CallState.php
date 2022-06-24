@@ -86,6 +86,13 @@ class CallState implements \JsonSerializable
     /**
      * @todo Write general description for this property
      * @factory \BandwidthLib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $enqueuedTime public property
+     */
+    public $enqueuedTime;
+
+    /**
+     * @todo Write general description for this property
+     * @factory \BandwidthLib\Utils\DateTimeHelper::fromRfc3339DateTime
      * @var \DateTime|null $answerTime public property
      */
     public $answerTime;
@@ -142,12 +149,13 @@ class CallState implements \JsonSerializable
             $this->identity        = func_get_arg(8);
             $this->stirShaken      = func_get_arg(9);
             $this->startTime       = func_get_arg(10);
-            $this->answerTime      = func_get_arg(11);
-            $this->endTime         = func_get_arg(12);
-            $this->disconnectCause = func_get_arg(13);
-            $this->errorMessage    = func_get_arg(14);
-            $this->errorId         = func_get_arg(15);
-            $this->lastUpdate      = func_get_arg(16);
+            $this->enqueuedTime    = func_get_arg(11);
+            $this->answerTime      = func_get_arg(12);
+            $this->endTime         = func_get_arg(13);
+            $this->disconnectCause = func_get_arg(14);
+            $this->errorMessage    = func_get_arg(15);
+            $this->errorId         = func_get_arg(16);
+            $this->lastUpdate      = func_get_arg(17);
         }
     }
 
@@ -170,6 +178,9 @@ class CallState implements \JsonSerializable
         $json['startTime']       =
             isset($this->startTime) ?
             DateTimeHelper::toRfc3339DateTime($this->startTime) : null;
+        $json['enqueuedTime']       =
+            isset($this->enqueuedTime) ?
+            DateTimeHelper::toRfc3339DateTime($this->enqueuedTime) : null;
         $json['answerTime']      =
             isset($this->answerTime) ?
             DateTimeHelper::toRfc3339DateTime($this->answerTime) : null;
