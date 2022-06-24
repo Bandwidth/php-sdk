@@ -85,12 +85,15 @@ final class ApiTest extends TestCase
         $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
         $callId = $response->getResult()->callId;
         $this->assertTrue(strlen($callId) > 0);
-        
+        $this->assertTrue(is_a($response->getResult()->enqueuedTime, 'DateTime'));
+
         sleep(1);
 
         //get phone call information
         $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
         $this->assertTrue(strlen($response->getResult()->state) > 0);
+        $this->assertTrue(is_a($response->getResult()->enqueuedTime, 'DateTime'));
+
     }
 
     public function testCreateCallWithAmdAndGetCallState() {
@@ -121,7 +124,6 @@ final class ApiTest extends TestCase
         //get phone call information
         $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
         $this->assertTrue(strlen($response->getResult()->state) > 0);
-        $this->assertTrue(is_a($response->getResult()->enqueuedTime, 'DateTime'));
     }
 
     public function testCreateCallWithPriority() {
