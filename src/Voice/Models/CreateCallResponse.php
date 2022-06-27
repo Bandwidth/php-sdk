@@ -52,9 +52,9 @@ class CreateCallResponse implements \JsonSerializable
     /**
      * @todo Write general description for this property
      * @factory \BandwidthLib\Utils\DateTimeHelper::fromRfc3339DateTime
-     * @var \DateTime|null $startTime public property
+     * @var \DateTime|null $enqueuedTime public property
      */
-    public $startTime;
+    public $enqueuedTime;
 
     /**
      * @todo Write general description for this property
@@ -161,7 +161,7 @@ class CreateCallResponse implements \JsonSerializable
             $this->applicationId        = func_get_arg(2);
             $this->to                   = func_get_arg(3);
             $this->from                 = func_get_arg(4);
-            $this->startTime            = func_get_arg(5);
+            $this->enqueuedTime         = func_get_arg(5);
             $this->callUrl              = func_get_arg(6);
             $this->callTimeout          = func_get_arg(7);
             $this->callbackTimeout      = func_get_arg(8);
@@ -191,9 +191,9 @@ class CreateCallResponse implements \JsonSerializable
         $json['applicationId']        = $this->applicationId;
         $json['to']                   = $this->to;
         $json['from']                 = $this->from;
-        $json['startTime']            =
-            isset($this->startTime) ?
-            DateTimeHelper::toRfc3339DateTime($this->startTime) : null;
+        $json['enqueuedTime']            =
+            isset($this->enqueuedTime) ?
+            DateTimeHelper::toRfc3339DateTime($this->enqueuedTime) : null;
         $json['callUrl']              = $this->callUrl;
         $json['callTimeout']          = $this->callTimeout;
         $json['callbackTimeout']      = $this->callbackTimeout;
