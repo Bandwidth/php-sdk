@@ -19,7 +19,8 @@ composer require bandwidth/sdk
 
 ### Initialize
 
-```
+```php
+
 require "vendor/autoload.php";
 
 $config = new BandwidthLib\Configuration(
@@ -40,7 +41,8 @@ $accountId = "12345";
 
 ### Create A Phone Call
 
-```
+```php
+
 $voiceClient = $client->getVoice()->getClient();
 
 $body = new BandwidthLib\Voice\Models\CreateCallRequest();
@@ -59,7 +61,8 @@ try {
 
 ### Send A Text Message
 
-```
+```php
+
 $messagingClient = $client->getMessaging()->getClient();
 
 $body = new BandwidthLib\Messaging\Models\MessageRequest();
@@ -78,7 +81,8 @@ try {
 
 ### Create BXML
 
-```
+```php
+
 $speakSentence = new BandwidthLib\Voice\Bxml\SpeakSentence("Hello!");
 $speakSentence->voice("susan");
 $speakSentence->locale("en_US");
@@ -90,7 +94,8 @@ echo $response->toBxml();
 
 ### Create A MFA Request
 
-```
+```php
+
 $mfaClient = $client->getTwoFactorAuth()->getMFA();
 
 $body = new BandwidthLib\TwoFactorAuth\Models\TwoFactorCodeRequestSchema();
@@ -117,7 +122,8 @@ echo $response->getResult()->valid;
 
 ### WebRtc Participant & Session Management
 
-```
+```php
+
 $webRtcClient = $client->getWebRtc()->getClient();
 
 $createSessionBody = new BandwidthLib\WebRtc\Models\Session();
@@ -133,10 +139,13 @@ $createParticipantBody->publishPermissions = array(
     BandwidthLib\WebRtc\Models\PublishPermissionEnum::VIDEO
 );
 
+$body = new BandwidthLib\WebRtc\Models\Subscriptions();
+$body->sessionId = "1234-abcd";
+
 $createParticipantResponse = $webRtcClient->createParticipant($accountId, $createParticipantBody);
 $participantId = $createParticipantResponse->getResult()->participant->id;
 
-$webRtcClient->addParticipantToSession($accountId, $sessionId, $participantId);
+$webRtcClient->addParticipantToSession($accountId, $sessionId, $participantId, $body);
 ```
 
 ## Supported PHP Versions
