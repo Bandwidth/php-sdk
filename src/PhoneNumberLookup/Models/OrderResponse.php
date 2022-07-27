@@ -39,7 +39,7 @@ class OrderResponse implements \JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         $json = array();
         $json['requestId'] = $this->requestId;
