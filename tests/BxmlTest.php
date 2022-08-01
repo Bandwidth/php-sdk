@@ -351,6 +351,35 @@ final class BxmlTest extends TestCase
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }
+    public function testStartStream() {
+        $startStream = new BandwidthLib\Voice\Bxml\StartStream();
+        $startStream->name("test");
+        $startStream->destination("https://url.com");
+        $startStream->streamEventMethod("POST");
+        $startStream->username("user");
+        $startStream->password("pass");
+        $startStream->streamEventUrl("https://url.com");
+   
+
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($startStream);
+
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><StartStream name="test" destination="https://url.com" streamEventMethod="POST" username="user" password="pass" streamEventUrl="https://url.com"/></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
+
+    public function testStopStream() {
+        $stopStream = new BandwidthLib\Voice\Bxml\StopStream();
+        $stopStream->name("test");
+
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($stopStream);
+
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><StopStream name="test/></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
 
     public function testRecord() {
         $record = new BandwidthLib\Voice\Bxml\Record();
