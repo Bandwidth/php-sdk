@@ -35,7 +35,7 @@ class StartStream extends Verb {
      * Sets the tracks attribute for StartStream
      *
      * @param string $tracks The part of the call to send a stream from. `inbound`, `outbound` or `both`. Default is `inbound`. 
-     * as ("GET" or "POST")
+     * 
      */
     public function tracks($tracks) {
         $this->tracks = $tracks;
@@ -107,7 +107,7 @@ class StartStream extends Verb {
         if(isset($this->streamEventMethod)) {
             $element->setattribute("streamEventMethod", $this->streamEventMethod);
         }
-        
+
         return $element;
     }
 }
