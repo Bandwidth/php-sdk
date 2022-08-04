@@ -376,7 +376,7 @@ final class BxmlTest extends TestCase
         $response = new BandwidthLib\Voice\Bxml\Response();
         $response->addVerb($stopStream);
 
-        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><StopStream name="test/></Response>';
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><StopStream name="test"/></Response>';
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }
