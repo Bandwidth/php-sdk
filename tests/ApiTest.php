@@ -62,7 +62,7 @@ final class ApiTest extends TestCase
         //constants
         $mediaId = "text-media-id-" . uniqid();
         $content = "Hello world";
-        $contentType = 'text/plain',
+        $contentType = 'text/plain';
         
         //media upload
         $this->bandwidthClient->getMessaging()->getClient()->uploadMedia(getenv("BW_ACCOUNT_ID"), $mediaId, $content, $contentType);
