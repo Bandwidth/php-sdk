@@ -77,6 +77,15 @@ class StartStream extends Verb {
         $this->streamEventMethod = $streamEventMethod;
     }
 
+    /**
+     * Sets the <StreamParam/> tag. You may specify up to 12 <StreamParam/> elements nested within a <StartStream> tag. These elements define optional user specified parameters that will be sent to the destination URL when the stream is first started.
+     *
+     * @param list<StreamParam> $streamParams The list of StreamParam tags
+     */
+    public function streamParams($streamParams) {
+        $this->streamParams = $streamParams;
+    }
+
     public function toBxml($doc) {
         $element = $doc->createElement("StartStream");
 
@@ -106,6 +115,12 @@ class StartStream extends Verb {
 
         if(isset($this->streamEventMethod)) {
             $element->setattribute("streamEventMethod", $this->streamEventMethod);
+        }
+
+        if(isset($this->streamParams)) {
+            foreach ($this->streamParams as $streamParam) {
+                $element->appendChild($streamParam->toBxml($doc));
+            }
         }
 
         return $element;
