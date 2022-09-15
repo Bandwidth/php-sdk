@@ -2,7 +2,7 @@
 /**
  * StreamParam.php
  *
- * Implementation of the BXML StreamParam tag
+ * Implementation of the BXML StreamParam tag. You may specify up to 12 <StreamParam/> elements nested within a <StartStream> tag. These elements define optional user specified parameters that will be sent to the destination URL when the stream is first started.
  *
  *  * @copyright Bandwidth INC
  */
@@ -12,15 +12,6 @@ namespace BandwidthLib\Voice\Bxml;
 require_once "Verb.php";
 
 class StreamParam extends Verb {
-
-    /**
-     * Constructor for StreamParam
-     *
-     * @param string  * Sets the <StreamParam/> tag. You may specify up to 12 <StreamParam/> elements nested within a <StartStream> tag. These elements define optional user specified parameters that will be sent to the destination URL when the stream is first started.
-     */
-    public function __construct($StreamParam) {
-        $this->StreamParam = $StreamParam;
-    }
 
     /**
      * Sets the name attribute for StreamParam
@@ -42,8 +33,6 @@ class StreamParam extends Verb {
 
     public function toBxml($doc) {
         $element = $doc->createElement("StreamParam");
-
-        $element->appendChild($doc->createTextNode($this->StreamParam));
 
         if(isset($this->name)) {
             $element->setAttribute("name", $this->name);
