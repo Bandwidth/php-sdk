@@ -352,6 +352,12 @@ final class BxmlTest extends TestCase
         $this->assertEquals($expectedXml, $responseXml);
     }
     public function testStartStream() {
+        $streamParam1 = new BandwidthLib\Voice\Bxml\StreamParam();
+        $streamParam1->name("name1");
+        $streamParam1->value("value1");
+        $streamParam2 = new BandwidthLib\Voice\Bxml\StreamParam();
+        $streamParam2->name("name2");
+        $streamParam2->value("value2");
         $startStream = new BandwidthLib\Voice\Bxml\StartStream();
         $startStream->name("test");
         $startStream->tracks("inbound");
@@ -360,11 +366,13 @@ final class BxmlTest extends TestCase
         $startStream->username("user");
         $startStream->password("pass");
         $startStream->streamEventUrl("https://url.com");
+        $startStream->streamParams(array($streamParam1, $streamParam2));
+
 
         $response = new BandwidthLib\Voice\Bxml\Response();
         $response->addVerb($startStream);
 
-        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><StartStream destination="https://url.com" name="test" tracks="inbound" username="user" password="pass" streamEventUrl="https://url.com" streamEventMethod="POST"/></Response>';
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><StartStream destination="https://url.com" name="test" tracks="inbound" username="user" password="pass" streamEventUrl="https://url.com" streamEventMethod="POST"><StreamParam name="name1" value="value1"/><StreamParam name="name2" value="value2"/></StartStream></Response>';
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }
