@@ -6,8 +6,8 @@
 |:---:|:---:|
 | Windows 2016 | 7.4, 8.0 |
 | Windows 2019 | 7.4, 8.0 |
-| Ubuntu 18.04 | 7.4, 8.0 |
 | Ubuntu 20.04 | 7.4, 8.0 |
+| Ubuntu 22.04 | 7.4, 8.0 |
 
 ## Getting Started
 
