@@ -9,16 +9,34 @@
   
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class SpeakSentence extends Verb {
+    /**
+     * @var string
+     */
+    private $gender;
+    /**
+     * @var string
+     */
+    private $locale;
+    /**
+     * @var string
+     */
+    private $voice;
+    /**
+     * @var string
+     */
+    private $sentence;
 
     /**
      * Constructor for SpeakSentence
      *
      * @param string $sentence The sentence to speak in the call
      */
-    public function __construct($sentence) {
+    public function __construct(string $sentence) {
         $this->sentence = $sentence;
     }
 
@@ -27,7 +45,7 @@ class SpeakSentence extends Verb {
      *
      * @param string $voice The voice to speak in the call
      */
-    public function voice($voice) {
+    public function voice(string $voice) {
         $this->voice = $voice;
     }
 
@@ -36,7 +54,7 @@ class SpeakSentence extends Verb {
      *
      * @param string $locale The locale of the voice in the call
      */
-    public function locale($locale) {
+    public function locale(string $locale) {
         $this->locale = $locale;
     }
 
@@ -45,11 +63,11 @@ class SpeakSentence extends Verb {
      *
      * @param string $gender The gender of the voice in the call
      */
-    public function gender($gender) {
+    public function gender(string $gender) {
         $this->gender = $gender;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("SpeakSentence");
 
         $element->appendChild($doc->createTextNode($this->sentence));

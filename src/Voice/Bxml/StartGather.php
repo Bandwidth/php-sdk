@@ -9,18 +9,40 @@
 
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 require_once "SpeakSentence.php";
 require_once "PlayAudio.php";
 
 class StartGather extends Verb {
+    /**
+     * @var string
+     */
+    private $tag;
+    /**
+     * @var string
+     */
+    private $dtmfMethod;
+    /**
+     * @var string
+     */
+    private $dtmfUrl;
+    /**
+     * @var string
+     */
+    private $password;
+    /**
+     * @var string
+     */
+    private $username;
 
     /**
      * Sets the username attribute for StartGather
      *
      * @param string $username The username for http authentication for the gather callback
      */
-    public function username($username) {
+    public function username(string $username) {
         $this->username = $username;
     }
 
@@ -29,7 +51,7 @@ class StartGather extends Verb {
      *
      * @param string $password The password for http authentication for the gather callback
      */
-    public function password($password) {
+    public function password(string $password) {
         $this->password = $password;
     }
 
@@ -38,7 +60,7 @@ class StartGather extends Verb {
      *
      * @param string $dtmfUrl The url to receive the dtmf callback 
      */
-    public function dtmfUrl($dtmfUrl) {
+    public function dtmfUrl(string $dtmfUrl) {
         $this->dtmfUrl = $dtmfUrl;
     }
 
@@ -47,7 +69,7 @@ class StartGather extends Verb {
      *
      * @param string $dtmfMethod The http method to send the dtmf callback 
      */
-    public function dtmfMethod($dtmfMethod) {
+    public function dtmfMethod(string $dtmfMethod) {
         $this->dtmfMethod = $dtmfMethod;
     }
 
@@ -56,11 +78,11 @@ class StartGather extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag($tag) {
+    public function tag(string $tag) {
         $this->tag = $tag;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("StartGather");
 
         if(isset($this->username)) {

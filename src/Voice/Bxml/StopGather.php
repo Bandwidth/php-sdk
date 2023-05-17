@@ -9,11 +9,13 @@
   
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class StopGather extends Verb {
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("StopGather");
         return $element;
     }

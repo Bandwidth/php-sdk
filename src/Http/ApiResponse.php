@@ -32,11 +32,11 @@ class ApiResponse
 
     /**
      * Create a new instance of a HttpResponse
-     * @param int    $statusCode Response code
+     * @param int $statusCode Response code
      * @param array  $headers    Map of headers
      * @param mixed  $result     The deserialized response
      */
-    public function __construct($statusCode, array $headers, $result)
+    public function __construct(int $statusCode, array $headers, $result)
     {
         $this->statusCode = $statusCode;
         $this->headers = $headers;

@@ -9,16 +9,26 @@
 
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class StreamParam extends Verb {
+    /**
+     * @var string
+     */
+    private $value;
+    /**
+     * @var string
+     */
+    private $name;
 
     /**
      * Sets the name attribute for StreamParam
      *
      * @param string $name (required) The name of this parameter, up to 256 characters.
      */
-    public function name($name) {
+    public function name(string $name) {
         $this->name = $name;
     }
 
@@ -27,11 +37,11 @@ class StreamParam extends Verb {
      *
      * @param string $value (required) The value of this parameter, up to 2048 characters.
      */
-    public function value($value) {
+    public function value(string $value) {
         $this->value = $value;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("StreamParam");
 
         if(isset($this->name)) {

@@ -36,14 +36,14 @@ class APIController extends BaseController
      * Participants are idempotent, so relevant parameters must be set in this function if desired.
      *
      *
-     * @param string             $accountId Account ID
-     * @param Models\Participant $body      (optional) Participant parameters
+     * @param string $accountId Account ID
+     * @param Models\Participant|null $body      (optional) Participant parameters
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createParticipant(
-        $accountId,
-        $body = null
+        string             $accountId,
+        Models\Participant $body = null
     ) {
 
         //prepare query string for API call
@@ -126,8 +126,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getParticipant(
-        $accountId,
-        $participantId
+        string $accountId,
+        string $participantId
     ) {
 
         //prepare query string for API call
@@ -204,8 +204,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function deleteParticipant(
-        $accountId,
-        $participantId
+        string $accountId,
+        string $participantId
     ) {
 
         //prepare query string for API call
@@ -276,14 +276,14 @@ class APIController extends BaseController
      * Sessions are idempotent, so relevant parameters must be set in this function if desired.
      *
      *
-     * @param string         $accountId Account ID
-     * @param Models\Session $body      (optional) Session parameters
+     * @param string $accountId Account ID
+     * @param Models\Session|null $body      (optional) Session parameters
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createSession(
-        $accountId,
-        $body = null
+        string         $accountId,
+        Models\Session $body = null
     ) {
 
         //prepare query string for API call
@@ -363,8 +363,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getSession(
-        $accountId,
-        $sessionId
+        string $accountId,
+        string $sessionId
     ) {
 
         //prepare query string for API call
@@ -441,8 +441,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function deleteSession(
-        $accountId,
-        $sessionId
+        string $accountId,
+        string $sessionId
     ) {
 
         //prepare query string for API call
@@ -516,8 +516,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function listSessionParticipants(
-        $accountId,
-        $sessionId
+        string $accountId,
+        string $sessionId
     ) {
 
         //prepare query string for API call
@@ -591,18 +591,18 @@ class APIController extends BaseController
      * Subscriptions can optionally be provided as part of this call.
      *
      *
-     * @param string               $accountId     Account ID
-     * @param string               $sessionId     Session ID
-     * @param string               $participantId Participant ID
-     * @param Models\Subscriptions $body          (optional) Subscriptions the participant should be created with
+     * @param string $accountId     Account ID
+     * @param string $sessionId     Session ID
+     * @param string $participantId Participant ID
+     * @param Models\Subscriptions|null $body          (optional) Subscriptions the participant should be created with
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function addParticipantToSession(
-        $accountId,
-        $sessionId,
-        $participantId,
-        $body = null
+        string               $accountId,
+        string               $sessionId,
+        string               $participantId,
+        Models\Subscriptions $body = null
     ) {
 
         //prepare query string for API call
@@ -685,9 +685,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function removeParticipantFromSession(
-        $accountId,
-        $sessionId,
-        $participantId
+        string $accountId,
+        string $sessionId,
+        string $participantId
     ) {
 
         //prepare query string for API call
@@ -763,9 +763,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getParticipantSubscriptions(
-        $accountId,
-        $sessionId,
-        $participantId
+        string $accountId,
+        string $sessionId,
+        string $participantId
     ) {
 
         //prepare query string for API call
@@ -843,18 +843,18 @@ class APIController extends BaseController
      * `Subscriptions` object to remove all subscriptions.
      *
      *
-     * @param string               $accountId     Account ID
-     * @param string               $sessionId     Session ID
-     * @param string               $participantId Participant ID
-     * @param Models\Subscriptions $body          (optional) Initial state
+     * @param string $accountId     Account ID
+     * @param string $sessionId     Session ID
+     * @param string $participantId Participant ID
+     * @param Models\Subscriptions|null $body          (optional) Initial state
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateParticipantSubscriptions(
-        $accountId,
-        $sessionId,
-        $participantId,
-        $body = null
+        string               $accountId,
+        string               $sessionId,
+        string               $participantId,
+        Models\Subscriptions $body = null
     ) {
 
         //prepare query string for API call

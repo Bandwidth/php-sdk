@@ -12,6 +12,10 @@ namespace BandwidthLib\Voice\Bxml;
 use DOMDocument;
 
 class Response {
+    /**
+     * @var array
+     */
+    private $verbs;
 
     /**
      * Creates the Response class with an emty list of verbs
@@ -25,7 +29,7 @@ class Response {
      *
      * @param Verb $verb The verb to add to the list
      */
-    public function addVerb($verb) {
+    public function addVerb(Verb $verb) {
         array_push($this->verbs, $verb);
     }
 

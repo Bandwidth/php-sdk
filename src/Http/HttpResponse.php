@@ -32,11 +32,11 @@ class HttpResponse
 
     /**
      * Create a new instance of a HttpResponse
-     * @param int    $statusCode Response code
+     * @param int $statusCode Response code
      * @param array  $headers    Map of headers
      * @param string $rawBody    Raw response body
      */
-    public function __construct($statusCode, array $headers, $rawBody)
+    public function __construct(int $statusCode, array $headers, string $rawBody)
     {
         $this->statusCode = $statusCode;
         $this->headers = $headers;

@@ -9,16 +9,38 @@
 
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class Forward extends Verb {
+    /**
+     * @var string
+     */
+    private $diversionReason;
+    /**
+     * @var string
+     */
+    private $diversionTreatment;
+    /**
+     * @var string
+     */
+    private $callTimeout;
+    /**
+     * @var string
+     */
+    private $from;
+    /**
+     * @var string
+     */
+    private $to;
 
     /**
      * Sets the to attribute for Forward
      *
      * @param string $to The phone number to receive the phone call 
      */
-    public function to($to) {
+    public function to(string $to) {
         $this->to = $to;
     }
 
@@ -27,7 +49,7 @@ class Forward extends Verb {
      *
      * @param string $from The phone number to make the phone call
      */
-    public function from($from) {
+    public function from(string $from) {
         $this->from = $from;
     }
 
@@ -36,7 +58,7 @@ class Forward extends Verb {
      *
      * @param string $callTimeout The timeout in seconds for the phone call 
      */
-    public function callTimeout($callTimeout) {
+    public function callTimeout(string $callTimeout) {
         $this->callTimeout = $callTimeout;
     }
 
@@ -45,7 +67,7 @@ class Forward extends Verb {
      *
      * @param string $diversionTreatment The diversion treatment for the phone call 
      */
-    public function diversionTreatment($diversionTreatment) {
+    public function diversionTreatment(string $diversionTreatment) {
         $this->diversionTreatment = $diversionTreatment;
     }
 
@@ -54,11 +76,11 @@ class Forward extends Verb {
      *
      * @param string $diversionReason The diversion treatment for the phone call 
      */
-    public function diversionReason($diversionReason) {
+    public function diversionReason(string $diversionReason) {
         $this->diversionReason = $diversionReason;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("Forward");
 
         if(isset($this->to)) {

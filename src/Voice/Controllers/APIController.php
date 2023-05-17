@@ -33,14 +33,14 @@ class APIController extends BaseController
     /**
      * Creates an outbound phone call.
      *
-     * @param string                   $accountId TODO: type description here
+     * @param string $accountId TODO: type description here
      * @param Models\CreateCallRequest $body      TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createCall(
-        $accountId,
-        $body
+        string                   $accountId,
+        Models\CreateCallRequest $body
     ) {
 
         //prepare query string for API call
@@ -150,8 +150,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getCall(
-        $accountId,
-        $callId
+        string $accountId,
+        string $callId
     ) {
 
         //prepare query string for API call
@@ -252,16 +252,16 @@ class APIController extends BaseController
 /**
      * Replaces the bxml for an active call
      *
-     * @param string                   $accountId TODO: type description here
-     * @param string                   $callId    TODO: type description here
-     * @param string                   $body      Valid BXML string 
+     * @param string $accountId TODO: type description here
+     * @param string $callId    TODO: type description here
+     * @param string $body      Valid BXML string
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function modifyCallBxml(
-        $accountId,
-        $callId,
-        $body
+        string $accountId,
+        string $callId,
+        string $body
     ) {
 
         //prepare query string for API call
@@ -360,16 +360,16 @@ class APIController extends BaseController
     /**
      * Interrupts and replaces an active call's BXML document.
      *
-     * @param string                   $accountId TODO: type description here
-     * @param string                   $callId    TODO: type description here
+     * @param string $accountId TODO: type description here
+     * @param string $callId    TODO: type description here
      * @param Models\ModifyCallRequest $body      TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function modifyCall(
-        $accountId,
-        $callId,
-        $body
+        string                   $accountId,
+        string                   $callId,
+        Models\ModifyCallRequest $body
     ) {
 
         //prepare query string for API call
@@ -471,16 +471,16 @@ class APIController extends BaseController
     /**
      * Pauses or resumes a recording.
      *
-     * @param string                            $accountId TODO: type description here
-     * @param string                            $callId    TODO: type description here
+     * @param string $accountId TODO: type description here
+     * @param string $callId    TODO: type description here
      * @param Models\ModifyCallRecordingRequest $body      TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function modifyCallRecordingState(
-        $accountId,
-        $callId,
-        $body
+        string                            $accountId,
+        string                            $callId,
+        Models\ModifyCallRecordingRequest $body
     ) {
 
         //prepare query string for API call
@@ -589,8 +589,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getCallRecordings(
-        $accountId,
-        $callId
+        string $accountId,
+        string $callId
     ) {
 
         //prepare query string for API call
@@ -701,9 +701,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getCallRecording(
-        $accountId,
-        $callId,
-        $recordingId
+        string $accountId,
+        string $callId,
+        string $recordingId
     ) {
 
         //prepare query string for API call
@@ -815,9 +815,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function deleteRecording(
-        $accountId,
-        $callId,
-        $recordingId
+        string $accountId,
+        string $callId,
+        string $recordingId
     ) {
 
         //prepare query string for API call
@@ -923,9 +923,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getDownloadCallRecording(
-        $accountId,
-        $callId,
-        $recordingId
+        string $accountId,
+        string $callId,
+        string $recordingId
     ) {
 
         //prepare query string for API call
@@ -1034,9 +1034,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function deleteRecordingMedia(
-        $accountId,
-        $callId,
-        $recordingId
+        string $accountId,
+        string $callId,
+        string $recordingId
     ) {
 
         //prepare query string for API call
@@ -1143,9 +1143,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getCallTranscription(
-        $accountId,
-        $callId,
-        $recordingId
+        string $accountId,
+        string $callId,
+        string $recordingId
     ) {
 
         //prepare query string for API call
@@ -1251,18 +1251,18 @@ class APIController extends BaseController
     /**
      * Requests that the specified recording be transcribed.
      *
-     * @param string                            $accountId   TODO: type description here
-     * @param string                            $callId      TODO: type description here
-     * @param string                            $recordingId TODO: type description here
+     * @param string $accountId   TODO: type description here
+     * @param string $callId      TODO: type description here
+     * @param string $recordingId TODO: type description here
      * @param Models\TranscribeRecordingRequest $body        TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createTranscribeCallRecording(
-        $accountId,
-        $callId,
-        $recordingId,
-        $body
+        string                            $accountId,
+        string                            $callId,
+        string                            $recordingId,
+        Models\TranscribeRecordingRequest $body
     ) {
 
         //prepare query string for API call
@@ -1380,9 +1380,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function deleteCallTranscription(
-        $accountId,
-        $callId,
-        $recordingId
+        string $accountId,
+        string $callId,
+        string $recordingId
     ) {
 
         //prepare query string for API call
@@ -1482,22 +1482,22 @@ class APIController extends BaseController
     /**
      * Returns information about the conferences in the account.
      *
-     * @param string  $accountId      TODO: type description here
-     * @param string  $name           (optional) TODO: type description here
-     * @param string  $minCreatedTime (optional) TODO: type description here
-     * @param string  $maxCreatedTime (optional) TODO: type description here
+     * @param string $accountId      TODO: type description here
+     * @param string|null $name           (optional) TODO: type description here
+     * @param string|null $minCreatedTime (optional) TODO: type description here
+     * @param string|null $maxCreatedTime (optional) TODO: type description here
      * @param integer $pageSize       (optional) Example: 1000
-     * @param string  $pageToken      (optional) TODO: type description here
+     * @param string|null $pageToken      (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function getConferences(
-        $accountId,
-        $name = null,
-        $minCreatedTime = null,
-        $maxCreatedTime = null,
-        $pageSize = 1000,
-        $pageToken = null
+        string $accountId,
+        string $name = null,
+        string $minCreatedTime = null,
+        string $maxCreatedTime = null,
+        int    $pageSize = 1000,
+        string $pageToken = null
     ) {
 
         //prepare query string for API call
@@ -1612,8 +1612,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getConference(
-        $accountId,
-        $conferenceId
+        string $accountId,
+        string $conferenceId
     ) {
 
         //prepare query string for API call
@@ -1714,16 +1714,16 @@ class APIController extends BaseController
     /**
      * Modify the conference state.
      *
-     * @param string                         $accountId    TODO: type description here
-     * @param string                         $conferenceId TODO: type description here
+     * @param string $accountId    TODO: type description here
+     * @param string $conferenceId TODO: type description here
      * @param Models\ModifyConferenceRequest $body         TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function modifyConference(
-        $accountId,
-        $conferenceId,
-        $body
+        string                         $accountId,
+        string                         $conferenceId,
+        Models\ModifyConferenceRequest $body
     ) {
 
         //prepare query string for API call
@@ -1825,18 +1825,18 @@ class APIController extends BaseController
     /**
      * Updates settings for a particular conference member.
      *
-     * @param string                       $accountId    TODO: type description here
-     * @param string                       $conferenceId TODO: type description here
-     * @param string                       $callId       TODO: type description here
+     * @param string $accountId    TODO: type description here
+     * @param string $conferenceId TODO: type description here
+     * @param string $callId       TODO: type description here
      * @param Models\ConferenceMemberState $body         TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function modifyConferenceMember(
-        $accountId,
-        $conferenceId,
-        $callId,
-        $body
+        string                       $accountId,
+        string                       $conferenceId,
+        string                       $callId,
+        Models\ConferenceMemberState $body
     ) {
 
         //prepare query string for API call
@@ -1946,9 +1946,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getConferenceMember(
-        $accountId,
-        $conferenceId,
-        $memberId
+        string $accountId,
+        string $conferenceId,
+        string $memberId
     ) {
 
         //prepare query string for API call
@@ -2061,8 +2061,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getConferenceRecordings(
-        $accountId,
-        $conferenceId
+        string $accountId,
+        string $conferenceId
     ) {
 
         //prepare query string for API call
@@ -2173,9 +2173,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getConferenceRecording(
-        $accountId,
-        $conferenceId,
-        $recordingId
+        string $accountId,
+        string $conferenceId,
+        string $recordingId
     ) {
 
         //prepare query string for API call
@@ -2288,9 +2288,9 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getDownloadConferenceRecording(
-        $accountId,
-        $conferenceId,
-        $recordingId
+        string $accountId,
+        string $conferenceId,
+        string $recordingId
     ) {
 
         //prepare query string for API call
@@ -2395,19 +2395,19 @@ class APIController extends BaseController
      * 1000 entries and may be empty if no recordings match the specified criteria.
      *
      * @param string $accountId    TODO: type description here
-     * @param string $from         (optional) TODO: type description here
-     * @param string $to           (optional) TODO: type description here
-     * @param string $minStartTime (optional) TODO: type description here
-     * @param string $maxStartTime (optional) TODO: type description here
+     * @param string|null $from         (optional) TODO: type description here
+     * @param string|null $to           (optional) TODO: type description here
+     * @param string|null $minStartTime (optional) TODO: type description here
+     * @param string|null $maxStartTime (optional) TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function getQueryCallRecordings(
-        $accountId,
-        $from = null,
-        $to = null,
-        $minStartTime = null,
-        $maxStartTime = null
+        string $accountId,
+        string $from = null,
+        string $to = null,
+        string $minStartTime = null,
+        string $maxStartTime = null
     ) {
 
         //prepare query string for API call

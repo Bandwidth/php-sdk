@@ -9,16 +9,66 @@
 
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class PhoneNumber extends Verb {
+    /**
+     * @var string
+     */
+    private $fallbackPassword;
+    /**
+     * @var string
+     */
+    private $fallbackUsername;
+    /**
+     * @var string
+     */
+    private $transferAnswerFallbackMethod;
+    /**
+     * @var string
+     */
+    private $transferAnswerFallbackUrl;
+    /**
+     * @var string
+     */
+    private $tag;
+    /**
+     * @var string
+     */
+    private $transferDisconnectMethod;
+    /**
+     * @var string
+     */
+    private $transferDisconnectUrl;
+    /**
+     * @var string
+     */
+    private $transferAnswerMethod;
+    /**
+     * @var string
+     */
+    private $transferAnswerUrl;
+    /**
+     * @var string
+     */
+    private $password;
+    /**
+     * @var string
+     */
+    private $username;
+    /**
+     * @var string
+     */
+    private $phoneNumber;
 
     /**
      * Constructor for PhoneNumber
      *
      * @param string $phoneNumber The phone number for the tag
      */
-    public function __construct($phoneNumber) {
+    public function __construct(string $phoneNumber) {
         $this->phoneNumber = $phoneNumber;
     }
 
@@ -27,7 +77,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $username The username for http authentication on the audio url
      */
-    public function username($username) {
+    public function username(string $username) {
         $this->username = $username;
     }
 
@@ -36,7 +86,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $password The password for http authentication on the audio url
      */
-    public function password($password) {
+    public function password(string $password) {
         $this->password = $password;
     }
 
@@ -45,7 +95,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $transferAnswerUrl The url to receive the transfer answered callback 
      */
-    public function transferAnswerUrl($transferAnswerUrl) {
+    public function transferAnswerUrl(string $transferAnswerUrl) {
         $this->transferAnswerUrl = $transferAnswerUrl;
     }
 
@@ -54,7 +104,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $transferAnswerMethod The http method to send the transfer answered callback 
      */
-    public function transferAnswerMethod($transferAnswerMethod) {
+    public function transferAnswerMethod(string $transferAnswerMethod) {
         $this->transferAnswerMethod = $transferAnswerMethod;
     }
 
@@ -63,7 +113,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $transferDisconnectUrl The url to receive the transfer disconnect callback 
      */
-    public function transferDisconnectUrl($transferDisconnectUrl) {
+    public function transferDisconnectUrl(string $transferDisconnectUrl) {
         $this->transferDisconnectUrl = $transferDisconnectUrl;
     }
 
@@ -72,7 +122,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $transferDisconnectMethod The http method to send the transfer disconnect callback 
      */
-    public function transferDisconnectMethod($transferDisconnectMethod) {
+    public function transferDisconnectMethod(string $transferDisconnectMethod) {
         $this->transferDisconnectMethod = $transferDisconnectMethod;
     }
 
@@ -81,7 +131,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag($tag) {
+    public function tag(string $tag) {
         $this->tag = $tag;
     }
 
@@ -90,7 +140,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $transferAnswerFallbackUrl Fallback URL for transfer answer events 
      */
-    public function transferAnswerFallbackUrl($transferAnswerFallbackUrl) {
+    public function transferAnswerFallbackUrl(string $transferAnswerFallbackUrl) {
         $this->transferAnswerFallbackUrl = $transferAnswerFallbackUrl;
     }
 
@@ -99,7 +149,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $transferAnswerFallbackMethod HTTP method for fallback events 
      */
-    public function transferAnswerFallbackMethod($transferAnswerFallbackMethod) {
+    public function transferAnswerFallbackMethod(string $transferAnswerFallbackMethod) {
         $this->transferAnswerFallbackMethod = $transferAnswerFallbackMethod;
     }
 
@@ -108,7 +158,7 @@ class PhoneNumber extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events 
      */
-    public function fallbackUsername($fallbackUsername) {
+    public function fallbackUsername(string $fallbackUsername) {
         $this->fallbackUsername = $fallbackUsername;
     }
 
@@ -117,11 +167,11 @@ class PhoneNumber extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events
      */
-    public function fallbackPassword($fallbackPassword) {
+    public function fallbackPassword(string $fallbackPassword) {
         $this->fallbackPassword = $fallbackPassword;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("PhoneNumber");
 
         $element->appendChild($doc->createTextNode($this->phoneNumber));

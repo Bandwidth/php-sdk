@@ -261,10 +261,10 @@ class Configuration
 
     /**
      * Get the base uri for a given server in the current environment
-     * @param  string $server Server name
+     * @param string $server Server name
      * @return string         Base URI
      */
-    public function getBaseUri($server = Servers::DEFAULT_)
+    public function getBaseUri(string $server = Servers::DEFAULT_)
     {
         return APIHelper::appendUrlWithTemplateParameters(
             static::$environmentsMap[$this->environment][$server],

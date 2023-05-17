@@ -9,16 +9,70 @@
   
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class Conference extends Verb {
+    /**
+     * @var string
+     */
+    private $fallbackPassword;
+    /**
+     * @var string
+     */
+    private $fallbackUsername;
+    /**
+     * @var string
+     */
+    private $conferenceEventFallbackMethod;
+    /**
+     * @var string
+     */
+    private $conferenceEventFallbackUrl;
+    /**
+     * @var bool
+     */
+    private $hold;
+    /**
+     * @var bool
+     */
+    private $mute;
+    /**
+     * @var string
+     */
+    private $callIdsToCoach;
+    /**
+     * @var string
+     */
+    private $conferenceEventMethod;
+    /**
+     * @var string
+     */
+    private $conferenceEventUrl;
+    /**
+     * @var string
+     */
+    private $password;
+    /**
+     * @var string
+     */
+    private $username;
+    /**
+     * @var string
+     */
+    private $tag;
+    /**
+     * @var string
+     */
+    private $conferenceName;
 
     /**
      * Constructor for Conference
      *
      * @param string $conferenceName The name of the conference 
      */
-    public function __construct($conferenceName) {
+    public function __construct(string $conferenceName) {
         $this->conferenceName = $conferenceName;
     }
 
@@ -27,7 +81,7 @@ class Conference extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag($tag) {
+    public function tag(string $tag) {
         $this->tag = $tag;
     }
 
@@ -36,7 +90,7 @@ class Conference extends Verb {
      *
      * @param string $username Username for basic auth for callbacks
      */
-    public function username($username) {
+    public function username(string $username) {
         $this->username = $username;
     }
 
@@ -45,7 +99,7 @@ class Conference extends Verb {
      *
      * @param string $password Password for basic auth for callbacks
      */
-    public function password($password) {
+    public function password(string $password) {
         $this->password = $password;
     }
 
@@ -54,7 +108,7 @@ class Conference extends Verb {
      *
      * @param string $conferenceEventUrl URL to receive conference events 
      */
-    public function conferenceEventUrl($conferenceEventUrl) {
+    public function conferenceEventUrl(string $conferenceEventUrl) {
         $this->conferenceEventUrl = $conferenceEventUrl;
     }
 
@@ -63,7 +117,7 @@ class Conference extends Verb {
      *
      * @param string $conferenceEventMethod HTTP method for conference events 
      */
-    public function conferenceEventMethod($conferenceEventMethod) {
+    public function conferenceEventMethod(string $conferenceEventMethod) {
         $this->conferenceEventMethod = $conferenceEventMethod;
     }
 
@@ -72,7 +126,7 @@ class Conference extends Verb {
      *
      * @param string $callIdsToCoach A string of comma separated call IDs to coach 
      */
-    public function callIdsToCoach($callIdsToCoach) {
+    public function callIdsToCoach(string $callIdsToCoach) {
         $this->callIdsToCoach = $callIdsToCoach;
     }
 
@@ -81,7 +135,7 @@ class Conference extends Verb {
      *
      * @param array $callIdsToCoach An array of call IDs to coach 
      */
-    public function callIdsToCoachArray($callIdsToCoach) {
+    public function callIdsToCoachArray(array $callIdsToCoach) {
         $this->callIdsToCoach = implode(",", $callIdsToCoach);
     }
 
@@ -90,7 +144,7 @@ class Conference extends Verb {
      *
      * @param boolean $mute Determines if conference members should be on mute
      */
-    public function mute($mute) {
+    public function mute(bool $mute) {
         $this->mute = $mute;
     }
 
@@ -99,7 +153,7 @@ class Conference extends Verb {
      *
      * @param boolean $hold Determines if conference members should be on hold
      */
-    public function hold($hold) {
+    public function hold(bool $hold) {
         $this->hold = $hold;
     }
 
@@ -108,7 +162,7 @@ class Conference extends Verb {
      *
      * @param string $conferenceEventFallbackUrl Fallback url for conference events
      */
-    public function conferenceEventFallbackUrl($conferenceEventFallbackUrl) {
+    public function conferenceEventFallbackUrl(string $conferenceEventFallbackUrl) {
         $this->conferenceEventFallbackUrl = $conferenceEventFallbackUrl;
     }
 
@@ -117,7 +171,7 @@ class Conference extends Verb {
      *
      * @param string $conferenceEventFallbackMethod HTTP method for fallback events 
      */
-    public function conferenceEventFallbackMethod($conferenceEventFallbackMethod) {
+    public function conferenceEventFallbackMethod(string $conferenceEventFallbackMethod) {
         $this->conferenceEventFallbackMethod = $conferenceEventFallbackMethod;
     }
 
@@ -126,7 +180,7 @@ class Conference extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events
      */
-    public function fallbackUsername($fallbackUsername) {
+    public function fallbackUsername(string $fallbackUsername) {
         $this->fallbackUsername = $fallbackUsername;
     }
 
@@ -135,11 +189,11 @@ class Conference extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events
      */
-    public function fallbackPassword($fallbackPassword) {
+    public function fallbackPassword(string $fallbackPassword) {
         $this->fallbackPassword = $fallbackPassword;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("Conference");
 
         $element->appendChild($doc->createTextNode($this->conferenceName));

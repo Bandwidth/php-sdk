@@ -48,6 +48,10 @@ class TwoFactorVerifyRequestSchema implements \JsonSerializable
      * @var string $code public property
      */
     public $code;
+    /**
+     * @var int
+     */
+    public $digits;
 
     /**
      * Constructor to set initial or default values of member properties
