@@ -87,7 +87,7 @@ class ModifyConferenceRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $json = array();
         $json['status']                 = $this->status;
