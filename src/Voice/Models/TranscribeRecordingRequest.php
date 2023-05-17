@@ -49,6 +49,12 @@ class TranscribeRecordingRequest implements \JsonSerializable
     public $callbackTimeout;
 
     /**
+     * @todo Write general description for this property
+     * @var boolean|null $detectLanguage public property
+     */
+    public $detectLanguage;
+
+    /**
      * Constructor to set initial or default values of member properties
      */
     public function __construct()
@@ -60,6 +66,7 @@ class TranscribeRecordingRequest implements \JsonSerializable
             $this->password        = func_get_arg(3);
             $this->tag             = func_get_arg(4);
             $this->callbackTimeout = func_get_arg(5);
+            $this->detectLanguage  = func_get_arg(6);
         }
     }
 
@@ -75,6 +82,7 @@ class TranscribeRecordingRequest implements \JsonSerializable
         $json['password']        = $this->password;
         $json['tag']             = $this->tag;
         $json['callbackTimeout'] = $this->callbackTimeout;
+        $json['detectLanguage']  = $this->detectlanguage;
 
         return array_filter($json);
     }
