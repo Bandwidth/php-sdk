@@ -229,7 +229,7 @@ class Record extends Verb {
             $element->setattribute("fileFormat", $this->fileFormat);
         }
 
-        if(isset($this->detectLanguage)) }
+        if(isset($this->detectLanguage)) {
             if ($this->detectLanguage) {
                 $element->setattribute("detectLanguage", "true");
             } else {
