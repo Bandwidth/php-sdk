@@ -88,7 +88,7 @@ final class ApiTest extends TestCase
         $this->assertTrue(strlen($callId) > 0);
         $this->assertTrue(is_a($response->getResult()->enqueuedTime, 'DateTime'));
 
-        sleep(15);
+        sleep(20);
 
         //get phone call information
         $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
@@ -120,7 +120,7 @@ final class ApiTest extends TestCase
         $callId = $response->getResult()->callId;
         $this->assertTrue(strlen($callId) > 0);
 
-        sleep(15);
+        sleep(20);
 
         //get phone call information
         $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
