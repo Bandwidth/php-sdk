@@ -106,6 +106,15 @@ class Record extends Verb {
     }
 
     /**
+     * Sets the detectLanguage attribute for Record
+     *
+     * @param boolean $detectLanguage Indicates that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish.
+     */
+    public function detectLanguage($detectLanguage) {
+        $this->detectLanguage= $detectLanguage;
+    }
+
+    /**
      * Sets the transcribe attribute for Record
      *
      * @param boolean $transcribe True to submit the recording for transcription, false otherwise
@@ -218,6 +227,14 @@ class Record extends Verb {
 
         if(isset($this->fileFormat)) {
             $element->setattribute("fileFormat", $this->fileFormat);
+        }
+
+        if(isset($this->detectLanguage)) {
+            if ($this->detectLanguage) {
+                $element->setattribute("detectLanguage", "true");
+            } else {
+                $element->setattribute("detectLanguage", "false");
+            }
         }
 
         if(isset($this->transcribe)) {

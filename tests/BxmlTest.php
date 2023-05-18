@@ -397,11 +397,12 @@ final class BxmlTest extends TestCase
         $record->recordCompleteFallbackMethod("GET");
         $record->fallbackUsername("fuser");
         $record->fallbackPassword("fpass");
+        $record->detectlanguage("true");
 
         $response = new BandwidthLib\Voice\Bxml\Response();
         $response->addVerb($record);
 
-        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Record recordCompleteUrl="https://myapp.com/nextBXML" maxDuration="10" recordCompleteFallbackUrl="https://test.com" recordCompleteFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass"/></Response>';
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Record recordCompleteUrl="https://myapp.com/nextBXML" maxDuration="10" detectLanguage="true" recordCompleteFallbackUrl="https://test.com" recordCompleteFallbackMethod="GET" fallbackUsername="fuser" fallbackPassword="fpass"/></Response>';
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }
