@@ -48,6 +48,10 @@ class TwoFactorVerifyRequestSchema implements \JsonSerializable
      * @var string $code public property
      */
     public $code;
+    /**
+     * @var int
+     */
+    public $digits;
 
     /**
      * Constructor to set initial or default values of member properties
@@ -66,7 +70,7 @@ class TwoFactorVerifyRequestSchema implements \JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $json = array();
         $json['to']                      = $this->to;

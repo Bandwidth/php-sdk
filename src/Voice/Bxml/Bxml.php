@@ -12,6 +12,10 @@ namespace BandwidthLib\Voice\Bxml;
 use DOMDocument;
 
 class Bxml {
+    /**
+     * @var array
+     */
+    private $verbs;
 
     /**
      * Creates the Bxml class with an empty list of verbs
@@ -25,7 +29,7 @@ class Bxml {
      *
      * @param Verb $verb The verb to add to the list
      */
-    public function addVerb($verb) {
+    public function addVerb(Verb $verb) {
         array_push($this->verbs, $verb);
     }
 

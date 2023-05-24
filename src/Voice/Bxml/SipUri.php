@@ -9,16 +9,70 @@
 
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class SipUri extends Verb {
+    /**
+     * @var string
+     */
+    private $fallbackPassword;
+    /**
+     * @var string
+     */
+    private $fallbackUsername;
+    /**
+     * @var string
+     */
+    private $transferAnswerFallbackMethod;
+    /**
+     * @var string
+     */
+    private $transferAnswerFallbackUrl;
+    /**
+     * @var string
+     */
+    private $uui;
+    /**
+     * @var string
+     */
+    private $tag;
+    /**
+     * @var string
+     */
+    private $transferDisconnectMethod;
+    /**
+     * @var string
+     */
+    private $transferDisconnectUrl;
+    /**
+     * @var string
+     */
+    private $transferAnswerMethod;
+    /**
+     * @var string
+     */
+    private $transferAnswerUrl;
+    /**
+     * @var string
+     */
+    private $password;
+    /**
+     * @var string
+     */
+    private $username;
+    /**
+     * @var string
+     */
+    private $sip;
 
     /**
      * Constructor for SipUri
      *
      * @param string $sip The sip uri destination 
      */
-    public function __construct($sip) {
+    public function __construct(string $sip) {
         $this->sip = $sip;
     }
 
@@ -27,7 +81,7 @@ class SipUri extends Verb {
      *
      * @param string $username The username for http authentication on the audio url
      */
-    public function username($username) {
+    public function username(string $username) {
         $this->username = $username;
     }
 
@@ -36,7 +90,7 @@ class SipUri extends Verb {
      *
      * @param string $password The password for http authentication on the audio url
      */
-    public function password($password) {
+    public function password(string $password) {
         $this->password = $password;
     }
 
@@ -45,7 +99,7 @@ class SipUri extends Verb {
      *
      * @param string $transferAnswerUrl The url to receive the transfer answered callback 
      */
-    public function transferAnswerUrl($transferAnswerUrl) {
+    public function transferAnswerUrl(string $transferAnswerUrl) {
         $this->transferAnswerUrl = $transferAnswerUrl;
     }
 
@@ -54,7 +108,7 @@ class SipUri extends Verb {
      *
      * @param string $transferAnswerMethod The http method to send the transfer answered callback 
      */
-    public function transferAnswerMethod($transferAnswerMethod) {
+    public function transferAnswerMethod(string $transferAnswerMethod) {
         $this->transferAnswerMethod = $transferAnswerMethod;
     }
 
@@ -63,7 +117,7 @@ class SipUri extends Verb {
      *
      * @param string $transferDisconnectUrl The url to receive the transfer disconnect callback 
      */
-    public function transferDisconnectUrl($transferDisconnectUrl) {
+    public function transferDisconnectUrl(string $transferDisconnectUrl) {
         $this->transferDisconnectUrl = $transferDisconnectUrl;
     }
 
@@ -72,7 +126,7 @@ class SipUri extends Verb {
      *
      * @param string $transferDisconnectMethod The http method to send the transfer disconnect callback 
      */
-    public function transferDisconnectMethod($transferDisconnectMethod) {
+    public function transferDisconnectMethod(string $transferDisconnectMethod) {
         $this->transferDisconnectMethod = $transferDisconnectMethod;
     }
 
@@ -81,7 +135,7 @@ class SipUri extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag($tag) {
+    public function tag(string $tag) {
         $this->tag = $tag;
     }
 
@@ -90,7 +144,7 @@ class SipUri extends Verb {
      *
      * @param string $uui The value of the `User-To-User` header to send within the initial `INVITE`
      */
-    public function uui($uui) {
+    public function uui(string $uui) {
         $this->uui = $uui;
     }
 
@@ -99,7 +153,7 @@ class SipUri extends Verb {
      *
      * @param string $transferAnswerFallbackUrl Fallback URL for transfer answer events 
      */
-    public function transferAnswerFallbackUrl($transferAnswerFallbackUrl) {
+    public function transferAnswerFallbackUrl(string $transferAnswerFallbackUrl) {
         $this->transferAnswerFallbackUrl = $transferAnswerFallbackUrl;
     }
 
@@ -108,7 +162,7 @@ class SipUri extends Verb {
      *
      * @param string $transferAnswerFallbackMethod HTTP method for fallback events 
      */
-    public function transferAnswerFallbackMethod($transferAnswerFallbackMethod) {
+    public function transferAnswerFallbackMethod(string $transferAnswerFallbackMethod) {
         $this->transferAnswerFallbackMethod = $transferAnswerFallbackMethod;
     }
 
@@ -117,7 +171,7 @@ class SipUri extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events 
      */
-    public function fallbackUsername($fallbackUsername) {
+    public function fallbackUsername(string $fallbackUsername) {
         $this->fallbackUsername = $fallbackUsername;
     }
 
@@ -126,11 +180,11 @@ class SipUri extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events
      */
-    public function fallbackPassword($fallbackPassword) {
+    public function fallbackPassword(string $fallbackPassword) {
         $this->fallbackPassword = $fallbackPassword;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("SipUri");
 
         $element->appendChild($doc->createTextNode($this->sip));

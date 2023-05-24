@@ -9,16 +9,30 @@
 
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class PlayAudio extends Verb {
+    /**
+     * @var string
+     */
+    private $password;
+    /**
+     * @var string
+     */
+    private $username;
+    /**
+     * @var string
+     */
+    private $url;
 
     /**
      * Constructor for PlayAudio
      *
      * @param string $url The URL of the audio to be played
      */
-    public function __construct($url) {
+    public function __construct(string $url) {
         $this->url = $url;
     }
 
@@ -27,7 +41,7 @@ class PlayAudio extends Verb {
      *
      * @param string $username The username for http authentication on the audio url
      */
-    public function username($username) {
+    public function username(string $username) {
         $this->username = $username;
     }
 
@@ -36,11 +50,11 @@ class PlayAudio extends Verb {
      *
      * @param string $password The password for http authentication on the audio url
      */
-    public function password($password) {
+    public function password(string $password) {
         $this->password = $password;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("PlayAudio");
 
         $element->appendChild($doc->createTextNode($this->url));

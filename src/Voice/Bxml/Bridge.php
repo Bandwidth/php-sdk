@@ -9,16 +9,74 @@
   
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class Bridge extends Verb {
+    /**
+     * @var string
+     */
+    private $fallbackPassword;
+    /**
+     * @var string
+     */
+    private $fallbackUsername;
+    /**
+     * @var string
+     */
+    private $bridgeTargetCompleteFallbackMethod;
+    /**
+     * @var string
+     */
+    private $bridgeTargetCompleteFallbackUrl;
+    /**
+     * @var string
+     */
+    private $bridgeCompleteFallbackMethod;
+    /**
+     * @var string
+     */
+    private $bridgeCompleteFallbackUrl;
+    /**
+     * @var string
+     */
+    private $tag;
+    /**
+     * @var string
+     */
+    private $password;
+    /**
+     * @var string
+     */
+    private $username;
+    /**
+     * @var string
+     */
+    private $bridgeTargetCompleteMethod;
+    /**
+     * @var string
+     */
+    private $bridgeTargetCompleteUrl;
+    /**
+     * @var string
+     */
+    private $bridgeCompleteMethod;
+    /**
+     * @var string
+     */
+    private $bridgeCompleteUrl;
+    /**
+     * @var string
+     */
+    private $targetCall;
 
     /**
      * Constructor for Bridge
      *
      * @param string $targetCall The target call ID of the bridge
      */
-    public function __construct($targetCall) {
+    public function __construct(string $targetCall) {
         $this->targetCall = $targetCall;
     }
 
@@ -27,7 +85,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeCompleteUrl URL to send the bridge complete event to
      */
-    public function bridgeCompleteUrl($bridgeCompleteUrl) {
+    public function bridgeCompleteUrl(string $bridgeCompleteUrl) {
         $this->bridgeCompleteUrl = $bridgeCompleteUrl;
     }
 
@@ -36,7 +94,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeCompleteMethod HTTP method to send the bridge complete event
      */
-    public function bridgeCompleteMethod($bridgeCompleteMethod) {
+    public function bridgeCompleteMethod(string $bridgeCompleteMethod) {
         $this->bridgeCompleteMethod = $bridgeCompleteMethod;
     }
 
@@ -45,7 +103,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeTargetCompleteUrl URL to send the bridge target complete event to
      */
-    public function bridgeTargetCompleteUrl($bridgeTargetCompleteUrl) {
+    public function bridgeTargetCompleteUrl(string $bridgeTargetCompleteUrl) {
         $this->bridgeTargetCompleteUrl = $bridgeTargetCompleteUrl;
     }
 
@@ -54,7 +112,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeTargetCompleteMethod HTTP method to send the bridge target complete event
      */
-    public function bridgeTargetCompleteMethod($bridgeTargetCompleteMethod) {
+    public function bridgeTargetCompleteMethod(string $bridgeTargetCompleteMethod) {
         $this->bridgeTargetCompleteMethod = $bridgeTargetCompleteMethod;
     }
 
@@ -63,7 +121,7 @@ class Bridge extends Verb {
      *
      * @param string $username HTTP basic auth username for sending events
      */
-    public function username($username) {
+    public function username(string $username) {
         $this->username = $username;
     }
 
@@ -72,7 +130,7 @@ class Bridge extends Verb {
      *
      * @param string $password HTTP basic auth password for sending events
      */
-    public function password($password) {
+    public function password(string $password) {
         $this->password = $password;
     }
 
@@ -81,7 +139,7 @@ class Bridge extends Verb {
      *
      * @param string $tag String to include in events
      */
-    public function tag($tag) {
+    public function tag(string $tag) {
         $this->tag = $tag;
     }
 
@@ -90,7 +148,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeCompleteFallbackUrl Fallback URL for bridge complete callback events
      */
-    public function bridgeCompleteFallbackUrl($bridgeCompleteFallbackUrl) {
+    public function bridgeCompleteFallbackUrl(string $bridgeCompleteFallbackUrl) {
         $this->bridgeCompleteFallbackUrl = $bridgeCompleteFallbackUrl;
     }
 
@@ -99,7 +157,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeCompleteFallbackMethod HTTP method for bridge complete fallback requests 
      */
-    public function bridgeCompleteFallbackMethod($bridgeCompleteFallbackMethod) {
+    public function bridgeCompleteFallbackMethod(string $bridgeCompleteFallbackMethod) {
         $this->bridgeCompleteFallbackMethod = $bridgeCompleteFallbackMethod;
     }
 
@@ -108,7 +166,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeTargetCompleteFallbackUrl Fallback URL for bridge target complete callback events 
      */
-    public function bridgeTargetCompleteFallbackUrl($bridgeTargetCompleteFallbackUrl) {
+    public function bridgeTargetCompleteFallbackUrl(string $bridgeTargetCompleteFallbackUrl) {
         $this->bridgeTargetCompleteFallbackUrl = $bridgeTargetCompleteFallbackUrl;
     }
 
@@ -117,7 +175,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeTargetCompleteFallbackMethod HTTP method for bridge target complete fallback events 
      */
-    public function bridgeTargetCompleteFallbackMethod($bridgeTargetCompleteFallbackMethod) {
+    public function bridgeTargetCompleteFallbackMethod(string $bridgeTargetCompleteFallbackMethod) {
         $this->bridgeTargetCompleteFallbackMethod = $bridgeTargetCompleteFallbackMethod;
     }
 
@@ -126,7 +184,7 @@ class Bridge extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events
      */
-    public function fallbackUsername($fallbackUsername) {
+    public function fallbackUsername(string $fallbackUsername) {
         $this->fallbackUsername = $fallbackUsername;
     }
 
@@ -135,11 +193,11 @@ class Bridge extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password 
      */
-    public function fallbackPassword($fallbackPassword) {
+    public function fallbackPassword(string $fallbackPassword) {
         $this->fallbackPassword = $fallbackPassword;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("Bridge");
 
         $element->appendChild($doc->createTextNode($this->targetCall));

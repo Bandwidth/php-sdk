@@ -9,16 +9,54 @@
 
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class Redirect extends Verb {
+    /**
+     * @var string
+     */
+    private $fallbackPassword;
+    /**
+     * @var string
+     */
+    private $fallbackUsername;
+    /**
+     * @var string
+     */
+    private $redirectFallbackMethod;
+    /**
+     * @var string
+     */
+    private $redirectFallbackUrl;
+    /**
+     * @var string
+     */
+    private $tag;
+    /**
+     * @var string
+     */
+    private $redirectMethod;
+    /**
+     * @var string
+     */
+    private $redirectUrl;
+    /**
+     * @var string
+     */
+    private $password;
+    /**
+     * @var string
+     */
+    private $username;
 
     /**
      * Sets the username attribute for Redirect
      *
      * @param string $username The username for http authentication on the redirect callback url
      */
-    public function username($username) {
+    public function username(string $username) {
         $this->username = $username;
     }
 
@@ -27,7 +65,7 @@ class Redirect extends Verb {
      *
      * @param string $password The password for http authentication on the redirect callback url
      */
-    public function password($password) {
+    public function password(string $password) {
         $this->password = $password;
     }
 
@@ -36,7 +74,7 @@ class Redirect extends Verb {
      *
      * @param string $redirectUrl The url to receive the redirect callback 
      */
-    public function redirectUrl($redirectUrl) {
+    public function redirectUrl(string $redirectUrl) {
         $this->redirectUrl = $redirectUrl;
     }
 
@@ -45,7 +83,7 @@ class Redirect extends Verb {
      *
      * @param string $redirectMethod The http method to send the redirect callback 
      */
-    public function redirectMethod($redirectMethod) {
+    public function redirectMethod(string $redirectMethod) {
         $this->redirectMethod = $redirectMethod;
     }
 
@@ -54,7 +92,7 @@ class Redirect extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag($tag) {
+    public function tag(string $tag) {
         $this->tag = $tag;
     }
 
@@ -63,7 +101,7 @@ class Redirect extends Verb {
      *
      * @param string $redirectFallbackUrl Fallback url for redirect events 
      */
-    public function redirectFallbackUrl($redirectFallbackUrl) {
+    public function redirectFallbackUrl(string $redirectFallbackUrl) {
         $this->redirectFallbackUrl = $redirectFallbackUrl;
     }
 
@@ -72,7 +110,7 @@ class Redirect extends Verb {
      *
      * @param string $redirectFallbackMethod HTTP method for fallback events 
      */
-    public function redirectFallbackMethod($redirectFallbackMethod) {
+    public function redirectFallbackMethod(string $redirectFallbackMethod) {
         $this->redirectFallbackMethod = $redirectFallbackMethod;
     }
 
@@ -81,7 +119,7 @@ class Redirect extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events
      */
-    public function fallbackUsername($fallbackUsername) {
+    public function fallbackUsername(string $fallbackUsername) {
         $this->fallbackUsername = $fallbackUsername;
     }
 
@@ -90,11 +128,11 @@ class Redirect extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events 
      */
-    public function fallbackPassword($fallbackPassword) {
+    public function fallbackPassword(string $fallbackPassword) {
         $this->fallbackPassword = $fallbackPassword;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("Redirect");
 
         if(isset($this->username)) {

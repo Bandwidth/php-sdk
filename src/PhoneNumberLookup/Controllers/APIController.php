@@ -33,14 +33,14 @@ class APIController extends BaseController
     /**
      * Create a TN Lookup Order.
      *
-     * @param string              $accountId The ID of the Bandwidth account that the user belongs to.
+     * @param string $accountId The ID of the Bandwidth account that the user belongs to.
      * @param Models\OrderRequest $body      TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createLookupRequest(
-        $accountId,
-        $body
+        string              $accountId,
+        Models\OrderRequest $body
     ) {
 
         //prepare query string for API call
@@ -939,8 +939,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getLookupRequestStatus(
-        $accountId,
-        $requestId
+        string $accountId,
+        string $requestId
     ) {
 
         //prepare query string for API call

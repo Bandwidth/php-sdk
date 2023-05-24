@@ -34,14 +34,14 @@ class MFAController extends BaseController
      * Multi-Factor authentication with Bandwidth Voice services. Allows for a user to send an MFA code via
      * a phone call.
      *
-     * @param string                            $accountId Bandwidth Account ID with Voice service enabled
+     * @param string $accountId Bandwidth Account ID with Voice service enabled
      * @param Models\TwoFactorCodeRequestSchema $body      TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createVoiceTwoFactor(
-        $accountId,
-        $body
+        string                            $accountId,
+        Models\TwoFactorCodeRequestSchema $body
     ) {
 
         //prepare query string for API call
@@ -128,14 +128,14 @@ class MFAController extends BaseController
      * Multi-Factor authentication with Bandwidth Messaging services. Allows a user to send an MFA code via
      * a text message (SMS).
      *
-     * @param string                            $accountId Bandwidth Account ID with Messaging service enabled
+     * @param string $accountId Bandwidth Account ID with Messaging service enabled
      * @param Models\TwoFactorCodeRequestSchema $body      TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createMessagingTwoFactor(
-        $accountId,
-        $body
+        string                            $accountId,
+        Models\TwoFactorCodeRequestSchema $body
     ) {
 
         //prepare query string for API call
@@ -221,14 +221,14 @@ class MFAController extends BaseController
     /**
      * Allows a user to verify an MFA code.
      *
-     * @param string                              $accountId Bandwidth Account ID with Two-Factor enabled
+     * @param string $accountId Bandwidth Account ID with Two-Factor enabled
      * @param Models\TwoFactorVerifyRequestSchema $body      TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createVerifyTwoFactor(
-        $accountId,
-        $body
+        string                              $accountId,
+        Models\TwoFactorVerifyRequestSchema $body
     ) {
 
         //prepare query string for API call

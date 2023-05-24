@@ -34,13 +34,13 @@ class APIController extends BaseController
      * Gets a list of your media files. No query parameters are supported.
      *
      * @param string $accountId          User's account ID
-     * @param string $continuationToken  (optional) Continuation token used to retrieve subsequent media.
+     * @param string|null $continuationToken  (optional) Continuation token used to retrieve subsequent media.
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function listMedia(
-        $accountId,
-        $continuationToken = null
+        string $accountId,
+        string $continuationToken = null
     ) {
 
         //prepare query string for API call
@@ -128,8 +128,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getMedia(
-        $accountId,
-        $mediaId
+        string $accountId,
+        string $mediaId
     ) {
 
         //prepare query string for API call
@@ -215,17 +215,17 @@ class APIController extends BaseController
      * @param string $mediaId       The user supplied custom media ID
      * @param string $body          TODO: type description here
      * @param string $contentType   (optional) The media type of the entity-body
-     * @param string $cacheControl  (optional) General-header field is used to specify directives that MUST be obeyed
+     * @param string|null $cacheControl  (optional) General-header field is used to specify directives that MUST be obeyed
      *                              by all caching mechanisms along the request/response chain.
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function uploadMedia(
-        $accountId,
-        $mediaId,
-        $body,
-        $contentType = 'application/octet-stream',
-        $cacheControl = null
+        string $accountId,
+        string $mediaId,
+        string $body,
+        string $contentType = 'application/octet-stream',
+        string $cacheControl = null
     ) {
 
         //prepare query string for API call
@@ -318,8 +318,8 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function deleteMedia(
-        $accountId,
-        $mediaId
+        string $accountId,
+        string $mediaId
     ) {
 
         //prepare query string for API call
@@ -399,35 +399,35 @@ class APIController extends BaseController
     /**
      * Gets a list of messages based on query parameters.
      *
-     * @param string  $accountId     User's account ID
-     * @param string  $messageId     (optional) The ID of the message to search for. Special characters need to be
+     * @param string $accountId     User's account ID
+     * @param string|null $messageId     (optional) The ID of the message to search for. Special characters need to be
      *                               encoded using URL encoding
-     * @param string  $sourceTn      (optional) The phone number that sent the message
-     * @param string  $destinationTn (optional) The phone number that received the message
-     * @param string  $messageStatus (optional) The status of the message. One of RECEIVED, QUEUED, SENDING, SENT,
+     * @param string|null $sourceTn      (optional) The phone number that sent the message
+     * @param string|null $destinationTn (optional) The phone number that received the message
+     * @param string|null $messageStatus (optional) The status of the message. One of RECEIVED, QUEUED, SENDING, SENT,
      *                               FAILED, DELIVERED, ACCEPTED, UNDELIVERED
-     * @param integer $errorCode     (optional) The error code of the message
-     * @param string  $fromDateTime  (optional) The start of the date range to search in ISO 8601 format. Uses the
+     * @param integer|null $errorCode     (optional) The error code of the message
+     * @param string|null $fromDateTime  (optional) The start of the date range to search in ISO 8601 format. Uses the
      *                               message receive time. The date range to search in is currently 14 days.
-     * @param string  $toDateTime    (optional) The end of the date range to search in ISO 8601 format. Uses the
+     * @param string|null $toDateTime    (optional) The end of the date range to search in ISO 8601 format. Uses the
      *                               message receive time. The date range to search in is currently 14 days.
-     * @param string  $pageToken     (optional) A base64 encoded value used for pagination of results
-     * @param integer $limit         (optional) The maximum records requested in search result. Default 100. The sum of
+     * @param string|null $pageToken     (optional) A base64 encoded value used for pagination of results
+     * @param integer|null $limit         (optional) The maximum records requested in search result. Default 100. The sum of
      *                               limit and after cannot be more than 10000
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function getMessages(
-        $accountId,
-        $messageId = null,
-        $sourceTn = null,
-        $destinationTn = null,
-        $messageStatus = null,
-        $errorCode = null,
-        $fromDateTime = null,
-        $toDateTime = null,
-        $pageToken = null,
-        $limit = null
+        string $accountId,
+        string $messageId = null,
+        string $sourceTn = null,
+        string $destinationTn = null,
+        string $messageStatus = null,
+        int    $errorCode = null,
+        string $fromDateTime = null,
+        string $toDateTime = null,
+        string $pageToken = null,
+        int    $limit = null
     ) {
 
         //prepare query string for API call
@@ -524,14 +524,14 @@ class APIController extends BaseController
     /**
      * Endpoint for sending text messages and picture messages using V2 messaging.
      *
-     * @param string                $accountId User's account ID
+     * @param string $accountId User's account ID
      * @param Models\MessageRequest $body      TODO: type description here
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createMessage(
-        $accountId,
-        $body
+        string                $accountId,
+        Models\MessageRequest $body
     ) {
 
         //prepare query string for API call

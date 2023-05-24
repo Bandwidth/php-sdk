@@ -9,16 +9,58 @@
 
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class StartRecording extends Verb {
+    /**
+     * @var string
+     */
+    private $transcriptionAvailableMethod;
+    /**
+     * @var string
+     */
+    private $transcriptionAvailableUrl;
+    /**
+     * @var bool
+     */
+    private $transcribe;
+    /**
+     * @var bool
+     */
+    private $multiChannel;
+    /**
+     * @var string
+     */
+    private $fileFormat;
+    /**
+     * @var string
+     */
+    private $password;
+    /**
+     * @var string
+     */
+    private $username;
+    /**
+     * @var string
+     */
+    private $recordingAvailableMethod;
+    /**
+     * @var string
+     */
+    private $recordingAvailableUrl;
+    /**
+     * @var string
+     */
+    private $tag;
 
     /**
      * Sets the tag attribute for StartRecording
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag($tag) {
+    public function tag(string $tag) {
         $this->tag = $tag;
     }
 
@@ -27,7 +69,7 @@ class StartRecording extends Verb {
      *
      * @param string $recordingAvailableUrl URL to send the record available callback to
      */
-    public function recordingAvailableUrl($recordingAvailableUrl) {
+    public function recordingAvailableUrl(string $recordingAvailableUrl) {
         $this->recordingAvailableUrl = $recordingAvailableUrl;
     }
 
@@ -37,7 +79,7 @@ class StartRecording extends Verb {
      * @param string $recordingAvailableMethod HTTP method to send record available
      * as ("GET" or "POST")
      */
-    public function recordingAvailableMethod($recordingAvailableMethod) {
+    public function recordingAvailableMethod(string $recordingAvailableMethod) {
         $this->recordingAvailableMethod = $recordingAvailableMethod;
     }
 
@@ -46,7 +88,7 @@ class StartRecording extends Verb {
      *
      * @param string $username Username for basic auth for callbacks
      */
-    public function username($username) {
+    public function username(string $username) {
         $this->username = $username;
     }
 
@@ -55,7 +97,7 @@ class StartRecording extends Verb {
      *
      * @param string $password Password for basic auth for callbacks
      */
-    public function password($password) {
+    public function password(string $password) {
         $this->password = $password;
     }
 
@@ -64,7 +106,7 @@ class StartRecording extends Verb {
      *
      * @param string $fileFormat Audio format of the recording ("mp3" or "wav")
      */
-    public function fileFormat($fileFormat) {
+    public function fileFormat(string $fileFormat) {
         $this->fileFormat = $fileFormat;
     }
 
@@ -83,7 +125,7 @@ class StartRecording extends Verb {
      *
      * @param bool $multiChannel True to record the audio as 2 channels, false otherwise
      */
-    public function multiChannel($multiChannel) {
+    public function multiChannel(bool $multiChannel) {
         $this->multiChannel = $multiChannel;
     }
 
@@ -92,7 +134,7 @@ class StartRecording extends Verb {
      *
      * @param boolean $transcribe True to submit the recording for transcription, false otherwise
      */
-    public function transcribe($transcribe) {
+    public function transcribe(bool $transcribe) {
         $this->transcribe = $transcribe;
     }
 
@@ -101,7 +143,7 @@ class StartRecording extends Verb {
      *
      * @param string $transcriptionAvailableUrl URL to send transcription available events to
      */
-    public function transcriptionAvailableUrl($transcriptionAvailableUrl) {
+    public function transcriptionAvailableUrl(string $transcriptionAvailableUrl) {
         $this->transcriptionAvailableUrl = $transcriptionAvailableUrl;
     }
 
@@ -110,11 +152,11 @@ class StartRecording extends Verb {
      *
      * @param string $transcriptionAvailableMethod HTTP method (GET or POST) to send the transcription available event as
      */
-    public function transcriptionAvailableMethod($transcriptionAvailableMethod) {
+    public function transcriptionAvailableMethod(string $transcriptionAvailableMethod) {
         $this->transcriptionAvailableMethod = $transcriptionAvailableMethod;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("StartRecording");
 
         if(isset($this->tag)) {

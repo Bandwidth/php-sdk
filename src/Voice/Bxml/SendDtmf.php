@@ -9,16 +9,30 @@
   
 namespace BandwidthLib\Voice\Bxml;
 
+use DOMDocument;
+
 require_once "Verb.php";
 
 class SendDtmf extends Verb {
+    /**
+     * @var float
+     */
+    private $toneInterval;
+    /**
+     * @var float
+     */
+    private $toneDuration;
+    /**
+     * @var string
+     */
+    private $digits;
 
     /**
      * Constructor for SendDtmf
      *
      * @param string $digits The dtmf digits
      */
-    public function __construct($digits) {
+    public function __construct(string $digits) {
         $this->digits = $digits;
     }
 
@@ -27,7 +41,7 @@ class SendDtmf extends Verb {
      *
      * @param double $toneDuration The length in milliseconds of each DTMF tone
      */
-    public function toneDuration($toneDuration) {
+    public function toneDuration(float $toneDuration) {
         $this->toneDuration = $toneDuration;
     }
 
@@ -36,11 +50,11 @@ class SendDtmf extends Verb {
      *
      * @param double $toneInterval The duration of silence in milliseconds following each DTMF tone
      */
-    public function toneInterval($toneInterval) {
+    public function toneInterval(float $toneInterval) {
         $this->toneInterval = $toneInterval;
     }
 
-    public function toBxml($doc) {
+    public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("SendDtmf");
 
         $element->appendChild($doc->createTextNode($this->digits));

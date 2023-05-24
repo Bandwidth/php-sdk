@@ -38,12 +38,12 @@ class HttpRequest
     
     /**
      * Create a new HttpRequest
-     * @param string     $httpMethod Http method
+     * @param string|null $httpMethod Http method
      * @param array|null $headers    Map of headers
-     * @param string     $queryUrl   Query url
+     * @param string|null $queryUrl   Query url
      * @param array|null $parameters Map of parameters sent
      */
-    public function __construct($httpMethod = null, array $headers = null, $queryUrl = null, array $parameters = null)
+    public function __construct(string $httpMethod = null, array $headers = null, string $queryUrl = null, array $parameters = null)
     {
         $this->httpMethod = $httpMethod;
         $this->headers = $headers;
@@ -64,7 +64,7 @@ class HttpRequest
      * Set http method
      * @param string $httpMethod Http Method as defined in HttpMethod class
      */
-    public function setHttpMethod($httpMethod)
+    public function setHttpMethod(string $httpMethod)
     {
         $this->httpMethod = $httpMethod;
     }
@@ -100,7 +100,7 @@ class HttpRequest
      * Set query url
      * @param string $queryUrl Query url
      */
-    public function setQueryUrl($queryUrl)
+    public function setQueryUrl(string $queryUrl)
     {
         $this->queryUrl = $queryUrl;
     }
@@ -118,7 +118,7 @@ class HttpRequest
      * Set parameters
      * @param array $parameters Map of input parameters
      */
-    public function setParameters($parameters)
+    public function setParameters(array $parameters)
     {
         $this->parameters = $parameters;
     }
