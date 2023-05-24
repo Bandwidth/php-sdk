@@ -111,6 +111,16 @@ class StartRecording extends Verb {
     }
 
     /**
+     * Sets the detectLanguage attribute for Record
+     *
+     * @param boolean $detectLanguage Indicates that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish.
+     */
+    public function detectLanguage($detectLanguage) {
+        $this->detectLanguage= $detectLanguage;
+    }
+
+
+    /**
      * Sets the multiChannel attribute for StartRecording
      *
      * @param bool $multiChannel True to record the audio as 2 channels, false otherwise
@@ -171,6 +181,14 @@ class StartRecording extends Verb {
 
         if(isset($this->fileFormat)) {
             $element->setattribute("fileFormat", $this->fileFormat);
+        }
+
+        if(isset($this->detectLanguage)) {
+            if ($this->detectLanguage) {
+                $element->setattribute("detectLanguage", "true");
+            } else {
+                $element->setattribute("detectLanguage", "false");
+            }
         }
 
         if(isset($this->multiChannel)) {
