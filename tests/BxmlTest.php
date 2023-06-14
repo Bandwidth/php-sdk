@@ -529,8 +529,8 @@ final class BxmlTest extends TestCase
     }
 
     public function testStopTranscription() {
-        $stopStream = new BandwidthLib\Voice\Bxml\StopTranscription();
-        $stopStream->name("test");
+        $stopTranscription = new BandwidthLib\Voice\Bxml\StopTranscription();
+        $stopTranscription->name("test");
 
         $response = new BandwidthLib\Voice\Bxml\Response();
         $response->addVerb($stopTranscription);
