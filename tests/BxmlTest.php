@@ -501,4 +501,42 @@ final class BxmlTest extends TestCase
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }
+    public function testStartTranscription() {
+        $customParam1 = new BandwidthLib\Voice\Bxml\CustomParam();
+        $customParam1->name("name1");
+        $customParam1->value("value1");
+        $customParam2 = new BandwidthLib\Voice\Bxml\CustomParam();
+        $customParam2->name("name2");
+        $customParam2->value("value2");
+        $startTranscription = new BandwidthLib\Voice\Bxml\StartTranscription();
+        $startTranscription->name("test");
+        $startTranscription->tracks("inbound");
+        $startTranscription->destination("https://url.com");
+        $startTranscription->transcriptionEventMethod("POST");
+        $startTranscription->username("user");
+        $startTranscription->password("pass");
+        $startTranscription->transcriptionEventUrl("https://url.com");
+        $startTranscription->customParams
+            (array($customParam1, $customParam2));
+
+
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($startTranscription);
+
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><StartTranscription destination="https://url.com" name="test" tracks="inbound" username="user" password="pass" transcriptionEventUrl="https://url.com" transcriptionEventMethod="POST"><CustomParam name="name1" value="value1"/><CustomParam name="name2" value="value2"/></StartTranscription></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
+
+    public function testStopTranscription() {
+        $stopTranscription = new BandwidthLib\Voice\Bxml\StopTranscription();
+        $stopTranscription->name("test");
+
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($stopTranscription);
+
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><StopTranscription name="test"/></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
 }
