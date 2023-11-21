@@ -154,7 +154,7 @@ This package can be used with PHP >= 7.2
 
 ## Documentation
 
-Documentation for this package can be found at https://dev.bandwidth.com/sdks/php.html
+Documentation for this package can be found at [https://dev.bandwidth.com/sdks/php/](https://dev.bandwidth.com/sdks/php/)
 
 ## Credentials
 
