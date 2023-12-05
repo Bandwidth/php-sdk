@@ -67,6 +67,22 @@ class SpeakSentence extends Verb {
         $this->gender = $gender;
     }
 
+    public function getGender(): string {
+      return $this->gender;
+    }
+
+    public function getLocale(): string {
+      return $this->locale;
+    }
+
+    public function getVoice(): string {
+      return $this->voice;
+    }
+
+    public function getSentence(): string {
+      return $this->sentence;
+    }
+
     public function toBxml(DOMDocument $doc) {
         $element = $doc->createElement("SpeakSentence");
 
