@@ -55,6 +55,10 @@ class Transfer extends Verb {
     /**
      * @var string
      */
+    private $transferCallerDisplayName;
+    /**
+     * @var string
+     */
     private $transferCompleteMethod;
     /**
      * @var string
@@ -112,6 +116,13 @@ class Transfer extends Verb {
      */
     public function transferCallerId(string $transferCallerId) {
         $this->transferCallerId = $transferCallerId;
+    }
+
+    /**
+     * Sets the transferCallerDisplayName attribute for Transfer
+     */
+    public function transferCallerDisplayName(string $transferCallerDisplayName) {
+        $this->transferCallerDisplayName = $transferCallerDisplayName;
     }
 
     /**
@@ -229,6 +240,10 @@ class Transfer extends Verb {
 
         if(isset($this->transferCallerId)) {
             $element->setAttribute("transferCallerId", $this->transferCallerId);
+        }
+
+        if(isset($this->transferCallerDisplayName)) {
+            $element->setAttribute("transferCallerDisplayName", $this->transferCallerDisplayName);
         }
 
         if(isset($this->callTimeout)) {

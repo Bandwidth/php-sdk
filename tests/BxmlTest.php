@@ -278,6 +278,7 @@ final class BxmlTest extends TestCase
         $number2->fallbackPassword("fpass");
         $transfer = new BandwidthLib\Voice\Bxml\Transfer();
         $transfer->transferCallerId("+18999999999");
+        $transfer->transferCallerDisplayName("test");
         $transfer->transferCompleteUrl("https://test.com");
         $transfer->transferCompleteMethod("GET");
         $transfer->username("user");
@@ -293,7 +294,7 @@ final class BxmlTest extends TestCase
         $transfer->fallbackPassword("fpassw");
         $response = new BandwidthLib\Voice\Bxml\Response();
         $response->addVerb($transfer);
-        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Transfer username="user" password="pass" tag="tag" transferCompleteUrl="https://test.com" transferCompleteMethod="GET" transferCallerId="+18999999999" callTimeout="3" diversionTreatment="none" diversionReason="away" transferCompleteFallbackUrl="https://test3.com" transferCompleteFallbackMethod="POST" fallbackUsername="fusern" fallbackPassword="fpassw"><PhoneNumber username="user" password="pass" tag="tag" transferAnswerUrl="https://test.com" transferAnswerMethod="GET">+17777777777</PhoneNumber><PhoneNumber username="user2" password="pass2" tag="tag2" transferAnswerUrl="https://test2.com" transferAnswerMethod="GET" transferAnswerFallbackUrl="https://test3.com" transferAnswerFallbackMethod="POST" fallbackUsername="fuser" fallbackPassword="fpass">+17777777779</PhoneNumber></Transfer></Response>';
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Transfer username="user" password="pass" tag="tag" transferCompleteUrl="https://test.com" transferCompleteMethod="GET" transferCallerId="+18999999999" transferCallerDisplayName="test" callTimeout="3" diversionTreatment="none" diversionReason="away" transferCompleteFallbackUrl="https://test3.com" transferCompleteFallbackMethod="POST" fallbackUsername="fusern" fallbackPassword="fpassw"><PhoneNumber username="user" password="pass" tag="tag" transferAnswerUrl="https://test.com" transferAnswerMethod="GET">+17777777777</PhoneNumber><PhoneNumber username="user2" password="pass2" tag="tag2" transferAnswerUrl="https://test2.com" transferAnswerMethod="GET" transferAnswerFallbackUrl="https://test3.com" transferAnswerFallbackMethod="POST" fallbackUsername="fuser" fallbackPassword="fpass">+17777777779</PhoneNumber></Transfer></Response>';
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }
