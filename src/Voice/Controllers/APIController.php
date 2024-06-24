@@ -295,7 +295,7 @@ class APIController extends BaseController
         Request::timeout($this->config->getTimeout());
 
         // and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, $body);
+        $response = Request::put($_queryUrl, $_headers, $body);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
