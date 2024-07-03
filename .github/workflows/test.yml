@@ -17,34 +17,34 @@ jobs:
     strategy:
       matrix:
         os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
-        php-version: [7.4, 8.0, 8.1, 8.2]
+        php-version: [8.0, 8.1, 8.2, 8.3]
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
           php-version: ${{ matrix.php-version }}
 
-    - name: Install Packages
-      run: composer install
+      - name: Install Packages
+        run: composer install
 
-    - name: Test
-      env:
-        BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
-        BW_USERNAME: ${{ secrets.BW_USERNAME }}
-        BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
-        BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
-        BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
-        BW_NUMBER: ${{ secrets.BW_NUMBER }}
-        USER_NUMBER: ${{ secrets.USER_NUMBER }}
-        BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
-      run: ./vendor/bin/phpunit tests
+      - name: Test
+        env:
+          BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+          BW_USERNAME: ${{ secrets.BW_USERNAME }}
+          BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
+          BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+          BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+          BW_NUMBER: ${{ secrets.BW_NUMBER }}
+          USER_NUMBER: ${{ secrets.USER_NUMBER }}
+          BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+        run: ./vendor/bin/phpunit tests
 
-    - uses: Bandwidth/build-notify-slack-action@v1.0.0
-      if: failure() && !github.event.pull_request.draft
-      with:
-        job-status: ${{ job.status }}
-        slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
-        slack-channel: ${{ secrets.SLACK_CHANNEL }}
+      - uses: Bandwidth/build-notify-slack-action@v1.0.0
+        if: failure() && !github.event.pull_request.draft
+        with:
+          job-status: ${{ job.status }}
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          slack-channel: ${{ secrets.SLACK_CHANNEL }}
