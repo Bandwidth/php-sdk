@@ -83,12 +83,12 @@ try {
 
 ```php
 
-$speakSentence = new BandwidthLib\Voice\Bxml\SpeakSentence("Hello!");
-$speakSentence->voice("susan");
-$speakSentence->locale("en_US");
-$speakSentence->gender("female");
-$response = new BandwidthLib\Voice\Bxml\Response();
-$response->addVerb($speakSentence);
+$speakSentence = BandwidthLib\Voice\Bxml\SpeakSentence::make("Hello!")
+    ->voice("susan")
+    ->locale("en_US")
+    ->gender("female");
+$response = BandwidthLib\Voice\Bxml\Response::make()
+    ->addVerb($speakSentence);
 echo $response->toBxml();
 ```
 

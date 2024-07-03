@@ -22,4 +22,7 @@ abstract class Verb {
      */
     abstract protected function toBxml(DOMDocument $doc): DOMElement;
 
+    public static function make(): static {
+        return new static(...func_get_args());
+    }
 }
