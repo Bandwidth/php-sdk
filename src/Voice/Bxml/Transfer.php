@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -78,8 +79,9 @@ class Transfer extends Verb {
      *
      * @param string $username The username for http authentication on the transfer answered callback url
      */
-    public function username(string $username) {
+    public function username(string $username): Transfer {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -87,8 +89,9 @@ class Transfer extends Verb {
      *
      * @param string $password The password for http authentication on the transfer answered callback url
      */
-    public function password(string $password) {
+    public function password(string $password): Transfer {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -96,8 +99,9 @@ class Transfer extends Verb {
      *
      * @param string $transferCompleteUrl The url to receive the transfer answered callback 
      */
-    public function transferCompleteUrl(string $transferCompleteUrl) {
+    public function transferCompleteUrl(string $transferCompleteUrl): Transfer {
         $this->transferCompleteUrl = $transferCompleteUrl;
+        return $this;
     }
 
     /**
@@ -105,8 +109,9 @@ class Transfer extends Verb {
      *
      * @param string $transferCompleteMethod The http method to send the transfer answered callback 
      */
-    public function transferCompleteMethod(string $transferCompleteMethod) {
+    public function transferCompleteMethod(string $transferCompleteMethod): Transfer {
         $this->transferCompleteMethod = $transferCompleteMethod;
+        return $this;
     }
 
     /**
@@ -114,15 +119,17 @@ class Transfer extends Verb {
      *
      * @param string $transferCallerId The caller id to use when the call is transferred
      */
-    public function transferCallerId(string $transferCallerId) {
+    public function transferCallerId(string $transferCallerId): Transfer {
         $this->transferCallerId = $transferCallerId;
+        return $this;
     }
 
     /**
      * Sets the transferCallerDisplayName attribute for Transfer
      */
-    public function transferCallerDisplayName(string $transferCallerDisplayName) {
+    public function transferCallerDisplayName(string $transferCallerDisplayName): Transfer {
         $this->transferCallerDisplayName = $transferCallerDisplayName;
+        return $this;
     }
 
     /**
@@ -130,8 +137,9 @@ class Transfer extends Verb {
      *
      * @param int $callTimeout The number of seconds to wait before timing out the call
      */
-    public function callTimeout(int $callTimeout) {
+    public function callTimeout(int $callTimeout): Transfer {
         $this->callTimeout = $callTimeout;
+        return $this;
     }
 
     /**
@@ -139,8 +147,9 @@ class Transfer extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag(string $tag) {
+    public function tag(string $tag): Transfer {
         $this->tag = $tag;
+        return $this;
     }
 
     /**
@@ -148,8 +157,9 @@ class Transfer extends Verb {
      *
      * @param string $diversionTreatment The diversion treatment for the phone call 
      */
-    public function diversionTreatment(string $diversionTreatment) {
+    public function diversionTreatment(string $diversionTreatment): Transfer {
         $this->diversionTreatment = $diversionTreatment;
+        return $this;
     }
 
     /**
@@ -157,8 +167,9 @@ class Transfer extends Verb {
      *
      * @param string $diversionReason The diversion treatment for the phone call 
      */
-    public function diversionReason(string $diversionReason) {
+    public function diversionReason(string $diversionReason): Transfer {
         $this->diversionReason = $diversionReason;
+        return $this;
     }
 
     /**
@@ -166,8 +177,9 @@ class Transfer extends Verb {
      *
      * @param list<PhoneNumber> $phoneNumbers The list of PhoneNumber tags
      */
-    public function phoneNumbers($phoneNumbers) {
+    public function phoneNumbers($phoneNumbers): Transfer {
         $this->phoneNumbers = $phoneNumbers;
+        return $this;
     }
 
     /**
@@ -175,8 +187,9 @@ class Transfer extends Verb {
      *
      * @param list<SipUri> $sipUris The list of SipUri tags
      */
-    public function sipUris($sipUris) {
+    public function sipUris($sipUris): Transfer {
         $this->sipUris = $sipUris;
+        return $this;
     }
 
     /**
@@ -184,8 +197,9 @@ class Transfer extends Verb {
      *
      * @param string $transferCompleteFallbackUrl Fallback url for transfer complete events 
      */
-    public function transferCompleteFallbackUrl(string $transferCompleteFallbackUrl) {
+    public function transferCompleteFallbackUrl(string $transferCompleteFallbackUrl): Transfer {
         $this->transferCompleteFallbackUrl = $transferCompleteFallbackUrl;
+        return $this;
     }
 
     /**
@@ -193,8 +207,9 @@ class Transfer extends Verb {
      *
      * @param string $transferCompleteFallbackMethod HTTP method for fallback events
      */
-    public function transferCompleteFallbackMethod(string $transferCompleteFallbackMethod) {
+    public function transferCompleteFallbackMethod(string $transferCompleteFallbackMethod): Transfer {
         $this->transferCompleteFallbackMethod = $transferCompleteFallbackMethod;
+        return $this;
     }
 
     /**
@@ -202,8 +217,9 @@ class Transfer extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events 
      */
-    public function fallbackUsername(string $fallbackUsername) {
+    public function fallbackUsername(string $fallbackUsername): Transfer {
         $this->fallbackUsername = $fallbackUsername;
+        return $this;
     }
 
     /**
@@ -211,11 +227,12 @@ class Transfer extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events
      */
-    public function fallbackPassword(string $fallbackPassword) {
+    public function fallbackPassword(string $fallbackPassword): Transfer {
         $this->fallbackPassword = $fallbackPassword;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Transfer");
 
         if(isset($this->username)) {

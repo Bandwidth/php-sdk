@@ -29,8 +29,9 @@ class Response {
      *
      * @param Verb $verb The verb to add to the list
      */
-    public function addVerb(Verb $verb) {
+    public function addVerb(Verb $verb): Response {
         array_push($this->verbs, $verb);
+        return $this;
     }
 
     /**
@@ -38,7 +39,7 @@ class Response {
      *
      * @return string The xml representation of the class
      */
-    public function toBxml() {
+    public function toBxml(): string {
         $ssmlRegex = '/&lt;([a-zA-Z\/\/].*?)&gt;/';
         $doc = new DOMDocument('1.0', 'UTF-8');
         $responseElement = $doc->createElement("Response");
@@ -51,7 +52,7 @@ class Response {
         return str_replace("\n", '', preg_replace($ssmlRegex, "<$1>", $doc->saveXML()));
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toBxml();
     }

@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -28,8 +29,9 @@ class CustomParam extends Verb {
      *
      * @param string $name (required) The name of this parameter, up to 256 characters.
      */
-    public function name(string $name) {
+    public function name(string $name): CustomParam {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -37,11 +39,12 @@ class CustomParam extends Verb {
      *
      * @param string $value (required) The value of this parameter, up to 2048 characters.
      */
-    public function value(string $value) {
+    public function value(string $value): CustomParam {
         $this->value = $value;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("CustomParam");
 
         if(isset($this->name)) {

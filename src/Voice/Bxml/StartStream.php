@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -49,8 +50,9 @@ class StartStream extends Verb {
      *
      * @param string $destination A websocket URI to send the stream to. The audio from the specified tracks will be sent via websocket to this URL encoded as base64 encoded PCMU/G711 audio. See below for more details on the websocket packet format.
      */
-    public function destination(string $destination) {
+    public function destination(string $destination): StartStream {
         $this->destination = $destination;
+        return $this;
     }
 
     /**
@@ -58,8 +60,9 @@ class StartStream extends Verb {
      *
      * @param string $name A name to refer to this stream by. Used when sending [`<StopStream>`][1]. If not provided, a random name will be generated and sent in the [`Media Stream Started`][2] webook
      */
-    public function name(string $name) {
+    public function name(string $name): StartStream {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -68,8 +71,9 @@ class StartStream extends Verb {
      * @param string $tracks The part of the call to send a stream from. `inbound`, `outbound` or `both`. Default is `inbound`. 
      * 
      */
-    public function tracks(string $tracks) {
+    public function tracks(string $tracks): StartStream {
         $this->tracks = $tracks;
+        return $this;
     }
 
     /**
@@ -77,8 +81,9 @@ class StartStream extends Verb {
      *
      * @param string $username The username to send in the HTTP request to `streamEventUrl`. If specified, the URLs must be TLS-encrypted (i.e., `https`). 
      */
-    public function username(string $username) {
+    public function username(string $username): StartStream {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -86,8 +91,9 @@ class StartStream extends Verb {
      *
      * @param string $password The password to send in the HTTP request to `streamEventUrl`. If specified, the URLs must be TLS-encrypted (i.e., `https`).    
      */
-    public function password(string $password) {
+    public function password(string $password): StartStream {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -95,8 +101,9 @@ class StartStream extends Verb {
      *
      * @param string $streamEventUrl URL to send the associated Webhook events to during this stream's lifetime. Does not accept BXML. May be a relative URL. 
      */
-    public function streamEventUrl(string $streamEventUrl) {
+    public function streamEventUrl(string $streamEventUrl): StartStream {
         $this->streamEventUrl = $streamEventUrl;
+        return $this;
     }
 
     /**
@@ -104,8 +111,9 @@ class StartStream extends Verb {
      *
      * @param bool $streamEventMethod The HTTP method to use for the request to `streamEventUrl`. GET or POST. Default value is POST. 
      */
-    public function streamEventMethod(string $streamEventMethod) {
+    public function streamEventMethod(string $streamEventMethod): StartStream {
         $this->streamEventMethod = $streamEventMethod;
+        return $this;
     }
 
     /**
@@ -113,11 +121,12 @@ class StartStream extends Verb {
      *
      * @param list<StreamParam> $streamParams The list of StreamParam tags
      */
-    public function streamParams($streamParams) {
+    public function streamParams($streamParams): StartStream {
         $this->streamParams = $streamParams;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("StartStream");
 
         if(isset($this->destination)) {

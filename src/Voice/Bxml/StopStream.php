@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -24,11 +25,12 @@ class StopStream extends Verb {
      *
      * @param string $name (required) The name of the stream to stop. This is either the user selected name when sending the [`<StartStream>`][1] verb, or the system generated name returned in the [Media Stream Started][2] webhook if `<StartStream>` was sent with no `name` attribute.
      */
-    public function name(string $name) {
+    public function name(string $name): StopStream {
         $this->name = $name;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("StopStream");
 
         if(isset($this->name)) {
