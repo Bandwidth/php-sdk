@@ -50,6 +50,10 @@ class Record extends Verb {
      * @var string
      */
     private $fileFormat;
+    /** 
+     * @var bool
+    */
+    private $detectLanguage;
     /**
      * @var int
      */
@@ -185,7 +189,7 @@ class Record extends Verb {
      * @param boolean $detectLanguage Indicates that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish.
      */
     public function detectLanguage($detectLanguage) {
-        $this->detectLanguage= $detectLanguage;
+        $this->detectLanguage = $detectLanguage;
     }
 
     /**
