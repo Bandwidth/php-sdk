@@ -50,4 +50,9 @@ class Response {
         $doc->appendChild($responseElement);
         return str_replace("\n", '', preg_replace($ssmlRegex, "<$1>", $doc->saveXML()));
     }
+
+    public function __toString()
+    {
+        return $this->toBxml();
+    }
 }
