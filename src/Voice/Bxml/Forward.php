@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -40,8 +41,9 @@ class Forward extends Verb {
      *
      * @param string $to The phone number to receive the phone call 
      */
-    public function to(string $to) {
+    public function to(string $to): Forward {
         $this->to = $to;
+        return $this;
     }
 
     /**
@@ -49,8 +51,9 @@ class Forward extends Verb {
      *
      * @param string $from The phone number to make the phone call
      */
-    public function from(string $from) {
+    public function from(string $from): Forward {
         $this->from = $from;
+        return $this;
     }
 
     /**
@@ -58,8 +61,9 @@ class Forward extends Verb {
      *
      * @param string $callTimeout The timeout in seconds for the phone call 
      */
-    public function callTimeout(string $callTimeout) {
+    public function callTimeout(string $callTimeout): Forward {
         $this->callTimeout = $callTimeout;
+        return $this;
     }
 
     /**
@@ -67,8 +71,9 @@ class Forward extends Verb {
      *
      * @param string $diversionTreatment The diversion treatment for the phone call 
      */
-    public function diversionTreatment(string $diversionTreatment) {
+    public function diversionTreatment(string $diversionTreatment): Forward {
         $this->diversionTreatment = $diversionTreatment;
+        return $this;
     }
 
     /**
@@ -76,11 +81,12 @@ class Forward extends Verb {
      *
      * @param string $diversionReason The diversion treatment for the phone call 
      */
-    public function diversionReason(string $diversionReason) {
+    public function diversionReason(string $diversionReason): Forward {
         $this->diversionReason = $diversionReason;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Forward");
 
         if(isset($this->to)) {

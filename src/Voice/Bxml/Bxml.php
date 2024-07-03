@@ -29,8 +29,9 @@ class Bxml {
      *
      * @param Verb $verb The verb to add to the list
      */
-    public function addVerb(Verb $verb) {
+    public function addVerb(Verb $verb): Bxml {
         array_push($this->verbs, $verb);
+        return $this;
     }
 
     /**
@@ -38,7 +39,7 @@ class Bxml {
      *
      * @return string The xml representation of the class
      */
-    public function toBxml() {
+    public function toBxml(): string {
         $ssmlRegex = '/&lt;([a-zA-Z\/\/].*?)&gt;/';
         $doc = new DOMDocument('1.0', 'UTF-8');
         $bxmlElement = $doc->createElement("Bxml");

@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -24,11 +25,12 @@ class StopTranscription extends Verb {
      *
      * @param string $name (required) The name of the real-time transcription to stop. This is either the user selected name when sending the [`<StartTranscription>`][1] verb, or the system generated name returned in the [Media Transcription Started][2] webhook if `<StartTranscription>` was sent with no `name` attribute.
      */
-    public function name(string $name) {
+    public function name(string $name): StopTranscription {
         $this->name = $name;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("StopTranscription");
 
         if(isset($this->name)) {

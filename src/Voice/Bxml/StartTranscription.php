@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -53,8 +54,9 @@ class StartTranscription extends Verb {
      *
      * @param string $destination A websocket URI to send the real-time transcription to. The audio from the specified tracks will be sent via websocket to this URL encoded as base64 encoded PCMU/G711 audio. See below for more details on the websocket packet format.
      */
-    public function destination(string $destination) {
+    public function destination(string $destination): StartTranscription {
         $this->destination = $destination;
+        return $this;
     }
 
     /**
@@ -62,8 +64,9 @@ class StartTranscription extends Verb {
      *
      * @param string $name A name to refer to this transcription by. Used when sending <StopTranscription>. If not provided, it will default to the generated transcription id as sent in the real-time Transcription Started webhook.
      */
-    public function name(string $name) {
+    public function name(string $name): StartTranscription {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -72,8 +75,9 @@ class StartTranscription extends Verb {
      * @param string $tracks The part of the call to send a real-time transcription from. `inbound`, `outbound` or `both`. Default is `inbound`. 
      * 
      */
-    public function tracks(string $tracks) {
+    public function tracks(string $tracks): StartTranscription {
         $this->tracks = $tracks;
+        return $this;
     }
 
     /**
@@ -81,8 +85,9 @@ class StartTranscription extends Verb {
      *
      * @param string $username The username to send in the HTTP request to `transcriptionEventUrl`. If specified, the URLs must be TLS-encrypted (i.e., `https`). 
      */
-    public function username(string $username) {
+    public function username(string $username): StartTranscription {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -90,8 +95,9 @@ class StartTranscription extends Verb {
      *
      * @param string $password The password to send in the HTTP request to `transcriptionEventUrl`. If specified, the URLs must be TLS-encrypted (i.e., `https`).    
      */
-    public function password(string $password) {
+    public function password(string $password): StartTranscription {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -99,8 +105,9 @@ class StartTranscription extends Verb {
      *
      * @param string $transcriptionEventUrl URL to send the associated Webhook events to during this stream's lifetime. Does not accept BXML. May be a relative URL. 
      */
-    public function transcriptionEventUrl(string $transcriptionEventUrl) {
+    public function transcriptionEventUrl(string $transcriptionEventUrl): StartTranscription {
         $this->transcriptionEventUrl = $transcriptionEventUrl;
+        return $this;
     }
 
     /**
@@ -108,8 +115,9 @@ class StartTranscription extends Verb {
      *
      * @param bool $transcriptionEventMethod The HTTP method to use for the request to `transcriptionEventUrl`. GET or POST. Default value is POST. 
      */
-    public function transcriptionEventMethod(string $transcriptionEventMethod) {
+    public function transcriptionEventMethod(string $transcriptionEventMethod): StartTranscription {
         $this->transcriptionEventMethod = $transcriptionEventMethod;
+        return $this;
     }
 
     /**
@@ -118,8 +126,9 @@ class StartTranscription extends Verb {
      * @param bool Whether to send transcription update events to the specified destination only after they have become stable. Requires destination. Defaults to true.
      * 
      */
-    public function stability( bool $stability) {
+    public function stability( bool $stability): StartTranscription {
         $this->stability = $stability;
+        return $this;
     }
 
     /**
@@ -127,11 +136,12 @@ class StartTranscription extends Verb {
      *
      * @param list<CustomParam> $customParams The list of CustomParam tags
      */
-    public function customParams($customParams) {
+    public function customParams($customParams): StartTranscription {
         $this->customParams = $customParams;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("StartTranscription");
 
         if(isset($this->destination)) {

@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -28,8 +29,9 @@ class Ring extends Verb {
      *
      * @param float $duration The duration in seconds for the ring
      */
-    public function duration(float $duration) {
+    public function duration(float $duration): Ring {
         $this->duration = $duration;
+        return $this;
     }
 
     /**
@@ -37,11 +39,12 @@ class Ring extends Verb {
      *
      * @param boolean $answerCall Determines whether or not to answer the call when Ring is executed on an unanswered incoming call
      */
-    public function answerCall(bool $answerCall) {
+    public function answerCall(bool $answerCall): Ring {
         $this->answerCall = $answerCall;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Ring");
 
         if(isset($this->duration)) {

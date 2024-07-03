@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 require_once "SpeakSentence.php";
@@ -42,8 +43,9 @@ class StartGather extends Verb {
      *
      * @param string $username The username for http authentication for the gather callback
      */
-    public function username(string $username) {
+    public function username(string $username): StartGather {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -51,8 +53,9 @@ class StartGather extends Verb {
      *
      * @param string $password The password for http authentication for the gather callback
      */
-    public function password(string $password) {
+    public function password(string $password): StartGather {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -60,8 +63,9 @@ class StartGather extends Verb {
      *
      * @param string $dtmfUrl The url to receive the dtmf callback 
      */
-    public function dtmfUrl(string $dtmfUrl) {
+    public function dtmfUrl(string $dtmfUrl): StartGather {
         $this->dtmfUrl = $dtmfUrl;
+        return $this;
     }
 
     /**
@@ -69,8 +73,9 @@ class StartGather extends Verb {
      *
      * @param string $dtmfMethod The http method to send the dtmf callback 
      */
-    public function dtmfMethod(string $dtmfMethod) {
+    public function dtmfMethod(string $dtmfMethod): StartGather {
         $this->dtmfMethod = $dtmfMethod;
+        return $this;
     }
 
     /**
@@ -78,11 +83,12 @@ class StartGather extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag(string $tag) {
+    public function tag(string $tag): StartGather {
         $this->tag = $tag;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("StartGather");
 
         if(isset($this->username)) {
