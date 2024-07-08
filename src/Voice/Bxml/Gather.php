@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 require_once "SpeakSentence.php";
@@ -90,8 +91,9 @@ class Gather extends Verb {
      *
      * @param string $username The username for http authentication for the gather callback
      */
-    public function username(string $username) {
+    public function username(string $username): Gather {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -99,8 +101,9 @@ class Gather extends Verb {
      *
      * @param string $password The password for http authentication for the gather callback
      */
-    public function password(string $password) {
+    public function password(string $password): Gather {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -108,8 +111,9 @@ class Gather extends Verb {
      *
      * @param string $gatherUrl The url to receive the gather callback 
      */
-    public function gatherUrl(string $gatherUrl) {
+    public function gatherUrl(string $gatherUrl): Gather {
         $this->gatherUrl = $gatherUrl;
+        return $this;
     }
 
     /**
@@ -117,8 +121,9 @@ class Gather extends Verb {
      *
      * @param string $gatherMethod The http method to send the gather callback 
      */
-    public function gatherMethod(string $gatherMethod) {
+    public function gatherMethod(string $gatherMethod): Gather {
         $this->gatherMethod = $gatherMethod;
+        return $this;
     }
 
     /**
@@ -126,8 +131,9 @@ class Gather extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag(string $tag) {
+    public function tag(string $tag): Gather {
         $this->tag = $tag;
+        return $this;
     }
 
     /**
@@ -135,8 +141,9 @@ class Gather extends Verb {
      *
      * @param string $terminatingDigits Digits to terminate the gather
      */
-    public function terminatingDigits(string $terminatingDigits) {
+    public function terminatingDigits(string $terminatingDigits): Gather {
         $this->terminatingDigits = $terminatingDigits;
+        return $this;
     }
 
     /**
@@ -144,8 +151,9 @@ class Gather extends Verb {
      *
      * @param int $maxDigits The maximum number of digits to collect in the gather
      */
-    public function maxDigits(int $maxDigits) {
+    public function maxDigits(int $maxDigits): Gather {
         $this->maxDigits = $maxDigits;
+        return $this;
     }
 
     /**
@@ -153,8 +161,9 @@ class Gather extends Verb {
      *
      * @param int $interDigitTimeout The time in secods between digit presses before timing out
      */
-    public function interDigitTimeout(int $interDigitTimeout) {
+    public function interDigitTimeout(int $interDigitTimeout): Gather {
         $this->interDigitTimeout = $interDigitTimeout;
+        return $this;
     }
 
     /**
@@ -162,8 +171,9 @@ class Gather extends Verb {
      *
      * @param int $firstDigitTimeout The time in seconds before the first digit is pressed before timing out
      */
-    public function firstDigitTimeout(int $firstDigitTimeout) {
+    public function firstDigitTimeout(int $firstDigitTimeout): Gather {
         $this->firstDigitTimeout = $firstDigitTimeout;
+        return $this;
     }
 
     /**
@@ -171,9 +181,9 @@ class Gather extends Verb {
      *
      * @param PlayAudio $playAudio The PlayAudio tag to include in the Gather
      */
-    public function playAudio(PlayAudio $playAudio) {
+    public function playAudio(PlayAudio $playAudio): Gather {
         $this->playAudio = $playAudio;
-        $this->addNestableVerb($playAudio);
+        return $this->addNestableVerb($playAudio);
     }
 
     /**
@@ -181,8 +191,9 @@ class Gather extends Verb {
      *
      * @param int $repeatCount The number of times to repeat the played audio
      */
-    public function repeatCount(int $repeatCount) {
+    public function repeatCount(int $repeatCount): Gather {
         $this->repeatCount = $repeatCount;
+        return $this;
     }
 
     /**
@@ -190,9 +201,9 @@ class Gather extends Verb {
      *
      * @param SpeakSentence $speakSentence The SpeakSentence tag to include in the Gather
      */
-    public function speakSentence(SpeakSentence $speakSentence) {
+    public function speakSentence(SpeakSentence $speakSentence): Gather {
         $this->speakSentence = $speakSentence;
-        $this->addNestableVerb($speakSentence);
+        return $this->addNestableVerb($speakSentence);
     }
 
     /**
@@ -200,8 +211,9 @@ class Gather extends Verb {
      *
      * @param string $gatherFallbackUrl Fallback url for gather events
      */
-    public function gatherFallbackUrl(string $gatherFallbackUrl) {
+    public function gatherFallbackUrl(string $gatherFallbackUrl): Gather {
         $this->gatherFallbackUrl = $gatherFallbackUrl;
+        return $this;
     }
 
     /**
@@ -209,8 +221,9 @@ class Gather extends Verb {
      *
      * @param string $gatherFallbackMethod HTTP method for fallback events
      */
-    public function gatherFallbackMethod(string $gatherFallbackMethod) {
+    public function gatherFallbackMethod(string $gatherFallbackMethod): Gather {
         $this->gatherFallbackMethod = $gatherFallbackMethod;
+        return $this;
     }
 
     /**
@@ -218,8 +231,9 @@ class Gather extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events
      */
-    public function fallbackUsername(string $fallbackUsername) {
+    public function fallbackUsername(string $fallbackUsername): Gather {
         $this->fallbackUsername = $fallbackUsername;
+        return $this;
     }
 
     /**
@@ -227,8 +241,9 @@ class Gather extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events
      */
-    public function fallbackPassword(string $fallbackPassword) {
+    public function fallbackPassword(string $fallbackPassword): Gather {
         $this->fallbackPassword = $fallbackPassword;
+        return $this;
     }
 
     /**
@@ -236,14 +251,15 @@ class Gather extends Verb {
      *
      * @param SpeakSentence|PlayAudio $verb The nestable verb to add
      */
-    private function addNestableVerb($verb) {
+    private function addNestableVerb($verb): Gather {
         if(!isset($this->nestableVerbs)) {
             $this->nestableVerbs = [];
         }
         array_push($this->nestableVerbs, $verb);
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Gather");
 
         if(isset($this->username)) {

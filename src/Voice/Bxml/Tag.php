@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -28,7 +29,7 @@ class Tag extends Verb {
         $this->tag = $tag;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Tag");
 
         $element->appendChild($doc->createTextNode($this->tag));

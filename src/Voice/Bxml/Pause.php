@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -24,11 +25,12 @@ class Pause extends Verb {
      *
      * @param float $duration The duration in seconds for the pause 
      */
-    public function duration(float $duration) {
+    public function duration(float $duration): Pause {
         $this->duration = $duration;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Pause");
 
         if(isset($this->duration)) {

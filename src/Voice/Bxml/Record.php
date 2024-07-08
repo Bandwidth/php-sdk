@@ -10,6 +10,7 @@
 namespace BandwidthLib\Voice\Bxml;
 
 use DOMDocument;
+use DOMElement;
 
 require_once "Verb.php";
 
@@ -50,6 +51,10 @@ class Record extends Verb {
      * @var string
      */
     private $fileFormat;
+    /** 
+     * @var bool
+    */
+    private $detectLanguage;
     /**
      * @var int
      */
@@ -92,8 +97,9 @@ class Record extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks
      */
-    public function tag(string $tag) {
+    public function tag(string $tag): Record {
         $this->tag = $tag;
+        return $this;
     }
 
     /**
@@ -101,8 +107,9 @@ class Record extends Verb {
      *
      * @param string $recordCompleteUrl URL to send the record complete callback to
      */
-    public function recordCompleteUrl(string $recordCompleteUrl) {
+    public function recordCompleteUrl(string $recordCompleteUrl): Record {
         $this->recordCompleteUrl = $recordCompleteUrl;
+        return $this;
     }
 
     /**
@@ -111,8 +118,9 @@ class Record extends Verb {
      * @param string $recordCompleteMethod HTTP method to send record complete
      * as ("GET" or "POST")
      */
-    public function recordCompleteMethod(string $recordCompleteMethod) {
+    public function recordCompleteMethod(string $recordCompleteMethod): Record {
         $this->recordCompleteMethod = $recordCompleteMethod;
+        return $this;
     }
 
     /**
@@ -120,8 +128,9 @@ class Record extends Verb {
      *
      * @param string $recordingAvailableUrl URL to send the record available callback to
      */
-    public function recordingAvailableUrl(string $recordingAvailableUrl) {
+    public function recordingAvailableUrl(string $recordingAvailableUrl): Record {
         $this->recordingAvailableUrl = $recordingAvailableUrl;
+        return $this;
     }
 
     /**
@@ -130,8 +139,9 @@ class Record extends Verb {
      * @param string $recordingAvailableMethod HTTP method to send record available
      * as ("GET" or "POST")
      */
-    public function recordingAvailableMethod(string $recordingAvailableMethod) {
+    public function recordingAvailableMethod(string $recordingAvailableMethod): Record {
         $this->recordingAvailableMethod = $recordingAvailableMethod;
+        return $this;
     }
 
     /**
@@ -139,8 +149,9 @@ class Record extends Verb {
      *
      * @param string $username Username for basic auth for callbacks
      */
-    public function username(string $username) {
+    public function username(string $username): Record {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -148,8 +159,9 @@ class Record extends Verb {
      *
      * @param string $password Password for basic auth for callbacks
      */
-    public function password(string $password) {
+    public function password(string $password): Record {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -157,8 +169,9 @@ class Record extends Verb {
      *
      * @param string $terminatingDigits Digits to terminate the recording
      */
-    public function terminatingDigits(string $terminatingDigits) {
+    public function terminatingDigits(string $terminatingDigits): Record {
         $this->terminatingDigits = $terminatingDigits;
+        return $this;
     }
 
     /**
@@ -166,8 +179,9 @@ class Record extends Verb {
      *
      * @param int $maxDuration Maximum length of the recording in secods
      */
-    public function maxDuration(int $maxDuration) {
+    public function maxDuration(int $maxDuration): Record {
         $this->maxDuration = $maxDuration;
+        return $this;
     }
 
     /**
@@ -175,8 +189,9 @@ class Record extends Verb {
      *
      * @param string $fileFormat Audio format of the recording ("mp3" or "wav")
      */
-    public function fileFormat(string $fileFormat) {
+    public function fileFormat(string $fileFormat): Record {
         $this->fileFormat = $fileFormat;
+        return $this;
     }
 
     /**
@@ -184,8 +199,9 @@ class Record extends Verb {
      *
      * @param boolean $detectLanguage Indicates that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish.
      */
-    public function detectLanguage($detectLanguage) {
-        $this->detectLanguage= $detectLanguage;
+    public function detectLanguage($detectLanguage): Record {
+        $this->detectLanguage = $detectLanguage;
+        return $this;
     }
 
     /**
@@ -193,8 +209,9 @@ class Record extends Verb {
      *
      * @param boolean $transcribe True to submit the recording for transcription, false otherwise
      */
-    public function transcribe(bool $transcribe) {
+    public function transcribe(bool $transcribe): Record {
         $this->transcribe = $transcribe;
+        return $this;
     }
 
     /**
@@ -202,8 +219,9 @@ class Record extends Verb {
      *
      * @param string $transcriptionAvailableUrl URL to send transcription available events to
      */
-    public function transcriptionAvailableUrl(string $transcriptionAvailableUrl) {
+    public function transcriptionAvailableUrl(string $transcriptionAvailableUrl): Record {
         $this->transcriptionAvailableUrl = $transcriptionAvailableUrl;
+        return $this;
     }
 
     /**
@@ -211,8 +229,9 @@ class Record extends Verb {
      *
      * @param string $transcriptionAvailableMethod HTTP method (GET or POST) to send the transcription available event as
      */
-    public function transcriptionAvailableMethod(string $transcriptionAvailableMethod) {
+    public function transcriptionAvailableMethod(string $transcriptionAvailableMethod): Record {
         $this->transcriptionAvailableMethod = $transcriptionAvailableMethod;
+        return $this;
     }
 
     /**
@@ -220,8 +239,9 @@ class Record extends Verb {
      *
      * @param int $silenceTimeout Number of seconds of silence that ends the recording
      */
-    public function silenceTimeout(int $silenceTimeout) {
+    public function silenceTimeout(int $silenceTimeout): Record {
         $this->silenceTimeout = $silenceTimeout;
+        return $this;
     }
 
     /**
@@ -229,8 +249,9 @@ class Record extends Verb {
      *
      * @param string $recordCompleteFallbackUrl Fallback URL for record complete events 
      */
-    public function recordCompleteFallbackUrl(string $recordCompleteFallbackUrl) {
+    public function recordCompleteFallbackUrl(string $recordCompleteFallbackUrl): Record {
         $this->recordCompleteFallbackUrl = $recordCompleteFallbackUrl;
+        return $this;
     }
 
     /**
@@ -238,8 +259,9 @@ class Record extends Verb {
      *
      * @param string $recordCompleteFallbackMethod HTTP method for fallback events 
      */
-    public function recordCompleteFallbackMethod(string $recordCompleteFallbackMethod) {
+    public function recordCompleteFallbackMethod(string $recordCompleteFallbackMethod): Record {
         $this->recordCompleteFallbackMethod = $recordCompleteFallbackMethod;
+        return $this;
     }
 
     /**
@@ -247,8 +269,9 @@ class Record extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events 
      */
-    public function fallbackUsername(string $fallbackUsername) {
+    public function fallbackUsername(string $fallbackUsername): Record {
         $this->fallbackUsername = $fallbackUsername;
+        return $this;
     }
 
     /**
@@ -256,11 +279,12 @@ class Record extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events 
      */
-    public function fallbackPassword(string $fallbackPassword) {
+    public function fallbackPassword(string $fallbackPassword): Record {
         $this->fallbackPassword = $fallbackPassword;
+        return $this;
     }
 
-    public function toBxml(DOMDocument $doc) {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Record");
 
         if(isset($this->tag)) {
