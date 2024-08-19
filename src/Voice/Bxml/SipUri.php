@@ -82,7 +82,7 @@ class SipUri extends Verb {
      *
      * @param string $username The username for http authentication on the audio url
      */
-    public function username(string $username): SipUri {
+    public function username(string $username): static {
         $this->username = $username;
         return $this;
     }
@@ -92,7 +92,7 @@ class SipUri extends Verb {
      *
      * @param string $password The password for http authentication on the audio url
      */
-    public function password(string $password): SipUri {
+    public function password(string $password): static {
         $this->password = $password;
         return $this;
     }
@@ -102,7 +102,7 @@ class SipUri extends Verb {
      *
      * @param string $transferAnswerUrl The url to receive the transfer answered callback 
      */
-    public function transferAnswerUrl(string $transferAnswerUrl): SipUri {
+    public function transferAnswerUrl(string $transferAnswerUrl): static {
         $this->transferAnswerUrl = $transferAnswerUrl;
         return $this;
     }
@@ -112,7 +112,7 @@ class SipUri extends Verb {
      *
      * @param string $transferAnswerMethod The http method to send the transfer answered callback 
      */
-    public function transferAnswerMethod(string $transferAnswerMethod): SipUri {
+    public function transferAnswerMethod(string $transferAnswerMethod): static {
         $this->transferAnswerMethod = $transferAnswerMethod;
         return $this;
     }
@@ -122,7 +122,7 @@ class SipUri extends Verb {
      *
      * @param string $transferDisconnectUrl The url to receive the transfer disconnect callback 
      */
-    public function transferDisconnectUrl(string $transferDisconnectUrl): SipUri {
+    public function transferDisconnectUrl(string $transferDisconnectUrl): static {
         $this->transferDisconnectUrl = $transferDisconnectUrl;
         return $this;
     }
@@ -132,7 +132,7 @@ class SipUri extends Verb {
      *
      * @param string $transferDisconnectMethod The http method to send the transfer disconnect callback 
      */
-    public function transferDisconnectMethod(string $transferDisconnectMethod): SipUri {
+    public function transferDisconnectMethod(string $transferDisconnectMethod): static {
         $this->transferDisconnectMethod = $transferDisconnectMethod;
         return $this;
     }
@@ -142,7 +142,7 @@ class SipUri extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag(string $tag): SipUri {
+    public function tag(string $tag): static {
         $this->tag = $tag;
         return $this;
     }
@@ -152,7 +152,7 @@ class SipUri extends Verb {
      *
      * @param string $uui The value of the `User-To-User` header to send within the initial `INVITE`
      */
-    public function uui(string $uui): SipUri {
+    public function uui(string $uui): static {
         $this->uui = $uui;
         return $this;
     }
@@ -162,7 +162,7 @@ class SipUri extends Verb {
      *
      * @param string $transferAnswerFallbackUrl Fallback URL for transfer answer events 
      */
-    public function transferAnswerFallbackUrl(string $transferAnswerFallbackUrl): SipUri {
+    public function transferAnswerFallbackUrl(string $transferAnswerFallbackUrl): static {
         $this->transferAnswerFallbackUrl = $transferAnswerFallbackUrl;
         return $this;
     }
@@ -172,7 +172,7 @@ class SipUri extends Verb {
      *
      * @param string $transferAnswerFallbackMethod HTTP method for fallback events 
      */
-    public function transferAnswerFallbackMethod(string $transferAnswerFallbackMethod): SipUri {
+    public function transferAnswerFallbackMethod(string $transferAnswerFallbackMethod): static {
         $this->transferAnswerFallbackMethod = $transferAnswerFallbackMethod;
         return $this;
     }
@@ -182,7 +182,7 @@ class SipUri extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events 
      */
-    public function fallbackUsername(string $fallbackUsername): SipUri {
+    public function fallbackUsername(string $fallbackUsername): static {
         $this->fallbackUsername = $fallbackUsername;
         return $this;
     }
@@ -192,7 +192,7 @@ class SipUri extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events
      */
-    public function fallbackPassword(string $fallbackPassword): SipUri {
+    public function fallbackPassword(string $fallbackPassword): static {
         $this->fallbackPassword = $fallbackPassword;
         return $this;
     }

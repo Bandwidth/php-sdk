@@ -50,7 +50,7 @@ class StartStream extends Verb {
      *
      * @param string $destination A websocket URI to send the stream to. The audio from the specified tracks will be sent via websocket to this URL encoded as base64 encoded PCMU/G711 audio. See below for more details on the websocket packet format.
      */
-    public function destination(string $destination): StartStream {
+    public function destination(string $destination): static {
         $this->destination = $destination;
         return $this;
     }
@@ -60,7 +60,7 @@ class StartStream extends Verb {
      *
      * @param string $name A name to refer to this stream by. Used when sending [`<StopStream>`][1]. If not provided, a random name will be generated and sent in the [`Media Stream Started`][2] webook
      */
-    public function name(string $name): StartStream {
+    public function name(string $name): static {
         $this->name = $name;
         return $this;
     }
@@ -71,7 +71,7 @@ class StartStream extends Verb {
      * @param string $tracks The part of the call to send a stream from. `inbound`, `outbound` or `both`. Default is `inbound`. 
      * 
      */
-    public function tracks(string $tracks): StartStream {
+    public function tracks(string $tracks): static {
         $this->tracks = $tracks;
         return $this;
     }
@@ -81,7 +81,7 @@ class StartStream extends Verb {
      *
      * @param string $username The username to send in the HTTP request to `streamEventUrl`. If specified, the URLs must be TLS-encrypted (i.e., `https`). 
      */
-    public function username(string $username): StartStream {
+    public function username(string $username): static {
         $this->username = $username;
         return $this;
     }
@@ -91,7 +91,7 @@ class StartStream extends Verb {
      *
      * @param string $password The password to send in the HTTP request to `streamEventUrl`. If specified, the URLs must be TLS-encrypted (i.e., `https`).    
      */
-    public function password(string $password): StartStream {
+    public function password(string $password): static {
         $this->password = $password;
         return $this;
     }
@@ -101,7 +101,7 @@ class StartStream extends Verb {
      *
      * @param string $streamEventUrl URL to send the associated Webhook events to during this stream's lifetime. Does not accept BXML. May be a relative URL. 
      */
-    public function streamEventUrl(string $streamEventUrl): StartStream {
+    public function streamEventUrl(string $streamEventUrl): static {
         $this->streamEventUrl = $streamEventUrl;
         return $this;
     }
@@ -111,7 +111,7 @@ class StartStream extends Verb {
      *
      * @param bool $streamEventMethod The HTTP method to use for the request to `streamEventUrl`. GET or POST. Default value is POST. 
      */
-    public function streamEventMethod(string $streamEventMethod): StartStream {
+    public function streamEventMethod(string $streamEventMethod): static {
         $this->streamEventMethod = $streamEventMethod;
         return $this;
     }
@@ -121,7 +121,7 @@ class StartStream extends Verb {
      *
      * @param list<StreamParam> $streamParams The list of StreamParam tags
      */
-    public function streamParams($streamParams): StartStream {
+    public function streamParams($streamParams): static {
         $this->streamParams = $streamParams;
         return $this;
     }

@@ -43,7 +43,7 @@ class StartGather extends Verb {
      *
      * @param string $username The username for http authentication for the gather callback
      */
-    public function username(string $username): StartGather {
+    public function username(string $username): static {
         $this->username = $username;
         return $this;
     }
@@ -53,7 +53,7 @@ class StartGather extends Verb {
      *
      * @param string $password The password for http authentication for the gather callback
      */
-    public function password(string $password): StartGather {
+    public function password(string $password): static {
         $this->password = $password;
         return $this;
     }
@@ -63,7 +63,7 @@ class StartGather extends Verb {
      *
      * @param string $dtmfUrl The url to receive the dtmf callback 
      */
-    public function dtmfUrl(string $dtmfUrl): StartGather {
+    public function dtmfUrl(string $dtmfUrl): static {
         $this->dtmfUrl = $dtmfUrl;
         return $this;
     }
@@ -73,7 +73,7 @@ class StartGather extends Verb {
      *
      * @param string $dtmfMethod The http method to send the dtmf callback 
      */
-    public function dtmfMethod(string $dtmfMethod): StartGather {
+    public function dtmfMethod(string $dtmfMethod): static {
         $this->dtmfMethod = $dtmfMethod;
         return $this;
     }
@@ -83,7 +83,7 @@ class StartGather extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag(string $tag): StartGather {
+    public function tag(string $tag): static {
         $this->tag = $tag;
         return $this;
     }

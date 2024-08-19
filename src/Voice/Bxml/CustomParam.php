@@ -29,7 +29,7 @@ class CustomParam extends Verb {
      *
      * @param string $name (required) The name of this parameter, up to 256 characters.
      */
-    public function name(string $name): CustomParam {
+    public function name(string $name): static {
         $this->name = $name;
         return $this;
     }
@@ -39,7 +39,7 @@ class CustomParam extends Verb {
      *
      * @param string $value (required) The value of this parameter, up to 2048 characters.
      */
-    public function value(string $value): CustomParam {
+    public function value(string $value): static {
         $this->value = $value;
         return $this;
     }

@@ -97,7 +97,7 @@ class Record extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks
      */
-    public function tag(string $tag): Record {
+    public function tag(string $tag): static {
         $this->tag = $tag;
         return $this;
     }
@@ -107,7 +107,7 @@ class Record extends Verb {
      *
      * @param string $recordCompleteUrl URL to send the record complete callback to
      */
-    public function recordCompleteUrl(string $recordCompleteUrl): Record {
+    public function recordCompleteUrl(string $recordCompleteUrl): static {
         $this->recordCompleteUrl = $recordCompleteUrl;
         return $this;
     }
@@ -118,7 +118,7 @@ class Record extends Verb {
      * @param string $recordCompleteMethod HTTP method to send record complete
      * as ("GET" or "POST")
      */
-    public function recordCompleteMethod(string $recordCompleteMethod): Record {
+    public function recordCompleteMethod(string $recordCompleteMethod): static {
         $this->recordCompleteMethod = $recordCompleteMethod;
         return $this;
     }
@@ -128,7 +128,7 @@ class Record extends Verb {
      *
      * @param string $recordingAvailableUrl URL to send the record available callback to
      */
-    public function recordingAvailableUrl(string $recordingAvailableUrl): Record {
+    public function recordingAvailableUrl(string $recordingAvailableUrl): static {
         $this->recordingAvailableUrl = $recordingAvailableUrl;
         return $this;
     }
@@ -139,7 +139,7 @@ class Record extends Verb {
      * @param string $recordingAvailableMethod HTTP method to send record available
      * as ("GET" or "POST")
      */
-    public function recordingAvailableMethod(string $recordingAvailableMethod): Record {
+    public function recordingAvailableMethod(string $recordingAvailableMethod): static {
         $this->recordingAvailableMethod = $recordingAvailableMethod;
         return $this;
     }
@@ -149,7 +149,7 @@ class Record extends Verb {
      *
      * @param string $username Username for basic auth for callbacks
      */
-    public function username(string $username): Record {
+    public function username(string $username): static {
         $this->username = $username;
         return $this;
     }
@@ -159,7 +159,7 @@ class Record extends Verb {
      *
      * @param string $password Password for basic auth for callbacks
      */
-    public function password(string $password): Record {
+    public function password(string $password): static {
         $this->password = $password;
         return $this;
     }
@@ -169,7 +169,7 @@ class Record extends Verb {
      *
      * @param string $terminatingDigits Digits to terminate the recording
      */
-    public function terminatingDigits(string $terminatingDigits): Record {
+    public function terminatingDigits(string $terminatingDigits): static {
         $this->terminatingDigits = $terminatingDigits;
         return $this;
     }
@@ -179,7 +179,7 @@ class Record extends Verb {
      *
      * @param int $maxDuration Maximum length of the recording in secods
      */
-    public function maxDuration(int $maxDuration): Record {
+    public function maxDuration(int $maxDuration): static {
         $this->maxDuration = $maxDuration;
         return $this;
     }
@@ -189,7 +189,7 @@ class Record extends Verb {
      *
      * @param string $fileFormat Audio format of the recording ("mp3" or "wav")
      */
-    public function fileFormat(string $fileFormat): Record {
+    public function fileFormat(string $fileFormat): static {
         $this->fileFormat = $fileFormat;
         return $this;
     }
@@ -199,7 +199,7 @@ class Record extends Verb {
      *
      * @param boolean $detectLanguage Indicates that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish.
      */
-    public function detectLanguage($detectLanguage): Record {
+    public function detectLanguage($detectLanguage): static {
         $this->detectLanguage = $detectLanguage;
         return $this;
     }
@@ -209,7 +209,7 @@ class Record extends Verb {
      *
      * @param boolean $transcribe True to submit the recording for transcription, false otherwise
      */
-    public function transcribe(bool $transcribe): Record {
+    public function transcribe(bool $transcribe): static {
         $this->transcribe = $transcribe;
         return $this;
     }
@@ -219,7 +219,7 @@ class Record extends Verb {
      *
      * @param string $transcriptionAvailableUrl URL to send transcription available events to
      */
-    public function transcriptionAvailableUrl(string $transcriptionAvailableUrl): Record {
+    public function transcriptionAvailableUrl(string $transcriptionAvailableUrl): static {
         $this->transcriptionAvailableUrl = $transcriptionAvailableUrl;
         return $this;
     }
@@ -229,7 +229,7 @@ class Record extends Verb {
      *
      * @param string $transcriptionAvailableMethod HTTP method (GET or POST) to send the transcription available event as
      */
-    public function transcriptionAvailableMethod(string $transcriptionAvailableMethod): Record {
+    public function transcriptionAvailableMethod(string $transcriptionAvailableMethod): static {
         $this->transcriptionAvailableMethod = $transcriptionAvailableMethod;
         return $this;
     }
@@ -239,7 +239,7 @@ class Record extends Verb {
      *
      * @param int $silenceTimeout Number of seconds of silence that ends the recording
      */
-    public function silenceTimeout(int $silenceTimeout): Record {
+    public function silenceTimeout(int $silenceTimeout): static {
         $this->silenceTimeout = $silenceTimeout;
         return $this;
     }
@@ -249,7 +249,7 @@ class Record extends Verb {
      *
      * @param string $recordCompleteFallbackUrl Fallback URL for record complete events 
      */
-    public function recordCompleteFallbackUrl(string $recordCompleteFallbackUrl): Record {
+    public function recordCompleteFallbackUrl(string $recordCompleteFallbackUrl): static {
         $this->recordCompleteFallbackUrl = $recordCompleteFallbackUrl;
         return $this;
     }
@@ -259,7 +259,7 @@ class Record extends Verb {
      *
      * @param string $recordCompleteFallbackMethod HTTP method for fallback events 
      */
-    public function recordCompleteFallbackMethod(string $recordCompleteFallbackMethod): Record {
+    public function recordCompleteFallbackMethod(string $recordCompleteFallbackMethod): static {
         $this->recordCompleteFallbackMethod = $recordCompleteFallbackMethod;
         return $this;
     }
@@ -269,7 +269,7 @@ class Record extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events 
      */
-    public function fallbackUsername(string $fallbackUsername): Record {
+    public function fallbackUsername(string $fallbackUsername): static {
         $this->fallbackUsername = $fallbackUsername;
         return $this;
     }
@@ -279,7 +279,7 @@ class Record extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events 
      */
-    public function fallbackPassword(string $fallbackPassword): Record {
+    public function fallbackPassword(string $fallbackPassword): static {
         $this->fallbackPassword = $fallbackPassword;
         return $this;
     }

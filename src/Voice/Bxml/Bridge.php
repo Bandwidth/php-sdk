@@ -86,7 +86,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeCompleteUrl URL to send the bridge complete event to
      */
-    public function bridgeCompleteUrl(string $bridgeCompleteUrl): Bridge {
+    public function bridgeCompleteUrl(string $bridgeCompleteUrl): static {
         $this->bridgeCompleteUrl = $bridgeCompleteUrl;
         return $this;
     }
@@ -96,7 +96,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeCompleteMethod HTTP method to send the bridge complete event
      */
-    public function bridgeCompleteMethod(string $bridgeCompleteMethod): Bridge {
+    public function bridgeCompleteMethod(string $bridgeCompleteMethod): static {
         $this->bridgeCompleteMethod = $bridgeCompleteMethod;
         return $this;
     }
@@ -106,7 +106,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeTargetCompleteUrl URL to send the bridge target complete event to
      */
-    public function bridgeTargetCompleteUrl(string $bridgeTargetCompleteUrl): Bridge {
+    public function bridgeTargetCompleteUrl(string $bridgeTargetCompleteUrl): static {
         $this->bridgeTargetCompleteUrl = $bridgeTargetCompleteUrl;
         return $this;
     }
@@ -116,7 +116,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeTargetCompleteMethod HTTP method to send the bridge target complete event
      */
-    public function bridgeTargetCompleteMethod(string $bridgeTargetCompleteMethod): Bridge {
+    public function bridgeTargetCompleteMethod(string $bridgeTargetCompleteMethod): static {
         $this->bridgeTargetCompleteMethod = $bridgeTargetCompleteMethod;
         return $this;
     }
@@ -126,7 +126,7 @@ class Bridge extends Verb {
      *
      * @param string $username HTTP basic auth username for sending events
      */
-    public function username(string $username): Bridge {
+    public function username(string $username): static {
         $this->username = $username;
         return $this;
     }
@@ -136,7 +136,7 @@ class Bridge extends Verb {
      *
      * @param string $password HTTP basic auth password for sending events
      */
-    public function password(string $password): Bridge {
+    public function password(string $password): static {
         $this->password = $password;
         return $this;
     }
@@ -146,7 +146,7 @@ class Bridge extends Verb {
      *
      * @param string $tag String to include in events
      */
-    public function tag(string $tag): Bridge {
+    public function tag(string $tag): static {
         $this->tag = $tag;
         return $this;
     }
@@ -156,7 +156,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeCompleteFallbackUrl Fallback URL for bridge complete callback events
      */
-    public function bridgeCompleteFallbackUrl(string $bridgeCompleteFallbackUrl): Bridge {
+    public function bridgeCompleteFallbackUrl(string $bridgeCompleteFallbackUrl): static {
         $this->bridgeCompleteFallbackUrl = $bridgeCompleteFallbackUrl;
         return $this;
     }
@@ -166,7 +166,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeCompleteFallbackMethod HTTP method for bridge complete fallback requests 
      */
-    public function bridgeCompleteFallbackMethod(string $bridgeCompleteFallbackMethod): Bridge {
+    public function bridgeCompleteFallbackMethod(string $bridgeCompleteFallbackMethod): static {
         $this->bridgeCompleteFallbackMethod = $bridgeCompleteFallbackMethod;
         return $this;
     }
@@ -176,7 +176,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeTargetCompleteFallbackUrl Fallback URL for bridge target complete callback events 
      */
-    public function bridgeTargetCompleteFallbackUrl(string $bridgeTargetCompleteFallbackUrl): Bridge {
+    public function bridgeTargetCompleteFallbackUrl(string $bridgeTargetCompleteFallbackUrl): static {
         $this->bridgeTargetCompleteFallbackUrl = $bridgeTargetCompleteFallbackUrl;
         return $this;
     }
@@ -186,7 +186,7 @@ class Bridge extends Verb {
      *
      * @param string $bridgeTargetCompleteFallbackMethod HTTP method for bridge target complete fallback events 
      */
-    public function bridgeTargetCompleteFallbackMethod(string $bridgeTargetCompleteFallbackMethod): Bridge {
+    public function bridgeTargetCompleteFallbackMethod(string $bridgeTargetCompleteFallbackMethod): static {
         $this->bridgeTargetCompleteFallbackMethod = $bridgeTargetCompleteFallbackMethod;
         return $this;
     }
@@ -196,7 +196,7 @@ class Bridge extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events
      */
-    public function fallbackUsername(string $fallbackUsername): Bridge {
+    public function fallbackUsername(string $fallbackUsername): static {
         $this->fallbackUsername = $fallbackUsername;
         return $this;
     }
@@ -206,7 +206,7 @@ class Bridge extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password 
      */
-    public function fallbackPassword(string $fallbackPassword): Bridge {
+    public function fallbackPassword(string $fallbackPassword): static {
         $this->fallbackPassword = $fallbackPassword;
         return $this;
     }

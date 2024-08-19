@@ -42,7 +42,7 @@ class PlayAudio extends Verb {
      *
      * @param string $username The username for http authentication on the audio url
      */
-    public function username(string $username): PlayAudio {
+    public function username(string $username): static {
         $this->username = $username;
         return $this;
     }
@@ -52,7 +52,7 @@ class PlayAudio extends Verb {
      *
      * @param string $password The password for http authentication on the audio url
      */
-    public function password(string $password): PlayAudio {
+    public function password(string $password): static {
         $this->password = $password;
         return $this;
     }

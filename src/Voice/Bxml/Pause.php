@@ -25,7 +25,7 @@ class Pause extends Verb {
      *
      * @param float $duration The duration in seconds for the pause 
      */
-    public function duration(float $duration): Pause {
+    public function duration(float $duration): static {
         $this->duration = $duration;
         return $this;
     }

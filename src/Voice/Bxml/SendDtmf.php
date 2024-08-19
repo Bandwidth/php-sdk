@@ -42,7 +42,7 @@ class SendDtmf extends Verb {
      *
      * @param double $toneDuration The length in milliseconds of each DTMF tone
      */
-    public function toneDuration(float $toneDuration): SendDtmf {
+    public function toneDuration(float $toneDuration): static {
         $this->toneDuration = $toneDuration;
         return $this;
     }
@@ -52,7 +52,7 @@ class SendDtmf extends Verb {
      *
      * @param double $toneInterval The duration of silence in milliseconds following each DTMF tone
      */
-    public function toneInterval(float $toneInterval): SendDtmf {
+    public function toneInterval(float $toneInterval): static {
         $this->toneInterval = $toneInterval;
         return $this;
     }
