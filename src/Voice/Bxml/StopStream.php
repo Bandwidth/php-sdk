@@ -25,7 +25,7 @@ class StopStream extends Verb {
      *
      * @param string $name (required) The name of the stream to stop. This is either the user selected name when sending the [`<StartStream>`][1] verb, or the system generated name returned in the [Media Stream Started][2] webhook if `<StartStream>` was sent with no `name` attribute.
      */
-    public function name(string $name): StopStream {
+    public function name(string $name): static {
         $this->name = $name;
         return $this;
     }

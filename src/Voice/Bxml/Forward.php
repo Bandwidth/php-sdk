@@ -41,7 +41,7 @@ class Forward extends Verb {
      *
      * @param string $to The phone number to receive the phone call 
      */
-    public function to(string $to): Forward {
+    public function to(string $to): static {
         $this->to = $to;
         return $this;
     }
@@ -51,7 +51,7 @@ class Forward extends Verb {
      *
      * @param string $from The phone number to make the phone call
      */
-    public function from(string $from): Forward {
+    public function from(string $from): static {
         $this->from = $from;
         return $this;
     }
@@ -61,7 +61,7 @@ class Forward extends Verb {
      *
      * @param string $callTimeout The timeout in seconds for the phone call 
      */
-    public function callTimeout(string $callTimeout): Forward {
+    public function callTimeout(string $callTimeout): static {
         $this->callTimeout = $callTimeout;
         return $this;
     }
@@ -71,7 +71,7 @@ class Forward extends Verb {
      *
      * @param string $diversionTreatment The diversion treatment for the phone call 
      */
-    public function diversionTreatment(string $diversionTreatment): Forward {
+    public function diversionTreatment(string $diversionTreatment): static {
         $this->diversionTreatment = $diversionTreatment;
         return $this;
     }
@@ -81,7 +81,7 @@ class Forward extends Verb {
      *
      * @param string $diversionReason The diversion treatment for the phone call 
      */
-    public function diversionReason(string $diversionReason): Forward {
+    public function diversionReason(string $diversionReason): static {
         $this->diversionReason = $diversionReason;
         return $this;
     }

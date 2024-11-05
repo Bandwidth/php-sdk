@@ -46,7 +46,7 @@ class SpeakSentence extends Verb {
      *
      * @param string $voice The voice to speak in the call
      */
-    public function voice(string $voice): SpeakSentence {
+    public function voice(string $voice): static {
         $this->voice = $voice;
         return $this;
     }
@@ -56,7 +56,7 @@ class SpeakSentence extends Verb {
      *
      * @param string $locale The locale of the voice in the call
      */
-    public function locale(string $locale): SpeakSentence {
+    public function locale(string $locale): static {
         $this->locale = $locale;
         return $this;
     }
@@ -66,7 +66,7 @@ class SpeakSentence extends Verb {
      *
      * @param string $gender The gender of the voice in the call
      */
-    public function gender(string $gender): SpeakSentence {
+    public function gender(string $gender): static {
         $this->gender = $gender;
         return $this;
     }
