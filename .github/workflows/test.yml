@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
+        os: [windows-2019, windows-2022, ubuntu-22.04, ubuntu-24.04]
         php-version: [8.0, 8.1, 8.2, 8.3]
     steps:
     - name: Checkout
