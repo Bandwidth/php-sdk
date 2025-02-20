@@ -60,7 +60,7 @@ final class ApiTest extends TestCase
 
     public function testUploadDownloadMedia() {
         //constants
-        $mediaId = "text-media-id-" . uniqid();
+        $mediaId = "text-media-id-" . uniqid() . ".txt";
         $content = "Hello world";
         $contentType = 'text/plain';
         

@@ -2,12 +2,12 @@
 
 [![Test](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yml)
 
-| **OS** | **PHP** |
-|:---:|:---:|
-| Windows 2016 | 7.4, 8.0 |
-| Windows 2019 | 7.4, 8.0 |
-| Ubuntu 20.04 | 7.4, 8.0 |
-| Ubuntu 22.04 | 7.4, 8.0 |
+|    **OS**    |      **PHP**       |
+|:------------:|:------------------:|
+| Windows 2019 | 8.0, 8.1, 8.2, 8.3 |
+| Windows 2022 | 8.0, 8.1, 8.2, 8.3 |
+| Ubuntu 22.04 | 8.0, 8.1, 8.2, 8.3 |
+| Ubuntu 24.04 | 8.0, 8.1, 8.2, 8.3 |
 
 ## Getting Started
 
