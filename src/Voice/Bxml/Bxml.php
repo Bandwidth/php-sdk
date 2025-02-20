@@ -29,7 +29,7 @@ class Bxml {
      *
      * @param Verb $verb The verb to add to the list
      */
-    public function addVerb(Verb $verb): Bxml {
+    public function addVerb(Verb $verb): static {
         array_push($this->verbs, $verb);
         return $this;
     }

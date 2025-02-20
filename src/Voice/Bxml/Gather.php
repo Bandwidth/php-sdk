@@ -91,7 +91,7 @@ class Gather extends Verb {
      *
      * @param string $username The username for http authentication for the gather callback
      */
-    public function username(string $username): Gather {
+    public function username(string $username): static {
         $this->username = $username;
         return $this;
     }
@@ -101,7 +101,7 @@ class Gather extends Verb {
      *
      * @param string $password The password for http authentication for the gather callback
      */
-    public function password(string $password): Gather {
+    public function password(string $password): static {
         $this->password = $password;
         return $this;
     }
@@ -111,7 +111,7 @@ class Gather extends Verb {
      *
      * @param string $gatherUrl The url to receive the gather callback 
      */
-    public function gatherUrl(string $gatherUrl): Gather {
+    public function gatherUrl(string $gatherUrl): static {
         $this->gatherUrl = $gatherUrl;
         return $this;
     }
@@ -121,7 +121,7 @@ class Gather extends Verb {
      *
      * @param string $gatherMethod The http method to send the gather callback 
      */
-    public function gatherMethod(string $gatherMethod): Gather {
+    public function gatherMethod(string $gatherMethod): static {
         $this->gatherMethod = $gatherMethod;
         return $this;
     }
@@ -131,7 +131,7 @@ class Gather extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag(string $tag): Gather {
+    public function tag(string $tag): static {
         $this->tag = $tag;
         return $this;
     }
@@ -141,7 +141,7 @@ class Gather extends Verb {
      *
      * @param string $terminatingDigits Digits to terminate the gather
      */
-    public function terminatingDigits(string $terminatingDigits): Gather {
+    public function terminatingDigits(string $terminatingDigits): static {
         $this->terminatingDigits = $terminatingDigits;
         return $this;
     }
@@ -151,7 +151,7 @@ class Gather extends Verb {
      *
      * @param int $maxDigits The maximum number of digits to collect in the gather
      */
-    public function maxDigits(int $maxDigits): Gather {
+    public function maxDigits(int $maxDigits): static {
         $this->maxDigits = $maxDigits;
         return $this;
     }
@@ -161,7 +161,7 @@ class Gather extends Verb {
      *
      * @param int $interDigitTimeout The time in secods between digit presses before timing out
      */
-    public function interDigitTimeout(int $interDigitTimeout): Gather {
+    public function interDigitTimeout(int $interDigitTimeout): static {
         $this->interDigitTimeout = $interDigitTimeout;
         return $this;
     }
@@ -171,7 +171,7 @@ class Gather extends Verb {
      *
      * @param int $firstDigitTimeout The time in seconds before the first digit is pressed before timing out
      */
-    public function firstDigitTimeout(int $firstDigitTimeout): Gather {
+    public function firstDigitTimeout(int $firstDigitTimeout): static {
         $this->firstDigitTimeout = $firstDigitTimeout;
         return $this;
     }
@@ -181,7 +181,7 @@ class Gather extends Verb {
      *
      * @param PlayAudio $playAudio The PlayAudio tag to include in the Gather
      */
-    public function playAudio(PlayAudio $playAudio): Gather {
+    public function playAudio(PlayAudio $playAudio): static {
         $this->playAudio = $playAudio;
         return $this->addNestableVerb($playAudio);
     }
@@ -191,7 +191,7 @@ class Gather extends Verb {
      *
      * @param int $repeatCount The number of times to repeat the played audio
      */
-    public function repeatCount(int $repeatCount): Gather {
+    public function repeatCount(int $repeatCount): static {
         $this->repeatCount = $repeatCount;
         return $this;
     }
@@ -201,7 +201,7 @@ class Gather extends Verb {
      *
      * @param SpeakSentence $speakSentence The SpeakSentence tag to include in the Gather
      */
-    public function speakSentence(SpeakSentence $speakSentence): Gather {
+    public function speakSentence(SpeakSentence $speakSentence): static {
         $this->speakSentence = $speakSentence;
         return $this->addNestableVerb($speakSentence);
     }
@@ -211,7 +211,7 @@ class Gather extends Verb {
      *
      * @param string $gatherFallbackUrl Fallback url for gather events
      */
-    public function gatherFallbackUrl(string $gatherFallbackUrl): Gather {
+    public function gatherFallbackUrl(string $gatherFallbackUrl): static {
         $this->gatherFallbackUrl = $gatherFallbackUrl;
         return $this;
     }
@@ -221,7 +221,7 @@ class Gather extends Verb {
      *
      * @param string $gatherFallbackMethod HTTP method for fallback events
      */
-    public function gatherFallbackMethod(string $gatherFallbackMethod): Gather {
+    public function gatherFallbackMethod(string $gatherFallbackMethod): static {
         $this->gatherFallbackMethod = $gatherFallbackMethod;
         return $this;
     }
@@ -231,7 +231,7 @@ class Gather extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events
      */
-    public function fallbackUsername(string $fallbackUsername): Gather {
+    public function fallbackUsername(string $fallbackUsername): static {
         $this->fallbackUsername = $fallbackUsername;
         return $this;
     }
@@ -241,7 +241,7 @@ class Gather extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events
      */
-    public function fallbackPassword(string $fallbackPassword): Gather {
+    public function fallbackPassword(string $fallbackPassword): static {
         $this->fallbackPassword = $fallbackPassword;
         return $this;
     }
@@ -251,7 +251,7 @@ class Gather extends Verb {
      *
      * @param SpeakSentence|PlayAudio $verb The nestable verb to add
      */
-    private function addNestableVerb($verb): Gather {
+    private function addNestableVerb($verb): static {
         if(!isset($this->nestableVerbs)) {
             $this->nestableVerbs = [];
         }

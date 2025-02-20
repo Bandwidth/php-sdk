@@ -57,7 +57,7 @@ class Redirect extends Verb {
      *
      * @param string $username The username for http authentication on the redirect callback url
      */
-    public function username(string $username): Redirect {
+    public function username(string $username): static {
         $this->username = $username;
         return $this;
     }
@@ -67,7 +67,7 @@ class Redirect extends Verb {
      *
      * @param string $password The password for http authentication on the redirect callback url
      */
-    public function password(string $password): Redirect {
+    public function password(string $password): static {
         $this->password = $password;
         return $this;
     }
@@ -77,7 +77,7 @@ class Redirect extends Verb {
      *
      * @param string $redirectUrl The url to receive the redirect callback 
      */
-    public function redirectUrl(string $redirectUrl): Redirect {
+    public function redirectUrl(string $redirectUrl): static {
         $this->redirectUrl = $redirectUrl;
         return $this;
     }
@@ -87,7 +87,7 @@ class Redirect extends Verb {
      *
      * @param string $redirectMethod The http method to send the redirect callback 
      */
-    public function redirectMethod(string $redirectMethod): Redirect {
+    public function redirectMethod(string $redirectMethod): static {
         $this->redirectMethod = $redirectMethod;
         return $this;
     }
@@ -97,7 +97,7 @@ class Redirect extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag(string $tag): Redirect {
+    public function tag(string $tag): static {
         $this->tag = $tag;
         return $this;
     }
@@ -107,7 +107,7 @@ class Redirect extends Verb {
      *
      * @param string $redirectFallbackUrl Fallback url for redirect events 
      */
-    public function redirectFallbackUrl(string $redirectFallbackUrl): Redirect {
+    public function redirectFallbackUrl(string $redirectFallbackUrl): static {
         $this->redirectFallbackUrl = $redirectFallbackUrl;
         return $this;
     }
@@ -117,7 +117,7 @@ class Redirect extends Verb {
      *
      * @param string $redirectFallbackMethod HTTP method for fallback events 
      */
-    public function redirectFallbackMethod(string $redirectFallbackMethod): Redirect {
+    public function redirectFallbackMethod(string $redirectFallbackMethod): static {
         $this->redirectFallbackMethod = $redirectFallbackMethod;
         return $this;
     }
@@ -127,7 +127,7 @@ class Redirect extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events
      */
-    public function fallbackUsername(string $fallbackUsername): Redirect {
+    public function fallbackUsername(string $fallbackUsername): static {
         $this->fallbackUsername = $fallbackUsername;
         return $this;
     }
@@ -137,7 +137,7 @@ class Redirect extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events 
      */
-    public function fallbackPassword(string $fallbackPassword): Redirect {
+    public function fallbackPassword(string $fallbackPassword): static {
         $this->fallbackPassword = $fallbackPassword;
         return $this;
     }

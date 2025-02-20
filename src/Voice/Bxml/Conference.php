@@ -82,7 +82,7 @@ class Conference extends Verb {
      *
      * @param string $tag A custom string to be included in callbacks 
      */
-    public function tag(string $tag): Conference {
+    public function tag(string $tag): static {
         $this->tag = $tag;
         return $this;
     }
@@ -92,7 +92,7 @@ class Conference extends Verb {
      *
      * @param string $username Username for basic auth for callbacks
      */
-    public function username(string $username): Conference {
+    public function username(string $username): static {
         $this->username = $username;
         return $this;
     }
@@ -102,7 +102,7 @@ class Conference extends Verb {
      *
      * @param string $password Password for basic auth for callbacks
      */
-    public function password(string $password): Conference {
+    public function password(string $password): static {
         $this->password = $password;
         return $this;
     }
@@ -112,7 +112,7 @@ class Conference extends Verb {
      *
      * @param string $conferenceEventUrl URL to receive conference events 
      */
-    public function conferenceEventUrl(string $conferenceEventUrl): Conference {
+    public function conferenceEventUrl(string $conferenceEventUrl): static {
         $this->conferenceEventUrl = $conferenceEventUrl;
         return $this;
     }
@@ -122,7 +122,7 @@ class Conference extends Verb {
      *
      * @param string $conferenceEventMethod HTTP method for conference events 
      */
-    public function conferenceEventMethod(string $conferenceEventMethod): Conference {
+    public function conferenceEventMethod(string $conferenceEventMethod): static {
         $this->conferenceEventMethod = $conferenceEventMethod;
         return $this;
     }
@@ -132,7 +132,7 @@ class Conference extends Verb {
      *
      * @param string $callIdsToCoach A string of comma separated call IDs to coach 
      */
-    public function callIdsToCoach(string $callIdsToCoach): Conference {
+    public function callIdsToCoach(string $callIdsToCoach): static {
         $this->callIdsToCoach = $callIdsToCoach;
         return $this;
     }
@@ -142,7 +142,7 @@ class Conference extends Verb {
      *
      * @param array $callIdsToCoach An array of call IDs to coach 
      */
-    public function callIdsToCoachArray(array $callIdsToCoach): Conference {
+    public function callIdsToCoachArray(array $callIdsToCoach): static {
         $this->callIdsToCoach = implode(",", $callIdsToCoach);
         return $this;
     }
@@ -152,7 +152,7 @@ class Conference extends Verb {
      *
      * @param boolean $mute Determines if conference members should be on mute
      */
-    public function mute(bool $mute): Conference {
+    public function mute(bool $mute): static {
         $this->mute = $mute;
         return $this;
     }
@@ -162,7 +162,7 @@ class Conference extends Verb {
      *
      * @param boolean $hold Determines if conference members should be on hold
      */
-    public function hold(bool $hold): Conference {
+    public function hold(bool $hold): static {
         $this->hold = $hold;
         return $this;
     }
@@ -172,7 +172,7 @@ class Conference extends Verb {
      *
      * @param string $conferenceEventFallbackUrl Fallback url for conference events
      */
-    public function conferenceEventFallbackUrl(string $conferenceEventFallbackUrl): Conference {
+    public function conferenceEventFallbackUrl(string $conferenceEventFallbackUrl): static {
         $this->conferenceEventFallbackUrl = $conferenceEventFallbackUrl;
         return $this;
     }
@@ -182,7 +182,7 @@ class Conference extends Verb {
      *
      * @param string $conferenceEventFallbackMethod HTTP method for fallback events 
      */
-    public function conferenceEventFallbackMethod(string $conferenceEventFallbackMethod): Conference {
+    public function conferenceEventFallbackMethod(string $conferenceEventFallbackMethod): static {
         $this->conferenceEventFallbackMethod = $conferenceEventFallbackMethod;
         return $this;
     }
@@ -192,7 +192,7 @@ class Conference extends Verb {
      *
      * @param string $fallbackUsername HTTP basic auth username for fallback events
      */
-    public function fallbackUsername(string $fallbackUsername): Conference {
+    public function fallbackUsername(string $fallbackUsername): static {
         $this->fallbackUsername = $fallbackUsername;
         return $this;
     }
@@ -202,7 +202,7 @@ class Conference extends Verb {
      *
      * @param string $fallbackPassword HTTP basic auth password for fallback events
      */
-    public function fallbackPassword(string $fallbackPassword): Conference {
+    public function fallbackPassword(string $fallbackPassword): static {
         $this->fallbackPassword = $fallbackPassword;
         return $this;
     }

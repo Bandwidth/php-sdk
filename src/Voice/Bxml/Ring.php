@@ -29,7 +29,7 @@ class Ring extends Verb {
      *
      * @param float $duration The duration in seconds for the ring
      */
-    public function duration(float $duration): Ring {
+    public function duration(float $duration): static {
         $this->duration = $duration;
         return $this;
     }
@@ -39,7 +39,7 @@ class Ring extends Verb {
      *
      * @param boolean $answerCall Determines whether or not to answer the call when Ring is executed on an unanswered incoming call
      */
-    public function answerCall(bool $answerCall): Ring {
+    public function answerCall(bool $answerCall): static {
         $this->answerCall = $answerCall;
         return $this;
     }

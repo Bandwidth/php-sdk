@@ -25,7 +25,7 @@ class StopTranscription extends Verb {
      *
      * @param string $name (required) The name of the real-time transcription to stop. This is either the user selected name when sending the [`<StartTranscription>`][1] verb, or the system generated name returned in the [Media Transcription Started][2] webhook if `<StartTranscription>` was sent with no `name` attribute.
      */
-    public function name(string $name): StopTranscription {
+    public function name(string $name): static {
         $this->name = $name;
         return $this;
     }
