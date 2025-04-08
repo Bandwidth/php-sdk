@@ -48,6 +48,10 @@ class StartTranscription extends Verb {
      * @var bool
      */
     private $stability;
+    /**
+     * @var bool
+     */
+    private $stabilized;
 
     /**
      * Sets the destination attribute for StartTranscription
@@ -132,6 +136,17 @@ class StartTranscription extends Verb {
     }
 
     /**
+     * Sets the stabilized attribute for StartTranscription
+     *
+     * @param bool Whether to send transcription update events to the specified destination only after they have become stable. Requires destination. Defaults to true.
+     * 
+     */
+    public function stabilized( bool $stabilized): StartTranscription {
+        $this->stabilized = $stabilized;
+        return $this;
+    }
+
+    /**
      * Sets the <CustomParam/> tag. You may specify up to 12 <CustomParam/> elements nested within a <StartTranscription> tag. These elements define optional user specified parameters that will be sent to the destination URL when the real-time transcription is first started.
      *
      * @param list<CustomParam> $customParams The list of CustomParam tags
@@ -174,6 +189,10 @@ class StartTranscription extends Verb {
 
         if(isset($this->stability)) {
             $element->setattribute("stablilty", $this->stability);
+        }
+
+        if(isset($this->stabilized)) {
+            $element->setattribute("stabilized", $this->stabilized);
         }
 
         if(isset($this->customParams)) {
