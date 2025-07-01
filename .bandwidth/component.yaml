@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  schemaVersion: v1.0.0
+  name: php-sdk
+  description: Bandwidth PHP SDK
+  annotations:
+    github.com/project-slug: Bandwidth/php-sdk
+  organization: BW
+  costCenter: Development - Software Infra
+  buildPlatform: GitHub Actions
+spec:
+  type: Library
+  owner: github/band-swi
+  lifecycle: Available
