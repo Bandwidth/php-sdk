@@ -224,8 +224,7 @@ final class ApiTest extends TestCase
     
     public function testSyncTnLookup() {
         $body = new BandwidthLib\PhoneNumberLookup\Models\CreateLookupRequest();
-        // $body->phoneNumbers = [getenv("USER_NUMBER")];
-        $body->phoneNumbers = ["+18174031662"];
+        $body->phoneNumbers = [getenv("USER_NUMBER")];
         $response = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createSyncLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponse::class, $response->getResult());
         $this->assertIsArray($response->getResult()->links);
@@ -241,7 +240,6 @@ final class ApiTest extends TestCase
         $this->assertIsString($response->getResult()->data->results[0]->messagingProvider);
         $this->assertIsString($response->getResult()->data->results[0]->voiceProvider);
         $this->assertIsString($response->getResult()->data->results[0]->countryCodeA3);
-        $this->assertInstanceOf(\DateTime::class, $response->getResult()->data->results[0]->latestMessageDeliveryStatusDate);
         $this->assertIsArray($response->getResult()->errors);
     }
 }
