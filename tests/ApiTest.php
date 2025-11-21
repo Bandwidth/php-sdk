@@ -204,7 +204,7 @@ final class ApiTest extends TestCase
         $this->assertIsString($createResponse->getResult()->data->status);
         $this->assertIsArray($createResponse->getResult()->errors);
 
-        sleep(15);
+        sleep(30);
 
         $statusResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getAsyncLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $createResponse->getResult()->data->requestId);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponse::class, $statusResponse->getResult());
