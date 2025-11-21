@@ -200,23 +200,32 @@ final class ApiTest extends TestCase
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkResponse::class, $createResponse->getResult());
         $this->assertIsArray($createResponse->getResult()->links);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkResponseData::class, $createResponse->getResult()->data);
-        $this->assertTrue(strlen($createResponse->getResult()->data->requestId) > 0);
-        $this->assertTrue(strlen($createResponse->getResult()->data->status) > 0);
+        $this->assertIsString($createResponse->getResult()->data->requestId);
+        $this->assertIsString($createResponse->getResult()->data->status);
         $this->assertIsArray($createResponse->getResult()->errors);
-
+        
         // $requestId = $createResponse->getResult()->requestId;
         // $getResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $requestId);
         // $this->assertTrue(strlen($getResponse->getResult()->status) > 0);
     }
-
+    
     public function testSyncTnLookup() {
         $body = new BandwidthLib\PhoneNumberLookup\Models\CreateLookupRequest();
         $body->phoneNumbers = [getenv("USER_NUMBER")];
         $response = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createSyncLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponse::class, $response->getResult());
         $this->assertIsArray($response->getResult()->links);
+        $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\Link::class, $response->getResult()->links[0]);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponseData::class, $response->getResult()->data);
-        $this->assertTrue(strlen($response->getResult()->data->status) > 0);
+        $this->assertIsString($createResponse->getResult()->data->requestId);
+        $this->assertIsString($createResponse->getResult()->data->status);
+        $this->assertIsArray($response->getResult()->data->results);
+        $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResult::class, $response->getResult()->data->results[0]);
+        $this->assertIsString($response->getResult()->data->results[0]->phoneNumber);
+        $this->assertIsString($response->getResult()->data->results[0]->lineType);
+        $this->assertIsString($response->getResult()->data->results[0]->messagingProvider);
+        $this->assertIsString($response->getResult()->data->results[0]->voiceProvider);
+        $this->assertIsString($response->getResult()->data->results[0]->countryCodeA3);
         $this->assertIsArray($response->getResult()->errors);
     }
 }
