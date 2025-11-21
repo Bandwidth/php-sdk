@@ -34,13 +34,13 @@ class APIController extends BaseController
      * Create a Bulk Async TN Lookup Order.
      *
      * @param string $accountId The ID of the Bandwidth account that the user belongs to.
-     * @param Models\CreateAsyncBulkRequest $body
+     * @param Models\CreateLookupRequest $body
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createAsyncBulkLookupRequest(
         string              $accountId,
-        Models\CreateAsyncBulkRequest $body
+        Models\CreateLookupRequest $body
     ) {
 
         //prepare query string for API call
@@ -139,20 +139,20 @@ class APIController extends BaseController
     }
 
     /**
-     * Query an existing TN Lookup Order.
+     * Get a Bulk Async TN Lookup Order.
      *
      * @param string $accountId The ID of the Bandwidth account that the user belongs to.
-     * @param string $requestId TODO: type description here
+     * @param string $requestId The phone number lookup request ID from Bandwidth.
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getLookupRequestStatus(
+    public function getAsyncLookupRequestStatus(
         string $accountId,
         string $requestId
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/accounts/{accountId}/tnlookup/{requestId}';
+        $_queryBuilder = '/accounts/{accountId}/phoneNumberLookup/bulk/{requestId}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -238,7 +238,115 @@ class APIController extends BaseController
         $mapper = $this->getJsonMapper();
         $deserializedResponse = $mapper->mapClass(
             $response->body,
-            'BandwidthLib\\PhoneNumberLookup\\Models\\OrderStatus'
+            'BandwidthLib\\PhoneNumberLookup\\Models\\LookupResponse'
+        );
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Create a Sync TN Lookup Order.
+     *
+     * @param string $accountId The ID of the Bandwidth account that the user belongs to.
+     * @param Models\CreateLookupRequest $body
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createSyncLookupRequest(
+        string              $accountId,
+        Models\CreateLookupRequest $body
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/accounts/{accountId}/phoneNumberLookup';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'accountId' => $accountId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::PHONENUMBERLOOKUPDEFAULT) . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth($this->config->getPhoneNumberLookupBasicAuthUserName(), $this->config->getPhoneNumberLookupBasicAuthPassword());
+
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+
+        //call on-before Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        // Set request timeout
+        Request::timeout($this->config->getTimeout());
+
+        // and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\AccountsTnlookup400ErrorException(
+                'Bad Request. Ensure that your request payload is properly formatted and that the telephone numbers ' .
+                'used are valid.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 401) {
+            throw new APIException(
+                'Unauthorized. Ensure that you are using the proper credentials for the environment you are ' .
+                'accessing, your user has the proper role assigned to it, and that your Bandwidth account is' .
+                'enabled for TN Lookup access.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 415) {
+            throw new APIException(
+                'Invalid content-type. Ensure that your content-type header is set to application/json.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code == 429) {
+            throw new APIException(
+                'Too Many Requests. Reduce the amount of requests that you are sending in order to avoid receiving ' .
+                'this status code.',
+                $_httpContext
+            );
+        }
+
+        if ($response->code >= 500) {
+            throw new APIException(
+                'Unexpected error. Please contact Bandwidth Support if your requests are receiving this status code ' .
+                'for an extended period of time.',
+                $_httpContext
+            );
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClass(
+            $response->body,
+            'BandwidthLib\\PhoneNumberLookup\\Models\\LookupResponse'
         );
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
     }

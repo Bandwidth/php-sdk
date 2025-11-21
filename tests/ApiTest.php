@@ -193,8 +193,8 @@ final class ApiTest extends TestCase
         $this->assertTrue(is_bool($response->getResult()->valid));
     }
 
-    public function testTnLookup() {
-        $body = new BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkRequest();
+    public function testAsyncTnLookup() {
+        $body = new BandwidthLib\PhoneNumberLookup\Models\CreateLookupRequest();
         $body->phoneNumbers = [getenv("USER_NUMBER")];
         $createResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createAsyncBulkLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkResponse::class, $createResponse->getResult());
@@ -207,5 +207,16 @@ final class ApiTest extends TestCase
         // $requestId = $createResponse->getResult()->requestId;
         // $getResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $requestId);
         // $this->assertTrue(strlen($getResponse->getResult()->status) > 0);
+    }
+
+    public function testSyncTnLookup() {
+        $body = new BandwidthLib\PhoneNumberLookup\Models\CreateLookupRequest();
+        $body->phoneNumbers = [getenv("USER_NUMBER")];
+        $response = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createSyncLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
+        $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponse::class, $response->getResult());
+        $this->assertIsArray($response->getResult()->links);
+        $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponseData::class, $response->getResult()->data);
+        $this->assertTrue(strlen($response->getResult()->data->status) > 0);
+        $this->assertIsArray($response->getResult()->errors);
     }
 }

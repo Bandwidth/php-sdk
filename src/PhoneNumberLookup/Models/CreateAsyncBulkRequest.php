@@ -3,12 +3,14 @@
 namespace BandwidthLib\PhoneNumberLookup\Models;
 
 /**
- * Create Async Bulk TN Lookup Request
+ * Create Sync and Async Bulk TN Lookup Request
  */
-class CreateAsyncBulkRequest implements \JsonSerializable
+class CreateLookupRequest implements \JsonSerializable
 {
     /**
-     * List of TNs to lookup max 15000 TNs
+     * List of TNs to lookup.
+     * Max 15000 TNs for Async Bulk Lookup.
+     * Max 100 TNs for Sync Lookup.
      * @var array|null $phoneNumbers public property
      */
     public $phoneNumbers;
