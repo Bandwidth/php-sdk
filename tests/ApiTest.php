@@ -197,9 +197,12 @@ final class ApiTest extends TestCase
         $body = new BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkRequest();
         $body->phoneNumbers = [getenv("USER_NUMBER")];
         $createResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createAsyncBulkLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
-        $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkResponse::class, $createResponse->getResult()->data);
+        $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkResponse::class, $createResponse->getResult());
+        $this->assertIsArray($createResponse->getResult()->links);
+        $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkResponseData::class, $createResponse->getResult()->data);
         $this->assertTrue(strlen($createResponse->getResult()->data->requestId) > 0);
         $this->assertTrue(strlen($createResponse->getResult()->data->status) > 0);
+        $this->assertIsArray($createResponse->getResult()->errors);
 
         // $requestId = $createResponse->getResult()->requestId;
         // $getResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $requestId);
