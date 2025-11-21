@@ -284,7 +284,7 @@ class Configuration
             Servers::DEFAULT_ => 'api.bandwidth.com',
             Servers::MESSAGINGDEFAULT => 'https://messaging.bandwidth.com/api/v2',
             Servers::MULTIFACTORAUTHDEFAULT => 'https://mfa.bandwidth.com/api/v1',
-            Servers::PHONENUMBERLOOKUPDEFAULT => 'https://numbers.bandwidth.com/api/v1',
+            Servers::PHONENUMBERLOOKUPDEFAULT => 'https://api.bandwidth.com/v2',
             Servers::VOICEDEFAULT => 'https://voice.bandwidth.com',
             Servers::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1',
         ),

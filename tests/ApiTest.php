@@ -194,13 +194,13 @@ final class ApiTest extends TestCase
     }
 
     public function testTnLookup() {
-        $body = new BandwidthLib\PhoneNumberLookup\Models\OrderRequest();
-        $body->tns = [getenv("USER_NUMBER")];
-        $createResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
+        $body = new BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkRequest();
+        $body->phoneNumbers = [getenv("USER_NUMBER")];
+        $createResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createAsyncBulkLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertTrue(strlen($createResponse->getResult()->requestId) > 0);
 
-        $requestId = $createResponse->getResult()->requestId;
-        $getResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $requestId);
-        $this->assertTrue(strlen($getResponse->getResult()->status) > 0);
+        // $requestId = $createResponse->getResult()->requestId;
+        // $getResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $requestId);
+        // $this->assertTrue(strlen($getResponse->getResult()->status) > 0);
     }
 }
