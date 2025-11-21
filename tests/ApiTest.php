@@ -217,8 +217,9 @@ final class ApiTest extends TestCase
         $this->assertIsArray($response->getResult()->links);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\Link::class, $response->getResult()->links[0]);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponseData::class, $response->getResult()->data);
-        $this->assertIsString($createResponse->getResult()->data->requestId);
-        $this->assertIsString($createResponse->getResult()->data->status);
+        $this->assertIsString($response->getResult()->data->requestId);
+        $this->assertIsString($response->getResult()->data->status);
+        $this->assertEquals("COMPLETE", $response->getResult()->data->status);
         $this->assertIsArray($response->getResult()->data->results);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResult::class, $response->getResult()->data->results[0]);
         $this->assertIsString($response->getResult()->data->results[0]->phoneNumber);
