@@ -1492,12 +1492,12 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getConferences(
-        string $accountId,
-        string $name = null,
-        string $minCreatedTime = null,
-        string $maxCreatedTime = null,
-        int    $pageSize = 1000,
-        string $pageToken = null
+        string  $accountId,
+        ?string $name = null,
+        ?string $minCreatedTime = null,
+        ?string $maxCreatedTime = null,
+        int     $pageSize = 1000,
+        ?string $pageToken = null
     ) {
 
         //prepare query string for API call
@@ -2403,11 +2403,11 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getQueryCallRecordings(
-        string $accountId,
-        string $from = null,
-        string $to = null,
-        string $minStartTime = null,
-        string $maxStartTime = null
+        string  $accountId,
+        ?string $from = null,
+        ?string $to = null,
+        ?string $minStartTime = null,
+        ?string $maxStartTime = null
     ) {
 
         //prepare query string for API call

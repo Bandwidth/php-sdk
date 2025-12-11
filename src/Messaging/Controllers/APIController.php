@@ -40,7 +40,7 @@ class APIController extends BaseController
      */
     public function listMedia(
         string $accountId,
-        string $continuationToken = null
+        ?string $continuationToken = null
     ) {
 
         //prepare query string for API call
@@ -225,7 +225,7 @@ class APIController extends BaseController
         string $mediaId,
         string $body,
         string $contentType = 'application/octet-stream',
-        string $cacheControl = null
+        ?string $cacheControl = null
     ) {
 
         //prepare query string for API call
@@ -418,16 +418,16 @@ class APIController extends BaseController
      * @throws APIException Thrown if API call fails
      */
     public function getMessages(
-        string $accountId,
-        string $messageId = null,
-        string $sourceTn = null,
-        string $destinationTn = null,
-        string $messageStatus = null,
-        int    $errorCode = null,
-        string $fromDateTime = null,
-        string $toDateTime = null,
-        string $pageToken = null,
-        int    $limit = null
+        string  $accountId,
+        ?string $messageId = null,
+        ?string $sourceTn = null,
+        ?string $destinationTn = null,
+        ?string $messageStatus = null,
+        ?int    $errorCode = null,
+        ?string $fromDateTime = null,
+        ?string $toDateTime = null,
+        ?string $pageToken = null,
+        ?int    $limit = null
     ) {
 
         //prepare query string for API call
