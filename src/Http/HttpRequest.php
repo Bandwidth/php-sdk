@@ -43,7 +43,7 @@ class HttpRequest
      * @param string|null $queryUrl   Query url
      * @param array|null $parameters Map of parameters sent
      */
-    public function __construct(string $httpMethod = null, array $headers = null, string $queryUrl = null, array $parameters = null)
+    public function __construct(?string $httpMethod = null, ?array $headers = null, ?string $queryUrl = null, ?array $parameters = null)
     {
         $this->httpMethod = $httpMethod;
         $this->headers = $headers;

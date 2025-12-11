@@ -35,9 +35,10 @@ class APIException extends \Exception
         $this->context = $context;
         $this->errorMessage = $reason;
 
-        if (get_class() != 'APIException') {
+        if (static::class !== 'BandwidthLib\APIException') {
             $this->unbox();
         }
+
     }
 
     /**

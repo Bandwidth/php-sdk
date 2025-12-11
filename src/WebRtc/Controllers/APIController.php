@@ -43,7 +43,7 @@ class APIController extends BaseController
      */
     public function createParticipant(
         string             $accountId,
-        Models\Participant $body = null
+        ?Models\Participant $body = null
     ) {
 
         //prepare query string for API call
@@ -283,7 +283,7 @@ class APIController extends BaseController
      */
     public function createSession(
         string         $accountId,
-        Models\Session $body = null
+        ?Models\Session $body = null
     ) {
 
         //prepare query string for API call
@@ -602,7 +602,7 @@ class APIController extends BaseController
         string               $accountId,
         string               $sessionId,
         string               $participantId,
-        Models\Subscriptions $body = null
+        ?Models\Subscriptions $body = null
     ) {
 
         //prepare query string for API call
@@ -854,7 +854,7 @@ class APIController extends BaseController
         string               $accountId,
         string               $sessionId,
         string               $participantId,
-        Models\Subscriptions $body = null
+        ?Models\Subscriptions $body = null
     ) {
 
         //prepare query string for API call
