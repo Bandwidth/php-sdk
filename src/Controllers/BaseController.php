@@ -12,6 +12,7 @@ use BandwidthLib\Http\HttpContext;
 use BandwidthLib\Http\HttpResponse;
 use BandwidthLib\APIException;
 use \apimatic\jsonmapper\JsonMapper;
+use Unirest\Request;
 
 /**
 * Base controller
@@ -72,5 +73,69 @@ class BaseController
         if (($response->getStatusCode() < 200) || ($response->getStatusCode() > 208)) { //[200,208] = HTTP OK
             throw new APIException('HTTP Response Not OK', $_httpContext);
         }
+    }
+
+    /**
+     * Update Auth for an HTTP request based on the current configuration
+     * @param array $headers The headers for the request
+     * @param string $authType The type of basic auth to use
+     */
+    protected function configureAuth(&$headers, $authType)
+    {
+        if (!empty($this->config->getAccessToken()) && 
+            (empty($this->config->getAccessTokenExpiration()) || 
+            $this->config->getAccessTokenExpiration() > time() + 60)
+        ) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            return;
+        }
+        
+        if (!empty($this->config->getClientId()) && !empty($this->config->getClientSecret())) {
+            $_tokenUrl = 'https://api.bandwidth.com/api/v1/oauth2/token';
+            $_tokenHeaders = array (
+                'User-Agent'    => BaseController::USER_AGENT,
+                'Content-Type'  => 'application/x-www-form-urlencoded',
+                'Authorization' => 'Basic ' . base64_encode(
+                    $this->config->getClientId() . ':' . $this->config->getClientSecret()
+                )
+            );
+            $_tokenBody = Request\Body::Form([
+                'grant_type' => 'client_credentials'
+            ]);
+            $response = Request::post($_tokenUrl, $_tokenHeaders, $_tokenBody);
+            $this->config->setAccessToken($response->body->access_token);
+            $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+
+            return;
+        }
+        
+        $username = '';
+        $password = '';
+        
+        switch ($authType) {
+            case 'messaging':
+                $username = $this->config->getMessagingBasicAuthUserName();
+                $password = $this->config->getMessagingBasicAuthPassword();
+                break;
+            case 'voice':
+                $username = $this->config->getVoiceBasicAuthUserName();
+                $password = $this->config->getVoiceBasicAuthPassword();
+                break;
+            case 'webrtc':
+                $username = $this->config->getWebRtcBasicAuthUserName();
+                $password = $this->config->getWebRtcBasicAuthPassword();
+                break;
+            case 'phoneNumberLookup':
+                $username = $this->config->getPhoneNumberLookupBasicAuthUserName();
+                $password = $this->config->getPhoneNumberLookupBasicAuthPassword();
+                break;
+            case 'multiFactorAuth':
+                $username = $this->config->getMultiFactorAuthBasicAuthUserName();
+                $password = $this->config->getMultiFactorAuthBasicAuthPassword();
+                break;
+        }
+        
+        Request::auth($username, $password);
     }
 }

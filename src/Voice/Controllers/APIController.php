@@ -65,7 +65,7 @@ class APIController extends BaseController
         $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
 
@@ -173,7 +173,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -283,7 +283,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
 
@@ -394,7 +394,7 @@ class APIController extends BaseController
         $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
 
@@ -505,7 +505,7 @@ class APIController extends BaseController
         $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
 
@@ -612,7 +612,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -726,7 +726,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -839,7 +839,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
 
@@ -949,7 +949,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -1059,7 +1059,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
 
@@ -1169,7 +1169,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -1289,7 +1289,7 @@ class APIController extends BaseController
         $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
 
@@ -1405,7 +1405,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
 
@@ -1527,7 +1527,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -1635,7 +1635,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -1748,7 +1748,7 @@ class APIController extends BaseController
         $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
 
@@ -1862,7 +1862,7 @@ class APIController extends BaseController
         $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
 
@@ -1972,7 +1972,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -2084,7 +2084,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -2199,7 +2199,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -2314,7 +2314,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -2436,7 +2436,7 @@ class APIController extends BaseController
         );
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getVoiceBasicAuthUserName(), $this->config->getVoiceBasicAuthPassword());
+        $this->configureAuth($_headers, 'voice');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
