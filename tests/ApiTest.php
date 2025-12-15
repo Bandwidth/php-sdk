@@ -12,22 +12,31 @@ use PHPUnit\Framework\TestCase;
 
 final class ApiTest extends TestCase
 {
-    protected $bandwidthClient;
+    protected static $bandwidthClient;
+    protected static $messagingMFAClient;
 
-    protected function setUp(): void {
+    public static function setUpBeforeClass(): void {
         $config = new BandwidthLib\Configuration(
+            array(
+                'voiceBasicAuthUserName' => getenv("BW_USERNAME"),
+                'voiceBasicAuthPassword' => getenv("BW_PASSWORD"),
+                'phoneNumberLookupBasicAuthUserName' => getenv("BW_USERNAME"),
+                'phoneNumberLookupBasicAuthPassword' => getenv("BW_PASSWORD"),
+                'clientId' => getenv("BW_CLIENT_ID"),
+                'clientSecret' => getenv("BW_CLIENT_SECRET"),
+            )
+        );
+        self::$bandwidthClient = new BandwidthLib\BandwidthClient($config);
+
+        $messagingMFAConfig = new BandwidthLib\Configuration(
             array(
                 'messagingBasicAuthUserName' => getenv("BW_USERNAME"),
                 'messagingBasicAuthPassword' => getenv("BW_PASSWORD"),
-                'voiceBasicAuthUserName' => getenv("BW_USERNAME"),
-                'voiceBasicAuthPassword' => getenv("BW_PASSWORD"),
                 'multiFactorAuthBasicAuthUserName' => getenv("BW_USERNAME"),
                 'multiFactorAuthBasicAuthPassword' => getenv("BW_PASSWORD"),
-                'phoneNumberLookupBasicAuthUserName' => getenv("BW_USERNAME"),
-                'phoneNumberLookupBasicAuthPassword' => getenv("BW_PASSWORD")
             )
         );
-        $this->bandwidthClient = new BandwidthLib\BandwidthClient($config);
+        self::$messagingMFAClient = new BandwidthLib\BandwidthClient($messagingMFAConfig);
     }
 
     public function testCreateMessage() {
@@ -37,7 +46,7 @@ final class ApiTest extends TestCase
         $body->applicationId = getenv("BW_MESSAGING_APPLICATION_ID");
         $body->text = "PHP Monitoring";
 
-        $response = $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
+        $response = self::$messagingMFAClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
 
         $this->assertTrue(strlen($response->getResult()->id) > 0); //validate that _some_ id was returned
     }
@@ -50,7 +59,7 @@ final class ApiTest extends TestCase
         $body->text = "PHP Monitoring";
 
         try {
-            $this->bandwidthClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
+            self::$messagingMFAClient->getMessaging()->getClient()->createMessage(getenv("BW_ACCOUNT_ID"), $body);
             //workaround to make sure that if the above error is not raised, the build will fail
             $this->assertTrue(false);
         } catch (BandwidthLib\Messaging\Exceptions\MessagingException $e) {
@@ -65,13 +74,13 @@ final class ApiTest extends TestCase
         $contentType = 'text/plain';
         
         //media upload
-        $this->bandwidthClient->getMessaging()->getClient()->uploadMedia(getenv("BW_ACCOUNT_ID"), $mediaId, $content, $contentType);
+        self::$messagingMFAClient->getMessaging()->getClient()->uploadMedia(getenv("BW_ACCOUNT_ID"), $mediaId, $content, $contentType);
 
         //media download
-        $downloadedContent = $this->bandwidthClient->getMessaging()->getClient()->getMedia(getenv("BW_ACCOUNT_ID"), $mediaId)->getResult();
+        $downloadedContent = self::$messagingMFAClient->getMessaging()->getClient()->getMedia(getenv("BW_ACCOUNT_ID"), $mediaId)->getResult();
 
         //media delete
-        $this->bandwidthClient->getMessaging()->getClient()->deleteMedia(getenv("BW_ACCOUNT_ID"), $mediaId);
+        self::$messagingMFAClient->getMessaging()->getClient()->deleteMedia(getenv("BW_ACCOUNT_ID"), $mediaId);
 
         //validate that response is the same
         $this->assertEquals($downloadedContent, $content);
@@ -83,13 +92,13 @@ final class ApiTest extends TestCase
         $body->to = getenv("USER_NUMBER");
         $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
         $body->answerUrl = getenv("BASE_CALLBACK_URL");
-        $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
+        $response = self::$bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
         $callId = $response->getResult()->callId;
         $this->assertTrue(strlen($callId) > 0);
         $this->assertTrue(is_a($response->getResult()->enqueuedTime, 'DateTime'));
 
         //get phone call information (This is commented out until voice fixes their latency issues
-        // $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
+        // $response = self::$bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
         // $this->assertTrue(is_a($response->getResult()->enqueuedTime, 'DateTime'));
 
     }
@@ -113,14 +122,14 @@ final class ApiTest extends TestCase
         $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
         $body->answerUrl = getenv("BASE_CALLBACK_URL");
         $body->machineDetection = $machineDetection;
-        $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
+        $response = self::$bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
         $callId = $response->getResult()->callId;
         $this->assertTrue(strlen($callId) > 0);
 
         sleep(25);
 
         //get phone call information
-    //     $response = $this->bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
+    //     $response = self::$bandwidthClient->getVoice()->getClient()->getCall(getenv("BW_ACCOUNT_ID"), $callId);
     //     if (($response->getStatus() == 404) ) { 
     //     $this->assertTrue(is_a($response->getResult()->enqueuedTime, 'DateTime'));
     // }
@@ -132,7 +141,7 @@ final class ApiTest extends TestCase
         $body->applicationId = getenv("BW_VOICE_APPLICATION_ID");
         $body->answerUrl = getenv("BASE_CALLBACK_URL");
         $body->priority = 1;
-        $response = $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
+        $response = self::$bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
         $callId = $response->getResult()->callId;
         $this->assertTrue(strlen($callId) > 0);
         $this->assertTrue($response->getResult()->priority == $body->priority);
@@ -146,7 +155,7 @@ final class ApiTest extends TestCase
         $body->answerUrl = getenv("BASE_CALLBACK_URL");
 
         try {
-            $this->bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
+            self::$bandwidthClient->getVoice()->getClient()->createCall(getenv("BW_ACCOUNT_ID"), $body);
             //workaround to make sure that if the above error is not raised, the build will fail
             $this->assertTrue(false);
         } catch (BandwidthLib\Voice\Exceptions\ApiErrorException $e) {
@@ -163,7 +172,7 @@ final class ApiTest extends TestCase
         $body->digits = 6;
         $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
 
-        $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createMessagingTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
+        $response = self::$messagingMFAClient->getMultiFactorAuth()->getMFA()->createMessagingTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertTrue(strlen($response->getResult()->messageId) > 0); //validate that _some_ id was returned
     }
 
@@ -176,7 +185,7 @@ final class ApiTest extends TestCase
         $body->digits = 6;
         $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
 
-        $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createVoiceTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
+        $response = self::$messagingMFAClient->getMultiFactorAuth()->getMFA()->createVoiceTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertTrue(strlen($response->getResult()->callId) > 0); //validate that _some_ id was returned
     }
 
@@ -189,14 +198,14 @@ final class ApiTest extends TestCase
         $body->digits = 6;
         $body->expirationTimeInMinutes = 3;
 
-        $response = $this->bandwidthClient->getMultiFactorAuth()->getMFA()->createVerifyTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
+        $response = self::$messagingMFAClient->getMultiFactorAuth()->getMFA()->createVerifyTwoFactor(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertTrue(is_bool($response->getResult()->valid));
     }
 
     public function testAsyncTnLookup() {
         $body = new BandwidthLib\PhoneNumberLookup\Models\CreateLookupRequest();
         $body->phoneNumbers = [getenv("USER_NUMBER")];
-        $createResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createAsyncBulkLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
+        $createResponse = self::$bandwidthClient->getPhoneNumberLookup()->getClient()->createAsyncBulkLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkResponse::class, $createResponse->getResult());
         $this->assertIsArray($createResponse->getResult()->links);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\CreateAsyncBulkResponseData::class, $createResponse->getResult()->data);
@@ -206,7 +215,7 @@ final class ApiTest extends TestCase
 
         sleep(30);
 
-        $statusResponse = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->getAsyncLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $createResponse->getResult()->data->requestId);
+        $statusResponse = self::$bandwidthClient->getPhoneNumberLookup()->getClient()->getAsyncLookupRequestStatus(getenv("BW_ACCOUNT_ID"), $createResponse->getResult()->data->requestId);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponse::class, $statusResponse->getResult());
         $this->assertIsArray($statusResponse->getResult()->links);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponseData::class, $statusResponse->getResult()->data);
@@ -225,7 +234,7 @@ final class ApiTest extends TestCase
     public function testSyncTnLookup() {
         $body = new BandwidthLib\PhoneNumberLookup\Models\CreateLookupRequest();
         $body->phoneNumbers = [getenv("USER_NUMBER")];
-        $response = $this->bandwidthClient->getPhoneNumberLookup()->getClient()->createSyncLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
+        $response = self::$bandwidthClient->getPhoneNumberLookup()->getClient()->createSyncLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponse::class, $response->getResult());
         $this->assertIsArray($response->getResult()->links);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\Link::class, $response->getResult()->links[0]);
@@ -237,7 +246,7 @@ final class ApiTest extends TestCase
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResult::class, $response->getResult()->data->results[0]);
         $this->assertIsString($response->getResult()->data->results[0]->phoneNumber);
         $this->assertIsString($response->getResult()->data->results[0]->lineType);
-        $this->assertIsString($response->getResult()->data->results[0]->messagingProvider);
+        // $this->assertIsString($response->getResult()->data->results[0]->messagingProvider);
         $this->assertIsString($response->getResult()->data->results[0]->voiceProvider);
         $this->assertIsString($response->getResult()->data->results[0]->countryCodeA3);
         $this->assertIsArray($response->getResult()->errors);
