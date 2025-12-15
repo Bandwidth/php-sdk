@@ -66,7 +66,7 @@ class MFAController extends BaseController
         $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getMultiFactorAuthBasicAuthUserName(), $this->config->getMultiFactorAuthBasicAuthPassword());
+        $this->configureAuth($_headers, 'multiFactorAuth');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
 
@@ -160,7 +160,7 @@ class MFAController extends BaseController
         $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getMultiFactorAuthBasicAuthUserName(), $this->config->getMultiFactorAuthBasicAuthPassword());
+        $this->configureAuth($_headers, 'multiFactorAuth');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
 
@@ -253,7 +253,7 @@ class MFAController extends BaseController
         $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
-        Request::auth($this->config->getMultiFactorAuthBasicAuthUserName(), $this->config->getMultiFactorAuthBasicAuthPassword());
+        $this->configureAuth($_headers, 'multiFactorAuth');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
 
