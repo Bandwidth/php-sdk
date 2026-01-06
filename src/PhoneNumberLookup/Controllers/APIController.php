@@ -64,8 +64,8 @@ class APIController extends BaseController
         //json encode body
         $_bodyJson = Request\Body::Json($body);
 
-        //set HTTP basic auth parameters
-        Request::auth($this->config->getPhoneNumberLookupBasicAuthUserName(), $this->config->getPhoneNumberLookupBasicAuthPassword());
+        //set authentication
+        $this->configureAuth($_headers, 'phoneNumberLookup');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
 
@@ -169,8 +169,8 @@ class APIController extends BaseController
             'Accept'        => 'application/json'
         );
 
-        //set HTTP basic auth parameters
-        Request::auth($this->config->getPhoneNumberLookupBasicAuthUserName(), $this->config->getPhoneNumberLookupBasicAuthPassword());
+        //set authentication
+        $this->configureAuth($_headers, 'phoneNumberLookup');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
 
@@ -277,8 +277,8 @@ class APIController extends BaseController
         //json encode body
         $_bodyJson = Request\Body::Json($body);
 
-        //set HTTP basic auth parameters
-        Request::auth($this->config->getPhoneNumberLookupBasicAuthUserName(), $this->config->getPhoneNumberLookupBasicAuthPassword());
+        //set authentication
+        $this->configureAuth($_headers, 'phoneNumberLookup');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
 
