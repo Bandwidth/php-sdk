@@ -61,7 +61,7 @@ class APIController extends BaseController
             'Continuation-Token' => $continuationToken
         );
 
-        //set HTTP basic auth parameters
+        //set authentication
         $this->configureAuth($_headers, 'messaging');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
@@ -150,7 +150,7 @@ class APIController extends BaseController
             'user-agent'    => BaseController::USER_AGENT
         );
 
-        //set HTTP basic auth parameters
+        //set authentication
         $this->configureAuth($_headers, 'messaging');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
@@ -251,7 +251,7 @@ class APIController extends BaseController
         //json encode body
         $_bodyJson = $body;
 
-        //set HTTP basic auth parameters
+        //set authentication
         $this->configureAuth($_headers, 'messaging');
 
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
@@ -340,7 +340,7 @@ class APIController extends BaseController
             'user-agent'    => BaseController::USER_AGENT
         );
 
-        //set HTTP basic auth parameters
+        //set authentication
         $this->configureAuth($_headers, 'messaging');
 
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
@@ -460,7 +460,7 @@ class APIController extends BaseController
             'Accept'        => 'application/json'
         );
 
-        //set HTTP basic auth parameters
+        //set authentication
         $this->configureAuth($_headers, 'messaging');
 
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
@@ -555,7 +555,7 @@ class APIController extends BaseController
         //json encode body
         $_bodyJson = Request\Body::Json($body);
 
-        //set HTTP basic auth parameters
+        //set authentication
         $this->configureAuth($_headers, 'messaging');
 
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
