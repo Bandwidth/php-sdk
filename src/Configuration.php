@@ -80,6 +80,30 @@ class Configuration
     private $webRtcBasicAuthPassword = 'TODO: Replace';
 
     /**
+     * The clientId to use for OAuth2
+     * @var string
+     */
+    private $clientId;
+
+    /**
+     * The clientSecret to use for OAuth2
+     * @var string
+     */
+    private $clientSecret;
+
+    /**
+     * The OAuth2 access token to use for API calls
+     * @var string
+     */
+    private $accessToken;
+
+    /**
+     * The expiration time of the access token
+     * @var int
+     */
+    private $accessTokenExpiration;
+
+    /**
      * Current API environment
      * @var Environments
      */
@@ -126,6 +150,18 @@ class Configuration
         if (isset($configOptions['webRtcBasicAuthPassword'])) {
             $this->webRtcBasicAuthPassword = $configOptions['webRtcBasicAuthPassword'];
         }
+        if (isset($configOptions['clientId'])) {
+            $this->clientId = $configOptions['clientId'];
+        }
+        if (isset($configOptions['clientSecret'])) {
+            $this->clientSecret = $configOptions['clientSecret'];
+        }
+        if (isset($configOptions['accessToken'])) {
+            $this->accessToken = $configOptions['accessToken'];
+        }
+        if (isset($configOptions['accessTokenExpiration'])) {
+            $this->accessTokenExpiration = $configOptions['accessTokenExpiration'];
+        }
         if (isset($configOptions['environment'])) {
             $this->environment = $configOptions['environment'];
         }
@@ -170,6 +206,18 @@ class Configuration
         }
         if (isset($this->webRtcBasicAuthPassword)) {
             $configMap['webRtcBasicAuthPassword'] = $this->webRtcBasicAuthPassword;
+        }
+        if (isset($this->clientId)) {
+            $configMap['clientId'] = $this->clientId;
+        }
+        if (isset($this->clientSecret)) {
+            $configMap['clientSecret'] = $this->clientSecret;
+        }
+        if (isset($this->accessToken)) {
+            $configMap['accessToken'] = $this->accessToken;
+        }
+        if (isset($this->accessTokenExpiration)) {
+            $configMap['accessTokenExpiration'] = $this->accessTokenExpiration;
         }
         if (isset($this->environment)) {
             $configMap['environment'] = $this->environment;
@@ -245,6 +293,42 @@ class Configuration
     public function getWebRtcBasicAuthPassword()
     {
         return $this->webRtcBasicAuthPassword;
+    }
+
+    // Getter for clientId
+    public function getClientId()
+    {
+        return $this->clientId;
+    }
+
+    // Getter for clientSecret
+    public function getClientSecret()
+    {
+        return $this->clientSecret;
+    }
+
+    // Getter for accessToken
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
+    // Setter for accessToken
+    public function setAccessToken($value)
+    {
+        $this->accessToken = $value;
+    }
+
+    // Getter for getAccessTokenExpiration
+    public function getAccessTokenExpiration()
+    {
+        return $this->accessTokenExpiration;
+    }
+
+    // Setter for accessTokenExpiration
+    public function setAccessTokenExpiration($value)
+    {
+        $this->accessTokenExpiration = $value;
     }
 
     // Getter for environment
