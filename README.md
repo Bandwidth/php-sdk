@@ -3,11 +3,11 @@
 [![Test](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/Bandwidth/php-sdk/actions/workflows/test.yml)
 
 |    **OS**    |      **PHP**       |
-|:------------:|:------------------:|
-| Windows 2022 | 8.0, 8.1, 8.2, 8.3 |
-| Windows 2025 | 8.0, 8.1, 8.2, 8.3 |
-| Ubuntu 22.04 | 8.0, 8.1, 8.2, 8.3 |
-| Ubuntu 24.04 | 8.0, 8.1, 8.2, 8.3 |
+|:------------:|:-----------------------:|
+| Windows 2022 | 8.0, 8.1, 8.2, 8.3, 8.4 |
+| Windows 2025 | 8.0, 8.1, 8.2, 8.3, 8.4 |
+| Ubuntu 22.04 | 8.0, 8.1, 8.2, 8.3, 8.4 |
+| Ubuntu 24.04 | 8.0, 8.1, 8.2, 8.3, 8.4 |
 
 ## Getting Started
 
