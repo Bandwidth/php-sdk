@@ -265,7 +265,11 @@ final class ApiTest extends TestCase
             'php-sdk-test',
             ["meta" => "data"]
         );
-        $createResp = $voiceClient->createEndpoint($accountId, $createReq)->getResult();
+        try {
+            $createResp = $voiceClient->createEndpoint($accountId, $createReq)->getResult();
+        } catch (BandwidthLib\APIException $e) {
+            $this->fail('createEndpoint failed with HTTP ' . $e->getCode() . ': ' . $e->getContext()->getResponse()->getRawBody());
+        }
         $this->assertNotNull($createResp->endpointId);
         $this->assertEquals('WEBRTC', $createResp->type);
 
@@ -301,7 +305,11 @@ final class ApiTest extends TestCase
             getenv("BASE_CALLBACK_URL") . "/brtc/fallback",
             'php-sdk-fields-test'
         );
-        $createResp = $voiceClient->createEndpoint($accountId, $createReq)->getResult();
+        try {
+            $createResp = $voiceClient->createEndpoint($accountId, $createReq)->getResult();
+        } catch (BandwidthLib\APIException $e) {
+            $this->fail('createEndpoint failed with HTTP ' . $e->getCode() . ': ' . $e->getContext()->getResponse()->getRawBody());
+        }
 
         $this->assertNotNull($createResp->endpointId);
         $this->assertIsString($createResp->endpointId);
@@ -326,7 +334,11 @@ final class ApiTest extends TestCase
             null,
             'php-sdk-get-test'
         );
-        $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+        try {
+            $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+        } catch (BandwidthLib\APIException $e) {
+            $this->fail('createEndpoint failed with HTTP ' . $e->getCode() . ': ' . $e->getContext()->getResponse()->getRawBody());
+        }
 
         $endpoint = $voiceClient->getEndpoint($accountId, $endpointId)->getResult();
         $this->assertInstanceOf(BandwidthLib\Voice\Models\Endpoint::class, $endpoint);
@@ -353,7 +365,11 @@ final class ApiTest extends TestCase
             null,
             'php-sdk-list-test'
         );
-        $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+        try {
+            $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+        } catch (BandwidthLib\APIException $e) {
+            $this->fail('createEndpoint failed with HTTP ' . $e->getCode() . ': ' . $e->getContext()->getResponse()->getRawBody());
+        }
 
         $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         $this->assertIsArray($endpoints);
@@ -375,7 +391,11 @@ final class ApiTest extends TestCase
             'INBOUND',
             getenv("BASE_CALLBACK_URL") . "/brtc/events"
         );
-        $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+        try {
+            $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+        } catch (BandwidthLib\APIException $e) {
+            $this->fail('createEndpoint failed with HTTP ' . $e->getCode() . ': ' . $e->getContext()->getResponse()->getRawBody());
+        }
 
         $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         foreach ($endpoints as $ep) {
@@ -402,7 +422,11 @@ final class ApiTest extends TestCase
                 null,
                 "php-sdk-multi-{$i}"
             );
-            $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+            try {
+                $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+            } catch (BandwidthLib\APIException $e) {
+                $this->fail('createEndpoint failed with HTTP ' . $e->getCode() . ': ' . $e->getContext()->getResponse()->getRawBody());
+            }
             $this->assertNotNull($endpointId);
             $createdIds[] = $endpointId;
         }
@@ -427,7 +451,11 @@ final class ApiTest extends TestCase
             null,
             'php-sdk-delete-check'
         );
-        $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+        try {
+            $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+        } catch (BandwidthLib\APIException $e) {
+            $this->fail('createEndpoint failed with HTTP ' . $e->getCode() . ': ' . $e->getContext()->getResponse()->getRawBody());
+        }
 
         // Delete it
         $voiceClient->deleteEndpoint($accountId, $endpointId);
