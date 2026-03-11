@@ -35,19 +35,4 @@ class VoiceClient
         return $this->client;
     }
 
-    private $endpointsController;
-
-    /**
-     * Provides access to Endpoints controller
-     * @return Controllers\EndpointsController
-     */
-    public function getEndpointsController()
-    {
-        if ($this->endpointsController == null) {
-            $apiClient = $this->config->getApiClient ? $this->config->getApiClient() : $this->config;
-            $accountId = $this->config->accountId ?? null;
-            $this->endpointsController = new Controllers\EndpointsController($apiClient, $accountId);
-        }
-        return $this->endpointsController;
-    }
 }

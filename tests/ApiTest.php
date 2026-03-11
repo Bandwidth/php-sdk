@@ -254,8 +254,7 @@ final class ApiTest extends TestCase
 
     public function testCreateListGetDeleteEndpoint() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $voiceClient = self::$bandwidthClient->getVoice();
-        $endpointsController = $voiceClient->getEndpointsController();
+        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
 
         // Create endpoint
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
@@ -266,41 +265,34 @@ final class ApiTest extends TestCase
             'php-sdk-test',
             ["meta" => "data"]
         );
-        $createResp = $endpointsController->createEndpoint($createReq);
+        $createResp = $voiceClient->createEndpoint($accountId, $createReq)->getResult();
         $this->assertNotNull($createResp->endpointId);
         $this->assertEquals('WEBRTC', $createResp->type);
 
         // List endpoints
-        $endpoints = $endpointsController->listEndpoints();
+        $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         $this->assertIsArray($endpoints);
-        $found = false;
-        foreach ($endpoints as $ep) {
-            if ($ep->id === $createResp->endpointId) {
-                $found = true;
-                break;
-            }
-        }
-        $this->assertTrue($found, 'Created endpoint should be in list');
+        $ids = array_map(fn($ep) => $ep->id, $endpoints);
+        $this->assertContains($createResp->endpointId, $ids, 'Created endpoint should be in list');
 
         // Get endpoint
-        $endpoint = $endpointsController->getEndpoint($createResp->endpointId);
+        $endpoint = $voiceClient->getEndpoint($accountId, $createResp->endpointId)->getResult();
         $this->assertEquals($createResp->endpointId, $endpoint->id);
         $this->assertEquals('WEBRTC', $endpoint->type);
 
         // Update endpoint BXML
-        // TODO: This endpoint currently is not implemented, commenting out for until it is
+        // TODO: This endpoint currently is not implemented, commenting out until it is
         // $bxml = '<Bxml><SpeakSentence>Test BRTC</SpeakSentence></Bxml>';
-        // $result = $endpointsController->updateEndpointBxml($createResp->endpointId, $bxml);
-        // $this->assertTrue($result);
+        // $voiceClient->updateEndpointBxml($accountId, $createResp->endpointId, $bxml);
 
         // Delete endpoint
-        $result = $endpointsController->deleteEndpoint($createResp->endpointId);
-        $this->assertTrue($result);
+        $deleteResp = $voiceClient->deleteEndpoint($accountId, $createResp->endpointId);
+        $this->assertEquals(204, $deleteResp->getStatusCode());
     }
 
     public function testCreateEndpointResponseFields() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $endpointsController = self::$bandwidthClient->getVoice()->getEndpointsController();
+        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
@@ -309,7 +301,7 @@ final class ApiTest extends TestCase
             getenv("BASE_CALLBACK_URL") . "/brtc/fallback",
             'php-sdk-fields-test'
         );
-        $createResp = $endpointsController->createEndpoint($createReq);
+        $createResp = $voiceClient->createEndpoint($accountId, $createReq)->getResult();
 
         $this->assertNotNull($createResp->endpointId);
         $this->assertIsString($createResp->endpointId);
@@ -320,12 +312,12 @@ final class ApiTest extends TestCase
         $this->assertEquals('php-sdk-fields-test', $createResp->tag);
 
         // Cleanup
-        $endpointsController->deleteEndpoint($createResp->endpointId);
+        $voiceClient->deleteEndpoint($accountId, $createResp->endpointId);
     }
 
     public function testGetEndpointFields() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $endpointsController = self::$bandwidthClient->getVoice()->getEndpointsController();
+        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
@@ -334,10 +326,9 @@ final class ApiTest extends TestCase
             null,
             'php-sdk-get-test'
         );
-        $createResp = $endpointsController->createEndpoint($createReq);
-        $endpointId = $createResp->endpointId;
+        $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
 
-        $endpoint = $endpointsController->getEndpoint($endpointId);
+        $endpoint = $voiceClient->getEndpoint($accountId, $endpointId)->getResult();
         $this->assertInstanceOf(BandwidthLib\Voice\Models\Endpoint::class, $endpoint);
         $this->assertEquals($endpointId, $endpoint->id);
         $this->assertEquals('WEBRTC', $endpoint->type);
@@ -348,12 +339,12 @@ final class ApiTest extends TestCase
         $this->assertEquals('php-sdk-get-test', $endpoint->tag);
 
         // Cleanup
-        $endpointsController->deleteEndpoint($endpointId);
+        $voiceClient->deleteEndpoint($accountId, $endpointId);
     }
 
     public function testListEndpointsContainsCreated() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $endpointsController = self::$bandwidthClient->getVoice()->getEndpointsController();
+        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
@@ -362,10 +353,9 @@ final class ApiTest extends TestCase
             null,
             'php-sdk-list-test'
         );
-        $createResp = $endpointsController->createEndpoint($createReq);
-        $endpointId = $createResp->endpointId;
+        $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
 
-        $endpoints = $endpointsController->listEndpoints();
+        $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         $this->assertIsArray($endpoints);
         $this->assertNotEmpty($endpoints);
 
@@ -373,21 +363,21 @@ final class ApiTest extends TestCase
         $this->assertContains($endpointId, $ids, 'Newly created endpoint should appear in list');
 
         // Cleanup
-        $endpointsController->deleteEndpoint($endpointId);
+        $voiceClient->deleteEndpoint($accountId, $endpointId);
     }
 
     public function testListEndpointsEachItemIsEndpointInstance() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $endpointsController = self::$bandwidthClient->getVoice()->getEndpointsController();
+        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
             'INBOUND',
             getenv("BASE_CALLBACK_URL") . "/brtc/events"
         );
-        $createResp = $endpointsController->createEndpoint($createReq);
+        $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
 
-        $endpoints = $endpointsController->listEndpoints();
+        $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         foreach ($endpoints as $ep) {
             $this->assertInstanceOf(BandwidthLib\Voice\Models\Endpoint::class, $ep);
             $this->assertNotNull($ep->id);
@@ -396,12 +386,12 @@ final class ApiTest extends TestCase
         }
 
         // Cleanup
-        $endpointsController->deleteEndpoint($createResp->endpointId);
+        $voiceClient->deleteEndpoint($accountId, $endpointId);
     }
 
     public function testCreateMultipleEndpointsAndDeleteAll() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $endpointsController = self::$bandwidthClient->getVoice()->getEndpointsController();
+        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
 
         $createdIds = [];
         for ($i = 0; $i < 3; $i++) {
@@ -412,23 +402,23 @@ final class ApiTest extends TestCase
                 null,
                 "php-sdk-multi-{$i}"
             );
-            $createResp = $endpointsController->createEndpoint($createReq);
-            $this->assertNotNull($createResp->endpointId);
-            $createdIds[] = $createResp->endpointId;
+            $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
+            $this->assertNotNull($endpointId);
+            $createdIds[] = $endpointId;
         }
 
         $this->assertCount(3, $createdIds);
 
         // Delete all created endpoints
         foreach ($createdIds as $id) {
-            $result = $endpointsController->deleteEndpoint($id);
-            $this->assertTrue($result);
+            $deleteResp = $voiceClient->deleteEndpoint($accountId, $id);
+            $this->assertEquals(204, $deleteResp->getStatusCode());
         }
     }
 
     public function testDeleteEndpointRemovedFromList() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $endpointsController = self::$bandwidthClient->getVoice()->getEndpointsController();
+        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
@@ -437,14 +427,13 @@ final class ApiTest extends TestCase
             null,
             'php-sdk-delete-check'
         );
-        $createResp = $endpointsController->createEndpoint($createReq);
-        $endpointId = $createResp->endpointId;
+        $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
 
         // Delete it
-        $endpointsController->deleteEndpoint($endpointId);
+        $voiceClient->deleteEndpoint($accountId, $endpointId);
 
-        // Should no longer appear in list (or be marked deleted/absent)
-        $endpoints = $endpointsController->listEndpoints();
+        // Should no longer appear in list
+        $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         $ids = array_map(fn($ep) => $ep->id, $endpoints);
         $this->assertNotContains($endpointId, $ids, 'Deleted endpoint should not appear in list');
     }

@@ -929,7 +929,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = 
+        $_queryBuilder =
             '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media';
 
         //process optional query parameters
@@ -1040,7 +1040,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = 
+        $_queryBuilder =
             '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media';
 
         //process optional query parameters
@@ -1149,7 +1149,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = 
+        $_queryBuilder =
             '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription';
 
         //process optional query parameters
@@ -1266,7 +1266,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = 
+        $_queryBuilder =
             '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription';
 
         //process optional query parameters
@@ -1386,7 +1386,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = 
+        $_queryBuilder =
             '/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription';
 
         //process optional query parameters
@@ -1952,7 +1952,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = 
+        $_queryBuilder =
             '/api/v2/accounts/{accountId}/conferences/{conferenceId}/members/{memberId}';
 
         //process optional query parameters
@@ -2179,7 +2179,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = 
+        $_queryBuilder =
             '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}';
 
         //process optional query parameters
@@ -2294,7 +2294,7 @@ class APIController extends BaseController
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = 
+        $_queryBuilder =
             '/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}/media';
 
         //process optional query parameters
@@ -2513,5 +2513,205 @@ class APIController extends BaseController
             'BandwidthLib\\Voice\\Models\\CallRecordingMetadata'
         );
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Creates a BRTC endpoint.
+     *
+     * @param string $accountId
+     * @param Models\CreateEndpointRequest $body
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createEndpoint(
+        string $accountId,
+        Models\CreateEndpointRequest $body
+    ) {
+        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints';
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
+            'accountId' => $accountId,
+        ));
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_headers = array(
+            'user-agent'   => BaseController::USER_AGENT,
+            'Accept'       => 'application/json',
+            'content-type' => 'application/json; charset=utf-8'
+        );
+        $_bodyJson = Request\Body::Json($body);
+        $this->configureAuth($_headers, 'voice');
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        Request::timeout($this->config->getTimeout());
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClass($response->body, 'BandwidthLib\\Voice\\Models\\CreateEndpointResponse');
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Lists BRTC endpoints for an account.
+     *
+     * @param string $accountId
+     * @param array $queryParams Optional filter/pagination params
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function listEndpoints(
+        string $accountId,
+        array $queryParams = []
+    ) {
+        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints';
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
+            'accountId' => $accountId,
+        ));
+        if (!empty($queryParams)) {
+            $_queryBuilder = APIHelper::appendUrlWithQueryParameters($_queryBuilder, $queryParams);
+        }
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_headers = array(
+            'user-agent' => BaseController::USER_AGENT,
+            'Accept'     => 'application/json'
+        );
+        $this->configureAuth($_headers, 'voice');
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        Request::timeout($this->config->getTimeout());
+        $response = Request::get($_queryUrl, $_headers);
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClassArray($response->body, 'BandwidthLib\\Voice\\Models\\Endpoint');
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Gets details for a specific BRTC endpoint.
+     *
+     * @param string $accountId
+     * @param string $endpointId
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getEndpoint(
+        string $accountId,
+        string $endpointId
+    ) {
+        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints/{endpointId}';
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
+            'accountId'  => $accountId,
+            'endpointId' => $endpointId,
+        ));
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_headers = array(
+            'user-agent' => BaseController::USER_AGENT,
+            'Accept'     => 'application/json'
+        );
+        $this->configureAuth($_headers, 'voice');
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        Request::timeout($this->config->getTimeout());
+        $response = Request::get($_queryUrl, $_headers);
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+        $this->validateResponse($_httpResponse, $_httpContext);
+        $mapper = $this->getJsonMapper();
+        $deserializedResponse = $mapper->mapClass($response->body, 'BandwidthLib\\Voice\\Models\\Endpoint');
+        return new ApiResponse($response->code, $response->headers, $deserializedResponse);
+    }
+
+    /**
+     * Deletes a BRTC endpoint.
+     *
+     * @param string $accountId
+     * @param string $endpointId
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function deleteEndpoint(
+        string $accountId,
+        string $endpointId
+    ) {
+        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints/{endpointId}';
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
+            'accountId'  => $accountId,
+            'endpointId' => $endpointId,
+        ));
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_headers = array(
+            'user-agent' => BaseController::USER_AGENT
+        );
+        $this->configureAuth($_headers, 'voice');
+        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        Request::timeout($this->config->getTimeout());
+        $response = Request::delete($_queryUrl, $_headers);
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+        $this->validateResponse($_httpResponse, $_httpContext);
+        return new ApiResponse($response->code, $response->headers, null);
+    }
+
+    /**
+     * Updates the BXML for a BRTC endpoint.
+     *
+     * @param string $accountId
+     * @param string $endpointId
+     * @param string $body Valid BXML string
+     * @return ApiResponse response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateEndpointBxml(
+        string $accountId,
+        string $endpointId,
+        string $body
+    ) {
+        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints/{endpointId}/bxml';
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
+            'accountId'  => $accountId,
+            'endpointId' => $endpointId,
+        ));
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_headers = array(
+            'user-agent'   => BaseController::USER_AGENT,
+            'content-type' => 'application/xml; charset=utf-8'
+        );
+        $this->configureAuth($_headers, 'voice');
+        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+        Request::timeout($this->config->getTimeout());
+        $response = Request::put($_queryUrl, $_headers, $body);
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+        $this->validateResponse($_httpResponse, $_httpContext);
+        return new ApiResponse($response->code, $response->headers, null);
     }
 }
