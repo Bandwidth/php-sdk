@@ -2527,11 +2527,11 @@ class APIController extends BaseController
         string $accountId,
         Models\CreateEndpointRequest $body
     ) {
-        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints';
+        $_queryBuilder = '/accounts/{accountId}/endpoints';
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
             'accountId' => $accountId,
         ));
-        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::PHONENUMBERLOOKUPDEFAULT) . $_queryBuilder);
         $_headers = array(
             'user-agent'   => BaseController::USER_AGENT,
             'Accept'       => 'application/json',
@@ -2568,14 +2568,14 @@ class APIController extends BaseController
         string $accountId,
         array $queryParams = []
     ) {
-        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints';
+        $_queryBuilder = '/accounts/{accountId}/endpoints';
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
             'accountId' => $accountId,
         ));
         if (!empty($queryParams)) {
             $_queryBuilder = APIHelper::appendUrlWithQueryParameters($_queryBuilder, $queryParams);
         }
-        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::PHONENUMBERLOOKUPDEFAULT) . $_queryBuilder);
         $_headers = array(
             'user-agent' => BaseController::USER_AGENT,
             'Accept'     => 'application/json'
@@ -2610,12 +2610,12 @@ class APIController extends BaseController
         string $accountId,
         string $endpointId
     ) {
-        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints/{endpointId}';
+        $_queryBuilder = '/accounts/{accountId}/endpoints/{endpointId}';
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
             'accountId'  => $accountId,
             'endpointId' => $endpointId,
         ));
-        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::PHONENUMBERLOOKUPDEFAULT) . $_queryBuilder);
         $_headers = array(
             'user-agent' => BaseController::USER_AGENT,
             'Accept'     => 'application/json'
@@ -2650,12 +2650,12 @@ class APIController extends BaseController
         string $accountId,
         string $endpointId
     ) {
-        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints/{endpointId}';
+        $_queryBuilder = '/accounts/{accountId}/endpoints/{endpointId}';
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
             'accountId'  => $accountId,
             'endpointId' => $endpointId,
         ));
-        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::PHONENUMBERLOOKUPDEFAULT) . $_queryBuilder);
         $_headers = array(
             'user-agent' => BaseController::USER_AGENT
         );
@@ -2689,12 +2689,12 @@ class APIController extends BaseController
         string $endpointId,
         string $body
     ) {
-        $_queryBuilder = '/api/v2/accounts/{accountId}/endpoints/{endpointId}/bxml';
+        $_queryBuilder = '/accounts/{accountId}/endpoints/{endpointId}/bxml';
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array(
             'accountId'  => $accountId,
             'endpointId' => $endpointId,
         ));
-        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::VOICEDEFAULT) . $_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::PHONENUMBERLOOKUPDEFAULT) . $_queryBuilder);
         $_headers = array(
             'user-agent'   => BaseController::USER_AGENT,
             'content-type' => 'application/xml; charset=utf-8'
