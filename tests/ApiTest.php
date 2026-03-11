@@ -14,7 +14,7 @@ final class ApiTest extends TestCase
 {
     protected static $bandwidthClient;
     protected static $messagingMFAClient;
-
+    protected static $endpointClient;
     public static function setUpBeforeClass(): void {
         $config = new BandwidthLib\Configuration(
             array(
@@ -37,6 +37,14 @@ final class ApiTest extends TestCase
             )
         );
         self::$messagingMFAClient = new BandwidthLib\BandwidthClient($messagingMFAConfig);
+
+        $endpointConfig = new BandwidthLib\Configuration(
+            array(
+                'clientId' => getenv("BW_CLIENT_ID"),
+                'clientSecret' => getenv("BW_CLIENT_SECRET"),
+            )
+        );
+        self::$endpointClient = new BandwidthLib\BandwidthClient($endpointConfig);
     }
 
     public function testCreateMessage() {
@@ -254,7 +262,7 @@ final class ApiTest extends TestCase
 
     public function testCreateListGetDeleteEndpoint() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
+        $voiceClient = self::$endpointClient->getVoice()->getClient();
 
         // Create endpoint
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
@@ -296,7 +304,7 @@ final class ApiTest extends TestCase
 
     public function testCreateEndpointResponseFields() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
+        $voiceClient = self::$endpointClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
@@ -325,7 +333,7 @@ final class ApiTest extends TestCase
 
     public function testGetEndpointFields() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
+        $voiceClient = self::$endpointClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
@@ -356,7 +364,7 @@ final class ApiTest extends TestCase
 
     public function testListEndpointsContainsCreated() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
+        $voiceClient = self::$endpointClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
@@ -384,7 +392,7 @@ final class ApiTest extends TestCase
 
     public function testListEndpointsEachItemIsEndpointInstance() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
+        $voiceClient = self::$endpointClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
@@ -411,7 +419,7 @@ final class ApiTest extends TestCase
 
     public function testCreateMultipleEndpointsAndDeleteAll() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
+        $voiceClient = self::$endpointClient->getVoice()->getClient();
 
         $createdIds = [];
         for ($i = 0; $i < 3; $i++) {
@@ -442,7 +450,7 @@ final class ApiTest extends TestCase
 
     public function testDeleteEndpointRemovedFromList() {
         $accountId = getenv("BW_ACCOUNT_ID");
-        $voiceClient = self::$bandwidthClient->getVoice()->getClient();
+        $voiceClient = self::$endpointClient->getVoice()->getClient();
 
         $createReq = new BandwidthLib\Voice\Models\CreateEndpointRequest(
             'WEBRTC',
