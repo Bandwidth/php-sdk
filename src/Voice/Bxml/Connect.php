@@ -44,7 +44,7 @@ class Connect extends Verb {
      * @param DOMDocument $doc
      * @return DOMElement
      */
-    protected function toBxml(DOMDocument $doc): DOMElement {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Connect");
         foreach ($this->endpoints as $endpoint) {
             $element->appendChild($endpoint->toBxml($doc));

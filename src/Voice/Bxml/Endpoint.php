@@ -33,7 +33,7 @@ class Endpoint extends Verb {
      * @param DOMDocument $doc
      * @return DOMElement
      */
-    protected function toBxml(DOMDocument $doc): DOMElement {
+    public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Endpoint");
         $element->setAttribute("id", $this->id);
         return $element;
