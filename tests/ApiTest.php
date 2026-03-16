@@ -260,18 +260,6 @@ final class ApiTest extends TestCase
         $this->assertIsArray($response->getResult()->errors);
     }
 
-    private function apiFailMsg(string $op, BandwidthLib\APIException $e, $payload = null): string {
-        $url    = $e->getContext()->getRequest()->getQueryUrl();
-        $status = $e->getCode();
-        $body   = $e->getContext()->getResponse()->getRawBody();
-        $msg    = "{$op} failed | status: {$status} | url: {$url}";
-        if ($payload !== null) {
-            $msg .= ' | payload: ' . json_encode($payload);
-        }
-        $msg .= ' | response: ' . $body;
-        return $msg;
-    }
-
     public function testCreateListGetDeleteEndpoint() {
         $accountId = getenv("BW_ACCOUNT_ID");
         $voiceClient = self::$endpointClient->getVoice()->getClient();
@@ -288,7 +276,7 @@ final class ApiTest extends TestCase
         try {
             $createResp = $voiceClient->createEndpoint($accountId, $createReq)->getResult();
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('createEndpoint', $e, $createReq));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         $this->assertNotNull($createResp->endpointId);
         $this->assertEquals('WEBRTC', $createResp->type);
@@ -297,7 +285,7 @@ final class ApiTest extends TestCase
         try {
             $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('listEndpoints', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         $this->assertIsArray($endpoints);
         $ids = array_map(fn($ep) => $ep->id, $endpoints);
@@ -307,7 +295,7 @@ final class ApiTest extends TestCase
         try {
             $endpoint = $voiceClient->getEndpoint($accountId, $createResp->endpointId)->getResult();
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('getEndpoint', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         $this->assertEquals($createResp->endpointId, $endpoint->id);
         $this->assertEquals('WEBRTC', $endpoint->type);
@@ -321,7 +309,7 @@ final class ApiTest extends TestCase
         try {
             $deleteResp = $voiceClient->deleteEndpoint($accountId, $createResp->endpointId);
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('deleteEndpoint', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         $this->assertEquals(204, $deleteResp->getStatusCode());
     }
@@ -340,7 +328,7 @@ final class ApiTest extends TestCase
         try {
             $createResp = $voiceClient->createEndpoint($accountId, $createReq)->getResult();
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('createEndpoint', $e, $createReq));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
 
         $this->assertNotNull($createResp->endpointId);
@@ -355,7 +343,7 @@ final class ApiTest extends TestCase
         try {
             $voiceClient->deleteEndpoint($accountId, $createResp->endpointId);
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('deleteEndpoint', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
     }
 
@@ -373,13 +361,13 @@ final class ApiTest extends TestCase
         try {
             $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('createEndpoint', $e, $createReq));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
 
         try {
             $endpoint = $voiceClient->getEndpoint($accountId, $endpointId)->getResult();
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('getEndpoint', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         $this->assertInstanceOf(BandwidthLib\Voice\Models\Endpoint::class, $endpoint);
         $this->assertEquals($endpointId, $endpoint->id);
@@ -394,7 +382,7 @@ final class ApiTest extends TestCase
         try {
             $voiceClient->deleteEndpoint($accountId, $endpointId);
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('deleteEndpoint', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
     }
 
@@ -412,13 +400,13 @@ final class ApiTest extends TestCase
         try {
             $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('createEndpoint', $e, $createReq));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
 
         try {
             $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('listEndpoints', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         $this->assertIsArray($endpoints);
         $this->assertNotEmpty($endpoints);
@@ -430,7 +418,7 @@ final class ApiTest extends TestCase
         try {
             $voiceClient->deleteEndpoint($accountId, $endpointId);
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('deleteEndpoint', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
     }
 
@@ -446,13 +434,13 @@ final class ApiTest extends TestCase
         try {
             $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('createEndpoint', $e, $createReq));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
 
         try {
             $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('listEndpoints', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         foreach ($endpoints as $ep) {
             $this->assertInstanceOf(BandwidthLib\Voice\Models\Endpoint::class, $ep);
@@ -465,7 +453,7 @@ final class ApiTest extends TestCase
         try {
             $voiceClient->deleteEndpoint($accountId, $endpointId);
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('deleteEndpoint', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
     }
 
@@ -485,7 +473,7 @@ final class ApiTest extends TestCase
             try {
                 $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
             } catch (BandwidthLib\APIException $e) {
-                $this->fail($this->apiFailMsg('createEndpoint', $e, $createReq));
+                $this->fail("[{$e->getCode()}] {$e->getMessage()}");
             }
             $this->assertNotNull($endpointId);
             $createdIds[] = $endpointId;
@@ -498,7 +486,7 @@ final class ApiTest extends TestCase
             try {
                 $deleteResp = $voiceClient->deleteEndpoint($accountId, $id);
             } catch (BandwidthLib\APIException $e) {
-                $this->fail($this->apiFailMsg('deleteEndpoint', $e));
+                $this->fail("[{$e->getCode()}] {$e->getMessage()}");
             }
             $this->assertEquals(204, $deleteResp->getStatusCode());
         }
@@ -518,21 +506,21 @@ final class ApiTest extends TestCase
         try {
             $endpointId = $voiceClient->createEndpoint($accountId, $createReq)->getResult()->endpointId;
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('createEndpoint', $e, $createReq));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
 
         // Delete it
         try {
             $voiceClient->deleteEndpoint($accountId, $endpointId);
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('deleteEndpoint', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
 
         // Should no longer appear in list
         try {
             $endpoints = $voiceClient->listEndpoints($accountId)->getResult();
         } catch (BandwidthLib\APIException $e) {
-            $this->fail($this->apiFailMsg('listEndpoints', $e));
+            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         $ids = array_map(fn($ep) => $ep->id, $endpoints);
         $this->assertNotContains($endpointId, $ids, 'Deleted endpoint should not appear in list');
