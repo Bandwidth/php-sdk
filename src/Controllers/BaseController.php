@@ -139,35 +139,4 @@ class BaseController
         Request::auth($username, $password);
     }
 
-    /**
-     * Update Auth for BRTC endpoint requests using a separate OAuth2 token cache.
-     * Always uses OAuth2 client credentials; does not fall back to basic auth.
-     * @param array $headers The headers for the request
-     */
-    protected function configureBrtcAuth(&$headers)
-    {
-        if (!empty($this->config->getBrtcAccessToken()) &&
-            (empty($this->config->getBrtcAccessTokenExpiration()) ||
-            $this->config->getBrtcAccessTokenExpiration() > time() + 60)
-        ) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getBrtcAccessToken();
-            return;
-        }
-
-        $_tokenUrl = 'https://api.bandwidth.com/api/v1/oauth2/token';
-        $_tokenHeaders = array(
-            'User-Agent'    => BaseController::USER_AGENT,
-            'Content-Type'  => 'application/x-www-form-urlencoded',
-            'Authorization' => 'Basic ' . base64_encode(
-                $this->config->getClientId() . ':' . $this->config->getClientSecret()
-            )
-        );
-        $_tokenBody = Request\Body::Form([
-            'grant_type' => 'client_credentials'
-        ]);
-        $response = Request::post($_tokenUrl, $_tokenHeaders, $_tokenBody);
-        $this->config->setBrtcAccessToken($response->body->access_token);
-        $this->config->setBrtcAccessTokenExpiration(time() + $response->body->expires_in);
-        $headers['Authorization'] = 'Bearer ' . $this->config->getBrtcAccessToken();
-    }
 }
