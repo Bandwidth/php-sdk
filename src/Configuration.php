@@ -104,6 +104,18 @@ class Configuration
     private $accessTokenExpiration;
 
     /**
+     * The OAuth2 access token for BRTC endpoint calls
+     * @var string
+     */
+    private $brtcAccessToken;
+
+    /**
+     * The expiration time of the BRTC access token
+     * @var int
+     */
+    private $brtcAccessTokenExpiration;
+
+    /**
      * Current API environment
      * @var Environments
      */
@@ -329,6 +341,30 @@ class Configuration
     public function setAccessTokenExpiration($value)
     {
         $this->accessTokenExpiration = $value;
+    }
+
+    // Getter for brtcAccessToken
+    public function getBrtcAccessToken()
+    {
+        return $this->brtcAccessToken;
+    }
+
+    // Setter for brtcAccessToken
+    public function setBrtcAccessToken($value)
+    {
+        $this->brtcAccessToken = $value;
+    }
+
+    // Getter for brtcAccessTokenExpiration
+    public function getBrtcAccessTokenExpiration()
+    {
+        return $this->brtcAccessTokenExpiration;
+    }
+
+    // Setter for brtcAccessTokenExpiration
+    public function setBrtcAccessTokenExpiration($value)
+    {
+        $this->brtcAccessTokenExpiration = $value;
     }
 
     // Getter for environment
