@@ -120,24 +120,18 @@ class BaseController
      */
     protected function configureBrtcAuth(&$headers)
     {
-        if (!empty($this->config->getAccessToken()) &&
-            !empty($this->config->getAccessTokenExpiration()) &&
-            $this->config->getAccessTokenExpiration() > time() + 60
-        ) {
+        if ($this->config->getAccessTokenExpiration() > time() + 60) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
             return;
         }
 
-        $_tokenUrl = 'https://api.bandwidth.com/api/v1/oauth2/token';
-        $_tokenBody = 'grant_type=client_credentials';
-
-        $ch = curl_init($_tokenUrl);
+        $ch = curl_init('https://api.bandwidth.com/api/v1/oauth2/token');
         curl_setopt_array($ch, [
             CURLOPT_POST           => true,
-            CURLOPT_POSTFIELDS     => $_tokenBody,
+            CURLOPT_POSTFIELDS     => 'grant_type=client_credentials',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTPHEADER     => [
-                'User-Agent: ' . BaseController::USER_AGENT,
+                'User-Agent: ' . self::USER_AGENT,
                 'Content-Type: application/x-www-form-urlencoded',
                 'Authorization: Basic ' . base64_encode(
                     $this->config->getClientId() . ':' . $this->config->getClientSecret()
@@ -157,7 +151,7 @@ class BaseController
 
         $this->config->setAccessToken($body->access_token);
         $this->config->setAccessTokenExpiration(time() + $body->expires_in);
-        $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        $headers['Authorization'] = 'Bearer ' . $body->access_token;
     }
 
 }
