@@ -82,39 +82,9 @@ class BaseController
      */
     protected function configureAuth(&$headers, $authType)
     {
-        if (!empty($this->config->getAccessToken()) && 
-            (empty($this->config->getAccessTokenExpiration()) || 
-            $this->config->getAccessTokenExpiration() > time() + 60)
-        ) {
-            Request::auth('', '');
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-            return;
-        }
-
-        if (!empty($this->config->getClientId()) && !empty($this->config->getClientSecret())) {
-            $_tokenUrl = 'https://api.bandwidth.com/api/v1/oauth2/token';
-            $_tokenHeaders = array (
-                'User-Agent'    => BaseController::USER_AGENT,
-                'Content-Type'  => 'application/x-www-form-urlencoded',
-                'Authorization' => 'Basic ' . base64_encode(
-                    $this->config->getClientId() . ':' . $this->config->getClientSecret()
-                )
-            );
-            $_tokenBody = Request\Body::Form([
-                'grant_type' => 'client_credentials'
-            ]);
-            $response = Request::post($_tokenUrl, $_tokenHeaders, $_tokenBody);
-            $this->config->setAccessToken($response->body->access_token);
-            $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
-            Request::auth('', '');
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-
-            return;
-        }
-        
         $username = '';
         $password = '';
-        
+
         switch ($authType) {
             case 'messaging':
                 $username = $this->config->getMessagingBasicAuthUserName();
@@ -137,8 +107,42 @@ class BaseController
                 $password = $this->config->getMultiFactorAuthBasicAuthPassword();
                 break;
         }
-        
+
         Request::auth($username, $password);
+    }
+
+    /**
+     * Configure OAuth2 Bearer auth for BRTC endpoints using client credentials.
+     * Sets the Authorization header directly to avoid conflicts with Unirest's
+     * global Request::auth() state.
+     *
+     * @param array $headers The headers for the request (passed by reference)
+     */
+    protected function configureBrtcAuth(&$headers)
+    {
+        if (!empty($this->config->getAccessToken()) &&
+            !empty($this->config->getAccessTokenExpiration()) &&
+            $this->config->getAccessTokenExpiration() > time() + 60
+        ) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            return;
+        }
+
+        $_tokenUrl = 'https://api.bandwidth.com/api/v1/oauth2/token';
+        $_tokenHeaders = array(
+            'User-Agent'    => BaseController::USER_AGENT,
+            'Content-Type'  => 'application/x-www-form-urlencoded',
+            'Authorization' => 'Basic ' . base64_encode(
+                $this->config->getClientId() . ':' . $this->config->getClientSecret()
+            )
+        );
+        $_tokenBody = Request\Body::Form([
+            'grant_type' => 'client_credentials'
+        ]);
+        $response = Request::post($_tokenUrl, $_tokenHeaders, $_tokenBody);
+        $this->config->setAccessToken($response->body->access_token);
+        $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
+        $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
     }
 
 }
