@@ -120,11 +120,6 @@ class BaseController
      */
     protected function configureBrtcAuth(&$headers)
     {
-        if ($this->config->getAccessTokenExpiration() > time() + 60) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-            return;
-        }
-
         $ch = curl_init('https://api.bandwidth.com/api/v1/oauth2/token');
         curl_setopt_array($ch, [
             CURLOPT_POST           => true,
