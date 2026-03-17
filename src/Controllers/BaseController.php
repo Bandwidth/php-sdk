@@ -140,9 +140,7 @@ class BaseController
                 $this->config->getClientId() . ':' . $this->config->getClientSecret()
             )
         );
-        $_tokenBody = Request\Body::Form([
-            'grant_type' => 'client_credentials'
-        ]);
+        $_tokenBody = 'grant_type=client_credentials';
         $response = Request::post($_tokenUrl, $_tokenHeaders, $_tokenBody);
 
         if ($response->code < 200 || $response->code > 299 || !isset($response->body->access_token)) {
