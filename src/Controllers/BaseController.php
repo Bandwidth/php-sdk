@@ -128,6 +128,10 @@ class BaseController
             return;
         }
 
+        // Clear any global basic auth set by previous requests so it
+        // doesn't interfere with the token exchange.
+        Request::auth(null, null);
+
         $_tokenUrl = 'https://api.bandwidth.com/api/v1/oauth2/token';
         $_tokenHeaders = array(
             'User-Agent'    => BaseController::USER_AGENT,
@@ -140,6 +144,14 @@ class BaseController
             'grant_type' => 'client_credentials'
         ]);
         $response = Request::post($_tokenUrl, $_tokenHeaders, $_tokenBody);
+
+        if ($response->code < 200 || $response->code > 299 || !isset($response->body->access_token)) {
+            $errorBody = is_string($response->raw_body) ? $response->raw_body : json_encode($response->body);
+            throw new \RuntimeException(
+                "BRTC OAuth2 token request failed | status: {$response->code} | response: {$errorBody}"
+            );
+        }
+
         $this->config->setAccessToken($response->body->access_token);
         $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
         $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
