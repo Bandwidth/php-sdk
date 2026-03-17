@@ -146,6 +146,10 @@ class BaseController
 
         $this->config->setAccessToken($body->access_token);
         $this->config->setAccessTokenExpiration(time() + $body->expires_in);
+
+        // Clear any global Basic auth set by prior configureAuth() calls so
+        // Unirest doesn't override the Bearer token on the actual API request.
+        Request::auth('', '');
         $headers['Authorization'] = 'Bearer ' . $body->access_token;
     }
 
