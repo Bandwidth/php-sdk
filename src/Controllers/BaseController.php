@@ -86,10 +86,11 @@ class BaseController
             (empty($this->config->getAccessTokenExpiration()) || 
             $this->config->getAccessTokenExpiration() > time() + 60)
         ) {
+            Request::auth('', '');
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
             return;
         }
-        
+
         if (!empty($this->config->getClientId()) && !empty($this->config->getClientSecret())) {
             $_tokenUrl = 'https://api.bandwidth.com/api/v1/oauth2/token';
             $_tokenHeaders = array (
@@ -105,6 +106,7 @@ class BaseController
             $response = Request::post($_tokenUrl, $_tokenHeaders, $_tokenBody);
             $this->config->setAccessToken($response->body->access_token);
             $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
+            Request::auth('', '');
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
 
             return;
