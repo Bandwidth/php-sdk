@@ -128,30 +128,35 @@ class BaseController
             return;
         }
 
-        // Clear any global basic auth set by previous requests so it
-        // doesn't interfere with the token exchange.
-        Request::auth(null, null);
-
         $_tokenUrl = 'https://api.bandwidth.com/api/v1/oauth2/token';
-        $_tokenHeaders = array(
-            'User-Agent'    => BaseController::USER_AGENT,
-            'Content-Type'  => 'application/x-www-form-urlencoded',
-            'Authorization' => 'Basic ' . base64_encode(
-                $this->config->getClientId() . ':' . $this->config->getClientSecret()
-            )
-        );
         $_tokenBody = 'grant_type=client_credentials';
-        $response = Request::post($_tokenUrl, $_tokenHeaders, $_tokenBody);
 
-        if ($response->code < 200 || $response->code > 299 || !isset($response->body->access_token)) {
-            $errorBody = is_string($response->raw_body) ? $response->raw_body : json_encode($response->body);
+        $ch = curl_init($_tokenUrl);
+        curl_setopt_array($ch, [
+            CURLOPT_POST           => true,
+            CURLOPT_POSTFIELDS     => $_tokenBody,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER     => [
+                'User-Agent: ' . BaseController::USER_AGENT,
+                'Content-Type: application/x-www-form-urlencoded',
+                'Authorization: Basic ' . base64_encode(
+                    $this->config->getClientId() . ':' . $this->config->getClientSecret()
+                ),
+            ],
+        ]);
+        $rawBody  = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        $body = json_decode($rawBody);
+        if ($httpCode < 200 || $httpCode > 299 || !isset($body->access_token)) {
             throw new \RuntimeException(
-                "BRTC OAuth2 token request failed | status: {$response->code} | response: {$errorBody}"
+                "BRTC OAuth2 token request failed | status: {$httpCode} | response: {$rawBody}"
             );
         }
 
-        $this->config->setAccessToken($response->body->access_token);
-        $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
+        $this->config->setAccessToken($body->access_token);
+        $this->config->setAccessTokenExpiration(time() + $body->expires_in);
         $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
     }
 
