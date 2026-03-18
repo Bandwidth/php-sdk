@@ -132,7 +132,7 @@ class BaseController
                     $this->config->getClientId() . ':' . $this->config->getClientSecret()
                 ),
             ],
-            'grant_type=client_credentials'
+            \Unirest\Request\Body::Form(['grant_type' => 'client_credentials'])
         );
 
         if ($response->code < 200 || $response->code > 299 || !isset($response->body->access_token)) {
