@@ -118,39 +118,33 @@ class BaseController
      *
      * @param array $headers The headers for the request (passed by reference)
      */
-    protected function configureBrtcAuth(&$headers)
+    protected function configureOAuth2Auth(&$headers)
     {
-        $ch = curl_init('https://api.bandwidth.com/api/v1/oauth2/token');
-        curl_setopt_array($ch, [
-            CURLOPT_POST           => true,
-            CURLOPT_POSTFIELDS     => 'grant_type=client_credentials',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER     => [
-                'User-Agent: ' . self::USER_AGENT,
-                'Content-Type: application/x-www-form-urlencoded',
-                'Authorization: Basic ' . base64_encode(
+        $response = Request::post(
+            'https://api.bandwidth.com/api/v1/oauth2/token',
+            [
+                'User-Agent'    => self::USER_AGENT,
+                'Content-Type'  => 'application/x-www-form-urlencoded',
+                'Authorization' => 'Basic ' . base64_encode(
                     $this->config->getClientId() . ':' . $this->config->getClientSecret()
                 ),
             ],
-        ]);
-        $rawBody  = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+            'grant_type=client_credentials'
+        );
 
-        $body = json_decode($rawBody);
-        if ($httpCode < 200 || $httpCode > 299 || !isset($body->access_token)) {
+        if ($response->code < 200 || $response->code > 299 || !isset($response->body->access_token)) {
             throw new \RuntimeException(
-                "BRTC OAuth2 token request failed | status: {$httpCode} | response: {$rawBody}"
+                "OAuth2 token request failed | status: {$response->code} | response: {$response->raw_body}"
             );
         }
 
-        $this->config->setAccessToken($body->access_token);
-        $this->config->setAccessTokenExpiration(time() + $body->expires_in);
+        $this->config->setAccessToken($response->body->access_token);
+        $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
 
         // Clear any global Basic auth set by prior configureAuth() calls so
         // Unirest doesn't override the Bearer token on the actual API request.
         Request::auth('', '');
-        $headers['Authorization'] = 'Bearer ' . $body->access_token;
+        $headers['Authorization'] = 'Bearer ' . $response->body->access_token;
     }
 
 }

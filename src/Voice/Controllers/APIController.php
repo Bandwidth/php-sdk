@@ -2538,7 +2538,7 @@ class APIController extends BaseController
             'content-type' => 'application/json; charset=utf-8'
         );
         $_bodyJson = Request\Body::Json($body);
-        $this->configureBrtcAuth($_headers);
+        $this->configureOAuth2Auth($_headers);
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
@@ -2580,7 +2580,7 @@ class APIController extends BaseController
             'user-agent' => BaseController::USER_AGENT,
             'Accept'     => 'application/json'
         );
-        $this->configureBrtcAuth($_headers);
+        $this->configureOAuth2Auth($_headers);
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
@@ -2620,7 +2620,7 @@ class APIController extends BaseController
             'user-agent' => BaseController::USER_AGENT,
             'Accept'     => 'application/json'
         );
-        $this->configureBrtcAuth($_headers);
+        $this->configureOAuth2Auth($_headers);
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
@@ -2659,7 +2659,7 @@ class APIController extends BaseController
         $_headers = array(
             'user-agent' => BaseController::USER_AGENT
         );
-        $this->configureBrtcAuth($_headers);
+        $this->configureOAuth2Auth($_headers);
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
@@ -2699,7 +2699,7 @@ class APIController extends BaseController
             'user-agent'   => BaseController::USER_AGENT,
             'content-type' => 'application/xml; charset=utf-8'
         );
-        $this->configureBrtcAuth($_headers);
+        $this->configureOAuth2Auth($_headers);
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
