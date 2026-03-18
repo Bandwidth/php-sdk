@@ -120,6 +120,10 @@ class BaseController
      */
     protected function configureOAuth2Auth(&$headers)
     {
+        // Clear any global state set by prior configureAuth() calls so
+        // Unirest doesn't interfere with the token request.
+        Request::auth('', '');
+        Request::clearDefaultHeaders();
         $response = Request::post(
             'https://api.bandwidth.com/api/v1/oauth2/token',
             [
@@ -140,9 +144,6 @@ class BaseController
         $this->config->setAccessToken($response->body->access_token);
         $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
 
-        // Clear any global Basic auth set by prior configureAuth() calls so
-        // Unirest doesn't override the Bearer token on the actual API request.
-        Request::auth('', '');
         $headers['Authorization'] = 'Bearer ' . $response->body->access_token;
     }
 
