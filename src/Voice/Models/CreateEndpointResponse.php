@@ -17,9 +17,9 @@ class CreateEndpointResponse {
     /** @var string|null */
     public $status;
     /** @var string|null */
-    public $createdTime;
+    public $creationTimestamp;
     /** @var string|null */
-    public $updatedTime;
+    public $expirationTimestamp;
     /** @var string|null */
     public $tag;
     /** @var array|null */
@@ -27,12 +27,12 @@ class CreateEndpointResponse {
     /** @var string|null */
     public $token;
 
-    public function __construct($endpointId = null, $type = null, $status = null, $createdTime = null, $updatedTime = null, $tag = null, $devices = null, $token = null) {
+    public function __construct($endpointId = null, $type = null, $status = null, $creationTimestamp = null, $expirationTimestamp = null, $tag = null, $devices = null, $token = null) {
         $this->endpointId = $endpointId;
         $this->type = $type;
         $this->status = $status;
-        $this->createdTime = $createdTime;
-        $this->updatedTime = $updatedTime;
+        $this->creationTimestamp = $creationTimestamp;
+        $this->expirationTimestamp = $expirationTimestamp;
         $this->tag = $tag;
         $this->devices = $devices;
         $this->token = $token;

@@ -261,8 +261,7 @@ final class ApiTest extends TestCase
             'INBOUND',
             getenv("BASE_CALLBACK_URL") . "/brtc/events",
             null,
-            'php-sdk-test',
-            ["meta" => "data"]
+            'php-sdk-test'
         );
         try {
             $createResp = $voiceClient->createEndpoint($accountId, $createReq)->getResult();
@@ -279,7 +278,7 @@ final class ApiTest extends TestCase
             $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         $this->assertIsArray($endpoints);
-        $ids = array_map(fn($ep) => $ep->id, $endpoints);
+        $ids = array_map(fn($ep) => $ep->endpointId, $endpoints);
         $this->assertContains($createResp->endpointId, $ids, 'Created endpoint should be in list');
 
         // Get endpoint
@@ -288,7 +287,7 @@ final class ApiTest extends TestCase
         } catch (BandwidthLib\APIException $e) {
             $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
-        $this->assertEquals($createResp->endpointId, $endpoint->id);
+        $this->assertEquals($createResp->endpointId, $endpoint->endpointId);
         $this->assertEquals('WEBRTC', $endpoint->type);
 
         // Update endpoint BXML
@@ -326,8 +325,8 @@ final class ApiTest extends TestCase
         $this->assertIsString($createResp->endpointId);
         $this->assertEquals('WEBRTC', $createResp->type);
         $this->assertNotNull($createResp->status);
-        $this->assertNotNull($createResp->createdTime);
-        $this->assertNotNull($createResp->updatedTime);
+        $this->assertNotNull($createResp->creationTimestamp);
+        $this->assertNotNull($createResp->expirationTimestamp);
         $this->assertEquals('php-sdk-fields-test', $createResp->tag);
 
         // Cleanup
@@ -361,12 +360,12 @@ final class ApiTest extends TestCase
             $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
         $this->assertInstanceOf(BandwidthLib\Voice\Models\Endpoint::class, $endpoint);
-        $this->assertEquals($endpointId, $endpoint->id);
+        $this->assertEquals($endpointId, $endpoint->endpointId);
         $this->assertEquals('WEBRTC', $endpoint->type);
         $this->assertNotNull($endpoint->status);
         $this->assertNotNull($endpoint->direction);
-        $this->assertNotNull($endpoint->createdTime);
-        $this->assertNotNull($endpoint->updatedTime);
+        $this->assertNotNull($endpoint->creationTimestamp);
+        $this->assertNotNull($endpoint->expirationTimestamp);
         $this->assertEquals('php-sdk-get-test', $endpoint->tag);
 
         // Cleanup
@@ -402,7 +401,7 @@ final class ApiTest extends TestCase
         $this->assertIsArray($endpoints);
         $this->assertNotEmpty($endpoints);
 
-        $ids = array_map(fn($ep) => $ep->id, $endpoints);
+        $ids = array_map(fn($ep) => $ep->endpointId, $endpoints);
         $this->assertContains($endpointId, $ids, 'Newly created endpoint should appear in list');
 
         // Cleanup
@@ -435,7 +434,7 @@ final class ApiTest extends TestCase
         }
         foreach ($endpoints as $ep) {
             $this->assertInstanceOf(BandwidthLib\Voice\Models\Endpoint::class, $ep);
-            $this->assertNotNull($ep->id);
+            $this->assertNotNull($ep->endpointId);
             $this->assertNotNull($ep->type);
             $this->assertNotNull($ep->status);
         }
@@ -513,7 +512,7 @@ final class ApiTest extends TestCase
         } catch (BandwidthLib\APIException $e) {
             $this->fail("[{$e->getCode()}] {$e->getMessage()}");
         }
-        $ids = array_map(fn($ep) => $ep->id, $endpoints);
+        $ids = array_map(fn($ep) => $ep->endpointId, $endpoints);
         $this->assertNotContains($endpointId, $ids, 'Deleted endpoint should not appear in list');
     }
 }

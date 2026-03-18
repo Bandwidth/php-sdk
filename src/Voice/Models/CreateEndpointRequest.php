@@ -20,15 +20,12 @@ class CreateEndpointRequest {
     public $eventFallbackUrl;
     /** @var string|null */
     public $tag;
-    /** @var array|null */
-    public $connectionMetadata;
 
-    public function __construct($type, $direction = null, $eventCallbackUrl = null, $eventFallbackUrl = null, $tag = null, $connectionMetadata = null) {
+    public function __construct($type, $direction = null, $eventCallbackUrl = null, $eventFallbackUrl = null, $tag = null) {
         $this->type = $type;
         $this->direction = $direction;
         $this->eventCallbackUrl = $eventCallbackUrl;
         $this->eventFallbackUrl = $eventFallbackUrl;
         $this->tag = $tag;
-        $this->connectionMetadata = $connectionMetadata;
     }
 }

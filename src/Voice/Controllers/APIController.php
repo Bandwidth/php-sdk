@@ -2552,7 +2552,7 @@ class APIController extends BaseController
         }
         $this->validateResponse($_httpResponse, $_httpContext);
         $mapper = $this->getJsonMapper();
-        $deserializedResponse = $mapper->mapClass($response->body, 'BandwidthLib\\Voice\\Models\\CreateEndpointResponse');
+        $deserializedResponse = $mapper->mapClass($response->body->data, 'BandwidthLib\\Voice\\Models\\CreateEndpointResponse');
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
     }
 
@@ -2594,7 +2594,7 @@ class APIController extends BaseController
         }
         $this->validateResponse($_httpResponse, $_httpContext);
         $mapper = $this->getJsonMapper();
-        $deserializedResponse = $mapper->mapClassArray($response->body, 'BandwidthLib\\Voice\\Models\\Endpoint');
+        $deserializedResponse = $mapper->mapClassArray($response->body->data, 'BandwidthLib\\Voice\\Models\\Endpoint');
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
     }
 
@@ -2634,7 +2634,7 @@ class APIController extends BaseController
         }
         $this->validateResponse($_httpResponse, $_httpContext);
         $mapper = $this->getJsonMapper();
-        $deserializedResponse = $mapper->mapClass($response->body, 'BandwidthLib\\Voice\\Models\\Endpoint');
+        $deserializedResponse = $mapper->mapClass($response->body->data, 'BandwidthLib\\Voice\\Models\\Endpoint');
         return new ApiResponse($response->code, $response->headers, $deserializedResponse);
     }
 
@@ -2657,7 +2657,8 @@ class APIController extends BaseController
         ));
         $_queryUrl = APIHelper::cleanUrl($this->config->getBaseUri(Servers::PHONENUMBERLOOKUPDEFAULT) . $_queryBuilder);
         $_headers = array(
-            'user-agent' => BaseController::USER_AGENT
+            'user-agent'   => BaseController::USER_AGENT,
+            'Content-Type' => '',  // prevent curl from injecting Content-Type: application/x-www-form-urlencoded on empty DELETE body
         );
         $this->configureOAuth2Auth($_headers);
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);

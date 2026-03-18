@@ -11,7 +11,7 @@ namespace BandwidthLib\Voice\Models;
 
 class Endpoint {
     /** @var string|null */
-    public $id;
+    public $endpointId;
     /** @var string|null */
     public $type;
     /** @var string|null */
@@ -27,12 +27,12 @@ class Endpoint {
     /** @var array|null */
     public $devices;
     /** @var string|null */
-    public $createdTime;
+    public $creationTimestamp;
     /** @var string|null */
-    public $updatedTime;
+    public $expirationTimestamp;
 
-    public function __construct($id = null, $type = null, $status = null, $direction = null, $eventCallbackUrl = null, $eventFallbackUrl = null, $tag = null, $devices = null, $createdTime = null, $updatedTime = null) {
-        $this->id = $id;
+    public function __construct($endpointId = null, $type = null, $status = null, $direction = null, $eventCallbackUrl = null, $eventFallbackUrl = null, $tag = null, $devices = null, $creationTimestamp = null, $expirationTimestamp = null) {
+        $this->endpointId = $endpointId;
         $this->type = $type;
         $this->status = $status;
         $this->direction = $direction;
@@ -40,7 +40,7 @@ class Endpoint {
         $this->eventFallbackUrl = $eventFallbackUrl;
         $this->tag = $tag;
         $this->devices = $devices;
-        $this->createdTime = $createdTime;
-        $this->updatedTime = $updatedTime;
+        $this->creationTimestamp = $creationTimestamp;
+        $this->expirationTimestamp = $expirationTimestamp;
     }
 }
