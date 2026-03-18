@@ -123,7 +123,6 @@ class BaseController
         $response = Request::post(
             'https://api.bandwidth.com/api/v1/oauth2/token',
             [
-                'User-Agent'    => self::USER_AGENT,
                 'Content-Type'  => 'application/x-www-form-urlencoded',
                 'Authorization' => 'Basic ' . base64_encode(
                     $this->config->getClientId() . ':' . $this->config->getClientSecret()
