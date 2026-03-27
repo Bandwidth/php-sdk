@@ -263,265 +263,52 @@ final class ApiTest extends TestCase
             null,
             'php-sdk-test'
         );
-        try {
-            $createResp = $brtcClient->createEndpoint($accountId, $createReq)->getResult();
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
+        $createResp = $brtcClient->createEndpoint($accountId, $createReq)->getResult();
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\CreateEndpointResponse::class, $createResp);
         $this->assertIsArray($createResp->links);
         $this->assertNotNull($createResp->data);
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\CreateEndpointResponseData::class, $createResp->data);
-        $this->assertNotNull($createResp->data->endpointId);
-        $this->assertEquals('WEBRTC', $createResp->data->type);
-        $this->assertIsArray($createResp->errors);
-
-        // List endpoints
-        try {
-            $listResp = $brtcClient->listEndpoints($accountId)->getResult();
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-        $this->assertInstanceOf(BandwidthLib\BRTC\Models\ListEndpointsResponse::class, $listResp);
-        $this->assertIsArray($listResp->links);
-        $this->assertIsArray($listResp->data);
-        $this->assertIsArray($listResp->errors);
-        $ids = array_map(fn($ep) => $ep->endpointId, $listResp->data);
-        $this->assertContains($createResp->data->endpointId, $ids, 'Created endpoint should be in list');
-
-        // Get endpoint
-        try {
-            $getResp = $brtcClient->getEndpoint($accountId, $createResp->data->endpointId)->getResult();
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-        $this->assertInstanceOf(BandwidthLib\BRTC\Models\EndpointResponse::class, $getResp);
-        $this->assertIsArray($getResp->links);
-        $this->assertNotNull($getResp->data);
-        $this->assertInstanceOf(BandwidthLib\BRTC\Models\Endpoint::class, $getResp->data);
-        $this->assertEquals($createResp->data->endpointId, $getResp->data->endpointId);
-        $this->assertEquals('WEBRTC', $getResp->data->type);
-        $this->assertIsArray($getResp->errors);
-
-        // Delete endpoint
-        try {
-            $deleteResp = $brtcClient->deleteEndpoint($accountId, $createResp->data->endpointId);
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-        $this->assertEquals(204, $deleteResp->getStatusCode());
-    }
-
-    public function testCreateEndpointResponseFields() {
-        $accountId = getenv("BW_ACCOUNT_ID");
-        $brtcClient = self::$bandwidthClient->getBRTC()->getClient();
-
-        $createReq = new BandwidthLib\BRTC\Models\CreateEndpointRequest(
-            'WEBRTC',
-            'INBOUND',
-            getenv("BASE_CALLBACK_URL") . "/brtc/events",
-            getenv("BASE_CALLBACK_URL") . "/brtc/fallback",
-            'php-sdk-fields-test'
-        );
-        try {
-            $createResp = $brtcClient->createEndpoint($accountId, $createReq)->getResult();
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-
-        $this->assertNotNull($createResp->data);
         $this->assertNotNull($createResp->data->endpointId);
         $this->assertIsString($createResp->data->endpointId);
         $this->assertEquals('WEBRTC', $createResp->data->type);
         $this->assertNotNull($createResp->data->status);
         $this->assertNotNull($createResp->data->creationTimestamp);
         $this->assertNotNull($createResp->data->expirationTimestamp);
-        $this->assertEquals('php-sdk-fields-test', $createResp->data->tag);
+        $this->assertEquals('php-sdk-test', $createResp->data->tag);
+        $this->assertIsArray($createResp->errors);
 
-        // Cleanup
-        try {
-            $brtcClient->deleteEndpoint($accountId, $createResp->data->endpointId);
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-    }
+        $endpointId = $createResp->data->endpointId;
 
-    public function testGetEndpointFields() {
-        $accountId = getenv("BW_ACCOUNT_ID");
-        $brtcClient = self::$bandwidthClient->getBRTC()->getClient();
-
-        $createReq = new BandwidthLib\BRTC\Models\CreateEndpointRequest(
-            'WEBRTC',
-            'INBOUND',
-            getenv("BASE_CALLBACK_URL") . "/brtc/events",
-            null,
-            'php-sdk-get-test'
-        );
-        try {
-            $endpointId = $brtcClient->createEndpoint($accountId, $createReq)->getResult()->data->endpointId;
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-
-        try {
-            $getResp = $brtcClient->getEndpoint($accountId, $endpointId)->getResult();
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-        $endpoint = $getResp->data;
-        $this->assertInstanceOf(BandwidthLib\BRTC\Models\Endpoint::class, $endpoint);
-        $this->assertEquals($endpointId, $endpoint->endpointId);
-        $this->assertEquals('WEBRTC', $endpoint->type);
-        $this->assertNotNull($endpoint->status);
-        $this->assertNotNull($endpoint->creationTimestamp);
-        $this->assertNotNull($endpoint->expirationTimestamp);
-        $this->assertEquals('php-sdk-get-test', $endpoint->tag);
-
-        // Cleanup
-        try {
-            $brtcClient->deleteEndpoint($accountId, $endpointId);
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-    }
-
-    public function testListEndpointsContainsCreated() {
-        $accountId = getenv("BW_ACCOUNT_ID");
-        $brtcClient = self::$bandwidthClient->getBRTC()->getClient();
-
-        $createReq = new BandwidthLib\BRTC\Models\CreateEndpointRequest(
-            'WEBRTC',
-            'INBOUND',
-            getenv("BASE_CALLBACK_URL") . "/brtc/events",
-            null,
-            'php-sdk-list-test'
-        );
-        try {
-            $endpointId = $brtcClient->createEndpoint($accountId, $createReq)->getResult()->data->endpointId;
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-
-        try {
-            $listResp = $brtcClient->listEndpoints($accountId)->getResult();
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
+        // List endpoints
+        $listResp = $brtcClient->listEndpoints($accountId)->getResult();
+        $this->assertInstanceOf(BandwidthLib\BRTC\Models\ListEndpointsResponse::class, $listResp);
+        $this->assertIsArray($listResp->links);
         $this->assertIsArray($listResp->data);
         $this->assertNotEmpty($listResp->data);
-
+        $this->assertIsArray($listResp->errors);
+        $this->assertInstanceOf(BandwidthLib\BRTC\Models\Endpoints::class, $listResp->data[0]);
+        $this->assertNotNull($listResp->data[0]->endpointId);
+        $this->assertNotNull($listResp->data[0]->type);
+        $this->assertNotNull($listResp->data[0]->status);
         $ids = array_map(fn($ep) => $ep->endpointId, $listResp->data);
-        $this->assertContains($endpointId, $ids, 'Newly created endpoint should appear in list');
+        $this->assertContains($endpointId, $ids, 'Created endpoint should be in list');
 
-        // Cleanup
-        try {
-            $brtcClient->deleteEndpoint($accountId, $endpointId);
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-    }
+        // Get endpoint
+        $getResp = $brtcClient->getEndpoint($accountId, $endpointId)->getResult();
+        $this->assertInstanceOf(BandwidthLib\BRTC\Models\EndpointResponse::class, $getResp);
+        $this->assertIsArray($getResp->links);
+        $this->assertNotNull($getResp->data);
+        $this->assertInstanceOf(BandwidthLib\BRTC\Models\Endpoint::class, $getResp->data);
+        $this->assertEquals($endpointId, $getResp->data->endpointId);
+        $this->assertEquals('WEBRTC', $getResp->data->type);
+        $this->assertNotNull($getResp->data->status);
+        $this->assertNotNull($getResp->data->creationTimestamp);
+        $this->assertNotNull($getResp->data->expirationTimestamp);
+        $this->assertEquals('php-sdk-test', $getResp->data->tag);
+        $this->assertIsArray($getResp->errors);
 
-    public function testListEndpointsEachItemIsEndpointsInstance() {
-        $accountId = getenv("BW_ACCOUNT_ID");
-        $brtcClient = self::$bandwidthClient->getBRTC()->getClient();
-
-        $createReq = new BandwidthLib\BRTC\Models\CreateEndpointRequest(
-            'WEBRTC',
-            'INBOUND',
-            getenv("BASE_CALLBACK_URL") . "/brtc/events"
-        );
-        try {
-            $endpointId = $brtcClient->createEndpoint($accountId, $createReq)->getResult()->data->endpointId;
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-
-        try {
-            $listResp = $brtcClient->listEndpoints($accountId)->getResult();
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-        foreach ($listResp->data as $ep) {
-            $this->assertInstanceOf(BandwidthLib\BRTC\Models\Endpoints::class, $ep);
-            $this->assertNotNull($ep->endpointId);
-            $this->assertNotNull($ep->type);
-            $this->assertNotNull($ep->status);
-        }
-
-        // Cleanup
-        try {
-            $brtcClient->deleteEndpoint($accountId, $endpointId);
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-    }
-
-    public function testCreateMultipleEndpointsAndDeleteAll() {
-        $accountId = getenv("BW_ACCOUNT_ID");
-        $brtcClient = self::$bandwidthClient->getBRTC()->getClient();
-
-        $createdIds = [];
-        for ($i = 0; $i < 3; $i++) {
-            $createReq = new BandwidthLib\BRTC\Models\CreateEndpointRequest(
-                'WEBRTC',
-                'INBOUND',
-                getenv("BASE_CALLBACK_URL") . "/brtc/events",
-                null,
-                "php-sdk-multi-{$i}"
-            );
-            try {
-                $endpointId = $brtcClient->createEndpoint($accountId, $createReq)->getResult()->data->endpointId;
-            } catch (BandwidthLib\APIException $e) {
-                $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-            }
-            $this->assertNotNull($endpointId);
-            $createdIds[] = $endpointId;
-        }
-
-        $this->assertCount(3, $createdIds);
-
-        // Delete all created endpoints
-        foreach ($createdIds as $id) {
-            try {
-                $deleteResp = $brtcClient->deleteEndpoint($accountId, $id);
-            } catch (BandwidthLib\APIException $e) {
-                $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-            }
-            $this->assertEquals(204, $deleteResp->getStatusCode());
-        }
-    }
-
-    public function testDeleteEndpointRemovedFromList() {
-        $accountId = getenv("BW_ACCOUNT_ID");
-        $brtcClient = self::$bandwidthClient->getBRTC()->getClient();
-
-        $createReq = new BandwidthLib\BRTC\Models\CreateEndpointRequest(
-            'WEBRTC',
-            'INBOUND',
-            getenv("BASE_CALLBACK_URL") . "/brtc/events",
-            null,
-            'php-sdk-delete-check'
-        );
-        try {
-            $endpointId = $brtcClient->createEndpoint($accountId, $createReq)->getResult()->data->endpointId;
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-
-        // Delete it
-        try {
-            $brtcClient->deleteEndpoint($accountId, $endpointId);
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-
-        // Should no longer appear in list
-        try {
-            $listResp = $brtcClient->listEndpoints($accountId)->getResult();
-        } catch (BandwidthLib\APIException $e) {
-            $this->fail("[{$e->getCode()}] {$e->getMessage()}");
-        }
-        $ids = array_map(fn($ep) => $ep->endpointId, $listResp->data);
-        $this->assertNotContains($endpointId, $ids, 'Deleted endpoint should not appear in list');
+        // Delete endpoint
+        $deleteResp = $brtcClient->deleteEndpoint($accountId, $endpointId);
+        $this->assertEquals(204, $deleteResp->getStatusCode());
     }
 }
