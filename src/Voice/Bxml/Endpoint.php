@@ -18,13 +18,13 @@ class Endpoint extends Verb {
     /**
      * @var string
      */
-    private $id;
+    private $endpointId;
 
     /**
-     * @param string $id The endpointId to connect to
+     * @param string $endpointId The endpointId to connect to
      */
-    public function __construct(string $id) {
-        $this->id = $id;
+    public function __construct(string $endpointId) {
+        $this->endpointId = $endpointId;
     }
 
     /**
@@ -35,7 +35,7 @@ class Endpoint extends Verb {
      */
     public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Endpoint");
-        $element->setAttribute("id", $this->id);
+        $element->appendChild($doc->createTextNode($this->endpointId));
         return $element;
     }
 }

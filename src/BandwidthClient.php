@@ -25,6 +25,7 @@ class BandwidthClient
     private $phoneNumberLookup;
     private $voice;
     private $webRtc;
+    private $brtc;
 
     /**
      * Provides access to Messaging client
@@ -84,6 +85,18 @@ class BandwidthClient
             $this->webRtc = new WebRtc\WebRtcClient($this->config);
         }
         return $this->webRtc;
+    }
+
+    /**
+     * Provides access to BRTC client
+     * @return BRTC\BRTCClient
+     */
+    public function getBRTC()
+    {
+        if ($this->brtc == null) {
+            $this->brtc = new BRTC\BRTCClient($this->config);
+        }
+        return $this->brtc;
     }
 
 }

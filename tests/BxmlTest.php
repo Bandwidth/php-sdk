@@ -550,7 +550,7 @@ final class BxmlTest extends TestCase
         ]);
         $response = new BandwidthLib\Voice\Bxml\Response();
         $response->addVerb($connect);
-        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Connect><Endpoint id="endpoint-123"/><Endpoint id="endpoint-456"/></Connect></Response>';
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Connect><Endpoint>endpoint-123</Endpoint><Endpoint>endpoint-456</Endpoint></Connect></Response>';
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }

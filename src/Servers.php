@@ -41,4 +41,9 @@ class Servers
      * TODO: Write general description for this element
      */
     const WEBRTCDEFAULT = "WebRtcDefault";
+
+    /**
+     * Base URL for BRTC endpoints
+     */
+    const BRTCDEFAULT = "BRTCDefault";
 }

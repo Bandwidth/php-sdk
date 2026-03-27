@@ -371,6 +371,7 @@ class Configuration
             Servers::PHONENUMBERLOOKUPDEFAULT => 'https://api.bandwidth.com/v2',
             Servers::VOICEDEFAULT => 'https://voice.bandwidth.com',
             Servers::WEBRTCDEFAULT => 'https://api.webrtc.bandwidth.com/v1',
+            Servers::BRTCDEFAULT => 'https://api.bandwidth.com/v2',
         ),
         Environments::CUSTOM => array(
             Servers::DEFAULT_ => '{base_url}',
@@ -379,6 +380,7 @@ class Configuration
             Servers::PHONENUMBERLOOKUPDEFAULT => '{base_url}',
             Servers::VOICEDEFAULT => '{base_url}',
             Servers::WEBRTCDEFAULT => '{base_url}',
+            Servers::BRTCDEFAULT => '{base_url}',
         ),
     );
 }

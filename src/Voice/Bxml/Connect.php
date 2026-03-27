@@ -16,9 +16,13 @@ require_once "Verb.php";
 
 class Connect extends Verb {
     /**
-     * @var array
+     * @var array(Endpoint)
      */
     private $endpoints;
+    /**
+     * @var string
+     */
+    private $eventCallbackUrl;
 
     /**
      * @param array $endpoints Array of Endpoint objects
@@ -39,6 +43,17 @@ class Connect extends Verb {
     }
 
     /**
+     * Sets the eventCallbackUrl attribute for Connect
+     *
+     * @param string $eventCallbackUrl The URL to send event callbacks to
+     * @return $this
+     */
+    public function eventCallbackUrl(string $eventCallbackUrl): Connect {
+        $this->eventCallbackUrl = $eventCallbackUrl;
+        return $this;
+    }
+
+    /**
      * Converts the Connect verb into a DOMElement
      *
      * @param DOMDocument $doc
@@ -46,9 +61,17 @@ class Connect extends Verb {
      */
     public function toBxml(DOMDocument $doc): DOMElement {
         $element = $doc->createElement("Connect");
-        foreach ($this->endpoints as $endpoint) {
-            $element->appendChild($endpoint->toBxml($doc));
+
+        if(isset($this->eventCallbackUrl)) {
+            $element->setAttribute("eventCallbackUrl", $this->eventCallbackUrl);
         }
+
+        if(isset($this->endpoints)) {
+            foreach ($this->endpoints as $endpoint) {
+                $element->appendChild($endpoint->toBxml($doc));
+            }
+        }
+
         return $element;
     }
 }

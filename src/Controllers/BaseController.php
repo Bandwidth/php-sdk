@@ -82,6 +82,34 @@ class BaseController
      */
     protected function configureAuth(&$headers, $authType)
     {
+        if (!empty($this->config->getAccessToken()) &&
+            (empty($this->config->getAccessTokenExpiration()) ||
+            $this->config->getAccessTokenExpiration() > time() + 60)
+        ) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            return;
+        }
+
+        if (!empty($this->config->getClientId()) && !empty($this->config->getClientSecret())) {
+            $_tokenUrl = 'https://api.bandwidth.com/api/v1/oauth2/token';
+            $_tokenHeaders = array (
+                'User-Agent'    => BaseController::USER_AGENT,
+                'Content-Type'  => 'application/x-www-form-urlencoded',
+                'Authorization' => 'Basic ' . base64_encode(
+                    $this->config->getClientId() . ':' . $this->config->getClientSecret()
+                )
+            );
+            $_tokenBody = Request\Body::Form([
+                'grant_type' => 'client_credentials'
+            ]);
+            $response = Request::post($_tokenUrl, $_tokenHeaders, $_tokenBody);
+            $this->config->setAccessToken($response->body->access_token);
+            $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+
+            return;
+        }
+
         $username = '';
         $password = '';
 
@@ -110,41 +138,4 @@ class BaseController
 
         Request::auth($username, $password);
     }
-
-    /**
-     * Configure OAuth2 Bearer auth for BRTC endpoints using client credentials.
-     * Sets the Authorization header directly to avoid conflicts with Unirest's
-     * global Request::auth() state.
-     *
-     * @param array $headers The headers for the request (passed by reference)
-     */
-    protected function configureOAuth2Auth(&$headers)
-    {
-        // Clear any global state set by prior configureAuth() calls so
-        // Unirest doesn't interfere with the token request.
-        Request::auth('', '');
-        Request::clearDefaultHeaders();
-        $response = Request::post(
-            'https://api.bandwidth.com/api/v1/oauth2/token',
-            [
-                'Content-Type'  => 'application/x-www-form-urlencoded',
-                'Authorization' => 'Basic ' . base64_encode(
-                    $this->config->getClientId() . ':' . $this->config->getClientSecret()
-                ),
-            ],
-            \Unirest\Request\Body::Form(['grant_type' => 'client_credentials'])
-        );
-
-        if ($response->code < 200 || $response->code > 299 || !isset($response->body->access_token)) {
-            throw new \RuntimeException(
-                "OAuth2 token request failed | status: {$response->code} | response: {$response->raw_body}"
-            );
-        }
-
-        $this->config->setAccessToken($response->body->access_token);
-        $this->config->setAccessTokenExpiration(time() + $response->body->expires_in);
-
-        $headers['Authorization'] = 'Bearer ' . $response->body->access_token;
-    }
-
 }
