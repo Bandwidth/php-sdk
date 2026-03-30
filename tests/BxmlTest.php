@@ -554,4 +554,15 @@ final class BxmlTest extends TestCase
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }
+
+    public function testConnectWithEventCallbackUrl() {
+        $endpoint = new BandwidthLib\Voice\Bxml\Endpoint("endpoint-789");
+        $connect = new BandwidthLib\Voice\Bxml\Connect([$endpoint]);
+        $connect->eventCallbackUrl("https://example.com/events");
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($connect);
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Connect eventCallbackUrl="https://example.com/events"><Endpoint>endpoint-789</Endpoint></Connect></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
 }

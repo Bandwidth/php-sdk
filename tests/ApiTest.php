@@ -266,6 +266,10 @@ final class ApiTest extends TestCase
         $createResp = $brtcClient->createEndpoint($accountId, $createReq)->getResult();
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\CreateEndpointResponse::class, $createResp);
         $this->assertIsArray($createResp->links);
+        $this->assertNotEmpty($createResp->links);
+        $this->assertInstanceOf(BandwidthLib\BRTC\Models\Link::class, $createResp->links[0]);
+        $this->assertIsString($createResp->links[0]->rel);
+        $this->assertIsString($createResp->links[0]->href);
         $this->assertNotNull($createResp->data);
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\CreateEndpointResponseData::class, $createResp->data);
         $this->assertNotNull($createResp->data->endpointId);
@@ -275,6 +279,9 @@ final class ApiTest extends TestCase
         $this->assertNotNull($createResp->data->creationTimestamp);
         $this->assertNotNull($createResp->data->expirationTimestamp);
         $this->assertEquals('php-sdk-test', $createResp->data->tag);
+        $this->assertNotNull($createResp->data->token);
+        $this->assertIsString($createResp->data->token);
+        $this->assertIsArray($createResp->data->devices);
         $this->assertIsArray($createResp->errors);
 
         $endpointId = $createResp->data->endpointId;
@@ -283,6 +290,12 @@ final class ApiTest extends TestCase
         $listResp = $brtcClient->listEndpoints($accountId)->getResult();
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\ListEndpointsResponse::class, $listResp);
         $this->assertIsArray($listResp->links);
+        $this->assertNotEmpty($listResp->links);
+        $this->assertInstanceOf(BandwidthLib\BRTC\Models\Link::class, $listResp->links[0]);
+        $this->assertIsString($listResp->links[0]->rel);
+        $this->assertIsString($listResp->links[0]->href);
+        $this->assertNotNull($listResp->page);
+        $this->assertInstanceOf(BandwidthLib\BRTC\Models\Page::class, $listResp->page);
         $this->assertIsArray($listResp->data);
         $this->assertNotEmpty($listResp->data);
         $this->assertIsArray($listResp->errors);
@@ -290,6 +303,9 @@ final class ApiTest extends TestCase
         $this->assertNotNull($listResp->data[0]->endpointId);
         $this->assertNotNull($listResp->data[0]->type);
         $this->assertNotNull($listResp->data[0]->status);
+        $this->assertNotNull($listResp->data[0]->creationTimestamp);
+        $this->assertNotNull($listResp->data[0]->expirationTimestamp);
+        $this->assertNotNull($listResp->data[0]->tag);
         $ids = array_map(fn($ep) => $ep->endpointId, $listResp->data);
         $this->assertContains($endpointId, $ids, 'Created endpoint should be in list');
 
@@ -297,6 +313,10 @@ final class ApiTest extends TestCase
         $getResp = $brtcClient->getEndpoint($accountId, $endpointId)->getResult();
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\EndpointResponse::class, $getResp);
         $this->assertIsArray($getResp->links);
+        $this->assertNotEmpty($getResp->links);
+        $this->assertInstanceOf(BandwidthLib\BRTC\Models\Link::class, $getResp->links[0]);
+        $this->assertIsString($getResp->links[0]->rel);
+        $this->assertIsString($getResp->links[0]->href);
         $this->assertNotNull($getResp->data);
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\Endpoint::class, $getResp->data);
         $this->assertEquals($endpointId, $getResp->data->endpointId);
@@ -305,6 +325,7 @@ final class ApiTest extends TestCase
         $this->assertNotNull($getResp->data->creationTimestamp);
         $this->assertNotNull($getResp->data->expirationTimestamp);
         $this->assertEquals('php-sdk-test', $getResp->data->tag);
+        $this->assertIsArray($getResp->data->devices);
         $this->assertIsArray($getResp->errors);
 
         // Delete endpoint
