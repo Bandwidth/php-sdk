@@ -15,10 +15,16 @@ class Link implements \JsonSerializable
     public $rel;
     /** @var string|null */
     public $href;
+    /** @var string|null */
+    public $method;
 
     public function __construct()
     {
-        if (2 == func_num_args()) {
+        if (3 == func_num_args()) {
+            $this->rel    = func_get_arg(0);
+            $this->href   = func_get_arg(1);
+            $this->method = func_get_arg(2);
+        } elseif (2 == func_num_args()) {
             $this->rel  = func_get_arg(0);
             $this->href = func_get_arg(1);
         }
@@ -27,8 +33,9 @@ class Link implements \JsonSerializable
     public function jsonSerialize(): array
     {
         $json = array();
-        $json['rel']  = $this->rel;
-        $json['href'] = $this->href;
+        $json['rel']    = $this->rel;
+        $json['href']   = $this->href;
+        $json['method'] = $this->method;
 
         return array_filter($json);
     }

@@ -270,6 +270,7 @@ final class ApiTest extends TestCase
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\Link::class, $createResp->links[0]);
         $this->assertIsString($createResp->links[0]->rel);
         $this->assertIsString($createResp->links[0]->href);
+        $this->assertIsString($createResp->links[0]->method);
         $this->assertNotNull($createResp->data);
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\CreateEndpointResponseData::class, $createResp->data);
         $this->assertNotNull($createResp->data->endpointId);
@@ -294,6 +295,7 @@ final class ApiTest extends TestCase
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\Link::class, $listResp->links[0]);
         $this->assertIsString($listResp->links[0]->rel);
         $this->assertIsString($listResp->links[0]->href);
+        $this->assertIsString($listResp->links[0]->method);
         $this->assertNotNull($listResp->page);
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\Page::class, $listResp->page);
         $this->assertIsArray($listResp->data);
@@ -317,6 +319,7 @@ final class ApiTest extends TestCase
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\Link::class, $getResp->links[0]);
         $this->assertIsString($getResp->links[0]->rel);
         $this->assertIsString($getResp->links[0]->href);
+        $this->assertIsString($getResp->links[0]->method);
         $this->assertNotNull($getResp->data);
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\Endpoint::class, $getResp->data);
         $this->assertEquals($endpointId, $getResp->data->endpointId);

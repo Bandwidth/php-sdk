@@ -97,24 +97,62 @@ final class BrtcModelTest extends TestCase
     }
 
     public function testLinkModel() {
-        $link = new BandwidthLib\BRTC\Models\Link('self', 'https://api.bandwidth.com/endpoints');
+        $link = new BandwidthLib\BRTC\Models\Link('self', 'https://api.bandwidth.com/endpoints', 'GET');
 
         $this->assertEquals('self', $link->rel);
         $this->assertEquals('https://api.bandwidth.com/endpoints', $link->href);
+        $this->assertEquals('GET', $link->method);
 
         $json = $link->jsonSerialize();
         $this->assertEquals('self', $json['rel']);
         $this->assertEquals('https://api.bandwidth.com/endpoints', $json['href']);
+        $this->assertEquals('GET', $json['method']);
+    }
+
+    public function testLinkModelWithoutMethod() {
+        $link = new BandwidthLib\BRTC\Models\Link('self', 'https://api.bandwidth.com/endpoints');
+
+        $this->assertEquals('self', $link->rel);
+        $this->assertEquals('https://api.bandwidth.com/endpoints', $link->href);
+        $this->assertNull($link->method);
     }
 
     public function testErrorObjectModel() {
-        $error = new BandwidthLib\BRTC\Models\ErrorObject('VALIDATION_ERROR', 'Field is required');
+        $source = new BandwidthLib\BRTC\Models\ErrorSource('accountId', null, null, null);
+        $error = new BandwidthLib\BRTC\Models\ErrorObject(
+            '59512d87-7a92-4040-8e4a-78fb772019b9',
+            'invalid_parameter',
+            'accountId must not contain any characters other than numbers.',
+            '400',
+            $source
+        );
 
-        $this->assertEquals('VALIDATION_ERROR', $error->type);
-        $this->assertEquals('Field is required', $error->description);
+        $this->assertEquals('59512d87-7a92-4040-8e4a-78fb772019b9', $error->id);
+        $this->assertEquals('invalid_parameter', $error->type);
+        $this->assertEquals('accountId must not contain any characters other than numbers.', $error->description);
+        $this->assertEquals('400', $error->code);
+        $this->assertInstanceOf(BandwidthLib\BRTC\Models\ErrorSource::class, $error->source);
+        $this->assertEquals('accountId', $error->source->parameter);
 
         $json = $error->jsonSerialize();
-        $this->assertEquals('VALIDATION_ERROR', $json['type']);
-        $this->assertEquals('Field is required', $json['description']);
+        $this->assertEquals('59512d87-7a92-4040-8e4a-78fb772019b9', $json['id']);
+        $this->assertEquals('invalid_parameter', $json['type']);
+        $this->assertEquals('accountId must not contain any characters other than numbers.', $json['description']);
+        $this->assertEquals('400', $json['code']);
+    }
+
+    public function testErrorSourceModel() {
+        $source = new BandwidthLib\BRTC\Models\ErrorSource('accountId', 'name', 'Authorization', 'e-123');
+
+        $this->assertEquals('accountId', $source->parameter);
+        $this->assertEquals('name', $source->field);
+        $this->assertEquals('Authorization', $source->header);
+        $this->assertEquals('e-123', $source->reference);
+
+        $json = $source->jsonSerialize();
+        $this->assertEquals('accountId', $json['parameter']);
+        $this->assertEquals('name', $json['field']);
+        $this->assertEquals('Authorization', $json['header']);
+        $this->assertEquals('e-123', $json['reference']);
     }
 }

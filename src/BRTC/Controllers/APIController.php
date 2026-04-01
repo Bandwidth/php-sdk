@@ -102,9 +102,8 @@ class APIController extends BaseController
      * @param string $accountId
      * @param string|null $type Filter by endpoint type
      * @param string|null $status Filter by endpoint status
-     * @param string|null $direction Filter by endpoint direction
-     * @param string|null $pageToken Pagination token
-     * @param int|null $pageSize Number of results per page
+     * @param string|null $afterCursor Pagination cursor from previous response
+     * @param int|null $limit Maximum number of endpoints to return (1-1000, default 100)
      * @return ApiResponse response from the API call
      * @throws APIException Thrown if API call fails
      */
@@ -112,9 +111,8 @@ class APIController extends BaseController
         string  $accountId,
         ?string $type = null,
         ?string $status = null,
-        ?string $direction = null,
-        ?string $pageToken = null,
-        ?int    $pageSize = null
+        ?string $afterCursor = null,
+        ?int    $limit = null
     ) {
         //prepare query string for API call
         $_queryBuilder = '/accounts/{accountId}/endpoints';
@@ -126,11 +124,10 @@ class APIController extends BaseController
 
         //process optional query parameters
         APIHelper::appendUrlWithQueryParameters($_queryBuilder, array(
-            'type'      => $type,
-            'status'    => $status,
-            'direction' => $direction,
-            'pageToken' => $pageToken,
-            'pageSize'  => $pageSize,
+            'type'        => $type,
+            'status'      => $status,
+            'afterCursor' => $afterCursor,
+            'limit'       => $limit,
         ));
 
         //validate and preprocess url
