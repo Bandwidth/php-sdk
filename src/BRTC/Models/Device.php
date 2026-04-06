@@ -36,6 +36,8 @@ class Device implements \JsonSerializable
         $json['status']            = $this->status;
         $json['creationTimestamp'] = $this->creationTimestamp;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

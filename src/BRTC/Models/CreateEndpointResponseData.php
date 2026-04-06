@@ -60,6 +60,8 @@ class CreateEndpointResponseData implements \JsonSerializable
         $json['devices']             = $this->devices;
         $json['token']               = $this->token;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

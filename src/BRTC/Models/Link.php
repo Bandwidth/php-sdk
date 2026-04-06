@@ -37,6 +37,8 @@ class Link implements \JsonSerializable
         $json['href']   = $this->href;
         $json['method'] = $this->method;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

@@ -38,6 +38,8 @@ class ErrorSource implements \JsonSerializable
         $json['header']    = $this->header;
         $json['reference'] = $this->reference;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

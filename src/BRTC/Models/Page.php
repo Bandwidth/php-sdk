@@ -38,6 +38,8 @@ class Page implements \JsonSerializable
         $json['totalPages']    = $this->totalPages;
         $json['pageNumber']    = $this->pageNumber;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

@@ -51,6 +51,8 @@ class Endpoints implements \JsonSerializable
         $json['expirationTimestamp'] = $this->expirationTimestamp;
         $json['tag']                 = $this->tag;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

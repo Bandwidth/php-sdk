@@ -66,6 +66,8 @@ class EndpointEvent implements \JsonSerializable
         $json['eventType']           = $this->eventType;
         $json['device']              = $this->device;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

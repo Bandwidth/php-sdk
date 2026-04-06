@@ -292,14 +292,15 @@ final class ApiTest extends TestCase
         $this->assertNotEmpty($listResp->data);
         $this->assertIsArray($listResp->errors);
         $this->assertInstanceOf(BandwidthLib\BRTC\Models\Endpoints::class, $listResp->data[0]);
-        $this->assertNotNull($listResp->data[0]->endpointId);
-        $this->assertNotNull($listResp->data[0]->type);
-        $this->assertNotNull($listResp->data[0]->status);
-        $this->assertNotNull($listResp->data[0]->creationTimestamp);
-        $this->assertNotNull($listResp->data[0]->expirationTimestamp);
-        $this->assertNotNull($listResp->data[0]->tag);
         $ids = array_map(fn($ep) => $ep->endpointId, $listResp->data);
         $this->assertContains($endpointId, $ids, 'Created endpoint should be in list');
+        $createdEp = array_values(array_filter($listResp->data, fn($ep) => $ep->endpointId === $endpointId))[0];
+        $this->assertNotNull($createdEp->endpointId);
+        $this->assertNotNull($createdEp->type);
+        $this->assertNotNull($createdEp->status);
+        $this->assertNotNull($createdEp->creationTimestamp);
+        $this->assertNotNull($createdEp->expirationTimestamp);
+        $this->assertEquals('php-sdk-test', $createdEp->tag);
 
         // Get endpoint
         $getResp = $brtcClient->getEndpoint($accountId, $endpointId)->getResult();

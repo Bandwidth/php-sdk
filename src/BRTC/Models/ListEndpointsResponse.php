@@ -39,6 +39,8 @@ class ListEndpointsResponse implements \JsonSerializable
         $json['data']   = isset($this->data) ? array_values($this->data) : null;
         $json['errors'] = isset($this->errors) ? array_values($this->errors) : null;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

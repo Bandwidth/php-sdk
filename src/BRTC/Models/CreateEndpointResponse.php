@@ -35,6 +35,8 @@ class CreateEndpointResponse implements \JsonSerializable
         $json['data']   = $this->data;
         $json['errors'] = isset($this->errors) ? array_values($this->errors) : null;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

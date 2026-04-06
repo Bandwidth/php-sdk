@@ -55,6 +55,8 @@ class Endpoint implements \JsonSerializable
         $json['tag']                 = $this->tag;
         $json['devices']             = $this->devices;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }

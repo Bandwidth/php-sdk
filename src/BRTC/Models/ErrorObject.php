@@ -42,6 +42,8 @@ class ErrorObject implements \JsonSerializable
         $json['code']        = $this->code;
         $json['source']      = $this->source;
 
-        return array_filter($json);
+        return array_filter($json, function ($val) {
+            return $val !== null;
+        });
     }
 }
