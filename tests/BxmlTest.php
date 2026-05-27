@@ -540,4 +540,33 @@ final class BxmlTest extends TestCase
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
     }
+
+    public function testRefer() {
+        $sipUri = new BandwidthLib\Voice\Bxml\SipUri("sip:alice@atlanta.example.com");
+        $refer = new BandwidthLib\Voice\Bxml\Refer();
+        $refer->referCompleteUrl("https://example.com/handleRefer");
+        $refer->referCompleteMethod("POST");
+        $refer->tag("my-tag");
+        $refer->sipUri($sipUri);
+
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($refer);
+
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Refer referCompleteUrl="https://example.com/handleRefer" referCompleteMethod="POST" tag="my-tag"><SipUri>sip:alice@atlanta.example.com</SipUri></Refer></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
+
+    public function testReferNoOptionalAttributes() {
+        $sipUri = new BandwidthLib\Voice\Bxml\SipUri("sip:bob@biloxi.example.com");
+        $refer = new BandwidthLib\Voice\Bxml\Refer();
+        $refer->sipUri($sipUri);
+
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($refer);
+
+        $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Refer><SipUri>sip:bob@biloxi.example.com</SipUri></Refer></Response>';
+        $responseXml = $response->toBxml();
+        $this->assertEquals($expectedXml, $responseXml);
+    }
 }

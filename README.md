@@ -92,6 +92,35 @@ $response = BandwidthLib\Voice\Bxml\Response::make()
 echo $response->toBxml();
 ```
 
+### Create A Refer BXML
+
+```php
+
+$sipUri = new BandwidthLib\Voice\Bxml\SipUri("sip:alice@atlanta.example.com");
+$refer = new BandwidthLib\Voice\Bxml\Refer();
+$refer->referCompleteUrl("https://example.com/handleRefer");
+$refer->referCompleteMethod("POST");
+$refer->sipUri($sipUri);
+
+$response = new BandwidthLib\Voice\Bxml\Response();
+$response->addVerb($refer);
+echo $response->toBxml();
+```
+
+> **Note:** On success, the call is terminated — the remote SIP endpoint redirects away from Bandwidth entirely. Use `referCompleteUrl` only for failure recovery.
+
+```php
+// Failure recovery example in your referCompleteUrl handler:
+$requestBody = json_decode(file_get_contents('php://input'), true);
+if ($requestBody['referCallStatus'] === 'failure') {
+    // Handle failure: play a message or redirect
+    $speakSentence = new BandwidthLib\Voice\Bxml\SpeakSentence("The transfer failed. Please try again.");
+    $response = new BandwidthLib\Voice\Bxml\Response();
+    $response->addVerb($speakSentence);
+    echo $response->toBxml();
+}
+```
+
 ### Create A MFA Request
 
 ```php
