@@ -28,7 +28,7 @@ class Refer extends Verb {
      */
     private $tag;
     /**
-     * @var SipUri
+     * @var ReferSipUri|SipUri
      */
     private $sipUri;
 
@@ -63,16 +63,21 @@ class Refer extends Verb {
     }
 
     /**
-     * Sets the SipUri child element for Refer
+     * Sets the SipUri child element for Refer.
+     * Prefer ReferSipUri to avoid accidentally serializing Transfer-specific attributes.
      *
-     * @param SipUri $sipUri The SipUri destination for the REFER
+     * @param ReferSipUri|SipUri $sipUri The SipUri destination for the REFER
      */
-    public function sipUri(SipUri $sipUri): Refer {
+    public function sipUri($sipUri): Refer {
         $this->sipUri = $sipUri;
         return $this;
     }
 
     public function toBxml(DOMDocument $doc): DOMElement {
+        if (!isset($this->sipUri)) {
+            throw new \InvalidArgumentException('Refer requires a SipUri child element.');
+        }
+
         $element = $doc->createElement("Refer");
 
         if(isset($this->referCompleteUrl)) {
@@ -87,11 +92,8 @@ class Refer extends Verb {
             $element->setAttribute("tag", $this->tag);
         }
 
-        if(isset($this->sipUri)) {
-            $element->appendChild($this->sipUri->toBxml($doc));
-        }
+        $element->appendChild($this->sipUri->toBxml($doc));
 
         return $element;
     }
 }
-

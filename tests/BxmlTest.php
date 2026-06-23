@@ -542,7 +542,7 @@ final class BxmlTest extends TestCase
     }
 
     public function testRefer() {
-        $sipUri = new BandwidthLib\Voice\Bxml\SipUri("sip:alice@atlanta.example.com");
+        $sipUri = new BandwidthLib\Voice\Bxml\ReferSipUri("sip:alice@atlanta.example.com");
         $refer = new BandwidthLib\Voice\Bxml\Refer();
         $refer->referCompleteUrl("https://example.com/handleRefer");
         $refer->referCompleteMethod("POST");
@@ -558,7 +558,7 @@ final class BxmlTest extends TestCase
     }
 
     public function testReferNoOptionalAttributes() {
-        $sipUri = new BandwidthLib\Voice\Bxml\SipUri("sip:bob@biloxi.example.com");
+        $sipUri = new BandwidthLib\Voice\Bxml\ReferSipUri("sip:bob@biloxi.example.com");
         $refer = new BandwidthLib\Voice\Bxml\Refer();
         $refer->sipUri($sipUri);
 
@@ -568,5 +568,69 @@ final class BxmlTest extends TestCase
         $expectedXml = '<?xml version="1.0" encoding="UTF-8"?><Response><Refer><SipUri>sip:bob@biloxi.example.com</SipUri></Refer></Response>';
         $responseXml = $response->toBxml();
         $this->assertEquals($expectedXml, $responseXml);
+    }
+
+    public function testReferWithoutSipUriThrows() {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Refer requires a SipUri child element.');
+
+        $refer = new BandwidthLib\Voice\Bxml\Refer();
+        $refer->referCompleteUrl("https://example.com/handleRefer");
+
+        $response = new BandwidthLib\Voice\Bxml\Response();
+        $response->addVerb($refer);
+        $response->toBxml();
+    }
+
+    public function testReferCompleteCallbackSuccess() {
+        $json = '{"eventType":"referComplete","eventTime":"2026-06-15T12:00:00Z","accountId":"12345","applicationId":"app-1","from":"+15551234567","to":"+15559876543","direction":"inbound","callId":"c-abc123","callUrl":"https://voice.bandwidth.com/api/v2/accounts/12345/calls/c-abc123","startTime":"2026-06-15T11:59:00Z","answerTime":"2026-06-15T11:59:05Z","referCallStatus":"success"}';
+        $data = json_decode($json);
+        $callback = new BandwidthLib\Voice\Models\ReferCompleteCallback();
+        $callback->eventType = $data->eventType;
+        $callback->referCallStatus = $data->referCallStatus;
+        $this->assertEquals("referComplete", $callback->eventType);
+        $this->assertEquals("success", $callback->referCallStatus);
+        $this->assertNull($callback->referSipResponseCode);
+        $this->assertNull($callback->notifySipResponseCode);
+    }
+
+    public function testReferCompleteCallbackReferRejected() {
+        $json = '{"eventType":"referComplete","eventTime":"2026-06-15T12:00:00Z","accountId":"12345","applicationId":"app-1","from":"+15551234567","to":"+15559876543","direction":"inbound","callId":"c-abc123","callUrl":"https://voice.bandwidth.com/api/v2/accounts/12345/calls/c-abc123","startTime":"2026-06-15T11:59:00Z","answerTime":"2026-06-15T11:59:05Z","referCallStatus":"failure","referSipResponseCode":405}';
+        $data = json_decode($json);
+        $callback = new BandwidthLib\Voice\Models\ReferCompleteCallback();
+        $callback->eventType = $data->eventType;
+        $callback->referCallStatus = $data->referCallStatus;
+        $callback->referSipResponseCode = $data->referSipResponseCode;
+        $this->assertEquals("referComplete", $callback->eventType);
+        $this->assertEquals("failure", $callback->referCallStatus);
+        $this->assertSame(405, $callback->referSipResponseCode);
+        $this->assertNull($callback->notifySipResponseCode);
+    }
+
+    public function testReferCompleteCallbackDestinationUnreachable() {
+        $json = '{"eventType":"referComplete","eventTime":"2026-06-15T12:00:00Z","accountId":"12345","applicationId":"app-1","from":"+15551234567","to":"+15559876543","direction":"inbound","callId":"c-abc123","callUrl":"https://voice.bandwidth.com/api/v2/accounts/12345/calls/c-abc123","startTime":"2026-06-15T11:59:00Z","answerTime":"2026-06-15T11:59:05Z","referCallStatus":"failure","referSipResponseCode":202,"notifySipResponseCode":486}';
+        $data = json_decode($json);
+        $callback = new BandwidthLib\Voice\Models\ReferCompleteCallback();
+        $callback->eventType = $data->eventType;
+        $callback->referCallStatus = $data->referCallStatus;
+        $callback->referSipResponseCode = $data->referSipResponseCode;
+        $callback->notifySipResponseCode = $data->notifySipResponseCode;
+        $this->assertEquals("failure", $callback->referCallStatus);
+        $this->assertSame(202, $callback->referSipResponseCode);
+        $this->assertSame(486, $callback->notifySipResponseCode);
+    }
+
+    public function testReferCompleteCallbackNotifyTimeout() {
+        $json = '{"eventType":"referComplete","eventTime":"2026-06-15T12:00:00Z","accountId":"12345","applicationId":"app-1","from":"+15551234567","to":"+15559876543","direction":"inbound","callId":"c-abc123","callUrl":"https://voice.bandwidth.com/api/v2/accounts/12345/calls/c-abc123","startTime":"2026-06-15T11:59:00Z","answerTime":"2026-06-15T11:59:05Z","referCallStatus":"failure","referSipResponseCode":202,"tag":"custom-tag"}';
+        $data = json_decode($json);
+        $callback = new BandwidthLib\Voice\Models\ReferCompleteCallback();
+        $callback->eventType = $data->eventType;
+        $callback->referCallStatus = $data->referCallStatus;
+        $callback->referSipResponseCode = $data->referSipResponseCode;
+        $callback->tag = $data->tag;
+        $this->assertEquals("failure", $callback->referCallStatus);
+        $this->assertSame(202, $callback->referSipResponseCode);
+        $this->assertNull($callback->notifySipResponseCode);
+        $this->assertEquals("custom-tag", $callback->tag);
     }
 }

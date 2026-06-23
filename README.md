@@ -96,7 +96,7 @@ echo $response->toBxml();
 
 ```php
 
-$sipUri = new BandwidthLib\Voice\Bxml\SipUri("sip:alice@atlanta.example.com");
+$sipUri = new BandwidthLib\Voice\Bxml\ReferSipUri("sip:alice@atlanta.example.com");
 $refer = new BandwidthLib\Voice\Bxml\Refer();
 $refer->referCompleteUrl("https://example.com/handleRefer");
 $refer->referCompleteMethod("POST");
