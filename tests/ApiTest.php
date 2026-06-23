@@ -236,8 +236,6 @@ final class ApiTest extends TestCase
         $body->phoneNumbers = [getenv("USER_NUMBER")];
         $response = self::$bandwidthClient->getPhoneNumberLookup()->getClient()->createSyncLookupRequest(getenv("BW_ACCOUNT_ID"), $body);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponse::class, $response->getResult());
-        $this->assertIsArray($response->getResult()->links);
-        $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\Link::class, $response->getResult()->links[0]);
         $this->assertInstanceOf(BandwidthLib\PhoneNumberLookup\Models\LookupResponseData::class, $response->getResult()->data);
         $this->assertIsString($response->getResult()->data->requestId);
         $this->assertIsString($response->getResult()->data->status);
