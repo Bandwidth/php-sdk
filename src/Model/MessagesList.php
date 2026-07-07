@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MessagesList Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -60,8 +60,8 @@ class MessagesList implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static array $openAPITypes = [
         'total_count' => 'int',
-        'page_info' => '\OpenAPI\Client\Model\PageInfo',
-        'messages' => '\OpenAPI\Client\Model\ListMessageItem[]'
+        'page_info' => '\Bandwidth\Model\PageInfo',
+        'messages' => '\Bandwidth\Model\ListMessageItem[]'
     ];
 
     /**
@@ -308,9 +308,9 @@ class MessagesList implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets page_info
      *
-     * @return \OpenAPI\Client\Model\PageInfo|null
+     * @return \Bandwidth\Model\PageInfo|null
      */
-    public function getPageInfo(): ?\OpenAPI\Client\Model\PageInfo
+    public function getPageInfo(): ?\Bandwidth\Model\PageInfo
     {
         return $this->container['page_info'];
     }
@@ -318,11 +318,11 @@ class MessagesList implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets page_info
      *
-     * @param \OpenAPI\Client\Model\PageInfo|null $page_info page_info
+     * @param \Bandwidth\Model\PageInfo|null $page_info page_info
      *
      * @return $this
      */
-    public function setPageInfo(?\OpenAPI\Client\Model\PageInfo $page_info): static
+    public function setPageInfo(?\Bandwidth\Model\PageInfo $page_info): static
     {
         if (is_null($page_info)) {
             throw new InvalidArgumentException('non-nullable page_info cannot be null');
@@ -335,7 +335,7 @@ class MessagesList implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets messages
      *
-     * @return \OpenAPI\Client\Model\ListMessageItem[]|null
+     * @return \Bandwidth\Model\ListMessageItem[]|null
      */
     public function getMessages(): ?array
     {
@@ -345,7 +345,7 @@ class MessagesList implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets messages
      *
-     * @param \OpenAPI\Client\Model\ListMessageItem[]|null $messages messages
+     * @param \Bandwidth\Model\ListMessageItem[]|null $messages messages
      *
      * @return $this
      */

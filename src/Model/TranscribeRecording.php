@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * TranscribeRecording Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class TranscribeRecording implements ModelInterface, ArrayAccess, JsonSerializab
      */
     protected static array $openAPITypes = [
         'callback_url' => 'string',
-        'callback_method' => '\OpenAPI\Client\Model\CallbackMethodEnum',
+        'callback_method' => '\Bandwidth\Model\CallbackMethodEnum',
         'username' => 'string',
         'password' => 'string',
         'tag' => 'string',
@@ -352,9 +352,9 @@ class TranscribeRecording implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets callback_method
      *
-     * @return \OpenAPI\Client\Model\CallbackMethodEnum|null
+     * @return \Bandwidth\Model\CallbackMethodEnum|null
      */
-    public function getCallbackMethod(): ?\OpenAPI\Client\Model\CallbackMethodEnum
+    public function getCallbackMethod(): ?\Bandwidth\Model\CallbackMethodEnum
     {
         return $this->container['callback_method'];
     }
@@ -362,11 +362,11 @@ class TranscribeRecording implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets callback_method
      *
-     * @param \OpenAPI\Client\Model\CallbackMethodEnum|null $callback_method callback_method
+     * @param \Bandwidth\Model\CallbackMethodEnum|null $callback_method callback_method
      *
      * @return $this
      */
-    public function setCallbackMethod(?\OpenAPI\Client\Model\CallbackMethodEnum $callback_method): static
+    public function setCallbackMethod(?\Bandwidth\Model\CallbackMethodEnum $callback_method): static
     {
         if (is_null($callback_method)) {
             array_push($this->openAPINullablesSetToNull, 'callback_method');

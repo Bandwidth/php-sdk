@@ -3,7 +3,7 @@
  * ConferencesApi
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Bandwidth\Api;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client;
@@ -38,16 +38,16 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ApiException;
+use Bandwidth\Configuration;
+use Bandwidth\HeaderSelector;
+use Bandwidth\FormDataProcessor;
+use Bandwidth\ObjectSerializer;
 
 /**
  * ConferencesApi Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -168,7 +168,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \SplFileObject|\OpenAPI\Client\Model\VoiceApiError
+     * @return \SplFileObject|\Bandwidth\Model\VoiceApiError
      */
     public function downloadConferenceRecording(
         string $account_id,
@@ -177,7 +177,7 @@ class ConferencesApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['downloadConferenceRecording'][0]
-    ): \SplFileObject|\OpenAPI\Client\Model\VoiceApiError
+    ): \SplFileObject|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->downloadConferenceRecordingWithHttpInfo($account_id, $conference_id, $recording_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -201,7 +201,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \SplFileObject|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function downloadConferenceRecordingWithHttpInfo(
         string $account_id,
@@ -245,49 +245,49 @@ class ConferencesApi
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -325,7 +325,7 @@ class ConferencesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -333,7 +333,7 @@ class ConferencesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -341,7 +341,7 @@ class ConferencesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -349,7 +349,7 @@ class ConferencesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -357,7 +357,7 @@ class ConferencesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -365,7 +365,7 @@ class ConferencesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -373,7 +373,7 @@ class ConferencesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -381,7 +381,7 @@ class ConferencesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -683,7 +683,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Conference|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\Conference|\Bandwidth\Model\VoiceApiError
      */
     public function getConference(
         string $account_id,
@@ -691,7 +691,7 @@ class ConferencesApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['getConference'][0]
-    ): \OpenAPI\Client\Model\Conference|\OpenAPI\Client\Model\VoiceApiError
+    ): \Bandwidth\Model\Conference|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->getConferenceWithHttpInfo($account_id, $conference_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -714,7 +714,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Conference|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\Conference|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getConferenceWithHttpInfo(
         string $account_id,
@@ -751,55 +751,55 @@ class ConferencesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\Conference',
+                        '\Bandwidth\Model\Conference',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -820,7 +820,7 @@ class ConferencesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\Conference',
+                '\Bandwidth\Model\Conference',
                 $request,
                 $response,
             );
@@ -829,7 +829,7 @@ class ConferencesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Conference',
+                        '\Bandwidth\Model\Conference',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -837,7 +837,7 @@ class ConferencesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -845,7 +845,7 @@ class ConferencesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -853,7 +853,7 @@ class ConferencesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -861,7 +861,7 @@ class ConferencesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -869,7 +869,7 @@ class ConferencesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -877,7 +877,7 @@ class ConferencesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -885,7 +885,7 @@ class ConferencesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -893,7 +893,7 @@ class ConferencesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -964,7 +964,7 @@ class ConferencesApi
         string $contentType = self::contentTypes['getConference'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\Conference';
+        $returnType = '\Bandwidth\Model\Conference';
         $request = $this->getConferenceRequest($account_id, $conference_id, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -1175,7 +1175,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ConferenceMember|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\ConferenceMember|\Bandwidth\Model\VoiceApiError
      */
     public function getConferenceMember(
         string $account_id,
@@ -1184,7 +1184,7 @@ class ConferencesApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['getConferenceMember'][0]
-    ): \OpenAPI\Client\Model\ConferenceMember|\OpenAPI\Client\Model\VoiceApiError
+    ): \Bandwidth\Model\ConferenceMember|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->getConferenceMemberWithHttpInfo($account_id, $conference_id, $member_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -1208,7 +1208,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ConferenceMember|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\ConferenceMember|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getConferenceMemberWithHttpInfo(
         string $account_id,
@@ -1246,55 +1246,55 @@ class ConferencesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ConferenceMember',
+                        '\Bandwidth\Model\ConferenceMember',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -1315,7 +1315,7 @@ class ConferencesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\ConferenceMember',
+                '\Bandwidth\Model\ConferenceMember',
                 $request,
                 $response,
             );
@@ -1324,7 +1324,7 @@ class ConferencesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ConferenceMember',
+                        '\Bandwidth\Model\ConferenceMember',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1332,7 +1332,7 @@ class ConferencesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1340,7 +1340,7 @@ class ConferencesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1348,7 +1348,7 @@ class ConferencesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1356,7 +1356,7 @@ class ConferencesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1364,7 +1364,7 @@ class ConferencesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1372,7 +1372,7 @@ class ConferencesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1380,7 +1380,7 @@ class ConferencesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1388,7 +1388,7 @@ class ConferencesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1463,7 +1463,7 @@ class ConferencesApi
         string $contentType = self::contentTypes['getConferenceMember'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\ConferenceMember';
+        $returnType = '\Bandwidth\Model\ConferenceMember';
         $request = $this->getConferenceMemberRequest($account_id, $conference_id, $member_id, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -1691,7 +1691,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ConferenceRecordingMetadata|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\ConferenceRecordingMetadata|\Bandwidth\Model\VoiceApiError
      */
     public function getConferenceRecording(
         string $account_id,
@@ -1700,7 +1700,7 @@ class ConferencesApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['getConferenceRecording'][0]
-    ): \OpenAPI\Client\Model\ConferenceRecordingMetadata|\OpenAPI\Client\Model\VoiceApiError
+    ): \Bandwidth\Model\ConferenceRecordingMetadata|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->getConferenceRecordingWithHttpInfo($account_id, $conference_id, $recording_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -1724,7 +1724,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ConferenceRecordingMetadata|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\ConferenceRecordingMetadata|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getConferenceRecordingWithHttpInfo(
         string $account_id,
@@ -1762,55 +1762,55 @@ class ConferencesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ConferenceRecordingMetadata',
+                        '\Bandwidth\Model\ConferenceRecordingMetadata',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -1831,7 +1831,7 @@ class ConferencesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\ConferenceRecordingMetadata',
+                '\Bandwidth\Model\ConferenceRecordingMetadata',
                 $request,
                 $response,
             );
@@ -1840,7 +1840,7 @@ class ConferencesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ConferenceRecordingMetadata',
+                        '\Bandwidth\Model\ConferenceRecordingMetadata',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1848,7 +1848,7 @@ class ConferencesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1856,7 +1856,7 @@ class ConferencesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1864,7 +1864,7 @@ class ConferencesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1872,7 +1872,7 @@ class ConferencesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1880,7 +1880,7 @@ class ConferencesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1888,7 +1888,7 @@ class ConferencesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1896,7 +1896,7 @@ class ConferencesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1904,7 +1904,7 @@ class ConferencesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1979,7 +1979,7 @@ class ConferencesApi
         string $contentType = self::contentTypes['getConferenceRecording'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\ConferenceRecordingMetadata';
+        $returnType = '\Bandwidth\Model\ConferenceRecordingMetadata';
         $request = $this->getConferenceRecordingRequest($account_id, $conference_id, $recording_id, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -2206,7 +2206,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ConferenceRecordingMetadata[]|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\ConferenceRecordingMetadata[]|\Bandwidth\Model\VoiceApiError
      */
     public function listConferenceRecordings(
         string $account_id,
@@ -2214,7 +2214,7 @@ class ConferencesApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['listConferenceRecordings'][0]
-    ): array|\OpenAPI\Client\Model\VoiceApiError
+    ): array|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->listConferenceRecordingsWithHttpInfo($account_id, $conference_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -2237,7 +2237,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ConferenceRecordingMetadata[]|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\ConferenceRecordingMetadata[]|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listConferenceRecordingsWithHttpInfo(
         string $account_id,
@@ -2274,55 +2274,55 @@ class ConferencesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ConferenceRecordingMetadata[]',
+                        '\Bandwidth\Model\ConferenceRecordingMetadata[]',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -2343,7 +2343,7 @@ class ConferencesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\ConferenceRecordingMetadata[]',
+                '\Bandwidth\Model\ConferenceRecordingMetadata[]',
                 $request,
                 $response,
             );
@@ -2352,7 +2352,7 @@ class ConferencesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ConferenceRecordingMetadata[]',
+                        '\Bandwidth\Model\ConferenceRecordingMetadata[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2360,7 +2360,7 @@ class ConferencesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2368,7 +2368,7 @@ class ConferencesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2376,7 +2376,7 @@ class ConferencesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2384,7 +2384,7 @@ class ConferencesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2392,7 +2392,7 @@ class ConferencesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2400,7 +2400,7 @@ class ConferencesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2408,7 +2408,7 @@ class ConferencesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2416,7 +2416,7 @@ class ConferencesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2487,7 +2487,7 @@ class ConferencesApi
         string $contentType = self::contentTypes['listConferenceRecordings'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\ConferenceRecordingMetadata[]';
+        $returnType = '\Bandwidth\Model\ConferenceRecordingMetadata[]';
         $request = $this->listConferenceRecordingsRequest($account_id, $conference_id, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -2701,7 +2701,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Conference[]|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\Conference[]|\Bandwidth\Model\VoiceApiError
      */
     public function listConferences(
         string $account_id,
@@ -2713,7 +2713,7 @@ class ConferencesApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['listConferences'][0]
-    ): array|\OpenAPI\Client\Model\VoiceApiError
+    ): array|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->listConferencesWithHttpInfo($account_id, $name, $min_created_time, $max_created_time, $page_size, $page_token, $hostIndex, $variables, $contentType);
         return $response;
@@ -2740,7 +2740,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Conference[]|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\Conference[]|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listConferencesWithHttpInfo(
         string $account_id,
@@ -2781,55 +2781,55 @@ class ConferencesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\Conference[]',
+                        '\Bandwidth\Model\Conference[]',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -2850,7 +2850,7 @@ class ConferencesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\Conference[]',
+                '\Bandwidth\Model\Conference[]',
                 $request,
                 $response,
             );
@@ -2859,7 +2859,7 @@ class ConferencesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Conference[]',
+                        '\Bandwidth\Model\Conference[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2867,7 +2867,7 @@ class ConferencesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2875,7 +2875,7 @@ class ConferencesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2883,7 +2883,7 @@ class ConferencesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2891,7 +2891,7 @@ class ConferencesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2899,7 +2899,7 @@ class ConferencesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2907,7 +2907,7 @@ class ConferencesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2915,7 +2915,7 @@ class ConferencesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2923,7 +2923,7 @@ class ConferencesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3010,7 +3010,7 @@ class ConferencesApi
         string $contentType = self::contentTypes['listConferences'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\Conference[]';
+        $returnType = '\Bandwidth\Model\Conference[]';
         $request = $this->listConferencesRequest($account_id, $name, $min_created_time, $max_created_time, $page_size, $page_token, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -3263,23 +3263,23 @@ class ConferencesApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConference $update_conference update_conference (required)
+     * @param  \Bandwidth\Model\UpdateConference $update_conference update_conference (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConference'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VoiceApiError|null
+     * @return \Bandwidth\Model\VoiceApiError|null
      */
     public function updateConference(
         string $account_id,
         string $conference_id,
-        \OpenAPI\Client\Model\UpdateConference $update_conference,
+        \Bandwidth\Model\UpdateConference $update_conference,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConference'][0]
-    ): ?\OpenAPI\Client\Model\VoiceApiError
+    ): ?\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->updateConferenceWithHttpInfo($account_id, $conference_id, $update_conference, $hostIndex, $variables, $contentType);
         return $response;
@@ -3296,7 +3296,7 @@ class ConferencesApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConference $update_conference (required)
+     * @param  \Bandwidth\Model\UpdateConference $update_conference (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConference'] to see the possible values for this operation
@@ -3308,7 +3308,7 @@ class ConferencesApi
     public function updateConferenceWithHttpInfo(
         string $account_id,
         string $conference_id,
-        \OpenAPI\Client\Model\UpdateConference $update_conference,
+        \Bandwidth\Model\UpdateConference $update_conference,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConference'][0]
@@ -3345,7 +3345,7 @@ class ConferencesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3353,7 +3353,7 @@ class ConferencesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3361,7 +3361,7 @@ class ConferencesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3369,7 +3369,7 @@ class ConferencesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3377,7 +3377,7 @@ class ConferencesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3385,7 +3385,7 @@ class ConferencesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3393,7 +3393,7 @@ class ConferencesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3401,7 +3401,7 @@ class ConferencesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3423,7 +3423,7 @@ class ConferencesApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConference $update_conference (required)
+     * @param  \Bandwidth\Model\UpdateConference $update_conference (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConference'] to see the possible values for this operation
@@ -3434,7 +3434,7 @@ class ConferencesApi
     public function updateConferenceAsync(
         string $account_id,
         string $conference_id,
-        \OpenAPI\Client\Model\UpdateConference $update_conference,
+        \Bandwidth\Model\UpdateConference $update_conference,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConference'][0]
@@ -3459,7 +3459,7 @@ class ConferencesApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConference $update_conference (required)
+     * @param  \Bandwidth\Model\UpdateConference $update_conference (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConference'] to see the possible values for this operation
@@ -3470,7 +3470,7 @@ class ConferencesApi
     public function updateConferenceAsyncWithHttpInfo(
         string $account_id,
         string $conference_id,
-        \OpenAPI\Client\Model\UpdateConference $update_conference,
+        \Bandwidth\Model\UpdateConference $update_conference,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConference'][0]
@@ -3511,7 +3511,7 @@ class ConferencesApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConference $update_conference (required)
+     * @param  \Bandwidth\Model\UpdateConference $update_conference (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConference'] to see the possible values for this operation
@@ -3522,7 +3522,7 @@ class ConferencesApi
     public function updateConferenceRequest(
         string $account_id,
         string $conference_id,
-        \OpenAPI\Client\Model\UpdateConference $update_conference,
+        \Bandwidth\Model\UpdateConference $update_conference,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConference'][0]
@@ -3690,7 +3690,7 @@ class ConferencesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VoiceApiError|null
+     * @return \Bandwidth\Model\VoiceApiError|null
      */
     public function updateConferenceBxml(
         string $account_id,
@@ -3699,7 +3699,7 @@ class ConferencesApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConferenceBxml'][0]
-    ): ?\OpenAPI\Client\Model\VoiceApiError
+    ): ?\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->updateConferenceBxmlWithHttpInfo($account_id, $conference_id, $body, $hostIndex, $variables, $contentType);
         return $response;
@@ -3765,7 +3765,7 @@ class ConferencesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3773,7 +3773,7 @@ class ConferencesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3781,7 +3781,7 @@ class ConferencesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3789,7 +3789,7 @@ class ConferencesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3797,7 +3797,7 @@ class ConferencesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3805,7 +3805,7 @@ class ConferencesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3813,7 +3813,7 @@ class ConferencesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3821,7 +3821,7 @@ class ConferencesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4104,24 +4104,24 @@ class ConferencesApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
      * @param  string $member_id Programmable Voice API Conference Member ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member update_conference_member (required)
+     * @param  \Bandwidth\Model\UpdateConferenceMember $update_conference_member update_conference_member (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConferenceMember'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VoiceApiError|null
+     * @return \Bandwidth\Model\VoiceApiError|null
      */
     public function updateConferenceMember(
         string $account_id,
         string $conference_id,
         string $member_id,
-        \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member,
+        \Bandwidth\Model\UpdateConferenceMember $update_conference_member,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConferenceMember'][0]
-    ): ?\OpenAPI\Client\Model\VoiceApiError
+    ): ?\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->updateConferenceMemberWithHttpInfo($account_id, $conference_id, $member_id, $update_conference_member, $hostIndex, $variables, $contentType);
         return $response;
@@ -4139,7 +4139,7 @@ class ConferencesApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
      * @param  string $member_id Programmable Voice API Conference Member ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member (required)
+     * @param  \Bandwidth\Model\UpdateConferenceMember $update_conference_member (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConferenceMember'] to see the possible values for this operation
@@ -4152,7 +4152,7 @@ class ConferencesApi
         string $account_id,
         string $conference_id,
         string $member_id,
-        \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member,
+        \Bandwidth\Model\UpdateConferenceMember $update_conference_member,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConferenceMember'][0]
@@ -4189,7 +4189,7 @@ class ConferencesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4197,7 +4197,7 @@ class ConferencesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4205,7 +4205,7 @@ class ConferencesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4213,7 +4213,7 @@ class ConferencesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4221,7 +4221,7 @@ class ConferencesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4229,7 +4229,7 @@ class ConferencesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4237,7 +4237,7 @@ class ConferencesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4245,7 +4245,7 @@ class ConferencesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4268,7 +4268,7 @@ class ConferencesApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
      * @param  string $member_id Programmable Voice API Conference Member ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member (required)
+     * @param  \Bandwidth\Model\UpdateConferenceMember $update_conference_member (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConferenceMember'] to see the possible values for this operation
@@ -4280,7 +4280,7 @@ class ConferencesApi
         string $account_id,
         string $conference_id,
         string $member_id,
-        \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member,
+        \Bandwidth\Model\UpdateConferenceMember $update_conference_member,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConferenceMember'][0]
@@ -4306,7 +4306,7 @@ class ConferencesApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
      * @param  string $member_id Programmable Voice API Conference Member ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member (required)
+     * @param  \Bandwidth\Model\UpdateConferenceMember $update_conference_member (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConferenceMember'] to see the possible values for this operation
@@ -4318,7 +4318,7 @@ class ConferencesApi
         string $account_id,
         string $conference_id,
         string $member_id,
-        \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member,
+        \Bandwidth\Model\UpdateConferenceMember $update_conference_member,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConferenceMember'][0]
@@ -4360,7 +4360,7 @@ class ConferencesApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $conference_id Programmable Voice API Conference ID. (required)
      * @param  string $member_id Programmable Voice API Conference Member ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member (required)
+     * @param  \Bandwidth\Model\UpdateConferenceMember $update_conference_member (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConferenceMember'] to see the possible values for this operation
@@ -4372,7 +4372,7 @@ class ConferencesApi
         string $account_id,
         string $conference_id,
         string $member_id,
-        \OpenAPI\Client\Model\UpdateConferenceMember $update_conference_member,
+        \Bandwidth\Model\UpdateConferenceMember $update_conference_member,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateConferenceMember'][0]

@@ -1,4 +1,4 @@
-# OpenAPI\Client\TranscriptionsApi
+# Bandwidth\TranscriptionsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -28,15 +28,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TranscriptionsApi(
+$apiInstance = new Bandwidth\Api\TranscriptionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -87,7 +87,7 @@ void (empty response body)
 ## `getRealTimeTranscription()`
 
 ```php
-getRealTimeTranscription($account_id, $call_id, $transcription_id): \OpenAPI\Client\Model\CallTranscriptionResponse
+getRealTimeTranscription($account_id, $call_id, $transcription_id): \Bandwidth\Model\CallTranscriptionResponse
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -103,15 +103,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TranscriptionsApi(
+$apiInstance = new Bandwidth\Api\TranscriptionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -145,7 +145,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CallTranscriptionResponse**](../Model/CallTranscriptionResponse.md)
+[**\Bandwidth\Model\CallTranscriptionResponse**](../Model/CallTranscriptionResponse.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ try {
 ## `listRealTimeTranscriptions()`
 
 ```php
-listRealTimeTranscriptions($account_id, $call_id): \OpenAPI\Client\Model\CallTranscriptionMetadata[]
+listRealTimeTranscriptions($account_id, $call_id): \Bandwidth\Model\CallTranscriptionMetadata[]
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -179,15 +179,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TranscriptionsApi(
+$apiInstance = new Bandwidth\Api\TranscriptionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -219,7 +219,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CallTranscriptionMetadata[]**](../Model/CallTranscriptionMetadata.md)
+[**\Bandwidth\Model\CallTranscriptionMetadata[]**](../Model/CallTranscriptionMetadata.md)
 
 ### Authorization
 

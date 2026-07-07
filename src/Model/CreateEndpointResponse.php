@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CreateEndpointResponse Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,9 +59,9 @@ class CreateEndpointResponse implements ModelInterface, ArrayAccess, JsonSeriali
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'links' => '\OpenAPI\Client\Model\BrtcLink[]',
-        'data' => '\OpenAPI\Client\Model\CreateEndpointResponseData',
-        'errors' => '\OpenAPI\Client\Model\BrtcError[]'
+        'links' => '\Bandwidth\Model\BrtcLink[]',
+        'data' => '\Bandwidth\Model\CreateEndpointResponseData',
+        'errors' => '\Bandwidth\Model\BrtcError[]'
     ];
 
     /**
@@ -290,7 +290,7 @@ class CreateEndpointResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets links
      *
-     * @return \OpenAPI\Client\Model\BrtcLink[]
+     * @return \Bandwidth\Model\BrtcLink[]
      */
     public function getLinks(): array
     {
@@ -300,7 +300,7 @@ class CreateEndpointResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets links
      *
-     * @param \OpenAPI\Client\Model\BrtcLink[] $links links
+     * @param \Bandwidth\Model\BrtcLink[] $links links
      *
      * @return $this
      */
@@ -317,9 +317,9 @@ class CreateEndpointResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\CreateEndpointResponseData
+     * @return \Bandwidth\Model\CreateEndpointResponseData
      */
-    public function getData(): \OpenAPI\Client\Model\CreateEndpointResponseData
+    public function getData(): \Bandwidth\Model\CreateEndpointResponseData
     {
         return $this->container['data'];
     }
@@ -327,11 +327,11 @@ class CreateEndpointResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\CreateEndpointResponseData $data data
+     * @param \Bandwidth\Model\CreateEndpointResponseData $data data
      *
      * @return $this
      */
-    public function setData(\OpenAPI\Client\Model\CreateEndpointResponseData $data): static
+    public function setData(\Bandwidth\Model\CreateEndpointResponseData $data): static
     {
         if (is_null($data)) {
             throw new InvalidArgumentException('non-nullable data cannot be null');
@@ -344,7 +344,7 @@ class CreateEndpointResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\BrtcError[]
+     * @return \Bandwidth\Model\BrtcError[]
      */
     public function getErrors(): array
     {
@@ -354,7 +354,7 @@ class CreateEndpointResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\BrtcError[] $errors errors
+     * @param \Bandwidth\Model\BrtcError[] $errors errors
      *
      * @return $this
      */

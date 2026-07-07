@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * Conference Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -64,9 +64,9 @@ class Conference implements ModelInterface, ArrayAccess, JsonSerializable
         'created_time' => '\DateTime',
         'completed_time' => '\DateTime',
         'conference_event_url' => 'string',
-        'conference_event_method' => '\OpenAPI\Client\Model\CallbackMethodEnum',
+        'conference_event_method' => '\Bandwidth\Model\CallbackMethodEnum',
         'tag' => 'string',
-        'active_members' => '\OpenAPI\Client\Model\ConferenceMember[]'
+        'active_members' => '\Bandwidth\Model\ConferenceMember[]'
     ];
 
     /**
@@ -465,9 +465,9 @@ class Conference implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets conference_event_method
      *
-     * @return \OpenAPI\Client\Model\CallbackMethodEnum|null
+     * @return \Bandwidth\Model\CallbackMethodEnum|null
      */
-    public function getConferenceEventMethod(): ?\OpenAPI\Client\Model\CallbackMethodEnum
+    public function getConferenceEventMethod(): ?\Bandwidth\Model\CallbackMethodEnum
     {
         return $this->container['conference_event_method'];
     }
@@ -475,11 +475,11 @@ class Conference implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets conference_event_method
      *
-     * @param \OpenAPI\Client\Model\CallbackMethodEnum|null $conference_event_method conference_event_method
+     * @param \Bandwidth\Model\CallbackMethodEnum|null $conference_event_method conference_event_method
      *
      * @return $this
      */
-    public function setConferenceEventMethod(?\OpenAPI\Client\Model\CallbackMethodEnum $conference_event_method): static
+    public function setConferenceEventMethod(?\Bandwidth\Model\CallbackMethodEnum $conference_event_method): static
     {
         if (is_null($conference_event_method)) {
             array_push($this->openAPINullablesSetToNull, 'conference_event_method');
@@ -533,7 +533,7 @@ class Conference implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets active_members
      *
-     * @return \OpenAPI\Client\Model\ConferenceMember[]|null
+     * @return \Bandwidth\Model\ConferenceMember[]|null
      */
     public function getActiveMembers(): ?array
     {
@@ -543,7 +543,7 @@ class Conference implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets active_members
      *
-     * @param \OpenAPI\Client\Model\ConferenceMember[]|null $active_members A list of active members of the conference. Omitted if this is a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences).
+     * @param \Bandwidth\Model\ConferenceMember[]|null $active_members A list of active members of the conference. Omitted if this is a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences).
      *
      * @return $this
      */

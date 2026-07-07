@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * ListEndpointsResponse Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,10 +59,10 @@ class ListEndpointsResponse implements ModelInterface, ArrayAccess, JsonSerializ
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'links' => '\OpenAPI\Client\Model\BrtcLink[]',
-        'page' => '\OpenAPI\Client\Model\Page',
-        'data' => '\OpenAPI\Client\Model\Endpoints[]',
-        'errors' => '\OpenAPI\Client\Model\BrtcError[]'
+        'links' => '\Bandwidth\Model\BrtcLink[]',
+        'page' => '\Bandwidth\Model\Page',
+        'data' => '\Bandwidth\Model\Endpoints[]',
+        'errors' => '\Bandwidth\Model\BrtcError[]'
     ];
 
     /**
@@ -297,7 +297,7 @@ class ListEndpointsResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets links
      *
-     * @return \OpenAPI\Client\Model\BrtcLink[]
+     * @return \Bandwidth\Model\BrtcLink[]
      */
     public function getLinks(): array
     {
@@ -307,7 +307,7 @@ class ListEndpointsResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets links
      *
-     * @param \OpenAPI\Client\Model\BrtcLink[] $links links
+     * @param \Bandwidth\Model\BrtcLink[] $links links
      *
      * @return $this
      */
@@ -324,9 +324,9 @@ class ListEndpointsResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets page
      *
-     * @return \OpenAPI\Client\Model\Page|null
+     * @return \Bandwidth\Model\Page|null
      */
-    public function getPage(): ?\OpenAPI\Client\Model\Page
+    public function getPage(): ?\Bandwidth\Model\Page
     {
         return $this->container['page'];
     }
@@ -334,11 +334,11 @@ class ListEndpointsResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets page
      *
-     * @param \OpenAPI\Client\Model\Page|null $page page
+     * @param \Bandwidth\Model\Page|null $page page
      *
      * @return $this
      */
-    public function setPage(?\OpenAPI\Client\Model\Page $page): static
+    public function setPage(?\Bandwidth\Model\Page $page): static
     {
         if (is_null($page)) {
             throw new InvalidArgumentException('non-nullable page cannot be null');
@@ -351,7 +351,7 @@ class ListEndpointsResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\Endpoints[]
+     * @return \Bandwidth\Model\Endpoints[]
      */
     public function getData(): array
     {
@@ -361,7 +361,7 @@ class ListEndpointsResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\Endpoints[] $data data
+     * @param \Bandwidth\Model\Endpoints[] $data data
      *
      * @return $this
      */
@@ -378,7 +378,7 @@ class ListEndpointsResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\BrtcError[]
+     * @return \Bandwidth\Model\BrtcError[]
      */
     public function getErrors(): array
     {
@@ -388,7 +388,7 @@ class ListEndpointsResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\BrtcError[] $errors errors
+     * @param \Bandwidth\Model\BrtcError[] $errors errors
      *
      * @return $this
      */

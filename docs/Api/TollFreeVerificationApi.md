@@ -1,4 +1,4 @@
-# OpenAPI\Client\TollFreeVerificationApi
+# Bandwidth\TollFreeVerificationApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -18,7 +18,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createWebhookSubscription()`
 
 ```php
-createWebhookSubscription($account_id, $webhook_subscription_request_schema): \OpenAPI\Client\Model\WebhookSubscription
+createWebhookSubscription($account_id, $webhook_subscription_request_schema): \Bandwidth\Model\WebhookSubscription
 ```
 ### URI(s):
 - https://api.bandwidth.com/api/v2 Production
@@ -34,22 +34,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
+$apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
-$webhook_subscription_request_schema = new \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema(); // \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema | Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to.
+$webhook_subscription_request_schema = new \Bandwidth\Model\WebhookSubscriptionRequestSchema(); // \Bandwidth\Model\WebhookSubscriptionRequestSchema | Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to.
 
 $hostIndex = 0;
 $variables = [
@@ -68,13 +68,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
-| **webhook_subscription_request_schema** | [**\OpenAPI\Client\Model\WebhookSubscriptionRequestSchema**](../Model/WebhookSubscriptionRequestSchema.md)| Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. | |
+| **webhook_subscription_request_schema** | [**\Bandwidth\Model\WebhookSubscriptionRequestSchema**](../Model/WebhookSubscriptionRequestSchema.md)| Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\WebhookSubscription**](../Model/WebhookSubscription.md)
+[**\Bandwidth\Model\WebhookSubscription**](../Model/WebhookSubscription.md)
 
 ### Authorization
 
@@ -108,15 +108,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
+$apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -181,15 +181,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
+$apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -238,7 +238,7 @@ void (empty response body)
 ## `getTollFreeVerificationStatus()`
 
 ```php
-getTollFreeVerificationStatus($account_id, $phone_number): \OpenAPI\Client\Model\TfvStatus
+getTollFreeVerificationStatus($account_id, $phone_number): \Bandwidth\Model\TfvStatus
 ```
 ### URI(s):
 - https://api.bandwidth.com/api/v2 Production
@@ -254,15 +254,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
+$apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -294,7 +294,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TfvStatus**](../Model/TfvStatus.md)
+[**\Bandwidth\Model\TfvStatus**](../Model/TfvStatus.md)
 
 ### Authorization
 
@@ -328,15 +328,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
+$apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -381,7 +381,7 @@ This endpoint does not need any parameter.
 ## `listWebhookSubscriptions()`
 
 ```php
-listWebhookSubscriptions($account_id): \OpenAPI\Client\Model\WebhookSubscriptionsListBody
+listWebhookSubscriptions($account_id): \Bandwidth\Model\WebhookSubscriptionsListBody
 ```
 ### URI(s):
 - https://api.bandwidth.com/api/v2 Production
@@ -397,15 +397,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
+$apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -435,7 +435,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\WebhookSubscriptionsListBody**](../Model/WebhookSubscriptionsListBody.md)
+[**\Bandwidth\Model\WebhookSubscriptionsListBody**](../Model/WebhookSubscriptionsListBody.md)
 
 ### Authorization
 
@@ -469,22 +469,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
+$apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
-$verification_request = new \OpenAPI\Client\Model\VerificationRequest(); // \OpenAPI\Client\Model\VerificationRequest | Request for verification of a toll-free phone number.
+$verification_request = new \Bandwidth\Model\VerificationRequest(); // \Bandwidth\Model\VerificationRequest | Request for verification of a toll-free phone number.
 
 $hostIndex = 0;
 $variables = [
@@ -502,7 +502,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
-| **verification_request** | [**\OpenAPI\Client\Model\VerificationRequest**](../Model/VerificationRequest.md)| Request for verification of a toll-free phone number. | |
+| **verification_request** | [**\Bandwidth\Model\VerificationRequest**](../Model/VerificationRequest.md)| Request for verification of a toll-free phone number. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
@@ -542,15 +542,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
+$apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -558,7 +558,7 @@ $apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
 $phone_number = +18885555555; // string | Valid Toll-Free telephone number in E.164 format.
-$tfv_submission_wrapper = new \OpenAPI\Client\Model\TfvSubmissionWrapper(); // \OpenAPI\Client\Model\TfvSubmissionWrapper | Update a request for verification of a toll-free phone number.
+$tfv_submission_wrapper = new \Bandwidth\Model\TfvSubmissionWrapper(); // \Bandwidth\Model\TfvSubmissionWrapper | Update a request for verification of a toll-free phone number.
 
 $hostIndex = 0;
 $variables = [
@@ -577,7 +577,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
 | **phone_number** | **string**| Valid Toll-Free telephone number in E.164 format. | |
-| **tfv_submission_wrapper** | [**\OpenAPI\Client\Model\TfvSubmissionWrapper**](../Model/TfvSubmissionWrapper.md)| Update a request for verification of a toll-free phone number. | |
+| **tfv_submission_wrapper** | [**\Bandwidth\Model\TfvSubmissionWrapper**](../Model/TfvSubmissionWrapper.md)| Update a request for verification of a toll-free phone number. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
@@ -601,7 +601,7 @@ void (empty response body)
 ## `updateWebhookSubscription()`
 
 ```php
-updateWebhookSubscription($account_id, $id, $webhook_subscription_request_schema): \OpenAPI\Client\Model\WebhookSubscription
+updateWebhookSubscription($account_id, $id, $webhook_subscription_request_schema): \Bandwidth\Model\WebhookSubscription
 ```
 ### URI(s):
 - https://api.bandwidth.com/api/v2 Production
@@ -617,15 +617,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
+$apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -633,7 +633,7 @@ $apiInstance = new OpenAPI\Client\Api\TollFreeVerificationApi(
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
 $id = 7bt57JcsVYJrN9K1OcV1Nu; // string | Webhook subscription ID
-$webhook_subscription_request_schema = new \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema(); // \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema | Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to.
+$webhook_subscription_request_schema = new \Bandwidth\Model\WebhookSubscriptionRequestSchema(); // \Bandwidth\Model\WebhookSubscriptionRequestSchema | Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to.
 
 $hostIndex = 0;
 $variables = [
@@ -653,13 +653,13 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
 | **id** | **string**| Webhook subscription ID | |
-| **webhook_subscription_request_schema** | [**\OpenAPI\Client\Model\WebhookSubscriptionRequestSchema**](../Model/WebhookSubscriptionRequestSchema.md)| Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. | |
+| **webhook_subscription_request_schema** | [**\Bandwidth\Model\WebhookSubscriptionRequestSchema**](../Model/WebhookSubscriptionRequestSchema.md)| Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\WebhookSubscription**](../Model/WebhookSubscription.md)
+[**\Bandwidth\Model\WebhookSubscription**](../Model/WebhookSubscription.md)
 
 ### Authorization
 

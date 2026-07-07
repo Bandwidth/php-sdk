@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MmsMessageContent Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class MmsMessageContent implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static array $openAPITypes = [
         'text' => 'string',
-        'media' => '\OpenAPI\Client\Model\MmsMessageContentFile[]'
+        'media' => '\Bandwidth\Model\MmsMessageContentFile[]'
     ];
 
     /**
@@ -309,7 +309,7 @@ class MmsMessageContent implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets media
      *
-     * @return \OpenAPI\Client\Model\MmsMessageContentFile[]|null
+     * @return \Bandwidth\Model\MmsMessageContentFile[]|null
      */
     public function getMedia(): ?array
     {
@@ -319,7 +319,7 @@ class MmsMessageContent implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets media
      *
-     * @param \OpenAPI\Client\Model\MmsMessageContentFile[]|null $media media
+     * @param \Bandwidth\Model\MmsMessageContentFile[]|null $media media
      *
      * @return $this
      */

@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * InitiateCallback Class Doc Comment
  *
  * @description The Initiate event is fired when an inbound call is received for a Telephone Number on your Account. It is sent to the URL specified in the application associated with the location (sip-peer) that the called telephone number belongs to.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -66,12 +66,12 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'application_id' => 'string',
         'from' => 'string',
         'to' => 'string',
-        'direction' => '\OpenAPI\Client\Model\CallDirectionEnum',
+        'direction' => '\Bandwidth\Model\CallDirectionEnum',
         'call_id' => 'string',
         'call_url' => 'string',
         'start_time' => '\DateTime',
-        'diversion' => '\OpenAPI\Client\Model\Diversion',
-        'stir_shaken' => '\OpenAPI\Client\Model\StirShaken',
+        'diversion' => '\Bandwidth\Model\Diversion',
+        'stir_shaken' => '\Bandwidth\Model\StirShaken',
         'uui' => 'string'
     ];
 
@@ -518,9 +518,9 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\CallDirectionEnum|null
+     * @return \Bandwidth\Model\CallDirectionEnum|null
      */
-    public function getDirection(): ?\OpenAPI\Client\Model\CallDirectionEnum
+    public function getDirection(): ?\Bandwidth\Model\CallDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -528,11 +528,11 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\CallDirectionEnum|null $direction direction
+     * @param \Bandwidth\Model\CallDirectionEnum|null $direction direction
      *
      * @return $this
      */
-    public function setDirection(?\OpenAPI\Client\Model\CallDirectionEnum $direction): static
+    public function setDirection(?\Bandwidth\Model\CallDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');
@@ -626,9 +626,9 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets diversion
      *
-     * @return \OpenAPI\Client\Model\Diversion|null
+     * @return \Bandwidth\Model\Diversion|null
      */
-    public function getDiversion(): ?\OpenAPI\Client\Model\Diversion
+    public function getDiversion(): ?\Bandwidth\Model\Diversion
     {
         return $this->container['diversion'];
     }
@@ -636,11 +636,11 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets diversion
      *
-     * @param \OpenAPI\Client\Model\Diversion|null $diversion diversion
+     * @param \Bandwidth\Model\Diversion|null $diversion diversion
      *
      * @return $this
      */
-    public function setDiversion(?\OpenAPI\Client\Model\Diversion $diversion): static
+    public function setDiversion(?\Bandwidth\Model\Diversion $diversion): static
     {
         if (is_null($diversion)) {
             throw new InvalidArgumentException('non-nullable diversion cannot be null');
@@ -653,9 +653,9 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets stir_shaken
      *
-     * @return \OpenAPI\Client\Model\StirShaken|null
+     * @return \Bandwidth\Model\StirShaken|null
      */
-    public function getStirShaken(): ?\OpenAPI\Client\Model\StirShaken
+    public function getStirShaken(): ?\Bandwidth\Model\StirShaken
     {
         return $this->container['stir_shaken'];
     }
@@ -663,11 +663,11 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets stir_shaken
      *
-     * @param \OpenAPI\Client\Model\StirShaken|null $stir_shaken stir_shaken
+     * @param \Bandwidth\Model\StirShaken|null $stir_shaken stir_shaken
      *
      * @return $this
      */
-    public function setStirShaken(?\OpenAPI\Client\Model\StirShaken $stir_shaken): static
+    public function setStirShaken(?\Bandwidth\Model\StirShaken $stir_shaken): static
     {
         if (is_null($stir_shaken)) {
             throw new InvalidArgumentException('non-nullable stir_shaken cannot be null');

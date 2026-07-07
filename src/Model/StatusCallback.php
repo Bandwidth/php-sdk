@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * StatusCallback Class Doc Comment
  *
  * @description Represents a status callback for an outbound MT SMS or MMS or RBM message.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -62,10 +62,10 @@ class StatusCallback implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPITypes = [
         'time' => '\DateTime',
         'event_time' => '\DateTime',
-        'type' => '\OpenAPI\Client\Model\StatusCallbackTypeEnum',
+        'type' => '\Bandwidth\Model\StatusCallbackTypeEnum',
         'to' => 'string',
         'description' => 'string',
-        'message' => '\OpenAPI\Client\Model\StatusCallbackMessage',
+        'message' => '\Bandwidth\Model\StatusCallbackMessage',
         'error_code' => 'int',
         'carrier_name' => 'string'
     ];
@@ -386,9 +386,9 @@ class StatusCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets type
      *
-     * @return \OpenAPI\Client\Model\StatusCallbackTypeEnum
+     * @return \Bandwidth\Model\StatusCallbackTypeEnum
      */
-    public function getType(): \OpenAPI\Client\Model\StatusCallbackTypeEnum
+    public function getType(): \Bandwidth\Model\StatusCallbackTypeEnum
     {
         return $this->container['type'];
     }
@@ -396,11 +396,11 @@ class StatusCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets type
      *
-     * @param \OpenAPI\Client\Model\StatusCallbackTypeEnum $type type
+     * @param \Bandwidth\Model\StatusCallbackTypeEnum $type type
      *
      * @return $this
      */
-    public function setType(\OpenAPI\Client\Model\StatusCallbackTypeEnum $type): static
+    public function setType(\Bandwidth\Model\StatusCallbackTypeEnum $type): static
     {
         if (is_null($type)) {
             throw new InvalidArgumentException('non-nullable type cannot be null');
@@ -467,9 +467,9 @@ class StatusCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets message
      *
-     * @return \OpenAPI\Client\Model\StatusCallbackMessage
+     * @return \Bandwidth\Model\StatusCallbackMessage
      */
-    public function getMessage(): \OpenAPI\Client\Model\StatusCallbackMessage
+    public function getMessage(): \Bandwidth\Model\StatusCallbackMessage
     {
         return $this->container['message'];
     }
@@ -477,11 +477,11 @@ class StatusCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets message
      *
-     * @param \OpenAPI\Client\Model\StatusCallbackMessage $message message
+     * @param \Bandwidth\Model\StatusCallbackMessage $message message
      *
      * @return $this
      */
-    public function setMessage(\OpenAPI\Client\Model\StatusCallbackMessage $message): static
+    public function setMessage(\Bandwidth\Model\StatusCallbackMessage $message): static
     {
         if (is_null($message)) {
             throw new InvalidArgumentException('non-nullable message cannot be null');

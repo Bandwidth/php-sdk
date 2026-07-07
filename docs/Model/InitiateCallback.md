@@ -10,12 +10,12 @@ Name | Type | Description | Notes
 **application_id** | **string** | The id of the application associated with the call. | [optional]
 **from** | **string** | The provided identifier of the caller. Must be a phone number in E.164 format (e.g. +15555555555). | [optional]
 **to** | **string** | The phone number that received the call, in E.164 format (e.g. +15555555555). | [optional]
-**direction** | [**\OpenAPI\Client\Model\CallDirectionEnum**](CallDirectionEnum.md) |  | [optional]
+**direction** | [**\Bandwidth\Model\CallDirectionEnum**](CallDirectionEnum.md) |  | [optional]
 **call_id** | **string** | The call id associated with the event. | [optional]
 **call_url** | **string** | The URL of the call associated with the event. | [optional]
 **start_time** | **\DateTime** | Time the call was started, in ISO 8601 format. | [optional]
-**diversion** | [**\OpenAPI\Client\Model\Diversion**](Diversion.md) |  | [optional]
-**stir_shaken** | [**\OpenAPI\Client\Model\StirShaken**](StirShaken.md) |  | [optional]
+**diversion** | [**\Bandwidth\Model\Diversion**](Diversion.md) |  | [optional]
+**stir_shaken** | [**\Bandwidth\Model\StirShaken**](StirShaken.md) |  | [optional]
 **uui** | **string** | The value of the &#x60;User-To-User&#x60; header to send within the initial &#x60;INVITE&#x60;. Must include the encoding parameter as specified in RFC 7433. Only &#x60;base64&#x60;, &#x60;jwt&#x60; and &#x60;hex&#x60; encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * LookupErrorSchema Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -62,7 +62,7 @@ class LookupErrorSchema implements ModelInterface, ArrayAccess, JsonSerializable
         'code' => 'string',
         'description' => 'string',
         'type' => 'string',
-        'meta' => '\OpenAPI\Client\Model\LookupErrorSchemaMeta'
+        'meta' => '\Bandwidth\Model\LookupErrorSchemaMeta'
     ];
 
     /**
@@ -378,9 +378,9 @@ class LookupErrorSchema implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets meta
      *
-     * @return \OpenAPI\Client\Model\LookupErrorSchemaMeta|null
+     * @return \Bandwidth\Model\LookupErrorSchemaMeta|null
      */
-    public function getMeta(): ?\OpenAPI\Client\Model\LookupErrorSchemaMeta
+    public function getMeta(): ?\Bandwidth\Model\LookupErrorSchemaMeta
     {
         return $this->container['meta'];
     }
@@ -388,11 +388,11 @@ class LookupErrorSchema implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets meta
      *
-     * @param \OpenAPI\Client\Model\LookupErrorSchemaMeta|null $meta meta
+     * @param \Bandwidth\Model\LookupErrorSchemaMeta|null $meta meta
      *
      * @return $this
      */
-    public function setMeta(?\OpenAPI\Client\Model\LookupErrorSchemaMeta $meta): static
+    public function setMeta(?\Bandwidth\Model\LookupErrorSchemaMeta $meta): static
     {
         if (is_null($meta)) {
             throw new InvalidArgumentException('non-nullable meta cannot be null');

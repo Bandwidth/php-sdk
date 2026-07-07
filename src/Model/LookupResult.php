@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * LookupResult Class Doc Comment
  *
  * @description Carrier information results for the specified telephone number.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,14 +61,14 @@ class LookupResult implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static array $openAPITypes = [
         'phone_number' => 'string',
-        'line_type' => '\OpenAPI\Client\Model\LineTypeEnum',
+        'line_type' => '\Bandwidth\Model\LineTypeEnum',
         'messaging_provider' => 'string',
         'voice_provider' => 'string',
         'country_code_a3' => 'string',
         'deactivation_reporter' => 'string',
         'deactivation_date' => 'string',
-        'deactivation_event' => '\OpenAPI\Client\Model\DeactivationEventEnum',
-        'latest_message_delivery_status' => '\OpenAPI\Client\Model\LatestMessageDeliveryStatusEnum',
+        'deactivation_event' => '\Bandwidth\Model\DeactivationEventEnum',
+        'latest_message_delivery_status' => '\Bandwidth\Model\LatestMessageDeliveryStatusEnum',
         'initial_message_delivery_status_date' => '\DateTime',
         'latest_message_delivery_status_date' => '\DateTime',
         'rcs_enabled' => 'bool'
@@ -372,9 +372,9 @@ class LookupResult implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets line_type
      *
-     * @return \OpenAPI\Client\Model\LineTypeEnum|null
+     * @return \Bandwidth\Model\LineTypeEnum|null
      */
-    public function getLineType(): ?\OpenAPI\Client\Model\LineTypeEnum
+    public function getLineType(): ?\Bandwidth\Model\LineTypeEnum
     {
         return $this->container['line_type'];
     }
@@ -382,11 +382,11 @@ class LookupResult implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets line_type
      *
-     * @param \OpenAPI\Client\Model\LineTypeEnum|null $line_type line_type
+     * @param \Bandwidth\Model\LineTypeEnum|null $line_type line_type
      *
      * @return $this
      */
-    public function setLineType(?\OpenAPI\Client\Model\LineTypeEnum $line_type): static
+    public function setLineType(?\Bandwidth\Model\LineTypeEnum $line_type): static
     {
         if (is_null($line_type)) {
             throw new InvalidArgumentException('non-nullable line_type cannot be null');
@@ -534,9 +534,9 @@ class LookupResult implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets deactivation_event
      *
-     * @return \OpenAPI\Client\Model\DeactivationEventEnum|null
+     * @return \Bandwidth\Model\DeactivationEventEnum|null
      */
-    public function getDeactivationEvent(): ?\OpenAPI\Client\Model\DeactivationEventEnum
+    public function getDeactivationEvent(): ?\Bandwidth\Model\DeactivationEventEnum
     {
         return $this->container['deactivation_event'];
     }
@@ -544,11 +544,11 @@ class LookupResult implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets deactivation_event
      *
-     * @param \OpenAPI\Client\Model\DeactivationEventEnum|null $deactivation_event deactivation_event
+     * @param \Bandwidth\Model\DeactivationEventEnum|null $deactivation_event deactivation_event
      *
      * @return $this
      */
-    public function setDeactivationEvent(?\OpenAPI\Client\Model\DeactivationEventEnum $deactivation_event): static
+    public function setDeactivationEvent(?\Bandwidth\Model\DeactivationEventEnum $deactivation_event): static
     {
         if (is_null($deactivation_event)) {
             throw new InvalidArgumentException('non-nullable deactivation_event cannot be null');
@@ -561,9 +561,9 @@ class LookupResult implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets latest_message_delivery_status
      *
-     * @return \OpenAPI\Client\Model\LatestMessageDeliveryStatusEnum|null
+     * @return \Bandwidth\Model\LatestMessageDeliveryStatusEnum|null
      */
-    public function getLatestMessageDeliveryStatus(): ?\OpenAPI\Client\Model\LatestMessageDeliveryStatusEnum
+    public function getLatestMessageDeliveryStatus(): ?\Bandwidth\Model\LatestMessageDeliveryStatusEnum
     {
         return $this->container['latest_message_delivery_status'];
     }
@@ -571,11 +571,11 @@ class LookupResult implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets latest_message_delivery_status
      *
-     * @param \OpenAPI\Client\Model\LatestMessageDeliveryStatusEnum|null $latest_message_delivery_status latest_message_delivery_status
+     * @param \Bandwidth\Model\LatestMessageDeliveryStatusEnum|null $latest_message_delivery_status latest_message_delivery_status
      *
      * @return $this
      */
-    public function setLatestMessageDeliveryStatus(?\OpenAPI\Client\Model\LatestMessageDeliveryStatusEnum $latest_message_delivery_status): static
+    public function setLatestMessageDeliveryStatus(?\Bandwidth\Model\LatestMessageDeliveryStatusEnum $latest_message_delivery_status): static
     {
         if (is_null($latest_message_delivery_status)) {
             throw new InvalidArgumentException('non-nullable latest_message_delivery_status cannot be null');

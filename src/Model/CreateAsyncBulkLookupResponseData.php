@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CreateAsyncBulkLookupResponseData Class Doc Comment
  *
  * @description The phone number lookup response data
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class CreateAsyncBulkLookupResponseData implements ModelInterface, ArrayAccess, 
      */
     protected static array $openAPITypes = [
         'request_id' => 'string',
-        'status' => '\OpenAPI\Client\Model\InProgressLookupStatusEnum'
+        'status' => '\Bandwidth\Model\InProgressLookupStatusEnum'
     ];
 
     /**
@@ -302,9 +302,9 @@ class CreateAsyncBulkLookupResponseData implements ModelInterface, ArrayAccess, 
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\InProgressLookupStatusEnum|null
+     * @return \Bandwidth\Model\InProgressLookupStatusEnum|null
      */
-    public function getStatus(): ?\OpenAPI\Client\Model\InProgressLookupStatusEnum
+    public function getStatus(): ?\Bandwidth\Model\InProgressLookupStatusEnum
     {
         return $this->container['status'];
     }
@@ -312,11 +312,11 @@ class CreateAsyncBulkLookupResponseData implements ModelInterface, ArrayAccess, 
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\InProgressLookupStatusEnum|null $status status
+     * @param \Bandwidth\Model\InProgressLookupStatusEnum|null $status status
      *
      * @return $this
      */
-    public function setStatus(?\OpenAPI\Client\Model\InProgressLookupStatusEnum $status): static
+    public function setStatus(?\Bandwidth\Model\InProgressLookupStatusEnum $status): static
     {
         if (is_null($status)) {
             throw new InvalidArgumentException('non-nullable status cannot be null');

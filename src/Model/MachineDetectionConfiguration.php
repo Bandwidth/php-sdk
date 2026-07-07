@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MachineDetectionConfiguration Class Doc Comment
  *
  * @description The machine detection request used to perform &lt;a href&#x3D;&#39;/docs/voice/guides/machineDetection&#39;&gt;machine detection&lt;/a&gt; on the call. Currently, there is an issue where decimal values are not getting processed correctly. Please use whole number values. We are working to resolve this issue. Please contact Bandwidth Support if you need more information.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class MachineDetectionConfiguration implements ModelInterface, ArrayAccess, Json
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'mode' => '\OpenAPI\Client\Model\MachineDetectionModeEnum',
+        'mode' => '\Bandwidth\Model\MachineDetectionModeEnum',
         'detection_timeout' => 'float',
         'silence_timeout' => 'float',
         'speech_threshold' => 'float',
@@ -68,11 +68,11 @@ class MachineDetectionConfiguration implements ModelInterface, ArrayAccess, Json
         'machine_speech_end_threshold' => 'float',
         'delay_result' => 'bool',
         'callback_url' => 'string',
-        'callback_method' => '\OpenAPI\Client\Model\CallbackMethodEnum',
+        'callback_method' => '\Bandwidth\Model\CallbackMethodEnum',
         'username' => 'string',
         'password' => 'string',
         'fallback_url' => 'string',
-        'fallback_method' => '\OpenAPI\Client\Model\CallbackMethodEnum',
+        'fallback_method' => '\Bandwidth\Model\CallbackMethodEnum',
         'fallback_username' => 'string',
         'fallback_password' => 'string'
     ];
@@ -390,9 +390,9 @@ class MachineDetectionConfiguration implements ModelInterface, ArrayAccess, Json
     /**
      * Gets mode
      *
-     * @return \OpenAPI\Client\Model\MachineDetectionModeEnum|null
+     * @return \Bandwidth\Model\MachineDetectionModeEnum|null
      */
-    public function getMode(): ?\OpenAPI\Client\Model\MachineDetectionModeEnum
+    public function getMode(): ?\Bandwidth\Model\MachineDetectionModeEnum
     {
         return $this->container['mode'];
     }
@@ -400,11 +400,11 @@ class MachineDetectionConfiguration implements ModelInterface, ArrayAccess, Json
     /**
      * Sets mode
      *
-     * @param \OpenAPI\Client\Model\MachineDetectionModeEnum|null $mode mode
+     * @param \Bandwidth\Model\MachineDetectionModeEnum|null $mode mode
      *
      * @return $this
      */
-    public function setMode(?\OpenAPI\Client\Model\MachineDetectionModeEnum $mode): static
+    public function setMode(?\Bandwidth\Model\MachineDetectionModeEnum $mode): static
     {
         if (is_null($mode)) {
             throw new InvalidArgumentException('non-nullable mode cannot be null');
@@ -659,9 +659,9 @@ class MachineDetectionConfiguration implements ModelInterface, ArrayAccess, Json
     /**
      * Gets callback_method
      *
-     * @return \OpenAPI\Client\Model\CallbackMethodEnum|null
+     * @return \Bandwidth\Model\CallbackMethodEnum|null
      */
-    public function getCallbackMethod(): ?\OpenAPI\Client\Model\CallbackMethodEnum
+    public function getCallbackMethod(): ?\Bandwidth\Model\CallbackMethodEnum
     {
         return $this->container['callback_method'];
     }
@@ -669,11 +669,11 @@ class MachineDetectionConfiguration implements ModelInterface, ArrayAccess, Json
     /**
      * Sets callback_method
      *
-     * @param \OpenAPI\Client\Model\CallbackMethodEnum|null $callback_method callback_method
+     * @param \Bandwidth\Model\CallbackMethodEnum|null $callback_method callback_method
      *
      * @return $this
      */
-    public function setCallbackMethod(?\OpenAPI\Client\Model\CallbackMethodEnum $callback_method): static
+    public function setCallbackMethod(?\Bandwidth\Model\CallbackMethodEnum $callback_method): static
     {
         if (is_null($callback_method)) {
             array_push($this->openAPINullablesSetToNull, 'callback_method');
@@ -807,9 +807,9 @@ class MachineDetectionConfiguration implements ModelInterface, ArrayAccess, Json
     /**
      * Gets fallback_method
      *
-     * @return \OpenAPI\Client\Model\CallbackMethodEnum|null
+     * @return \Bandwidth\Model\CallbackMethodEnum|null
      */
-    public function getFallbackMethod(): ?\OpenAPI\Client\Model\CallbackMethodEnum
+    public function getFallbackMethod(): ?\Bandwidth\Model\CallbackMethodEnum
     {
         return $this->container['fallback_method'];
     }
@@ -817,11 +817,11 @@ class MachineDetectionConfiguration implements ModelInterface, ArrayAccess, Json
     /**
      * Sets fallback_method
      *
-     * @param \OpenAPI\Client\Model\CallbackMethodEnum|null $fallback_method fallback_method
+     * @param \Bandwidth\Model\CallbackMethodEnum|null $fallback_method fallback_method
      *
      * @return $this
      */
-    public function setFallbackMethod(?\OpenAPI\Client\Model\CallbackMethodEnum $fallback_method): static
+    public function setFallbackMethod(?\Bandwidth\Model\CallbackMethodEnum $fallback_method): static
     {
         if (is_null($fallback_method)) {
             array_push($this->openAPINullablesSetToNull, 'fallback_method');

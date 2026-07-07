@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CreateEndpointRequestBase Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,8 +59,8 @@ class CreateEndpointRequestBase implements ModelInterface, ArrayAccess, JsonSeri
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'type' => '\OpenAPI\Client\Model\EndpointTypeEnum',
-        'direction' => '\OpenAPI\Client\Model\EndpointDirectionEnum',
+        'type' => '\Bandwidth\Model\EndpointTypeEnum',
+        'direction' => '\Bandwidth\Model\EndpointDirectionEnum',
         'event_callback_url' => 'string',
         'event_fallback_url' => 'string',
         'tag' => 'string'
@@ -301,9 +301,9 @@ class CreateEndpointRequestBase implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets type
      *
-     * @return \OpenAPI\Client\Model\EndpointTypeEnum
+     * @return \Bandwidth\Model\EndpointTypeEnum
      */
-    public function getType(): \OpenAPI\Client\Model\EndpointTypeEnum
+    public function getType(): \Bandwidth\Model\EndpointTypeEnum
     {
         return $this->container['type'];
     }
@@ -311,11 +311,11 @@ class CreateEndpointRequestBase implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets type
      *
-     * @param \OpenAPI\Client\Model\EndpointTypeEnum $type type
+     * @param \Bandwidth\Model\EndpointTypeEnum $type type
      *
      * @return $this
      */
-    public function setType(\OpenAPI\Client\Model\EndpointTypeEnum $type): static
+    public function setType(\Bandwidth\Model\EndpointTypeEnum $type): static
     {
         if (is_null($type)) {
             throw new InvalidArgumentException('non-nullable type cannot be null');
@@ -328,9 +328,9 @@ class CreateEndpointRequestBase implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\EndpointDirectionEnum
+     * @return \Bandwidth\Model\EndpointDirectionEnum
      */
-    public function getDirection(): \OpenAPI\Client\Model\EndpointDirectionEnum
+    public function getDirection(): \Bandwidth\Model\EndpointDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -338,11 +338,11 @@ class CreateEndpointRequestBase implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\EndpointDirectionEnum $direction direction
+     * @param \Bandwidth\Model\EndpointDirectionEnum $direction direction
      *
      * @return $this
      */
-    public function setDirection(\OpenAPI\Client\Model\EndpointDirectionEnum $direction): static
+    public function setDirection(\Bandwidth\Model\EndpointDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');

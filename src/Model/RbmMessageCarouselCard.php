@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RbmMessageCarouselCard Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,9 +59,9 @@ class RbmMessageCarouselCard implements ModelInterface, ArrayAccess, JsonSeriali
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'card_width' => '\OpenAPI\Client\Model\CardWidthEnum',
-        'card_contents' => '\OpenAPI\Client\Model\RbmCardContent[]',
-        'suggestions' => '\OpenAPI\Client\Model\MultiChannelAction[]'
+        'card_width' => '\Bandwidth\Model\CardWidthEnum',
+        'card_contents' => '\Bandwidth\Model\RbmCardContent[]',
+        'suggestions' => '\Bandwidth\Model\MultiChannelAction[]'
     ];
 
     /**
@@ -299,9 +299,9 @@ class RbmMessageCarouselCard implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets card_width
      *
-     * @return \OpenAPI\Client\Model\CardWidthEnum
+     * @return \Bandwidth\Model\CardWidthEnum
      */
-    public function getCardWidth(): \OpenAPI\Client\Model\CardWidthEnum
+    public function getCardWidth(): \Bandwidth\Model\CardWidthEnum
     {
         return $this->container['card_width'];
     }
@@ -309,11 +309,11 @@ class RbmMessageCarouselCard implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets card_width
      *
-     * @param \OpenAPI\Client\Model\CardWidthEnum $card_width card_width
+     * @param \Bandwidth\Model\CardWidthEnum $card_width card_width
      *
      * @return $this
      */
-    public function setCardWidth(\OpenAPI\Client\Model\CardWidthEnum $card_width): static
+    public function setCardWidth(\Bandwidth\Model\CardWidthEnum $card_width): static
     {
         if (is_null($card_width)) {
             throw new InvalidArgumentException('non-nullable card_width cannot be null');
@@ -326,7 +326,7 @@ class RbmMessageCarouselCard implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets card_contents
      *
-     * @return \OpenAPI\Client\Model\RbmCardContent[]
+     * @return \Bandwidth\Model\RbmCardContent[]
      */
     public function getCardContents(): array
     {
@@ -336,7 +336,7 @@ class RbmMessageCarouselCard implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets card_contents
      *
-     * @param \OpenAPI\Client\Model\RbmCardContent[] $card_contents card_contents
+     * @param \Bandwidth\Model\RbmCardContent[] $card_contents card_contents
      *
      * @return $this
      */
@@ -360,7 +360,7 @@ class RbmMessageCarouselCard implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets suggestions
      *
-     * @return \OpenAPI\Client\Model\MultiChannelAction[]|null
+     * @return \Bandwidth\Model\MultiChannelAction[]|null
      */
     public function getSuggestions(): ?array
     {
@@ -370,7 +370,7 @@ class RbmMessageCarouselCard implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets suggestions
      *
-     * @param \OpenAPI\Client\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
+     * @param \Bandwidth\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
      *
      * @return $this
      */

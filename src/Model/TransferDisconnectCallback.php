@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * TransferDisconnectCallback Class Doc Comment
  *
  * @description This event is sent to the transferDisconnectUrl of each &lt;PhoneNumber&gt; tag when its respective call leg ends for any reason. The event is sent in the normal case, when the transferred leg is answered and later hung up, but is also sent if the new leg was never answered in the first place, if it was rejected, and if the original call leg hung up before the transferred leg.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -66,7 +66,7 @@ class TransferDisconnectCallback implements ModelInterface, ArrayAccess, JsonSer
         'application_id' => 'string',
         'from' => 'string',
         'to' => 'string',
-        'direction' => '\OpenAPI\Client\Model\CallDirectionEnum',
+        'direction' => '\Bandwidth\Model\CallDirectionEnum',
         'call_id' => 'string',
         'call_url' => 'string',
         'parent_call_id' => 'string',
@@ -563,9 +563,9 @@ class TransferDisconnectCallback implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\CallDirectionEnum|null
+     * @return \Bandwidth\Model\CallDirectionEnum|null
      */
-    public function getDirection(): ?\OpenAPI\Client\Model\CallDirectionEnum
+    public function getDirection(): ?\Bandwidth\Model\CallDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -573,11 +573,11 @@ class TransferDisconnectCallback implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\CallDirectionEnum|null $direction direction
+     * @param \Bandwidth\Model\CallDirectionEnum|null $direction direction
      *
      * @return $this
      */
-    public function setDirection(?\OpenAPI\Client\Model\CallDirectionEnum $direction): static
+    public function setDirection(?\Bandwidth\Model\CallDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');

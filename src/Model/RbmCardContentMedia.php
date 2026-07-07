@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RbmCardContentMedia Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class RbmCardContentMedia implements ModelInterface, ArrayAccess, JsonSerializab
     protected static array $openAPITypes = [
         'file_url' => 'string',
         'thumbnail_url' => 'string',
-        'height' => '\OpenAPI\Client\Model\RbmMediaHeightEnum'
+        'height' => '\Bandwidth\Model\RbmMediaHeightEnum'
     ];
 
     /**
@@ -357,9 +357,9 @@ class RbmCardContentMedia implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets height
      *
-     * @return \OpenAPI\Client\Model\RbmMediaHeightEnum
+     * @return \Bandwidth\Model\RbmMediaHeightEnum
      */
-    public function getHeight(): \OpenAPI\Client\Model\RbmMediaHeightEnum
+    public function getHeight(): \Bandwidth\Model\RbmMediaHeightEnum
     {
         return $this->container['height'];
     }
@@ -367,11 +367,11 @@ class RbmCardContentMedia implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets height
      *
-     * @param \OpenAPI\Client\Model\RbmMediaHeightEnum $height height
+     * @param \Bandwidth\Model\RbmMediaHeightEnum $height height
      *
      * @return $this
      */
-    public function setHeight(\OpenAPI\Client\Model\RbmMediaHeightEnum $height): static
+    public function setHeight(\Bandwidth\Model\RbmMediaHeightEnum $height): static
     {
         if (is_null($height)) {
             throw new InvalidArgumentException('non-nullable height cannot be null');

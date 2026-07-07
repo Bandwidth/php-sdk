@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * WebhookSubscriptionsListBody Class Doc Comment
  *
  * @description A list of all webhook subscriptions registered for this account ID for this particular feature (unpaginated).
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -60,9 +60,9 @@ class WebhookSubscriptionsListBody implements ModelInterface, ArrayAccess, JsonS
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'links' => '\OpenAPI\Client\Model\LinksObject',
-        'errors' => '\OpenAPI\Client\Model\WebhookSubscriptionError[]',
-        'data' => '\OpenAPI\Client\Model\WebhookSubscription[]'
+        'links' => '\Bandwidth\Model\LinksObject',
+        'errors' => '\Bandwidth\Model\WebhookSubscriptionError[]',
+        'data' => '\Bandwidth\Model\WebhookSubscription[]'
     ];
 
     /**
@@ -285,9 +285,9 @@ class WebhookSubscriptionsListBody implements ModelInterface, ArrayAccess, JsonS
     /**
      * Gets links
      *
-     * @return \OpenAPI\Client\Model\LinksObject|null
+     * @return \Bandwidth\Model\LinksObject|null
      */
-    public function getLinks(): ?\OpenAPI\Client\Model\LinksObject
+    public function getLinks(): ?\Bandwidth\Model\LinksObject
     {
         return $this->container['links'];
     }
@@ -295,11 +295,11 @@ class WebhookSubscriptionsListBody implements ModelInterface, ArrayAccess, JsonS
     /**
      * Sets links
      *
-     * @param \OpenAPI\Client\Model\LinksObject|null $links links
+     * @param \Bandwidth\Model\LinksObject|null $links links
      *
      * @return $this
      */
-    public function setLinks(?\OpenAPI\Client\Model\LinksObject $links): static
+    public function setLinks(?\Bandwidth\Model\LinksObject $links): static
     {
         if (is_null($links)) {
             throw new InvalidArgumentException('non-nullable links cannot be null');
@@ -312,7 +312,7 @@ class WebhookSubscriptionsListBody implements ModelInterface, ArrayAccess, JsonS
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\WebhookSubscriptionError[]|null
+     * @return \Bandwidth\Model\WebhookSubscriptionError[]|null
      */
     public function getErrors(): ?array
     {
@@ -322,7 +322,7 @@ class WebhookSubscriptionsListBody implements ModelInterface, ArrayAccess, JsonS
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\WebhookSubscriptionError[]|null $errors errors
+     * @param \Bandwidth\Model\WebhookSubscriptionError[]|null $errors errors
      *
      * @return $this
      */
@@ -339,7 +339,7 @@ class WebhookSubscriptionsListBody implements ModelInterface, ArrayAccess, JsonS
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\WebhookSubscription[]
+     * @return \Bandwidth\Model\WebhookSubscription[]
      */
     public function getData(): array
     {
@@ -349,7 +349,7 @@ class WebhookSubscriptionsListBody implements ModelInterface, ArrayAccess, JsonS
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\WebhookSubscription[] $data data
+     * @param \Bandwidth\Model\WebhookSubscription[] $data data
      *
      * @return $this
      */

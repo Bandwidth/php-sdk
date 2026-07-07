@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CallTranscriptionResponse Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -62,7 +62,7 @@ class CallTranscriptionResponse implements ModelInterface, ArrayAccess, JsonSeri
         'account_id' => 'string',
         'call_id' => 'string',
         'transcription_id' => 'string',
-        'tracks' => '\OpenAPI\Client\Model\CallTranscription[]'
+        'tracks' => '\Bandwidth\Model\CallTranscription[]'
     ];
 
     /**
@@ -369,7 +369,7 @@ class CallTranscriptionResponse implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets tracks
      *
-     * @return \OpenAPI\Client\Model\CallTranscription[]|null
+     * @return \Bandwidth\Model\CallTranscription[]|null
      */
     public function getTracks(): ?array
     {
@@ -379,7 +379,7 @@ class CallTranscriptionResponse implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets tracks
      *
-     * @param \OpenAPI\Client\Model\CallTranscription[]|null $tracks tracks
+     * @param \Bandwidth\Model\CallTranscription[]|null $tracks tracks
      *
      * @return $this
      */

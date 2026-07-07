@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * SipConnectionMetadata Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class SipConnectionMetadata implements ModelInterface, ArrayAccess, JsonSerializ
     protected static array $openAPITypes = [
         'ip_address' => 'string',
         'port' => 'int',
-        'credentials' => '\OpenAPI\Client\Model\SipCredentials',
+        'credentials' => '\Bandwidth\Model\SipCredentials',
         'uui_header' => 'string'
     ];
 
@@ -342,9 +342,9 @@ class SipConnectionMetadata implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets credentials
      *
-     * @return \OpenAPI\Client\Model\SipCredentials|null
+     * @return \Bandwidth\Model\SipCredentials|null
      */
-    public function getCredentials(): ?\OpenAPI\Client\Model\SipCredentials
+    public function getCredentials(): ?\Bandwidth\Model\SipCredentials
     {
         return $this->container['credentials'];
     }
@@ -352,11 +352,11 @@ class SipConnectionMetadata implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets credentials
      *
-     * @param \OpenAPI\Client\Model\SipCredentials|null $credentials credentials
+     * @param \Bandwidth\Model\SipCredentials|null $credentials credentials
      *
      * @return $this
      */
-    public function setCredentials(?\OpenAPI\Client\Model\SipCredentials $credentials): static
+    public function setCredentials(?\Bandwidth\Model\SipCredentials $credentials): static
     {
         if (is_null($credentials)) {
             throw new InvalidArgumentException('non-nullable credentials cannot be null');

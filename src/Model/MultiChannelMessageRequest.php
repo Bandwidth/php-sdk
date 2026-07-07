@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MultiChannelMessageRequest Class Doc Comment
  *
  * @description Multi-Channel Message Request
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,9 +61,9 @@ class MultiChannelMessageRequest implements ModelInterface, ArrayAccess, JsonSer
      */
     protected static array $openAPITypes = [
         'to' => 'string',
-        'channel_list' => '\OpenAPI\Client\Model\MultiChannelChannelListRequestObject[]',
+        'channel_list' => '\Bandwidth\Model\MultiChannelChannelListRequestObject[]',
         'tag' => 'string',
-        'priority' => '\OpenAPI\Client\Model\PriorityEnum',
+        'priority' => '\Bandwidth\Model\PriorityEnum',
         'expiration' => '\DateTime'
     ];
 
@@ -333,7 +333,7 @@ class MultiChannelMessageRequest implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Gets channel_list
      *
-     * @return \OpenAPI\Client\Model\MultiChannelChannelListRequestObject[]
+     * @return \Bandwidth\Model\MultiChannelChannelListRequestObject[]
      */
     public function getChannelList(): array
     {
@@ -343,7 +343,7 @@ class MultiChannelMessageRequest implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets channel_list
      *
-     * @param \OpenAPI\Client\Model\MultiChannelChannelListRequestObject[] $channel_list A list of message bodies. The messages will be attempted in the order they are listed. Once a message sends successfully, the others will be ignored.
+     * @param \Bandwidth\Model\MultiChannelChannelListRequestObject[] $channel_list A list of message bodies. The messages will be attempted in the order they are listed. Once a message sends successfully, the others will be ignored.
      *
      * @return $this
      */
@@ -391,9 +391,9 @@ class MultiChannelMessageRequest implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Gets priority
      *
-     * @return \OpenAPI\Client\Model\PriorityEnum|null
+     * @return \Bandwidth\Model\PriorityEnum|null
      */
-    public function getPriority(): ?\OpenAPI\Client\Model\PriorityEnum
+    public function getPriority(): ?\Bandwidth\Model\PriorityEnum
     {
         return $this->container['priority'];
     }
@@ -401,11 +401,11 @@ class MultiChannelMessageRequest implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets priority
      *
-     * @param \OpenAPI\Client\Model\PriorityEnum|null $priority priority
+     * @param \Bandwidth\Model\PriorityEnum|null $priority priority
      *
      * @return $this
      */
-    public function setPriority(?\OpenAPI\Client\Model\PriorityEnum $priority): static
+    public function setPriority(?\Bandwidth\Model\PriorityEnum $priority): static
     {
         if (is_null($priority)) {
             throw new InvalidArgumentException('non-nullable priority cannot be null');

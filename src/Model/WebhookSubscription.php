@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * WebhookSubscription Class Doc Comment
  *
  * @description Information about a webhook that Bandwidth should send upon the completion of event customer has subscribed to.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -63,8 +63,8 @@ class WebhookSubscription implements ModelInterface, ArrayAccess, JsonSerializab
         'id' => 'string',
         'account_id' => 'string',
         'callback_url' => 'string',
-        'type' => '\OpenAPI\Client\Model\WebhookSubscriptionTypeEnum',
-        'basic_authentication' => '\OpenAPI\Client\Model\WebhookSubscriptionBasicAuthentication',
+        'type' => '\Bandwidth\Model\WebhookSubscriptionTypeEnum',
+        'basic_authentication' => '\Bandwidth\Model\WebhookSubscriptionBasicAuthentication',
         'created_date' => '\DateTime',
         'modified_date' => '\DateTime'
     ];
@@ -423,9 +423,9 @@ class WebhookSubscription implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets type
      *
-     * @return \OpenAPI\Client\Model\WebhookSubscriptionTypeEnum|null
+     * @return \Bandwidth\Model\WebhookSubscriptionTypeEnum|null
      */
-    public function getType(): ?\OpenAPI\Client\Model\WebhookSubscriptionTypeEnum
+    public function getType(): ?\Bandwidth\Model\WebhookSubscriptionTypeEnum
     {
         return $this->container['type'];
     }
@@ -433,11 +433,11 @@ class WebhookSubscription implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets type
      *
-     * @param \OpenAPI\Client\Model\WebhookSubscriptionTypeEnum|null $type type
+     * @param \Bandwidth\Model\WebhookSubscriptionTypeEnum|null $type type
      *
      * @return $this
      */
-    public function setType(?\OpenAPI\Client\Model\WebhookSubscriptionTypeEnum $type): static
+    public function setType(?\Bandwidth\Model\WebhookSubscriptionTypeEnum $type): static
     {
         if (is_null($type)) {
             throw new InvalidArgumentException('non-nullable type cannot be null');
@@ -450,9 +450,9 @@ class WebhookSubscription implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets basic_authentication
      *
-     * @return \OpenAPI\Client\Model\WebhookSubscriptionBasicAuthentication|null
+     * @return \Bandwidth\Model\WebhookSubscriptionBasicAuthentication|null
      */
-    public function getBasicAuthentication(): ?\OpenAPI\Client\Model\WebhookSubscriptionBasicAuthentication
+    public function getBasicAuthentication(): ?\Bandwidth\Model\WebhookSubscriptionBasicAuthentication
     {
         return $this->container['basic_authentication'];
     }
@@ -460,11 +460,11 @@ class WebhookSubscription implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets basic_authentication
      *
-     * @param \OpenAPI\Client\Model\WebhookSubscriptionBasicAuthentication|null $basic_authentication basic_authentication
+     * @param \Bandwidth\Model\WebhookSubscriptionBasicAuthentication|null $basic_authentication basic_authentication
      *
      * @return $this
      */
-    public function setBasicAuthentication(?\OpenAPI\Client\Model\WebhookSubscriptionBasicAuthentication $basic_authentication): static
+    public function setBasicAuthentication(?\Bandwidth\Model\WebhookSubscriptionBasicAuthentication $basic_authentication): static
     {
         if (is_null($basic_authentication)) {
             throw new InvalidArgumentException('non-nullable basic_authentication cannot be null');

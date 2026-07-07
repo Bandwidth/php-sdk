@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MultiChannelAction Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class MultiChannelAction implements ModelInterface, ArrayAccess, JsonSerializabl
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'type' => '\OpenAPI\Client\Model\RbmActionTypeEnum',
+        'type' => '\Bandwidth\Model\RbmActionTypeEnum',
         'text' => 'string',
         'postback_data' => 'string',
         'phone_number' => 'string',
@@ -71,8 +71,8 @@ class MultiChannelAction implements ModelInterface, ArrayAccess, JsonSerializabl
         'end_time' => '\DateTime',
         'description' => 'string',
         'url' => 'string',
-        'application' => '\OpenAPI\Client\Model\RbmOpenUrlEnum',
-        'webview_view_mode' => '\OpenAPI\Client\Model\RbmWebViewEnum'
+        'application' => '\Bandwidth\Model\RbmOpenUrlEnum',
+        'webview_view_mode' => '\Bandwidth\Model\RbmWebViewEnum'
     ];
 
     /**
@@ -421,9 +421,9 @@ class MultiChannelAction implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Gets type
      *
-     * @return \OpenAPI\Client\Model\RbmActionTypeEnum
+     * @return \Bandwidth\Model\RbmActionTypeEnum
      */
-    public function getType(): \OpenAPI\Client\Model\RbmActionTypeEnum
+    public function getType(): \Bandwidth\Model\RbmActionTypeEnum
     {
         return $this->container['type'];
     }
@@ -431,11 +431,11 @@ class MultiChannelAction implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets type
      *
-     * @param \OpenAPI\Client\Model\RbmActionTypeEnum $type type
+     * @param \Bandwidth\Model\RbmActionTypeEnum $type type
      *
      * @return $this
      */
-    public function setType(\OpenAPI\Client\Model\RbmActionTypeEnum $type): static
+    public function setType(\Bandwidth\Model\RbmActionTypeEnum $type): static
     {
         if (is_null($type)) {
             throw new InvalidArgumentException('non-nullable type cannot be null');
@@ -769,9 +769,9 @@ class MultiChannelAction implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Gets application
      *
-     * @return \OpenAPI\Client\Model\RbmOpenUrlEnum|null
+     * @return \Bandwidth\Model\RbmOpenUrlEnum|null
      */
-    public function getApplication(): ?\OpenAPI\Client\Model\RbmOpenUrlEnum
+    public function getApplication(): ?\Bandwidth\Model\RbmOpenUrlEnum
     {
         return $this->container['application'];
     }
@@ -779,11 +779,11 @@ class MultiChannelAction implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets application
      *
-     * @param \OpenAPI\Client\Model\RbmOpenUrlEnum|null $application application
+     * @param \Bandwidth\Model\RbmOpenUrlEnum|null $application application
      *
      * @return $this
      */
-    public function setApplication(?\OpenAPI\Client\Model\RbmOpenUrlEnum $application): static
+    public function setApplication(?\Bandwidth\Model\RbmOpenUrlEnum $application): static
     {
         if (is_null($application)) {
             throw new InvalidArgumentException('non-nullable application cannot be null');
@@ -796,9 +796,9 @@ class MultiChannelAction implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Gets webview_view_mode
      *
-     * @return \OpenAPI\Client\Model\RbmWebViewEnum|null
+     * @return \Bandwidth\Model\RbmWebViewEnum|null
      */
-    public function getWebviewViewMode(): ?\OpenAPI\Client\Model\RbmWebViewEnum
+    public function getWebviewViewMode(): ?\Bandwidth\Model\RbmWebViewEnum
     {
         return $this->container['webview_view_mode'];
     }
@@ -806,11 +806,11 @@ class MultiChannelAction implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets webview_view_mode
      *
-     * @param \OpenAPI\Client\Model\RbmWebViewEnum|null $webview_view_mode webview_view_mode
+     * @param \Bandwidth\Model\RbmWebViewEnum|null $webview_view_mode webview_view_mode
      *
      * @return $this
      */
-    public function setWebviewViewMode(?\OpenAPI\Client\Model\RbmWebViewEnum $webview_view_mode): static
+    public function setWebviewViewMode(?\Bandwidth\Model\RbmWebViewEnum $webview_view_mode): static
     {
         if (is_null($webview_view_mode)) {
             throw new InvalidArgumentException('non-nullable webview_view_mode cannot be null');

@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * InboundCallbackMessage Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -64,17 +64,17 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
         'application_id' => 'string',
         'time' => '\DateTime',
         'segment_count' => 'int',
-        'direction' => '\OpenAPI\Client\Model\MessageDirectionEnum',
+        'direction' => '\Bandwidth\Model\MessageDirectionEnum',
         'to' => 'string[]',
         'from' => 'string',
         'text' => 'string',
         'tag' => 'string',
         'media' => 'string[]',
-        'priority' => '\OpenAPI\Client\Model\PriorityEnum',
-        'channel' => '\OpenAPI\Client\Model\MultiChannelMessageChannelEnum',
-        'content' => '\OpenAPI\Client\Model\MultiChannelMessageContent',
-        'suggestion_response' => '\OpenAPI\Client\Model\RbmSuggestionResponse',
-        'location_response' => '\OpenAPI\Client\Model\RbmLocationResponse'
+        'priority' => '\Bandwidth\Model\PriorityEnum',
+        'channel' => '\Bandwidth\Model\MultiChannelMessageChannelEnum',
+        'content' => '\Bandwidth\Model\MultiChannelMessageContent',
+        'suggestion_response' => '\Bandwidth\Model\RbmSuggestionResponse',
+        'location_response' => '\Bandwidth\Model\RbmLocationResponse'
     ];
 
     /**
@@ -531,9 +531,9 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\MessageDirectionEnum
+     * @return \Bandwidth\Model\MessageDirectionEnum
      */
-    public function getDirection(): \OpenAPI\Client\Model\MessageDirectionEnum
+    public function getDirection(): \Bandwidth\Model\MessageDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -541,11 +541,11 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\MessageDirectionEnum $direction direction
+     * @param \Bandwidth\Model\MessageDirectionEnum $direction direction
      *
      * @return $this
      */
-    public function setDirection(\OpenAPI\Client\Model\MessageDirectionEnum $direction): static
+    public function setDirection(\Bandwidth\Model\MessageDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');
@@ -695,9 +695,9 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets priority
      *
-     * @return \OpenAPI\Client\Model\PriorityEnum|null
+     * @return \Bandwidth\Model\PriorityEnum|null
      */
-    public function getPriority(): ?\OpenAPI\Client\Model\PriorityEnum
+    public function getPriority(): ?\Bandwidth\Model\PriorityEnum
     {
         return $this->container['priority'];
     }
@@ -705,11 +705,11 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets priority
      *
-     * @param \OpenAPI\Client\Model\PriorityEnum|null $priority priority
+     * @param \Bandwidth\Model\PriorityEnum|null $priority priority
      *
      * @return $this
      */
-    public function setPriority(?\OpenAPI\Client\Model\PriorityEnum $priority): static
+    public function setPriority(?\Bandwidth\Model\PriorityEnum $priority): static
     {
         if (is_null($priority)) {
             throw new InvalidArgumentException('non-nullable priority cannot be null');
@@ -722,9 +722,9 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets channel
      *
-     * @return \OpenAPI\Client\Model\MultiChannelMessageChannelEnum|null
+     * @return \Bandwidth\Model\MultiChannelMessageChannelEnum|null
      */
-    public function getChannel(): ?\OpenAPI\Client\Model\MultiChannelMessageChannelEnum
+    public function getChannel(): ?\Bandwidth\Model\MultiChannelMessageChannelEnum
     {
         return $this->container['channel'];
     }
@@ -732,11 +732,11 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets channel
      *
-     * @param \OpenAPI\Client\Model\MultiChannelMessageChannelEnum|null $channel channel
+     * @param \Bandwidth\Model\MultiChannelMessageChannelEnum|null $channel channel
      *
      * @return $this
      */
-    public function setChannel(?\OpenAPI\Client\Model\MultiChannelMessageChannelEnum $channel): static
+    public function setChannel(?\Bandwidth\Model\MultiChannelMessageChannelEnum $channel): static
     {
         if (is_null($channel)) {
             throw new InvalidArgumentException('non-nullable channel cannot be null');
@@ -749,9 +749,9 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets content
      *
-     * @return \OpenAPI\Client\Model\MultiChannelMessageContent|null
+     * @return \Bandwidth\Model\MultiChannelMessageContent|null
      */
-    public function getContent(): ?\OpenAPI\Client\Model\MultiChannelMessageContent
+    public function getContent(): ?\Bandwidth\Model\MultiChannelMessageContent
     {
         return $this->container['content'];
     }
@@ -759,11 +759,11 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets content
      *
-     * @param \OpenAPI\Client\Model\MultiChannelMessageContent|null $content content
+     * @param \Bandwidth\Model\MultiChannelMessageContent|null $content content
      *
      * @return $this
      */
-    public function setContent(?\OpenAPI\Client\Model\MultiChannelMessageContent $content): static
+    public function setContent(?\Bandwidth\Model\MultiChannelMessageContent $content): static
     {
         if (is_null($content)) {
             throw new InvalidArgumentException('non-nullable content cannot be null');
@@ -776,9 +776,9 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets suggestion_response
      *
-     * @return \OpenAPI\Client\Model\RbmSuggestionResponse|null
+     * @return \Bandwidth\Model\RbmSuggestionResponse|null
      */
-    public function getSuggestionResponse(): ?\OpenAPI\Client\Model\RbmSuggestionResponse
+    public function getSuggestionResponse(): ?\Bandwidth\Model\RbmSuggestionResponse
     {
         return $this->container['suggestion_response'];
     }
@@ -786,11 +786,11 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets suggestion_response
      *
-     * @param \OpenAPI\Client\Model\RbmSuggestionResponse|null $suggestion_response suggestion_response
+     * @param \Bandwidth\Model\RbmSuggestionResponse|null $suggestion_response suggestion_response
      *
      * @return $this
      */
-    public function setSuggestionResponse(?\OpenAPI\Client\Model\RbmSuggestionResponse $suggestion_response): static
+    public function setSuggestionResponse(?\Bandwidth\Model\RbmSuggestionResponse $suggestion_response): static
     {
         if (is_null($suggestion_response)) {
             throw new InvalidArgumentException('non-nullable suggestion_response cannot be null');
@@ -803,9 +803,9 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets location_response
      *
-     * @return \OpenAPI\Client\Model\RbmLocationResponse|null
+     * @return \Bandwidth\Model\RbmLocationResponse|null
      */
-    public function getLocationResponse(): ?\OpenAPI\Client\Model\RbmLocationResponse
+    public function getLocationResponse(): ?\Bandwidth\Model\RbmLocationResponse
     {
         return $this->container['location_response'];
     }
@@ -813,11 +813,11 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets location_response
      *
-     * @param \OpenAPI\Client\Model\RbmLocationResponse|null $location_response location_response
+     * @param \Bandwidth\Model\RbmLocationResponse|null $location_response location_response
      *
      * @return $this
      */
-    public function setLocationResponse(?\OpenAPI\Client\Model\RbmLocationResponse $location_response): static
+    public function setLocationResponse(?\Bandwidth\Model\RbmLocationResponse $location_response): static
     {
         if (is_null($location_response)) {
             throw new InvalidArgumentException('non-nullable location_response cannot be null');

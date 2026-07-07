@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CreateSyncLookupResponseData Class Doc Comment
  *
  * @description The phone number lookup response data
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,8 +61,8 @@ class CreateSyncLookupResponseData implements ModelInterface, ArrayAccess, JsonS
      */
     protected static array $openAPITypes = [
         'request_id' => 'string',
-        'status' => '\OpenAPI\Client\Model\CompletedLookupStatusEnum',
-        'results' => '\OpenAPI\Client\Model\LookupResult[]'
+        'status' => '\Bandwidth\Model\CompletedLookupStatusEnum',
+        'results' => '\Bandwidth\Model\LookupResult[]'
     ];
 
     /**
@@ -309,9 +309,9 @@ class CreateSyncLookupResponseData implements ModelInterface, ArrayAccess, JsonS
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\CompletedLookupStatusEnum|null
+     * @return \Bandwidth\Model\CompletedLookupStatusEnum|null
      */
-    public function getStatus(): ?\OpenAPI\Client\Model\CompletedLookupStatusEnum
+    public function getStatus(): ?\Bandwidth\Model\CompletedLookupStatusEnum
     {
         return $this->container['status'];
     }
@@ -319,11 +319,11 @@ class CreateSyncLookupResponseData implements ModelInterface, ArrayAccess, JsonS
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\CompletedLookupStatusEnum|null $status status
+     * @param \Bandwidth\Model\CompletedLookupStatusEnum|null $status status
      *
      * @return $this
      */
-    public function setStatus(?\OpenAPI\Client\Model\CompletedLookupStatusEnum $status): static
+    public function setStatus(?\Bandwidth\Model\CompletedLookupStatusEnum $status): static
     {
         if (is_null($status)) {
             throw new InvalidArgumentException('non-nullable status cannot be null');
@@ -336,7 +336,7 @@ class CreateSyncLookupResponseData implements ModelInterface, ArrayAccess, JsonS
     /**
      * Gets results
      *
-     * @return \OpenAPI\Client\Model\LookupResult[]|null
+     * @return \Bandwidth\Model\LookupResult[]|null
      */
     public function getResults(): ?array
     {
@@ -346,7 +346,7 @@ class CreateSyncLookupResponseData implements ModelInterface, ArrayAccess, JsonS
     /**
      * Sets results
      *
-     * @param \OpenAPI\Client\Model\LookupResult[]|null $results The carrier information results for the specified telephone numbers.
+     * @param \Bandwidth\Model\LookupResult[]|null $results The carrier information results for the specified telephone numbers.
      *
      * @return $this
      */

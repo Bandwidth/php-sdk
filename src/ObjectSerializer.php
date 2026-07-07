@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client;
+namespace Bandwidth;
 
 use BackedEnum;
 use DateTimeInterface;
 use DateTime;
 use GuzzleHttp\Psr7\Utils;
-use OpenAPI\Client\Model\ModelInterface;
+use Bandwidth\Model\ModelInterface;
 
 /**
  * ObjectSerializer Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -508,7 +508,7 @@ class ObjectSerializer
             // If a discriminator is defined and points to a valid subclass, use it.
             $discriminator = $class::DISCRIMINATOR;
             if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
-                $subclass = '\OpenAPI\Client\Model\\' . $data->{$discriminator};
+                $subclass = '\Bandwidth\Model\\' . $data->{$discriminator};
                 if (is_subclass_of($subclass, $class)) {
                     $class = $subclass;
                 }

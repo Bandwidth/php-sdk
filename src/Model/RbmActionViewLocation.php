@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RbmActionViewLocation Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class RbmActionViewLocation implements ModelInterface, ArrayAccess, JsonSerializ
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'type' => '\OpenAPI\Client\Model\RbmActionTypeEnum',
+        'type' => '\Bandwidth\Model\RbmActionTypeEnum',
         'text' => 'string',
         'postback_data' => 'string',
         'latitude' => 'float',
@@ -329,9 +329,9 @@ class RbmActionViewLocation implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets type
      *
-     * @return \OpenAPI\Client\Model\RbmActionTypeEnum
+     * @return \Bandwidth\Model\RbmActionTypeEnum
      */
-    public function getType(): \OpenAPI\Client\Model\RbmActionTypeEnum
+    public function getType(): \Bandwidth\Model\RbmActionTypeEnum
     {
         return $this->container['type'];
     }
@@ -339,11 +339,11 @@ class RbmActionViewLocation implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets type
      *
-     * @param \OpenAPI\Client\Model\RbmActionTypeEnum $type type
+     * @param \Bandwidth\Model\RbmActionTypeEnum $type type
      *
      * @return $this
      */
-    public function setType(\OpenAPI\Client\Model\RbmActionTypeEnum $type): static
+    public function setType(\Bandwidth\Model\RbmActionTypeEnum $type): static
     {
         if (is_null($type)) {
             throw new InvalidArgumentException('non-nullable type cannot be null');

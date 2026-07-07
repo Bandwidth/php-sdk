@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MultiChannelMessageResponseData Class Doc Comment
  *
  * @description The data returned in a multichannel message response.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -62,11 +62,11 @@ class MultiChannelMessageResponseData implements ModelInterface, ArrayAccess, Js
     protected static array $openAPITypes = [
         'id' => 'string',
         'time' => '\DateTime',
-        'direction' => '\OpenAPI\Client\Model\MessageDirectionEnum',
+        'direction' => '\Bandwidth\Model\MessageDirectionEnum',
         'to' => 'string[]',
-        'channel_list' => '\OpenAPI\Client\Model\MultiChannelChannelListResponseObject[]',
+        'channel_list' => '\Bandwidth\Model\MultiChannelChannelListResponseObject[]',
         'tag' => 'string',
-        'priority' => '\OpenAPI\Client\Model\PriorityEnum',
+        'priority' => '\Bandwidth\Model\PriorityEnum',
         'expiration' => '\DateTime'
     ];
 
@@ -390,9 +390,9 @@ class MultiChannelMessageResponseData implements ModelInterface, ArrayAccess, Js
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\MessageDirectionEnum
+     * @return \Bandwidth\Model\MessageDirectionEnum
      */
-    public function getDirection(): \OpenAPI\Client\Model\MessageDirectionEnum
+    public function getDirection(): \Bandwidth\Model\MessageDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -400,11 +400,11 @@ class MultiChannelMessageResponseData implements ModelInterface, ArrayAccess, Js
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\MessageDirectionEnum $direction direction
+     * @param \Bandwidth\Model\MessageDirectionEnum $direction direction
      *
      * @return $this
      */
-    public function setDirection(\OpenAPI\Client\Model\MessageDirectionEnum $direction): static
+    public function setDirection(\Bandwidth\Model\MessageDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');
@@ -446,7 +446,7 @@ class MultiChannelMessageResponseData implements ModelInterface, ArrayAccess, Js
     /**
      * Gets channel_list
      *
-     * @return \OpenAPI\Client\Model\MultiChannelChannelListResponseObject[]
+     * @return \Bandwidth\Model\MultiChannelChannelListResponseObject[]
      */
     public function getChannelList(): array
     {
@@ -456,7 +456,7 @@ class MultiChannelMessageResponseData implements ModelInterface, ArrayAccess, Js
     /**
      * Sets channel_list
      *
-     * @param \OpenAPI\Client\Model\MultiChannelChannelListResponseObject[] $channel_list A list of message bodies. The messages will be attempted in the order they are listed. Once a message sends successfully, the others will be ignored.
+     * @param \Bandwidth\Model\MultiChannelChannelListResponseObject[] $channel_list A list of message bodies. The messages will be attempted in the order they are listed. Once a message sends successfully, the others will be ignored.
      *
      * @return $this
      */
@@ -504,9 +504,9 @@ class MultiChannelMessageResponseData implements ModelInterface, ArrayAccess, Js
     /**
      * Gets priority
      *
-     * @return \OpenAPI\Client\Model\PriorityEnum|null
+     * @return \Bandwidth\Model\PriorityEnum|null
      */
-    public function getPriority(): ?\OpenAPI\Client\Model\PriorityEnum
+    public function getPriority(): ?\Bandwidth\Model\PriorityEnum
     {
         return $this->container['priority'];
     }
@@ -514,11 +514,11 @@ class MultiChannelMessageResponseData implements ModelInterface, ArrayAccess, Js
     /**
      * Sets priority
      *
-     * @param \OpenAPI\Client\Model\PriorityEnum|null $priority priority
+     * @param \Bandwidth\Model\PriorityEnum|null $priority priority
      *
      * @return $this
      */
-    public function setPriority(?\OpenAPI\Client\Model\PriorityEnum $priority): static
+    public function setPriority(?\Bandwidth\Model\PriorityEnum $priority): static
     {
         if (is_null($priority)) {
             throw new InvalidArgumentException('non-nullable priority cannot be null');

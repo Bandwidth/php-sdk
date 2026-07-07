@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,13 +26,13 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 /**
  * CallStateEnum Class Doc Comment
  *
  * @description The call state. Possible values:&lt;br&gt;&#x60;active&#x60; to redirect the call (default)&lt;br&gt;&#x60;completed&#x60; to hang up the call if it is answered, cancel it if it is an unanswered outbound call, or reject it if it an unanswered inbound call
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

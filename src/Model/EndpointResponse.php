@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * EndpointResponse Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,9 +59,9 @@ class EndpointResponse implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'links' => '\OpenAPI\Client\Model\BrtcLink[]',
-        'data' => '\OpenAPI\Client\Model\Endpoint',
-        'errors' => '\OpenAPI\Client\Model\BrtcError[]'
+        'links' => '\Bandwidth\Model\BrtcLink[]',
+        'data' => '\Bandwidth\Model\Endpoint',
+        'errors' => '\Bandwidth\Model\BrtcError[]'
     ];
 
     /**
@@ -290,7 +290,7 @@ class EndpointResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets links
      *
-     * @return \OpenAPI\Client\Model\BrtcLink[]
+     * @return \Bandwidth\Model\BrtcLink[]
      */
     public function getLinks(): array
     {
@@ -300,7 +300,7 @@ class EndpointResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets links
      *
-     * @param \OpenAPI\Client\Model\BrtcLink[] $links links
+     * @param \Bandwidth\Model\BrtcLink[] $links links
      *
      * @return $this
      */
@@ -317,9 +317,9 @@ class EndpointResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\Endpoint
+     * @return \Bandwidth\Model\Endpoint
      */
-    public function getData(): \OpenAPI\Client\Model\Endpoint
+    public function getData(): \Bandwidth\Model\Endpoint
     {
         return $this->container['data'];
     }
@@ -327,11 +327,11 @@ class EndpointResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\Endpoint $data data
+     * @param \Bandwidth\Model\Endpoint $data data
      *
      * @return $this
      */
-    public function setData(\OpenAPI\Client\Model\Endpoint $data): static
+    public function setData(\Bandwidth\Model\Endpoint $data): static
     {
         if (is_null($data)) {
             throw new InvalidArgumentException('non-nullable data cannot be null');
@@ -344,7 +344,7 @@ class EndpointResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\BrtcError[]
+     * @return \Bandwidth\Model\BrtcError[]
      */
     public function getErrors(): array
     {
@@ -354,7 +354,7 @@ class EndpointResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\BrtcError[] $errors errors
+     * @param \Bandwidth\Model\BrtcError[] $errors errors
      *
      * @return $this
      */

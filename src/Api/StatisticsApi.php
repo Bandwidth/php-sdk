@@ -3,7 +3,7 @@
  * StatisticsApi
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Bandwidth\Api;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client;
@@ -38,16 +38,16 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ApiException;
+use Bandwidth\Configuration;
+use Bandwidth\HeaderSelector;
+use Bandwidth\FormDataProcessor;
+use Bandwidth\ObjectSerializer;
 
 /**
  * StatisticsApi Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -142,14 +142,14 @@ class StatisticsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AccountStatistics|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\AccountStatistics|\Bandwidth\Model\VoiceApiError
      */
     public function getStatistics(
         string $account_id,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['getStatistics'][0]
-    ): \OpenAPI\Client\Model\AccountStatistics|\OpenAPI\Client\Model\VoiceApiError
+    ): \Bandwidth\Model\AccountStatistics|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->getStatisticsWithHttpInfo($account_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -171,7 +171,7 @@ class StatisticsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AccountStatistics|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\AccountStatistics|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getStatisticsWithHttpInfo(
         string $account_id,
@@ -207,55 +207,55 @@ class StatisticsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\AccountStatistics',
+                        '\Bandwidth\Model\AccountStatistics',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -276,7 +276,7 @@ class StatisticsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\AccountStatistics',
+                '\Bandwidth\Model\AccountStatistics',
                 $request,
                 $response,
             );
@@ -285,7 +285,7 @@ class StatisticsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\AccountStatistics',
+                        '\Bandwidth\Model\AccountStatistics',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -293,7 +293,7 @@ class StatisticsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -301,7 +301,7 @@ class StatisticsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -309,7 +309,7 @@ class StatisticsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -317,7 +317,7 @@ class StatisticsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -325,7 +325,7 @@ class StatisticsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -333,7 +333,7 @@ class StatisticsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -341,7 +341,7 @@ class StatisticsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -349,7 +349,7 @@ class StatisticsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -416,7 +416,7 @@ class StatisticsApi
         string $contentType = self::contentTypes['getStatistics'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\AccountStatistics';
+        $returnType = '\Bandwidth\Model\AccountStatistics';
         $request = $this->getStatisticsRequest($account_id, $hostIndex, $variables, $contentType);
 
         return $this->client

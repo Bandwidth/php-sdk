@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MultiChannelChannelListSMSResponseObject Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,8 +61,8 @@ class MultiChannelChannelListSMSResponseObject implements ModelInterface, ArrayA
     protected static array $openAPITypes = [
         'from' => 'string',
         'application_id' => 'string',
-        'channel' => '\OpenAPI\Client\Model\MultiChannelMessageChannelEnum',
-        'content' => '\OpenAPI\Client\Model\SmsMessageContent',
+        'channel' => '\Bandwidth\Model\MultiChannelMessageChannelEnum',
+        'content' => '\Bandwidth\Model\SmsMessageContent',
         'owner' => 'string'
     ];
 
@@ -364,9 +364,9 @@ class MultiChannelChannelListSMSResponseObject implements ModelInterface, ArrayA
     /**
      * Gets channel
      *
-     * @return \OpenAPI\Client\Model\MultiChannelMessageChannelEnum
+     * @return \Bandwidth\Model\MultiChannelMessageChannelEnum
      */
-    public function getChannel(): \OpenAPI\Client\Model\MultiChannelMessageChannelEnum
+    public function getChannel(): \Bandwidth\Model\MultiChannelMessageChannelEnum
     {
         return $this->container['channel'];
     }
@@ -374,11 +374,11 @@ class MultiChannelChannelListSMSResponseObject implements ModelInterface, ArrayA
     /**
      * Sets channel
      *
-     * @param \OpenAPI\Client\Model\MultiChannelMessageChannelEnum $channel channel
+     * @param \Bandwidth\Model\MultiChannelMessageChannelEnum $channel channel
      *
      * @return $this
      */
-    public function setChannel(\OpenAPI\Client\Model\MultiChannelMessageChannelEnum $channel): static
+    public function setChannel(\Bandwidth\Model\MultiChannelMessageChannelEnum $channel): static
     {
         if (is_null($channel)) {
             throw new InvalidArgumentException('non-nullable channel cannot be null');
@@ -391,9 +391,9 @@ class MultiChannelChannelListSMSResponseObject implements ModelInterface, ArrayA
     /**
      * Gets content
      *
-     * @return \OpenAPI\Client\Model\SmsMessageContent
+     * @return \Bandwidth\Model\SmsMessageContent
      */
-    public function getContent(): \OpenAPI\Client\Model\SmsMessageContent
+    public function getContent(): \Bandwidth\Model\SmsMessageContent
     {
         return $this->container['content'];
     }
@@ -401,11 +401,11 @@ class MultiChannelChannelListSMSResponseObject implements ModelInterface, ArrayA
     /**
      * Sets content
      *
-     * @param \OpenAPI\Client\Model\SmsMessageContent $content content
+     * @param \Bandwidth\Model\SmsMessageContent $content content
      *
      * @return $this
      */
-    public function setContent(\OpenAPI\Client\Model\SmsMessageContent $content): static
+    public function setContent(\Bandwidth\Model\SmsMessageContent $content): static
     {
         if (is_null($content)) {
             throw new InvalidArgumentException('non-nullable content cannot be null');

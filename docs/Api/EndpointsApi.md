@@ -1,4 +1,4 @@
-# OpenAPI\Client\EndpointsApi
+# Bandwidth\EndpointsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createEndpoint()`
 
 ```php
-createEndpoint($account_id, $body): \OpenAPI\Client\Model\CreateEndpointResponse
+createEndpoint($account_id, $body): \Bandwidth\Model\CreateEndpointResponse
 ```
 ### URI(s):
 - https://api.bandwidth.com/v2 Production
@@ -30,22 +30,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\EndpointsApi(
+$apiInstance = new Bandwidth\Api\EndpointsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
-$body = new \OpenAPI\Client\Model\CreateWebRtcConnectionRequest(); // \OpenAPI\Client\Model\CreateWebRtcConnectionRequest
+$body = new \Bandwidth\Model\CreateWebRtcConnectionRequest(); // \Bandwidth\Model\CreateWebRtcConnectionRequest
 
 $hostIndex = 0;
 $variables = [
@@ -64,13 +64,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
-| **body** | **\OpenAPI\Client\Model\CreateWebRtcConnectionRequest**|  | |
+| **body** | **\Bandwidth\Model\CreateWebRtcConnectionRequest**|  | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateEndpointResponse**](../Model/CreateEndpointResponse.md)
+[**\Bandwidth\Model\CreateEndpointResponse**](../Model/CreateEndpointResponse.md)
 
 ### Authorization
 
@@ -104,15 +104,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\EndpointsApi(
+$apiInstance = new Bandwidth\Api\EndpointsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -161,7 +161,7 @@ void (empty response body)
 ## `getEndpoint()`
 
 ```php
-getEndpoint($account_id, $endpoint_id): \OpenAPI\Client\Model\EndpointResponse
+getEndpoint($account_id, $endpoint_id): \Bandwidth\Model\EndpointResponse
 ```
 ### URI(s):
 - https://api.bandwidth.com/v2 Production
@@ -177,15 +177,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\EndpointsApi(
+$apiInstance = new Bandwidth\Api\EndpointsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -217,7 +217,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\EndpointResponse**](../Model/EndpointResponse.md)
+[**\Bandwidth\Model\EndpointResponse**](../Model/EndpointResponse.md)
 
 ### Authorization
 
@@ -235,7 +235,7 @@ try {
 ## `listEndpoints()`
 
 ```php
-listEndpoints($account_id, $type, $status, $after_cursor, $limit): \OpenAPI\Client\Model\ListEndpointsResponse
+listEndpoints($account_id, $type, $status, $after_cursor, $limit): \Bandwidth\Model\ListEndpointsResponse
 ```
 ### URI(s):
 - https://api.bandwidth.com/v2 Production
@@ -251,23 +251,23 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\EndpointsApi(
+$apiInstance = new Bandwidth\Api\EndpointsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
-$type = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\EndpointTypeEnum(); // \OpenAPI\Client\Model\EndpointTypeEnum | The type of endpoint.
-$status = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\EndpointStatusEnum(); // \OpenAPI\Client\Model\EndpointStatusEnum | The status of the endpoint.
+$type = new \Bandwidth\Model\\Bandwidth\Model\EndpointTypeEnum(); // \Bandwidth\Model\EndpointTypeEnum | The type of endpoint.
+$status = new \Bandwidth\Model\\Bandwidth\Model\EndpointStatusEnum(); // \Bandwidth\Model\EndpointStatusEnum | The status of the endpoint.
 $after_cursor = TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ==; // string | The cursor to use for pagination. This is the value of the `next` link in the previous response.
 $limit = 2; // int | The maximum number of endpoints to return in the response.
 
@@ -288,8 +288,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
-| **type** | [**\OpenAPI\Client\Model\EndpointTypeEnum**](../Model/.md)| The type of endpoint. | [optional] |
-| **status** | [**\OpenAPI\Client\Model\EndpointStatusEnum**](../Model/.md)| The status of the endpoint. | [optional] |
+| **type** | [**\Bandwidth\Model\EndpointTypeEnum**](../Model/.md)| The type of endpoint. | [optional] |
+| **status** | [**\Bandwidth\Model\EndpointStatusEnum**](../Model/.md)| The status of the endpoint. | [optional] |
 | **after_cursor** | **string**| The cursor to use for pagination. This is the value of the &#x60;next&#x60; link in the previous response. | [optional] |
 | **limit** | **int**| The maximum number of endpoints to return in the response. | [optional] [default to 100] |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
@@ -297,7 +297,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListEndpointsResponse**](../Model/ListEndpointsResponse.md)
+[**\Bandwidth\Model\ListEndpointsResponse**](../Model/ListEndpointsResponse.md)
 
 ### Authorization
 
@@ -331,15 +331,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\EndpointsApi(
+$apiInstance = new Bandwidth\Api\EndpointsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),

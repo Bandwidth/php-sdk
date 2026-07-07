@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CreateMultiChannelMessageResponse Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,9 +59,9 @@ class CreateMultiChannelMessageResponse implements ModelInterface, ArrayAccess, 
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'links' => '\OpenAPI\Client\Model\Link[]',
-        'data' => '\OpenAPI\Client\Model\MultiChannelMessageResponseData',
-        'errors' => '\OpenAPI\Client\Model\ErrorObject[]'
+        'links' => '\Bandwidth\Model\Link[]',
+        'data' => '\Bandwidth\Model\MultiChannelMessageResponseData',
+        'errors' => '\Bandwidth\Model\ErrorObject[]'
     ];
 
     /**
@@ -281,7 +281,7 @@ class CreateMultiChannelMessageResponse implements ModelInterface, ArrayAccess, 
     /**
      * Gets links
      *
-     * @return \OpenAPI\Client\Model\Link[]|null
+     * @return \Bandwidth\Model\Link[]|null
      */
     public function getLinks(): ?array
     {
@@ -291,7 +291,7 @@ class CreateMultiChannelMessageResponse implements ModelInterface, ArrayAccess, 
     /**
      * Sets links
      *
-     * @param \OpenAPI\Client\Model\Link[]|null $links links
+     * @param \Bandwidth\Model\Link[]|null $links links
      *
      * @return $this
      */
@@ -308,9 +308,9 @@ class CreateMultiChannelMessageResponse implements ModelInterface, ArrayAccess, 
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\MultiChannelMessageResponseData|null
+     * @return \Bandwidth\Model\MultiChannelMessageResponseData|null
      */
-    public function getData(): ?\OpenAPI\Client\Model\MultiChannelMessageResponseData
+    public function getData(): ?\Bandwidth\Model\MultiChannelMessageResponseData
     {
         return $this->container['data'];
     }
@@ -318,11 +318,11 @@ class CreateMultiChannelMessageResponse implements ModelInterface, ArrayAccess, 
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\MultiChannelMessageResponseData|null $data data
+     * @param \Bandwidth\Model\MultiChannelMessageResponseData|null $data data
      *
      * @return $this
      */
-    public function setData(?\OpenAPI\Client\Model\MultiChannelMessageResponseData $data): static
+    public function setData(?\Bandwidth\Model\MultiChannelMessageResponseData $data): static
     {
         if (is_null($data)) {
             throw new InvalidArgumentException('non-nullable data cannot be null');
@@ -335,7 +335,7 @@ class CreateMultiChannelMessageResponse implements ModelInterface, ArrayAccess, 
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorObject[]|null
+     * @return \Bandwidth\Model\ErrorObject[]|null
      */
     public function getErrors(): ?array
     {
@@ -345,7 +345,7 @@ class CreateMultiChannelMessageResponse implements ModelInterface, ArrayAccess, 
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorObject[]|null $errors errors
+     * @param \Bandwidth\Model\ErrorObject[]|null $errors errors
      *
      * @return $this
      */

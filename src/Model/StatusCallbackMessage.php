@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * StatusCallbackMessage Class Doc Comment
  *
  * @description Message payload schema within a callback
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -65,14 +65,14 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
         'application_id' => 'string',
         'time' => '\DateTime',
         'segment_count' => 'int',
-        'direction' => '\OpenAPI\Client\Model\MessageDirectionEnum',
+        'direction' => '\Bandwidth\Model\MessageDirectionEnum',
         'to' => 'string[]',
         'from' => 'string',
         'text' => 'string',
         'tag' => 'string',
         'media' => 'string[]',
-        'priority' => '\OpenAPI\Client\Model\PriorityEnum',
-        'channel' => '\OpenAPI\Client\Model\MultiChannelMessageChannelEnum'
+        'priority' => '\Bandwidth\Model\PriorityEnum',
+        'channel' => '\Bandwidth\Model\MultiChannelMessageChannelEnum'
     ];
 
     /**
@@ -511,9 +511,9 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\MessageDirectionEnum
+     * @return \Bandwidth\Model\MessageDirectionEnum
      */
-    public function getDirection(): \OpenAPI\Client\Model\MessageDirectionEnum
+    public function getDirection(): \Bandwidth\Model\MessageDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -521,11 +521,11 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\MessageDirectionEnum $direction direction
+     * @param \Bandwidth\Model\MessageDirectionEnum $direction direction
      *
      * @return $this
      */
-    public function setDirection(\OpenAPI\Client\Model\MessageDirectionEnum $direction): static
+    public function setDirection(\Bandwidth\Model\MessageDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');
@@ -675,9 +675,9 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets priority
      *
-     * @return \OpenAPI\Client\Model\PriorityEnum|null
+     * @return \Bandwidth\Model\PriorityEnum|null
      */
-    public function getPriority(): ?\OpenAPI\Client\Model\PriorityEnum
+    public function getPriority(): ?\Bandwidth\Model\PriorityEnum
     {
         return $this->container['priority'];
     }
@@ -685,11 +685,11 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets priority
      *
-     * @param \OpenAPI\Client\Model\PriorityEnum|null $priority priority
+     * @param \Bandwidth\Model\PriorityEnum|null $priority priority
      *
      * @return $this
      */
-    public function setPriority(?\OpenAPI\Client\Model\PriorityEnum $priority): static
+    public function setPriority(?\Bandwidth\Model\PriorityEnum $priority): static
     {
         if (is_null($priority)) {
             throw new InvalidArgumentException('non-nullable priority cannot be null');
@@ -702,9 +702,9 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets channel
      *
-     * @return \OpenAPI\Client\Model\MultiChannelMessageChannelEnum|null
+     * @return \Bandwidth\Model\MultiChannelMessageChannelEnum|null
      */
-    public function getChannel(): ?\OpenAPI\Client\Model\MultiChannelMessageChannelEnum
+    public function getChannel(): ?\Bandwidth\Model\MultiChannelMessageChannelEnum
     {
         return $this->container['channel'];
     }
@@ -712,11 +712,11 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets channel
      *
-     * @param \OpenAPI\Client\Model\MultiChannelMessageChannelEnum|null $channel channel
+     * @param \Bandwidth\Model\MultiChannelMessageChannelEnum|null $channel channel
      *
      * @return $this
      */
-    public function setChannel(?\OpenAPI\Client\Model\MultiChannelMessageChannelEnum $channel): static
+    public function setChannel(?\Bandwidth\Model\MultiChannelMessageChannelEnum $channel): static
     {
         if (is_null($channel)) {
             throw new InvalidArgumentException('non-nullable channel cannot be null');

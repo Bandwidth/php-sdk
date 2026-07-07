@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * VerificationDenialWebhook Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class VerificationDenialWebhook implements ModelInterface, ArrayAccess, JsonSeri
      */
     protected static array $openAPITypes = [
         'account_id' => 'string',
-        'additional_denial_reasons' => '\OpenAPI\Client\Model\AdditionalDenialReason[]',
+        'additional_denial_reasons' => '\Bandwidth\Model\AdditionalDenialReason[]',
         'decline_reason_description' => 'string',
         'denial_status_code' => 'int',
         'internal_ticket_number' => 'string',
@@ -369,7 +369,7 @@ class VerificationDenialWebhook implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets additional_denial_reasons
      *
-     * @return \OpenAPI\Client\Model\AdditionalDenialReason[]|null
+     * @return \Bandwidth\Model\AdditionalDenialReason[]|null
      */
     public function getAdditionalDenialReasons(): ?array
     {
@@ -379,7 +379,7 @@ class VerificationDenialWebhook implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets additional_denial_reasons
      *
-     * @param \OpenAPI\Client\Model\AdditionalDenialReason[]|null $additional_denial_reasons An optional list of denial reasons in addition to declineReasonDescription when multiple reasons apply.
+     * @param \Bandwidth\Model\AdditionalDenialReason[]|null $additional_denial_reasons An optional list of denial reasons in addition to declineReasonDescription when multiple reasons apply.
      *
      * @return $this
      */

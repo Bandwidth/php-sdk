@@ -32,10 +32,10 @@
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
-        "psr-4": { "OpenAPI\\Client\\" : "src/" }
+        "psr-4": { "Bandwidth\\" : "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "OpenAPI\\Client\\Test\\" : "tests/" }
+        "psr-4": { "Bandwidth\\Test\\" : "tests/" }
     },
     "scripts": {
         "test": [

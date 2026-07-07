@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * TranscriptionAvailableCallback Class Doc Comment
  *
  * @description The Transcription Available event is sent when the recording transcription is available to be downloaded.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -66,7 +66,7 @@ class TranscriptionAvailableCallback implements ModelInterface, ArrayAccess, Jso
         'application_id' => 'string',
         'from' => 'string',
         'to' => 'string',
-        'direction' => '\OpenAPI\Client\Model\CallDirectionEnum',
+        'direction' => '\Bandwidth\Model\CallDirectionEnum',
         'call_id' => 'string',
         'call_url' => 'string',
         'media_url' => 'string',
@@ -76,9 +76,9 @@ class TranscriptionAvailableCallback implements ModelInterface, ArrayAccess, Jso
         'start_time' => '\DateTime',
         'end_time' => '\DateTime',
         'duration' => 'string',
-        'file_format' => '\OpenAPI\Client\Model\FileFormatEnum',
+        'file_format' => '\Bandwidth\Model\FileFormatEnum',
         'tag' => 'string',
-        'transcription' => '\OpenAPI\Client\Model\Transcription',
+        'transcription' => '\Bandwidth\Model\Transcription',
         'transfer_caller_id' => 'string',
         'transfer_to' => 'string'
     ];
@@ -570,9 +570,9 @@ class TranscriptionAvailableCallback implements ModelInterface, ArrayAccess, Jso
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\CallDirectionEnum|null
+     * @return \Bandwidth\Model\CallDirectionEnum|null
      */
-    public function getDirection(): ?\OpenAPI\Client\Model\CallDirectionEnum
+    public function getDirection(): ?\Bandwidth\Model\CallDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -580,11 +580,11 @@ class TranscriptionAvailableCallback implements ModelInterface, ArrayAccess, Jso
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\CallDirectionEnum|null $direction direction
+     * @param \Bandwidth\Model\CallDirectionEnum|null $direction direction
      *
      * @return $this
      */
-    public function setDirection(?\OpenAPI\Client\Model\CallDirectionEnum $direction): static
+    public function setDirection(?\Bandwidth\Model\CallDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');
@@ -854,9 +854,9 @@ class TranscriptionAvailableCallback implements ModelInterface, ArrayAccess, Jso
     /**
      * Gets file_format
      *
-     * @return \OpenAPI\Client\Model\FileFormatEnum|null
+     * @return \Bandwidth\Model\FileFormatEnum|null
      */
-    public function getFileFormat(): ?\OpenAPI\Client\Model\FileFormatEnum
+    public function getFileFormat(): ?\Bandwidth\Model\FileFormatEnum
     {
         return $this->container['file_format'];
     }
@@ -864,11 +864,11 @@ class TranscriptionAvailableCallback implements ModelInterface, ArrayAccess, Jso
     /**
      * Sets file_format
      *
-     * @param \OpenAPI\Client\Model\FileFormatEnum|null $file_format file_format
+     * @param \Bandwidth\Model\FileFormatEnum|null $file_format file_format
      *
      * @return $this
      */
-    public function setFileFormat(?\OpenAPI\Client\Model\FileFormatEnum $file_format): static
+    public function setFileFormat(?\Bandwidth\Model\FileFormatEnum $file_format): static
     {
         if (is_null($file_format)) {
             throw new InvalidArgumentException('non-nullable file_format cannot be null');
@@ -915,9 +915,9 @@ class TranscriptionAvailableCallback implements ModelInterface, ArrayAccess, Jso
     /**
      * Gets transcription
      *
-     * @return \OpenAPI\Client\Model\Transcription|null
+     * @return \Bandwidth\Model\Transcription|null
      */
-    public function getTranscription(): ?\OpenAPI\Client\Model\Transcription
+    public function getTranscription(): ?\Bandwidth\Model\Transcription
     {
         return $this->container['transcription'];
     }
@@ -925,11 +925,11 @@ class TranscriptionAvailableCallback implements ModelInterface, ArrayAccess, Jso
     /**
      * Sets transcription
      *
-     * @param \OpenAPI\Client\Model\Transcription|null $transcription transcription
+     * @param \Bandwidth\Model\Transcription|null $transcription transcription
      *
      * @return $this
      */
-    public function setTranscription(?\OpenAPI\Client\Model\Transcription $transcription): static
+    public function setTranscription(?\Bandwidth\Model\Transcription $transcription): static
     {
         if (is_null($transcription)) {
             throw new InvalidArgumentException('non-nullable transcription cannot be null');

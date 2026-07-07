@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RbmStandaloneCard Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,10 +59,10 @@ class RbmStandaloneCard implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'orientation' => '\OpenAPI\Client\Model\StandaloneCardOrientationEnum',
-        'thumbnail_image_alignment' => '\OpenAPI\Client\Model\ThumbnailAlignmentEnum',
-        'card_content' => '\OpenAPI\Client\Model\RbmCardContent',
-        'suggestions' => '\OpenAPI\Client\Model\MultiChannelAction[]'
+        'orientation' => '\Bandwidth\Model\StandaloneCardOrientationEnum',
+        'thumbnail_image_alignment' => '\Bandwidth\Model\ThumbnailAlignmentEnum',
+        'card_content' => '\Bandwidth\Model\RbmCardContent',
+        'suggestions' => '\Bandwidth\Model\MultiChannelAction[]'
     ];
 
     /**
@@ -298,9 +298,9 @@ class RbmStandaloneCard implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets orientation
      *
-     * @return \OpenAPI\Client\Model\StandaloneCardOrientationEnum
+     * @return \Bandwidth\Model\StandaloneCardOrientationEnum
      */
-    public function getOrientation(): \OpenAPI\Client\Model\StandaloneCardOrientationEnum
+    public function getOrientation(): \Bandwidth\Model\StandaloneCardOrientationEnum
     {
         return $this->container['orientation'];
     }
@@ -308,11 +308,11 @@ class RbmStandaloneCard implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets orientation
      *
-     * @param \OpenAPI\Client\Model\StandaloneCardOrientationEnum $orientation orientation
+     * @param \Bandwidth\Model\StandaloneCardOrientationEnum $orientation orientation
      *
      * @return $this
      */
-    public function setOrientation(\OpenAPI\Client\Model\StandaloneCardOrientationEnum $orientation): static
+    public function setOrientation(\Bandwidth\Model\StandaloneCardOrientationEnum $orientation): static
     {
         if (is_null($orientation)) {
             throw new InvalidArgumentException('non-nullable orientation cannot be null');
@@ -325,9 +325,9 @@ class RbmStandaloneCard implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets thumbnail_image_alignment
      *
-     * @return \OpenAPI\Client\Model\ThumbnailAlignmentEnum|null
+     * @return \Bandwidth\Model\ThumbnailAlignmentEnum|null
      */
-    public function getThumbnailImageAlignment(): ?\OpenAPI\Client\Model\ThumbnailAlignmentEnum
+    public function getThumbnailImageAlignment(): ?\Bandwidth\Model\ThumbnailAlignmentEnum
     {
         return $this->container['thumbnail_image_alignment'];
     }
@@ -335,11 +335,11 @@ class RbmStandaloneCard implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets thumbnail_image_alignment
      *
-     * @param \OpenAPI\Client\Model\ThumbnailAlignmentEnum|null $thumbnail_image_alignment thumbnail_image_alignment
+     * @param \Bandwidth\Model\ThumbnailAlignmentEnum|null $thumbnail_image_alignment thumbnail_image_alignment
      *
      * @return $this
      */
-    public function setThumbnailImageAlignment(?\OpenAPI\Client\Model\ThumbnailAlignmentEnum $thumbnail_image_alignment): static
+    public function setThumbnailImageAlignment(?\Bandwidth\Model\ThumbnailAlignmentEnum $thumbnail_image_alignment): static
     {
         if (is_null($thumbnail_image_alignment)) {
             throw new InvalidArgumentException('non-nullable thumbnail_image_alignment cannot be null');
@@ -352,9 +352,9 @@ class RbmStandaloneCard implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets card_content
      *
-     * @return \OpenAPI\Client\Model\RbmCardContent
+     * @return \Bandwidth\Model\RbmCardContent
      */
-    public function getCardContent(): \OpenAPI\Client\Model\RbmCardContent
+    public function getCardContent(): \Bandwidth\Model\RbmCardContent
     {
         return $this->container['card_content'];
     }
@@ -362,11 +362,11 @@ class RbmStandaloneCard implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets card_content
      *
-     * @param \OpenAPI\Client\Model\RbmCardContent $card_content card_content
+     * @param \Bandwidth\Model\RbmCardContent $card_content card_content
      *
      * @return $this
      */
-    public function setCardContent(\OpenAPI\Client\Model\RbmCardContent $card_content): static
+    public function setCardContent(\Bandwidth\Model\RbmCardContent $card_content): static
     {
         if (is_null($card_content)) {
             throw new InvalidArgumentException('non-nullable card_content cannot be null');
@@ -379,7 +379,7 @@ class RbmStandaloneCard implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets suggestions
      *
-     * @return \OpenAPI\Client\Model\MultiChannelAction[]|null
+     * @return \Bandwidth\Model\MultiChannelAction[]|null
      */
     public function getSuggestions(): ?array
     {
@@ -389,7 +389,7 @@ class RbmStandaloneCard implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets suggestions
      *
-     * @param \OpenAPI\Client\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
+     * @param \Bandwidth\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
      *
      * @return $this
      */

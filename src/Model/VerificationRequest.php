@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * VerificationRequest Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,23 +59,23 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'business_address' => '\OpenAPI\Client\Model\Address',
-        'business_contact' => '\OpenAPI\Client\Model\Contact',
+        'business_address' => '\Bandwidth\Model\Address',
+        'business_contact' => '\Bandwidth\Model\Contact',
         'message_volume' => 'int',
         'phone_numbers' => 'string[]',
         'use_case' => 'string',
         'use_case_summary' => 'string',
         'production_message_content' => 'string',
-        'opt_in_workflow' => '\OpenAPI\Client\Model\OptInWorkflow',
+        'opt_in_workflow' => '\Bandwidth\Model\OptInWorkflow',
         'additional_information' => 'string',
         'isv_reseller' => 'string',
         'privacy_policy_url' => 'string',
         'terms_and_conditions_url' => 'string',
         'business_dba' => 'string',
         'business_registration_number' => 'string',
-        'business_registration_type' => '\OpenAPI\Client\Model\BusinessRegistrationTypeEnum',
+        'business_registration_type' => '\Bandwidth\Model\BusinessRegistrationTypeEnum',
         'business_registration_issuing_country' => 'string',
-        'business_entity_type' => '\OpenAPI\Client\Model\BusinessEntityTypeEnum',
+        'business_entity_type' => '\Bandwidth\Model\BusinessEntityTypeEnum',
         'help_message_response' => 'string',
         'age_gated_content' => 'bool',
         'cv_token' => 'string'
@@ -511,9 +511,9 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets business_address
      *
-     * @return \OpenAPI\Client\Model\Address
+     * @return \Bandwidth\Model\Address
      */
-    public function getBusinessAddress(): \OpenAPI\Client\Model\Address
+    public function getBusinessAddress(): \Bandwidth\Model\Address
     {
         return $this->container['business_address'];
     }
@@ -521,11 +521,11 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets business_address
      *
-     * @param \OpenAPI\Client\Model\Address $business_address business_address
+     * @param \Bandwidth\Model\Address $business_address business_address
      *
      * @return $this
      */
-    public function setBusinessAddress(\OpenAPI\Client\Model\Address $business_address): static
+    public function setBusinessAddress(\Bandwidth\Model\Address $business_address): static
     {
         if (is_null($business_address)) {
             throw new InvalidArgumentException('non-nullable business_address cannot be null');
@@ -538,9 +538,9 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets business_contact
      *
-     * @return \OpenAPI\Client\Model\Contact
+     * @return \Bandwidth\Model\Contact
      */
-    public function getBusinessContact(): \OpenAPI\Client\Model\Contact
+    public function getBusinessContact(): \Bandwidth\Model\Contact
     {
         return $this->container['business_contact'];
     }
@@ -548,11 +548,11 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets business_contact
      *
-     * @param \OpenAPI\Client\Model\Contact $business_contact business_contact
+     * @param \Bandwidth\Model\Contact $business_contact business_contact
      *
      * @return $this
      */
-    public function setBusinessContact(\OpenAPI\Client\Model\Contact $business_contact): static
+    public function setBusinessContact(\Bandwidth\Model\Contact $business_contact): static
     {
         if (is_null($business_contact)) {
             throw new InvalidArgumentException('non-nullable business_contact cannot be null');
@@ -736,9 +736,9 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets opt_in_workflow
      *
-     * @return \OpenAPI\Client\Model\OptInWorkflow
+     * @return \Bandwidth\Model\OptInWorkflow
      */
-    public function getOptInWorkflow(): \OpenAPI\Client\Model\OptInWorkflow
+    public function getOptInWorkflow(): \Bandwidth\Model\OptInWorkflow
     {
         return $this->container['opt_in_workflow'];
     }
@@ -746,11 +746,11 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets opt_in_workflow
      *
-     * @param \OpenAPI\Client\Model\OptInWorkflow $opt_in_workflow opt_in_workflow
+     * @param \Bandwidth\Model\OptInWorkflow $opt_in_workflow opt_in_workflow
      *
      * @return $this
      */
-    public function setOptInWorkflow(\OpenAPI\Client\Model\OptInWorkflow $opt_in_workflow): static
+    public function setOptInWorkflow(\Bandwidth\Model\OptInWorkflow $opt_in_workflow): static
     {
         if (is_null($opt_in_workflow)) {
             throw new InvalidArgumentException('non-nullable opt_in_workflow cannot be null');
@@ -976,9 +976,9 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets business_registration_type
      *
-     * @return \OpenAPI\Client\Model\BusinessRegistrationTypeEnum|null
+     * @return \Bandwidth\Model\BusinessRegistrationTypeEnum|null
      */
-    public function getBusinessRegistrationType(): ?\OpenAPI\Client\Model\BusinessRegistrationTypeEnum
+    public function getBusinessRegistrationType(): ?\Bandwidth\Model\BusinessRegistrationTypeEnum
     {
         return $this->container['business_registration_type'];
     }
@@ -986,11 +986,11 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets business_registration_type
      *
-     * @param \OpenAPI\Client\Model\BusinessRegistrationTypeEnum|null $business_registration_type business_registration_type
+     * @param \Bandwidth\Model\BusinessRegistrationTypeEnum|null $business_registration_type business_registration_type
      *
      * @return $this
      */
-    public function setBusinessRegistrationType(?\OpenAPI\Client\Model\BusinessRegistrationTypeEnum $business_registration_type): static
+    public function setBusinessRegistrationType(?\Bandwidth\Model\BusinessRegistrationTypeEnum $business_registration_type): static
     {
         if (is_null($business_registration_type)) {
             array_push($this->openAPINullablesSetToNull, 'business_registration_type');
@@ -1044,9 +1044,9 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets business_entity_type
      *
-     * @return \OpenAPI\Client\Model\BusinessEntityTypeEnum
+     * @return \Bandwidth\Model\BusinessEntityTypeEnum
      */
-    public function getBusinessEntityType(): \OpenAPI\Client\Model\BusinessEntityTypeEnum
+    public function getBusinessEntityType(): \Bandwidth\Model\BusinessEntityTypeEnum
     {
         return $this->container['business_entity_type'];
     }
@@ -1054,11 +1054,11 @@ class VerificationRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets business_entity_type
      *
-     * @param \OpenAPI\Client\Model\BusinessEntityTypeEnum $business_entity_type business_entity_type
+     * @param \Bandwidth\Model\BusinessEntityTypeEnum $business_entity_type business_entity_type
      *
      * @return $this
      */
-    public function setBusinessEntityType(\OpenAPI\Client\Model\BusinessEntityTypeEnum $business_entity_type): static
+    public function setBusinessEntityType(\Bandwidth\Model\BusinessEntityTypeEnum $business_entity_type): static
     {
         if (is_null($business_entity_type)) {
             throw new InvalidArgumentException('non-nullable business_entity_type cannot be null');

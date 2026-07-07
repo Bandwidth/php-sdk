@@ -3,7 +3,7 @@
  * TollFreeVerificationApi
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Bandwidth\Api;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client;
@@ -38,16 +38,16 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ApiException;
+use Bandwidth\Configuration;
+use Bandwidth\HeaderSelector;
+use Bandwidth\FormDataProcessor;
+use Bandwidth\ObjectSerializer;
 
 /**
  * TollFreeVerificationApi Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -160,22 +160,22 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhookSubscription'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\WebhookSubscription|\OpenAPI\Client\Model\TfvError
+     * @return \Bandwidth\Model\WebhookSubscription|\Bandwidth\Model\TfvError
      */
     public function createWebhookSubscription(
         string $account_id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createWebhookSubscription'][0]
-    ): \OpenAPI\Client\Model\WebhookSubscription|\OpenAPI\Client\Model\TfvError
+    ): \Bandwidth\Model\WebhookSubscription|\Bandwidth\Model\TfvError
     {
         list($response) = $this->createWebhookSubscriptionWithHttpInfo($account_id, $webhook_subscription_request_schema, $hostIndex, $variables, $contentType);
         return $response;
@@ -191,18 +191,18 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhookSubscription'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\WebhookSubscription|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\WebhookSubscription|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createWebhookSubscriptionWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createWebhookSubscription'][0]
@@ -235,55 +235,55 @@ class TollFreeVerificationApi
             switch($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\WebhookSubscription',
+                        '\Bandwidth\Model\WebhookSubscription',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 503:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
@@ -304,7 +304,7 @@ class TollFreeVerificationApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\WebhookSubscription',
+                '\Bandwidth\Model\WebhookSubscription',
                 $request,
                 $response,
             );
@@ -313,7 +313,7 @@ class TollFreeVerificationApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\WebhookSubscription',
+                        '\Bandwidth\Model\WebhookSubscription',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -321,7 +321,7 @@ class TollFreeVerificationApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -329,7 +329,7 @@ class TollFreeVerificationApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -337,7 +337,7 @@ class TollFreeVerificationApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -345,7 +345,7 @@ class TollFreeVerificationApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -353,7 +353,7 @@ class TollFreeVerificationApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -361,7 +361,7 @@ class TollFreeVerificationApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -369,7 +369,7 @@ class TollFreeVerificationApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -377,7 +377,7 @@ class TollFreeVerificationApi
                 case 503:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -398,7 +398,7 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhookSubscription'] to see the possible values for this operation
@@ -408,7 +408,7 @@ class TollFreeVerificationApi
      */
     public function createWebhookSubscriptionAsync(
         string $account_id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createWebhookSubscription'][0]
@@ -432,7 +432,7 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhookSubscription'] to see the possible values for this operation
@@ -442,13 +442,13 @@ class TollFreeVerificationApi
      */
     public function createWebhookSubscriptionAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createWebhookSubscription'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\WebhookSubscription';
+        $returnType = '\Bandwidth\Model\WebhookSubscription';
         $request = $this->createWebhookSubscriptionRequest($account_id, $webhook_subscription_request_schema, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -495,7 +495,7 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhookSubscription'] to see the possible values for this operation
@@ -505,7 +505,7 @@ class TollFreeVerificationApi
      */
     public function createWebhookSubscriptionRequest(
         string $account_id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createWebhookSubscription'][0]
@@ -657,7 +657,7 @@ class TollFreeVerificationApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TfvError|null
+     * @return \Bandwidth\Model\TfvError|null
      */
     public function deleteVerificationRequest(
         string $account_id,
@@ -665,7 +665,7 @@ class TollFreeVerificationApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['deleteVerificationRequest'][0]
-    ): ?\OpenAPI\Client\Model\TfvError
+    ): ?\Bandwidth\Model\TfvError
     {
         list($response) = $this->deleteVerificationRequestWithHttpInfo($account_id, $phone_number, $hostIndex, $variables, $contentType);
         return $response;
@@ -729,7 +729,7 @@ class TollFreeVerificationApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -737,7 +737,7 @@ class TollFreeVerificationApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -745,7 +745,7 @@ class TollFreeVerificationApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -753,7 +753,7 @@ class TollFreeVerificationApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -761,7 +761,7 @@ class TollFreeVerificationApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -769,7 +769,7 @@ class TollFreeVerificationApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -777,7 +777,7 @@ class TollFreeVerificationApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -785,7 +785,7 @@ class TollFreeVerificationApi
                 case 503:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1062,7 +1062,7 @@ class TollFreeVerificationApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TfvError|null
+     * @return \Bandwidth\Model\TfvError|null
      */
     public function deleteWebhookSubscription(
         string $account_id,
@@ -1070,7 +1070,7 @@ class TollFreeVerificationApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['deleteWebhookSubscription'][0]
-    ): ?\OpenAPI\Client\Model\TfvError
+    ): ?\Bandwidth\Model\TfvError
     {
         list($response) = $this->deleteWebhookSubscriptionWithHttpInfo($account_id, $id, $hostIndex, $variables, $contentType);
         return $response;
@@ -1134,7 +1134,7 @@ class TollFreeVerificationApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1142,7 +1142,7 @@ class TollFreeVerificationApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1150,7 +1150,7 @@ class TollFreeVerificationApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1158,7 +1158,7 @@ class TollFreeVerificationApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1166,7 +1166,7 @@ class TollFreeVerificationApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1174,7 +1174,7 @@ class TollFreeVerificationApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1182,7 +1182,7 @@ class TollFreeVerificationApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1190,7 +1190,7 @@ class TollFreeVerificationApi
                 case 503:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1458,7 +1458,7 @@ class TollFreeVerificationApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TfvStatus|\OpenAPI\Client\Model\TfvError
+     * @return \Bandwidth\Model\TfvStatus|\Bandwidth\Model\TfvError
      */
     public function getTollFreeVerificationStatus(
         string $account_id,
@@ -1466,7 +1466,7 @@ class TollFreeVerificationApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['getTollFreeVerificationStatus'][0]
-    ): \OpenAPI\Client\Model\TfvStatus|\OpenAPI\Client\Model\TfvError
+    ): \Bandwidth\Model\TfvStatus|\Bandwidth\Model\TfvError
     {
         list($response) = $this->getTollFreeVerificationStatusWithHttpInfo($account_id, $phone_number, $hostIndex, $variables, $contentType);
         return $response;
@@ -1489,7 +1489,7 @@ class TollFreeVerificationApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\TfvStatus|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\TfvStatus|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTollFreeVerificationStatusWithHttpInfo(
         string $account_id,
@@ -1526,55 +1526,55 @@ class TollFreeVerificationApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvStatus',
+                        '\Bandwidth\Model\TfvStatus',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 503:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
@@ -1595,7 +1595,7 @@ class TollFreeVerificationApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\TfvStatus',
+                '\Bandwidth\Model\TfvStatus',
                 $request,
                 $response,
             );
@@ -1604,7 +1604,7 @@ class TollFreeVerificationApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvStatus',
+                        '\Bandwidth\Model\TfvStatus',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1612,7 +1612,7 @@ class TollFreeVerificationApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1620,7 +1620,7 @@ class TollFreeVerificationApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1628,7 +1628,7 @@ class TollFreeVerificationApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1636,7 +1636,7 @@ class TollFreeVerificationApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1644,7 +1644,7 @@ class TollFreeVerificationApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1652,7 +1652,7 @@ class TollFreeVerificationApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1660,7 +1660,7 @@ class TollFreeVerificationApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1668,7 +1668,7 @@ class TollFreeVerificationApi
                 case 503:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1739,7 +1739,7 @@ class TollFreeVerificationApi
         string $contentType = self::contentTypes['getTollFreeVerificationStatus'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\TfvStatus';
+        $returnType = '\Bandwidth\Model\TfvStatus';
         $request = $this->getTollFreeVerificationStatusRequest($account_id, $phone_number, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -1956,13 +1956,13 @@ class TollFreeVerificationApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return string[]|\OpenAPI\Client\Model\TfvError
+     * @return string[]|\Bandwidth\Model\TfvError
      */
     public function listTollFreeUseCases(
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['listTollFreeUseCases'][0]
-    ): array|\OpenAPI\Client\Model\TfvError
+    ): array|\Bandwidth\Model\TfvError
     {
         list($response) = $this->listTollFreeUseCasesWithHttpInfo($hostIndex, $variables, $contentType);
         return $response;
@@ -1983,7 +1983,7 @@ class TollFreeVerificationApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of string[]|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string[]|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listTollFreeUseCasesWithHttpInfo(
         ?int $hostIndex = null,
@@ -2024,49 +2024,49 @@ class TollFreeVerificationApi
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 503:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
@@ -2104,7 +2104,7 @@ class TollFreeVerificationApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2112,7 +2112,7 @@ class TollFreeVerificationApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2120,7 +2120,7 @@ class TollFreeVerificationApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2128,7 +2128,7 @@ class TollFreeVerificationApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2136,7 +2136,7 @@ class TollFreeVerificationApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2144,7 +2144,7 @@ class TollFreeVerificationApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2152,7 +2152,7 @@ class TollFreeVerificationApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2160,7 +2160,7 @@ class TollFreeVerificationApi
                 case 503:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2398,14 +2398,14 @@ class TollFreeVerificationApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\WebhookSubscriptionsListBody|\OpenAPI\Client\Model\TfvError
+     * @return \Bandwidth\Model\WebhookSubscriptionsListBody|\Bandwidth\Model\TfvError
      */
     public function listWebhookSubscriptions(
         string $account_id,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['listWebhookSubscriptions'][0]
-    ): \OpenAPI\Client\Model\WebhookSubscriptionsListBody|\OpenAPI\Client\Model\TfvError
+    ): \Bandwidth\Model\WebhookSubscriptionsListBody|\Bandwidth\Model\TfvError
     {
         list($response) = $this->listWebhookSubscriptionsWithHttpInfo($account_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -2427,7 +2427,7 @@ class TollFreeVerificationApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\WebhookSubscriptionsListBody|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\WebhookSubscriptionsListBody|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listWebhookSubscriptionsWithHttpInfo(
         string $account_id,
@@ -2463,49 +2463,49 @@ class TollFreeVerificationApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\WebhookSubscriptionsListBody',
+                        '\Bandwidth\Model\WebhookSubscriptionsListBody',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 503:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
@@ -2526,7 +2526,7 @@ class TollFreeVerificationApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\WebhookSubscriptionsListBody',
+                '\Bandwidth\Model\WebhookSubscriptionsListBody',
                 $request,
                 $response,
             );
@@ -2535,7 +2535,7 @@ class TollFreeVerificationApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\WebhookSubscriptionsListBody',
+                        '\Bandwidth\Model\WebhookSubscriptionsListBody',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2543,7 +2543,7 @@ class TollFreeVerificationApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2551,7 +2551,7 @@ class TollFreeVerificationApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2559,7 +2559,7 @@ class TollFreeVerificationApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2567,7 +2567,7 @@ class TollFreeVerificationApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2575,7 +2575,7 @@ class TollFreeVerificationApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2583,7 +2583,7 @@ class TollFreeVerificationApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2591,7 +2591,7 @@ class TollFreeVerificationApi
                 case 503:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2658,7 +2658,7 @@ class TollFreeVerificationApi
         string $contentType = self::contentTypes['listWebhookSubscriptions'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\WebhookSubscriptionsListBody';
+        $returnType = '\Bandwidth\Model\WebhookSubscriptionsListBody';
         $request = $this->listWebhookSubscriptionsRequest($account_id, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -2844,22 +2844,22 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestTollFreeVerification'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TfvError|null
+     * @return \Bandwidth\Model\TfvError|null
      */
     public function requestTollFreeVerification(
         string $account_id,
-        \OpenAPI\Client\Model\VerificationRequest $verification_request,
+        \Bandwidth\Model\VerificationRequest $verification_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['requestTollFreeVerification'][0]
-    ): ?\OpenAPI\Client\Model\TfvError
+    ): ?\Bandwidth\Model\TfvError
     {
         list($response) = $this->requestTollFreeVerificationWithHttpInfo($account_id, $verification_request, $hostIndex, $variables, $contentType);
         return $response;
@@ -2875,7 +2875,7 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestTollFreeVerification'] to see the possible values for this operation
@@ -2886,7 +2886,7 @@ class TollFreeVerificationApi
      */
     public function requestTollFreeVerificationWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\VerificationRequest $verification_request,
+        \Bandwidth\Model\VerificationRequest $verification_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['requestTollFreeVerification'][0]
@@ -2923,7 +2923,7 @@ class TollFreeVerificationApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2931,7 +2931,7 @@ class TollFreeVerificationApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2939,7 +2939,7 @@ class TollFreeVerificationApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2947,7 +2947,7 @@ class TollFreeVerificationApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2955,7 +2955,7 @@ class TollFreeVerificationApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2963,7 +2963,7 @@ class TollFreeVerificationApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2971,7 +2971,7 @@ class TollFreeVerificationApi
                 case 503:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2992,7 +2992,7 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestTollFreeVerification'] to see the possible values for this operation
@@ -3002,7 +3002,7 @@ class TollFreeVerificationApi
      */
     public function requestTollFreeVerificationAsync(
         string $account_id,
-        \OpenAPI\Client\Model\VerificationRequest $verification_request,
+        \Bandwidth\Model\VerificationRequest $verification_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['requestTollFreeVerification'][0]
@@ -3026,7 +3026,7 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestTollFreeVerification'] to see the possible values for this operation
@@ -3036,7 +3036,7 @@ class TollFreeVerificationApi
      */
     public function requestTollFreeVerificationAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\VerificationRequest $verification_request,
+        \Bandwidth\Model\VerificationRequest $verification_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['requestTollFreeVerification'][0]
@@ -3076,7 +3076,7 @@ class TollFreeVerificationApi
      * URL: https://api.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\VerificationRequest $verification_request Request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestTollFreeVerification'] to see the possible values for this operation
@@ -3086,7 +3086,7 @@ class TollFreeVerificationApi
      */
     public function requestTollFreeVerificationRequest(
         string $account_id,
-        \OpenAPI\Client\Model\VerificationRequest $verification_request,
+        \Bandwidth\Model\VerificationRequest $verification_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['requestTollFreeVerification'][0]
@@ -3232,23 +3232,23 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $phone_number Valid Toll-Free telephone number in E.164 format. (required)
-     * @param  \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTollFreeVerificationRequest'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\TfvError|null
+     * @return \Bandwidth\Model\TfvError|null
      */
     public function updateTollFreeVerificationRequest(
         string $account_id,
         string $phone_number,
-        \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
+        \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateTollFreeVerificationRequest'][0]
-    ): ?\OpenAPI\Client\Model\TfvError
+    ): ?\Bandwidth\Model\TfvError
     {
         list($response) = $this->updateTollFreeVerificationRequestWithHttpInfo($account_id, $phone_number, $tfv_submission_wrapper, $hostIndex, $variables, $contentType);
         return $response;
@@ -3265,7 +3265,7 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $phone_number Valid Toll-Free telephone number in E.164 format. (required)
-     * @param  \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTollFreeVerificationRequest'] to see the possible values for this operation
@@ -3277,7 +3277,7 @@ class TollFreeVerificationApi
     public function updateTollFreeVerificationRequestWithHttpInfo(
         string $account_id,
         string $phone_number,
-        \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
+        \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateTollFreeVerificationRequest'][0]
@@ -3314,7 +3314,7 @@ class TollFreeVerificationApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3322,7 +3322,7 @@ class TollFreeVerificationApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3330,7 +3330,7 @@ class TollFreeVerificationApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3338,7 +3338,7 @@ class TollFreeVerificationApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3346,7 +3346,7 @@ class TollFreeVerificationApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3354,7 +3354,7 @@ class TollFreeVerificationApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3362,7 +3362,7 @@ class TollFreeVerificationApi
                 case 503:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3384,7 +3384,7 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $phone_number Valid Toll-Free telephone number in E.164 format. (required)
-     * @param  \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTollFreeVerificationRequest'] to see the possible values for this operation
@@ -3395,7 +3395,7 @@ class TollFreeVerificationApi
     public function updateTollFreeVerificationRequestAsync(
         string $account_id,
         string $phone_number,
-        \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
+        \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateTollFreeVerificationRequest'][0]
@@ -3420,7 +3420,7 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $phone_number Valid Toll-Free telephone number in E.164 format. (required)
-     * @param  \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTollFreeVerificationRequest'] to see the possible values for this operation
@@ -3431,7 +3431,7 @@ class TollFreeVerificationApi
     public function updateTollFreeVerificationRequestAsyncWithHttpInfo(
         string $account_id,
         string $phone_number,
-        \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
+        \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateTollFreeVerificationRequest'][0]
@@ -3472,7 +3472,7 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $phone_number Valid Toll-Free telephone number in E.164 format. (required)
-     * @param  \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
+     * @param  \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper Update a request for verification of a toll-free phone number. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTollFreeVerificationRequest'] to see the possible values for this operation
@@ -3483,7 +3483,7 @@ class TollFreeVerificationApi
     public function updateTollFreeVerificationRequestRequest(
         string $account_id,
         string $phone_number,
-        \OpenAPI\Client\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
+        \Bandwidth\Model\TfvSubmissionWrapper $tfv_submission_wrapper,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateTollFreeVerificationRequest'][0]
@@ -3653,23 +3653,23 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $id Webhook subscription ID (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhookSubscription'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\WebhookSubscription|\OpenAPI\Client\Model\TfvError
+     * @return \Bandwidth\Model\WebhookSubscription|\Bandwidth\Model\TfvError
      */
     public function updateWebhookSubscription(
         string $account_id,
         string $id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateWebhookSubscription'][0]
-    ): \OpenAPI\Client\Model\WebhookSubscription|\OpenAPI\Client\Model\TfvError
+    ): \Bandwidth\Model\WebhookSubscription|\Bandwidth\Model\TfvError
     {
         list($response) = $this->updateWebhookSubscriptionWithHttpInfo($account_id, $id, $webhook_subscription_request_schema, $hostIndex, $variables, $contentType);
         return $response;
@@ -3686,19 +3686,19 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $id Webhook subscription ID (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhookSubscription'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\WebhookSubscription|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError|\OpenAPI\Client\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\WebhookSubscription|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError|\Bandwidth\Model\TfvError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateWebhookSubscriptionWithHttpInfo(
         string $account_id,
         string $id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateWebhookSubscription'][0]
@@ -3731,55 +3731,55 @@ class TollFreeVerificationApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\WebhookSubscription',
+                        '\Bandwidth\Model\WebhookSubscription',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
                 case 503:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $request,
                         $response,
                     );
@@ -3800,7 +3800,7 @@ class TollFreeVerificationApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\WebhookSubscription',
+                '\Bandwidth\Model\WebhookSubscription',
                 $request,
                 $response,
             );
@@ -3809,7 +3809,7 @@ class TollFreeVerificationApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\WebhookSubscription',
+                        '\Bandwidth\Model\WebhookSubscription',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3817,7 +3817,7 @@ class TollFreeVerificationApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3825,7 +3825,7 @@ class TollFreeVerificationApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3833,7 +3833,7 @@ class TollFreeVerificationApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3841,7 +3841,7 @@ class TollFreeVerificationApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3849,7 +3849,7 @@ class TollFreeVerificationApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3857,7 +3857,7 @@ class TollFreeVerificationApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3865,7 +3865,7 @@ class TollFreeVerificationApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3873,7 +3873,7 @@ class TollFreeVerificationApi
                 case 503:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\TfvError',
+                        '\Bandwidth\Model\TfvError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3895,7 +3895,7 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $id Webhook subscription ID (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhookSubscription'] to see the possible values for this operation
@@ -3906,7 +3906,7 @@ class TollFreeVerificationApi
     public function updateWebhookSubscriptionAsync(
         string $account_id,
         string $id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateWebhookSubscription'][0]
@@ -3931,7 +3931,7 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $id Webhook subscription ID (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhookSubscription'] to see the possible values for this operation
@@ -3942,13 +3942,13 @@ class TollFreeVerificationApi
     public function updateWebhookSubscriptionAsyncWithHttpInfo(
         string $account_id,
         string $id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateWebhookSubscription'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\WebhookSubscription';
+        $returnType = '\Bandwidth\Model\WebhookSubscription';
         $request = $this->updateWebhookSubscriptionRequest($account_id, $id, $webhook_subscription_request_schema, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -3996,7 +3996,7 @@ class TollFreeVerificationApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $id Webhook subscription ID (required)
-     * @param  \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
+     * @param  \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhookSubscription'] to see the possible values for this operation
@@ -4007,7 +4007,7 @@ class TollFreeVerificationApi
     public function updateWebhookSubscriptionRequest(
         string $account_id,
         string $id,
-        \OpenAPI\Client\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
+        \Bandwidth\Model\WebhookSubscriptionRequestSchema $webhook_subscription_request_schema,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateWebhookSubscription'][0]

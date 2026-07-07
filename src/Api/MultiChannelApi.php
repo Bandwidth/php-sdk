@@ -3,7 +3,7 @@
  * MultiChannelApi
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Bandwidth\Api;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client;
@@ -38,16 +38,16 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ApiException;
+use Bandwidth\Configuration;
+use Bandwidth\HeaderSelector;
+use Bandwidth\FormDataProcessor;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MultiChannelApi Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -136,22 +136,22 @@ class MultiChannelApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request multi_channel_message_request (required)
+     * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMultiChannelMessage'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateMultiChannelMessageResponse|\OpenAPI\Client\Model\MultiChannelError|null
+     * @return \Bandwidth\Model\CreateMultiChannelMessageResponse|\Bandwidth\Model\MultiChannelError|null
      */
     public function createMultiChannelMessage(
         string $account_id,
-        \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request,
+        \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMultiChannelMessage'][0]
-    ): \OpenAPI\Client\Model\CreateMultiChannelMessageResponse|\OpenAPI\Client\Model\MultiChannelError|null
+    ): \Bandwidth\Model\CreateMultiChannelMessageResponse|\Bandwidth\Model\MultiChannelError|null
     {
         list($response) = $this->createMultiChannelMessageWithHttpInfo($account_id, $multi_channel_message_request, $hostIndex, $variables, $contentType);
         return $response;
@@ -167,18 +167,18 @@ class MultiChannelApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
+     * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMultiChannelMessage'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateMultiChannelMessageResponse|\OpenAPI\Client\Model\MultiChannelError|\OpenAPI\Client\Model\MultiChannelError|\OpenAPI\Client\Model\MultiChannelError|\OpenAPI\Client\Model\MultiChannelError|\OpenAPI\Client\Model\MultiChannelError|\OpenAPI\Client\Model\MultiChannelError|\OpenAPI\Client\Model\MultiChannelError|\OpenAPI\Client\Model\MultiChannelError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\CreateMultiChannelMessageResponse|\Bandwidth\Model\MultiChannelError|\Bandwidth\Model\MultiChannelError|\Bandwidth\Model\MultiChannelError|\Bandwidth\Model\MultiChannelError|\Bandwidth\Model\MultiChannelError|\Bandwidth\Model\MultiChannelError|\Bandwidth\Model\MultiChannelError|\Bandwidth\Model\MultiChannelError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createMultiChannelMessageWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request,
+        \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMultiChannelMessage'][0]
@@ -211,55 +211,55 @@ class MultiChannelApi
             switch($statusCode) {
                 case 202:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateMultiChannelMessageResponse',
+                        '\Bandwidth\Model\CreateMultiChannelMessageResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $request,
                         $response,
                     );
@@ -280,7 +280,7 @@ class MultiChannelApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateMultiChannelMessageResponse',
+                '\Bandwidth\Model\CreateMultiChannelMessageResponse',
                 $request,
                 $response,
             );
@@ -289,7 +289,7 @@ class MultiChannelApi
                 case 202:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateMultiChannelMessageResponse',
+                        '\Bandwidth\Model\CreateMultiChannelMessageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -297,7 +297,7 @@ class MultiChannelApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -305,7 +305,7 @@ class MultiChannelApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -313,7 +313,7 @@ class MultiChannelApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -321,7 +321,7 @@ class MultiChannelApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -329,7 +329,7 @@ class MultiChannelApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -337,7 +337,7 @@ class MultiChannelApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -345,7 +345,7 @@ class MultiChannelApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -353,7 +353,7 @@ class MultiChannelApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MultiChannelError',
+                        '\Bandwidth\Model\MultiChannelError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -374,7 +374,7 @@ class MultiChannelApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
+     * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMultiChannelMessage'] to see the possible values for this operation
@@ -384,7 +384,7 @@ class MultiChannelApi
      */
     public function createMultiChannelMessageAsync(
         string $account_id,
-        \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request,
+        \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMultiChannelMessage'][0]
@@ -408,7 +408,7 @@ class MultiChannelApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
+     * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMultiChannelMessage'] to see the possible values for this operation
@@ -418,13 +418,13 @@ class MultiChannelApi
      */
     public function createMultiChannelMessageAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request,
+        \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMultiChannelMessage'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\CreateMultiChannelMessageResponse';
+        $returnType = '\Bandwidth\Model\CreateMultiChannelMessageResponse';
         $request = $this->createMultiChannelMessageRequest($account_id, $multi_channel_message_request, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -471,7 +471,7 @@ class MultiChannelApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
+     * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMultiChannelMessage'] to see the possible values for this operation
@@ -481,7 +481,7 @@ class MultiChannelApi
      */
     public function createMultiChannelMessageRequest(
         string $account_id,
-        \OpenAPI\Client\Model\MultiChannelMessageRequest $multi_channel_message_request,
+        \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMultiChannelMessage'][0]

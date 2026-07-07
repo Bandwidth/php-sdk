@@ -1,4 +1,4 @@
-# OpenAPI\Client\MFAApi
+# Bandwidth\MFAApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -12,7 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `generateMessagingCode()`
 
 ```php
-generateMessagingCode($account_id, $code_request): \OpenAPI\Client\Model\MessagingCodeResponse
+generateMessagingCode($account_id, $code_request): \Bandwidth\Model\MessagingCodeResponse
 ```
 ### URI(s):
 - https://mfa.bandwidth.com/api/v1 Production
@@ -28,22 +28,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\MFAApi(
+$apiInstance = new Bandwidth\Api\MFAApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
-$code_request = new \OpenAPI\Client\Model\CodeRequest(); // \OpenAPI\Client\Model\CodeRequest | MFA code request body.
+$code_request = new \Bandwidth\Model\CodeRequest(); // \Bandwidth\Model\CodeRequest | MFA code request body.
 
 $hostIndex = 0;
 $variables = [
@@ -62,13 +62,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
-| **code_request** | [**\OpenAPI\Client\Model\CodeRequest**](../Model/CodeRequest.md)| MFA code request body. | |
+| **code_request** | [**\Bandwidth\Model\CodeRequest**](../Model/CodeRequest.md)| MFA code request body. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\MessagingCodeResponse**](../Model/MessagingCodeResponse.md)
+[**\Bandwidth\Model\MessagingCodeResponse**](../Model/MessagingCodeResponse.md)
 
 ### Authorization
 
@@ -86,7 +86,7 @@ try {
 ## `generateVoiceCode()`
 
 ```php
-generateVoiceCode($account_id, $code_request): \OpenAPI\Client\Model\VoiceCodeResponse
+generateVoiceCode($account_id, $code_request): \Bandwidth\Model\VoiceCodeResponse
 ```
 ### URI(s):
 - https://mfa.bandwidth.com/api/v1 Production
@@ -102,22 +102,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\MFAApi(
+$apiInstance = new Bandwidth\Api\MFAApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
-$code_request = new \OpenAPI\Client\Model\CodeRequest(); // \OpenAPI\Client\Model\CodeRequest | MFA code request body.
+$code_request = new \Bandwidth\Model\CodeRequest(); // \Bandwidth\Model\CodeRequest | MFA code request body.
 
 $hostIndex = 0;
 $variables = [
@@ -136,13 +136,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
-| **code_request** | [**\OpenAPI\Client\Model\CodeRequest**](../Model/CodeRequest.md)| MFA code request body. | |
+| **code_request** | [**\Bandwidth\Model\CodeRequest**](../Model/CodeRequest.md)| MFA code request body. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\VoiceCodeResponse**](../Model/VoiceCodeResponse.md)
+[**\Bandwidth\Model\VoiceCodeResponse**](../Model/VoiceCodeResponse.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ try {
 ## `verifyCode()`
 
 ```php
-verifyCode($account_id, $verify_code_request): \OpenAPI\Client\Model\VerifyCodeResponse
+verifyCode($account_id, $verify_code_request): \Bandwidth\Model\VerifyCodeResponse
 ```
 ### URI(s):
 - https://mfa.bandwidth.com/api/v1 Production
@@ -176,22 +176,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\MFAApi(
+$apiInstance = new Bandwidth\Api\MFAApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
-$verify_code_request = new \OpenAPI\Client\Model\VerifyCodeRequest(); // \OpenAPI\Client\Model\VerifyCodeRequest | MFA code verify request body.
+$verify_code_request = new \Bandwidth\Model\VerifyCodeRequest(); // \Bandwidth\Model\VerifyCodeRequest | MFA code verify request body.
 
 $hostIndex = 0;
 $variables = [
@@ -210,13 +210,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
-| **verify_code_request** | [**\OpenAPI\Client\Model\VerifyCodeRequest**](../Model/VerifyCodeRequest.md)| MFA code verify request body. | |
+| **verify_code_request** | [**\Bandwidth\Model\VerifyCodeRequest**](../Model/VerifyCodeRequest.md)| MFA code verify request body. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\VerifyCodeResponse**](../Model/VerifyCodeResponse.md)
+[**\Bandwidth\Model\VerifyCodeResponse**](../Model/VerifyCodeResponse.md)
 
 ### Authorization
 

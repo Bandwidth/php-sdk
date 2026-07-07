@@ -3,7 +3,7 @@
  * EndpointsApi
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Bandwidth\Api;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client;
@@ -38,16 +38,16 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ApiException;
+use Bandwidth\Configuration;
+use Bandwidth\HeaderSelector;
+use Bandwidth\FormDataProcessor;
+use Bandwidth\ObjectSerializer;
 
 /**
  * EndpointsApi Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -148,22 +148,22 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body body (required)
+     * @param  \Bandwidth\Model\CreateWebRtcConnectionRequest $body body (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEndpoint'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateEndpointResponse|\OpenAPI\Client\Model\BrtcErrorResponse
+     * @return \Bandwidth\Model\CreateEndpointResponse|\Bandwidth\Model\BrtcErrorResponse
      */
     public function createEndpoint(
         string $account_id,
-        \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body,
+        \Bandwidth\Model\CreateWebRtcConnectionRequest $body,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createEndpoint'][0]
-    ): \OpenAPI\Client\Model\CreateEndpointResponse|\OpenAPI\Client\Model\BrtcErrorResponse
+    ): \Bandwidth\Model\CreateEndpointResponse|\Bandwidth\Model\BrtcErrorResponse
     {
         list($response) = $this->createEndpointWithHttpInfo($account_id, $body, $hostIndex, $variables, $contentType);
         return $response;
@@ -179,18 +179,18 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body (required)
+     * @param  \Bandwidth\Model\CreateWebRtcConnectionRequest $body (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEndpoint'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateEndpointResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\CreateEndpointResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEndpointWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body,
+        \Bandwidth\Model\CreateWebRtcConnectionRequest $body,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createEndpoint'][0]
@@ -223,55 +223,55 @@ class EndpointsApi
             switch($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateEndpointResponse',
+                        '\Bandwidth\Model\CreateEndpointResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
@@ -292,7 +292,7 @@ class EndpointsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateEndpointResponse',
+                '\Bandwidth\Model\CreateEndpointResponse',
                 $request,
                 $response,
             );
@@ -301,7 +301,7 @@ class EndpointsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateEndpointResponse',
+                        '\Bandwidth\Model\CreateEndpointResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -309,7 +309,7 @@ class EndpointsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -317,7 +317,7 @@ class EndpointsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -325,7 +325,7 @@ class EndpointsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -333,7 +333,7 @@ class EndpointsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -341,7 +341,7 @@ class EndpointsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -349,7 +349,7 @@ class EndpointsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -357,7 +357,7 @@ class EndpointsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -365,7 +365,7 @@ class EndpointsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -386,7 +386,7 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body (required)
+     * @param  \Bandwidth\Model\CreateWebRtcConnectionRequest $body (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEndpoint'] to see the possible values for this operation
@@ -396,7 +396,7 @@ class EndpointsApi
      */
     public function createEndpointAsync(
         string $account_id,
-        \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body,
+        \Bandwidth\Model\CreateWebRtcConnectionRequest $body,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createEndpoint'][0]
@@ -420,7 +420,7 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body (required)
+     * @param  \Bandwidth\Model\CreateWebRtcConnectionRequest $body (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEndpoint'] to see the possible values for this operation
@@ -430,13 +430,13 @@ class EndpointsApi
      */
     public function createEndpointAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body,
+        \Bandwidth\Model\CreateWebRtcConnectionRequest $body,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createEndpoint'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\CreateEndpointResponse';
+        $returnType = '\Bandwidth\Model\CreateEndpointResponse';
         $request = $this->createEndpointRequest($account_id, $body, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -483,7 +483,7 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body (required)
+     * @param  \Bandwidth\Model\CreateWebRtcConnectionRequest $body (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEndpoint'] to see the possible values for this operation
@@ -493,7 +493,7 @@ class EndpointsApi
      */
     public function createEndpointRequest(
         string $account_id,
-        \OpenAPI\Client\Model\CreateWebRtcConnectionRequest $body,
+        \Bandwidth\Model\CreateWebRtcConnectionRequest $body,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createEndpoint'][0]
@@ -645,7 +645,7 @@ class EndpointsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BrtcErrorResponse|null
+     * @return \Bandwidth\Model\BrtcErrorResponse|null
      */
     public function deleteEndpoint(
         string $account_id,
@@ -653,7 +653,7 @@ class EndpointsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['deleteEndpoint'][0]
-    ): ?\OpenAPI\Client\Model\BrtcErrorResponse
+    ): ?\Bandwidth\Model\BrtcErrorResponse
     {
         list($response) = $this->deleteEndpointWithHttpInfo($account_id, $endpoint_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -717,7 +717,7 @@ class EndpointsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -725,7 +725,7 @@ class EndpointsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -733,7 +733,7 @@ class EndpointsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -741,7 +741,7 @@ class EndpointsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -749,7 +749,7 @@ class EndpointsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -757,7 +757,7 @@ class EndpointsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -765,7 +765,7 @@ class EndpointsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -773,7 +773,7 @@ class EndpointsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1041,7 +1041,7 @@ class EndpointsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EndpointResponse|\OpenAPI\Client\Model\BrtcErrorResponse
+     * @return \Bandwidth\Model\EndpointResponse|\Bandwidth\Model\BrtcErrorResponse
      */
     public function getEndpoint(
         string $account_id,
@@ -1049,7 +1049,7 @@ class EndpointsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['getEndpoint'][0]
-    ): \OpenAPI\Client\Model\EndpointResponse|\OpenAPI\Client\Model\BrtcErrorResponse
+    ): \Bandwidth\Model\EndpointResponse|\Bandwidth\Model\BrtcErrorResponse
     {
         list($response) = $this->getEndpointWithHttpInfo($account_id, $endpoint_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -1072,7 +1072,7 @@ class EndpointsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EndpointResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\EndpointResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEndpointWithHttpInfo(
         string $account_id,
@@ -1109,55 +1109,55 @@ class EndpointsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\EndpointResponse',
+                        '\Bandwidth\Model\EndpointResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
@@ -1178,7 +1178,7 @@ class EndpointsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\EndpointResponse',
+                '\Bandwidth\Model\EndpointResponse',
                 $request,
                 $response,
             );
@@ -1187,7 +1187,7 @@ class EndpointsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\EndpointResponse',
+                        '\Bandwidth\Model\EndpointResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1195,7 +1195,7 @@ class EndpointsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1203,7 +1203,7 @@ class EndpointsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1211,7 +1211,7 @@ class EndpointsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1219,7 +1219,7 @@ class EndpointsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1227,7 +1227,7 @@ class EndpointsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1235,7 +1235,7 @@ class EndpointsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1243,7 +1243,7 @@ class EndpointsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1251,7 +1251,7 @@ class EndpointsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1322,7 +1322,7 @@ class EndpointsApi
         string $contentType = self::contentTypes['getEndpoint'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\EndpointResponse';
+        $returnType = '\Bandwidth\Model\EndpointResponse';
         $request = $this->getEndpointRequest($account_id, $endpoint_id, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -1525,8 +1525,8 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
-     * @param  \OpenAPI\Client\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
      * @param  string|null $after_cursor The cursor to use for pagination. This is the value of the &#x60;next&#x60; link in the previous response. (optional)
      * @param  int|null $limit The maximum number of endpoints to return in the response. (optional, default to 100)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
@@ -1535,18 +1535,18 @@ class EndpointsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ListEndpointsResponse|\OpenAPI\Client\Model\BrtcErrorResponse
+     * @return \Bandwidth\Model\ListEndpointsResponse|\Bandwidth\Model\BrtcErrorResponse
      */
     public function listEndpoints(
         string $account_id,
-        ?\OpenAPI\Client\Model\EndpointTypeEnum $type = null,
-        ?\OpenAPI\Client\Model\EndpointStatusEnum $status = null,
+        ?\Bandwidth\Model\EndpointTypeEnum $type = null,
+        ?\Bandwidth\Model\EndpointStatusEnum $status = null,
         ?string $after_cursor = null,
         ?int $limit = 100,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['listEndpoints'][0]
-    ): \OpenAPI\Client\Model\ListEndpointsResponse|\OpenAPI\Client\Model\BrtcErrorResponse
+    ): \Bandwidth\Model\ListEndpointsResponse|\Bandwidth\Model\BrtcErrorResponse
     {
         list($response) = $this->listEndpointsWithHttpInfo($account_id, $type, $status, $after_cursor, $limit, $hostIndex, $variables, $contentType);
         return $response;
@@ -1562,8 +1562,8 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
-     * @param  \OpenAPI\Client\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
      * @param  string|null $after_cursor The cursor to use for pagination. This is the value of the &#x60;next&#x60; link in the previous response. (optional)
      * @param  int|null $limit The maximum number of endpoints to return in the response. (optional, default to 100)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
@@ -1572,12 +1572,12 @@ class EndpointsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ListEndpointsResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse|\OpenAPI\Client\Model\BrtcErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\ListEndpointsResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse|\Bandwidth\Model\BrtcErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function listEndpointsWithHttpInfo(
         string $account_id,
-        ?\OpenAPI\Client\Model\EndpointTypeEnum $type = null,
-        ?\OpenAPI\Client\Model\EndpointStatusEnum $status = null,
+        ?\Bandwidth\Model\EndpointTypeEnum $type = null,
+        ?\Bandwidth\Model\EndpointStatusEnum $status = null,
         ?string $after_cursor = null,
         ?int $limit = 100,
         ?int $hostIndex = null,
@@ -1612,55 +1612,55 @@ class EndpointsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ListEndpointsResponse',
+                        '\Bandwidth\Model\ListEndpointsResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $request,
                         $response,
                     );
@@ -1681,7 +1681,7 @@ class EndpointsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\ListEndpointsResponse',
+                '\Bandwidth\Model\ListEndpointsResponse',
                 $request,
                 $response,
             );
@@ -1690,7 +1690,7 @@ class EndpointsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ListEndpointsResponse',
+                        '\Bandwidth\Model\ListEndpointsResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1698,7 +1698,7 @@ class EndpointsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1706,7 +1706,7 @@ class EndpointsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1714,7 +1714,7 @@ class EndpointsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1722,7 +1722,7 @@ class EndpointsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1730,7 +1730,7 @@ class EndpointsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1738,7 +1738,7 @@ class EndpointsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1746,7 +1746,7 @@ class EndpointsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1754,7 +1754,7 @@ class EndpointsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1775,8 +1775,8 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
-     * @param  \OpenAPI\Client\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
      * @param  string|null $after_cursor The cursor to use for pagination. This is the value of the &#x60;next&#x60; link in the previous response. (optional)
      * @param  int|null $limit The maximum number of endpoints to return in the response. (optional, default to 100)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
@@ -1788,8 +1788,8 @@ class EndpointsApi
      */
     public function listEndpointsAsync(
         string $account_id,
-        ?\OpenAPI\Client\Model\EndpointTypeEnum $type = null,
-        ?\OpenAPI\Client\Model\EndpointStatusEnum $status = null,
+        ?\Bandwidth\Model\EndpointTypeEnum $type = null,
+        ?\Bandwidth\Model\EndpointStatusEnum $status = null,
         ?string $after_cursor = null,
         ?int $limit = 100,
         ?int $hostIndex = null,
@@ -1815,8 +1815,8 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
-     * @param  \OpenAPI\Client\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
      * @param  string|null $after_cursor The cursor to use for pagination. This is the value of the &#x60;next&#x60; link in the previous response. (optional)
      * @param  int|null $limit The maximum number of endpoints to return in the response. (optional, default to 100)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
@@ -1828,8 +1828,8 @@ class EndpointsApi
      */
     public function listEndpointsAsyncWithHttpInfo(
         string $account_id,
-        ?\OpenAPI\Client\Model\EndpointTypeEnum $type = null,
-        ?\OpenAPI\Client\Model\EndpointStatusEnum $status = null,
+        ?\Bandwidth\Model\EndpointTypeEnum $type = null,
+        ?\Bandwidth\Model\EndpointStatusEnum $status = null,
         ?string $after_cursor = null,
         ?int $limit = 100,
         ?int $hostIndex = null,
@@ -1837,7 +1837,7 @@ class EndpointsApi
         string $contentType = self::contentTypes['listEndpoints'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\ListEndpointsResponse';
+        $returnType = '\Bandwidth\Model\ListEndpointsResponse';
         $request = $this->listEndpointsRequest($account_id, $type, $status, $after_cursor, $limit, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -1884,8 +1884,8 @@ class EndpointsApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
-     * @param  \OpenAPI\Client\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointTypeEnum|null $type The type of endpoint. (optional)
+     * @param  \Bandwidth\Model\EndpointStatusEnum|null $status The status of the endpoint. (optional)
      * @param  string|null $after_cursor The cursor to use for pagination. This is the value of the &#x60;next&#x60; link in the previous response. (optional)
      * @param  int|null $limit The maximum number of endpoints to return in the response. (optional, default to 100)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
@@ -1897,8 +1897,8 @@ class EndpointsApi
      */
     public function listEndpointsRequest(
         string $account_id,
-        ?\OpenAPI\Client\Model\EndpointTypeEnum $type = null,
-        ?\OpenAPI\Client\Model\EndpointStatusEnum $status = null,
+        ?\Bandwidth\Model\EndpointTypeEnum $type = null,
+        ?\Bandwidth\Model\EndpointStatusEnum $status = null,
         ?string $after_cursor = null,
         ?int $limit = 100,
         ?int $hostIndex = null,
@@ -2085,7 +2085,7 @@ class EndpointsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BrtcErrorResponse|null
+     * @return \Bandwidth\Model\BrtcErrorResponse|null
      */
     public function updateEndpointBxml(
         string $account_id,
@@ -2094,7 +2094,7 @@ class EndpointsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateEndpointBxml'][0]
-    ): ?\OpenAPI\Client\Model\BrtcErrorResponse
+    ): ?\Bandwidth\Model\BrtcErrorResponse
     {
         list($response) = $this->updateEndpointBxmlWithHttpInfo($account_id, $endpoint_id, $body, $hostIndex, $variables, $contentType);
         return $response;
@@ -2160,7 +2160,7 @@ class EndpointsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2168,7 +2168,7 @@ class EndpointsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2176,7 +2176,7 @@ class EndpointsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2184,7 +2184,7 @@ class EndpointsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2192,7 +2192,7 @@ class EndpointsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2200,7 +2200,7 @@ class EndpointsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2208,7 +2208,7 @@ class EndpointsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2216,7 +2216,7 @@ class EndpointsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\BrtcErrorResponse',
+                        '\Bandwidth\Model\BrtcErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,13 +26,13 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 /**
  * RedirectMethodEnum Class Doc Comment
  *
  * @description The HTTP method to use for the request to &#x60;redirectUrl&#x60;. GET or POST. Default value is POST.&lt;br&gt;&lt;br&gt;Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

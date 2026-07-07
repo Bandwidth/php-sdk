@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * VerificationWebhook Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class VerificationWebhook implements ModelInterface, ArrayAccess, JsonSerializab
     protected static array $openAPITypes = [
         'account_id' => 'string',
         'phone_number' => 'string',
-        'status' => '\OpenAPI\Client\Model\TfvCallbackStatusEnum',
+        'status' => '\Bandwidth\Model\TfvCallbackStatusEnum',
         'internal_ticket_number' => 'string'
     ];
 
@@ -364,9 +364,9 @@ class VerificationWebhook implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\TfvCallbackStatusEnum|null
+     * @return \Bandwidth\Model\TfvCallbackStatusEnum|null
      */
-    public function getStatus(): ?\OpenAPI\Client\Model\TfvCallbackStatusEnum
+    public function getStatus(): ?\Bandwidth\Model\TfvCallbackStatusEnum
     {
         return $this->container['status'];
     }
@@ -374,11 +374,11 @@ class VerificationWebhook implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\TfvCallbackStatusEnum|null $status status
+     * @param \Bandwidth\Model\TfvCallbackStatusEnum|null $status status
      *
      * @return $this
      */
-    public function setStatus(?\OpenAPI\Client\Model\TfvCallbackStatusEnum $status): static
+    public function setStatus(?\Bandwidth\Model\TfvCallbackStatusEnum $status): static
     {
         if (is_null($status)) {
             throw new InvalidArgumentException('non-nullable status cannot be null');

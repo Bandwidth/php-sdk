@@ -3,7 +3,7 @@
  * ApiException
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client;
+namespace Bandwidth;
 
 use Exception;
 use stdClass;
@@ -33,7 +33,7 @@ use stdClass;
 /**
  * ApiException Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

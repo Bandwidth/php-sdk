@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,13 +26,13 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 /**
  * LatestMessageDeliveryStatusEnum Class Doc Comment
  *
  * @description [DNI-Only](#section/DNI-Only). The current delivery status of the phone number. - ACTIVE: A message was successfully sent to the number (delivery code 0). - DEACTIVATED: A message was not delivered to a number (delivery code 720) - UNKNOWN: Bandwidth cannot find an delivery status entry for the number. - NOT_ENABLED: The phone number is not enabled for messaging, so there is no delivery status information.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

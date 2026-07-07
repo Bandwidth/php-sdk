@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * UpdateCall Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,13 +59,13 @@ class UpdateCall implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'state' => '\OpenAPI\Client\Model\CallStateEnum',
+        'state' => '\Bandwidth\Model\CallStateEnum',
         'redirect_url' => 'string',
-        'redirect_method' => '\OpenAPI\Client\Model\RedirectMethodEnum',
+        'redirect_method' => '\Bandwidth\Model\RedirectMethodEnum',
         'username' => 'string',
         'password' => 'string',
         'redirect_fallback_url' => 'string',
-        'redirect_fallback_method' => '\OpenAPI\Client\Model\RedirectMethodEnum',
+        'redirect_fallback_method' => '\Bandwidth\Model\RedirectMethodEnum',
         'fallback_username' => 'string',
         'fallback_password' => 'string',
         'tag' => 'string'
@@ -350,9 +350,9 @@ class UpdateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets state
      *
-     * @return \OpenAPI\Client\Model\CallStateEnum|null
+     * @return \Bandwidth\Model\CallStateEnum|null
      */
-    public function getState(): ?\OpenAPI\Client\Model\CallStateEnum
+    public function getState(): ?\Bandwidth\Model\CallStateEnum
     {
         return $this->container['state'];
     }
@@ -360,11 +360,11 @@ class UpdateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets state
      *
-     * @param \OpenAPI\Client\Model\CallStateEnum|null $state state
+     * @param \Bandwidth\Model\CallStateEnum|null $state state
      *
      * @return $this
      */
-    public function setState(?\OpenAPI\Client\Model\CallStateEnum $state): static
+    public function setState(?\Bandwidth\Model\CallStateEnum $state): static
     {
         if (is_null($state)) {
             array_push($this->openAPINullablesSetToNull, 'state');
@@ -418,9 +418,9 @@ class UpdateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets redirect_method
      *
-     * @return \OpenAPI\Client\Model\RedirectMethodEnum|null
+     * @return \Bandwidth\Model\RedirectMethodEnum|null
      */
-    public function getRedirectMethod(): ?\OpenAPI\Client\Model\RedirectMethodEnum
+    public function getRedirectMethod(): ?\Bandwidth\Model\RedirectMethodEnum
     {
         return $this->container['redirect_method'];
     }
@@ -428,11 +428,11 @@ class UpdateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets redirect_method
      *
-     * @param \OpenAPI\Client\Model\RedirectMethodEnum|null $redirect_method redirect_method
+     * @param \Bandwidth\Model\RedirectMethodEnum|null $redirect_method redirect_method
      *
      * @return $this
      */
-    public function setRedirectMethod(?\OpenAPI\Client\Model\RedirectMethodEnum $redirect_method): static
+    public function setRedirectMethod(?\Bandwidth\Model\RedirectMethodEnum $redirect_method): static
     {
         if (is_null($redirect_method)) {
             array_push($this->openAPINullablesSetToNull, 'redirect_method');
@@ -562,9 +562,9 @@ class UpdateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets redirect_fallback_method
      *
-     * @return \OpenAPI\Client\Model\RedirectMethodEnum|null
+     * @return \Bandwidth\Model\RedirectMethodEnum|null
      */
-    public function getRedirectFallbackMethod(): ?\OpenAPI\Client\Model\RedirectMethodEnum
+    public function getRedirectFallbackMethod(): ?\Bandwidth\Model\RedirectMethodEnum
     {
         return $this->container['redirect_fallback_method'];
     }
@@ -572,11 +572,11 @@ class UpdateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets redirect_fallback_method
      *
-     * @param \OpenAPI\Client\Model\RedirectMethodEnum|null $redirect_fallback_method redirect_fallback_method
+     * @param \Bandwidth\Model\RedirectMethodEnum|null $redirect_fallback_method redirect_fallback_method
      *
      * @return $this
      */
-    public function setRedirectFallbackMethod(?\OpenAPI\Client\Model\RedirectMethodEnum $redirect_fallback_method): static
+    public function setRedirectFallbackMethod(?\Bandwidth\Model\RedirectMethodEnum $redirect_fallback_method): static
     {
         if (is_null($redirect_fallback_method)) {
             array_push($this->openAPINullablesSetToNull, 'redirect_fallback_method');

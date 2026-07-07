@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RecordingAvailableCallback Class Doc Comment
  *
  * @description The Recording Available event is sent after a recording has been processed. It indicates that the recording is available for download.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -66,7 +66,7 @@ class RecordingAvailableCallback implements ModelInterface, ArrayAccess, JsonSer
         'application_id' => 'string',
         'from' => 'string',
         'to' => 'string',
-        'direction' => '\OpenAPI\Client\Model\CallDirectionEnum',
+        'direction' => '\Bandwidth\Model\CallDirectionEnum',
         'call_id' => 'string',
         'call_url' => 'string',
         'parent_call_id' => 'string',
@@ -76,7 +76,7 @@ class RecordingAvailableCallback implements ModelInterface, ArrayAccess, JsonSer
         'start_time' => '\DateTime',
         'end_time' => '\DateTime',
         'duration' => 'string',
-        'file_format' => '\OpenAPI\Client\Model\FileFormatEnum',
+        'file_format' => '\Bandwidth\Model\FileFormatEnum',
         'channels' => 'int',
         'tag' => 'string',
         'status' => 'string',
@@ -577,9 +577,9 @@ class RecordingAvailableCallback implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\CallDirectionEnum|null
+     * @return \Bandwidth\Model\CallDirectionEnum|null
      */
-    public function getDirection(): ?\OpenAPI\Client\Model\CallDirectionEnum
+    public function getDirection(): ?\Bandwidth\Model\CallDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -587,11 +587,11 @@ class RecordingAvailableCallback implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\CallDirectionEnum|null $direction direction
+     * @param \Bandwidth\Model\CallDirectionEnum|null $direction direction
      *
      * @return $this
      */
-    public function setDirection(?\OpenAPI\Client\Model\CallDirectionEnum $direction): static
+    public function setDirection(?\Bandwidth\Model\CallDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');
@@ -861,9 +861,9 @@ class RecordingAvailableCallback implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Gets file_format
      *
-     * @return \OpenAPI\Client\Model\FileFormatEnum|null
+     * @return \Bandwidth\Model\FileFormatEnum|null
      */
-    public function getFileFormat(): ?\OpenAPI\Client\Model\FileFormatEnum
+    public function getFileFormat(): ?\Bandwidth\Model\FileFormatEnum
     {
         return $this->container['file_format'];
     }
@@ -871,11 +871,11 @@ class RecordingAvailableCallback implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets file_format
      *
-     * @param \OpenAPI\Client\Model\FileFormatEnum|null $file_format file_format
+     * @param \Bandwidth\Model\FileFormatEnum|null $file_format file_format
      *
      * @return $this
      */
-    public function setFileFormat(?\OpenAPI\Client\Model\FileFormatEnum $file_format): static
+    public function setFileFormat(?\Bandwidth\Model\FileFormatEnum $file_format): static
     {
         if (is_null($file_format)) {
             throw new InvalidArgumentException('non-nullable file_format cannot be null');

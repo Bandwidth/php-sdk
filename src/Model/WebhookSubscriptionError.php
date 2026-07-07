@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * WebhookSubscriptionError Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class WebhookSubscriptionError implements ModelInterface, ArrayAccess, JsonSeria
     protected static array $openAPITypes = [
         'code' => 'int',
         'description' => 'string',
-        'telephone_numbers' => '\OpenAPI\Client\Model\TelephoneNumber[]'
+        'telephone_numbers' => '\Bandwidth\Model\TelephoneNumber[]'
     ];
 
     /**
@@ -335,7 +335,7 @@ class WebhookSubscriptionError implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets telephone_numbers
      *
-     * @return \OpenAPI\Client\Model\TelephoneNumber[]|null
+     * @return \Bandwidth\Model\TelephoneNumber[]|null
      */
     public function getTelephoneNumbers(): ?array
     {
@@ -345,7 +345,7 @@ class WebhookSubscriptionError implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets telephone_numbers
      *
-     * @param \OpenAPI\Client\Model\TelephoneNumber[]|null $telephone_numbers telephone_numbers
+     * @param \Bandwidth\Model\TelephoneNumber[]|null $telephone_numbers telephone_numbers
      *
      * @return $this
      */

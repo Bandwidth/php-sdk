@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * Device Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class Device implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPITypes = [
         'device_id' => 'string',
         'device_name' => 'string',
-        'status' => '\OpenAPI\Client\Model\DeviceStatusEnum',
+        'status' => '\Bandwidth\Model\DeviceStatusEnum',
         'creation_timestamp' => '\DateTime'
     ];
 
@@ -353,9 +353,9 @@ class Device implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\DeviceStatusEnum
+     * @return \Bandwidth\Model\DeviceStatusEnum
      */
-    public function getStatus(): \OpenAPI\Client\Model\DeviceStatusEnum
+    public function getStatus(): \Bandwidth\Model\DeviceStatusEnum
     {
         return $this->container['status'];
     }
@@ -363,11 +363,11 @@ class Device implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\DeviceStatusEnum $status status
+     * @param \Bandwidth\Model\DeviceStatusEnum $status status
      *
      * @return $this
      */
-    public function setStatus(\OpenAPI\Client\Model\DeviceStatusEnum $status): static
+    public function setStatus(\Bandwidth\Model\DeviceStatusEnum $status): static
     {
         if (is_null($status)) {
             throw new InvalidArgumentException('non-nullable status cannot be null');

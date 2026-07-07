@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RecordingTranscriptions Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,8 +59,8 @@ class RecordingTranscriptions implements ModelInterface, ArrayAccess, JsonSerial
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'transcripts' => '\OpenAPI\Client\Model\Transcription[]',
-        'clips' => '\OpenAPI\Client\Model\RecordingTranscriptionClip[]'
+        'transcripts' => '\Bandwidth\Model\Transcription[]',
+        'clips' => '\Bandwidth\Model\RecordingTranscriptionClip[]'
     ];
 
     /**
@@ -274,7 +274,7 @@ class RecordingTranscriptions implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Gets transcripts
      *
-     * @return \OpenAPI\Client\Model\Transcription[]|null
+     * @return \Bandwidth\Model\Transcription[]|null
      */
     public function getTranscripts(): ?array
     {
@@ -284,7 +284,7 @@ class RecordingTranscriptions implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets transcripts
      *
-     * @param \OpenAPI\Client\Model\Transcription[]|null $transcripts transcripts
+     * @param \Bandwidth\Model\Transcription[]|null $transcripts transcripts
      *
      * @return $this
      */
@@ -301,7 +301,7 @@ class RecordingTranscriptions implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Gets clips
      *
-     * @return \OpenAPI\Client\Model\RecordingTranscriptionClip[]|null
+     * @return \Bandwidth\Model\RecordingTranscriptionClip[]|null
      */
     public function getClips(): ?array
     {
@@ -311,7 +311,7 @@ class RecordingTranscriptions implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets clips
      *
-     * @param \OpenAPI\Client\Model\RecordingTranscriptionClip[]|null $clips A list of individual speech clips with speaker, timing, and confidence information.
+     * @param \Bandwidth\Model\RecordingTranscriptionClip[]|null $clips A list of individual speech clips with speaker, timing, and confidence information.
      *
      * @return $this
      */

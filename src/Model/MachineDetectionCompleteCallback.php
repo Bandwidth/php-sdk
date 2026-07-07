@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MachineDetectionCompleteCallback Class Doc Comment
  *
  * @description This event is sent to the url informed when requesting a machine detection operation. It contains the machine detection operation result, which can be: human, answering-machine, silence, timeout, error. This event is not sent when sync answering machine detection mode is chosen.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -66,14 +66,14 @@ class MachineDetectionCompleteCallback implements ModelInterface, ArrayAccess, J
         'application_id' => 'string',
         'from' => 'string',
         'to' => 'string',
-        'direction' => '\OpenAPI\Client\Model\CallDirectionEnum',
+        'direction' => '\Bandwidth\Model\CallDirectionEnum',
         'call_id' => 'string',
         'call_url' => 'string',
         'enqueued_time' => '\DateTime',
         'start_time' => '\DateTime',
         'answer_time' => '\DateTime',
         'tag' => 'string',
-        'machine_detection_result' => '\OpenAPI\Client\Model\MachineDetectionResult'
+        'machine_detection_result' => '\Bandwidth\Model\MachineDetectionResult'
     ];
 
     /**
@@ -521,9 +521,9 @@ class MachineDetectionCompleteCallback implements ModelInterface, ArrayAccess, J
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\CallDirectionEnum|null
+     * @return \Bandwidth\Model\CallDirectionEnum|null
      */
-    public function getDirection(): ?\OpenAPI\Client\Model\CallDirectionEnum
+    public function getDirection(): ?\Bandwidth\Model\CallDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -531,11 +531,11 @@ class MachineDetectionCompleteCallback implements ModelInterface, ArrayAccess, J
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\CallDirectionEnum|null $direction direction
+     * @param \Bandwidth\Model\CallDirectionEnum|null $direction direction
      *
      * @return $this
      */
-    public function setDirection(?\OpenAPI\Client\Model\CallDirectionEnum $direction): static
+    public function setDirection(?\Bandwidth\Model\CallDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');
@@ -731,9 +731,9 @@ class MachineDetectionCompleteCallback implements ModelInterface, ArrayAccess, J
     /**
      * Gets machine_detection_result
      *
-     * @return \OpenAPI\Client\Model\MachineDetectionResult|null
+     * @return \Bandwidth\Model\MachineDetectionResult|null
      */
-    public function getMachineDetectionResult(): ?\OpenAPI\Client\Model\MachineDetectionResult
+    public function getMachineDetectionResult(): ?\Bandwidth\Model\MachineDetectionResult
     {
         return $this->container['machine_detection_result'];
     }
@@ -741,11 +741,11 @@ class MachineDetectionCompleteCallback implements ModelInterface, ArrayAccess, J
     /**
      * Sets machine_detection_result
      *
-     * @param \OpenAPI\Client\Model\MachineDetectionResult|null $machine_detection_result machine_detection_result
+     * @param \Bandwidth\Model\MachineDetectionResult|null $machine_detection_result machine_detection_result
      *
      * @return $this
      */
-    public function setMachineDetectionResult(?\OpenAPI\Client\Model\MachineDetectionResult $machine_detection_result): static
+    public function setMachineDetectionResult(?\Bandwidth\Model\MachineDetectionResult $machine_detection_result): static
     {
         if (is_null($machine_detection_result)) {
             array_push($this->openAPINullablesSetToNull, 'machine_detection_result');

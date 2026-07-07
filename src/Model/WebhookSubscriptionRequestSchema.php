@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * WebhookSubscriptionRequestSchema Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class WebhookSubscriptionRequestSchema implements ModelInterface, ArrayAccess, J
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'basic_authentication' => '\OpenAPI\Client\Model\TfvBasicAuthentication',
+        'basic_authentication' => '\Bandwidth\Model\TfvBasicAuthentication',
         'callback_url' => 'string',
         'shared_secret_key' => 'string'
     ];
@@ -308,9 +308,9 @@ class WebhookSubscriptionRequestSchema implements ModelInterface, ArrayAccess, J
     /**
      * Gets basic_authentication
      *
-     * @return \OpenAPI\Client\Model\TfvBasicAuthentication|null
+     * @return \Bandwidth\Model\TfvBasicAuthentication|null
      */
-    public function getBasicAuthentication(): ?\OpenAPI\Client\Model\TfvBasicAuthentication
+    public function getBasicAuthentication(): ?\Bandwidth\Model\TfvBasicAuthentication
     {
         return $this->container['basic_authentication'];
     }
@@ -318,11 +318,11 @@ class WebhookSubscriptionRequestSchema implements ModelInterface, ArrayAccess, J
     /**
      * Sets basic_authentication
      *
-     * @param \OpenAPI\Client\Model\TfvBasicAuthentication|null $basic_authentication basic_authentication
+     * @param \Bandwidth\Model\TfvBasicAuthentication|null $basic_authentication basic_authentication
      *
      * @return $this
      */
-    public function setBasicAuthentication(?\OpenAPI\Client\Model\TfvBasicAuthentication $basic_authentication): static
+    public function setBasicAuthentication(?\Bandwidth\Model\TfvBasicAuthentication $basic_authentication): static
     {
         if (is_null($basic_authentication)) {
             throw new InvalidArgumentException('non-nullable basic_authentication cannot be null');

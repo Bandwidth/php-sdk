@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CallRecordingMetadata Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -69,14 +69,14 @@ class CallRecordingMetadata implements ModelInterface, ArrayAccess, JsonSerializ
         'transfer_caller_id' => 'string',
         'transfer_to' => 'string',
         'duration' => 'string',
-        'direction' => '\OpenAPI\Client\Model\CallDirectionEnum',
+        'direction' => '\Bandwidth\Model\CallDirectionEnum',
         'channels' => 'int',
         'start_time' => '\DateTime',
         'end_time' => '\DateTime',
-        'file_format' => '\OpenAPI\Client\Model\FileFormatEnum',
+        'file_format' => '\Bandwidth\Model\FileFormatEnum',
         'status' => 'string',
         'media_url' => 'string',
-        'transcription' => '\OpenAPI\Client\Model\RecordingTranscriptionMetadata',
+        'transcription' => '\Bandwidth\Model\RecordingTranscriptionMetadata',
         'recording_name' => 'string'
     ];
 
@@ -663,9 +663,9 @@ class CallRecordingMetadata implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\CallDirectionEnum|null
+     * @return \Bandwidth\Model\CallDirectionEnum|null
      */
-    public function getDirection(): ?\OpenAPI\Client\Model\CallDirectionEnum
+    public function getDirection(): ?\Bandwidth\Model\CallDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -673,11 +673,11 @@ class CallRecordingMetadata implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\CallDirectionEnum|null $direction direction
+     * @param \Bandwidth\Model\CallDirectionEnum|null $direction direction
      *
      * @return $this
      */
-    public function setDirection(?\OpenAPI\Client\Model\CallDirectionEnum $direction): static
+    public function setDirection(?\Bandwidth\Model\CallDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');
@@ -771,9 +771,9 @@ class CallRecordingMetadata implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets file_format
      *
-     * @return \OpenAPI\Client\Model\FileFormatEnum|null
+     * @return \Bandwidth\Model\FileFormatEnum|null
      */
-    public function getFileFormat(): ?\OpenAPI\Client\Model\FileFormatEnum
+    public function getFileFormat(): ?\Bandwidth\Model\FileFormatEnum
     {
         return $this->container['file_format'];
     }
@@ -781,11 +781,11 @@ class CallRecordingMetadata implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets file_format
      *
-     * @param \OpenAPI\Client\Model\FileFormatEnum|null $file_format file_format
+     * @param \Bandwidth\Model\FileFormatEnum|null $file_format file_format
      *
      * @return $this
      */
-    public function setFileFormat(?\OpenAPI\Client\Model\FileFormatEnum $file_format): static
+    public function setFileFormat(?\Bandwidth\Model\FileFormatEnum $file_format): static
     {
         if (is_null($file_format)) {
             throw new InvalidArgumentException('non-nullable file_format cannot be null');
@@ -859,9 +859,9 @@ class CallRecordingMetadata implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets transcription
      *
-     * @return \OpenAPI\Client\Model\RecordingTranscriptionMetadata|null
+     * @return \Bandwidth\Model\RecordingTranscriptionMetadata|null
      */
-    public function getTranscription(): ?\OpenAPI\Client\Model\RecordingTranscriptionMetadata
+    public function getTranscription(): ?\Bandwidth\Model\RecordingTranscriptionMetadata
     {
         return $this->container['transcription'];
     }
@@ -869,11 +869,11 @@ class CallRecordingMetadata implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets transcription
      *
-     * @param \OpenAPI\Client\Model\RecordingTranscriptionMetadata|null $transcription transcription
+     * @param \Bandwidth\Model\RecordingTranscriptionMetadata|null $transcription transcription
      *
      * @return $this
      */
-    public function setTranscription(?\OpenAPI\Client\Model\RecordingTranscriptionMetadata $transcription): static
+    public function setTranscription(?\Bandwidth\Model\RecordingTranscriptionMetadata $transcription): static
     {
         if (is_null($transcription)) {
             array_push($this->openAPINullablesSetToNull, 'transcription');

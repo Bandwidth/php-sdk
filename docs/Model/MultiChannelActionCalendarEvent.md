@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**\OpenAPI\Client\Model\RbmActionTypeEnum**](RbmActionTypeEnum.md) |  |
+**type** | [**\Bandwidth\Model\RbmActionTypeEnum**](RbmActionTypeEnum.md) |  |
 **text** | **string** | Displayed text for user to click |
 **postback_data** | **string** | Base64 payload the customer receives when the reply is clicked. |
 **title** | **string** | The title of the event. |

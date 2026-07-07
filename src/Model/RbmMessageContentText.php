@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RbmMessageContentText Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class RbmMessageContentText implements ModelInterface, ArrayAccess, JsonSerializ
      */
     protected static array $openAPITypes = [
         'text' => 'string',
-        'suggestions' => '\OpenAPI\Client\Model\MultiChannelAction[]'
+        'suggestions' => '\Bandwidth\Model\MultiChannelAction[]'
     ];
 
     /**
@@ -316,7 +316,7 @@ class RbmMessageContentText implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets suggestions
      *
-     * @return \OpenAPI\Client\Model\MultiChannelAction[]|null
+     * @return \Bandwidth\Model\MultiChannelAction[]|null
      */
     public function getSuggestions(): ?array
     {
@@ -326,7 +326,7 @@ class RbmMessageContentText implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets suggestions
      *
-     * @param \OpenAPI\Client\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
+     * @param \Bandwidth\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
      *
      * @return $this
      */

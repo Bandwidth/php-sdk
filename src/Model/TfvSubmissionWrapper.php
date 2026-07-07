@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * TfvSubmissionWrapper Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class TfvSubmissionWrapper implements ModelInterface, ArrayAccess, JsonSerializa
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'submission' => '\OpenAPI\Client\Model\VerificationUpdateRequest'
+        'submission' => '\Bandwidth\Model\VerificationUpdateRequest'
     ];
 
     /**
@@ -267,9 +267,9 @@ class TfvSubmissionWrapper implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets submission
      *
-     * @return \OpenAPI\Client\Model\VerificationUpdateRequest|null
+     * @return \Bandwidth\Model\VerificationUpdateRequest|null
      */
-    public function getSubmission(): ?\OpenAPI\Client\Model\VerificationUpdateRequest
+    public function getSubmission(): ?\Bandwidth\Model\VerificationUpdateRequest
     {
         return $this->container['submission'];
     }
@@ -277,11 +277,11 @@ class TfvSubmissionWrapper implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets submission
      *
-     * @param \OpenAPI\Client\Model\VerificationUpdateRequest|null $submission submission
+     * @param \Bandwidth\Model\VerificationUpdateRequest|null $submission submission
      *
      * @return $this
      */
-    public function setSubmission(?\OpenAPI\Client\Model\VerificationUpdateRequest $submission): static
+    public function setSubmission(?\Bandwidth\Model\VerificationUpdateRequest $submission): static
     {
         if (is_null($submission)) {
             throw new InvalidArgumentException('non-nullable submission cannot be null');

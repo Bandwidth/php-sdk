@@ -14,11 +14,11 @@ Name | Type | Description | Notes
 **call_timeout** | **float** | The timeout (in seconds) for the callee to answer the call after it starts ringing. | [optional]
 **callback_timeout** | **float** | This is the timeout (in seconds) to use when delivering webhooks for the call. | [optional]
 **tag** | **string** | Custom tag value. | [optional]
-**answer_method** | [**\OpenAPI\Client\Model\CallbackMethodEnum**](CallbackMethodEnum.md) |  |
+**answer_method** | [**\Bandwidth\Model\CallbackMethodEnum**](CallbackMethodEnum.md) |  |
 **answer_url** | **string** | URL to deliver the &#x60;answer&#x60; event webhook. |
-**answer_fallback_method** | [**\OpenAPI\Client\Model\CallbackMethodEnum**](CallbackMethodEnum.md) |  | [optional]
+**answer_fallback_method** | [**\Bandwidth\Model\CallbackMethodEnum**](CallbackMethodEnum.md) |  | [optional]
 **answer_fallback_url** | **string** | Fallback URL to deliver the &#x60;answer&#x60; event webhook. | [optional]
-**disconnect_method** | [**\OpenAPI\Client\Model\CallbackMethodEnum**](CallbackMethodEnum.md) |  |
+**disconnect_method** | [**\Bandwidth\Model\CallbackMethodEnum**](CallbackMethodEnum.md) |  |
 **disconnect_url** | **string** | URL to deliver the &#x60;disconnect&#x60; event webhook. | [optional]
 **username** | **string** | Basic auth username. | [optional]
 **password** | **string** | Basic auth password. | [optional]

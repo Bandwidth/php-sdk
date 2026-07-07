@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**\OpenAPI\Client\Model\RbmActionTypeEnum**](RbmActionTypeEnum.md) |  |
+**type** | [**\Bandwidth\Model\RbmActionTypeEnum**](RbmActionTypeEnum.md) |  |
 **text** | **string** | Displayed text for user to click |
 **postback_data** | **string** | Base64 payload the customer receives when the reply is clicked. |
 **latitude** | **float** | The latitude of the location. Must be in range [-90.000000, 90.000000]. |

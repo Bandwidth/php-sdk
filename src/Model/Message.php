@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * Message Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -64,13 +64,13 @@ class Message implements ModelInterface, ArrayAccess, JsonSerializable
         'application_id' => 'string',
         'time' => '\DateTime',
         'segment_count' => 'int',
-        'direction' => '\OpenAPI\Client\Model\MessageDirectionEnum',
+        'direction' => '\Bandwidth\Model\MessageDirectionEnum',
         'to' => 'string[]',
         'from' => 'string',
         'media' => 'string[]',
         'text' => 'string',
         'tag' => 'string',
-        'priority' => '\OpenAPI\Client\Model\PriorityEnum',
+        'priority' => '\Bandwidth\Model\PriorityEnum',
         'expiration' => '\DateTime'
     ];
 
@@ -486,9 +486,9 @@ class Message implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets direction
      *
-     * @return \OpenAPI\Client\Model\MessageDirectionEnum|null
+     * @return \Bandwidth\Model\MessageDirectionEnum|null
      */
-    public function getDirection(): ?\OpenAPI\Client\Model\MessageDirectionEnum
+    public function getDirection(): ?\Bandwidth\Model\MessageDirectionEnum
     {
         return $this->container['direction'];
     }
@@ -496,11 +496,11 @@ class Message implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets direction
      *
-     * @param \OpenAPI\Client\Model\MessageDirectionEnum|null $direction direction
+     * @param \Bandwidth\Model\MessageDirectionEnum|null $direction direction
      *
      * @return $this
      */
-    public function setDirection(?\OpenAPI\Client\Model\MessageDirectionEnum $direction): static
+    public function setDirection(?\Bandwidth\Model\MessageDirectionEnum $direction): static
     {
         if (is_null($direction)) {
             throw new InvalidArgumentException('non-nullable direction cannot be null');
@@ -652,9 +652,9 @@ class Message implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets priority
      *
-     * @return \OpenAPI\Client\Model\PriorityEnum|null
+     * @return \Bandwidth\Model\PriorityEnum|null
      */
-    public function getPriority(): ?\OpenAPI\Client\Model\PriorityEnum
+    public function getPriority(): ?\Bandwidth\Model\PriorityEnum
     {
         return $this->container['priority'];
     }
@@ -662,11 +662,11 @@ class Message implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets priority
      *
-     * @param \OpenAPI\Client\Model\PriorityEnum|null $priority priority
+     * @param \Bandwidth\Model\PriorityEnum|null $priority priority
      *
      * @return $this
      */
-    public function setPriority(?\OpenAPI\Client\Model\PriorityEnum $priority): static
+    public function setPriority(?\Bandwidth\Model\PriorityEnum $priority): static
     {
         if (is_null($priority)) {
             throw new InvalidArgumentException('non-nullable priority cannot be null');

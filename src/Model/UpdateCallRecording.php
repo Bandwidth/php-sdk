@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * UpdateCallRecording Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class UpdateCallRecording implements ModelInterface, ArrayAccess, JsonSerializab
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'state' => '\OpenAPI\Client\Model\RecordingStateEnum'
+        'state' => '\Bandwidth\Model\RecordingStateEnum'
     ];
 
     /**
@@ -270,9 +270,9 @@ class UpdateCallRecording implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets state
      *
-     * @return \OpenAPI\Client\Model\RecordingStateEnum
+     * @return \Bandwidth\Model\RecordingStateEnum
      */
-    public function getState(): \OpenAPI\Client\Model\RecordingStateEnum
+    public function getState(): \Bandwidth\Model\RecordingStateEnum
     {
         return $this->container['state'];
     }
@@ -280,11 +280,11 @@ class UpdateCallRecording implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets state
      *
-     * @param \OpenAPI\Client\Model\RecordingStateEnum $state state
+     * @param \Bandwidth\Model\RecordingStateEnum $state state
      *
      * @return $this
      */
-    public function setState(\OpenAPI\Client\Model\RecordingStateEnum $state): static
+    public function setState(\Bandwidth\Model\RecordingStateEnum $state): static
     {
         if (is_null($state)) {
             throw new InvalidArgumentException('non-nullable state cannot be null');

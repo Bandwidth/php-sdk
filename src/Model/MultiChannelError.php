@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MultiChannelError Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,9 +59,9 @@ class MultiChannelError implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'links' => '\OpenAPI\Client\Model\Link[]',
+        'links' => '\Bandwidth\Model\Link[]',
         'data' => 'object',
-        'errors' => '\OpenAPI\Client\Model\ErrorObject[]'
+        'errors' => '\Bandwidth\Model\ErrorObject[]'
     ];
 
     /**
@@ -281,7 +281,7 @@ class MultiChannelError implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets links
      *
-     * @return \OpenAPI\Client\Model\Link[]|null
+     * @return \Bandwidth\Model\Link[]|null
      */
     public function getLinks(): ?array
     {
@@ -291,7 +291,7 @@ class MultiChannelError implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets links
      *
-     * @param \OpenAPI\Client\Model\Link[]|null $links links
+     * @param \Bandwidth\Model\Link[]|null $links links
      *
      * @return $this
      */
@@ -342,7 +342,7 @@ class MultiChannelError implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorObject[]|null
+     * @return \Bandwidth\Model\ErrorObject[]|null
      */
     public function getErrors(): ?array
     {
@@ -352,7 +352,7 @@ class MultiChannelError implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorObject[]|null $errors errors
+     * @param \Bandwidth\Model\ErrorObject[]|null $errors errors
      *
      * @return $this
      */

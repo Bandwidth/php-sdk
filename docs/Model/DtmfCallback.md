@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **from** | **string** | The provided identifier of the caller. Must be a phone number in E.164 format (e.g. +15555555555). | [optional]
 **to** | **string** | The phone number that received the call, in E.164 format (e.g. +15555555555). | [optional]
 **call_id** | **string** | The call id associated with the event. | [optional]
-**direction** | [**\OpenAPI\Client\Model\CallDirectionEnum**](CallDirectionEnum.md) |  | [optional]
+**direction** | [**\Bandwidth\Model\CallDirectionEnum**](CallDirectionEnum.md) |  | [optional]
 **digit** | **string** | The digit collected in the call. | [optional]
 **call_url** | **string** | The URL of the call associated with the event. | [optional]
 **enqueued_time** | **\DateTime** | (optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format. | [optional]

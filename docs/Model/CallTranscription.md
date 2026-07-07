@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**detected_language** | [**\OpenAPI\Client\Model\CallTranscriptionDetectedLanguageEnum**](CallTranscriptionDetectedLanguageEnum.md) |  | [optional]
-**track** | [**\OpenAPI\Client\Model\CallTranscriptionTrackEnum**](CallTranscriptionTrackEnum.md) |  | [optional]
+**detected_language** | [**\Bandwidth\Model\CallTranscriptionDetectedLanguageEnum**](CallTranscriptionDetectedLanguageEnum.md) |  | [optional]
+**track** | [**\Bandwidth\Model\CallTranscriptionTrackEnum**](CallTranscriptionTrackEnum.md) |  | [optional]
 **transcript** | **string** | The transcription itself. | [optional]
 **confidence** | **float** | How confident the transcription engine was in transcribing the associated audio (from &#x60;0&#x60; to &#x60;1&#x60;). | [optional]
 

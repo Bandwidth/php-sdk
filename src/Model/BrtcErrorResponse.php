@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * BrtcErrorResponse Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,9 +59,9 @@ class BrtcErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'links' => '\OpenAPI\Client\Model\BrtcLink[]',
+        'links' => '\Bandwidth\Model\BrtcLink[]',
         'data' => 'object',
-        'errors' => '\OpenAPI\Client\Model\BrtcError[]'
+        'errors' => '\Bandwidth\Model\BrtcError[]'
     ];
 
     /**
@@ -290,7 +290,7 @@ class BrtcErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets links
      *
-     * @return \OpenAPI\Client\Model\BrtcLink[]
+     * @return \Bandwidth\Model\BrtcLink[]
      */
     public function getLinks(): array
     {
@@ -300,7 +300,7 @@ class BrtcErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets links
      *
-     * @param \OpenAPI\Client\Model\BrtcLink[] $links links
+     * @param \Bandwidth\Model\BrtcLink[] $links links
      *
      * @return $this
      */
@@ -351,7 +351,7 @@ class BrtcErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\BrtcError[]
+     * @return \Bandwidth\Model\BrtcError[]
      */
     public function getErrors(): array
     {
@@ -361,7 +361,7 @@ class BrtcErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\BrtcError[] $errors errors
+     * @param \Bandwidth\Model\BrtcError[] $errors errors
      *
      * @return $this
      */

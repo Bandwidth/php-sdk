@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MultiChannelChannelListObjectBase Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class MultiChannelChannelListObjectBase implements ModelInterface, ArrayAccess, 
     protected static array $openAPITypes = [
         'from' => 'string',
         'application_id' => 'string',
-        'channel' => '\OpenAPI\Client\Model\MultiChannelMessageChannelEnum'
+        'channel' => '\Bandwidth\Model\MultiChannelMessageChannelEnum'
     ];
 
     /**
@@ -344,9 +344,9 @@ class MultiChannelChannelListObjectBase implements ModelInterface, ArrayAccess, 
     /**
      * Gets channel
      *
-     * @return \OpenAPI\Client\Model\MultiChannelMessageChannelEnum
+     * @return \Bandwidth\Model\MultiChannelMessageChannelEnum
      */
-    public function getChannel(): \OpenAPI\Client\Model\MultiChannelMessageChannelEnum
+    public function getChannel(): \Bandwidth\Model\MultiChannelMessageChannelEnum
     {
         return $this->container['channel'];
     }
@@ -354,11 +354,11 @@ class MultiChannelChannelListObjectBase implements ModelInterface, ArrayAccess, 
     /**
      * Sets channel
      *
-     * @param \OpenAPI\Client\Model\MultiChannelMessageChannelEnum $channel channel
+     * @param \Bandwidth\Model\MultiChannelMessageChannelEnum $channel channel
      *
      * @return $this
      */
-    public function setChannel(\OpenAPI\Client\Model\MultiChannelMessageChannelEnum $channel): static
+    public function setChannel(\Bandwidth\Model\MultiChannelMessageChannelEnum $channel): static
     {
         if (is_null($channel)) {
             throw new InvalidArgumentException('non-nullable channel cannot be null');

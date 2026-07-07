@@ -3,7 +3,7 @@
  * PhoneNumberLookupApi
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Bandwidth\Api;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client;
@@ -38,16 +38,16 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ApiException;
+use Bandwidth\Configuration;
+use Bandwidth\HeaderSelector;
+use Bandwidth\FormDataProcessor;
+use Bandwidth\ObjectSerializer;
 
 /**
  * PhoneNumberLookupApi Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -142,22 +142,22 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id account_id (required)
-     * @param  \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
+     * @param  \Bandwidth\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAsyncBulkLookup'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateAsyncBulkLookupResponse|\OpenAPI\Client\Model\LookupErrorResponse
+     * @return \Bandwidth\Model\CreateAsyncBulkLookupResponse|\Bandwidth\Model\LookupErrorResponse
      */
     public function createAsyncBulkLookup(
         string $account_id,
-        \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request,
+        \Bandwidth\Model\AsyncLookupRequest $async_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createAsyncBulkLookup'][0]
-    ): \OpenAPI\Client\Model\CreateAsyncBulkLookupResponse|\OpenAPI\Client\Model\LookupErrorResponse
+    ): \Bandwidth\Model\CreateAsyncBulkLookupResponse|\Bandwidth\Model\LookupErrorResponse
     {
         list($response) = $this->createAsyncBulkLookupWithHttpInfo($account_id, $async_lookup_request, $hostIndex, $variables, $contentType);
         return $response;
@@ -173,18 +173,18 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id (required)
-     * @param  \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
+     * @param  \Bandwidth\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAsyncBulkLookup'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateAsyncBulkLookupResponse|\OpenAPI\Client\Model\LookupErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\CreateAsyncBulkLookupResponse|\Bandwidth\Model\LookupErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createAsyncBulkLookupWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request,
+        \Bandwidth\Model\AsyncLookupRequest $async_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createAsyncBulkLookup'][0]
@@ -217,13 +217,13 @@ class PhoneNumberLookupApi
             switch($statusCode) {
                 case 202:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateAsyncBulkLookupResponse',
+                        '\Bandwidth\Model\CreateAsyncBulkLookupResponse',
                         $request,
                         $response,
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\LookupErrorResponse',
+                        '\Bandwidth\Model\LookupErrorResponse',
                         $request,
                         $response,
                     );
@@ -244,7 +244,7 @@ class PhoneNumberLookupApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateAsyncBulkLookupResponse',
+                '\Bandwidth\Model\CreateAsyncBulkLookupResponse',
                 $request,
                 $response,
             );
@@ -253,7 +253,7 @@ class PhoneNumberLookupApi
                 case 202:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateAsyncBulkLookupResponse',
+                        '\Bandwidth\Model\CreateAsyncBulkLookupResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -261,7 +261,7 @@ class PhoneNumberLookupApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\LookupErrorResponse',
+                        '\Bandwidth\Model\LookupErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -282,7 +282,7 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id (required)
-     * @param  \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
+     * @param  \Bandwidth\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAsyncBulkLookup'] to see the possible values for this operation
@@ -292,7 +292,7 @@ class PhoneNumberLookupApi
      */
     public function createAsyncBulkLookupAsync(
         string $account_id,
-        \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request,
+        \Bandwidth\Model\AsyncLookupRequest $async_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createAsyncBulkLookup'][0]
@@ -316,7 +316,7 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id (required)
-     * @param  \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
+     * @param  \Bandwidth\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAsyncBulkLookup'] to see the possible values for this operation
@@ -326,13 +326,13 @@ class PhoneNumberLookupApi
      */
     public function createAsyncBulkLookupAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request,
+        \Bandwidth\Model\AsyncLookupRequest $async_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createAsyncBulkLookup'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\CreateAsyncBulkLookupResponse';
+        $returnType = '\Bandwidth\Model\CreateAsyncBulkLookupResponse';
         $request = $this->createAsyncBulkLookupRequest($account_id, $async_lookup_request, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -379,7 +379,7 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id (required)
-     * @param  \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
+     * @param  \Bandwidth\Model\AsyncLookupRequest $async_lookup_request Asynchronous bulk phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAsyncBulkLookup'] to see the possible values for this operation
@@ -389,7 +389,7 @@ class PhoneNumberLookupApi
      */
     public function createAsyncBulkLookupRequest(
         string $account_id,
-        \OpenAPI\Client\Model\AsyncLookupRequest $async_lookup_request,
+        \Bandwidth\Model\AsyncLookupRequest $async_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createAsyncBulkLookup'][0]
@@ -534,22 +534,22 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id account_id (required)
-     * @param  \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
+     * @param  \Bandwidth\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSyncLookup'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateSyncLookupResponse|\OpenAPI\Client\Model\LookupErrorResponse
+     * @return \Bandwidth\Model\CreateSyncLookupResponse|\Bandwidth\Model\LookupErrorResponse
      */
     public function createSyncLookup(
         string $account_id,
-        \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request,
+        \Bandwidth\Model\SyncLookupRequest $sync_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createSyncLookup'][0]
-    ): \OpenAPI\Client\Model\CreateSyncLookupResponse|\OpenAPI\Client\Model\LookupErrorResponse
+    ): \Bandwidth\Model\CreateSyncLookupResponse|\Bandwidth\Model\LookupErrorResponse
     {
         list($response) = $this->createSyncLookupWithHttpInfo($account_id, $sync_lookup_request, $hostIndex, $variables, $contentType);
         return $response;
@@ -565,18 +565,18 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id (required)
-     * @param  \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
+     * @param  \Bandwidth\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSyncLookup'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateSyncLookupResponse|\OpenAPI\Client\Model\LookupErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\CreateSyncLookupResponse|\Bandwidth\Model\LookupErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createSyncLookupWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request,
+        \Bandwidth\Model\SyncLookupRequest $sync_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createSyncLookup'][0]
@@ -609,13 +609,13 @@ class PhoneNumberLookupApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateSyncLookupResponse',
+                        '\Bandwidth\Model\CreateSyncLookupResponse',
                         $request,
                         $response,
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\LookupErrorResponse',
+                        '\Bandwidth\Model\LookupErrorResponse',
                         $request,
                         $response,
                     );
@@ -636,7 +636,7 @@ class PhoneNumberLookupApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateSyncLookupResponse',
+                '\Bandwidth\Model\CreateSyncLookupResponse',
                 $request,
                 $response,
             );
@@ -645,7 +645,7 @@ class PhoneNumberLookupApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateSyncLookupResponse',
+                        '\Bandwidth\Model\CreateSyncLookupResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -653,7 +653,7 @@ class PhoneNumberLookupApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\LookupErrorResponse',
+                        '\Bandwidth\Model\LookupErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -674,7 +674,7 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id (required)
-     * @param  \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
+     * @param  \Bandwidth\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSyncLookup'] to see the possible values for this operation
@@ -684,7 +684,7 @@ class PhoneNumberLookupApi
      */
     public function createSyncLookupAsync(
         string $account_id,
-        \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request,
+        \Bandwidth\Model\SyncLookupRequest $sync_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createSyncLookup'][0]
@@ -708,7 +708,7 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id (required)
-     * @param  \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
+     * @param  \Bandwidth\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSyncLookup'] to see the possible values for this operation
@@ -718,13 +718,13 @@ class PhoneNumberLookupApi
      */
     public function createSyncLookupAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request,
+        \Bandwidth\Model\SyncLookupRequest $sync_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createSyncLookup'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\CreateSyncLookupResponse';
+        $returnType = '\Bandwidth\Model\CreateSyncLookupResponse';
         $request = $this->createSyncLookupRequest($account_id, $sync_lookup_request, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -771,7 +771,7 @@ class PhoneNumberLookupApi
      * URL: https://api.bandwidth.com/v2
      *
      * @param  string $account_id (required)
-     * @param  \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
+     * @param  \Bandwidth\Model\SyncLookupRequest $sync_lookup_request Synchronous phone number lookup request. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSyncLookup'] to see the possible values for this operation
@@ -781,7 +781,7 @@ class PhoneNumberLookupApi
      */
     public function createSyncLookupRequest(
         string $account_id,
-        \OpenAPI\Client\Model\SyncLookupRequest $sync_lookup_request,
+        \Bandwidth\Model\SyncLookupRequest $sync_lookup_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createSyncLookup'][0]
@@ -933,7 +933,7 @@ class PhoneNumberLookupApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GetAsyncBulkLookupResponse|\OpenAPI\Client\Model\LookupErrorResponse
+     * @return \Bandwidth\Model\GetAsyncBulkLookupResponse|\Bandwidth\Model\LookupErrorResponse
      */
     public function getAsyncBulkLookup(
         string $account_id,
@@ -941,7 +941,7 @@ class PhoneNumberLookupApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['getAsyncBulkLookup'][0]
-    ): \OpenAPI\Client\Model\GetAsyncBulkLookupResponse|\OpenAPI\Client\Model\LookupErrorResponse
+    ): \Bandwidth\Model\GetAsyncBulkLookupResponse|\Bandwidth\Model\LookupErrorResponse
     {
         list($response) = $this->getAsyncBulkLookupWithHttpInfo($account_id, $request_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -964,7 +964,7 @@ class PhoneNumberLookupApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GetAsyncBulkLookupResponse|\OpenAPI\Client\Model\LookupErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\GetAsyncBulkLookupResponse|\Bandwidth\Model\LookupErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAsyncBulkLookupWithHttpInfo(
         string $account_id,
@@ -1001,13 +1001,13 @@ class PhoneNumberLookupApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\GetAsyncBulkLookupResponse',
+                        '\Bandwidth\Model\GetAsyncBulkLookupResponse',
                         $request,
                         $response,
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\LookupErrorResponse',
+                        '\Bandwidth\Model\LookupErrorResponse',
                         $request,
                         $response,
                     );
@@ -1028,7 +1028,7 @@ class PhoneNumberLookupApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\GetAsyncBulkLookupResponse',
+                '\Bandwidth\Model\GetAsyncBulkLookupResponse',
                 $request,
                 $response,
             );
@@ -1037,7 +1037,7 @@ class PhoneNumberLookupApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GetAsyncBulkLookupResponse',
+                        '\Bandwidth\Model\GetAsyncBulkLookupResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1045,7 +1045,7 @@ class PhoneNumberLookupApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\LookupErrorResponse',
+                        '\Bandwidth\Model\LookupErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1116,7 +1116,7 @@ class PhoneNumberLookupApi
         string $contentType = self::contentTypes['getAsyncBulkLookup'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\GetAsyncBulkLookupResponse';
+        $returnType = '\Bandwidth\Model\GetAsyncBulkLookupResponse';
         $request = $this->getAsyncBulkLookupRequest($account_id, $request_id, $hostIndex, $variables, $contentType);
 
         return $this->client

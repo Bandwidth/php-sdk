@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * ListMessageItem Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -63,9 +63,9 @@ class ListMessageItem implements ModelInterface, ArrayAccess, JsonSerializable
         'account_id' => 'string',
         'source_tn' => 'string',
         'destination_tn' => 'string',
-        'message_status' => '\OpenAPI\Client\Model\MessageStatusEnum',
-        'message_direction' => '\OpenAPI\Client\Model\ListMessageDirectionEnum',
-        'message_type' => '\OpenAPI\Client\Model\MessageTypeEnum',
+        'message_status' => '\Bandwidth\Model\MessageStatusEnum',
+        'message_direction' => '\Bandwidth\Model\ListMessageDirectionEnum',
+        'message_type' => '\Bandwidth\Model\MessageTypeEnum',
         'segment_count' => 'int',
         'error_code' => 'int',
         'receive_time' => '\DateTime',
@@ -529,9 +529,9 @@ class ListMessageItem implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets message_status
      *
-     * @return \OpenAPI\Client\Model\MessageStatusEnum|null
+     * @return \Bandwidth\Model\MessageStatusEnum|null
      */
-    public function getMessageStatus(): ?\OpenAPI\Client\Model\MessageStatusEnum
+    public function getMessageStatus(): ?\Bandwidth\Model\MessageStatusEnum
     {
         return $this->container['message_status'];
     }
@@ -539,11 +539,11 @@ class ListMessageItem implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets message_status
      *
-     * @param \OpenAPI\Client\Model\MessageStatusEnum|null $message_status message_status
+     * @param \Bandwidth\Model\MessageStatusEnum|null $message_status message_status
      *
      * @return $this
      */
-    public function setMessageStatus(?\OpenAPI\Client\Model\MessageStatusEnum $message_status): static
+    public function setMessageStatus(?\Bandwidth\Model\MessageStatusEnum $message_status): static
     {
         if (is_null($message_status)) {
             throw new InvalidArgumentException('non-nullable message_status cannot be null');
@@ -556,9 +556,9 @@ class ListMessageItem implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets message_direction
      *
-     * @return \OpenAPI\Client\Model\ListMessageDirectionEnum|null
+     * @return \Bandwidth\Model\ListMessageDirectionEnum|null
      */
-    public function getMessageDirection(): ?\OpenAPI\Client\Model\ListMessageDirectionEnum
+    public function getMessageDirection(): ?\Bandwidth\Model\ListMessageDirectionEnum
     {
         return $this->container['message_direction'];
     }
@@ -566,11 +566,11 @@ class ListMessageItem implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets message_direction
      *
-     * @param \OpenAPI\Client\Model\ListMessageDirectionEnum|null $message_direction message_direction
+     * @param \Bandwidth\Model\ListMessageDirectionEnum|null $message_direction message_direction
      *
      * @return $this
      */
-    public function setMessageDirection(?\OpenAPI\Client\Model\ListMessageDirectionEnum $message_direction): static
+    public function setMessageDirection(?\Bandwidth\Model\ListMessageDirectionEnum $message_direction): static
     {
         if (is_null($message_direction)) {
             throw new InvalidArgumentException('non-nullable message_direction cannot be null');
@@ -583,9 +583,9 @@ class ListMessageItem implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets message_type
      *
-     * @return \OpenAPI\Client\Model\MessageTypeEnum|null
+     * @return \Bandwidth\Model\MessageTypeEnum|null
      */
-    public function getMessageType(): ?\OpenAPI\Client\Model\MessageTypeEnum
+    public function getMessageType(): ?\Bandwidth\Model\MessageTypeEnum
     {
         return $this->container['message_type'];
     }
@@ -593,11 +593,11 @@ class ListMessageItem implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets message_type
      *
-     * @param \OpenAPI\Client\Model\MessageTypeEnum|null $message_type message_type
+     * @param \Bandwidth\Model\MessageTypeEnum|null $message_type message_type
      *
      * @return $this
      */
-    public function setMessageType(?\OpenAPI\Client\Model\MessageTypeEnum $message_type): static
+    public function setMessageType(?\Bandwidth\Model\MessageTypeEnum $message_type): static
     {
         if (is_null($message_type)) {
             throw new InvalidArgumentException('non-nullable message_type cannot be null');

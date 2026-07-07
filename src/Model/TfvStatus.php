@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * TfvStatus Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -60,15 +60,15 @@ class TfvStatus implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static array $openAPITypes = [
         'phone_number' => 'string',
-        'status' => '\OpenAPI\Client\Model\TfvStatusEnum',
+        'status' => '\Bandwidth\Model\TfvStatusEnum',
         'internal_ticket_number' => 'string',
         'decline_reason_description' => 'string',
         'denial_status_code' => 'int',
-        'additional_denial_reasons' => '\OpenAPI\Client\Model\AdditionalDenialReason[]',
+        'additional_denial_reasons' => '\Bandwidth\Model\AdditionalDenialReason[]',
         'resubmit_allowed' => 'bool',
         'created_date_time' => '\DateTime',
         'modified_date_time' => '\DateTime',
-        'submission' => '\OpenAPI\Client\Model\TfvSubmissionInfo',
+        'submission' => '\Bandwidth\Model\TfvSubmissionInfo',
         'blocked' => 'bool',
         'blocked_reason' => 'string',
         'cv_token' => 'string'
@@ -408,9 +408,9 @@ class TfvStatus implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\TfvStatusEnum|null
+     * @return \Bandwidth\Model\TfvStatusEnum|null
      */
-    public function getStatus(): ?\OpenAPI\Client\Model\TfvStatusEnum
+    public function getStatus(): ?\Bandwidth\Model\TfvStatusEnum
     {
         return $this->container['status'];
     }
@@ -418,11 +418,11 @@ class TfvStatus implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\TfvStatusEnum|null $status status
+     * @param \Bandwidth\Model\TfvStatusEnum|null $status status
      *
      * @return $this
      */
-    public function setStatus(?\OpenAPI\Client\Model\TfvStatusEnum $status): static
+    public function setStatus(?\Bandwidth\Model\TfvStatusEnum $status): static
     {
         if (is_null($status)) {
             throw new InvalidArgumentException('non-nullable status cannot be null');
@@ -523,7 +523,7 @@ class TfvStatus implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets additional_denial_reasons
      *
-     * @return \OpenAPI\Client\Model\AdditionalDenialReason[]|null
+     * @return \Bandwidth\Model\AdditionalDenialReason[]|null
      */
     public function getAdditionalDenialReasons(): ?array
     {
@@ -533,7 +533,7 @@ class TfvStatus implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets additional_denial_reasons
      *
-     * @param \OpenAPI\Client\Model\AdditionalDenialReason[]|null $additional_denial_reasons An optional list of denial reasons in addition to declineReasonDescription when multiple reasons apply.
+     * @param \Bandwidth\Model\AdditionalDenialReason[]|null $additional_denial_reasons An optional list of denial reasons in addition to declineReasonDescription when multiple reasons apply.
      *
      * @return $this
      */
@@ -638,9 +638,9 @@ class TfvStatus implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets submission
      *
-     * @return \OpenAPI\Client\Model\TfvSubmissionInfo|null
+     * @return \Bandwidth\Model\TfvSubmissionInfo|null
      */
-    public function getSubmission(): ?\OpenAPI\Client\Model\TfvSubmissionInfo
+    public function getSubmission(): ?\Bandwidth\Model\TfvSubmissionInfo
     {
         return $this->container['submission'];
     }
@@ -648,11 +648,11 @@ class TfvStatus implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets submission
      *
-     * @param \OpenAPI\Client\Model\TfvSubmissionInfo|null $submission submission
+     * @param \Bandwidth\Model\TfvSubmissionInfo|null $submission submission
      *
      * @return $this
      */
-    public function setSubmission(?\OpenAPI\Client\Model\TfvSubmissionInfo $submission): static
+    public function setSubmission(?\Bandwidth\Model\TfvSubmissionInfo $submission): static
     {
         if (is_null($submission)) {
             throw new InvalidArgumentException('non-nullable submission cannot be null');

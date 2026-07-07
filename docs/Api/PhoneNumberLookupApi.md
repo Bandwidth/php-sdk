@@ -1,4 +1,4 @@
-# OpenAPI\Client\PhoneNumberLookupApi
+# Bandwidth\PhoneNumberLookupApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -12,7 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createAsyncBulkLookup()`
 
 ```php
-createAsyncBulkLookup($account_id, $async_lookup_request): \OpenAPI\Client\Model\CreateAsyncBulkLookupResponse
+createAsyncBulkLookup($account_id, $async_lookup_request): \Bandwidth\Model\CreateAsyncBulkLookupResponse
 ```
 ### URI(s):
 - https://api.bandwidth.com/v2 Production
@@ -28,22 +28,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PhoneNumberLookupApi(
+$apiInstance = new Bandwidth\Api\PhoneNumberLookupApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string
-$async_lookup_request = new \OpenAPI\Client\Model\AsyncLookupRequest(); // \OpenAPI\Client\Model\AsyncLookupRequest | Asynchronous bulk phone number lookup request.
+$async_lookup_request = new \Bandwidth\Model\AsyncLookupRequest(); // \Bandwidth\Model\AsyncLookupRequest | Asynchronous bulk phone number lookup request.
 
 $hostIndex = 0;
 $variables = [
@@ -62,13 +62,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**|  | |
-| **async_lookup_request** | [**\OpenAPI\Client\Model\AsyncLookupRequest**](../Model/AsyncLookupRequest.md)| Asynchronous bulk phone number lookup request. | |
+| **async_lookup_request** | [**\Bandwidth\Model\AsyncLookupRequest**](../Model/AsyncLookupRequest.md)| Asynchronous bulk phone number lookup request. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateAsyncBulkLookupResponse**](../Model/CreateAsyncBulkLookupResponse.md)
+[**\Bandwidth\Model\CreateAsyncBulkLookupResponse**](../Model/CreateAsyncBulkLookupResponse.md)
 
 ### Authorization
 
@@ -86,7 +86,7 @@ try {
 ## `createSyncLookup()`
 
 ```php
-createSyncLookup($account_id, $sync_lookup_request): \OpenAPI\Client\Model\CreateSyncLookupResponse
+createSyncLookup($account_id, $sync_lookup_request): \Bandwidth\Model\CreateSyncLookupResponse
 ```
 ### URI(s):
 - https://api.bandwidth.com/v2 Production
@@ -102,22 +102,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PhoneNumberLookupApi(
+$apiInstance = new Bandwidth\Api\PhoneNumberLookupApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string
-$sync_lookup_request = new \OpenAPI\Client\Model\SyncLookupRequest(); // \OpenAPI\Client\Model\SyncLookupRequest | Synchronous phone number lookup request.
+$sync_lookup_request = new \Bandwidth\Model\SyncLookupRequest(); // \Bandwidth\Model\SyncLookupRequest | Synchronous phone number lookup request.
 
 $hostIndex = 0;
 $variables = [
@@ -136,13 +136,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**|  | |
-| **sync_lookup_request** | [**\OpenAPI\Client\Model\SyncLookupRequest**](../Model/SyncLookupRequest.md)| Synchronous phone number lookup request. | |
+| **sync_lookup_request** | [**\Bandwidth\Model\SyncLookupRequest**](../Model/SyncLookupRequest.md)| Synchronous phone number lookup request. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateSyncLookupResponse**](../Model/CreateSyncLookupResponse.md)
+[**\Bandwidth\Model\CreateSyncLookupResponse**](../Model/CreateSyncLookupResponse.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ try {
 ## `getAsyncBulkLookup()`
 
 ```php
-getAsyncBulkLookup($account_id, $request_id): \OpenAPI\Client\Model\GetAsyncBulkLookupResponse
+getAsyncBulkLookup($account_id, $request_id): \Bandwidth\Model\GetAsyncBulkLookupResponse
 ```
 ### URI(s):
 - https://api.bandwidth.com/v2 Production
@@ -176,15 +176,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\PhoneNumberLookupApi(
+$apiInstance = new Bandwidth\Api\PhoneNumberLookupApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -216,7 +216,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetAsyncBulkLookupResponse**](../Model/GetAsyncBulkLookupResponse.md)
+[**\Bandwidth\Model\GetAsyncBulkLookupResponse**](../Model/GetAsyncBulkLookupResponse.md)
 
 ### Authorization
 

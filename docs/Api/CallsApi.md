@@ -1,4 +1,4 @@
-# OpenAPI\Client\CallsApi
+# Bandwidth\CallsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `createCall()`
 
 ```php
-createCall($account_id, $create_call): \OpenAPI\Client\Model\CreateCallResponse
+createCall($account_id, $create_call): \Bandwidth\Model\CreateCallResponse
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -30,22 +30,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CallsApi(
+$apiInstance = new Bandwidth\Api\CallsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
-$create_call = new \OpenAPI\Client\Model\CreateCall(); // \OpenAPI\Client\Model\CreateCall | JSON object containing information to create an outbound call
+$create_call = new \Bandwidth\Model\CreateCall(); // \Bandwidth\Model\CreateCall | JSON object containing information to create an outbound call
 
 $hostIndex = 0;
 $variables = [
@@ -64,13 +64,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
-| **create_call** | [**\OpenAPI\Client\Model\CreateCall**](../Model/CreateCall.md)| JSON object containing information to create an outbound call | |
+| **create_call** | [**\Bandwidth\Model\CreateCall**](../Model/CreateCall.md)| JSON object containing information to create an outbound call | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateCallResponse**](../Model/CreateCallResponse.md)
+[**\Bandwidth\Model\CreateCallResponse**](../Model/CreateCallResponse.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ try {
 ## `getCallState()`
 
 ```php
-getCallState($account_id, $call_id): \OpenAPI\Client\Model\CallState
+getCallState($account_id, $call_id): \Bandwidth\Model\CallState
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -104,15 +104,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CallsApi(
+$apiInstance = new Bandwidth\Api\CallsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -144,7 +144,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CallState**](../Model/CallState.md)
+[**\Bandwidth\Model\CallState**](../Model/CallState.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ try {
 ## `listCalls()`
 
 ```php
-listCalls($account_id, $to, $from, $min_start_time, $max_start_time, $disconnect_cause, $page_size, $page_token): \OpenAPI\Client\Model\CallState[]
+listCalls($account_id, $to, $from, $min_start_time, $max_start_time, $disconnect_cause, $page_size, $page_token): \Bandwidth\Model\CallState[]
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -178,15 +178,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CallsApi(
+$apiInstance = new Bandwidth\Api\CallsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -230,7 +230,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CallState[]**](../Model/CallState.md)
+[**\Bandwidth\Model\CallState[]**](../Model/CallState.md)
 
 ### Authorization
 
@@ -264,15 +264,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CallsApi(
+$apiInstance = new Bandwidth\Api\CallsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -280,7 +280,7 @@ $apiInstance = new OpenAPI\Client\Api\CallsApi(
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
 $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; // string | Programmable Voice API Call ID.
-$update_call = new \OpenAPI\Client\Model\UpdateCall(); // \OpenAPI\Client\Model\UpdateCall | JSON object containing information to redirect an existing call to a new BXML document
+$update_call = new \Bandwidth\Model\UpdateCall(); // \Bandwidth\Model\UpdateCall | JSON object containing information to redirect an existing call to a new BXML document
 
 $hostIndex = 0;
 $variables = [
@@ -299,7 +299,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
 | **call_id** | **string**| Programmable Voice API Call ID. | |
-| **update_call** | [**\OpenAPI\Client\Model\UpdateCall**](../Model/UpdateCall.md)| JSON object containing information to redirect an existing call to a new BXML document | |
+| **update_call** | [**\Bandwidth\Model\UpdateCall**](../Model/UpdateCall.md)| JSON object containing information to redirect an existing call to a new BXML document | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
@@ -339,15 +339,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CallsApi(
+$apiInstance = new Bandwidth\Api\CallsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),

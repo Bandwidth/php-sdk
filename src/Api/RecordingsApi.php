@@ -3,7 +3,7 @@
  * RecordingsApi
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Bandwidth\Api;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client;
@@ -38,16 +38,16 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ApiException;
+use Bandwidth\Configuration;
+use Bandwidth\HeaderSelector;
+use Bandwidth\FormDataProcessor;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RecordingsApi Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -171,7 +171,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VoiceApiError|null
+     * @return \Bandwidth\Model\VoiceApiError|null
      */
     public function deleteRecording(
         string $account_id,
@@ -180,7 +180,7 @@ class RecordingsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['deleteRecording'][0]
-    ): ?\OpenAPI\Client\Model\VoiceApiError
+    ): ?\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->deleteRecordingWithHttpInfo($account_id, $call_id, $recording_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -246,7 +246,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -254,7 +254,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -262,7 +262,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -270,7 +270,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -278,7 +278,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -286,7 +286,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -294,7 +294,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -302,7 +302,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -592,7 +592,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VoiceApiError|null
+     * @return \Bandwidth\Model\VoiceApiError|null
      */
     public function deleteRecordingMedia(
         string $account_id,
@@ -601,7 +601,7 @@ class RecordingsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['deleteRecordingMedia'][0]
-    ): ?\OpenAPI\Client\Model\VoiceApiError
+    ): ?\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->deleteRecordingMediaWithHttpInfo($account_id, $call_id, $recording_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -667,7 +667,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -675,7 +675,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -683,7 +683,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -691,7 +691,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -699,7 +699,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -707,7 +707,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -715,7 +715,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -723,7 +723,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1013,7 +1013,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VoiceApiError|null
+     * @return \Bandwidth\Model\VoiceApiError|null
      */
     public function deleteRecordingTranscription(
         string $account_id,
@@ -1022,7 +1022,7 @@ class RecordingsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['deleteRecordingTranscription'][0]
-    ): ?\OpenAPI\Client\Model\VoiceApiError
+    ): ?\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->deleteRecordingTranscriptionWithHttpInfo($account_id, $call_id, $recording_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -1088,7 +1088,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1096,7 +1096,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1104,7 +1104,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1112,7 +1112,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1120,7 +1120,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1128,7 +1128,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1136,7 +1136,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1144,7 +1144,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1434,7 +1434,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \SplFileObject|\OpenAPI\Client\Model\VoiceApiError
+     * @return \SplFileObject|\Bandwidth\Model\VoiceApiError
      */
     public function downloadCallRecording(
         string $account_id,
@@ -1443,7 +1443,7 @@ class RecordingsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['downloadCallRecording'][0]
-    ): \SplFileObject|\OpenAPI\Client\Model\VoiceApiError
+    ): \SplFileObject|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->downloadCallRecordingWithHttpInfo($account_id, $call_id, $recording_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -1467,7 +1467,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \SplFileObject|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function downloadCallRecordingWithHttpInfo(
         string $account_id,
@@ -1511,49 +1511,49 @@ class RecordingsApi
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -1591,7 +1591,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1599,7 +1599,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1607,7 +1607,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1615,7 +1615,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1623,7 +1623,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1631,7 +1631,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1639,7 +1639,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1647,7 +1647,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1950,7 +1950,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CallRecordingMetadata|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\CallRecordingMetadata|\Bandwidth\Model\VoiceApiError
      */
     public function getCallRecording(
         string $account_id,
@@ -1959,7 +1959,7 @@ class RecordingsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['getCallRecording'][0]
-    ): \OpenAPI\Client\Model\CallRecordingMetadata|\OpenAPI\Client\Model\VoiceApiError
+    ): \Bandwidth\Model\CallRecordingMetadata|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->getCallRecordingWithHttpInfo($account_id, $call_id, $recording_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -1983,7 +1983,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CallRecordingMetadata|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\CallRecordingMetadata|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCallRecordingWithHttpInfo(
         string $account_id,
@@ -2021,55 +2021,55 @@ class RecordingsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CallRecordingMetadata',
+                        '\Bandwidth\Model\CallRecordingMetadata',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -2090,7 +2090,7 @@ class RecordingsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CallRecordingMetadata',
+                '\Bandwidth\Model\CallRecordingMetadata',
                 $request,
                 $response,
             );
@@ -2099,7 +2099,7 @@ class RecordingsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CallRecordingMetadata',
+                        '\Bandwidth\Model\CallRecordingMetadata',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2107,7 +2107,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2115,7 +2115,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2123,7 +2123,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2131,7 +2131,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2139,7 +2139,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2147,7 +2147,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2155,7 +2155,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2163,7 +2163,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2238,7 +2238,7 @@ class RecordingsApi
         string $contentType = self::contentTypes['getCallRecording'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\CallRecordingMetadata';
+        $returnType = '\Bandwidth\Model\CallRecordingMetadata';
         $request = $this->getCallRecordingRequest($account_id, $call_id, $recording_id, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -2466,7 +2466,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\RecordingTranscriptions|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\RecordingTranscriptions|\Bandwidth\Model\VoiceApiError
      */
     public function getRecordingTranscription(
         string $account_id,
@@ -2475,7 +2475,7 @@ class RecordingsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['getRecordingTranscription'][0]
-    ): \OpenAPI\Client\Model\RecordingTranscriptions|\OpenAPI\Client\Model\VoiceApiError
+    ): \Bandwidth\Model\RecordingTranscriptions|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->getRecordingTranscriptionWithHttpInfo($account_id, $call_id, $recording_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -2499,7 +2499,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\RecordingTranscriptions|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\RecordingTranscriptions|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getRecordingTranscriptionWithHttpInfo(
         string $account_id,
@@ -2537,55 +2537,55 @@ class RecordingsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\RecordingTranscriptions',
+                        '\Bandwidth\Model\RecordingTranscriptions',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -2606,7 +2606,7 @@ class RecordingsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\RecordingTranscriptions',
+                '\Bandwidth\Model\RecordingTranscriptions',
                 $request,
                 $response,
             );
@@ -2615,7 +2615,7 @@ class RecordingsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\RecordingTranscriptions',
+                        '\Bandwidth\Model\RecordingTranscriptions',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2623,7 +2623,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2631,7 +2631,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2639,7 +2639,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2647,7 +2647,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2655,7 +2655,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2663,7 +2663,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2671,7 +2671,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2679,7 +2679,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2754,7 +2754,7 @@ class RecordingsApi
         string $contentType = self::contentTypes['getRecordingTranscription'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\RecordingTranscriptions';
+        $returnType = '\Bandwidth\Model\RecordingTranscriptions';
         $request = $this->getRecordingTranscriptionRequest($account_id, $call_id, $recording_id, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -2984,7 +2984,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CallRecordingMetadata[]|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\CallRecordingMetadata[]|\Bandwidth\Model\VoiceApiError
      */
     public function listAccountCallRecordings(
         string $account_id,
@@ -2995,7 +2995,7 @@ class RecordingsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['listAccountCallRecordings'][0]
-    ): array|\OpenAPI\Client\Model\VoiceApiError
+    ): array|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->listAccountCallRecordingsWithHttpInfo($account_id, $to, $from, $min_start_time, $max_start_time, $hostIndex, $variables, $contentType);
         return $response;
@@ -3021,7 +3021,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CallRecordingMetadata[]|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\CallRecordingMetadata[]|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listAccountCallRecordingsWithHttpInfo(
         string $account_id,
@@ -3061,55 +3061,55 @@ class RecordingsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CallRecordingMetadata[]',
+                        '\Bandwidth\Model\CallRecordingMetadata[]',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -3130,7 +3130,7 @@ class RecordingsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CallRecordingMetadata[]',
+                '\Bandwidth\Model\CallRecordingMetadata[]',
                 $request,
                 $response,
             );
@@ -3139,7 +3139,7 @@ class RecordingsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CallRecordingMetadata[]',
+                        '\Bandwidth\Model\CallRecordingMetadata[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3147,7 +3147,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3155,7 +3155,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3163,7 +3163,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3171,7 +3171,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3179,7 +3179,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3187,7 +3187,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3195,7 +3195,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3203,7 +3203,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3286,7 +3286,7 @@ class RecordingsApi
         string $contentType = self::contentTypes['listAccountCallRecordings'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\CallRecordingMetadata[]';
+        $returnType = '\Bandwidth\Model\CallRecordingMetadata[]';
         $request = $this->listAccountCallRecordingsRequest($account_id, $to, $from, $min_start_time, $max_start_time, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -3527,7 +3527,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CallRecordingMetadata[]|\OpenAPI\Client\Model\VoiceApiError
+     * @return \Bandwidth\Model\CallRecordingMetadata[]|\Bandwidth\Model\VoiceApiError
      */
     public function listCallRecordings(
         string $account_id,
@@ -3535,7 +3535,7 @@ class RecordingsApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['listCallRecordings'][0]
-    ): array|\OpenAPI\Client\Model\VoiceApiError
+    ): array|\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->listCallRecordingsWithHttpInfo($account_id, $call_id, $hostIndex, $variables, $contentType);
         return $response;
@@ -3558,7 +3558,7 @@ class RecordingsApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CallRecordingMetadata[]|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError|\OpenAPI\Client\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\CallRecordingMetadata[]|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError|\Bandwidth\Model\VoiceApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listCallRecordingsWithHttpInfo(
         string $account_id,
@@ -3595,55 +3595,55 @@ class RecordingsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CallRecordingMetadata[]',
+                        '\Bandwidth\Model\CallRecordingMetadata[]',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $request,
                         $response,
                     );
@@ -3664,7 +3664,7 @@ class RecordingsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CallRecordingMetadata[]',
+                '\Bandwidth\Model\CallRecordingMetadata[]',
                 $request,
                 $response,
             );
@@ -3673,7 +3673,7 @@ class RecordingsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CallRecordingMetadata[]',
+                        '\Bandwidth\Model\CallRecordingMetadata[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3681,7 +3681,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3689,7 +3689,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3697,7 +3697,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3705,7 +3705,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3713,7 +3713,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3721,7 +3721,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3729,7 +3729,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3737,7 +3737,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3808,7 +3808,7 @@ class RecordingsApi
         string $contentType = self::contentTypes['listCallRecordings'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\CallRecordingMetadata[]';
+        $returnType = '\Bandwidth\Model\CallRecordingMetadata[]';
         $request = $this->listCallRecordingsRequest($account_id, $call_id, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -4013,24 +4013,24 @@ class RecordingsApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
      * @param  string $recording_id Programmable Voice API Recording ID. (required)
-     * @param  \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording transcribe_recording (required)
+     * @param  \Bandwidth\Model\TranscribeRecording $transcribe_recording transcribe_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transcribeCallRecording'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VoiceApiError|null
+     * @return \Bandwidth\Model\VoiceApiError|null
      */
     public function transcribeCallRecording(
         string $account_id,
         string $call_id,
         string $recording_id,
-        \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording,
+        \Bandwidth\Model\TranscribeRecording $transcribe_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['transcribeCallRecording'][0]
-    ): ?\OpenAPI\Client\Model\VoiceApiError
+    ): ?\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->transcribeCallRecordingWithHttpInfo($account_id, $call_id, $recording_id, $transcribe_recording, $hostIndex, $variables, $contentType);
         return $response;
@@ -4048,7 +4048,7 @@ class RecordingsApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
      * @param  string $recording_id Programmable Voice API Recording ID. (required)
-     * @param  \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording (required)
+     * @param  \Bandwidth\Model\TranscribeRecording $transcribe_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transcribeCallRecording'] to see the possible values for this operation
@@ -4061,7 +4061,7 @@ class RecordingsApi
         string $account_id,
         string $call_id,
         string $recording_id,
-        \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording,
+        \Bandwidth\Model\TranscribeRecording $transcribe_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['transcribeCallRecording'][0]
@@ -4098,7 +4098,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4106,7 +4106,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4114,7 +4114,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4122,7 +4122,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4130,7 +4130,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4138,7 +4138,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4146,7 +4146,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4154,7 +4154,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4177,7 +4177,7 @@ class RecordingsApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
      * @param  string $recording_id Programmable Voice API Recording ID. (required)
-     * @param  \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording (required)
+     * @param  \Bandwidth\Model\TranscribeRecording $transcribe_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transcribeCallRecording'] to see the possible values for this operation
@@ -4189,7 +4189,7 @@ class RecordingsApi
         string $account_id,
         string $call_id,
         string $recording_id,
-        \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording,
+        \Bandwidth\Model\TranscribeRecording $transcribe_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['transcribeCallRecording'][0]
@@ -4215,7 +4215,7 @@ class RecordingsApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
      * @param  string $recording_id Programmable Voice API Recording ID. (required)
-     * @param  \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording (required)
+     * @param  \Bandwidth\Model\TranscribeRecording $transcribe_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transcribeCallRecording'] to see the possible values for this operation
@@ -4227,7 +4227,7 @@ class RecordingsApi
         string $account_id,
         string $call_id,
         string $recording_id,
-        \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording,
+        \Bandwidth\Model\TranscribeRecording $transcribe_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['transcribeCallRecording'][0]
@@ -4269,7 +4269,7 @@ class RecordingsApi
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
      * @param  string $recording_id Programmable Voice API Recording ID. (required)
-     * @param  \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording (required)
+     * @param  \Bandwidth\Model\TranscribeRecording $transcribe_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transcribeCallRecording'] to see the possible values for this operation
@@ -4281,7 +4281,7 @@ class RecordingsApi
         string $account_id,
         string $call_id,
         string $recording_id,
-        \OpenAPI\Client\Model\TranscribeRecording $transcribe_recording,
+        \Bandwidth\Model\TranscribeRecording $transcribe_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['transcribeCallRecording'][0]
@@ -4457,23 +4457,23 @@ class RecordingsApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording update_call_recording (required)
+     * @param  \Bandwidth\Model\UpdateCallRecording $update_call_recording update_call_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallRecordingState'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VoiceApiError|null
+     * @return \Bandwidth\Model\VoiceApiError|null
      */
     public function updateCallRecordingState(
         string $account_id,
         string $call_id,
-        \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording,
+        \Bandwidth\Model\UpdateCallRecording $update_call_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateCallRecordingState'][0]
-    ): ?\OpenAPI\Client\Model\VoiceApiError
+    ): ?\Bandwidth\Model\VoiceApiError
     {
         list($response) = $this->updateCallRecordingStateWithHttpInfo($account_id, $call_id, $update_call_recording, $hostIndex, $variables, $contentType);
         return $response;
@@ -4490,7 +4490,7 @@ class RecordingsApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording (required)
+     * @param  \Bandwidth\Model\UpdateCallRecording $update_call_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallRecordingState'] to see the possible values for this operation
@@ -4502,7 +4502,7 @@ class RecordingsApi
     public function updateCallRecordingStateWithHttpInfo(
         string $account_id,
         string $call_id,
-        \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording,
+        \Bandwidth\Model\UpdateCallRecording $update_call_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateCallRecordingState'][0]
@@ -4539,7 +4539,7 @@ class RecordingsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4547,7 +4547,7 @@ class RecordingsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4555,7 +4555,7 @@ class RecordingsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4563,7 +4563,7 @@ class RecordingsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4571,7 +4571,7 @@ class RecordingsApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4579,7 +4579,7 @@ class RecordingsApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4587,7 +4587,7 @@ class RecordingsApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4595,7 +4595,7 @@ class RecordingsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceApiError',
+                        '\Bandwidth\Model\VoiceApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4617,7 +4617,7 @@ class RecordingsApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording (required)
+     * @param  \Bandwidth\Model\UpdateCallRecording $update_call_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallRecordingState'] to see the possible values for this operation
@@ -4628,7 +4628,7 @@ class RecordingsApi
     public function updateCallRecordingStateAsync(
         string $account_id,
         string $call_id,
-        \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording,
+        \Bandwidth\Model\UpdateCallRecording $update_call_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateCallRecordingState'][0]
@@ -4653,7 +4653,7 @@ class RecordingsApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording (required)
+     * @param  \Bandwidth\Model\UpdateCallRecording $update_call_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallRecordingState'] to see the possible values for this operation
@@ -4664,7 +4664,7 @@ class RecordingsApi
     public function updateCallRecordingStateAsyncWithHttpInfo(
         string $account_id,
         string $call_id,
-        \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording,
+        \Bandwidth\Model\UpdateCallRecording $update_call_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateCallRecordingState'][0]
@@ -4705,7 +4705,7 @@ class RecordingsApi
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
      * @param  string $call_id Programmable Voice API Call ID. (required)
-     * @param  \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording (required)
+     * @param  \Bandwidth\Model\UpdateCallRecording $update_call_recording (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallRecordingState'] to see the possible values for this operation
@@ -4716,7 +4716,7 @@ class RecordingsApi
     public function updateCallRecordingStateRequest(
         string $account_id,
         string $call_id,
-        \OpenAPI\Client\Model\UpdateCallRecording $update_call_recording,
+        \Bandwidth\Model\UpdateCallRecording $update_call_recording,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['updateCallRecordingState'][0]

@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,13 +26,13 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 /**
  * RbmWebViewEnum Class Doc Comment
  *
  * @description Defines the layout of the WebView on a mobile device. It must be defined when application is set to &#x60;WEBVIEW&#x60; and must not be set when application is set to &#x60;BROWSER&#x60;. - &#x60;FULL&#x60; WebView takes the full screen. - &#x60;HALF&#x60; WebView takes half of the screen. - &#x60;TALL&#x60; WebView takes three-quarters of the screen.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

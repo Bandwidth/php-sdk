@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CreateMessageRequestError Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class CreateMessageRequestError implements ModelInterface, ArrayAccess, JsonSeri
     protected static array $openAPITypes = [
         'type' => 'string',
         'description' => 'string',
-        'field_errors' => '\OpenAPI\Client\Model\FieldError[]'
+        'field_errors' => '\Bandwidth\Model\FieldError[]'
     ];
 
     /**
@@ -341,7 +341,7 @@ class CreateMessageRequestError implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets field_errors
      *
-     * @return \OpenAPI\Client\Model\FieldError[]|null
+     * @return \Bandwidth\Model\FieldError[]|null
      */
     public function getFieldErrors(): ?array
     {
@@ -351,7 +351,7 @@ class CreateMessageRequestError implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets field_errors
      *
-     * @param \OpenAPI\Client\Model\FieldError[]|null $field_errors field_errors
+     * @param \Bandwidth\Model\FieldError[]|null $field_errors field_errors
      *
      * @return $this
      */

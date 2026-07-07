@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * ErrorObject Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class ErrorObject implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPITypes = [
         'type' => 'string',
         'description' => 'string',
-        'source' => '\OpenAPI\Client\Model\ErrorSource'
+        'source' => '\Bandwidth\Model\ErrorSource'
     ];
 
     /**
@@ -344,9 +344,9 @@ class ErrorObject implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets source
      *
-     * @return \OpenAPI\Client\Model\ErrorSource
+     * @return \Bandwidth\Model\ErrorSource
      */
-    public function getSource(): \OpenAPI\Client\Model\ErrorSource
+    public function getSource(): \Bandwidth\Model\ErrorSource
     {
         return $this->container['source'];
     }
@@ -354,11 +354,11 @@ class ErrorObject implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets source
      *
-     * @param \OpenAPI\Client\Model\ErrorSource $source source
+     * @param \Bandwidth\Model\ErrorSource $source source
      *
      * @return $this
      */
-    public function setSource(\OpenAPI\Client\Model\ErrorSource $source): static
+    public function setSource(\Bandwidth\Model\ErrorSource $source): static
     {
         if (is_null($source)) {
             throw new InvalidArgumentException('non-nullable source cannot be null');

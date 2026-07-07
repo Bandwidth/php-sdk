@@ -3,7 +3,7 @@
  * MFAApi
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Bandwidth\Api;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client;
@@ -38,16 +38,16 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ApiException;
+use Bandwidth\Configuration;
+use Bandwidth\HeaderSelector;
+use Bandwidth\FormDataProcessor;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MFAApi Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -142,22 +142,22 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateMessagingCode'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\MessagingCodeResponse|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaUnauthorizedRequestError|\OpenAPI\Client\Model\MfaForbiddenRequestError
+     * @return \Bandwidth\Model\MessagingCodeResponse|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaUnauthorizedRequestError|\Bandwidth\Model\MfaForbiddenRequestError
      */
     public function generateMessagingCode(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateMessagingCode'][0]
-    ): \OpenAPI\Client\Model\MessagingCodeResponse|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaUnauthorizedRequestError|\OpenAPI\Client\Model\MfaForbiddenRequestError
+    ): \Bandwidth\Model\MessagingCodeResponse|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaUnauthorizedRequestError|\Bandwidth\Model\MfaForbiddenRequestError
     {
         list($response) = $this->generateMessagingCodeWithHttpInfo($account_id, $code_request, $hostIndex, $variables, $contentType);
         return $response;
@@ -173,18 +173,18 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateMessagingCode'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\MessagingCodeResponse|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaUnauthorizedRequestError|\OpenAPI\Client\Model\MfaForbiddenRequestError|\OpenAPI\Client\Model\MfaRequestError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\MessagingCodeResponse|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaUnauthorizedRequestError|\Bandwidth\Model\MfaForbiddenRequestError|\Bandwidth\Model\MfaRequestError, HTTP status code, HTTP response headers (array of strings)
      */
     public function generateMessagingCodeWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateMessagingCode'][0]
@@ -217,31 +217,31 @@ class MFAApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingCodeResponse',
+                        '\Bandwidth\Model\MessagingCodeResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaUnauthorizedRequestError',
+                        '\Bandwidth\Model\MfaUnauthorizedRequestError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaForbiddenRequestError',
+                        '\Bandwidth\Model\MfaForbiddenRequestError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $request,
                         $response,
                     );
@@ -262,7 +262,7 @@ class MFAApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\MessagingCodeResponse',
+                '\Bandwidth\Model\MessagingCodeResponse',
                 $request,
                 $response,
             );
@@ -271,7 +271,7 @@ class MFAApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingCodeResponse',
+                        '\Bandwidth\Model\MessagingCodeResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -279,7 +279,7 @@ class MFAApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -287,7 +287,7 @@ class MFAApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaUnauthorizedRequestError',
+                        '\Bandwidth\Model\MfaUnauthorizedRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -295,7 +295,7 @@ class MFAApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaForbiddenRequestError',
+                        '\Bandwidth\Model\MfaForbiddenRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -303,7 +303,7 @@ class MFAApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -324,7 +324,7 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateMessagingCode'] to see the possible values for this operation
@@ -334,7 +334,7 @@ class MFAApi
      */
     public function generateMessagingCodeAsync(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateMessagingCode'][0]
@@ -358,7 +358,7 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateMessagingCode'] to see the possible values for this operation
@@ -368,13 +368,13 @@ class MFAApi
      */
     public function generateMessagingCodeAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateMessagingCode'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\MessagingCodeResponse';
+        $returnType = '\Bandwidth\Model\MessagingCodeResponse';
         $request = $this->generateMessagingCodeRequest($account_id, $code_request, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -421,7 +421,7 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateMessagingCode'] to see the possible values for this operation
@@ -431,7 +431,7 @@ class MFAApi
      */
     public function generateMessagingCodeRequest(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateMessagingCode'][0]
@@ -576,22 +576,22 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateVoiceCode'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VoiceCodeResponse|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaUnauthorizedRequestError|\OpenAPI\Client\Model\MfaForbiddenRequestError
+     * @return \Bandwidth\Model\VoiceCodeResponse|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaUnauthorizedRequestError|\Bandwidth\Model\MfaForbiddenRequestError
      */
     public function generateVoiceCode(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateVoiceCode'][0]
-    ): \OpenAPI\Client\Model\VoiceCodeResponse|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaUnauthorizedRequestError|\OpenAPI\Client\Model\MfaForbiddenRequestError
+    ): \Bandwidth\Model\VoiceCodeResponse|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaUnauthorizedRequestError|\Bandwidth\Model\MfaForbiddenRequestError
     {
         list($response) = $this->generateVoiceCodeWithHttpInfo($account_id, $code_request, $hostIndex, $variables, $contentType);
         return $response;
@@ -607,18 +607,18 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateVoiceCode'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\VoiceCodeResponse|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaUnauthorizedRequestError|\OpenAPI\Client\Model\MfaForbiddenRequestError|\OpenAPI\Client\Model\MfaRequestError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\VoiceCodeResponse|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaUnauthorizedRequestError|\Bandwidth\Model\MfaForbiddenRequestError|\Bandwidth\Model\MfaRequestError, HTTP status code, HTTP response headers (array of strings)
      */
     public function generateVoiceCodeWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateVoiceCode'][0]
@@ -651,31 +651,31 @@ class MFAApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VoiceCodeResponse',
+                        '\Bandwidth\Model\VoiceCodeResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaUnauthorizedRequestError',
+                        '\Bandwidth\Model\MfaUnauthorizedRequestError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaForbiddenRequestError',
+                        '\Bandwidth\Model\MfaForbiddenRequestError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $request,
                         $response,
                     );
@@ -696,7 +696,7 @@ class MFAApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\VoiceCodeResponse',
+                '\Bandwidth\Model\VoiceCodeResponse',
                 $request,
                 $response,
             );
@@ -705,7 +705,7 @@ class MFAApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VoiceCodeResponse',
+                        '\Bandwidth\Model\VoiceCodeResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -713,7 +713,7 @@ class MFAApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -721,7 +721,7 @@ class MFAApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaUnauthorizedRequestError',
+                        '\Bandwidth\Model\MfaUnauthorizedRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -729,7 +729,7 @@ class MFAApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaForbiddenRequestError',
+                        '\Bandwidth\Model\MfaForbiddenRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -737,7 +737,7 @@ class MFAApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -758,7 +758,7 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateVoiceCode'] to see the possible values for this operation
@@ -768,7 +768,7 @@ class MFAApi
      */
     public function generateVoiceCodeAsync(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateVoiceCode'][0]
@@ -792,7 +792,7 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateVoiceCode'] to see the possible values for this operation
@@ -802,13 +802,13 @@ class MFAApi
      */
     public function generateVoiceCodeAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateVoiceCode'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\VoiceCodeResponse';
+        $returnType = '\Bandwidth\Model\VoiceCodeResponse';
         $request = $this->generateVoiceCodeRequest($account_id, $code_request, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -855,7 +855,7 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\CodeRequest $code_request MFA code request body. (required)
+     * @param  \Bandwidth\Model\CodeRequest $code_request MFA code request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateVoiceCode'] to see the possible values for this operation
@@ -865,7 +865,7 @@ class MFAApi
      */
     public function generateVoiceCodeRequest(
         string $account_id,
-        \OpenAPI\Client\Model\CodeRequest $code_request,
+        \Bandwidth\Model\CodeRequest $code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['generateVoiceCode'][0]
@@ -1010,22 +1010,22 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
+     * @param  \Bandwidth\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyCode'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VerifyCodeResponse|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaUnauthorizedRequestError|\OpenAPI\Client\Model\MfaForbiddenRequestError
+     * @return \Bandwidth\Model\VerifyCodeResponse|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaUnauthorizedRequestError|\Bandwidth\Model\MfaForbiddenRequestError
      */
     public function verifyCode(
         string $account_id,
-        \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request,
+        \Bandwidth\Model\VerifyCodeRequest $verify_code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['verifyCode'][0]
-    ): \OpenAPI\Client\Model\VerifyCodeResponse|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaUnauthorizedRequestError|\OpenAPI\Client\Model\MfaForbiddenRequestError
+    ): \Bandwidth\Model\VerifyCodeResponse|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaUnauthorizedRequestError|\Bandwidth\Model\MfaForbiddenRequestError
     {
         list($response) = $this->verifyCodeWithHttpInfo($account_id, $verify_code_request, $hostIndex, $variables, $contentType);
         return $response;
@@ -1041,18 +1041,18 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
+     * @param  \Bandwidth\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyCode'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\VerifyCodeResponse|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaUnauthorizedRequestError|\OpenAPI\Client\Model\MfaForbiddenRequestError|\OpenAPI\Client\Model\MfaRequestError|\OpenAPI\Client\Model\MfaRequestError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\VerifyCodeResponse|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaUnauthorizedRequestError|\Bandwidth\Model\MfaForbiddenRequestError|\Bandwidth\Model\MfaRequestError|\Bandwidth\Model\MfaRequestError, HTTP status code, HTTP response headers (array of strings)
      */
     public function verifyCodeWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request,
+        \Bandwidth\Model\VerifyCodeRequest $verify_code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['verifyCode'][0]
@@ -1085,37 +1085,37 @@ class MFAApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\VerifyCodeResponse',
+                        '\Bandwidth\Model\VerifyCodeResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaUnauthorizedRequestError',
+                        '\Bandwidth\Model\MfaUnauthorizedRequestError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaForbiddenRequestError',
+                        '\Bandwidth\Model\MfaForbiddenRequestError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $request,
                         $response,
                     );
@@ -1136,7 +1136,7 @@ class MFAApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\VerifyCodeResponse',
+                '\Bandwidth\Model\VerifyCodeResponse',
                 $request,
                 $response,
             );
@@ -1145,7 +1145,7 @@ class MFAApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\VerifyCodeResponse',
+                        '\Bandwidth\Model\VerifyCodeResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1153,7 +1153,7 @@ class MFAApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1161,7 +1161,7 @@ class MFAApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaUnauthorizedRequestError',
+                        '\Bandwidth\Model\MfaUnauthorizedRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1169,7 +1169,7 @@ class MFAApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaForbiddenRequestError',
+                        '\Bandwidth\Model\MfaForbiddenRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1177,7 +1177,7 @@ class MFAApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1185,7 +1185,7 @@ class MFAApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MfaRequestError',
+                        '\Bandwidth\Model\MfaRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1206,7 +1206,7 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
+     * @param  \Bandwidth\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyCode'] to see the possible values for this operation
@@ -1216,7 +1216,7 @@ class MFAApi
      */
     public function verifyCodeAsync(
         string $account_id,
-        \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request,
+        \Bandwidth\Model\VerifyCodeRequest $verify_code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['verifyCode'][0]
@@ -1240,7 +1240,7 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
+     * @param  \Bandwidth\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyCode'] to see the possible values for this operation
@@ -1250,13 +1250,13 @@ class MFAApi
      */
     public function verifyCodeAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request,
+        \Bandwidth\Model\VerifyCodeRequest $verify_code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['verifyCode'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\VerifyCodeResponse';
+        $returnType = '\Bandwidth\Model\VerifyCodeResponse';
         $request = $this->verifyCodeRequest($account_id, $verify_code_request, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -1303,7 +1303,7 @@ class MFAApi
      * URL: https://mfa.bandwidth.com/api/v1
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
+     * @param  \Bandwidth\Model\VerifyCodeRequest $verify_code_request MFA code verify request body. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyCode'] to see the possible values for this operation
@@ -1313,7 +1313,7 @@ class MFAApi
      */
     public function verifyCodeRequest(
         string $account_id,
-        \OpenAPI\Client\Model\VerifyCodeRequest $verify_code_request,
+        \Bandwidth\Model\VerifyCodeRequest $verify_code_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['verifyCode'][0]

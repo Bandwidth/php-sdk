@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CallTranscription Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,8 +59,8 @@ class CallTranscription implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'detected_language' => '\OpenAPI\Client\Model\CallTranscriptionDetectedLanguageEnum',
-        'track' => '\OpenAPI\Client\Model\CallTranscriptionTrackEnum',
+        'detected_language' => '\Bandwidth\Model\CallTranscriptionDetectedLanguageEnum',
+        'track' => '\Bandwidth\Model\CallTranscriptionTrackEnum',
         'transcript' => 'string',
         'confidence' => 'float'
     ];
@@ -296,9 +296,9 @@ class CallTranscription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets detected_language
      *
-     * @return \OpenAPI\Client\Model\CallTranscriptionDetectedLanguageEnum|null
+     * @return \Bandwidth\Model\CallTranscriptionDetectedLanguageEnum|null
      */
-    public function getDetectedLanguage(): ?\OpenAPI\Client\Model\CallTranscriptionDetectedLanguageEnum
+    public function getDetectedLanguage(): ?\Bandwidth\Model\CallTranscriptionDetectedLanguageEnum
     {
         return $this->container['detected_language'];
     }
@@ -306,11 +306,11 @@ class CallTranscription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets detected_language
      *
-     * @param \OpenAPI\Client\Model\CallTranscriptionDetectedLanguageEnum|null $detected_language detected_language
+     * @param \Bandwidth\Model\CallTranscriptionDetectedLanguageEnum|null $detected_language detected_language
      *
      * @return $this
      */
-    public function setDetectedLanguage(?\OpenAPI\Client\Model\CallTranscriptionDetectedLanguageEnum $detected_language): static
+    public function setDetectedLanguage(?\Bandwidth\Model\CallTranscriptionDetectedLanguageEnum $detected_language): static
     {
         if (is_null($detected_language)) {
             throw new InvalidArgumentException('non-nullable detected_language cannot be null');
@@ -323,9 +323,9 @@ class CallTranscription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets track
      *
-     * @return \OpenAPI\Client\Model\CallTranscriptionTrackEnum|null
+     * @return \Bandwidth\Model\CallTranscriptionTrackEnum|null
      */
-    public function getTrack(): ?\OpenAPI\Client\Model\CallTranscriptionTrackEnum
+    public function getTrack(): ?\Bandwidth\Model\CallTranscriptionTrackEnum
     {
         return $this->container['track'];
     }
@@ -333,11 +333,11 @@ class CallTranscription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets track
      *
-     * @param \OpenAPI\Client\Model\CallTranscriptionTrackEnum|null $track track
+     * @param \Bandwidth\Model\CallTranscriptionTrackEnum|null $track track
      *
      * @return $this
      */
-    public function setTrack(?\OpenAPI\Client\Model\CallTranscriptionTrackEnum $track): static
+    public function setTrack(?\Bandwidth\Model\CallTranscriptionTrackEnum $track): static
     {
         if (is_null($track)) {
             throw new InvalidArgumentException('non-nullable track cannot be null');

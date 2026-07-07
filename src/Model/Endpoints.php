@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * Endpoints Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -60,8 +60,8 @@ class Endpoints implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static array $openAPITypes = [
         'endpoint_id' => 'string',
-        'type' => '\OpenAPI\Client\Model\EndpointTypeEnum',
-        'status' => '\OpenAPI\Client\Model\EndpointStatusEnum',
+        'type' => '\Bandwidth\Model\EndpointTypeEnum',
+        'status' => '\Bandwidth\Model\EndpointStatusEnum',
         'creation_timestamp' => '\DateTime',
         'expiration_timestamp' => '\DateTime',
         'tag' => 'string'
@@ -344,9 +344,9 @@ class Endpoints implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets type
      *
-     * @return \OpenAPI\Client\Model\EndpointTypeEnum
+     * @return \Bandwidth\Model\EndpointTypeEnum
      */
-    public function getType(): \OpenAPI\Client\Model\EndpointTypeEnum
+    public function getType(): \Bandwidth\Model\EndpointTypeEnum
     {
         return $this->container['type'];
     }
@@ -354,11 +354,11 @@ class Endpoints implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets type
      *
-     * @param \OpenAPI\Client\Model\EndpointTypeEnum $type type
+     * @param \Bandwidth\Model\EndpointTypeEnum $type type
      *
      * @return $this
      */
-    public function setType(\OpenAPI\Client\Model\EndpointTypeEnum $type): static
+    public function setType(\Bandwidth\Model\EndpointTypeEnum $type): static
     {
         if (is_null($type)) {
             throw new InvalidArgumentException('non-nullable type cannot be null');
@@ -371,9 +371,9 @@ class Endpoints implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\EndpointStatusEnum
+     * @return \Bandwidth\Model\EndpointStatusEnum
      */
-    public function getStatus(): \OpenAPI\Client\Model\EndpointStatusEnum
+    public function getStatus(): \Bandwidth\Model\EndpointStatusEnum
     {
         return $this->container['status'];
     }
@@ -381,11 +381,11 @@ class Endpoints implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\EndpointStatusEnum $status status
+     * @param \Bandwidth\Model\EndpointStatusEnum $status status
      *
      * @return $this
      */
-    public function setStatus(\OpenAPI\Client\Model\EndpointStatusEnum $status): static
+    public function setStatus(\Bandwidth\Model\EndpointStatusEnum $status): static
     {
         if (is_null($status)) {
             throw new InvalidArgumentException('non-nullable status cannot be null');

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **callback_url** | **string** | The URL to send the [TranscriptionAvailable](/docs/voice/webhooks/transcriptionAvailable) event to. You should not include sensitive or personally-identifiable information in the callbackUrl field! Always use the proper username and password fields for authorization. | [optional]
-**callback_method** | [**\OpenAPI\Client\Model\CallbackMethodEnum**](CallbackMethodEnum.md) |  | [optional]
+**callback_method** | [**\Bandwidth\Model\CallbackMethodEnum**](CallbackMethodEnum.md) |  | [optional]
 **username** | **string** | Basic auth username. | [optional]
 **password** | **string** | Basic auth password. | [optional]
 **tag** | **string** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional]

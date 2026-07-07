@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * LookupErrorResponse Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,9 +59,9 @@ class LookupErrorResponse implements ModelInterface, ArrayAccess, JsonSerializab
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'links' => '\OpenAPI\Client\Model\LinkSchema[]',
+        'links' => '\Bandwidth\Model\LinkSchema[]',
         'data' => 'object',
-        'errors' => '\OpenAPI\Client\Model\LookupErrorSchema[]'
+        'errors' => '\Bandwidth\Model\LookupErrorSchema[]'
     ];
 
     /**
@@ -281,7 +281,7 @@ class LookupErrorResponse implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets links
      *
-     * @return \OpenAPI\Client\Model\LinkSchema[]|null
+     * @return \Bandwidth\Model\LinkSchema[]|null
      */
     public function getLinks(): ?array
     {
@@ -291,7 +291,7 @@ class LookupErrorResponse implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets links
      *
-     * @param \OpenAPI\Client\Model\LinkSchema[]|null $links links
+     * @param \Bandwidth\Model\LinkSchema[]|null $links links
      *
      * @return $this
      */
@@ -335,7 +335,7 @@ class LookupErrorResponse implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\LookupErrorSchema[]|null
+     * @return \Bandwidth\Model\LookupErrorSchema[]|null
      */
     public function getErrors(): ?array
     {
@@ -345,7 +345,7 @@ class LookupErrorResponse implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\LookupErrorSchema[]|null $errors errors
+     * @param \Bandwidth\Model\LookupErrorSchema[]|null $errors errors
      *
      * @return $this
      */

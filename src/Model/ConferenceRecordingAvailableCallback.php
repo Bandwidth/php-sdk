@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * ConferenceRecordingAvailableCallback Class Doc Comment
  *
  * @description The Conference Recording Available event is sent after a conference recording has been processed. It indicates that the recording is available for download.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -70,7 +70,7 @@ class ConferenceRecordingAvailableCallback implements ModelInterface, ArrayAcces
         'start_time' => '\DateTime',
         'end_time' => '\DateTime',
         'duration' => 'string',
-        'file_format' => '\OpenAPI\Client\Model\FileFormatEnum',
+        'file_format' => '\Bandwidth\Model\FileFormatEnum',
         'media_url' => 'string',
         'tag' => 'string',
         'status' => 'string'
@@ -629,9 +629,9 @@ class ConferenceRecordingAvailableCallback implements ModelInterface, ArrayAcces
     /**
      * Gets file_format
      *
-     * @return \OpenAPI\Client\Model\FileFormatEnum|null
+     * @return \Bandwidth\Model\FileFormatEnum|null
      */
-    public function getFileFormat(): ?\OpenAPI\Client\Model\FileFormatEnum
+    public function getFileFormat(): ?\Bandwidth\Model\FileFormatEnum
     {
         return $this->container['file_format'];
     }
@@ -639,11 +639,11 @@ class ConferenceRecordingAvailableCallback implements ModelInterface, ArrayAcces
     /**
      * Sets file_format
      *
-     * @param \OpenAPI\Client\Model\FileFormatEnum|null $file_format file_format
+     * @param \Bandwidth\Model\FileFormatEnum|null $file_format file_format
      *
      * @return $this
      */
-    public function setFileFormat(?\OpenAPI\Client\Model\FileFormatEnum $file_format): static
+    public function setFileFormat(?\Bandwidth\Model\FileFormatEnum $file_format): static
     {
         if (is_null($file_format)) {
             throw new InvalidArgumentException('non-nullable file_format cannot be null');

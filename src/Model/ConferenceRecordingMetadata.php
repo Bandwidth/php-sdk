@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * ConferenceRecordingMetadata Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -67,7 +67,7 @@ class ConferenceRecordingMetadata implements ModelInterface, ArrayAccess, JsonSe
         'channels' => 'int',
         'start_time' => '\DateTime',
         'end_time' => '\DateTime',
-        'file_format' => '\OpenAPI\Client\Model\FileFormatEnum',
+        'file_format' => '\Bandwidth\Model\FileFormatEnum',
         'status' => 'string',
         'media_url' => 'string',
         'recording_name' => 'string'
@@ -560,9 +560,9 @@ class ConferenceRecordingMetadata implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Gets file_format
      *
-     * @return \OpenAPI\Client\Model\FileFormatEnum|null
+     * @return \Bandwidth\Model\FileFormatEnum|null
      */
-    public function getFileFormat(): ?\OpenAPI\Client\Model\FileFormatEnum
+    public function getFileFormat(): ?\Bandwidth\Model\FileFormatEnum
     {
         return $this->container['file_format'];
     }
@@ -570,11 +570,11 @@ class ConferenceRecordingMetadata implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets file_format
      *
-     * @param \OpenAPI\Client\Model\FileFormatEnum|null $file_format file_format
+     * @param \Bandwidth\Model\FileFormatEnum|null $file_format file_format
      *
      * @return $this
      */
-    public function setFileFormat(?\OpenAPI\Client\Model\FileFormatEnum $file_format): static
+    public function setFileFormat(?\Bandwidth\Model\FileFormatEnum $file_format): static
     {
         if (is_null($file_format)) {
             throw new InvalidArgumentException('non-nullable file_format cannot be null');

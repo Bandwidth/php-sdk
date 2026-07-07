@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * GetAsyncBulkLookupResponse Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,9 +59,9 @@ class GetAsyncBulkLookupResponse implements ModelInterface, ArrayAccess, JsonSer
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'links' => '\OpenAPI\Client\Model\LinkSchema[]',
-        'data' => '\OpenAPI\Client\Model\GetAsyncBulkLookupResponseData',
-        'errors' => '\OpenAPI\Client\Model\LookupErrorSchema[]'
+        'links' => '\Bandwidth\Model\LinkSchema[]',
+        'data' => '\Bandwidth\Model\GetAsyncBulkLookupResponseData',
+        'errors' => '\Bandwidth\Model\LookupErrorSchema[]'
     ];
 
     /**
@@ -281,7 +281,7 @@ class GetAsyncBulkLookupResponse implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Gets links
      *
-     * @return \OpenAPI\Client\Model\LinkSchema[]|null
+     * @return \Bandwidth\Model\LinkSchema[]|null
      */
     public function getLinks(): ?array
     {
@@ -291,7 +291,7 @@ class GetAsyncBulkLookupResponse implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets links
      *
-     * @param \OpenAPI\Client\Model\LinkSchema[]|null $links links
+     * @param \Bandwidth\Model\LinkSchema[]|null $links links
      *
      * @return $this
      */
@@ -308,9 +308,9 @@ class GetAsyncBulkLookupResponse implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\GetAsyncBulkLookupResponseData|null
+     * @return \Bandwidth\Model\GetAsyncBulkLookupResponseData|null
      */
-    public function getData(): ?\OpenAPI\Client\Model\GetAsyncBulkLookupResponseData
+    public function getData(): ?\Bandwidth\Model\GetAsyncBulkLookupResponseData
     {
         return $this->container['data'];
     }
@@ -318,11 +318,11 @@ class GetAsyncBulkLookupResponse implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\GetAsyncBulkLookupResponseData|null $data data
+     * @param \Bandwidth\Model\GetAsyncBulkLookupResponseData|null $data data
      *
      * @return $this
      */
-    public function setData(?\OpenAPI\Client\Model\GetAsyncBulkLookupResponseData $data): static
+    public function setData(?\Bandwidth\Model\GetAsyncBulkLookupResponseData $data): static
     {
         if (is_null($data)) {
             throw new InvalidArgumentException('non-nullable data cannot be null');
@@ -335,7 +335,7 @@ class GetAsyncBulkLookupResponse implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\LookupErrorSchema[]|null
+     * @return \Bandwidth\Model\LookupErrorSchema[]|null
      */
     public function getErrors(): ?array
     {
@@ -345,7 +345,7 @@ class GetAsyncBulkLookupResponse implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\LookupErrorSchema[]|null $errors errors
+     * @param \Bandwidth\Model\LookupErrorSchema[]|null $errors errors
      *
      * @return $this
      */

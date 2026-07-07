@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MultiChannelChannelListRBMObject Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,8 +61,8 @@ class MultiChannelChannelListRBMObject implements ModelInterface, ArrayAccess, J
     protected static array $openAPITypes = [
         'from' => 'string',
         'application_id' => 'string',
-        'channel' => '\OpenAPI\Client\Model\MultiChannelMessageChannelEnum',
-        'content' => '\OpenAPI\Client\Model\MultiChannelChannelListRBMObjectAllOfContent'
+        'channel' => '\Bandwidth\Model\MultiChannelMessageChannelEnum',
+        'content' => '\Bandwidth\Model\MultiChannelChannelListRBMObjectAllOfContent'
     ];
 
     /**
@@ -354,9 +354,9 @@ class MultiChannelChannelListRBMObject implements ModelInterface, ArrayAccess, J
     /**
      * Gets channel
      *
-     * @return \OpenAPI\Client\Model\MultiChannelMessageChannelEnum
+     * @return \Bandwidth\Model\MultiChannelMessageChannelEnum
      */
-    public function getChannel(): \OpenAPI\Client\Model\MultiChannelMessageChannelEnum
+    public function getChannel(): \Bandwidth\Model\MultiChannelMessageChannelEnum
     {
         return $this->container['channel'];
     }
@@ -364,11 +364,11 @@ class MultiChannelChannelListRBMObject implements ModelInterface, ArrayAccess, J
     /**
      * Sets channel
      *
-     * @param \OpenAPI\Client\Model\MultiChannelMessageChannelEnum $channel channel
+     * @param \Bandwidth\Model\MultiChannelMessageChannelEnum $channel channel
      *
      * @return $this
      */
-    public function setChannel(\OpenAPI\Client\Model\MultiChannelMessageChannelEnum $channel): static
+    public function setChannel(\Bandwidth\Model\MultiChannelMessageChannelEnum $channel): static
     {
         if (is_null($channel)) {
             throw new InvalidArgumentException('non-nullable channel cannot be null');
@@ -381,9 +381,9 @@ class MultiChannelChannelListRBMObject implements ModelInterface, ArrayAccess, J
     /**
      * Gets content
      *
-     * @return \OpenAPI\Client\Model\MultiChannelChannelListRBMObjectAllOfContent
+     * @return \Bandwidth\Model\MultiChannelChannelListRBMObjectAllOfContent
      */
-    public function getContent(): \OpenAPI\Client\Model\MultiChannelChannelListRBMObjectAllOfContent
+    public function getContent(): \Bandwidth\Model\MultiChannelChannelListRBMObjectAllOfContent
     {
         return $this->container['content'];
     }
@@ -391,11 +391,11 @@ class MultiChannelChannelListRBMObject implements ModelInterface, ArrayAccess, J
     /**
      * Sets content
      *
-     * @param \OpenAPI\Client\Model\MultiChannelChannelListRBMObjectAllOfContent $content content
+     * @param \Bandwidth\Model\MultiChannelChannelListRBMObjectAllOfContent $content content
      *
      * @return $this
      */
-    public function setContent(\OpenAPI\Client\Model\MultiChannelChannelListRBMObjectAllOfContent $content): static
+    public function setContent(\Bandwidth\Model\MultiChannelChannelListRBMObjectAllOfContent $content): static
     {
         if (is_null($content)) {
             throw new InvalidArgumentException('non-nullable content cannot be null');

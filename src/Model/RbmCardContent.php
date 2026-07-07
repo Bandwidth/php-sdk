@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RbmCardContent Class Doc Comment
  *
  * @description Must contain at least one of title, description, or media to be valid.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -62,8 +62,8 @@ class RbmCardContent implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPITypes = [
         'title' => 'string',
         'description' => 'string',
-        'media' => '\OpenAPI\Client\Model\RbmCardContentMedia',
-        'suggestions' => '\OpenAPI\Client\Model\MultiChannelAction[]'
+        'media' => '\Bandwidth\Model\RbmCardContentMedia',
+        'suggestions' => '\Bandwidth\Model\MultiChannelAction[]'
     ];
 
     /**
@@ -363,9 +363,9 @@ class RbmCardContent implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets media
      *
-     * @return \OpenAPI\Client\Model\RbmCardContentMedia|null
+     * @return \Bandwidth\Model\RbmCardContentMedia|null
      */
-    public function getMedia(): ?\OpenAPI\Client\Model\RbmCardContentMedia
+    public function getMedia(): ?\Bandwidth\Model\RbmCardContentMedia
     {
         return $this->container['media'];
     }
@@ -373,11 +373,11 @@ class RbmCardContent implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets media
      *
-     * @param \OpenAPI\Client\Model\RbmCardContentMedia|null $media media
+     * @param \Bandwidth\Model\RbmCardContentMedia|null $media media
      *
      * @return $this
      */
-    public function setMedia(?\OpenAPI\Client\Model\RbmCardContentMedia $media): static
+    public function setMedia(?\Bandwidth\Model\RbmCardContentMedia $media): static
     {
         if (is_null($media)) {
             throw new InvalidArgumentException('non-nullable media cannot be null');
@@ -390,7 +390,7 @@ class RbmCardContent implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets suggestions
      *
-     * @return \OpenAPI\Client\Model\MultiChannelAction[]|null
+     * @return \Bandwidth\Model\MultiChannelAction[]|null
      */
     public function getSuggestions(): ?array
     {
@@ -400,7 +400,7 @@ class RbmCardContent implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets suggestions
      *
-     * @param \OpenAPI\Client\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient that will be displayed on the rich card.
+     * @param \Bandwidth\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient that will be displayed on the rich card.
      *
      * @return $this
      */

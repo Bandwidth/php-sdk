@@ -1,4 +1,4 @@
-# OpenAPI\Client\StatisticsApi
+# Bandwidth\StatisticsApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -10,7 +10,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `getStatistics()`
 
 ```php
-getStatistics($account_id): \OpenAPI\Client\Model\AccountStatistics
+getStatistics($account_id): \Bandwidth\Model\AccountStatistics
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -26,15 +26,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\StatisticsApi(
+$apiInstance = new Bandwidth\Api\StatisticsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -64,7 +64,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\AccountStatistics**](../Model/AccountStatistics.md)
+[**\Bandwidth\Model\AccountStatistics**](../Model/AccountStatistics.md)
 
 ### Authorization
 

@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RbmMessageMedia Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,8 +59,8 @@ class RbmMessageMedia implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'media' => '\OpenAPI\Client\Model\RbmMessageContentFile[]',
-        'suggestions' => '\OpenAPI\Client\Model\MultiChannelAction[]'
+        'media' => '\Bandwidth\Model\RbmMessageContentFile[]',
+        'suggestions' => '\Bandwidth\Model\MultiChannelAction[]'
     ];
 
     /**
@@ -281,7 +281,7 @@ class RbmMessageMedia implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets media
      *
-     * @return \OpenAPI\Client\Model\RbmMessageContentFile[]
+     * @return \Bandwidth\Model\RbmMessageContentFile[]
      */
     public function getMedia(): array
     {
@@ -291,7 +291,7 @@ class RbmMessageMedia implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets media
      *
-     * @param \OpenAPI\Client\Model\RbmMessageContentFile[] $media media
+     * @param \Bandwidth\Model\RbmMessageContentFile[] $media media
      *
      * @return $this
      */
@@ -308,7 +308,7 @@ class RbmMessageMedia implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets suggestions
      *
-     * @return \OpenAPI\Client\Model\MultiChannelAction[]|null
+     * @return \Bandwidth\Model\MultiChannelAction[]|null
      */
     public function getSuggestions(): ?array
     {
@@ -318,7 +318,7 @@ class RbmMessageMedia implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets suggestions
      *
-     * @param \OpenAPI\Client\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
+     * @param \Bandwidth\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
      *
      * @return $this
      */

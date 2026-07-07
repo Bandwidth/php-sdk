@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * RbmMessageContentRichCard Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -59,12 +59,12 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
      * @var array<string, string>
      */
     protected static array $openAPITypes = [
-        'orientation' => '\OpenAPI\Client\Model\StandaloneCardOrientationEnum',
-        'thumbnail_image_alignment' => '\OpenAPI\Client\Model\ThumbnailAlignmentEnum',
-        'card_content' => '\OpenAPI\Client\Model\RbmCardContent',
-        'suggestions' => '\OpenAPI\Client\Model\MultiChannelAction[]',
-        'card_width' => '\OpenAPI\Client\Model\CardWidthEnum',
-        'card_contents' => '\OpenAPI\Client\Model\RbmCardContent[]'
+        'orientation' => '\Bandwidth\Model\StandaloneCardOrientationEnum',
+        'thumbnail_image_alignment' => '\Bandwidth\Model\ThumbnailAlignmentEnum',
+        'card_content' => '\Bandwidth\Model\RbmCardContent',
+        'suggestions' => '\Bandwidth\Model\MultiChannelAction[]',
+        'card_width' => '\Bandwidth\Model\CardWidthEnum',
+        'card_contents' => '\Bandwidth\Model\RbmCardContent[]'
     ];
 
     /**
@@ -326,9 +326,9 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets orientation
      *
-     * @return \OpenAPI\Client\Model\StandaloneCardOrientationEnum
+     * @return \Bandwidth\Model\StandaloneCardOrientationEnum
      */
-    public function getOrientation(): \OpenAPI\Client\Model\StandaloneCardOrientationEnum
+    public function getOrientation(): \Bandwidth\Model\StandaloneCardOrientationEnum
     {
         return $this->container['orientation'];
     }
@@ -336,11 +336,11 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets orientation
      *
-     * @param \OpenAPI\Client\Model\StandaloneCardOrientationEnum $orientation orientation
+     * @param \Bandwidth\Model\StandaloneCardOrientationEnum $orientation orientation
      *
      * @return $this
      */
-    public function setOrientation(\OpenAPI\Client\Model\StandaloneCardOrientationEnum $orientation): static
+    public function setOrientation(\Bandwidth\Model\StandaloneCardOrientationEnum $orientation): static
     {
         if (is_null($orientation)) {
             throw new InvalidArgumentException('non-nullable orientation cannot be null');
@@ -353,9 +353,9 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets thumbnail_image_alignment
      *
-     * @return \OpenAPI\Client\Model\ThumbnailAlignmentEnum|null
+     * @return \Bandwidth\Model\ThumbnailAlignmentEnum|null
      */
-    public function getThumbnailImageAlignment(): ?\OpenAPI\Client\Model\ThumbnailAlignmentEnum
+    public function getThumbnailImageAlignment(): ?\Bandwidth\Model\ThumbnailAlignmentEnum
     {
         return $this->container['thumbnail_image_alignment'];
     }
@@ -363,11 +363,11 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets thumbnail_image_alignment
      *
-     * @param \OpenAPI\Client\Model\ThumbnailAlignmentEnum|null $thumbnail_image_alignment thumbnail_image_alignment
+     * @param \Bandwidth\Model\ThumbnailAlignmentEnum|null $thumbnail_image_alignment thumbnail_image_alignment
      *
      * @return $this
      */
-    public function setThumbnailImageAlignment(?\OpenAPI\Client\Model\ThumbnailAlignmentEnum $thumbnail_image_alignment): static
+    public function setThumbnailImageAlignment(?\Bandwidth\Model\ThumbnailAlignmentEnum $thumbnail_image_alignment): static
     {
         if (is_null($thumbnail_image_alignment)) {
             throw new InvalidArgumentException('non-nullable thumbnail_image_alignment cannot be null');
@@ -380,9 +380,9 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets card_content
      *
-     * @return \OpenAPI\Client\Model\RbmCardContent
+     * @return \Bandwidth\Model\RbmCardContent
      */
-    public function getCardContent(): \OpenAPI\Client\Model\RbmCardContent
+    public function getCardContent(): \Bandwidth\Model\RbmCardContent
     {
         return $this->container['card_content'];
     }
@@ -390,11 +390,11 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets card_content
      *
-     * @param \OpenAPI\Client\Model\RbmCardContent $card_content card_content
+     * @param \Bandwidth\Model\RbmCardContent $card_content card_content
      *
      * @return $this
      */
-    public function setCardContent(\OpenAPI\Client\Model\RbmCardContent $card_content): static
+    public function setCardContent(\Bandwidth\Model\RbmCardContent $card_content): static
     {
         if (is_null($card_content)) {
             throw new InvalidArgumentException('non-nullable card_content cannot be null');
@@ -407,7 +407,7 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets suggestions
      *
-     * @return \OpenAPI\Client\Model\MultiChannelAction[]|null
+     * @return \Bandwidth\Model\MultiChannelAction[]|null
      */
     public function getSuggestions(): ?array
     {
@@ -417,7 +417,7 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets suggestions
      *
-     * @param \OpenAPI\Client\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
+     * @param \Bandwidth\Model\MultiChannelAction[]|null $suggestions An array of suggested actions for the recipient.
      *
      * @return $this
      */
@@ -438,9 +438,9 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets card_width
      *
-     * @return \OpenAPI\Client\Model\CardWidthEnum
+     * @return \Bandwidth\Model\CardWidthEnum
      */
-    public function getCardWidth(): \OpenAPI\Client\Model\CardWidthEnum
+    public function getCardWidth(): \Bandwidth\Model\CardWidthEnum
     {
         return $this->container['card_width'];
     }
@@ -448,11 +448,11 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets card_width
      *
-     * @param \OpenAPI\Client\Model\CardWidthEnum $card_width card_width
+     * @param \Bandwidth\Model\CardWidthEnum $card_width card_width
      *
      * @return $this
      */
-    public function setCardWidth(\OpenAPI\Client\Model\CardWidthEnum $card_width): static
+    public function setCardWidth(\Bandwidth\Model\CardWidthEnum $card_width): static
     {
         if (is_null($card_width)) {
             throw new InvalidArgumentException('non-nullable card_width cannot be null');
@@ -465,7 +465,7 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets card_contents
      *
-     * @return \OpenAPI\Client\Model\RbmCardContent[]
+     * @return \Bandwidth\Model\RbmCardContent[]
      */
     public function getCardContents(): array
     {
@@ -475,7 +475,7 @@ class RbmMessageContentRichCard implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets card_contents
      *
-     * @param \OpenAPI\Client\Model\RbmCardContent[] $card_contents card_contents
+     * @param \Bandwidth\Model\RbmCardContent[] $card_contents card_contents
      *
      * @return $this
      */

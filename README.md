@@ -50,22 +50,22 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\CallsApi(
+$apiInstance = new Bandwidth\Api\CallsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
-$create_call = new \OpenAPI\Client\Model\CreateCall(); // \OpenAPI\Client\Model\CreateCall | JSON object containing information to create an outbound call
+$create_call = new \Bandwidth\Model\CreateCall(); // \Bandwidth\Model\CreateCall | JSON object containing information to create an outbound call
 
 try {
     $result = $apiInstance->createCall($account_id, $create_call);

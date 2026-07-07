@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **application_id** | **string** | The id of the application associated with the call. | [optional]
 **from** | **string** | The provided identifier of the caller. Must be a phone number in E.164 format (e.g. +15555555555). | [optional]
 **to** | **string** | The phone number that received the call, in E.164 format (e.g. +15555555555). | [optional]
-**direction** | [**\OpenAPI\Client\Model\CallDirectionEnum**](CallDirectionEnum.md) |  | [optional]
+**direction** | [**\Bandwidth\Model\CallDirectionEnum**](CallDirectionEnum.md) |  | [optional]
 **call_id** | **string** | The call id associated with the event. | [optional]
 **call_url** | **string** | The URL of the call associated with the event. | [optional]
 **parent_call_id** | **string** | (optional) If the event is related to the B leg of a &lt;Transfer&gt;, the call id of the original call leg that executed the &lt;Transfer&gt;. Otherwise, this field will not be present. | [optional]

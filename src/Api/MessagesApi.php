@@ -3,7 +3,7 @@
  * MessagesApi
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Bandwidth\Api;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client;
@@ -38,16 +38,16 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ApiException;
+use Bandwidth\Configuration;
+use Bandwidth\HeaderSelector;
+use Bandwidth\FormDataProcessor;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MessagesApi Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -139,22 +139,22 @@ class MessagesApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MessageRequest $message_request message_request (required)
+     * @param  \Bandwidth\Model\MessageRequest $message_request message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMessage'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Message|\OpenAPI\Client\Model\CreateMessageRequestError|\OpenAPI\Client\Model\MessagingRequestError
+     * @return \Bandwidth\Model\Message|\Bandwidth\Model\CreateMessageRequestError|\Bandwidth\Model\MessagingRequestError
      */
     public function createMessage(
         string $account_id,
-        \OpenAPI\Client\Model\MessageRequest $message_request,
+        \Bandwidth\Model\MessageRequest $message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMessage'][0]
-    ): \OpenAPI\Client\Model\Message|\OpenAPI\Client\Model\CreateMessageRequestError|\OpenAPI\Client\Model\MessagingRequestError
+    ): \Bandwidth\Model\Message|\Bandwidth\Model\CreateMessageRequestError|\Bandwidth\Model\MessagingRequestError
     {
         list($response) = $this->createMessageWithHttpInfo($account_id, $message_request, $hostIndex, $variables, $contentType);
         return $response;
@@ -170,18 +170,18 @@ class MessagesApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MessageRequest $message_request (required)
+     * @param  \Bandwidth\Model\MessageRequest $message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMessage'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Message|\OpenAPI\Client\Model\CreateMessageRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\Message|\Bandwidth\Model\CreateMessageRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createMessageWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\MessageRequest $message_request,
+        \Bandwidth\Model\MessageRequest $message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMessage'][0]
@@ -214,61 +214,61 @@ class MessagesApi
             switch($statusCode) {
                 case 202:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\Message',
+                        '\Bandwidth\Model\Message',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateMessageRequestError',
+                        '\Bandwidth\Model\CreateMessageRequestError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 406:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
@@ -289,7 +289,7 @@ class MessagesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\Message',
+                '\Bandwidth\Model\Message',
                 $request,
                 $response,
             );
@@ -298,7 +298,7 @@ class MessagesApi
                 case 202:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Message',
+                        '\Bandwidth\Model\Message',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -306,7 +306,7 @@ class MessagesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateMessageRequestError',
+                        '\Bandwidth\Model\CreateMessageRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -314,7 +314,7 @@ class MessagesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -322,7 +322,7 @@ class MessagesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -330,7 +330,7 @@ class MessagesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -338,7 +338,7 @@ class MessagesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -346,7 +346,7 @@ class MessagesApi
                 case 406:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -354,7 +354,7 @@ class MessagesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -362,7 +362,7 @@ class MessagesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -370,7 +370,7 @@ class MessagesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -391,7 +391,7 @@ class MessagesApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MessageRequest $message_request (required)
+     * @param  \Bandwidth\Model\MessageRequest $message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMessage'] to see the possible values for this operation
@@ -401,7 +401,7 @@ class MessagesApi
      */
     public function createMessageAsync(
         string $account_id,
-        \OpenAPI\Client\Model\MessageRequest $message_request,
+        \Bandwidth\Model\MessageRequest $message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMessage'][0]
@@ -425,7 +425,7 @@ class MessagesApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MessageRequest $message_request (required)
+     * @param  \Bandwidth\Model\MessageRequest $message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMessage'] to see the possible values for this operation
@@ -435,13 +435,13 @@ class MessagesApi
      */
     public function createMessageAsyncWithHttpInfo(
         string $account_id,
-        \OpenAPI\Client\Model\MessageRequest $message_request,
+        \Bandwidth\Model\MessageRequest $message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMessage'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\Message';
+        $returnType = '\Bandwidth\Model\Message';
         $request = $this->createMessageRequest($account_id, $message_request, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -488,7 +488,7 @@ class MessagesApi
      * URL: https://messaging.bandwidth.com/api/v2
      *
      * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  \OpenAPI\Client\Model\MessageRequest $message_request (required)
+     * @param  \Bandwidth\Model\MessageRequest $message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMessage'] to see the possible values for this operation
@@ -498,7 +498,7 @@ class MessagesApi
      */
     public function createMessageRequest(
         string $account_id,
-        \OpenAPI\Client\Model\MessageRequest $message_request,
+        \Bandwidth\Model\MessageRequest $message_request,
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['createMessage'][0]
@@ -646,17 +646,17 @@ class MessagesApi
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
-     * @param  \OpenAPI\Client\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
-     * @param  \OpenAPI\Client\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
+     * @param  \Bandwidth\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
+     * @param  \Bandwidth\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
      * @param  string|null $carrier_name The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). (optional)
-     * @param  \OpenAPI\Client\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
+     * @param  \Bandwidth\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
      * @param  int|null $error_code The error code of the message. (optional)
      * @param  string|null $from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $campaign_id The campaign ID of the message. (optional)
      * @param  int|null $from_bw_latency The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  bool|null $bw_queued A boolean value indicating whether the message is queued in the Bandwidth network. (optional)
-     * @param  \OpenAPI\Client\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
+     * @param  \Bandwidth\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
      * @param  string|null $location Location Id associated with the message. (optional)
      * @param  bool|null $carrier_queued A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  int|null $from_carrier_latency The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
@@ -676,24 +676,24 @@ class MessagesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\MessagesList|\OpenAPI\Client\Model\MessagingRequestError
+     * @return \Bandwidth\Model\MessagesList|\Bandwidth\Model\MessagingRequestError
      */
     public function listMessages(
         string $account_id,
         ?string $message_id = null,
         ?string $source_tn = null,
         ?string $destination_tn = null,
-        ?\OpenAPI\Client\Model\MessageStatusEnum $message_status = null,
-        ?\OpenAPI\Client\Model\ListMessageDirectionEnum $message_direction = null,
+        ?\Bandwidth\Model\MessageStatusEnum $message_status = null,
+        ?\Bandwidth\Model\ListMessageDirectionEnum $message_direction = null,
         ?string $carrier_name = null,
-        ?\OpenAPI\Client\Model\MessageTypeEnum $message_type = null,
+        ?\Bandwidth\Model\MessageTypeEnum $message_type = null,
         ?int $error_code = null,
         ?string $from_date_time = null,
         ?string $to_date_time = null,
         ?string $campaign_id = null,
         ?int $from_bw_latency = null,
         ?bool $bw_queued = null,
-        ?\OpenAPI\Client\Model\ProductTypeEnum $product = null,
+        ?\Bandwidth\Model\ProductTypeEnum $product = null,
         ?string $location = null,
         ?bool $carrier_queued = null,
         ?int $from_carrier_latency = null,
@@ -710,7 +710,7 @@ class MessagesApi
         ?int $hostIndex = null,
         array $variables = [],
         string $contentType = self::contentTypes['listMessages'][0]
-    ): \OpenAPI\Client\Model\MessagesList|\OpenAPI\Client\Model\MessagingRequestError
+    ): \Bandwidth\Model\MessagesList|\Bandwidth\Model\MessagingRequestError
     {
         list($response) = $this->listMessagesWithHttpInfo($account_id, $message_id, $source_tn, $destination_tn, $message_status, $message_direction, $carrier_name, $message_type, $error_code, $from_date_time, $to_date_time, $campaign_id, $from_bw_latency, $bw_queued, $product, $location, $carrier_queued, $from_carrier_latency, $calling_number_country_a3, $called_number_country_a3, $from_segment_count, $to_segment_count, $from_message_size, $to_message_size, $sort, $page_token, $limit, $limit_total_count, $hostIndex, $variables, $contentType);
         return $response;
@@ -729,17 +729,17 @@ class MessagesApi
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
-     * @param  \OpenAPI\Client\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
-     * @param  \OpenAPI\Client\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
+     * @param  \Bandwidth\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
+     * @param  \Bandwidth\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
      * @param  string|null $carrier_name The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). (optional)
-     * @param  \OpenAPI\Client\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
+     * @param  \Bandwidth\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
      * @param  int|null $error_code The error code of the message. (optional)
      * @param  string|null $from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $campaign_id The campaign ID of the message. (optional)
      * @param  int|null $from_bw_latency The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  bool|null $bw_queued A boolean value indicating whether the message is queued in the Bandwidth network. (optional)
-     * @param  \OpenAPI\Client\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
+     * @param  \Bandwidth\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
      * @param  string|null $location Location Id associated with the message. (optional)
      * @param  bool|null $carrier_queued A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  int|null $from_carrier_latency The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
@@ -759,24 +759,24 @@ class MessagesApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\MessagesList|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError|\OpenAPI\Client\Model\MessagingRequestError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Bandwidth\Model\MessagesList|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError|\Bandwidth\Model\MessagingRequestError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listMessagesWithHttpInfo(
         string $account_id,
         ?string $message_id = null,
         ?string $source_tn = null,
         ?string $destination_tn = null,
-        ?\OpenAPI\Client\Model\MessageStatusEnum $message_status = null,
-        ?\OpenAPI\Client\Model\ListMessageDirectionEnum $message_direction = null,
+        ?\Bandwidth\Model\MessageStatusEnum $message_status = null,
+        ?\Bandwidth\Model\ListMessageDirectionEnum $message_direction = null,
         ?string $carrier_name = null,
-        ?\OpenAPI\Client\Model\MessageTypeEnum $message_type = null,
+        ?\Bandwidth\Model\MessageTypeEnum $message_type = null,
         ?int $error_code = null,
         ?string $from_date_time = null,
         ?string $to_date_time = null,
         ?string $campaign_id = null,
         ?int $from_bw_latency = null,
         ?bool $bw_queued = null,
-        ?\OpenAPI\Client\Model\ProductTypeEnum $product = null,
+        ?\Bandwidth\Model\ProductTypeEnum $product = null,
         ?string $location = null,
         ?bool $carrier_queued = null,
         ?int $from_carrier_latency = null,
@@ -822,55 +822,55 @@ class MessagesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagesList',
+                        '\Bandwidth\Model\MessagesList',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 403:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 405:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 415:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $request,
                         $response,
                     );
@@ -891,7 +891,7 @@ class MessagesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\MessagesList',
+                '\Bandwidth\Model\MessagesList',
                 $request,
                 $response,
             );
@@ -900,7 +900,7 @@ class MessagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagesList',
+                        '\Bandwidth\Model\MessagesList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -908,7 +908,7 @@ class MessagesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -916,7 +916,7 @@ class MessagesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -924,7 +924,7 @@ class MessagesApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -932,7 +932,7 @@ class MessagesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -940,7 +940,7 @@ class MessagesApi
                 case 405:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -948,7 +948,7 @@ class MessagesApi
                 case 415:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -956,7 +956,7 @@ class MessagesApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -964,7 +964,7 @@ class MessagesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MessagingRequestError',
+                        '\Bandwidth\Model\MessagingRequestError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -988,17 +988,17 @@ class MessagesApi
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
-     * @param  \OpenAPI\Client\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
-     * @param  \OpenAPI\Client\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
+     * @param  \Bandwidth\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
+     * @param  \Bandwidth\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
      * @param  string|null $carrier_name The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). (optional)
-     * @param  \OpenAPI\Client\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
+     * @param  \Bandwidth\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
      * @param  int|null $error_code The error code of the message. (optional)
      * @param  string|null $from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $campaign_id The campaign ID of the message. (optional)
      * @param  int|null $from_bw_latency The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  bool|null $bw_queued A boolean value indicating whether the message is queued in the Bandwidth network. (optional)
-     * @param  \OpenAPI\Client\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
+     * @param  \Bandwidth\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
      * @param  string|null $location Location Id associated with the message. (optional)
      * @param  bool|null $carrier_queued A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  int|null $from_carrier_latency The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
@@ -1024,17 +1024,17 @@ class MessagesApi
         ?string $message_id = null,
         ?string $source_tn = null,
         ?string $destination_tn = null,
-        ?\OpenAPI\Client\Model\MessageStatusEnum $message_status = null,
-        ?\OpenAPI\Client\Model\ListMessageDirectionEnum $message_direction = null,
+        ?\Bandwidth\Model\MessageStatusEnum $message_status = null,
+        ?\Bandwidth\Model\ListMessageDirectionEnum $message_direction = null,
         ?string $carrier_name = null,
-        ?\OpenAPI\Client\Model\MessageTypeEnum $message_type = null,
+        ?\Bandwidth\Model\MessageTypeEnum $message_type = null,
         ?int $error_code = null,
         ?string $from_date_time = null,
         ?string $to_date_time = null,
         ?string $campaign_id = null,
         ?int $from_bw_latency = null,
         ?bool $bw_queued = null,
-        ?\OpenAPI\Client\Model\ProductTypeEnum $product = null,
+        ?\Bandwidth\Model\ProductTypeEnum $product = null,
         ?string $location = null,
         ?bool $carrier_queued = null,
         ?int $from_carrier_latency = null,
@@ -1074,17 +1074,17 @@ class MessagesApi
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
-     * @param  \OpenAPI\Client\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
-     * @param  \OpenAPI\Client\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
+     * @param  \Bandwidth\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
+     * @param  \Bandwidth\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
      * @param  string|null $carrier_name The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). (optional)
-     * @param  \OpenAPI\Client\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
+     * @param  \Bandwidth\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
      * @param  int|null $error_code The error code of the message. (optional)
      * @param  string|null $from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $campaign_id The campaign ID of the message. (optional)
      * @param  int|null $from_bw_latency The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  bool|null $bw_queued A boolean value indicating whether the message is queued in the Bandwidth network. (optional)
-     * @param  \OpenAPI\Client\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
+     * @param  \Bandwidth\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
      * @param  string|null $location Location Id associated with the message. (optional)
      * @param  bool|null $carrier_queued A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  int|null $from_carrier_latency The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
@@ -1110,17 +1110,17 @@ class MessagesApi
         ?string $message_id = null,
         ?string $source_tn = null,
         ?string $destination_tn = null,
-        ?\OpenAPI\Client\Model\MessageStatusEnum $message_status = null,
-        ?\OpenAPI\Client\Model\ListMessageDirectionEnum $message_direction = null,
+        ?\Bandwidth\Model\MessageStatusEnum $message_status = null,
+        ?\Bandwidth\Model\ListMessageDirectionEnum $message_direction = null,
         ?string $carrier_name = null,
-        ?\OpenAPI\Client\Model\MessageTypeEnum $message_type = null,
+        ?\Bandwidth\Model\MessageTypeEnum $message_type = null,
         ?int $error_code = null,
         ?string $from_date_time = null,
         ?string $to_date_time = null,
         ?string $campaign_id = null,
         ?int $from_bw_latency = null,
         ?bool $bw_queued = null,
-        ?\OpenAPI\Client\Model\ProductTypeEnum $product = null,
+        ?\Bandwidth\Model\ProductTypeEnum $product = null,
         ?string $location = null,
         ?bool $carrier_queued = null,
         ?int $from_carrier_latency = null,
@@ -1139,7 +1139,7 @@ class MessagesApi
         string $contentType = self::contentTypes['listMessages'][0]
     ): PromiseInterface
     {
-        $returnType = '\OpenAPI\Client\Model\MessagesList';
+        $returnType = '\Bandwidth\Model\MessagesList';
         $request = $this->listMessagesRequest($account_id, $message_id, $source_tn, $destination_tn, $message_status, $message_direction, $carrier_name, $message_type, $error_code, $from_date_time, $to_date_time, $campaign_id, $from_bw_latency, $bw_queued, $product, $location, $carrier_queued, $from_carrier_latency, $calling_number_country_a3, $called_number_country_a3, $from_segment_count, $to_segment_count, $from_message_size, $to_message_size, $sort, $page_token, $limit, $limit_total_count, $hostIndex, $variables, $contentType);
 
         return $this->client
@@ -1189,17 +1189,17 @@ class MessagesApi
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
-     * @param  \OpenAPI\Client\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
-     * @param  \OpenAPI\Client\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
+     * @param  \Bandwidth\Model\MessageStatusEnum|null $message_status The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional)
+     * @param  \Bandwidth\Model\ListMessageDirectionEnum|null $message_direction The direction of the message. One of INBOUND OUTBOUND. (optional)
      * @param  string|null $carrier_name The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). (optional)
-     * @param  \OpenAPI\Client\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
+     * @param  \Bandwidth\Model\MessageTypeEnum|null $message_type The type of message. Either sms or mms. (optional)
      * @param  int|null $error_code The error code of the message. (optional)
      * @param  string|null $from_date_time The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $to_date_time The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
      * @param  string|null $campaign_id The campaign ID of the message. (optional)
      * @param  int|null $from_bw_latency The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  bool|null $bw_queued A boolean value indicating whether the message is queued in the Bandwidth network. (optional)
-     * @param  \OpenAPI\Client\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
+     * @param  \Bandwidth\Model\ProductTypeEnum|null $product Messaging product associated with the message. (optional)
      * @param  string|null $location Location Id associated with the message. (optional)
      * @param  bool|null $carrier_queued A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
      * @param  int|null $from_carrier_latency The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
@@ -1225,17 +1225,17 @@ class MessagesApi
         ?string $message_id = null,
         ?string $source_tn = null,
         ?string $destination_tn = null,
-        ?\OpenAPI\Client\Model\MessageStatusEnum $message_status = null,
-        ?\OpenAPI\Client\Model\ListMessageDirectionEnum $message_direction = null,
+        ?\Bandwidth\Model\MessageStatusEnum $message_status = null,
+        ?\Bandwidth\Model\ListMessageDirectionEnum $message_direction = null,
         ?string $carrier_name = null,
-        ?\OpenAPI\Client\Model\MessageTypeEnum $message_type = null,
+        ?\Bandwidth\Model\MessageTypeEnum $message_type = null,
         ?int $error_code = null,
         ?string $from_date_time = null,
         ?string $to_date_time = null,
         ?string $campaign_id = null,
         ?int $from_bw_latency = null,
         ?bool $bw_queued = null,
-        ?\OpenAPI\Client\Model\ProductTypeEnum $product = null,
+        ?\Bandwidth\Model\ProductTypeEnum $product = null,
         ?string $location = null,
         ?bool $carrier_queued = null,
         ?int $from_carrier_latency = null,

@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * BrtcError Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -63,7 +63,7 @@ class BrtcError implements ModelInterface, ArrayAccess, JsonSerializable
         'type' => 'string',
         'description' => 'string',
         'code' => 'string',
-        'source' => '\OpenAPI\Client\Model\BrtcErrorSource'
+        'source' => '\Bandwidth\Model\BrtcErrorSource'
     ];
 
     /**
@@ -409,9 +409,9 @@ class BrtcError implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets source
      *
-     * @return \OpenAPI\Client\Model\BrtcErrorSource|null
+     * @return \Bandwidth\Model\BrtcErrorSource|null
      */
-    public function getSource(): ?\OpenAPI\Client\Model\BrtcErrorSource
+    public function getSource(): ?\Bandwidth\Model\BrtcErrorSource
     {
         return $this->container['source'];
     }
@@ -419,11 +419,11 @@ class BrtcError implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets source
      *
-     * @param \OpenAPI\Client\Model\BrtcErrorSource|null $source source
+     * @param \Bandwidth\Model\BrtcErrorSource|null $source source
      *
      * @return $this
      */
-    public function setSource(?\OpenAPI\Client\Model\BrtcErrorSource $source): static
+    public function setSource(?\Bandwidth\Model\BrtcErrorSource $source): static
     {
         if (is_null($source)) {
             throw new InvalidArgumentException('non-nullable source cannot be null');

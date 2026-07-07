@@ -1,4 +1,4 @@
-# OpenAPI\Client\ConferencesApi
+# Bandwidth\ConferencesApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -34,15 +34,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ConferencesApi(
+$apiInstance = new Bandwidth\Api\ConferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -94,7 +94,7 @@ try {
 ## `getConference()`
 
 ```php
-getConference($account_id, $conference_id): \OpenAPI\Client\Model\Conference
+getConference($account_id, $conference_id): \Bandwidth\Model\Conference
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -110,15 +110,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ConferencesApi(
+$apiInstance = new Bandwidth\Api\ConferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -150,7 +150,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Conference**](../Model/Conference.md)
+[**\Bandwidth\Model\Conference**](../Model/Conference.md)
 
 ### Authorization
 
@@ -168,7 +168,7 @@ try {
 ## `getConferenceMember()`
 
 ```php
-getConferenceMember($account_id, $conference_id, $member_id): \OpenAPI\Client\Model\ConferenceMember
+getConferenceMember($account_id, $conference_id, $member_id): \Bandwidth\Model\ConferenceMember
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -184,15 +184,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ConferencesApi(
+$apiInstance = new Bandwidth\Api\ConferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -226,7 +226,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ConferenceMember**](../Model/ConferenceMember.md)
+[**\Bandwidth\Model\ConferenceMember**](../Model/ConferenceMember.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ try {
 ## `getConferenceRecording()`
 
 ```php
-getConferenceRecording($account_id, $conference_id, $recording_id): \OpenAPI\Client\Model\ConferenceRecordingMetadata
+getConferenceRecording($account_id, $conference_id, $recording_id): \Bandwidth\Model\ConferenceRecordingMetadata
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -260,15 +260,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ConferencesApi(
+$apiInstance = new Bandwidth\Api\ConferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -302,7 +302,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ConferenceRecordingMetadata**](../Model/ConferenceRecordingMetadata.md)
+[**\Bandwidth\Model\ConferenceRecordingMetadata**](../Model/ConferenceRecordingMetadata.md)
 
 ### Authorization
 
@@ -320,7 +320,7 @@ try {
 ## `listConferenceRecordings()`
 
 ```php
-listConferenceRecordings($account_id, $conference_id): \OpenAPI\Client\Model\ConferenceRecordingMetadata[]
+listConferenceRecordings($account_id, $conference_id): \Bandwidth\Model\ConferenceRecordingMetadata[]
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -336,15 +336,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ConferencesApi(
+$apiInstance = new Bandwidth\Api\ConferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -376,7 +376,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ConferenceRecordingMetadata[]**](../Model/ConferenceRecordingMetadata.md)
+[**\Bandwidth\Model\ConferenceRecordingMetadata[]**](../Model/ConferenceRecordingMetadata.md)
 
 ### Authorization
 
@@ -394,7 +394,7 @@ try {
 ## `listConferences()`
 
 ```php
-listConferences($account_id, $name, $min_created_time, $max_created_time, $page_size, $page_token): \OpenAPI\Client\Model\Conference[]
+listConferences($account_id, $name, $min_created_time, $max_created_time, $page_size, $page_token): \Bandwidth\Model\Conference[]
 ```
 ### URI(s):
 - https://voice.bandwidth.com/api/v2 Production
@@ -410,15 +410,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ConferencesApi(
+$apiInstance = new Bandwidth\Api\ConferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -458,7 +458,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Conference[]**](../Model/Conference.md)
+[**\Bandwidth\Model\Conference[]**](../Model/Conference.md)
 
 ### Authorization
 
@@ -492,15 +492,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ConferencesApi(
+$apiInstance = new Bandwidth\Api\ConferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -508,7 +508,7 @@ $apiInstance = new OpenAPI\Client\Api\ConferencesApi(
 );
 $account_id = 9900000; // string | Your Bandwidth Account ID.
 $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9; // string | Programmable Voice API Conference ID.
-$update_conference = new \OpenAPI\Client\Model\UpdateConference(); // \OpenAPI\Client\Model\UpdateConference
+$update_conference = new \Bandwidth\Model\UpdateConference(); // \Bandwidth\Model\UpdateConference
 
 $hostIndex = 0;
 $variables = [
@@ -527,7 +527,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **account_id** | **string**| Your Bandwidth Account ID. | |
 | **conference_id** | **string**| Programmable Voice API Conference ID. | |
-| **update_conference** | [**\OpenAPI\Client\Model\UpdateConference**](../Model/UpdateConference.md)|  | |
+| **update_conference** | [**\Bandwidth\Model\UpdateConference**](../Model/UpdateConference.md)|  | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
@@ -567,15 +567,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ConferencesApi(
+$apiInstance = new Bandwidth\Api\ConferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -645,15 +645,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure HTTP basic authorization: Basic
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+$config = Bandwidth\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\ConferencesApi(
+$apiInstance = new Bandwidth\Api\ConferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -662,7 +662,7 @@ $apiInstance = new OpenAPI\Client\Api\ConferencesApi(
 $account_id = 9900000; // string | Your Bandwidth Account ID.
 $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9; // string | Programmable Voice API Conference ID.
 $member_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; // string | Programmable Voice API Conference Member ID.
-$update_conference_member = new \OpenAPI\Client\Model\UpdateConferenceMember(); // \OpenAPI\Client\Model\UpdateConferenceMember
+$update_conference_member = new \Bandwidth\Model\UpdateConferenceMember(); // \Bandwidth\Model\UpdateConferenceMember
 
 $hostIndex = 0;
 $variables = [
@@ -682,7 +682,7 @@ try {
 | **account_id** | **string**| Your Bandwidth Account ID. | |
 | **conference_id** | **string**| Programmable Voice API Conference ID. | |
 | **member_id** | **string**| Programmable Voice API Conference Member ID. | |
-| **update_conference_member** | [**\OpenAPI\Client\Model\UpdateConferenceMember**](../Model/UpdateConferenceMember.md)|  | |
+| **update_conference_member** | [**\Bandwidth\Model\UpdateConferenceMember**](../Model/UpdateConferenceMember.md)|  | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 

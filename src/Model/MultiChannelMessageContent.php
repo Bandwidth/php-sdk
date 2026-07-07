@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,19 +26,19 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * MultiChannelMessageContent Class Doc Comment
  *
  * @description The structure of the content field of a multichannel message.
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class MultiChannelMessageContent implements ModelInterface, ArrayAccess, JsonSer
      */
     protected static array $openAPITypes = [
         'text' => 'string',
-        'media' => '\OpenAPI\Client\Model\RbmMessageContentFile'
+        'media' => '\Bandwidth\Model\RbmMessageContentFile'
     ];
 
     /**
@@ -302,9 +302,9 @@ class MultiChannelMessageContent implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Gets media
      *
-     * @return \OpenAPI\Client\Model\RbmMessageContentFile|null
+     * @return \Bandwidth\Model\RbmMessageContentFile|null
      */
-    public function getMedia(): ?\OpenAPI\Client\Model\RbmMessageContentFile
+    public function getMedia(): ?\Bandwidth\Model\RbmMessageContentFile
     {
         return $this->container['media'];
     }
@@ -312,11 +312,11 @@ class MultiChannelMessageContent implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets media
      *
-     * @param \OpenAPI\Client\Model\RbmMessageContentFile|null $media media
+     * @param \Bandwidth\Model\RbmMessageContentFile|null $media media
      *
      * @return $this
      */
-    public function setMedia(?\OpenAPI\Client\Model\RbmMessageContentFile $media): static
+    public function setMedia(?\Bandwidth\Model\RbmMessageContentFile $media): static
     {
         if (is_null($media)) {
             throw new InvalidArgumentException('non-nullable media cannot be null');

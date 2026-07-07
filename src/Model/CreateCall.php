@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Bandwidth\Model;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\ObjectSerializer;
 
 /**
  * CreateCall Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
@@ -66,18 +66,18 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         'uui' => 'string',
         'application_id' => 'string',
         'answer_url' => 'string',
-        'answer_method' => '\OpenAPI\Client\Model\CallbackMethodEnum',
+        'answer_method' => '\Bandwidth\Model\CallbackMethodEnum',
         'username' => 'string',
         'password' => 'string',
         'answer_fallback_url' => 'string',
-        'answer_fallback_method' => '\OpenAPI\Client\Model\CallbackMethodEnum',
+        'answer_fallback_method' => '\Bandwidth\Model\CallbackMethodEnum',
         'fallback_username' => 'string',
         'fallback_password' => 'string',
         'disconnect_url' => 'string',
-        'disconnect_method' => '\OpenAPI\Client\Model\CallbackMethodEnum',
+        'disconnect_method' => '\Bandwidth\Model\CallbackMethodEnum',
         'call_timeout' => 'float',
         'callback_timeout' => 'float',
-        'machine_detection' => '\OpenAPI\Client\Model\MachineDetectionConfiguration',
+        'machine_detection' => '\Bandwidth\Model\MachineDetectionConfiguration',
         'priority' => 'int',
         'tag' => 'string'
     ];
@@ -697,9 +697,9 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets answer_method
      *
-     * @return \OpenAPI\Client\Model\CallbackMethodEnum|null
+     * @return \Bandwidth\Model\CallbackMethodEnum|null
      */
-    public function getAnswerMethod(): ?\OpenAPI\Client\Model\CallbackMethodEnum
+    public function getAnswerMethod(): ?\Bandwidth\Model\CallbackMethodEnum
     {
         return $this->container['answer_method'];
     }
@@ -707,11 +707,11 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets answer_method
      *
-     * @param \OpenAPI\Client\Model\CallbackMethodEnum|null $answer_method answer_method
+     * @param \Bandwidth\Model\CallbackMethodEnum|null $answer_method answer_method
      *
      * @return $this
      */
-    public function setAnswerMethod(?\OpenAPI\Client\Model\CallbackMethodEnum $answer_method): static
+    public function setAnswerMethod(?\Bandwidth\Model\CallbackMethodEnum $answer_method): static
     {
         if (is_null($answer_method)) {
             array_push($this->openAPINullablesSetToNull, 'answer_method');
@@ -845,9 +845,9 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets answer_fallback_method
      *
-     * @return \OpenAPI\Client\Model\CallbackMethodEnum|null
+     * @return \Bandwidth\Model\CallbackMethodEnum|null
      */
-    public function getAnswerFallbackMethod(): ?\OpenAPI\Client\Model\CallbackMethodEnum
+    public function getAnswerFallbackMethod(): ?\Bandwidth\Model\CallbackMethodEnum
     {
         return $this->container['answer_fallback_method'];
     }
@@ -855,11 +855,11 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets answer_fallback_method
      *
-     * @param \OpenAPI\Client\Model\CallbackMethodEnum|null $answer_fallback_method answer_fallback_method
+     * @param \Bandwidth\Model\CallbackMethodEnum|null $answer_fallback_method answer_fallback_method
      *
      * @return $this
      */
-    public function setAnswerFallbackMethod(?\OpenAPI\Client\Model\CallbackMethodEnum $answer_fallback_method): static
+    public function setAnswerFallbackMethod(?\Bandwidth\Model\CallbackMethodEnum $answer_fallback_method): static
     {
         if (is_null($answer_fallback_method)) {
             array_push($this->openAPINullablesSetToNull, 'answer_fallback_method');
@@ -993,9 +993,9 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets disconnect_method
      *
-     * @return \OpenAPI\Client\Model\CallbackMethodEnum|null
+     * @return \Bandwidth\Model\CallbackMethodEnum|null
      */
-    public function getDisconnectMethod(): ?\OpenAPI\Client\Model\CallbackMethodEnum
+    public function getDisconnectMethod(): ?\Bandwidth\Model\CallbackMethodEnum
     {
         return $this->container['disconnect_method'];
     }
@@ -1003,11 +1003,11 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets disconnect_method
      *
-     * @param \OpenAPI\Client\Model\CallbackMethodEnum|null $disconnect_method disconnect_method
+     * @param \Bandwidth\Model\CallbackMethodEnum|null $disconnect_method disconnect_method
      *
      * @return $this
      */
-    public function setDisconnectMethod(?\OpenAPI\Client\Model\CallbackMethodEnum $disconnect_method): static
+    public function setDisconnectMethod(?\Bandwidth\Model\CallbackMethodEnum $disconnect_method): static
     {
         if (is_null($disconnect_method)) {
             array_push($this->openAPINullablesSetToNull, 'disconnect_method');
@@ -1111,9 +1111,9 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets machine_detection
      *
-     * @return \OpenAPI\Client\Model\MachineDetectionConfiguration|null
+     * @return \Bandwidth\Model\MachineDetectionConfiguration|null
      */
-    public function getMachineDetection(): ?\OpenAPI\Client\Model\MachineDetectionConfiguration
+    public function getMachineDetection(): ?\Bandwidth\Model\MachineDetectionConfiguration
     {
         return $this->container['machine_detection'];
     }
@@ -1121,11 +1121,11 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets machine_detection
      *
-     * @param \OpenAPI\Client\Model\MachineDetectionConfiguration|null $machine_detection machine_detection
+     * @param \Bandwidth\Model\MachineDetectionConfiguration|null $machine_detection machine_detection
      *
      * @return $this
      */
-    public function setMachineDetection(?\OpenAPI\Client\Model\MachineDetectionConfiguration $machine_detection): static
+    public function setMachineDetection(?\Bandwidth\Model\MachineDetectionConfiguration $machine_detection): static
     {
         if (is_null($machine_detection)) {
             throw new InvalidArgumentException('non-nullable machine_detection cannot be null');
