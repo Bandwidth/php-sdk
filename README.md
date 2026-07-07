@@ -1,4 +1,4 @@
-# Bandwidth
+# Bandwidth SDK
 
 Bandwidth's Communication APIs
 
@@ -36,7 +36,7 @@ Download the files and include `autoload.php`:
 
 ```php
 <?php
-require_once('/path/to/Bandwidth/vendor/autoload.php');
+require_once('/path/to/Bandwidth SDK/vendor/autoload.php');
 ```
 
 ## Getting Started
