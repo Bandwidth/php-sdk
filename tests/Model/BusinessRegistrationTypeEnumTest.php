@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Bandwidth\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * BusinessRegistrationTypeEnumTest Class Doc Comment
  *
  * @description The type of business registration number.  **Note: As of October 19th, 2026 this field will be required when &#x60;businessRegistrationNumber&#x60; is provided.**
- * @package     OpenAPI\Client
+ * @package     Bandwidth
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

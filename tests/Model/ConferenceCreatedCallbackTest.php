@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Bandwidth\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ConferenceCreatedCallbackTest Class Doc Comment
  *
  * @description The Conference Created event is fired whenever a new conference that specified a callbackUrl is created. The response may be either empty or a BXML document. Only the following verbs are valid for conferences: PlayAudio, SpeakSentence, StartRecording, StopRecording, PauseRecording, ResumeRecording. Audio verbs will be heard by all members of the conference. Recordings capture audio from all members who are not muted or on hold, as well as any audio verbs that are played into the conference.
- * @package     OpenAPI\Client
+ * @package     Bandwidth
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

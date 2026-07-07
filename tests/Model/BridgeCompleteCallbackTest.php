@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Bandwidth\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * BridgeCompleteCallbackTest Class Doc Comment
  *
  * @description If the target call leaves the &lt;Bridge&gt;, then this callback is sent to the bridgeCompleteUrl, and the BXML returned in it is executed on the call. If this webhook is sent, the Bridge Target Complete webhook is NOT sent. This callback is also sent if any problem occurs that prevents the calls to be bridged.
- * @package     OpenAPI\Client
+ * @package     Bandwidth
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

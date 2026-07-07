@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Bandwidth\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ThumbnailAlignmentEnumTest Class Doc Comment
  *
  * @description The alignment of the thumbnail image in the card. Required when orientation is HORIZONTAL.
- * @package     OpenAPI\Client
+ * @package     Bandwidth
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

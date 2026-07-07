@@ -3,7 +3,7 @@
  * TollFreeVerificationApiTest
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,17 +25,17 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace OpenAPI\Client\Test\Api;
+namespace Bandwidth\Test\Api;
 
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\Configuration;
+use Bandwidth\ApiException;
+use Bandwidth\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 /**
  * TollFreeVerificationApiTest Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

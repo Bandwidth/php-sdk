@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Bandwidth\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * AnswerCallbackTest Class Doc Comment
  *
  * @description The Answer event is sent to the answerUrl specified in the createCall request when an outbound call is answered.
- * @package     OpenAPI\Client
+ * @package     Bandwidth
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Bandwidth\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * RbmOpenUrlEnumTest Class Doc Comment
  *
  * @description Specifies how the URL should be opened on a mobile device. - &#x60;BROWSER&#x60; Opens the URL in the device&#39;s default browser. If application is not set or the device doesn&#39;t support WebView, this option is used by default. - &#x60;WEBVIEW&#x60; Opens the URL in an in-app WebView.
- * @package     OpenAPI\Client
+ * @package     Bandwidth
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

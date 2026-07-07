@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Bandwidth\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * CallbackTest Class Doc Comment
  *
  * @description Callbacks are divided into two types based on direction of the related message: - &#x60;statusCallback&#x60; indicates status of an outbound MT SMS, MMS, or RBM message. - &#x60;inboundCallback&#x60; indicates an inbound MO message or a multichannel message client&#39;s response to a suggestion or location request.
- * @package     OpenAPI\Client
+ * @package     Bandwidth
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

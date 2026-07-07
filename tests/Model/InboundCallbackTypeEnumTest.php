@@ -4,7 +4,7 @@
  *
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Bandwidth\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * InboundCallbackTypeEnumTest Class Doc Comment
  *
  * @description The possible inbound callback types originating from MO messages or multichannel message client responses: - &#x60;message-received&#x60; indicates an MO message from a Bandwidth user&#39;s client to a Bandwidth number. - &#x60;requested-location-response&#x60; indicates a response to a location request sent by the Bandwidth user&#39;s client after receiving an RBM message. - &#x60;suggestion-response&#x60; indicates a response to a suggestion sent by the Bandwidth user&#39;s client after receiving an RBM message.
- * @package     OpenAPI\Client
+ * @package     Bandwidth
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
