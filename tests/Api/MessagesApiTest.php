@@ -3,7 +3,7 @@
  * MessagesApiTest
  * PHP version 8.1
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,49 +25,50 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace OpenAPI\Client\Test\Api;
+namespace Bandwidth\Test\Api;
 
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\ObjectSerializer;
+use Bandwidth\Configuration;
+use Bandwidth\ApiException;
+use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\MessagesApi;
+use Bandwidth\Model\PriorityEnum;
+use Bandwidth\Model\MessageRequest;
+use Bandwidth\Model\Message;
+use Bandwidth\Model\ListMessageDirectionEnum;
+use Bandwidth\Model\MessagesList;
+use Bandwidth\Model\ListMessageItem;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * MessagesApiTest Class Doc Comment
  *
- * @package  OpenAPI\Client
+ * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
 class MessagesApiTest extends TestCase
 {
+    private static MessagesApi $apiInstance;
+    private static string $account_id;
+    private static string $bw_number;
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        $config = Configuration::getDefaultConfiguration()
+            ->setUsername(getenv("BW_USERNAME"))
+            ->setPassword(getenv("BW_PASSWORD"));
+        
+        self::$apiInstance = new MessagesApi(
+            null,
+            $config
+        );
+            
+        self::$account_id = getenv("BW_ACCOUNT_ID");
+        self::$bw_number = getenv("BW_NUMBER");
     }
 
     /**
@@ -78,8 +79,37 @@ class MessagesApiTest extends TestCase
      */
     public function testCreateMessage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $application_id = getenv("BW_MESSAGING_APPLICATION_ID");
+        $to_number = getenv("USER_NUMBER");
+        $from_number = self::$bw_number;
+        $text = 'python integration';
+        $media = ['https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg'];
+        $tag = 'python integration tag';
+        $priority = PriorityEnum::_DEFAULT;
+
+        # Message Request
+        $messageRequest = new MessageRequest(
+            array(
+                'application_id' => $application_id,
+                'to' => [$to_number],
+                'from' => $from_number,
+                'text' => $text,
+                'media' => $media,
+                'tag' => $tag,
+                'priority' => $priority,
+            )
+        );
+
+        [$data, $status_code] = self::$apiInstance->createMessageWithHttpInfo(self::$account_id, $messageRequest);
+        $this->assertEquals(202, $status_code);
+        $this->assertInstanceOf(Message::class, $data);
+        $this->assertEquals(29, strlen($data->getId()));
+        $this->assertEquals($from_number, $data->getOwner());
+        $this->assertEquals([$to_number], $data->getTo());
+        $this->assertEquals($from_number, $data->getFrom());
+        $this->assertEquals($text, $data->getText());
+        $this->assertEquals($tag, $data->getTag());
+        $this->assertEquals($priority, $data->getPriority());
     }
 
     /**
@@ -90,7 +120,21 @@ class MessagesApiTest extends TestCase
      */
     public function testListMessages()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $list_message_direction = ListMessageDirectionEnum::OUTBOUND;
+        $calling_number_country_a3 = 'USA';
+
+        [$data, $status_code] = self::$apiInstance->listMessagesWithHttpInfo(
+            account_id: self::$account_id,
+            message_direction: $list_message_direction,
+            calling_number_country_a3: $calling_number_country_a3
+        );
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(MessagesList::class, $data);
+        $this->assertInstanceOf(ListMessageItem::class, $data->getMessages()[0]);
+        $this->assertEquals(self::$account_id, $data->getMessages()[0]->getAccountId());
+        $this->assertEquals(29, strlen($data->getMessages()[0]->getMessageId()));
+        $this->assertEquals($list_message_direction, $data->getMessages()[0]->getMessageDirection());
+        $this->assertEquals($calling_number_country_a3, $data->getMessages()[0]->getCallingNumberCountryA3());
     }
 }
