@@ -1,5 +1,5 @@
 {
-    "name": "bandwidth/sdk",
+    "name": "bandwidth/php-sdk",
     "description": "Bandwidth's Communication APIs",
     "keywords": [
         "openapitools",

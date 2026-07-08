@@ -1,3 +1,5 @@
 packageName: Bandwidth SDK
 composerPackageName: bandwidth/sdk
 invokerPackage: Bandwidth
+gitUserId: bandwidth
+gitRepoId: php-sdk
