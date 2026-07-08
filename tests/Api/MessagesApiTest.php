@@ -28,8 +28,6 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
 use Bandwidth\Api\MessagesApi;
 use Bandwidth\Model\PriorityEnum;
 use Bandwidth\Model\MessageRequest;
@@ -61,12 +59,9 @@ class MessagesApiTest extends TestCase
         $config = Configuration::getDefaultConfiguration()
             ->setUsername(getenv("BW_USERNAME"))
             ->setPassword(getenv("BW_PASSWORD"));
-        
-        self::$apiInstance = new MessagesApi(
-            null,
-            $config
-        );
-            
+
+        self::$apiInstance = new MessagesApi(config: $config);
+
         self::$account_id = getenv("BW_ACCOUNT_ID");
         self::$bw_number = getenv("BW_NUMBER");
     }
@@ -88,17 +83,15 @@ class MessagesApiTest extends TestCase
         $priority = PriorityEnum::_DEFAULT;
 
         # Message Request
-        $messageRequest = new MessageRequest(
-            array(
-                'application_id' => $application_id,
-                'to' => [$to_number],
-                'from' => $from_number,
-                'text' => $text,
-                'media' => $media,
-                'tag' => $tag,
-                'priority' => $priority,
-            )
-        );
+        $messageRequest = new MessageRequest([
+            'application_id' => $application_id,
+            'to' => [$to_number],
+            'from' => $from_number,
+            'text' => $text,
+            'media' => $media,
+            'tag' => $tag,
+            'priority' => $priority,
+        ]);
 
         [$data, $status_code] = self::$apiInstance->createMessageWithHttpInfo(self::$account_id, $messageRequest);
         $this->assertEquals(202, $status_code);
