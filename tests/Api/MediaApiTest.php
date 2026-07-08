@@ -27,9 +27,12 @@
 
 namespace Bandwidth\Test\Api;
 
-use Bandwidth\Configuration;
+use SplFileObject;
 use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Configuration;
+use Bandwidth\Api\MediaApi;
+use Bandwidth\Model\Media;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,69 +44,30 @@ use PHPUnit\Framework\TestCase;
  */
 class MediaApiTest extends TestCase
 {
+    private static MediaApi $apiInstance;
+    private static string $account_id;
+    private static string $media_name;
+    private static string $media_data;
+    private static SplFileObject $media_file;
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
-    }
+        $config = Configuration::getDefaultConfiguration()
+            ->setUsername(getenv("BW_USERNAME"))
+            ->setPassword(getenv("BW_PASSWORD"));
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
+        self::$apiInstance = new MediaApi(config: $config);
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
+        self::$account_id = getenv("BW_ACCOUNT_ID");
+        self::$media_name = "php_binary_media" . uniqid() . ".txt";
+        self::$media_data = "123456";
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
-     * Test case for deleteMedia
-     *
-     * Delete Media.
-     *
-     */
-    public function testDeleteMedia()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for getMedia
-     *
-     * Get Media.
-     *
-     */
-    public function testGetMedia()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for listMedia
-     *
-     * List Media.
-     *
-     */
-    public function testListMedia()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $path = tempnam(sys_get_temp_dir(), 'bw_media_');
+        file_put_contents($path, self::$media_data);
+        self::$media_file = new SplFileObject($path, 'rb');
     }
 
     /**
@@ -114,7 +78,83 @@ class MediaApiTest extends TestCase
      */
     public function testUploadMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        [, $status_code] = self::$apiInstance->uploadMediaWithHttpInfo(
+            self::$account_id,
+            self::$media_name,
+            self::$media_file,
+            contentType: 'text/plain'
+        );
+
+        $this->assertEquals(204, $status_code);
+    }
+
+    /**
+     * Test case for listMedia
+     *
+     * List Media.
+     *
+     */
+    public function testListMedia()
+    {
+        [$data, $status_code] = self::$apiInstance->listMediaWithHttpInfo(
+            self::$account_id
+        );
+
+        $this->assertEquals(200, $status_code);
+        $this->assertIsArray($data);
+        $this->assertInstanceOf(Media::class, $data[0]);
+        $this->assertIsString($data[0]->getContent());
+        $this->assertGreaterThan(0, $data[0]->getContentLength());
+    }
+
+    /**
+     * Test case for getMedia
+     *
+     * Get Media.
+     *
+     */
+    public function testGetMedia()
+    {
+        [$data, $status_code] = self::$apiInstance->getMediaWithHttpInfo(
+            self::$account_id,
+            self::$media_name
+        );
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(SplFileObject::class, $data);
+        $this->assertEquals(self::$media_data, file_get_contents($data->getRealPath()));
+    }
+
+    /**
+     * Test case for deleteMedia
+     *
+     * Delete Media.
+     *
+     */
+    public function testDeleteMedia()
+    {
+        [, $status_code] = self::$apiInstance->deleteMediaWithHttpInfo(
+            account_id: self::$account_id,
+            media_id: self::$media_name
+        );
+
+        $this->assertEquals(204, $status_code);
+    }
+
+    /**
+     * Test case HTTP 404
+     *
+     * Get Media 404
+     *
+     */
+    public function testGetMedia404()
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(404);
+
+        self::$apiInstance->getMediaWithHttpInfo(
+            account_id: self::$account_id,
+            media_id: 'non_existent_media'
+        );
     }
 }
