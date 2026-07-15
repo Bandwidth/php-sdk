@@ -6,6 +6,7 @@ metadata:
   description: Bandwidth PHP SDK
   annotations:
     github.com/project-slug: Bandwidth/php-sdk
+    bandwidth.com/languages: PHP
   organization: BW
   costCenter: Development - Software Infra
   buildPlatform: GitHub Actions
