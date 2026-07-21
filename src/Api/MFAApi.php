@@ -525,17 +525,21 @@ class MFAApi
             $headers
         );
 
-        # Preserve the original behavior of server indexing.
-        if ($hostIndex === null) {
-            $hostIndex = $this->hostIndex;
-        }
+        if ($this->config->getIgnoreOperationHosts()) {
+            $operationHost = $this->config->getHost();
+        } else {
+            # Preserve the original behavior of server indexing.
+            if ($hostIndex === null) {
+                $hostIndex = $this->hostIndex;
+            }
 
-        $hostSettings = $this->getHostSettingsForgenerateMessagingCode();
+            $hostSettings = $this->getHostSettingsForgenerateMessagingCode();
 
-        if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
-            throw new InvalidArgumentException("Invalid index {$hostIndex} when selecting the host. Must be less than ".count($hostSettings));
+            if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
+                throw new InvalidArgumentException("Invalid index {$hostIndex} when selecting the host. Must be less than ".count($hostSettings));
+            }
+            $operationHost = Configuration::getHostString($hostSettings, $hostIndex, $variables);
         }
-        $operationHost = Configuration::getHostString($hostSettings, $hostIndex, $variables);
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
@@ -955,17 +959,21 @@ class MFAApi
             $headers
         );
 
-        # Preserve the original behavior of server indexing.
-        if ($hostIndex === null) {
-            $hostIndex = $this->hostIndex;
-        }
+        if ($this->config->getIgnoreOperationHosts()) {
+            $operationHost = $this->config->getHost();
+        } else {
+            # Preserve the original behavior of server indexing.
+            if ($hostIndex === null) {
+                $hostIndex = $this->hostIndex;
+            }
 
-        $hostSettings = $this->getHostSettingsForgenerateVoiceCode();
+            $hostSettings = $this->getHostSettingsForgenerateVoiceCode();
 
-        if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
-            throw new InvalidArgumentException("Invalid index {$hostIndex} when selecting the host. Must be less than ".count($hostSettings));
+            if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
+                throw new InvalidArgumentException("Invalid index {$hostIndex} when selecting the host. Must be less than ".count($hostSettings));
+            }
+            $operationHost = Configuration::getHostString($hostSettings, $hostIndex, $variables);
         }
-        $operationHost = Configuration::getHostString($hostSettings, $hostIndex, $variables);
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
@@ -1399,17 +1407,21 @@ class MFAApi
             $headers
         );
 
-        # Preserve the original behavior of server indexing.
-        if ($hostIndex === null) {
-            $hostIndex = $this->hostIndex;
-        }
+        if ($this->config->getIgnoreOperationHosts()) {
+            $operationHost = $this->config->getHost();
+        } else {
+            # Preserve the original behavior of server indexing.
+            if ($hostIndex === null) {
+                $hostIndex = $this->hostIndex;
+            }
 
-        $hostSettings = $this->getHostSettingsForverifyCode();
+            $hostSettings = $this->getHostSettingsForverifyCode();
 
-        if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
-            throw new InvalidArgumentException("Invalid index {$hostIndex} when selecting the host. Must be less than ".count($hostSettings));
+            if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
+                throw new InvalidArgumentException("Invalid index {$hostIndex} when selecting the host. Must be less than ".count($hostSettings));
+            }
+            $operationHost = Configuration::getHostString($hostSettings, $hostIndex, $variables);
         }
-        $operationHost = Configuration::getHostString($hostSettings, $hostIndex, $variables);
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
