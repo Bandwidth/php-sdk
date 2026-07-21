@@ -237,6 +237,7 @@ src/Model/AccountStatistics.php
 src/Model/AdditionalDenialReason.php
 src/Model/Address.php
 src/Model/AnswerCallback.php
+src/Model/AnyOfInterface.php
 src/Model/AsyncLookupRequest.php
 src/Model/BlockedWebhook.php
 src/Model/BridgeCompleteCallback.php
@@ -261,7 +262,6 @@ src/Model/CallbackMethodEnum.php
 src/Model/CardWidthEnum.php
 src/Model/CodeRequest.php
 src/Model/CompletedLookupStatusEnum.php
-src/Model/ComposedInterface.php
 src/Model/Conference.php
 src/Model/ConferenceCompletedCallback.php
 src/Model/ConferenceCreatedCallback.php
@@ -361,6 +361,7 @@ src/Model/MultiChannelMessageChannelEnum.php
 src/Model/MultiChannelMessageContent.php
 src/Model/MultiChannelMessageRequest.php
 src/Model/MultiChannelMessageResponseData.php
+src/Model/OneOfInterface.php
 src/Model/OptInWorkflow.php
 src/Model/Page.php
 src/Model/PageInfo.php
