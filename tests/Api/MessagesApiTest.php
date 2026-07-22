@@ -96,7 +96,7 @@ class MessagesApiTest extends TestCase
         [$data, $status_code] = self::$apiInstance->createMessageWithHttpInfo(self::$account_id, $messageRequest);
         $this->assertEquals(202, $status_code);
         $this->assertInstanceOf(Message::class, $data);
-        $this->assertEquals(29, strlen($data->getId()));
+        $this->assertEquals(29, \strlen($data->getId()));
         $this->assertEquals($from_number, $data->getOwner());
         $this->assertEquals([$to_number], $data->getTo());
         $this->assertEquals($from_number, $data->getFrom());
@@ -126,7 +126,7 @@ class MessagesApiTest extends TestCase
         $this->assertInstanceOf(MessagesList::class, $data);
         $this->assertInstanceOf(ListMessageItem::class, $data->getMessages()[0]);
         $this->assertEquals(self::$account_id, $data->getMessages()[0]->getAccountId());
-        $this->assertEquals(29, strlen($data->getMessages()[0]->getMessageId()));
+        $this->assertEquals(29, \strlen($data->getMessages()[0]->getMessageId()));
         $this->assertEquals($list_message_direction, $data->getMessages()[0]->getMessageDirection());
         $this->assertEquals($calling_number_country_a3, $data->getMessages()[0]->getCallingNumberCountryA3());
     }
