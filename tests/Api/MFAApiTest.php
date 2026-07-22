@@ -28,8 +28,13 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\MFAApi;
+use Bandwidth\Model\CodeRequest;
+use Bandwidth\Model\MessagingCodeResponse;
+use Bandwidth\Model\VerifyCodeRequest;
+use Bandwidth\Model\VerifyCodeResponse;
+use Bandwidth\Model\VoiceCodeResponse;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,33 +46,29 @@ use PHPUnit\Framework\TestCase;
  */
 class MFAApiTest extends TestCase
 {
+    private static MFAApi $apiInstance;
+    private static string $account_id;
+    private static string $bw_number;
+    private static string $user_number;
+    private static string $bw_messaging_application_id;
+    private static string $bw_voice_application_id;
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
-    }
+        $config = Configuration::getDefaultConfiguration()
+            ->setUsername(getenv("BW_USERNAME"))
+            ->setPassword(getenv("BW_PASSWORD"));
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
+        self::$apiInstance = new MFAApi(config: $config);
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$account_id = getenv("BW_ACCOUNT_ID");
+        self::$bw_number = getenv("BW_NUMBER");
+        self::$user_number = getenv("USER_NUMBER");
+        self::$bw_messaging_application_id = getenv("BW_MESSAGING_APPLICATION_ID");
+        self::$bw_voice_application_id = getenv("BW_VOICE_APPLICATION_ID");
     }
 
     /**
@@ -78,8 +79,23 @@ class MFAApiTest extends TestCase
      */
     public function testGenerateMessagingCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $request = new CodeRequest([
+            'to' => self::$user_number,
+            'from' => self::$bw_number,
+            'application_id' => self::$bw_messaging_application_id,
+            'scope' => 'scope',
+            'message' => 'Your temporary {NAME} {SCOPE} code is {CODE}',
+            'digits' => 6
+        ]);
+
+        [$data, $status_code] = self::$apiInstance->generateMessagingCodeWithHttpInfo(
+            self::$account_id,
+            $request
+        );
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(MessagingCodeResponse::class, $data);
+        $this->assertIsString($data->getMessageId());
     }
 
     /**
@@ -90,8 +106,23 @@ class MFAApiTest extends TestCase
      */
     public function testGenerateVoiceCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $request = new CodeRequest([
+            'to' => self::$user_number,
+            'from' => self::$bw_number,
+            'application_id' => self::$bw_voice_application_id,
+            'scope' => 'scope',
+            'message' => 'Your temporary {NAME} {SCOPE} code is {CODE}',
+            'digits' => 6
+        ]);
+
+        [$data, $status_code] = self::$apiInstance->generateVoiceCodeWithHttpInfo(
+            self::$account_id,
+            $request
+        );
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(VoiceCodeResponse::class, $data);
+        $this->assertIsString($data->getCallId());
     }
 
     /**
@@ -102,7 +133,23 @@ class MFAApiTest extends TestCase
      */
     public function testVerifyCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        // Use a random TN to avoid rate limiting
+        $random_tn = '+1' . (string) rand(1111111111, 9999999999);
+
+        $request = new VerifyCodeRequest([
+            'to' => $random_tn,
+            'scope' => '2FA',
+            'expiration_time_in_minutes' => 3,
+            'code' => '123456'
+        ]);
+
+        [$data, $status_code] = self::$apiInstance->verifyCodeWithHttpInfo(
+            self::$account_id,
+            $request
+        );
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(VerifyCodeResponse::class, $data);
+        $this->assertFalse($data->getValid());
     }
 }

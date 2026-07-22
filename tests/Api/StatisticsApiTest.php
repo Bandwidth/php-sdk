@@ -28,8 +28,9 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\StatisticsApi;
+use Bandwidth\Model\AccountStatistics;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,33 +42,21 @@ use PHPUnit\Framework\TestCase;
  */
 class StatisticsApiTest extends TestCase
 {
+    private static StatisticsApi $apiInstance;
+    private static string $account_id;
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
-    }
+        $config = Configuration::getDefaultConfiguration()
+            ->setUsername(getenv("BW_USERNAME"))
+            ->setPassword(getenv("BW_PASSWORD"));
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
+        self::$apiInstance = new StatisticsApi(config: $config);
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$account_id = getenv("BW_ACCOUNT_ID");
     }
 
     /**
@@ -78,7 +67,11 @@ class StatisticsApiTest extends TestCase
      */
     public function testGetStatistics()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        [$data, $status_code] = self::$apiInstance->getStatisticsWithHttpInfo(self::$account_id);
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(AccountStatistics::class, $data);
+        $this->assertIsInt($data->getCurrentCallQueueSize());
+        $this->assertIsInt($data->getMaxCallQueueSize());
     }
 }

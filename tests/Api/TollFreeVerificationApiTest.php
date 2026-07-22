@@ -28,8 +28,8 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\TollFreeVerificationApi;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,33 +41,18 @@ use PHPUnit\Framework\TestCase;
  */
 class TollFreeVerificationApiTest extends TestCase
 {
+    private static TollFreeVerificationApi $apiInstance;
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
-    }
+        $config = Configuration::getDefaultConfiguration()
+            ->setUsername(getenv("BW_USERNAME"))
+            ->setPassword(getenv("BW_PASSWORD"));
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$apiInstance = new TollFreeVerificationApi(config: $config);
     }
 
     /**
@@ -126,8 +111,10 @@ class TollFreeVerificationApiTest extends TestCase
      */
     public function testListTollFreeUseCases()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        [$data, $status_code] = self::$apiInstance->listTollFreeUseCasesWithHttpInfo();
+
+        $this->assertEquals(200, $status_code);
+        $this->assertIsArray($data);
     }
 
     /**
