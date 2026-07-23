@@ -7,6 +7,7 @@ It is never instantiated directly — use one of the concrete types.
 
 - [**\Bandwidth\Model\RbmMessageContentText**](RbmMessageContentText.md)
 - [**\Bandwidth\Model\RbmMessageMedia**](RbmMessageMedia.md)
-- [**\Bandwidth\Model\RbmMessageContentRichCard**](RbmMessageContentRichCard.md)
+- [**\Bandwidth\Model\RbmStandaloneCard**](RbmStandaloneCard.md)
+- [**\Bandwidth\Model\RbmMessageCarouselCard**](RbmMessageCarouselCard.md)
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
