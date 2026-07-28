@@ -28,8 +28,20 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\PhoneNumberLookupApi;
+use Bandwidth\Model\AsyncLookupRequest;
+use Bandwidth\Model\CompletedLookupStatusEnum;
+use Bandwidth\Model\CreateAsyncBulkLookupResponse;
+use Bandwidth\Model\CreateAsyncBulkLookupResponseData;
+use Bandwidth\Model\CreateSyncLookupResponse;
+use Bandwidth\Model\CreateSyncLookupResponseData;
+use Bandwidth\Model\GetAsyncBulkLookupResponse;
+use Bandwidth\Model\GetAsyncBulkLookupResponseData;
+use Bandwidth\Model\InProgressLookupStatusEnum;
+use Bandwidth\Model\LineTypeEnum;
+use Bandwidth\Model\LookupResult;
+use Bandwidth\Model\SyncLookupRequest;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,45 +53,29 @@ use PHPUnit\Framework\TestCase;
  */
 class PhoneNumberLookupApiTest extends TestCase
 {
+    private static PhoneNumberLookupApi $apiInstance;
+    private static string $account_id;
+    private static array $phone_numbers;
+    private static string $request_id;
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
-    }
+        $config = Configuration::getDefaultConfiguration()
+            ->setClientId(getenv("BW_CLIENT_ID"))
+            ->setClientSecret(getenv("BW_CLIENT_SECRET"));
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
+        self::$apiInstance = new PhoneNumberLookupApi(config: $config);
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
-     * Test case for createAsyncBulkLookup
-     *
-     * Create Asynchronous Bulk Number Lookup.
-     *
-     */
-    public function testCreateAsyncBulkLookup()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        self::$account_id = getenv("BW_ACCOUNT_ID");
+        self::$phone_numbers = [
+            getenv("BW_NUMBER"),
+            getenv("VZW_NUMBER"),
+            getenv("ATT_NUMBER"),
+            getenv("T_MOBILE_NUMBER")
+        ];
     }
 
     /**
@@ -90,8 +86,26 @@ class PhoneNumberLookupApiTest extends TestCase
      */
     public function testCreateSyncLookup()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $lookup_request = new SyncLookupRequest(['phone_numbers' => self::$phone_numbers]);
+
+        [$data, $status_code] = self::$apiInstance->createSyncLookupWithHttpInfo(
+            self::$account_id,
+            $lookup_request
+        );
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(CreateSyncLookupResponse::class, $data);
+        $this->assertIsArray($data->getLinks());
+        $this->assertInstanceOf(CreateSyncLookupResponseData::class, $data->getData());
+        $this->assertIsString($data->getData()->getRequestId());
+        $this->assertInstanceOf(CompletedLookupStatusEnum::class, $data->getData()->getStatus());
+        $this->assertIsArray($data->getData()->getResults());
+        $first_result = $data->getData()->getResults()[0];
+        $this->assertInstanceOf(LookupResult::class, $first_result);
+        $this->assertIsString($first_result->getPhoneNumber());
+        $this->assertInstanceOf(LineTypeEnum::class, $first_result->getLineType());
+        $this->assertIsString($first_result->getVoiceProvider());
+        $this->assertIsString($first_result->getCountryCodeA3());
     }
 
     /**
@@ -100,9 +114,42 @@ class PhoneNumberLookupApiTest extends TestCase
      * Get Asynchronous Bulk Number Lookup.
      *
      */
-    public function testGetAsyncBulkLookup()
+    public function testCreateGetAsyncBulkLookup()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $lookup_request = new AsyncLookupRequest(['phone_numbers' => self::$phone_numbers]);
+
+        [$create_data, $create_status_code] = self::$apiInstance->createAsyncBulkLookupWithHttpInfo(
+            self::$account_id,
+            $lookup_request
+        );
+
+        $this->assertEquals(202, $create_status_code);
+        $this->assertInstanceOf(CreateAsyncBulkLookupResponse::class, $create_data);
+        $this->assertInstanceOf(CreateAsyncBulkLookupResponseData::class, $create_data->getData());
+        $this->assertIsString($create_data->getData()->getRequestId());
+        $this->assertInstanceOf(InProgressLookupStatusEnum::class, $create_data->getData()->getStatus());
+
+        self::$request_id = $create_data->getData()->getRequestId();
+
+        sleep(60);
+
+        [$get_data, $get_status_code] = self::$apiInstance->getAsyncBulkLookupWithHttpInfo(
+            self::$account_id,
+            self::$request_id
+        );
+
+        $this->assertEquals(200, $get_status_code);
+        $this->assertInstanceOf(GetAsyncBulkLookupResponse::class, $get_data);
+        $this->assertIsArray($get_data->getLinks());
+        $this->assertInstanceOf(GetAsyncBulkLookupResponseData::class, $get_data->getData());
+        $this->assertEquals(self::$request_id, $get_data->getData()->getRequestId());
+        $this->assertInstanceOf(InProgressLookupStatusEnum::class, $get_data->getData()->getStatus());
+        $this->assertIsArray($get_data->getData()->getResults());
+        $first_result = $get_data->getData()->getResults()[0];
+        $this->assertInstanceOf(LookupResult::class, $first_result);
+        $this->assertIsString($first_result->getPhoneNumber());
+        $this->assertInstanceOf(LineTypeEnum::class, $first_result->getLineType());
+        $this->assertIsString($first_result->getVoiceProvider());
+        $this->assertIsString($first_result->getCountryCodeA3());
     }
 }

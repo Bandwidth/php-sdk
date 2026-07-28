@@ -28,8 +28,19 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\EndpointsApi;
+use Bandwidth\Model\CreateWebRtcConnectionRequest;
+use Bandwidth\Model\CreateEndpointResponse;
+use Bandwidth\Model\CreateEndpointResponseData;
+use Bandwidth\Model\Endpoint;
+use Bandwidth\Model\EndpointResponse;
+use Bandwidth\Model\Endpoints;
+use Bandwidth\Model\EndpointDirectionEnum;
+use Bandwidth\Model\EndpointStatusEnum;
+use Bandwidth\Model\EndpointTypeEnum;
+use Bandwidth\Model\ListEndpointsResponse;
+use Bandwidth\Model\Page;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,33 +52,25 @@ use PHPUnit\Framework\TestCase;
  */
 class EndpointsApiTest extends TestCase
 {
+    private static EndpointsApi $apiInstance;
+    private static string $account_id;
+    private static string $endpoint_id;
+    private static string $endpoint_tag;
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
-    }
+        $config = Configuration::getDefaultConfiguration()
+            ->setClientId(getenv("BW_CLIENT_ID"))
+            ->setClientSecret(getenv("BW_CLIENT_SECRET"));
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
+        self::$apiInstance = new EndpointsApi(config: $config);
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
+        self::$account_id = getenv("BW_ACCOUNT_ID");
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$endpoint_tag = 'php-smoke-' . uniqid();
     }
 
     /**
@@ -78,32 +81,27 @@ class EndpointsApiTest extends TestCase
      */
     public function testCreateEndpoint()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        $body = new CreateWebRtcConnectionRequest([
+            'type' => EndpointTypeEnum::WEBRTC,
+            'direction' => EndpointDirectionEnum::BIDIRECTIONAL,
+            'tag' => self::$endpoint_tag
+        ]);
 
-    /**
-     * Test case for deleteEndpoint
-     *
-     * Delete Endpoint.
-     *
-     */
-    public function testDeleteEndpoint()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        [$data, $status_code] = self::$apiInstance->createEndpointWithHttpInfo(self::$account_id, $body);
 
-    /**
-     * Test case for getEndpoint
-     *
-     * Get Endpoint.
-     *
-     */
-    public function testGetEndpoint()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertEquals(201, $status_code);
+        $this->assertInstanceOf(CreateEndpointResponse::class, $data);
+        $this->assertInstanceOf(CreateEndpointResponseData::class, $data->getData());
+        $this->assertIsString($data->getData()->getEndpointId());
+        $this->assertIsString($data->getData()->getToken());
+        $this->assertEquals(EndpointTypeEnum::WEBRTC, $data->getData()->getType());
+        $this->assertInstanceOf(EndpointStatusEnum::class, $data->getData()->getStatus());
+        $this->assertInstanceOf(\DateTime::class, $data->getData()->getCreationTimestamp());
+        $this->assertInstanceOf(\DateTime::class, $data->getData()->getExpirationTimestamp());
+        $this->assertEquals(self::$endpoint_tag, $data->getData()->getTag());
+        $this->assertIsArray($data->getErrors());
+
+        self::$endpoint_id = $data->getData()->getEndpointId();
     }
 
     /**
@@ -114,8 +112,57 @@ class EndpointsApiTest extends TestCase
      */
     public function testListEndpoints()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        [$data, $status_code] = self::$apiInstance->listEndpointsWithHttpInfo(self::$account_id);
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(ListEndpointsResponse::class, $data);
+        $this->assertIsArray($data->getLinks());
+        $this->assertInstanceOf(Page::class, $data->getPage());
+        $this->assertIsArray($data->getData());
+        $this->assertIsArray($data->getErrors());
+
+        $first_endpoint = $data->getData()[0];
+        $this->assertInstanceOf(Endpoints::class, $first_endpoint);
+        $this->assertIsString($first_endpoint->getEndpointId());
+        $this->assertInstanceOf(EndpointTypeEnum::class, $first_endpoint->getType());
+        $this->assertInstanceOf(EndpointStatusEnum::class, $first_endpoint->getStatus());
+        $this->assertInstanceOf(\DateTime::class, $first_endpoint->getCreationTimestamp());
+        $this->assertInstanceOf(\DateTime::class, $first_endpoint->getExpirationTimestamp());
+    }
+
+    /**
+     * Test case for getEndpoint
+     *
+     * Get Endpoint.
+     *
+     */
+    public function testGetEndpoint()
+    {
+        [$data, $status_code] = self::$apiInstance->getEndpointWithHttpInfo(self::$account_id, self::$endpoint_id);
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(EndpointResponse::class, $data);
+        $this->assertIsArray($data->getErrors());
+        $this->assertInstanceOf(Endpoint::class, $data->getData());
+        $this->assertEquals(self::$endpoint_id, $data->getData()->getEndpointId());
+        $this->assertEquals(EndpointTypeEnum::WEBRTC, $data->getData()->getType());
+        $this->assertInstanceOf(EndpointStatusEnum::class, $data->getData()->getStatus());
+        $this->assertInstanceOf(\DateTime::class, $data->getData()->getCreationTimestamp());
+        $this->assertInstanceOf(\DateTime::class, $data->getData()->getExpirationTimestamp());
+        $this->assertEquals(self::$endpoint_tag, $data->getData()->getTag());
+    }
+
+    /**
+     * Test case for deleteEndpoint
+     *
+     * Delete Endpoint.
+     *
+     */
+    public function testDeleteEndpoint()
+    {
+        [, $status_code] = self::$apiInstance->deleteEndpointWithHttpInfo(self::$account_id, self::$endpoint_id);
+
+        $this->assertEquals(204, $status_code);
     }
 
     /**
