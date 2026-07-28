@@ -49,8 +49,8 @@ class TollFreeVerificationApiTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         $config = Configuration::getDefaultConfiguration()
-            ->setUsername(getenv("BW_USERNAME"))
-            ->setPassword(getenv("BW_PASSWORD"));
+            ->setClientId(getenv("BW_CLIENT_ID"))
+            ->setClientSecret(getenv("BW_CLIENT_SECRET"));
 
         self::$apiInstance = new TollFreeVerificationApi(config: $config);
     }
