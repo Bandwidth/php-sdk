@@ -3,3 +3,4 @@ composerPackageName: bandwidth/sdk
 invokerPackage: Bandwidth
 gitUserId: bandwidth
 gitRepoId: php-sdk
+templateDir: custom_templates
