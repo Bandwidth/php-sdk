@@ -28,8 +28,20 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\CallsApi;
+use Bandwidth\Api\ConferencesApi;
+use Bandwidth\Model\Conference;
+use Bandwidth\Model\ConferenceMember;
+use Bandwidth\Model\ConferenceRecordingMetadata;
+use Bandwidth\Model\ConferenceStateEnum;
+use Bandwidth\Model\CreateCall;
+use Bandwidth\Model\FileFormatEnum;
+use Bandwidth\Model\RedirectMethodEnum;
+use Bandwidth\Model\UpdateConference;
+use Bandwidth\Model\UpdateConferenceMember;
+use Bandwidth\Test\Utils\CallCleanup;
+use Bandwidth\Test\Utils\Manteca;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,140 +53,185 @@ use PHPUnit\Framework\TestCase;
  */
 class ConferencesApiTest extends TestCase
 {
+    private const TEST_SLEEP = 6;
+    private const MAX_RETRIES = 60;
+
+    private static CallsApi $callsApi;
+    private static ConferencesApi $conferencesApi;
+    private static string $account_id;
+    private static string $test_id;
+    private static string $call_id;
+    private static string $conference_id;
+    private static string $answer_url;
+    private static string $conference_redirect_url;
+
+    private static string $update_recording_bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><StartRecording/><SpeakSentence locale="en_US" gender="female" voice="susan">This should be a conference recording.</SpeakSentence><StopRecording/></Bxml>';
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
+        $config = Configuration::getDefaultConfiguration()
+            ->setClientId(getenv("BW_CLIENT_ID"))
+            ->setClientSecret(getenv("BW_CLIENT_SECRET"));
+
+        self::$callsApi = new CallsApi(config: $config);
+        self::$conferencesApi = new ConferencesApi(config: $config);
+
+        self::$account_id = getenv("BW_ACCOUNT_ID");
+
+        $manteca_base_url = getenv("MANTECA_BASE_URL");
+        self::$answer_url = "{$manteca_base_url}/bxml/joinConferencePause";
+        self::$conference_redirect_url = "{$manteca_base_url}/bxml/pause";
     }
 
     /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
+     * Ensure the conference call is hung up after the suite
      */
     public static function tearDownAfterClass(): void
     {
+        CallCleanup::cleanup(self::$callsApi, self::$account_id, [self::$call_id]);
     }
 
     /**
-     * Test case for downloadConferenceRecording
+     * Test case for createCall, listConferences, getConference
      *
-     * Download Conference Recording.
+     * Create a conference call and fetch the resulting conference.
      *
      */
-    public function testDownloadConferenceRecording()
+    public function testCreateAndFetchConference()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $os = getenv("OPERATING_SYSTEM");
+        $language = "PHP" . phpversion();
+        self::$test_id = Manteca::createTest($os, $language, "conference");
+
+        $conference_call_body = new CreateCall([
+            'to' => getenv("MANTECA_IDLE_NUMBER"),
+            'from' => getenv("MANTECA_ACTIVE_NUMBER"),
+            'application_id' => getenv("MANTECA_APPLICATION_ID"),
+            'answer_url' => self::$answer_url,
+            'tag' => self::$test_id
+        ]);
+
+        [$create_data, $create_status_code] = self::$callsApi->createCallWithHttpInfo(
+            self::$account_id,
+            $conference_call_body
+        );
+
+        $this->assertEquals(201, $create_status_code);
+        self::$call_id = $create_data->getCallId();
+
+        sleep(self::TEST_SLEEP);
+
+        [$list_data, $list_status_code] = self::$conferencesApi->listConferencesWithHttpInfo(
+            self::$account_id,
+            name: self::$test_id
+        );
+        $this->assertEquals(200, $list_status_code);
+
+        self::$conference_id = $list_data[0]->getId();
+
+        [$get_data, $get_status_code] = self::$conferencesApi->getConferenceWithHttpInfo(
+            self::$account_id,
+            self::$conference_id
+        );
+        $this->assertEquals(200, $get_status_code);
+        $this->assertInstanceOf(Conference::class, $get_data);
     }
 
     /**
-     * Test case for getConference
+     * Test case for getConferenceMember, updateConferenceMember, updateConference, updateConferenceBxml
      *
-     * Get Conference Information.
+     * Fetch and update a conference member and the conference.
      *
      */
-    public function testGetConference()
+    public function testConferenceAndMembers()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        [$member_data, $member_status_code] = self::$conferencesApi->getConferenceMemberWithHttpInfo(
+            self::$account_id,
+            self::$conference_id,
+            self::$call_id
+        );
+        $this->assertEquals(200, $member_status_code);
+        $this->assertInstanceOf(ConferenceMember::class, $member_data);
+
+        $update_member = new UpdateConferenceMember(['mute' => false]);
+        [, $update_member_status_code] = self::$conferencesApi->updateConferenceMemberWithHttpInfo(
+            self::$account_id,
+            self::$conference_id,
+            self::$call_id,
+            $update_member
+        );
+        $this->assertEquals(204, $update_member_status_code);
+
+        $update_conference = new UpdateConference([
+            'status' => ConferenceStateEnum::ACTIVE,
+            'redirect_url' => self::$conference_redirect_url,
+            'redirect_method' => RedirectMethodEnum::POST,
+            'username' => 'myUsername',
+            'password' => 'myPassword1!',
+            'redirect_fallback_url' => self::$conference_redirect_url,
+            'redirect_fallback_method' => RedirectMethodEnum::POST,
+            'fallback_username' => 'myUsername',
+            'fallback_password' => 'myPassword1!'
+        ]);
+        [, $update_conference_status_code] = self::$conferencesApi->updateConferenceWithHttpInfo(
+            self::$account_id,
+            self::$conference_id,
+            $update_conference
+        );
+        $this->assertEquals(204, $update_conference_status_code);
+
+        [, $update_bxml_status_code] = self::$conferencesApi->updateConferenceBxmlWithHttpInfo(
+            self::$account_id,
+            self::$conference_id,
+            self::$update_recording_bxml
+        );
+        $this->assertEquals(204, $update_bxml_status_code);
     }
 
     /**
-     * Test case for getConferenceMember
+     * Test case for listConferenceRecordings, getConferenceRecording, downloadConferenceRecording
      *
-     * Get Conference Member.
+     * Validate conference recordings.
      *
      */
-    public function testGetConferenceMember()
+    public function testConferenceRecordings()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        self::markTestSkipped('issues with PV API, can re-enable after fixed');
 
-    /**
-     * Test case for getConferenceRecording
-     *
-     * Get Conference Recording Information.
-     *
-     */
-    public function testGetConferenceRecording()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        // Poll Manteca until the conference call has been recorded
+        $recording_status = false;
+        for ($i = 0; $i < self::MAX_RETRIES && !$recording_status; $i++) {
+            sleep(self::TEST_SLEEP);
+            $recording_status = Manteca::getStatus(self::$test_id)['callRecorded'] ?? false;
+        }
+        $this->assertTrue($recording_status);
 
-    /**
-     * Test case for listConferenceRecordings
-     *
-     * Get Conference Recordings.
-     *
-     */
-    public function testListConferenceRecordings()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        [$list_data, $list_status_code] = self::$conferencesApi->listConferenceRecordingsWithHttpInfo(
+            self::$account_id,
+            self::$conference_id
+        );
+        $this->assertEquals(200, $list_status_code);
 
-    /**
-     * Test case for listConferences
-     *
-     * Get Conferences.
-     *
-     */
-    public function testListConferences()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        $conference_recording = $list_data[0];
+        $this->assertInstanceOf(ConferenceRecordingMetadata::class, $conference_recording);
 
-    /**
-     * Test case for updateConference
-     *
-     * Update Conference.
-     *
-     */
-    public function testUpdateConference()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        [$recording_data, $recording_status_code] = self::$conferencesApi->getConferenceRecordingWithHttpInfo(
+            self::$account_id,
+            self::$conference_id,
+            $conference_recording->getRecordingId()
+        );
+        $this->assertEquals(200, $recording_status_code);
+        $this->assertEquals('complete', $recording_data->getStatus());
+        $this->assertEquals(FileFormatEnum::WAV, $recording_data->getFileFormat());
 
-    /**
-     * Test case for updateConferenceBxml
-     *
-     * Update Conference BXML.
-     *
-     */
-    public function testUpdateConferenceBxml()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for updateConferenceMember
-     *
-     * Update Conference Member.
-     *
-     */
-    public function testUpdateConferenceMember()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        [, $download_status_code] = self::$conferencesApi->downloadConferenceRecordingWithHttpInfo(
+            self::$account_id,
+            self::$conference_id,
+            $conference_recording->getRecordingId()
+        );
+        $this->assertEquals(200, $download_status_code);
     }
 }

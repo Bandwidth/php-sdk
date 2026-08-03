@@ -28,8 +28,15 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\CallsApi;
+use Bandwidth\Api\TranscriptionsApi;
+use Bandwidth\Model\CallStateEnum;
+use Bandwidth\Model\CallTranscription;
+use Bandwidth\Model\CallTranscriptionResponse;
+use Bandwidth\Model\CallTranscriptionTrackEnum;
+use Bandwidth\Model\CreateCall;
+use Bandwidth\Model\UpdateCall;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,68 +48,111 @@ use PHPUnit\Framework\TestCase;
  */
 class TranscriptionsApiTest extends TestCase
 {
+    private const TEST_SLEEP = 10;
+    private const TEST_SLEEP_LONG = 60;
+
+    private static CallsApi $callsApi;
+    private static TranscriptionsApi $transcriptionsApi;
+    private static string $account_id;
+    private static string $manteca_answer_url;
+
+    private static string $bxml_body = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence locale="en_US" gender="female" voice="susan">This is a bxml start transcription test.</SpeakSentence><StartTranscription tracks="outbound"></StartTranscription><SpeakSentence voice="bridget">Ideally this part is being transcribed.</SpeakSentence><Pause duration="3"/></Bxml>';
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
+        $config = Configuration::getDefaultConfiguration()
+            ->setClientId(getenv("BW_CLIENT_ID"))
+            ->setClientSecret(getenv("BW_CLIENT_SECRET"));
+
+        self::$callsApi = new CallsApi(config: $config);
+        self::$transcriptionsApi = new TranscriptionsApi(config: $config);
+
+        self::$account_id = getenv("BW_ACCOUNT_ID");
+        self::$manteca_answer_url = getenv("MANTECA_BASE_URL") . "/bxml/pause";
     }
 
     /**
-     * Setup before running each test case
+     * Test case for listRealTimeTranscriptions, getRealTimeTranscription, deleteRealTimeTranscription
+     *
+     * Create a transcribed call, then list, get, and delete its real-time transcriptions.
+     *
      */
-    public function setUp(): void
+    public function testGetAndDeleteRealTimeTranscriptions()
     {
-    }
+        self::markTestSkipped('issue with PV API, can re-enable when fixed');
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
+        // Create a call, start transcription via BXML, and complete it so there is
+        // a transcription to exercise the endpoints below.
+        $create_call_body = new CreateCall([
+            'from' => getenv("MANTECA_ACTIVE_NUMBER"),
+            'to' => getenv("MANTECA_IDLE_NUMBER"),
+            'application_id' => getenv("MANTECA_APPLICATION_ID"),
+            'answer_url' => self::$manteca_answer_url
+        ]);
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
+        [$create_data, $create_status_code] = self::$callsApi->createCallWithHttpInfo(
+            self::$account_id,
+            $create_call_body
+        );
+        $this->assertEquals(201, $create_status_code);
+        $call_id = $create_data->getCallId();
 
-    /**
-     * Test case for deleteRealTimeTranscription
-     *
-     * Delete Real-time Transcription.
-     *
-     */
-    public function testDeleteRealTimeTranscription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        // Redirect the call to start transcription
+        sleep(self::TEST_SLEEP);
+        [, $update_status_code] = self::$callsApi->updateCallBxmlWithHttpInfo(
+            self::$account_id,
+            $call_id,
+            self::$bxml_body
+        );
+        $this->assertEquals(204, $update_status_code);
 
-    /**
-     * Test case for getRealTimeTranscription
-     *
-     * Get Real-time Transcription.
-     *
-     */
-    public function testGetRealTimeTranscription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        // Complete the call
+        sleep(self::TEST_SLEEP);
+        [, $complete_status_code] = self::$callsApi->updateCallWithHttpInfo(
+            self::$account_id,
+            $call_id,
+            new UpdateCall(['state' => CallStateEnum::COMPLETED])
+        );
+        $this->assertEquals(200, $complete_status_code);
 
-    /**
-     * Test case for listRealTimeTranscriptions
-     *
-     * List Real-time Transcriptions.
-     *
-     */
-    public function testListRealTimeTranscriptions()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        // List the real-time transcriptions
+        sleep(self::TEST_SLEEP_LONG);
+        [$list_data, $list_status_code] = self::$transcriptionsApi->listRealTimeTranscriptionsWithHttpInfo(
+            self::$account_id,
+            $call_id
+        );
+        $this->assertEquals(200, $list_status_code);
+        $this->assertIsString($list_data[0]->getTranscriptionId());
+        $this->assertIsString($list_data[0]->getTranscriptionName());
+        $this->assertIsString($list_data[0]->getTranscriptionUrl());
+
+        $transcription_id = $list_data[0]->getTranscriptionId();
+
+        // Get the real-time transcription
+        sleep(self::TEST_SLEEP);
+        [$get_data, $get_status_code] = self::$transcriptionsApi->getRealTimeTranscriptionWithHttpInfo(
+            self::$account_id,
+            $call_id,
+            $transcription_id
+        );
+        $this->assertEquals(200, $get_status_code);
+        $this->assertInstanceOf(CallTranscriptionResponse::class, $get_data);
+        $this->assertIsString($get_data->getTranscriptionId());
+        $this->assertInstanceOf(CallTranscription::class, $get_data->getTracks()[0]);
+        $this->assertInstanceOf(CallTranscriptionTrackEnum::class, $get_data->getTracks()[0]->getTrack());
+        $this->assertIsString($get_data->getTracks()[0]->getTranscript());
+        $this->assertEquals(0.0, $get_data->getTracks()[0]->getConfidence());
+
+        // Delete the real-time transcription
+        // NOTE: this should be 204, but there is currently an API bug tracked in VAPI-1863
+        [, $delete_status_code] = self::$transcriptionsApi->deleteRealTimeTranscriptionWithHttpInfo(
+            self::$account_id,
+            $call_id,
+            $transcription_id
+        );
+        $this->assertEquals(200, $delete_status_code);
     }
 }

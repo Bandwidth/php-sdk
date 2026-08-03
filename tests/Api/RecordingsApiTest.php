@@ -28,8 +28,19 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\CallsApi;
+use Bandwidth\Api\RecordingsApi;
+use Bandwidth\Model\CallRecordingMetadata;
+use Bandwidth\Model\CallStateEnum;
+use Bandwidth\Model\CreateCall;
+use Bandwidth\Model\RecordingStateEnum;
+use Bandwidth\Model\RecordingTranscriptions;
+use Bandwidth\Model\TranscribeRecording;
+use Bandwidth\Model\UpdateCall;
+use Bandwidth\Model\UpdateCallRecording;
+use Bandwidth\Test\Utils\CallCleanup;
+use Bandwidth\Test\Utils\Manteca;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,105 +52,165 @@ use PHPUnit\Framework\TestCase;
  */
 class RecordingsApiTest extends TestCase
 {
+    private const TEST_SLEEP = 3;
+    private const MAX_RETRIES = 40;
+
+    private static CallsApi $callsApi;
+    private static RecordingsApi $recordingsApi;
+    private static string $account_id;
+    private static string $test_id;
+    private static string $answer_url;
+    private static string $call_id;
+    private static string $recording_id;
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
+        $config = Configuration::getDefaultConfiguration()
+            ->setClientId(getenv("BW_CLIENT_ID"))
+            ->setClientSecret(getenv("BW_CLIENT_SECRET"));
+
+        self::$callsApi = new CallsApi(config: $config);
+        self::$recordingsApi = new RecordingsApi(config: $config);
+
+        self::$account_id = getenv("BW_ACCOUNT_ID");
+        self::$answer_url = getenv("MANTECA_BASE_URL") . "/bxml/startLongRecording";
     }
 
     /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
+     * Ensure the call is hung up after the suite
      */
     public static function tearDownAfterClass(): void
     {
+        CallCleanup::cleanup(self::$callsApi, self::$account_id, [self::$call_id]);
     }
 
     /**
-     * Test case for deleteRecording
-     *
-     * Delete Recording.
+     * Test case for the full call recording and transcription lifecycle.
      *
      */
-    public function testDeleteRecording()
+    public function testCallRecordingAndTranscription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        $os = getenv("OPERATING_SYSTEM");
+        $language = "PHP" . phpversion() . "_" . getenv("DISTRIBUTION");
+        self::$test_id = Manteca::createTest($os, $language, "CALL");
 
-    /**
-     * Test case for deleteRecordingMedia
-     *
-     * Delete Recording Media.
-     *
-     */
-    public function testDeleteRecordingMedia()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        $create_call_body = new CreateCall([
+            'to' => getenv("MANTECA_IDLE_NUMBER"),
+            'from' => getenv("MANTECA_ACTIVE_NUMBER"),
+            'application_id' => getenv("MANTECA_APPLICATION_ID"),
+            'answer_url' => self::$answer_url,
+            'tag' => self::$test_id
+        ]);
 
-    /**
-     * Test case for deleteRecordingTranscription
-     *
-     * Delete Transcription.
-     *
-     */
-    public function testDeleteRecordingTranscription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        [$create_data] = self::$callsApi->createCallWithHttpInfo(self::$account_id, $create_call_body);
+        self::$call_id = $create_data->getCallId();
 
-    /**
-     * Test case for downloadCallRecording
-     *
-     * Download Recording.
-     *
-     */
-    public function testDownloadCallRecording()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        // Pause recording
+        sleep(self::TEST_SLEEP * 2);
+        [, $pause_status_code] = self::$recordingsApi->updateCallRecordingStateWithHttpInfo(
+            self::$account_id,
+            self::$call_id,
+            new UpdateCallRecording(['state' => RecordingStateEnum::PAUSED])
+        );
+        $this->assertEquals(200, $pause_status_code);
 
-    /**
-     * Test case for getCallRecording
-     *
-     * Get Call Recording.
-     *
-     */
-    public function testGetCallRecording()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        // Resume recording
+        sleep(self::TEST_SLEEP);
+        [, $resume_status_code] = self::$recordingsApi->updateCallRecordingStateWithHttpInfo(
+            self::$account_id,
+            self::$call_id,
+            new UpdateCallRecording(['state' => RecordingStateEnum::RECORDING])
+        );
+        $this->assertEquals(200, $resume_status_code);
 
-    /**
-     * Test case for getRecordingTranscription
-     *
-     * Get Transcription.
-     *
-     */
-    public function testGetRecordingTranscription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        // Terminate the call
+        [, $update_call_status_code] = self::$callsApi->updateCallWithHttpInfo(
+            self::$account_id,
+            self::$call_id,
+            new UpdateCall(['state' => CallStateEnum::COMPLETED])
+        );
+        $this->assertEquals(200, $update_call_status_code);
+
+        // Poll Manteca until the call has been recorded
+        $recording_status = false;
+        for ($x = 0; $x < self::MAX_RETRIES && !$recording_status; $x++) {
+            sleep(self::TEST_SLEEP);
+            $recording_status = Manteca::getStatus(self::$test_id)['callRecorded'] ?? false;
+        }
+        $this->assertTrue($recording_status);
+
+        // Validate the recording metadata endpoints
+        [$list_data, $list_status_code] = self::$recordingsApi->listCallRecordingsWithHttpInfo(
+            self::$account_id,
+            self::$call_id
+        );
+        $this->assertEquals(200, $list_status_code);
+        self::$recording_id = $list_data[0]->getRecordingId();
+
+        [$get_data, $get_status_code] = self::$recordingsApi->getCallRecordingWithHttpInfo(
+            self::$account_id,
+            self::$call_id,
+            self::$recording_id
+        );
+        $this->assertEquals(200, $get_status_code);
+        $this->assertInstanceOf(CallRecordingMetadata::class, $get_data);
+
+        // Request a transcription; pass the tag to receive the Manteca callback
+        $transcribe_recording = new TranscribeRecording([
+            'callback_url' => getenv("MANTECA_BASE_URL") . "/transcriptions",
+            'tag' => self::$test_id
+        ]);
+        [, $transcribe_status_code] = self::$recordingsApi->transcribeCallRecordingWithHttpInfo(
+            self::$account_id,
+            self::$call_id,
+            self::$recording_id,
+            $transcribe_recording
+        );
+        $this->assertEquals(204, $transcribe_status_code);
+
+        // Poll Manteca until the call has been transcribed
+        $transcription_status = false;
+        for ($i = 0; $i < self::MAX_RETRIES && !$transcription_status; $i++) {
+            sleep(self::TEST_SLEEP);
+            $transcription_status = Manteca::getStatus(self::$test_id)['callTranscribed'] ?? false;
+        }
+        $this->assertTrue($transcription_status);
+
+        // Validate the transcription metadata endpoint
+        [$transcription_data, $transcription_get_status_code] = self::$recordingsApi->getRecordingTranscriptionWithHttpInfo(
+            self::$account_id,
+            self::$call_id,
+            self::$recording_id
+        );
+        $this->assertEquals(200, $transcription_get_status_code);
+        $this->assertInstanceOf(RecordingTranscriptions::class, $transcription_data);
+
+        // Delete transcription
+        [, $delete_transcription_status_code] = self::$recordingsApi->deleteRecordingTranscriptionWithHttpInfo(
+            self::$account_id,
+            self::$call_id,
+            self::$recording_id
+        );
+        $this->assertEquals(204, $delete_transcription_status_code);
+
+        // Delete recording media
+        [, $delete_media_status_code] = self::$recordingsApi->deleteRecordingMediaWithHttpInfo(
+            self::$account_id,
+            self::$call_id,
+            self::$recording_id
+        );
+        $this->assertEquals(204, $delete_media_status_code);
+
+        // Delete recording metadata
+        [, $delete_recording_status_code] = self::$recordingsApi->deleteRecordingWithHttpInfo(
+            self::$account_id,
+            self::$call_id,
+            self::$recording_id
+        );
+        $this->assertEquals(204, $delete_recording_status_code);
     }
 
     /**
@@ -150,43 +221,8 @@ class RecordingsApiTest extends TestCase
      */
     public function testListAccountCallRecordings()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        [, $status_code] = self::$recordingsApi->listAccountCallRecordingsWithHttpInfo(self::$account_id);
 
-    /**
-     * Test case for listCallRecordings
-     *
-     * List Call Recordings.
-     *
-     */
-    public function testListCallRecordings()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for transcribeCallRecording
-     *
-     * Create Transcription Request.
-     *
-     */
-    public function testTranscribeCallRecording()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for updateCallRecordingState
-     *
-     * Update Recording.
-     *
-     */
-    public function testUpdateCallRecordingState()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertEquals(200, $status_code);
     }
 }

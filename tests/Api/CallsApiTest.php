@@ -28,8 +28,18 @@
 namespace Bandwidth\Test\Api;
 
 use Bandwidth\Configuration;
-use Bandwidth\ApiException;
-use Bandwidth\ObjectSerializer;
+use Bandwidth\Api\CallsApi;
+use Bandwidth\Model\CallbackMethodEnum;
+use Bandwidth\Model\CallDirectionEnum;
+use Bandwidth\Model\CallState;
+use Bandwidth\Model\CallStateEnum;
+use Bandwidth\Model\CreateCall;
+use Bandwidth\Model\CreateCallResponse;
+use Bandwidth\Model\MachineDetectionConfiguration;
+use Bandwidth\Model\MachineDetectionModeEnum;
+use Bandwidth\Model\UpdateCall;
+use Bandwidth\Test\Utils\CallCleanup;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,33 +51,111 @@ use PHPUnit\Framework\TestCase;
  */
 class CallsApiTest extends TestCase
 {
+    private const TEST_SLEEP = 6;
+
+    private static CallsApi $apiInstance;
+    private static string $account_id;
+    private static string $bw_number;
+    private static string $user_number;
+    private static string $voice_application_id;
+
+    /** @var string[] */
+    private static array $call_id_list = [];
+
+    private static CreateCall $create_call_body;
+    private static CreateCall $create_manteca_call_body;
+    private static UpdateCall $update_manteca_call_body;
+    private static UpdateCall $complete_manteca_call_body;
+
+    private static string $test_xml_body = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence locale="en_US" gender="female" voice="susan">This is a test bxml response</SpeakSentence><Pause duration="3"/></Bxml>';
 
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
+        $config = Configuration::getDefaultConfiguration()
+            ->setClientId(getenv("BW_CLIENT_ID"))
+            ->setClientSecret(getenv("BW_CLIENT_SECRET"));
+
+        self::$apiInstance = new CallsApi(config: $config);
+
+        self::$account_id = getenv("BW_ACCOUNT_ID");
+        self::$bw_number = getenv("BW_NUMBER");
+        self::$user_number = getenv("USER_NUMBER");
+        self::$voice_application_id = getenv("BW_VOICE_APPLICATION_ID");
+
+        $answer_url = getenv("BASE_CALLBACK_URL");
+        $manteca_base_url = getenv("MANTECA_BASE_URL");
+        $manteca_answer_url = "{$manteca_base_url}/bxml/pause";
+        $fallback_url = "https://www.myFallbackServer.com/webhooks/answer";
+        $disconnect_url = "https://myServer.com/bandwidth/webhooks/disconnectUrl";
+        $machine_detection_url = "https://myServer.com/bandwidth/webhooks/machineDetectionComplete";
+        $machine_detection_complete_url = "https://myFallbackServer.com/bandwidth/webhooks/machineDetectionComplete";
+
+        $machine_detection = new MachineDetectionConfiguration([
+            'mode' => MachineDetectionModeEnum::ASYNC,
+            'detection_timeout' => 15.0,
+            'silence_timeout' => 10.0,
+            'speech_threshold' => 10.0,
+            'speech_end_threshold' => 5.0,
+            'machine_speech_end_threshold' => 5.0,
+            'delay_result' => false,
+            'callback_url' => $machine_detection_url,
+            'callback_method' => CallbackMethodEnum::POST,
+            'username' => 'mySecretUsername',
+            'password' => 'mySecretPassword1!',
+            'fallback_url' => $machine_detection_complete_url,
+            'fallback_method' => CallbackMethodEnum::POST,
+            'fallback_username' => 'mySecretUsername',
+            'fallback_password' => 'mySecretPassword1!'
+        ]);
+
+        self::$create_call_body = new CreateCall([
+            'to' => self::$user_number,
+            'from' => self::$bw_number,
+            'application_id' => self::$voice_application_id,
+            'answer_url' => $answer_url,
+            'answer_method' => CallbackMethodEnum::POST,
+            'username' => 'mySecretUsername',
+            'password' => 'mySecretPassword1!',
+            'answer_fallback_url' => $fallback_url,
+            'answer_fallback_method' => CallbackMethodEnum::POST,
+            'fallback_username' => 'mySecretUsername',
+            'fallback_password' => 'mySecretPassword1!',
+            'disconnect_url' => $disconnect_url,
+            'disconnect_method' => CallbackMethodEnum::POST,
+            'call_timeout' => 30.0,
+            'callback_timeout' => 15.0,
+            'machine_detection' => $machine_detection,
+            'priority' => 5,
+            'privacy' => false,
+            'tag' => 'tag_example'
+        ]);
+
+        self::$create_manteca_call_body = new CreateCall([
+            'from' => getenv("MANTECA_ACTIVE_NUMBER"),
+            'to' => getenv("MANTECA_IDLE_NUMBER"),
+            'application_id' => getenv("MANTECA_APPLICATION_ID"),
+            'answer_url' => $manteca_answer_url
+        ]);
+
+        self::$update_manteca_call_body = new UpdateCall([
+            'state' => CallStateEnum::ACTIVE,
+            'redirect_url' => $manteca_answer_url
+        ]);
+
+        self::$complete_manteca_call_body = new UpdateCall([
+            'state' => CallStateEnum::COMPLETED
+        ]);
     }
 
     /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
+     * Ensure that all calls collected during the suite have been hung up
      */
     public static function tearDownAfterClass(): void
     {
+        CallCleanup::cleanup(self::$apiInstance, self::$account_id, self::$call_id_list);
     }
 
     /**
@@ -78,20 +166,19 @@ class CallsApiTest extends TestCase
      */
     public function testCreateCall()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
+        [$data, $status_code] = self::$apiInstance->createCallWithHttpInfo(
+            self::$account_id,
+            self::$create_call_body
+        );
+        self::$call_id_list[] = $data->getCallId();
 
-    /**
-     * Test case for getCallState
-     *
-     * Get Call State Information.
-     *
-     */
-    public function testGetCallState()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertEquals(201, $status_code);
+        $this->assertInstanceOf(CreateCallResponse::class, $data);
+        $this->assertIsString($data->getCallId());
+        $this->assertEquals(self::$account_id, $data->getAccountId());
+        $this->assertEquals(self::$voice_application_id, $data->getApplicationId());
+        $this->assertEquals(self::$user_number, $data->getTo());
+        $this->assertEquals(self::$bw_number, $data->getFrom());
     }
 
     /**
@@ -102,8 +189,42 @@ class CallsApiTest extends TestCase
      */
     public function testListCalls()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        [$data, $status_code] = self::$apiInstance->listCallsWithHttpInfo(
+            self::$account_id,
+            to: self::$user_number,
+            from: self::$bw_number
+        );
+
+        $this->assertEquals(200, $status_code);
+        $this->assertIsArray($data);
+        $this->assertInstanceOf(CallState::class, $data[0]);
+        $this->assertIsString($data[0]->getAccountId());
+        $this->assertIsString($data[0]->getApplicationId());
+        $this->assertIsString($data[0]->getCallId());
+        $this->assertIsString($data[0]->getState());
+        $this->assertInstanceOf(CallDirectionEnum::class, $data[0]->getDirection());
+        $this->assertInstanceOf(\DateTime::class, $data[0]->getStartTime());
+    }
+
+    /**
+     * Test case for getCallState
+     *
+     * Get Call State Information.
+     *
+     */
+    public function testGetCallState()
+    {
+        sleep(40);
+        [$data, $status_code] = self::$apiInstance->getCallStateWithHttpInfo(
+            self::$account_id,
+            self::$call_id_list[0]
+        );
+
+        $this->assertEquals(200, $status_code);
+        $this->assertInstanceOf(CallState::class, $data);
+        $this->assertIsString($data->getCallId());
+        $this->assertIsString($data->getState());
+        $this->assertEquals(CallDirectionEnum::OUTBOUND, $data->getDirection());
     }
 
     /**
@@ -114,8 +235,35 @@ class CallsApiTest extends TestCase
      */
     public function testUpdateCall()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        // Create call
+        sleep(self::TEST_SLEEP);
+        [$create_data, $create_status_code] = self::$apiInstance->createCallWithHttpInfo(
+            self::$account_id,
+            self::$create_manteca_call_body
+        );
+        self::$call_id_list[] = $create_data->getCallId();
+
+        $this->assertEquals(201, $create_status_code);
+
+        // Redirect call to a different url
+        sleep(self::TEST_SLEEP);
+        [, $update_status_code] = self::$apiInstance->updateCallWithHttpInfo(
+            self::$account_id,
+            $create_data->getCallId(),
+            self::$update_manteca_call_body
+        );
+
+        $this->assertEquals(200, $update_status_code);
+
+        // Complete call
+        sleep(self::TEST_SLEEP);
+        [, $complete_status_code] = self::$apiInstance->updateCallWithHttpInfo(
+            self::$account_id,
+            $create_data->getCallId(),
+            self::$complete_manteca_call_body
+        );
+
+        $this->assertEquals(200, $complete_status_code);
     }
 
     /**
@@ -126,7 +274,34 @@ class CallsApiTest extends TestCase
      */
     public function testUpdateCallBxml()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        // Create call
+        sleep(self::TEST_SLEEP);
+        [$create_data, $create_status_code] = self::$apiInstance->createCallWithHttpInfo(
+            self::$account_id,
+            self::$create_manteca_call_body
+        );
+        self::$call_id_list[] = $create_data->getCallId();
+
+        $this->assertEquals(201, $create_status_code);
+
+        // Update call with BXML
+        sleep(self::TEST_SLEEP);
+        [, $update_status_code] = self::$apiInstance->updateCallBxmlWithHttpInfo(
+            self::$account_id,
+            $create_data->getCallId(),
+            self::$test_xml_body
+        );
+
+        $this->assertEquals(204, $update_status_code);
+
+        // Complete call
+        sleep(self::TEST_SLEEP);
+        [, $complete_status_code] = self::$apiInstance->updateCallWithHttpInfo(
+            self::$account_id,
+            $create_data->getCallId(),
+            self::$complete_manteca_call_body
+        );
+
+        $this->assertEquals(200, $complete_status_code);
     }
 }
