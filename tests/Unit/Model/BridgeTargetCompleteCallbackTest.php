@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace Bandwidth\Test\Model;
+namespace Bandwidth\Test\Unit\Model;
 
 use PHPUnit\Framework\TestCase;
 
