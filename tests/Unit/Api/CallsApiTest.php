@@ -25,7 +25,7 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace Bandwidth\Test\Api;
+namespace Bandwidth\Test\Unit\Api;
 
 use Bandwidth\Configuration;
 use Bandwidth\Api\CallsApi;

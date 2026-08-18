@@ -25,7 +25,7 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace Bandwidth\Test\Api;
+namespace Bandwidth\Test\Smoke;
 
 use SplFileObject;
 use Bandwidth\ApiException;
