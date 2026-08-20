@@ -28,6 +28,14 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MultiChannelAction;
+use Bandwidth\Model\MultiChannelActionCalendarEvent;
+use Bandwidth\Model\RbmActionBase;
+use Bandwidth\Model\RbmActionDial;
+use Bandwidth\Model\RbmActionOpenUrl;
+use Bandwidth\Model\RbmActionViewLocation;
+use Bandwidth\ObjectSerializer;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,41 +48,70 @@ use PHPUnit\Framework\TestCase;
  */
 class MultiChannelActionTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
     /**
      * Test "MultiChannelAction"
      */
     public function testMultiChannelAction()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            [
+                RbmActionBase::class,
+                RbmActionDial::class,
+                RbmActionViewLocation::class,
+                MultiChannelActionCalendarEvent::class,
+                RbmActionOpenUrl::class
+            ],
+            array_map(fn($type) => ltrim($type, '\\'), MultiChannelAction::getAnyOfTypes())
+        );
+        $this->assertSame('type', MultiChannelAction::getAnyOfDiscriminator());
+        $this->assertSame(
+            [
+                'CREATE_CALENDAR_EVENT' => MultiChannelActionCalendarEvent::class,
+                'DIAL_PHONE' => RbmActionDial::class,
+                'OPEN_URL' => RbmActionOpenUrl::class,
+                'REPLY' => RbmActionBase::class,
+                'REQUEST_LOCATION' => RbmActionBase::class,
+                'SHOW_LOCATION' => RbmActionViewLocation::class
+            ],
+            array_map(fn($type) => ltrim($type, '\\'), MultiChannelAction::getAnyOfDiscriminatorMappings())
+        );
+    }
+
+    /**
+     * Test that each discriminator value deserializes to its mapped type
+     *
+     * @dataProvider discriminatorProvider
+     */
+    public function testDeserializeResolvesDiscriminator(string $type, string $expected)
+    {
+        $result = ObjectSerializer::deserialize((object) ['type' => $type], MultiChannelAction::class);
+
+        $this->assertInstanceOf($expected, $result);
+        $this->assertSame($type, $result->getType()->value);
+    }
+
+    /**
+     * Test that an unmapped discriminator value is rejected
+     */
+    public function testDeserializeRejectsUnknownDiscriminator()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        ObjectSerializer::deserialize((object) ['type' => 'NOT_AN_ACTION'], MultiChannelAction::class);
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: class-string}>
+     */
+    public static function discriminatorProvider(): array
+    {
+        return [
+            'CREATE_CALENDAR_EVENT' => ['CREATE_CALENDAR_EVENT', MultiChannelActionCalendarEvent::class],
+            'DIAL_PHONE' => ['DIAL_PHONE', RbmActionDial::class],
+            'OPEN_URL' => ['OPEN_URL', RbmActionOpenUrl::class],
+            'REPLY' => ['REPLY', RbmActionBase::class],
+            'REQUEST_LOCATION' => ['REQUEST_LOCATION', RbmActionBase::class],
+            'SHOW_LOCATION' => ['SHOW_LOCATION', RbmActionViewLocation::class]
+        ];
     }
 }

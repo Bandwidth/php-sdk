@@ -28,6 +28,12 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MultiChannelChannelListMMSResponseObject;
+use Bandwidth\Model\MultiChannelChannelListRBMResponseObject;
+use Bandwidth\Model\MultiChannelChannelListResponseObject;
+use Bandwidth\Model\MultiChannelChannelListSMSResponseObject;
+use Bandwidth\ObjectSerializer;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,41 +46,71 @@ use PHPUnit\Framework\TestCase;
  */
 class MultiChannelChannelListResponseObjectTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
     /**
      * Test "MultiChannelChannelListResponseObject"
      */
     public function testMultiChannelChannelListResponseObject()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            [
+                MultiChannelChannelListRBMResponseObject::class,
+                MultiChannelChannelListSMSResponseObject::class,
+                MultiChannelChannelListMMSResponseObject::class
+            ],
+            array_map(fn($type) => ltrim($type, '\\'), MultiChannelChannelListResponseObject::getAnyOfTypes())
+        );
+        $this->assertSame('channel', MultiChannelChannelListResponseObject::getAnyOfDiscriminator());
+        $this->assertSame(
+            [
+                'MMS' => MultiChannelChannelListMMSResponseObject::class,
+                'RBM' => MultiChannelChannelListRBMResponseObject::class,
+                'SMS' => MultiChannelChannelListSMSResponseObject::class
+            ],
+            array_map(
+                fn($type) => ltrim($type, '\\'),
+                MultiChannelChannelListResponseObject::getAnyOfDiscriminatorMappings()
+            )
+        );
+    }
+
+    /**
+     * Test that each discriminator value deserializes to its mapped type
+     *
+     * @dataProvider discriminatorProvider
+     */
+    public function testDeserializeResolvesDiscriminator(string $channel, string $expected)
+    {
+        $result = ObjectSerializer::deserialize(
+            (object) ['channel' => $channel],
+            MultiChannelChannelListResponseObject::class
+        );
+
+        $this->assertInstanceOf($expected, $result);
+        $this->assertSame($channel, $result->getChannel()->value);
+    }
+
+    /**
+     * Test that an unmapped discriminator value is rejected
+     */
+    public function testDeserializeRejectsUnknownDiscriminator()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        ObjectSerializer::deserialize(
+            (object) ['channel' => 'FAX'],
+            MultiChannelChannelListResponseObject::class
+        );
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: class-string}>
+     */
+    public static function discriminatorProvider(): array
+    {
+        return [
+            'MMS' => ['MMS', MultiChannelChannelListMMSResponseObject::class],
+            'RBM' => ['RBM', MultiChannelChannelListRBMResponseObject::class],
+            'SMS' => ['SMS', MultiChannelChannelListSMSResponseObject::class]
+        ];
     }
 }

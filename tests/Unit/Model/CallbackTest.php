@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Callback;
+use Bandwidth\Model\InboundCallback;
+use Bandwidth\Model\StatusCallback;
+use Bandwidth\ObjectSerializer;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,41 +45,68 @@ use PHPUnit\Framework\TestCase;
  */
 class CallbackTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
     /**
      * Test "Callback"
      */
     public function testCallback()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            [StatusCallback::class, InboundCallback::class],
+            array_map(fn($type) => ltrim($type, '\\'), Callback::getOneOfTypes())
+        );
+        $this->assertSame('type', Callback::getOneOfDiscriminator());
+        $this->assertSame(
+            [
+                'message-delivered' => StatusCallback::class,
+                'message-failed' => StatusCallback::class,
+                'message-read' => StatusCallback::class,
+                'message-received' => InboundCallback::class,
+                'message-sending' => StatusCallback::class,
+                'message-sent' => StatusCallback::class,
+                'requested-location-response' => InboundCallback::class,
+                'suggestion-response' => InboundCallback::class
+            ],
+            array_map(fn($type) => ltrim($type, '\\'), Callback::getOneOfDiscriminatorMappings())
+        );
+    }
+
+    /**
+     * Test that each discriminator value deserializes to its mapped type
+     *
+     * @dataProvider discriminatorProvider
+     */
+    public function testDeserializeResolvesDiscriminator(string $type, string $expected)
+    {
+        $result = ObjectSerializer::deserialize((object) ['type' => $type], Callback::class);
+
+        $this->assertInstanceOf($expected, $result);
+        $this->assertSame($type, $result->getType()->value);
+    }
+
+    /**
+     * Test that an unmapped discriminator value is rejected
+     */
+    public function testDeserializeRejectsUnknownDiscriminator()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        ObjectSerializer::deserialize((object) ['type' => 'not-a-callback-type'], Callback::class);
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: class-string}>
+     */
+    public static function discriminatorProvider(): array
+    {
+        return [
+            'message-delivered' => ['message-delivered', StatusCallback::class],
+            'message-failed' => ['message-failed', StatusCallback::class],
+            'message-read' => ['message-read', StatusCallback::class],
+            'message-received' => ['message-received', InboundCallback::class],
+            'message-sending' => ['message-sending', StatusCallback::class],
+            'message-sent' => ['message-sent', StatusCallback::class],
+            'requested-location-response' => ['requested-location-response', InboundCallback::class],
+            'suggestion-response' => ['suggestion-response', InboundCallback::class]
+        ];
     }
 }
