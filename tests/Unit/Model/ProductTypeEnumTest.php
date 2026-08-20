@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ProductTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,39 +44,23 @@ class ProductTypeEnumTest extends TestCase
 {
 
     /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Test "ProductTypeEnum"
      */
     public function testProductTypeEnum()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            [
+                'LOCAL_A2P',
+                'P2P',
+                'SHORT_CODE_REACH',
+                'TOLL_FREE',
+                'HOSTED_SHORT_CODE',
+                'ALPHA_NUMERIC',
+                'RBM_MEDIA',
+                'RBM_RICH',
+                'RBM_CONVERSATIONAL'
+            ],
+            array_column(ProductTypeEnum::cases(), 'value')
+        );
     }
 }

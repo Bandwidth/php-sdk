@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RedirectMethodEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,39 +44,13 @@ class RedirectMethodEnumTest extends TestCase
 {
 
     /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Test "RedirectMethodEnum"
      */
     public function testRedirectMethodEnum()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            ['GET', 'POST'],
+            array_column(RedirectMethodEnum::cases(), 'value')
+        );
     }
 }

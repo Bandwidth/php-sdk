@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MessageStatusEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,39 +44,13 @@ class MessageStatusEnumTest extends TestCase
 {
 
     /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Test "MessageStatusEnum"
      */
     public function testMessageStatusEnum()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            ['RECEIVED', 'QUEUED', 'SENDING', 'SENT', 'FAILED', 'DELIVERED', 'ACCEPTED', 'UNDELIVERED'],
+            array_column(MessageStatusEnum::cases(), 'value')
+        );
     }
 }

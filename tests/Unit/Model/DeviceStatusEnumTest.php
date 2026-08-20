@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\DeviceStatusEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,39 +44,13 @@ class DeviceStatusEnumTest extends TestCase
 {
 
     /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Test "DeviceStatusEnum"
      */
     public function testDeviceStatusEnum()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            ['CONNECTED', 'DISCONNECTED'],
+            array_column(DeviceStatusEnum::cases(), 'value')
+        );
     }
 }

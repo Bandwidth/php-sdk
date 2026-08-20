@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\EndpointEventTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,39 +44,13 @@ class EndpointEventTypeEnumTest extends TestCase
 {
 
     /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Test "EndpointEventTypeEnum"
      */
     public function testEndpointEventTypeEnum()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            ['DEVICE_CONNECTED', 'DEVICE_DISCONNECTED'],
+            array_column(EndpointEventTypeEnum::cases(), 'value')
+        );
     }
 }

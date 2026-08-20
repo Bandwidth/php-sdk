@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\WebhookSubscriptionTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,39 +44,13 @@ class WebhookSubscriptionTypeEnumTest extends TestCase
 {
 
     /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Test "WebhookSubscriptionTypeEnum"
      */
     public function testWebhookSubscriptionTypeEnum()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            ['TOLLFREE_VERIFICATION_STATUS', 'MESSAGING_PORTOUT_APPROVAL_STATUS'],
+            array_column(WebhookSubscriptionTypeEnum::cases(), 'value')
+        );
     }
 }

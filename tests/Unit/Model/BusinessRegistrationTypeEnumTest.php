@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\BusinessRegistrationTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,39 +44,32 @@ class BusinessRegistrationTypeEnumTest extends TestCase
 {
 
     /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Test "BusinessRegistrationTypeEnum"
      */
     public function testBusinessRegistrationTypeEnum()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            [
+                'EIN',
+                'CBN',
+                'NEQ',
+                'PROVINCIAL_NUMBER',
+                'CRN',
+                'VAT',
+                'ACN',
+                'ABN',
+                'BRN',
+                'SIREN',
+                'SIRET',
+                'NZBN',
+                'UST_IDNR',
+                'CIF',
+                'NIF',
+                'CNPJ',
+                'UID',
+                'OTHER'
+            ],
+            array_column(BusinessRegistrationTypeEnum::cases(), 'value')
+        );
     }
 }

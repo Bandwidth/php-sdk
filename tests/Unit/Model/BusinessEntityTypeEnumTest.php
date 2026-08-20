@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\BusinessEntityTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,41 +42,14 @@ use PHPUnit\Framework\TestCase;
  */
 class BusinessEntityTypeEnumTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
     /**
      * Test "BusinessEntityTypeEnum"
      */
     public function testBusinessEntityTypeEnum()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            ['SOLE_PROPRIETOR', 'PRIVATE_PROFIT', 'PUBLIC_PROFIT', 'NON_PROFIT', 'GOVERNMENT'],
+            array_column(BusinessEntityTypeEnum::cases(), 'value')
+        );
     }
 }
