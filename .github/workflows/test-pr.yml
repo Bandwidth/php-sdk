@@ -49,3 +49,4 @@ jobs:
           npm install -g @stoplight/prism-cli
           composer install
           prism mock ./bandwidth.yml & (sleep 4; ./vendor/bin/phpunit tests/Unit)
+        shell: bash
