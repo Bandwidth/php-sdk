@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ConferenceStateEnum;
+use Bandwidth\Model\RedirectMethodEnum;
+use Bandwidth\Model\UpdateConference;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,24 @@ use PHPUnit\Framework\TestCase;
  */
 class UpdateConferenceTest extends TestCase
 {
+    private static UpdateConference $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new UpdateConference([
+            'status' => ConferenceStateEnum::ACTIVE,
+            'redirect_url' => 'test_string',
+            'redirect_method' => RedirectMethodEnum::GET,
+            'username' => 'test_string',
+            'password' => 'test_string',
+            'redirect_fallback_url' => 'test_string',
+            'redirect_fallback_method' => RedirectMethodEnum::GET,
+            'fallback_username' => 'test_string',
+            'fallback_password' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +69,7 @@ class UpdateConferenceTest extends TestCase
      */
     public function testUpdateConference()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(UpdateConference::class, self::$instance);
     }
 
     /**
@@ -83,8 +77,8 @@ class UpdateConferenceTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ConferenceStateEnum::class, self::$instance->getStatus());
+        $this->assertSame(ConferenceStateEnum::ACTIVE, self::$instance->getStatus());
     }
 
     /**
@@ -92,8 +86,8 @@ class UpdateConferenceTest extends TestCase
      */
     public function testPropertyRedirectUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getRedirectUrl());
+        $this->assertEquals('test_string', self::$instance->getRedirectUrl());
     }
 
     /**
@@ -101,8 +95,8 @@ class UpdateConferenceTest extends TestCase
      */
     public function testPropertyRedirectMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RedirectMethodEnum::class, self::$instance->getRedirectMethod());
+        $this->assertSame(RedirectMethodEnum::GET, self::$instance->getRedirectMethod());
     }
 
     /**
@@ -110,8 +104,8 @@ class UpdateConferenceTest extends TestCase
      */
     public function testPropertyUsername()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUsername());
+        $this->assertEquals('test_string', self::$instance->getUsername());
     }
 
     /**
@@ -119,8 +113,8 @@ class UpdateConferenceTest extends TestCase
      */
     public function testPropertyPassword()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPassword());
+        $this->assertEquals('test_string', self::$instance->getPassword());
     }
 
     /**
@@ -128,8 +122,8 @@ class UpdateConferenceTest extends TestCase
      */
     public function testPropertyRedirectFallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getRedirectFallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getRedirectFallbackUrl());
     }
 
     /**
@@ -137,8 +131,8 @@ class UpdateConferenceTest extends TestCase
      */
     public function testPropertyRedirectFallbackMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RedirectMethodEnum::class, self::$instance->getRedirectFallbackMethod());
+        $this->assertSame(RedirectMethodEnum::GET, self::$instance->getRedirectFallbackMethod());
     }
 
     /**
@@ -146,8 +140,8 @@ class UpdateConferenceTest extends TestCase
      */
     public function testPropertyFallbackUsername()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFallbackUsername());
+        $this->assertEquals('test_string', self::$instance->getFallbackUsername());
     }
 
     /**
@@ -155,7 +149,6 @@ class UpdateConferenceTest extends TestCase
      */
     public function testPropertyFallbackPassword()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getFallbackPassword());
+        $this->assertEquals('test_string', self::$instance->getFallbackPassword());
+    }}

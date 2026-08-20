@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MultiChannelChannelListRBMObject;
+use Bandwidth\Model\MultiChannelMessageRequest;
+use Bandwidth\Model\PriorityEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,20 @@ use PHPUnit\Framework\TestCase;
  */
 class MultiChannelMessageRequestTest extends TestCase
 {
+    private static MultiChannelMessageRequest $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MultiChannelMessageRequest([
+            'to' => 'test_string',
+            'channel_list' => [new MultiChannelChannelListRBMObject([])],
+            'tag' => 'test_string',
+            'priority' => PriorityEnum::_DEFAULT,
+            'expiration' => new \DateTime('2024-01-01T00:00:00+00:00')
+        ]);
     }
 
     /**
@@ -74,8 +65,7 @@ class MultiChannelMessageRequestTest extends TestCase
      */
     public function testMultiChannelMessageRequest()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelMessageRequest::class, self::$instance);
     }
 
     /**
@@ -83,8 +73,8 @@ class MultiChannelMessageRequestTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTo());
+        $this->assertEquals('test_string', self::$instance->getTo());
     }
 
     /**
@@ -92,8 +82,8 @@ class MultiChannelMessageRequestTest extends TestCase
      */
     public function testPropertyChannelList()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getChannelList());
+        $this->assertInstanceOf(MultiChannelChannelListRBMObject::class, self::$instance->getChannelList()[0]);
     }
 
     /**
@@ -101,8 +91,8 @@ class MultiChannelMessageRequestTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
     }
 
     /**
@@ -110,8 +100,8 @@ class MultiChannelMessageRequestTest extends TestCase
      */
     public function testPropertyPriority()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(PriorityEnum::class, self::$instance->getPriority());
+        $this->assertSame(PriorityEnum::_DEFAULT, self::$instance->getPriority());
     }
 
     /**
@@ -119,7 +109,6 @@ class MultiChannelMessageRequestTest extends TestCase
      */
     public function testPropertyExpiration()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getExpiration());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getExpiration());
+    }}

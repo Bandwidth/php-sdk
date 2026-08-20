@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\DeactivationEventEnum;
+use Bandwidth\Model\LatestMessageDeliveryStatusEnum;
+use Bandwidth\Model\LineTypeEnum;
+use Bandwidth\Model\LookupResult;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,27 @@ use PHPUnit\Framework\TestCase;
  */
 class LookupResultTest extends TestCase
 {
+    private static LookupResult $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new LookupResult([
+            'phone_number' => 'test_string',
+            'line_type' => LineTypeEnum::FIXED,
+            'messaging_provider' => 'test_string',
+            'voice_provider' => 'test_string',
+            'country_code_a3' => 'test_string',
+            'deactivation_reporter' => 'test_string',
+            'deactivation_date' => 'test_string',
+            'deactivation_event' => DeactivationEventEnum::DEACTIVATED,
+            'latest_message_delivery_status' => LatestMessageDeliveryStatusEnum::ACTIVE,
+            'initial_message_delivery_status_date' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'latest_message_delivery_status_date' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'rcs_enabled' => true
+        ]);
     }
 
     /**
@@ -74,8 +73,7 @@ class LookupResultTest extends TestCase
      */
     public function testLookupResult()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(LookupResult::class, self::$instance);
     }
 
     /**
@@ -83,8 +81,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyPhoneNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPhoneNumber());
+        $this->assertEquals('test_string', self::$instance->getPhoneNumber());
     }
 
     /**
@@ -92,8 +90,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyLineType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(LineTypeEnum::class, self::$instance->getLineType());
+        $this->assertSame(LineTypeEnum::FIXED, self::$instance->getLineType());
     }
 
     /**
@@ -101,8 +99,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyMessagingProvider()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getMessagingProvider());
+        $this->assertEquals('test_string', self::$instance->getMessagingProvider());
     }
 
     /**
@@ -110,8 +108,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyVoiceProvider()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getVoiceProvider());
+        $this->assertEquals('test_string', self::$instance->getVoiceProvider());
     }
 
     /**
@@ -119,8 +117,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyCountryCodeA3()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCountryCodeA3());
+        $this->assertEquals('test_string', self::$instance->getCountryCodeA3());
     }
 
     /**
@@ -128,8 +126,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyDeactivationReporter()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDeactivationReporter());
+        $this->assertEquals('test_string', self::$instance->getDeactivationReporter());
     }
 
     /**
@@ -137,8 +135,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyDeactivationDate()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDeactivationDate());
+        $this->assertEquals('test_string', self::$instance->getDeactivationDate());
     }
 
     /**
@@ -146,8 +144,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyDeactivationEvent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(DeactivationEventEnum::class, self::$instance->getDeactivationEvent());
+        $this->assertSame(DeactivationEventEnum::DEACTIVATED, self::$instance->getDeactivationEvent());
     }
 
     /**
@@ -155,8 +153,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyLatestMessageDeliveryStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(LatestMessageDeliveryStatusEnum::class, self::$instance->getLatestMessageDeliveryStatus());
+        $this->assertSame(LatestMessageDeliveryStatusEnum::ACTIVE, self::$instance->getLatestMessageDeliveryStatus());
     }
 
     /**
@@ -164,8 +162,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyInitialMessageDeliveryStatusDate()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getInitialMessageDeliveryStatusDate());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getInitialMessageDeliveryStatusDate());
     }
 
     /**
@@ -173,8 +171,8 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyLatestMessageDeliveryStatusDate()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getLatestMessageDeliveryStatusDate());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getLatestMessageDeliveryStatusDate());
     }
 
     /**
@@ -182,7 +180,6 @@ class LookupResultTest extends TestCase
      */
     public function testPropertyRcsEnabled()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsBool(self::$instance->getRcsEnabled());
+        $this->assertTrue(self::$instance->getRcsEnabled());
+    }}

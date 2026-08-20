@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\GetAsyncBulkLookupResponseData;
+use Bandwidth\Model\InProgressLookupStatusEnum;
+use Bandwidth\Model\LookupResult;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,18 @@ use PHPUnit\Framework\TestCase;
  */
 class GetAsyncBulkLookupResponseDataTest extends TestCase
 {
+    private static GetAsyncBulkLookupResponseData $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new GetAsyncBulkLookupResponseData([
+            'request_id' => 'test_string',
+            'status' => InProgressLookupStatusEnum::IN_PROGRESS,
+            'results' => [new LookupResult([])]
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class GetAsyncBulkLookupResponseDataTest extends TestCase
      */
     public function testGetAsyncBulkLookupResponseData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(GetAsyncBulkLookupResponseData::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class GetAsyncBulkLookupResponseDataTest extends TestCase
      */
     public function testPropertyRequestId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getRequestId());
+        $this->assertEquals('test_string', self::$instance->getRequestId());
     }
 
     /**
@@ -92,8 +80,8 @@ class GetAsyncBulkLookupResponseDataTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(InProgressLookupStatusEnum::class, self::$instance->getStatus());
+        $this->assertSame(InProgressLookupStatusEnum::IN_PROGRESS, self::$instance->getStatus());
     }
 
     /**
@@ -101,7 +89,6 @@ class GetAsyncBulkLookupResponseDataTest extends TestCase
      */
     public function testPropertyResults()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getResults());
+        $this->assertInstanceOf(LookupResult::class, self::$instance->getResults()[0]);
+    }}

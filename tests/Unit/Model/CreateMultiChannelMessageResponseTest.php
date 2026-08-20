@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CreateMultiChannelMessageResponse;
+use Bandwidth\Model\ErrorObject;
+use Bandwidth\Model\Link;
+use Bandwidth\Model\MultiChannelMessageResponseData;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,18 @@ use PHPUnit\Framework\TestCase;
  */
 class CreateMultiChannelMessageResponseTest extends TestCase
 {
+    private static CreateMultiChannelMessageResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CreateMultiChannelMessageResponse([
+            'links' => [new Link([])],
+            'data' => new MultiChannelMessageResponseData([]),
+            'errors' => [new ErrorObject([])]
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class CreateMultiChannelMessageResponseTest extends TestCase
      */
     public function testCreateMultiChannelMessageResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateMultiChannelMessageResponse::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class CreateMultiChannelMessageResponseTest extends TestCase
      */
     public function testPropertyLinks()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getLinks());
+        $this->assertInstanceOf(Link::class, self::$instance->getLinks()[0]);
     }
 
     /**
@@ -92,8 +81,7 @@ class CreateMultiChannelMessageResponseTest extends TestCase
      */
     public function testPropertyData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelMessageResponseData::class, self::$instance->getData());
     }
 
     /**
@@ -101,7 +89,6 @@ class CreateMultiChannelMessageResponseTest extends TestCase
      */
     public function testPropertyErrors()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getErrors());
+        $this->assertInstanceOf(ErrorObject::class, self::$instance->getErrors()[0]);
+    }}

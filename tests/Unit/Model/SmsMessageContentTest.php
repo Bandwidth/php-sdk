@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\SmsMessageContent;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,16 @@ use PHPUnit\Framework\TestCase;
  */
 class SmsMessageContentTest extends TestCase
 {
+    private static SmsMessageContent $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new SmsMessageContent([
+            'text' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +59,7 @@ class SmsMessageContentTest extends TestCase
      */
     public function testSmsMessageContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(SmsMessageContent::class, self::$instance);
     }
 
     /**
@@ -83,7 +67,6 @@ class SmsMessageContentTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
+    }}

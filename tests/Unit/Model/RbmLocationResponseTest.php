@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RbmLocationResponse;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmLocationResponseTest extends TestCase
 {
+    private static RbmLocationResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RbmLocationResponse([
+            'latitude' => 1.5,
+            'longitude' => 1.5
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class RbmLocationResponseTest extends TestCase
      */
     public function testRbmLocationResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmLocationResponse::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class RbmLocationResponseTest extends TestCase
      */
     public function testPropertyLatitude()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getLatitude());
+        $this->assertEquals(1.5, self::$instance->getLatitude());
     }
 
     /**
@@ -92,7 +77,6 @@ class RbmLocationResponseTest extends TestCase
      */
     public function testPropertyLongitude()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsFloat(self::$instance->getLongitude());
+        $this->assertEquals(1.5, self::$instance->getLongitude());
+    }}

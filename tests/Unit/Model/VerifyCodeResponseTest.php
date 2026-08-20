@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\VerifyCodeResponse;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,16 @@ use PHPUnit\Framework\TestCase;
  */
 class VerifyCodeResponseTest extends TestCase
 {
+    private static VerifyCodeResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new VerifyCodeResponse([
+            'valid' => true
+        ]);
     }
 
     /**
@@ -74,8 +59,7 @@ class VerifyCodeResponseTest extends TestCase
      */
     public function testVerifyCodeResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(VerifyCodeResponse::class, self::$instance);
     }
 
     /**
@@ -83,7 +67,6 @@ class VerifyCodeResponseTest extends TestCase
      */
     public function testPropertyValid()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsBool(self::$instance->getValid());
+        $this->assertTrue(self::$instance->getValid());
+    }}

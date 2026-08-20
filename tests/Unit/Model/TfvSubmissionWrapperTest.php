@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\TfvSubmissionWrapper;
+use Bandwidth\Model\VerificationUpdateRequest;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,16 @@ use PHPUnit\Framework\TestCase;
  */
 class TfvSubmissionWrapperTest extends TestCase
 {
+    private static TfvSubmissionWrapper $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new TfvSubmissionWrapper([
+            'submission' => new VerificationUpdateRequest([])
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class TfvSubmissionWrapperTest extends TestCase
      */
     public function testTfvSubmissionWrapper()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(TfvSubmissionWrapper::class, self::$instance);
     }
 
     /**
@@ -83,7 +68,5 @@ class TfvSubmissionWrapperTest extends TestCase
      */
     public function testPropertySubmission()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(VerificationUpdateRequest::class, self::$instance->getSubmission());
+    }}

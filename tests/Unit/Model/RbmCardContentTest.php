@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RbmActionBase;
+use Bandwidth\Model\RbmCardContent;
+use Bandwidth\Model\RbmCardContentMedia;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,19 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmCardContentTest extends TestCase
 {
+    private static RbmCardContent $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RbmCardContent([
+            'title' => 'test_string',
+            'description' => 'test_string',
+            'media' => new RbmCardContentMedia([]),
+            'suggestions' => [new RbmActionBase([])]
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class RbmCardContentTest extends TestCase
      */
     public function testRbmCardContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmCardContent::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class RbmCardContentTest extends TestCase
      */
     public function testPropertyTitle()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTitle());
+        $this->assertEquals('test_string', self::$instance->getTitle());
     }
 
     /**
@@ -92,8 +81,8 @@ class RbmCardContentTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
     }
 
     /**
@@ -101,8 +90,7 @@ class RbmCardContentTest extends TestCase
      */
     public function testPropertyMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmCardContentMedia::class, self::$instance->getMedia());
     }
 
     /**
@@ -110,7 +98,6 @@ class RbmCardContentTest extends TestCase
      */
     public function testPropertySuggestions()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getSuggestions());
+        $this->assertInstanceOf(RbmActionBase::class, self::$instance->getSuggestions()[0]);
+    }}

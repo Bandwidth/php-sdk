@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\SyncLookupRequest;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class SyncLookupRequestTest extends TestCase
 {
+    private static SyncLookupRequest $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new SyncLookupRequest([
+            'phone_numbers' => ['test_string'],
+            'rcs_agent' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class SyncLookupRequestTest extends TestCase
      */
     public function testSyncLookupRequest()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(SyncLookupRequest::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class SyncLookupRequestTest extends TestCase
      */
     public function testPropertyPhoneNumbers()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getPhoneNumbers());
+        $this->assertEquals(['test_string'], self::$instance->getPhoneNumbers());
     }
 
     /**
@@ -92,7 +77,6 @@ class SyncLookupRequestTest extends TestCase
      */
     public function testPropertyRcsAgent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getRcsAgent());
+        $this->assertEquals('test_string', self::$instance->getRcsAgent());
+    }}

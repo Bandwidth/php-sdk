@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\AdditionalDenialReason;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class AdditionalDenialReasonTest extends TestCase
 {
+    private static AdditionalDenialReason $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new AdditionalDenialReason([
+            'status_code' => 1,
+            'reason' => 'test_string',
+            'resubmit_allowed' => true
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class AdditionalDenialReasonTest extends TestCase
      */
     public function testAdditionalDenialReason()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(AdditionalDenialReason::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class AdditionalDenialReasonTest extends TestCase
      */
     public function testPropertyStatusCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getStatusCode());
+        $this->assertEquals(1, self::$instance->getStatusCode());
     }
 
     /**
@@ -92,8 +78,8 @@ class AdditionalDenialReasonTest extends TestCase
      */
     public function testPropertyReason()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getReason());
+        $this->assertEquals('test_string', self::$instance->getReason());
     }
 
     /**
@@ -101,7 +87,6 @@ class AdditionalDenialReasonTest extends TestCase
      */
     public function testPropertyResubmitAllowed()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsBool(self::$instance->getResubmitAllowed());
+        $this->assertTrue(self::$instance->getResubmitAllowed());
+    }}

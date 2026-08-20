@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MultiChannelChannelListSMSObject;
+use Bandwidth\Model\MultiChannelMessageChannelEnum;
+use Bandwidth\Model\SmsMessageContent;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,19 @@ use PHPUnit\Framework\TestCase;
  */
 class MultiChannelChannelListSMSObjectTest extends TestCase
 {
+    private static MultiChannelChannelListSMSObject $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MultiChannelChannelListSMSObject([
+            'from' => 'test_string',
+            'application_id' => 'test_string',
+            'channel' => MultiChannelMessageChannelEnum::RBM,
+            'content' => new SmsMessageContent([])
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class MultiChannelChannelListSMSObjectTest extends TestCase
      */
     public function testMultiChannelChannelListSMSObject()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelChannelListSMSObject::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class MultiChannelChannelListSMSObjectTest extends TestCase
      */
     public function testPropertyFrom()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFrom());
+        $this->assertEquals('test_string', self::$instance->getFrom());
     }
 
     /**
@@ -92,8 +81,8 @@ class MultiChannelChannelListSMSObjectTest extends TestCase
      */
     public function testPropertyApplicationId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getApplicationId());
+        $this->assertEquals('test_string', self::$instance->getApplicationId());
     }
 
     /**
@@ -101,8 +90,8 @@ class MultiChannelChannelListSMSObjectTest extends TestCase
      */
     public function testPropertyChannel()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelMessageChannelEnum::class, self::$instance->getChannel());
+        $this->assertSame(MultiChannelMessageChannelEnum::RBM, self::$instance->getChannel());
     }
 
     /**
@@ -110,7 +99,5 @@ class MultiChannelChannelListSMSObjectTest extends TestCase
      */
     public function testPropertyContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(SmsMessageContent::class, self::$instance->getContent());
+    }}

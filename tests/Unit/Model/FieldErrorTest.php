@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\FieldError;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class FieldErrorTest extends TestCase
 {
+    private static FieldError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new FieldError([
+            'field_name' => 'test_string',
+            'description' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class FieldErrorTest extends TestCase
      */
     public function testFieldError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(FieldError::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class FieldErrorTest extends TestCase
      */
     public function testPropertyFieldName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFieldName());
+        $this->assertEquals('test_string', self::$instance->getFieldName());
     }
 
     /**
@@ -92,7 +77,6 @@ class FieldErrorTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
+    }}

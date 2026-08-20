@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MfaUnauthorizedRequestError;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,16 @@ use PHPUnit\Framework\TestCase;
  */
 class MfaUnauthorizedRequestErrorTest extends TestCase
 {
+    private static MfaUnauthorizedRequestError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MfaUnauthorizedRequestError([
+            'message' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +59,7 @@ class MfaUnauthorizedRequestErrorTest extends TestCase
      */
     public function testMfaUnauthorizedRequestError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MfaUnauthorizedRequestError::class, self::$instance);
     }
 
     /**
@@ -83,7 +67,6 @@ class MfaUnauthorizedRequestErrorTest extends TestCase
      */
     public function testPropertyMessage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getMessage());
+        $this->assertEquals('test_string', self::$instance->getMessage());
+    }}

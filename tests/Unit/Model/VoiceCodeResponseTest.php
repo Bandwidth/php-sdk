@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\VoiceCodeResponse;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,16 @@ use PHPUnit\Framework\TestCase;
  */
 class VoiceCodeResponseTest extends TestCase
 {
+    private static VoiceCodeResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new VoiceCodeResponse([
+            'call_id' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +59,7 @@ class VoiceCodeResponseTest extends TestCase
      */
     public function testVoiceCodeResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(VoiceCodeResponse::class, self::$instance);
     }
 
     /**
@@ -83,7 +67,6 @@ class VoiceCodeResponseTest extends TestCase
      */
     public function testPropertyCallId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getCallId());
+        $this->assertEquals('test_string', self::$instance->getCallId());
+    }}

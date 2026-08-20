@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\EndpointStatusEnum;
+use Bandwidth\Model\EndpointTypeEnum;
+use Bandwidth\Model\Endpoints;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,21 @@ use PHPUnit\Framework\TestCase;
  */
 class EndpointsTest extends TestCase
 {
+    private static Endpoints $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Endpoints([
+            'endpoint_id' => 'test_string',
+            'type' => EndpointTypeEnum::WEBRTC,
+            'status' => EndpointStatusEnum::CONNECTED,
+            'creation_timestamp' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'expiration_timestamp' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'tag' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +66,7 @@ class EndpointsTest extends TestCase
      */
     public function testEndpoints()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Endpoints::class, self::$instance);
     }
 
     /**
@@ -83,8 +74,8 @@ class EndpointsTest extends TestCase
      */
     public function testPropertyEndpointId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEndpointId());
+        $this->assertEquals('test_string', self::$instance->getEndpointId());
     }
 
     /**
@@ -92,8 +83,8 @@ class EndpointsTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(EndpointTypeEnum::class, self::$instance->getType());
+        $this->assertSame(EndpointTypeEnum::WEBRTC, self::$instance->getType());
     }
 
     /**
@@ -101,8 +92,8 @@ class EndpointsTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(EndpointStatusEnum::class, self::$instance->getStatus());
+        $this->assertSame(EndpointStatusEnum::CONNECTED, self::$instance->getStatus());
     }
 
     /**
@@ -110,8 +101,8 @@ class EndpointsTest extends TestCase
      */
     public function testPropertyCreationTimestamp()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getCreationTimestamp());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getCreationTimestamp());
     }
 
     /**
@@ -119,8 +110,8 @@ class EndpointsTest extends TestCase
      */
     public function testPropertyExpirationTimestamp()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getExpirationTimestamp());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getExpirationTimestamp());
     }
 
     /**
@@ -128,7 +119,6 @@ class EndpointsTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
+    }}

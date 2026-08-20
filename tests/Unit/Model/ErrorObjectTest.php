@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ErrorObject;
+use Bandwidth\Model\ErrorSource;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,18 @@ use PHPUnit\Framework\TestCase;
  */
 class ErrorObjectTest extends TestCase
 {
+    private static ErrorObject $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new ErrorObject([
+            'type' => 'test_string',
+            'description' => 'test_string',
+            'source' => new ErrorSource([])
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class ErrorObjectTest extends TestCase
      */
     public function testErrorObject()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ErrorObject::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class ErrorObjectTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getType());
+        $this->assertEquals('test_string', self::$instance->getType());
     }
 
     /**
@@ -92,8 +79,8 @@ class ErrorObjectTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
     }
 
     /**
@@ -101,7 +88,5 @@ class ErrorObjectTest extends TestCase
      */
     public function testPropertySource()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(ErrorSource::class, self::$instance->getSource());
+    }}

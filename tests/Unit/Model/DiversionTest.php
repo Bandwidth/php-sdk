@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Diversion;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,22 @@ use PHPUnit\Framework\TestCase;
  */
 class DiversionTest extends TestCase
 {
+    private static Diversion $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Diversion([
+            'reason' => 'test_string',
+            'privacy' => 'test_string',
+            'screen' => 'test_string',
+            'counter' => 'test_string',
+            'limit' => 'test_string',
+            'unknown' => 'test_string',
+            'orig_to' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +65,7 @@ class DiversionTest extends TestCase
      */
     public function testDiversion()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Diversion::class, self::$instance);
     }
 
     /**
@@ -83,8 +73,8 @@ class DiversionTest extends TestCase
      */
     public function testPropertyReason()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getReason());
+        $this->assertEquals('test_string', self::$instance->getReason());
     }
 
     /**
@@ -92,8 +82,8 @@ class DiversionTest extends TestCase
      */
     public function testPropertyPrivacy()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPrivacy());
+        $this->assertEquals('test_string', self::$instance->getPrivacy());
     }
 
     /**
@@ -101,8 +91,8 @@ class DiversionTest extends TestCase
      */
     public function testPropertyScreen()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getScreen());
+        $this->assertEquals('test_string', self::$instance->getScreen());
     }
 
     /**
@@ -110,8 +100,8 @@ class DiversionTest extends TestCase
      */
     public function testPropertyCounter()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCounter());
+        $this->assertEquals('test_string', self::$instance->getCounter());
     }
 
     /**
@@ -119,8 +109,8 @@ class DiversionTest extends TestCase
      */
     public function testPropertyLimit()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getLimit());
+        $this->assertEquals('test_string', self::$instance->getLimit());
     }
 
     /**
@@ -128,8 +118,8 @@ class DiversionTest extends TestCase
      */
     public function testPropertyUnknown()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUnknown());
+        $this->assertEquals('test_string', self::$instance->getUnknown());
     }
 
     /**
@@ -137,7 +127,6 @@ class DiversionTest extends TestCase
      */
     public function testPropertyOrigTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getOrigTo());
+        $this->assertEquals('test_string', self::$instance->getOrigTo());
+    }}

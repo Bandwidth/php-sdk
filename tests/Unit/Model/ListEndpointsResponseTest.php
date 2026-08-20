@@ -28,6 +28,12 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\BrtcError;
+use Bandwidth\Model\BrtcLink;
+use Bandwidth\Model\Endpoints;
+use Bandwidth\Model\ListEndpointsResponse;
+use Bandwidth\Model\Page;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +46,19 @@ use PHPUnit\Framework\TestCase;
  */
 class ListEndpointsResponseTest extends TestCase
 {
+    private static ListEndpointsResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new ListEndpointsResponse([
+            'links' => [new BrtcLink([])],
+            'page' => new Page([]),
+            'data' => [new Endpoints([])],
+            'errors' => [new BrtcError([])]
+        ]);
     }
 
     /**
@@ -74,8 +66,7 @@ class ListEndpointsResponseTest extends TestCase
      */
     public function testListEndpointsResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ListEndpointsResponse::class, self::$instance);
     }
 
     /**
@@ -83,8 +74,8 @@ class ListEndpointsResponseTest extends TestCase
      */
     public function testPropertyLinks()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getLinks());
+        $this->assertInstanceOf(BrtcLink::class, self::$instance->getLinks()[0]);
     }
 
     /**
@@ -92,8 +83,7 @@ class ListEndpointsResponseTest extends TestCase
      */
     public function testPropertyPage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Page::class, self::$instance->getPage());
     }
 
     /**
@@ -101,8 +91,8 @@ class ListEndpointsResponseTest extends TestCase
      */
     public function testPropertyData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getData());
+        $this->assertInstanceOf(Endpoints::class, self::$instance->getData()[0]);
     }
 
     /**
@@ -110,7 +100,6 @@ class ListEndpointsResponseTest extends TestCase
      */
     public function testPropertyErrors()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getErrors());
+        $this->assertInstanceOf(BrtcError::class, self::$instance->getErrors()[0]);
+    }}

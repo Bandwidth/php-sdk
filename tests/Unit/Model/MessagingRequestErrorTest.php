@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MessagingRequestError;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class MessagingRequestErrorTest extends TestCase
 {
+    private static MessagingRequestError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MessagingRequestError([
+            'type' => 'test_string',
+            'description' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class MessagingRequestErrorTest extends TestCase
      */
     public function testMessagingRequestError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MessagingRequestError::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class MessagingRequestErrorTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getType());
+        $this->assertEquals('test_string', self::$instance->getType());
     }
 
     /**
@@ -92,7 +77,6 @@ class MessagingRequestErrorTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
+    }}

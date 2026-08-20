@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\TelephoneNumber;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,16 @@ use PHPUnit\Framework\TestCase;
  */
 class TelephoneNumberTest extends TestCase
 {
+    private static TelephoneNumber $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new TelephoneNumber([
+            'telephone_number' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +59,7 @@ class TelephoneNumberTest extends TestCase
      */
     public function testTelephoneNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(TelephoneNumber::class, self::$instance);
     }
 
     /**
@@ -83,7 +67,6 @@ class TelephoneNumberTest extends TestCase
      */
     public function testPropertyTelephoneNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getTelephoneNumber());
+        $this->assertEquals('test_string', self::$instance->getTelephoneNumber());
+    }}

@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MmsMessageContent;
+use Bandwidth\Model\MmsMessageContentFile;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,17 @@ use PHPUnit\Framework\TestCase;
  */
 class MmsMessageContentTest extends TestCase
 {
+    private static MmsMessageContent $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MmsMessageContent([
+            'text' => 'test_string',
+            'media' => [new MmsMessageContentFile([])]
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class MmsMessageContentTest extends TestCase
      */
     public function testMmsMessageContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MmsMessageContent::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class MmsMessageContentTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -92,7 +78,6 @@ class MmsMessageContentTest extends TestCase
      */
     public function testPropertyMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getMedia());
+        $this->assertInstanceOf(MmsMessageContentFile::class, self::$instance->getMedia()[0]);
+    }}

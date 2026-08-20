@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MachineDetectionResult;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class MachineDetectionResultTest extends TestCase
 {
+    private static MachineDetectionResult $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MachineDetectionResult([
+            'value' => 'test_string',
+            'duration' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class MachineDetectionResultTest extends TestCase
      */
     public function testMachineDetectionResult()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MachineDetectionResult::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class MachineDetectionResultTest extends TestCase
      */
     public function testPropertyValue()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getValue());
+        $this->assertEquals('test_string', self::$instance->getValue());
     }
 
     /**
@@ -92,7 +77,6 @@ class MachineDetectionResultTest extends TestCase
      */
     public function testPropertyDuration()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getDuration());
+        $this->assertEquals('test_string', self::$instance->getDuration());
+    }}

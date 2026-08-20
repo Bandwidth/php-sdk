@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\LinksObject;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,19 @@ use PHPUnit\Framework\TestCase;
  */
 class LinksObjectTest extends TestCase
 {
+    private static LinksObject $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new LinksObject([
+            'first' => 'test_string',
+            'next' => 'test_string',
+            'previous' => 'test_string',
+            'last' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class LinksObjectTest extends TestCase
      */
     public function testLinksObject()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(LinksObject::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class LinksObjectTest extends TestCase
      */
     public function testPropertyFirst()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFirst());
+        $this->assertEquals('test_string', self::$instance->getFirst());
     }
 
     /**
@@ -92,8 +79,8 @@ class LinksObjectTest extends TestCase
      */
     public function testPropertyNext()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getNext());
+        $this->assertEquals('test_string', self::$instance->getNext());
     }
 
     /**
@@ -101,8 +88,8 @@ class LinksObjectTest extends TestCase
      */
     public function testPropertyPrevious()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPrevious());
+        $this->assertEquals('test_string', self::$instance->getPrevious());
     }
 
     /**
@@ -110,7 +97,6 @@ class LinksObjectTest extends TestCase
      */
     public function testPropertyLast()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getLast());
+        $this->assertEquals('test_string', self::$instance->getLast());
+    }}

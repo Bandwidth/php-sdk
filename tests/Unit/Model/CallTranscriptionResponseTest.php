@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallTranscription;
+use Bandwidth\Model\CallTranscriptionResponse;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,19 @@ use PHPUnit\Framework\TestCase;
  */
 class CallTranscriptionResponseTest extends TestCase
 {
+    private static CallTranscriptionResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CallTranscriptionResponse([
+            'account_id' => 'test_string',
+            'call_id' => 'test_string',
+            'transcription_id' => 'test_string',
+            'tracks' => [new CallTranscription([])]
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class CallTranscriptionResponseTest extends TestCase
      */
     public function testCallTranscriptionResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallTranscriptionResponse::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class CallTranscriptionResponseTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -92,8 +80,8 @@ class CallTranscriptionResponseTest extends TestCase
      */
     public function testPropertyCallId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallId());
+        $this->assertEquals('test_string', self::$instance->getCallId());
     }
 
     /**
@@ -101,8 +89,8 @@ class CallTranscriptionResponseTest extends TestCase
      */
     public function testPropertyTranscriptionId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTranscriptionId());
+        $this->assertEquals('test_string', self::$instance->getTranscriptionId());
     }
 
     /**
@@ -110,7 +98,6 @@ class CallTranscriptionResponseTest extends TestCase
      */
     public function testPropertyTracks()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getTracks());
+        $this->assertInstanceOf(CallTranscription::class, self::$instance->getTracks()[0]);
+    }}

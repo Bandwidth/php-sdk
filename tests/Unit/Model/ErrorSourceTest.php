@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ErrorSource;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,19 @@ use PHPUnit\Framework\TestCase;
  */
 class ErrorSourceTest extends TestCase
 {
+    private static ErrorSource $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new ErrorSource([
+            'parameter' => 'test_string',
+            'field' => 'test_string',
+            'header' => 'test_string',
+            'reference' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class ErrorSourceTest extends TestCase
      */
     public function testErrorSource()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ErrorSource::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class ErrorSourceTest extends TestCase
      */
     public function testPropertyParameter()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getParameter());
+        $this->assertEquals('test_string', self::$instance->getParameter());
     }
 
     /**
@@ -92,8 +79,8 @@ class ErrorSourceTest extends TestCase
      */
     public function testPropertyField()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getField());
+        $this->assertEquals('test_string', self::$instance->getField());
     }
 
     /**
@@ -101,8 +88,8 @@ class ErrorSourceTest extends TestCase
      */
     public function testPropertyHeader()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getHeader());
+        $this->assertEquals('test_string', self::$instance->getHeader());
     }
 
     /**
@@ -110,7 +97,6 @@ class ErrorSourceTest extends TestCase
      */
     public function testPropertyReference()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getReference());
+        $this->assertEquals('test_string', self::$instance->getReference());
+    }}

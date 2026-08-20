@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CodeRequest;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,21 @@ use PHPUnit\Framework\TestCase;
  */
 class CodeRequestTest extends TestCase
 {
+    private static CodeRequest $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CodeRequest([
+            'to' => 'test_string',
+            'from' => 'test_string',
+            'application_id' => 'test_string',
+            'scope' => 'test_string',
+            'message' => 'test_string',
+            'digits' => 1
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class CodeRequestTest extends TestCase
      */
     public function testCodeRequest()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CodeRequest::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class CodeRequestTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTo());
+        $this->assertEquals('test_string', self::$instance->getTo());
     }
 
     /**
@@ -92,8 +81,8 @@ class CodeRequestTest extends TestCase
      */
     public function testPropertyFrom()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFrom());
+        $this->assertEquals('test_string', self::$instance->getFrom());
     }
 
     /**
@@ -101,8 +90,8 @@ class CodeRequestTest extends TestCase
      */
     public function testPropertyApplicationId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getApplicationId());
+        $this->assertEquals('test_string', self::$instance->getApplicationId());
     }
 
     /**
@@ -110,8 +99,8 @@ class CodeRequestTest extends TestCase
      */
     public function testPropertyScope()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getScope());
+        $this->assertEquals('test_string', self::$instance->getScope());
     }
 
     /**
@@ -119,8 +108,8 @@ class CodeRequestTest extends TestCase
      */
     public function testPropertyMessage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getMessage());
+        $this->assertEquals('test_string', self::$instance->getMessage());
     }
 
     /**
@@ -128,7 +117,6 @@ class CodeRequestTest extends TestCase
      */
     public function testPropertyDigits()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsInt(self::$instance->getDigits());
+        $this->assertEquals(1, self::$instance->getDigits());
+    }}

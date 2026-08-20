@@ -28,6 +28,12 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RbmActionBase;
+use Bandwidth\Model\RbmCardContent;
+use Bandwidth\Model\RbmStandaloneCard;
+use Bandwidth\Model\StandaloneCardOrientationEnum;
+use Bandwidth\Model\ThumbnailAlignmentEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +46,19 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmStandaloneCardTest extends TestCase
 {
+    private static RbmStandaloneCard $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RbmStandaloneCard([
+            'orientation' => StandaloneCardOrientationEnum::HORIZONTAL,
+            'thumbnail_image_alignment' => ThumbnailAlignmentEnum::LEFT,
+            'card_content' => new RbmCardContent([]),
+            'suggestions' => [new RbmActionBase([])]
+        ]);
     }
 
     /**
@@ -74,8 +66,7 @@ class RbmStandaloneCardTest extends TestCase
      */
     public function testRbmStandaloneCard()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmStandaloneCard::class, self::$instance);
     }
 
     /**
@@ -83,8 +74,8 @@ class RbmStandaloneCardTest extends TestCase
      */
     public function testPropertyOrientation()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(StandaloneCardOrientationEnum::class, self::$instance->getOrientation());
+        $this->assertSame(StandaloneCardOrientationEnum::HORIZONTAL, self::$instance->getOrientation());
     }
 
     /**
@@ -92,8 +83,8 @@ class RbmStandaloneCardTest extends TestCase
      */
     public function testPropertyThumbnailImageAlignment()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ThumbnailAlignmentEnum::class, self::$instance->getThumbnailImageAlignment());
+        $this->assertSame(ThumbnailAlignmentEnum::LEFT, self::$instance->getThumbnailImageAlignment());
     }
 
     /**
@@ -101,8 +92,7 @@ class RbmStandaloneCardTest extends TestCase
      */
     public function testPropertyCardContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmCardContent::class, self::$instance->getCardContent());
     }
 
     /**
@@ -110,7 +100,6 @@ class RbmStandaloneCardTest extends TestCase
      */
     public function testPropertySuggestions()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getSuggestions());
+        $this->assertInstanceOf(RbmActionBase::class, self::$instance->getSuggestions()[0]);
+    }}

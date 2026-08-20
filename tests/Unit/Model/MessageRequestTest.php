@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MessageRequest;
+use Bandwidth\Model\PriorityEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,23 @@ use PHPUnit\Framework\TestCase;
  */
 class MessageRequestTest extends TestCase
 {
+    private static MessageRequest $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MessageRequest([
+            'application_id' => 'test_string',
+            'to' => ['test_string'],
+            'from' => 'test_string',
+            'text' => 'test_string',
+            'media' => ['test_string'],
+            'tag' => 'test_string',
+            'priority' => PriorityEnum::_DEFAULT,
+            'expiration' => new \DateTime('2024-01-01T00:00:00+00:00')
+        ]);
     }
 
     /**
@@ -74,8 +67,7 @@ class MessageRequestTest extends TestCase
      */
     public function testMessageRequest()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MessageRequest::class, self::$instance);
     }
 
     /**
@@ -83,8 +75,8 @@ class MessageRequestTest extends TestCase
      */
     public function testPropertyApplicationId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getApplicationId());
+        $this->assertEquals('test_string', self::$instance->getApplicationId());
     }
 
     /**
@@ -92,8 +84,8 @@ class MessageRequestTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getTo());
+        $this->assertEquals(['test_string'], self::$instance->getTo());
     }
 
     /**
@@ -101,8 +93,8 @@ class MessageRequestTest extends TestCase
      */
     public function testPropertyFrom()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFrom());
+        $this->assertEquals('test_string', self::$instance->getFrom());
     }
 
     /**
@@ -110,8 +102,8 @@ class MessageRequestTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -119,8 +111,8 @@ class MessageRequestTest extends TestCase
      */
     public function testPropertyMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getMedia());
+        $this->assertEquals(['test_string'], self::$instance->getMedia());
     }
 
     /**
@@ -128,8 +120,8 @@ class MessageRequestTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
     }
 
     /**
@@ -137,8 +129,8 @@ class MessageRequestTest extends TestCase
      */
     public function testPropertyPriority()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(PriorityEnum::class, self::$instance->getPriority());
+        $this->assertSame(PriorityEnum::_DEFAULT, self::$instance->getPriority());
     }
 
     /**
@@ -146,7 +138,6 @@ class MessageRequestTest extends TestCase
      */
     public function testPropertyExpiration()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getExpiration());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getExpiration());
+    }}

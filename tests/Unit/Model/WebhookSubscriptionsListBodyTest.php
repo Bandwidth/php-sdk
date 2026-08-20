@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\LinksObject;
+use Bandwidth\Model\WebhookSubscription;
+use Bandwidth\Model\WebhookSubscriptionError;
+use Bandwidth\Model\WebhookSubscriptionsListBody;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,18 @@ use PHPUnit\Framework\TestCase;
  */
 class WebhookSubscriptionsListBodyTest extends TestCase
 {
+    private static WebhookSubscriptionsListBody $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new WebhookSubscriptionsListBody([
+            'links' => new LinksObject([]),
+            'errors' => [new WebhookSubscriptionError([])],
+            'data' => [new WebhookSubscription([])]
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class WebhookSubscriptionsListBodyTest extends TestCase
      */
     public function testWebhookSubscriptionsListBody()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(WebhookSubscriptionsListBody::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,7 @@ class WebhookSubscriptionsListBodyTest extends TestCase
      */
     public function testPropertyLinks()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(LinksObject::class, self::$instance->getLinks());
     }
 
     /**
@@ -92,8 +80,8 @@ class WebhookSubscriptionsListBodyTest extends TestCase
      */
     public function testPropertyErrors()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getErrors());
+        $this->assertInstanceOf(WebhookSubscriptionError::class, self::$instance->getErrors()[0]);
     }
 
     /**
@@ -101,7 +89,6 @@ class WebhookSubscriptionsListBodyTest extends TestCase
      */
     public function testPropertyData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getData());
+        $this->assertInstanceOf(WebhookSubscription::class, self::$instance->getData()[0]);
+    }}

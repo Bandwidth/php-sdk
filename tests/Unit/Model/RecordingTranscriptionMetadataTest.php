@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RecordingTranscriptionMetadata;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,19 @@ use PHPUnit\Framework\TestCase;
  */
 class RecordingTranscriptionMetadataTest extends TestCase
 {
+    private static RecordingTranscriptionMetadata $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RecordingTranscriptionMetadata([
+            'id' => 'test_string',
+            'status' => 'test_string',
+            'completed_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'url' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class RecordingTranscriptionMetadataTest extends TestCase
      */
     public function testRecordingTranscriptionMetadata()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RecordingTranscriptionMetadata::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class RecordingTranscriptionMetadataTest extends TestCase
      */
     public function testPropertyId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getId());
+        $this->assertEquals('test_string', self::$instance->getId());
     }
 
     /**
@@ -92,8 +79,8 @@ class RecordingTranscriptionMetadataTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getStatus());
+        $this->assertEquals('test_string', self::$instance->getStatus());
     }
 
     /**
@@ -101,8 +88,8 @@ class RecordingTranscriptionMetadataTest extends TestCase
      */
     public function testPropertyCompletedTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getCompletedTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getCompletedTime());
     }
 
     /**
@@ -110,7 +97,6 @@ class RecordingTranscriptionMetadataTest extends TestCase
      */
     public function testPropertyUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getUrl());
+        $this->assertEquals('test_string', self::$instance->getUrl());
+    }}

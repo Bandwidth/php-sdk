@@ -28,6 +28,13 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Address;
+use Bandwidth\Model\BusinessEntityTypeEnum;
+use Bandwidth\Model\BusinessRegistrationTypeEnum;
+use Bandwidth\Model\Contact;
+use Bandwidth\Model\OptInWorkflow;
+use Bandwidth\Model\VerificationUpdateRequest;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +47,34 @@ use PHPUnit\Framework\TestCase;
  */
 class VerificationUpdateRequestTest extends TestCase
 {
+    private static VerificationUpdateRequest $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new VerificationUpdateRequest([
+            'business_address' => new Address([]),
+            'business_contact' => new Contact([]),
+            'message_volume' => 1,
+            'use_case' => 'test_string',
+            'use_case_summary' => 'test_string',
+            'production_message_content' => 'test_string',
+            'opt_in_workflow' => new OptInWorkflow([]),
+            'additional_information' => 'test_string',
+            'isv_reseller' => 'test_string',
+            'privacy_policy_url' => 'test_string',
+            'terms_and_conditions_url' => 'test_string',
+            'business_dba' => 'test_string',
+            'business_registration_number' => 'test_string',
+            'business_registration_type' => BusinessRegistrationTypeEnum::EIN,
+            'business_entity_type' => BusinessEntityTypeEnum::SOLE_PROPRIETOR,
+            'business_registration_issuing_country' => 'test_string',
+            'help_message_response' => 'test_string',
+            'age_gated_content' => true,
+            'cv_token' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +82,7 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testVerificationUpdateRequest()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(VerificationUpdateRequest::class, self::$instance);
     }
 
     /**
@@ -83,8 +90,7 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyBusinessAddress()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Address::class, self::$instance->getBusinessAddress());
     }
 
     /**
@@ -92,8 +98,7 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyBusinessContact()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Contact::class, self::$instance->getBusinessContact());
     }
 
     /**
@@ -101,8 +106,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyMessageVolume()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getMessageVolume());
+        $this->assertEquals(1, self::$instance->getMessageVolume());
     }
 
     /**
@@ -110,8 +115,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyUseCase()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUseCase());
+        $this->assertEquals('test_string', self::$instance->getUseCase());
     }
 
     /**
@@ -119,8 +124,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyUseCaseSummary()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUseCaseSummary());
+        $this->assertEquals('test_string', self::$instance->getUseCaseSummary());
     }
 
     /**
@@ -128,8 +133,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyProductionMessageContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getProductionMessageContent());
+        $this->assertEquals('test_string', self::$instance->getProductionMessageContent());
     }
 
     /**
@@ -137,8 +142,7 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyOptInWorkflow()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(OptInWorkflow::class, self::$instance->getOptInWorkflow());
     }
 
     /**
@@ -146,8 +150,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyAdditionalInformation()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAdditionalInformation());
+        $this->assertEquals('test_string', self::$instance->getAdditionalInformation());
     }
 
     /**
@@ -155,8 +159,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyIsvReseller()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getIsvReseller());
+        $this->assertEquals('test_string', self::$instance->getIsvReseller());
     }
 
     /**
@@ -164,8 +168,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyPrivacyPolicyUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPrivacyPolicyUrl());
+        $this->assertEquals('test_string', self::$instance->getPrivacyPolicyUrl());
     }
 
     /**
@@ -173,8 +177,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyTermsAndConditionsUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTermsAndConditionsUrl());
+        $this->assertEquals('test_string', self::$instance->getTermsAndConditionsUrl());
     }
 
     /**
@@ -182,8 +186,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyBusinessDba()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getBusinessDba());
+        $this->assertEquals('test_string', self::$instance->getBusinessDba());
     }
 
     /**
@@ -191,8 +195,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyBusinessRegistrationNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getBusinessRegistrationNumber());
+        $this->assertEquals('test_string', self::$instance->getBusinessRegistrationNumber());
     }
 
     /**
@@ -200,8 +204,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyBusinessRegistrationType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(BusinessRegistrationTypeEnum::class, self::$instance->getBusinessRegistrationType());
+        $this->assertSame(BusinessRegistrationTypeEnum::EIN, self::$instance->getBusinessRegistrationType());
     }
 
     /**
@@ -209,8 +213,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyBusinessEntityType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(BusinessEntityTypeEnum::class, self::$instance->getBusinessEntityType());
+        $this->assertSame(BusinessEntityTypeEnum::SOLE_PROPRIETOR, self::$instance->getBusinessEntityType());
     }
 
     /**
@@ -218,8 +222,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyBusinessRegistrationIssuingCountry()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getBusinessRegistrationIssuingCountry());
+        $this->assertEquals('test_string', self::$instance->getBusinessRegistrationIssuingCountry());
     }
 
     /**
@@ -227,8 +231,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyHelpMessageResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getHelpMessageResponse());
+        $this->assertEquals('test_string', self::$instance->getHelpMessageResponse());
     }
 
     /**
@@ -236,8 +240,8 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyAgeGatedContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getAgeGatedContent());
+        $this->assertTrue(self::$instance->getAgeGatedContent());
     }
 
     /**
@@ -245,7 +249,6 @@ class VerificationUpdateRequestTest extends TestCase
      */
     public function testPropertyCvToken()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getCvToken());
+        $this->assertEquals('test_string', self::$instance->getCvToken());
+    }}

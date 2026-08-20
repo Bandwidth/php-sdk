@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\BrtcError;
+use Bandwidth\Model\BrtcErrorSource;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,20 @@ use PHPUnit\Framework\TestCase;
  */
 class BrtcErrorTest extends TestCase
 {
+    private static BrtcError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new BrtcError([
+            'id' => 'test_string',
+            'type' => 'test_string',
+            'description' => 'test_string',
+            'code' => 'test_string',
+            'source' => new BrtcErrorSource([])
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class BrtcErrorTest extends TestCase
      */
     public function testBrtcError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(BrtcError::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class BrtcErrorTest extends TestCase
      */
     public function testPropertyId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getId());
+        $this->assertEquals('test_string', self::$instance->getId());
     }
 
     /**
@@ -92,8 +81,8 @@ class BrtcErrorTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getType());
+        $this->assertEquals('test_string', self::$instance->getType());
     }
 
     /**
@@ -101,8 +90,8 @@ class BrtcErrorTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
     }
 
     /**
@@ -110,8 +99,8 @@ class BrtcErrorTest extends TestCase
      */
     public function testPropertyCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCode());
+        $this->assertEquals('test_string', self::$instance->getCode());
     }
 
     /**
@@ -119,7 +108,5 @@ class BrtcErrorTest extends TestCase
      */
     public function testPropertySource()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(BrtcErrorSource::class, self::$instance->getSource());
+    }}

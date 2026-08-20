@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MultiChannelMessageContent;
+use Bandwidth\Model\RbmMessageContentFile;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,17 @@ use PHPUnit\Framework\TestCase;
  */
 class MultiChannelMessageContentTest extends TestCase
 {
+    private static MultiChannelMessageContent $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MultiChannelMessageContent([
+            'text' => 'test_string',
+            'media' => new RbmMessageContentFile([])
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class MultiChannelMessageContentTest extends TestCase
      */
     public function testMultiChannelMessageContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelMessageContent::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class MultiChannelMessageContentTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -92,7 +78,5 @@ class MultiChannelMessageContentTest extends TestCase
      */
     public function testPropertyMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(RbmMessageContentFile::class, self::$instance->getMedia());
+    }}

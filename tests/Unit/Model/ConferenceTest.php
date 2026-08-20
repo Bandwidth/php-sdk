@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallbackMethodEnum;
+use Bandwidth\Model\Conference;
+use Bandwidth\Model\ConferenceMember;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,23 @@ use PHPUnit\Framework\TestCase;
  */
 class ConferenceTest extends TestCase
 {
+    private static Conference $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Conference([
+            'id' => 'test_string',
+            'name' => 'test_string',
+            'created_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'completed_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'conference_event_url' => 'test_string',
+            'conference_event_method' => CallbackMethodEnum::GET,
+            'tag' => 'test_string',
+            'active_members' => [new ConferenceMember([])]
+        ]);
     }
 
     /**
@@ -74,8 +68,7 @@ class ConferenceTest extends TestCase
      */
     public function testConference()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Conference::class, self::$instance);
     }
 
     /**
@@ -83,8 +76,8 @@ class ConferenceTest extends TestCase
      */
     public function testPropertyId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getId());
+        $this->assertEquals('test_string', self::$instance->getId());
     }
 
     /**
@@ -92,8 +85,8 @@ class ConferenceTest extends TestCase
      */
     public function testPropertyName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getName());
+        $this->assertEquals('test_string', self::$instance->getName());
     }
 
     /**
@@ -101,8 +94,8 @@ class ConferenceTest extends TestCase
      */
     public function testPropertyCreatedTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getCreatedTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getCreatedTime());
     }
 
     /**
@@ -110,8 +103,8 @@ class ConferenceTest extends TestCase
      */
     public function testPropertyCompletedTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getCompletedTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getCompletedTime());
     }
 
     /**
@@ -119,8 +112,8 @@ class ConferenceTest extends TestCase
      */
     public function testPropertyConferenceEventUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getConferenceEventUrl());
+        $this->assertEquals('test_string', self::$instance->getConferenceEventUrl());
     }
 
     /**
@@ -128,8 +121,8 @@ class ConferenceTest extends TestCase
      */
     public function testPropertyConferenceEventMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallbackMethodEnum::class, self::$instance->getConferenceEventMethod());
+        $this->assertSame(CallbackMethodEnum::GET, self::$instance->getConferenceEventMethod());
     }
 
     /**
@@ -137,8 +130,8 @@ class ConferenceTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
     }
 
     /**
@@ -146,7 +139,6 @@ class ConferenceTest extends TestCase
      */
     public function testPropertyActiveMembers()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getActiveMembers());
+        $this->assertInstanceOf(ConferenceMember::class, self::$instance->getActiveMembers()[0]);
+    }}

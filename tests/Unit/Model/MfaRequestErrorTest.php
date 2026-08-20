@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MfaRequestError;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class MfaRequestErrorTest extends TestCase
 {
+    private static MfaRequestError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MfaRequestError([
+            'error' => 'test_string',
+            'request_id' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class MfaRequestErrorTest extends TestCase
      */
     public function testMfaRequestError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MfaRequestError::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class MfaRequestErrorTest extends TestCase
      */
     public function testPropertyError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getError());
+        $this->assertEquals('test_string', self::$instance->getError());
     }
 
     /**
@@ -92,7 +77,6 @@ class MfaRequestErrorTest extends TestCase
      */
     public function testPropertyRequestId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getRequestId());
+        $this->assertEquals('test_string', self::$instance->getRequestId());
+    }}

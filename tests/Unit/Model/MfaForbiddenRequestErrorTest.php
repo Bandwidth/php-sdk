@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MfaForbiddenRequestError;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,16 @@ use PHPUnit\Framework\TestCase;
  */
 class MfaForbiddenRequestErrorTest extends TestCase
 {
+    private static MfaForbiddenRequestError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MfaForbiddenRequestError([
+            'message' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +59,7 @@ class MfaForbiddenRequestErrorTest extends TestCase
      */
     public function testMfaForbiddenRequestError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MfaForbiddenRequestError::class, self::$instance);
     }
 
     /**
@@ -83,7 +67,6 @@ class MfaForbiddenRequestErrorTest extends TestCase
      */
     public function testPropertyMessage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getMessage());
+        $this->assertEquals('test_string', self::$instance->getMessage());
+    }}

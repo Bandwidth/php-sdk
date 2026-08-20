@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\LookupErrorSchema;
+use Bandwidth\Model\LookupErrorSchemaMeta;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,19 @@ use PHPUnit\Framework\TestCase;
  */
 class LookupErrorSchemaTest extends TestCase
 {
+    private static LookupErrorSchema $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new LookupErrorSchema([
+            'code' => 'test_string',
+            'description' => 'test_string',
+            'type' => 'test_string',
+            'meta' => new LookupErrorSchemaMeta([])
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class LookupErrorSchemaTest extends TestCase
      */
     public function testLookupErrorSchema()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(LookupErrorSchema::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class LookupErrorSchemaTest extends TestCase
      */
     public function testPropertyCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCode());
+        $this->assertEquals('test_string', self::$instance->getCode());
     }
 
     /**
@@ -92,8 +80,8 @@ class LookupErrorSchemaTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
     }
 
     /**
@@ -101,8 +89,8 @@ class LookupErrorSchemaTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getType());
+        $this->assertEquals('test_string', self::$instance->getType());
     }
 
     /**
@@ -110,7 +98,5 @@ class LookupErrorSchemaTest extends TestCase
      */
     public function testPropertyMeta()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(LookupErrorSchemaMeta::class, self::$instance->getMeta());
+    }}

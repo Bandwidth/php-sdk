@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ConferenceRecordingAvailableCallback;
+use Bandwidth\Model\FileFormatEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,29 @@ use PHPUnit\Framework\TestCase;
  */
 class ConferenceRecordingAvailableCallbackTest extends TestCase
 {
+    private static ConferenceRecordingAvailableCallback $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new ConferenceRecordingAvailableCallback([
+            'event_type' => 'test_string',
+            'event_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'conference_id' => 'test_string',
+            'name' => 'test_string',
+            'account_id' => 'test_string',
+            'recording_id' => 'test_string',
+            'channels' => 1,
+            'start_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'end_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'duration' => 'test_string',
+            'file_format' => FileFormatEnum::MP3,
+            'media_url' => 'test_string',
+            'tag' => 'test_string',
+            'status' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +73,7 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testConferenceRecordingAvailableCallback()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ConferenceRecordingAvailableCallback::class, self::$instance);
     }
 
     /**
@@ -83,8 +81,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyEventType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEventType());
+        $this->assertEquals('test_string', self::$instance->getEventType());
     }
 
     /**
@@ -92,8 +90,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyEventTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEventTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEventTime());
     }
 
     /**
@@ -101,8 +99,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyConferenceId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getConferenceId());
+        $this->assertEquals('test_string', self::$instance->getConferenceId());
     }
 
     /**
@@ -110,8 +108,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getName());
+        $this->assertEquals('test_string', self::$instance->getName());
     }
 
     /**
@@ -119,8 +117,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -128,8 +126,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyRecordingId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getRecordingId());
+        $this->assertEquals('test_string', self::$instance->getRecordingId());
     }
 
     /**
@@ -137,8 +135,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyChannels()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getChannels());
+        $this->assertEquals(1, self::$instance->getChannels());
     }
 
     /**
@@ -146,8 +144,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyStartTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getStartTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getStartTime());
     }
 
     /**
@@ -155,8 +153,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyEndTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEndTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEndTime());
     }
 
     /**
@@ -164,8 +162,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyDuration()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDuration());
+        $this->assertEquals('test_string', self::$instance->getDuration());
     }
 
     /**
@@ -173,8 +171,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyFileFormat()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(FileFormatEnum::class, self::$instance->getFileFormat());
+        $this->assertSame(FileFormatEnum::MP3, self::$instance->getFileFormat());
     }
 
     /**
@@ -182,8 +180,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyMediaUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getMediaUrl());
+        $this->assertEquals('test_string', self::$instance->getMediaUrl());
     }
 
     /**
@@ -191,8 +189,8 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
     }
 
     /**
@@ -200,7 +198,6 @@ class ConferenceRecordingAvailableCallbackTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getStatus());
+        $this->assertEquals('test_string', self::$instance->getStatus());
+    }}

@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\AccountStatistics;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class AccountStatisticsTest extends TestCase
 {
+    private static AccountStatistics $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new AccountStatistics([
+            'current_call_queue_size' => 10,
+            'max_call_queue_size' => 100
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class AccountStatisticsTest extends TestCase
      */
     public function testAccountStatistics()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(AccountStatistics::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class AccountStatisticsTest extends TestCase
      */
     public function testPropertyCurrentCallQueueSize()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getCurrentCallQueueSize());
+        $this->assertEquals(10, self::$instance->getCurrentCallQueueSize());
     }
 
     /**
@@ -92,7 +77,7 @@ class AccountStatisticsTest extends TestCase
      */
     public function testPropertyMaxCallQueueSize()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getMaxCallQueueSize());
+        $this->assertEquals(100, self::$instance->getMaxCallQueueSize());
     }
 }

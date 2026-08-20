@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CardWidthEnum;
+use Bandwidth\Model\RbmActionBase;
+use Bandwidth\Model\RbmCardContent;
+use Bandwidth\Model\RbmMessageCarouselCard;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,18 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmMessageCarouselCardTest extends TestCase
 {
+    private static RbmMessageCarouselCard $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RbmMessageCarouselCard([
+            'card_width' => CardWidthEnum::SMALL,
+            'card_contents' => [new RbmCardContent([])],
+            'suggestions' => [new RbmActionBase([])]
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class RbmMessageCarouselCardTest extends TestCase
      */
     public function testRbmMessageCarouselCard()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmMessageCarouselCard::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class RbmMessageCarouselCardTest extends TestCase
      */
     public function testPropertyCardWidth()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CardWidthEnum::class, self::$instance->getCardWidth());
+        $this->assertSame(CardWidthEnum::SMALL, self::$instance->getCardWidth());
     }
 
     /**
@@ -92,8 +81,8 @@ class RbmMessageCarouselCardTest extends TestCase
      */
     public function testPropertyCardContents()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getCardContents());
+        $this->assertInstanceOf(RbmCardContent::class, self::$instance->getCardContents()[0]);
     }
 
     /**
@@ -101,7 +90,6 @@ class RbmMessageCarouselCardTest extends TestCase
      */
     public function testPropertySuggestions()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getSuggestions());
+        $this->assertInstanceOf(RbmActionBase::class, self::$instance->getSuggestions()[0]);
+    }}

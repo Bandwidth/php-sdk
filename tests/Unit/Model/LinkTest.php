@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Link;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class LinkTest extends TestCase
 {
+    private static Link $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Link([
+            'rel' => 'test_string',
+            'href' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class LinkTest extends TestCase
      */
     public function testLink()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Link::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class LinkTest extends TestCase
      */
     public function testPropertyRel()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getRel());
+        $this->assertEquals('test_string', self::$instance->getRel());
     }
 
     /**
@@ -92,7 +77,6 @@ class LinkTest extends TestCase
      */
     public function testPropertyHref()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getHref());
+        $this->assertEquals('test_string', self::$instance->getHref());
+    }}

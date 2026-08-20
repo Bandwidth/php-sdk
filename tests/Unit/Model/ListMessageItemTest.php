@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ListMessageDirectionEnum;
+use Bandwidth\Model\ListMessageItem;
+use Bandwidth\Model\MessageStatusEnum;
+use Bandwidth\Model\MessageTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,38 @@ use PHPUnit\Framework\TestCase;
  */
 class ListMessageItemTest extends TestCase
 {
+    private static ListMessageItem $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new ListMessageItem([
+            'message_id' => 'test_string',
+            'account_id' => 'test_string',
+            'source_tn' => 'test_string',
+            'destination_tn' => 'test_string',
+            'message_status' => MessageStatusEnum::RECEIVED,
+            'message_direction' => ListMessageDirectionEnum::INBOUND,
+            'message_type' => MessageTypeEnum::SMS,
+            'segment_count' => 1,
+            'error_code' => 1,
+            'receive_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'carrier_name' => 'test_string',
+            'message_size' => 1,
+            'message_length' => 1,
+            'attachment_count' => 1,
+            'recipient_count' => 1,
+            'campaign_class' => 'test_string',
+            'campaign_id' => 'test_string',
+            'bw_latency' => 1,
+            'carrier_latency' => 1,
+            'calling_number_country_a3' => 'test_string',
+            'called_number_country_a3' => 'test_string',
+            'product' => 'test_string',
+            'location' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +84,7 @@ class ListMessageItemTest extends TestCase
      */
     public function testListMessageItem()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ListMessageItem::class, self::$instance);
     }
 
     /**
@@ -83,8 +92,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyMessageId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getMessageId());
+        $this->assertEquals('test_string', self::$instance->getMessageId());
     }
 
     /**
@@ -92,8 +101,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -101,8 +110,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertySourceTn()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getSourceTn());
+        $this->assertEquals('test_string', self::$instance->getSourceTn());
     }
 
     /**
@@ -110,8 +119,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyDestinationTn()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDestinationTn());
+        $this->assertEquals('test_string', self::$instance->getDestinationTn());
     }
 
     /**
@@ -119,8 +128,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyMessageStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MessageStatusEnum::class, self::$instance->getMessageStatus());
+        $this->assertSame(MessageStatusEnum::RECEIVED, self::$instance->getMessageStatus());
     }
 
     /**
@@ -128,8 +137,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyMessageDirection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ListMessageDirectionEnum::class, self::$instance->getMessageDirection());
+        $this->assertSame(ListMessageDirectionEnum::INBOUND, self::$instance->getMessageDirection());
     }
 
     /**
@@ -137,8 +146,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyMessageType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MessageTypeEnum::class, self::$instance->getMessageType());
+        $this->assertSame(MessageTypeEnum::SMS, self::$instance->getMessageType());
     }
 
     /**
@@ -146,8 +155,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertySegmentCount()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getSegmentCount());
+        $this->assertEquals(1, self::$instance->getSegmentCount());
     }
 
     /**
@@ -155,8 +164,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyErrorCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getErrorCode());
+        $this->assertEquals(1, self::$instance->getErrorCode());
     }
 
     /**
@@ -164,8 +173,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyReceiveTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getReceiveTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getReceiveTime());
     }
 
     /**
@@ -173,8 +182,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyCarrierName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCarrierName());
+        $this->assertEquals('test_string', self::$instance->getCarrierName());
     }
 
     /**
@@ -182,8 +191,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyMessageSize()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getMessageSize());
+        $this->assertEquals(1, self::$instance->getMessageSize());
     }
 
     /**
@@ -191,8 +200,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyMessageLength()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getMessageLength());
+        $this->assertEquals(1, self::$instance->getMessageLength());
     }
 
     /**
@@ -200,8 +209,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyAttachmentCount()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getAttachmentCount());
+        $this->assertEquals(1, self::$instance->getAttachmentCount());
     }
 
     /**
@@ -209,8 +218,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyRecipientCount()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getRecipientCount());
+        $this->assertEquals(1, self::$instance->getRecipientCount());
     }
 
     /**
@@ -218,8 +227,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyCampaignClass()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCampaignClass());
+        $this->assertEquals('test_string', self::$instance->getCampaignClass());
     }
 
     /**
@@ -227,8 +236,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyCampaignId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCampaignId());
+        $this->assertEquals('test_string', self::$instance->getCampaignId());
     }
 
     /**
@@ -236,8 +245,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyBwLatency()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getBwLatency());
+        $this->assertEquals(1, self::$instance->getBwLatency());
     }
 
     /**
@@ -245,8 +254,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyCarrierLatency()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getCarrierLatency());
+        $this->assertEquals(1, self::$instance->getCarrierLatency());
     }
 
     /**
@@ -254,8 +263,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyCallingNumberCountryA3()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallingNumberCountryA3());
+        $this->assertEquals('test_string', self::$instance->getCallingNumberCountryA3());
     }
 
     /**
@@ -263,8 +272,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyCalledNumberCountryA3()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCalledNumberCountryA3());
+        $this->assertEquals('test_string', self::$instance->getCalledNumberCountryA3());
     }
 
     /**
@@ -272,8 +281,8 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyProduct()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getProduct());
+        $this->assertEquals('test_string', self::$instance->getProduct());
     }
 
     /**
@@ -281,7 +290,6 @@ class ListMessageItemTest extends TestCase
      */
     public function testPropertyLocation()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getLocation());
+        $this->assertEquals('test_string', self::$instance->getLocation());
+    }}

@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ErrorObject;
+use Bandwidth\Model\Link;
+use Bandwidth\Model\MultiChannelError;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,18 @@ use PHPUnit\Framework\TestCase;
  */
 class MultiChannelErrorTest extends TestCase
 {
+    private static MultiChannelError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MultiChannelError([
+            'links' => [new Link([])],
+            'data' => (object) ['key' => 'value'],
+            'errors' => [new ErrorObject([])]
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class MultiChannelErrorTest extends TestCase
      */
     public function testMultiChannelError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelError::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class MultiChannelErrorTest extends TestCase
      */
     public function testPropertyLinks()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getLinks());
+        $this->assertInstanceOf(Link::class, self::$instance->getLinks()[0]);
     }
 
     /**
@@ -92,8 +80,8 @@ class MultiChannelErrorTest extends TestCase
      */
     public function testPropertyData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsObject(self::$instance->getData());
+        $this->assertEquals((object) ['key' => 'value'], self::$instance->getData());
     }
 
     /**
@@ -101,7 +89,6 @@ class MultiChannelErrorTest extends TestCase
      */
     public function testPropertyErrors()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getErrors());
+        $this->assertInstanceOf(ErrorObject::class, self::$instance->getErrors()[0]);
+    }}

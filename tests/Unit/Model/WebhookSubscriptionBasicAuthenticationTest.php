@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\WebhookSubscriptionBasicAuthentication;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class WebhookSubscriptionBasicAuthenticationTest extends TestCase
 {
+    private static WebhookSubscriptionBasicAuthentication $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new WebhookSubscriptionBasicAuthentication([
+            'username' => 'test_string',
+            'password' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class WebhookSubscriptionBasicAuthenticationTest extends TestCase
      */
     public function testWebhookSubscriptionBasicAuthentication()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(WebhookSubscriptionBasicAuthentication::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class WebhookSubscriptionBasicAuthenticationTest extends TestCase
      */
     public function testPropertyUsername()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUsername());
+        $this->assertEquals('test_string', self::$instance->getUsername());
     }
 
     /**
@@ -92,7 +77,6 @@ class WebhookSubscriptionBasicAuthenticationTest extends TestCase
      */
     public function testPropertyPassword()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getPassword());
+        $this->assertEquals('test_string', self::$instance->getPassword());
+    }}

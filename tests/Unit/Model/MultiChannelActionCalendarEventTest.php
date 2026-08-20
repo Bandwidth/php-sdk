@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MultiChannelActionCalendarEvent;
+use Bandwidth\Model\RbmActionTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,22 @@ use PHPUnit\Framework\TestCase;
  */
 class MultiChannelActionCalendarEventTest extends TestCase
 {
+    private static MultiChannelActionCalendarEvent $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MultiChannelActionCalendarEvent([
+            'type' => RbmActionTypeEnum::REPLY,
+            'text' => 'test_string',
+            'postback_data' => 'test_string',
+            'title' => 'test_string',
+            'start_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'end_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'description' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +66,7 @@ class MultiChannelActionCalendarEventTest extends TestCase
      */
     public function testMultiChannelActionCalendarEvent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelActionCalendarEvent::class, self::$instance);
     }
 
     /**
@@ -83,8 +74,8 @@ class MultiChannelActionCalendarEventTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmActionTypeEnum::class, self::$instance->getType());
+        $this->assertSame(RbmActionTypeEnum::REPLY, self::$instance->getType());
     }
 
     /**
@@ -92,8 +83,8 @@ class MultiChannelActionCalendarEventTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -101,8 +92,8 @@ class MultiChannelActionCalendarEventTest extends TestCase
      */
     public function testPropertyPostbackData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPostbackData());
+        $this->assertEquals('test_string', self::$instance->getPostbackData());
     }
 
     /**
@@ -110,8 +101,8 @@ class MultiChannelActionCalendarEventTest extends TestCase
      */
     public function testPropertyTitle()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTitle());
+        $this->assertEquals('test_string', self::$instance->getTitle());
     }
 
     /**
@@ -119,8 +110,8 @@ class MultiChannelActionCalendarEventTest extends TestCase
      */
     public function testPropertyStartTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getStartTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getStartTime());
     }
 
     /**
@@ -128,8 +119,8 @@ class MultiChannelActionCalendarEventTest extends TestCase
      */
     public function testPropertyEndTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEndTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEndTime());
     }
 
     /**
@@ -137,7 +128,6 @@ class MultiChannelActionCalendarEventTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
+    }}

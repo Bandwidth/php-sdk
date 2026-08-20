@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Transcription;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class TranscriptionTest extends TestCase
 {
+    private static Transcription $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Transcription([
+            'speaker' => 1,
+            'text' => 'test_string',
+            'confidence' => 1.5
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class TranscriptionTest extends TestCase
      */
     public function testTranscription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Transcription::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class TranscriptionTest extends TestCase
      */
     public function testPropertySpeaker()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getSpeaker());
+        $this->assertEquals(1, self::$instance->getSpeaker());
     }
 
     /**
@@ -92,8 +78,8 @@ class TranscriptionTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -101,7 +87,6 @@ class TranscriptionTest extends TestCase
      */
     public function testPropertyConfidence()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsFloat(self::$instance->getConfidence());
+        $this->assertEquals(1.5, self::$instance->getConfidence());
+    }}

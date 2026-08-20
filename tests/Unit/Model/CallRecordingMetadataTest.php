@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallDirectionEnum;
+use Bandwidth\Model\CallRecordingMetadata;
+use Bandwidth\Model\FileFormatEnum;
+use Bandwidth\Model\RecordingTranscriptionMetadata;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,34 @@ use PHPUnit\Framework\TestCase;
  */
 class CallRecordingMetadataTest extends TestCase
 {
+    private static CallRecordingMetadata $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CallRecordingMetadata([
+            'application_id' => 'test_string',
+            'account_id' => 'test_string',
+            'call_id' => 'test_string',
+            'parent_call_id' => 'test_string',
+            'recording_id' => 'test_string',
+            'to' => 'test_string',
+            'from' => 'test_string',
+            'transfer_caller_id' => 'test_string',
+            'transfer_to' => 'test_string',
+            'duration' => 'test_string',
+            'direction' => CallDirectionEnum::INBOUND,
+            'channels' => 1,
+            'start_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'end_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'file_format' => FileFormatEnum::MP3,
+            'status' => 'test_string',
+            'media_url' => 'test_string',
+            'transcription' => new RecordingTranscriptionMetadata([]),
+            'recording_name' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +80,7 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testCallRecordingMetadata()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallRecordingMetadata::class, self::$instance);
     }
 
     /**
@@ -83,8 +88,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyApplicationId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getApplicationId());
+        $this->assertEquals('test_string', self::$instance->getApplicationId());
     }
 
     /**
@@ -92,8 +97,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -101,8 +106,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyCallId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallId());
+        $this->assertEquals('test_string', self::$instance->getCallId());
     }
 
     /**
@@ -110,8 +115,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyParentCallId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getParentCallId());
+        $this->assertEquals('test_string', self::$instance->getParentCallId());
     }
 
     /**
@@ -119,8 +124,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyRecordingId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getRecordingId());
+        $this->assertEquals('test_string', self::$instance->getRecordingId());
     }
 
     /**
@@ -128,8 +133,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTo());
+        $this->assertEquals('test_string', self::$instance->getTo());
     }
 
     /**
@@ -137,8 +142,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyFrom()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFrom());
+        $this->assertEquals('test_string', self::$instance->getFrom());
     }
 
     /**
@@ -146,8 +151,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyTransferCallerId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTransferCallerId());
+        $this->assertEquals('test_string', self::$instance->getTransferCallerId());
     }
 
     /**
@@ -155,8 +160,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyTransferTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTransferTo());
+        $this->assertEquals('test_string', self::$instance->getTransferTo());
     }
 
     /**
@@ -164,8 +169,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyDuration()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDuration());
+        $this->assertEquals('test_string', self::$instance->getDuration());
     }
 
     /**
@@ -173,8 +178,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyDirection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallDirectionEnum::class, self::$instance->getDirection());
+        $this->assertSame(CallDirectionEnum::INBOUND, self::$instance->getDirection());
     }
 
     /**
@@ -182,8 +187,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyChannels()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getChannels());
+        $this->assertEquals(1, self::$instance->getChannels());
     }
 
     /**
@@ -191,8 +196,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyStartTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getStartTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getStartTime());
     }
 
     /**
@@ -200,8 +205,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyEndTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEndTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEndTime());
     }
 
     /**
@@ -209,8 +214,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyFileFormat()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(FileFormatEnum::class, self::$instance->getFileFormat());
+        $this->assertSame(FileFormatEnum::MP3, self::$instance->getFileFormat());
     }
 
     /**
@@ -218,8 +223,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getStatus());
+        $this->assertEquals('test_string', self::$instance->getStatus());
     }
 
     /**
@@ -227,8 +232,8 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyMediaUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getMediaUrl());
+        $this->assertEquals('test_string', self::$instance->getMediaUrl());
     }
 
     /**
@@ -236,8 +241,7 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyTranscription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RecordingTranscriptionMetadata::class, self::$instance->getTranscription());
     }
 
     /**
@@ -245,7 +249,6 @@ class CallRecordingMetadataTest extends TestCase
      */
     public function testPropertyRecordingName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getRecordingName());
+        $this->assertEquals('test_string', self::$instance->getRecordingName());
+    }}

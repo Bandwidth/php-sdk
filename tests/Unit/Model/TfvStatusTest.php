@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\AdditionalDenialReason;
+use Bandwidth\Model\TfvStatus;
+use Bandwidth\Model\TfvStatusEnum;
+use Bandwidth\Model\TfvSubmissionInfo;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,28 @@ use PHPUnit\Framework\TestCase;
  */
 class TfvStatusTest extends TestCase
 {
+    private static TfvStatus $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new TfvStatus([
+            'phone_number' => 'test_string',
+            'status' => TfvStatusEnum::VERIFIED,
+            'internal_ticket_number' => 'test_string',
+            'decline_reason_description' => 'test_string',
+            'denial_status_code' => 1,
+            'additional_denial_reasons' => [new AdditionalDenialReason([])],
+            'resubmit_allowed' => true,
+            'created_date_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'modified_date_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'submission' => new TfvSubmissionInfo([]),
+            'blocked' => true,
+            'blocked_reason' => 'test_string',
+            'cv_token' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +74,7 @@ class TfvStatusTest extends TestCase
      */
     public function testTfvStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(TfvStatus::class, self::$instance);
     }
 
     /**
@@ -83,8 +82,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyPhoneNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPhoneNumber());
+        $this->assertEquals('test_string', self::$instance->getPhoneNumber());
     }
 
     /**
@@ -92,8 +91,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(TfvStatusEnum::class, self::$instance->getStatus());
+        $this->assertSame(TfvStatusEnum::VERIFIED, self::$instance->getStatus());
     }
 
     /**
@@ -101,8 +100,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyInternalTicketNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getInternalTicketNumber());
+        $this->assertEquals('test_string', self::$instance->getInternalTicketNumber());
     }
 
     /**
@@ -110,8 +109,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyDeclineReasonDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDeclineReasonDescription());
+        $this->assertEquals('test_string', self::$instance->getDeclineReasonDescription());
     }
 
     /**
@@ -119,8 +118,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyDenialStatusCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getDenialStatusCode());
+        $this->assertEquals(1, self::$instance->getDenialStatusCode());
     }
 
     /**
@@ -128,8 +127,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyAdditionalDenialReasons()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getAdditionalDenialReasons());
+        $this->assertInstanceOf(AdditionalDenialReason::class, self::$instance->getAdditionalDenialReasons()[0]);
     }
 
     /**
@@ -137,8 +136,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyResubmitAllowed()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getResubmitAllowed());
+        $this->assertTrue(self::$instance->getResubmitAllowed());
     }
 
     /**
@@ -146,8 +145,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyCreatedDateTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getCreatedDateTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getCreatedDateTime());
     }
 
     /**
@@ -155,8 +154,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyModifiedDateTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getModifiedDateTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getModifiedDateTime());
     }
 
     /**
@@ -164,8 +163,7 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertySubmission()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(TfvSubmissionInfo::class, self::$instance->getSubmission());
     }
 
     /**
@@ -173,8 +171,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyBlocked()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getBlocked());
+        $this->assertTrue(self::$instance->getBlocked());
     }
 
     /**
@@ -182,8 +180,8 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyBlockedReason()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getBlockedReason());
+        $this->assertEquals('test_string', self::$instance->getBlockedReason());
     }
 
     /**
@@ -191,7 +189,6 @@ class TfvStatusTest extends TestCase
      */
     public function testPropertyCvToken()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getCvToken());
+        $this->assertEquals('test_string', self::$instance->getCvToken());
+    }}

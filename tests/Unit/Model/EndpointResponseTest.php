@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\BrtcError;
+use Bandwidth\Model\BrtcLink;
+use Bandwidth\Model\Endpoint;
+use Bandwidth\Model\EndpointResponse;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,18 @@ use PHPUnit\Framework\TestCase;
  */
 class EndpointResponseTest extends TestCase
 {
+    private static EndpointResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new EndpointResponse([
+            'links' => [new BrtcLink([])],
+            'data' => new Endpoint([]),
+            'errors' => [new BrtcError([])]
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class EndpointResponseTest extends TestCase
      */
     public function testEndpointResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(EndpointResponse::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class EndpointResponseTest extends TestCase
      */
     public function testPropertyLinks()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getLinks());
+        $this->assertInstanceOf(BrtcLink::class, self::$instance->getLinks()[0]);
     }
 
     /**
@@ -92,8 +81,7 @@ class EndpointResponseTest extends TestCase
      */
     public function testPropertyData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Endpoint::class, self::$instance->getData());
     }
 
     /**
@@ -101,7 +89,6 @@ class EndpointResponseTest extends TestCase
      */
     public function testPropertyErrors()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getErrors());
+        $this->assertInstanceOf(BrtcError::class, self::$instance->getErrors()[0]);
+    }}

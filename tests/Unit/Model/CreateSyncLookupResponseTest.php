@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CreateSyncLookupResponse;
+use Bandwidth\Model\CreateSyncLookupResponseData;
+use Bandwidth\Model\LinkSchema;
+use Bandwidth\Model\LookupErrorSchema;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,18 @@ use PHPUnit\Framework\TestCase;
  */
 class CreateSyncLookupResponseTest extends TestCase
 {
+    private static CreateSyncLookupResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CreateSyncLookupResponse([
+            'links' => [new LinkSchema([])],
+            'data' => new CreateSyncLookupResponseData([]),
+            'errors' => [new LookupErrorSchema([])]
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class CreateSyncLookupResponseTest extends TestCase
      */
     public function testCreateSyncLookupResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateSyncLookupResponse::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class CreateSyncLookupResponseTest extends TestCase
      */
     public function testPropertyLinks()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getLinks());
+        $this->assertInstanceOf(LinkSchema::class, self::$instance->getLinks()[0]);
     }
 
     /**
@@ -92,8 +81,7 @@ class CreateSyncLookupResponseTest extends TestCase
      */
     public function testPropertyData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateSyncLookupResponseData::class, self::$instance->getData());
     }
 
     /**
@@ -101,7 +89,6 @@ class CreateSyncLookupResponseTest extends TestCase
      */
     public function testPropertyErrors()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getErrors());
+        $this->assertInstanceOf(LookupErrorSchema::class, self::$instance->getErrors()[0]);
+    }}

@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\TfvBasicAuthentication;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,17 @@ use PHPUnit\Framework\TestCase;
  */
 class TfvBasicAuthenticationTest extends TestCase
 {
+    private static TfvBasicAuthentication $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new TfvBasicAuthentication([
+            'username' => 'test_string',
+            'password' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class TfvBasicAuthenticationTest extends TestCase
      */
     public function testTfvBasicAuthentication()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(TfvBasicAuthentication::class, self::$instance);
     }
 
     /**
@@ -83,8 +68,8 @@ class TfvBasicAuthenticationTest extends TestCase
      */
     public function testPropertyUsername()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUsername());
+        $this->assertEquals('test_string', self::$instance->getUsername());
     }
 
     /**
@@ -92,7 +77,6 @@ class TfvBasicAuthenticationTest extends TestCase
      */
     public function testPropertyPassword()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getPassword());
+        $this->assertEquals('test_string', self::$instance->getPassword());
+    }}

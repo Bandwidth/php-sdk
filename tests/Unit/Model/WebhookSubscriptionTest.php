@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\WebhookSubscription;
+use Bandwidth\Model\WebhookSubscriptionBasicAuthentication;
+use Bandwidth\Model\WebhookSubscriptionTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,22 @@ use PHPUnit\Framework\TestCase;
  */
 class WebhookSubscriptionTest extends TestCase
 {
+    private static WebhookSubscription $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new WebhookSubscription([
+            'id' => 'test_string',
+            'account_id' => 'test_string',
+            'callback_url' => 'test_string',
+            'type' => WebhookSubscriptionTypeEnum::TOLLFREE_VERIFICATION_STATUS,
+            'basic_authentication' => new WebhookSubscriptionBasicAuthentication([]),
+            'created_date' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'modified_date' => new \DateTime('2024-01-01T00:00:00+00:00')
+        ]);
     }
 
     /**
@@ -74,8 +67,7 @@ class WebhookSubscriptionTest extends TestCase
      */
     public function testWebhookSubscription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(WebhookSubscription::class, self::$instance);
     }
 
     /**
@@ -83,8 +75,8 @@ class WebhookSubscriptionTest extends TestCase
      */
     public function testPropertyId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getId());
+        $this->assertEquals('test_string', self::$instance->getId());
     }
 
     /**
@@ -92,8 +84,8 @@ class WebhookSubscriptionTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -101,8 +93,8 @@ class WebhookSubscriptionTest extends TestCase
      */
     public function testPropertyCallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getCallbackUrl());
     }
 
     /**
@@ -110,8 +102,8 @@ class WebhookSubscriptionTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(WebhookSubscriptionTypeEnum::class, self::$instance->getType());
+        $this->assertSame(WebhookSubscriptionTypeEnum::TOLLFREE_VERIFICATION_STATUS, self::$instance->getType());
     }
 
     /**
@@ -119,8 +111,7 @@ class WebhookSubscriptionTest extends TestCase
      */
     public function testPropertyBasicAuthentication()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(WebhookSubscriptionBasicAuthentication::class, self::$instance->getBasicAuthentication());
     }
 
     /**
@@ -128,8 +119,8 @@ class WebhookSubscriptionTest extends TestCase
      */
     public function testPropertyCreatedDate()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getCreatedDate());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getCreatedDate());
     }
 
     /**
@@ -137,7 +128,6 @@ class WebhookSubscriptionTest extends TestCase
      */
     public function testPropertyModifiedDate()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getModifiedDate());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getModifiedDate());
+    }}

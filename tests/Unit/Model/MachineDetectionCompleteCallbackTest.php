@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallDirectionEnum;
+use Bandwidth\Model\MachineDetectionCompleteCallback;
+use Bandwidth\Model\MachineDetectionResult;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,29 @@ use PHPUnit\Framework\TestCase;
  */
 class MachineDetectionCompleteCallbackTest extends TestCase
 {
+    private static MachineDetectionCompleteCallback $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MachineDetectionCompleteCallback([
+            'event_type' => 'test_string',
+            'event_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'account_id' => 'test_string',
+            'application_id' => 'test_string',
+            'from' => 'test_string',
+            'to' => 'test_string',
+            'direction' => CallDirectionEnum::INBOUND,
+            'call_id' => 'test_string',
+            'call_url' => 'test_string',
+            'enqueued_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'start_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'answer_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'tag' => 'test_string',
+            'machine_detection_result' => new MachineDetectionResult([])
+        ]);
     }
 
     /**
@@ -74,8 +74,7 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testMachineDetectionCompleteCallback()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MachineDetectionCompleteCallback::class, self::$instance);
     }
 
     /**
@@ -83,8 +82,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyEventType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEventType());
+        $this->assertEquals('test_string', self::$instance->getEventType());
     }
 
     /**
@@ -92,8 +91,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyEventTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEventTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEventTime());
     }
 
     /**
@@ -101,8 +100,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -110,8 +109,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyApplicationId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getApplicationId());
+        $this->assertEquals('test_string', self::$instance->getApplicationId());
     }
 
     /**
@@ -119,8 +118,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyFrom()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFrom());
+        $this->assertEquals('test_string', self::$instance->getFrom());
     }
 
     /**
@@ -128,8 +127,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTo());
+        $this->assertEquals('test_string', self::$instance->getTo());
     }
 
     /**
@@ -137,8 +136,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyDirection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallDirectionEnum::class, self::$instance->getDirection());
+        $this->assertSame(CallDirectionEnum::INBOUND, self::$instance->getDirection());
     }
 
     /**
@@ -146,8 +145,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyCallId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallId());
+        $this->assertEquals('test_string', self::$instance->getCallId());
     }
 
     /**
@@ -155,8 +154,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyCallUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallUrl());
+        $this->assertEquals('test_string', self::$instance->getCallUrl());
     }
 
     /**
@@ -164,8 +163,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyEnqueuedTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEnqueuedTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEnqueuedTime());
     }
 
     /**
@@ -173,8 +172,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyStartTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getStartTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getStartTime());
     }
 
     /**
@@ -182,8 +181,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyAnswerTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getAnswerTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getAnswerTime());
     }
 
     /**
@@ -191,8 +190,8 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
     }
 
     /**
@@ -200,7 +199,5 @@ class MachineDetectionCompleteCallbackTest extends TestCase
      */
     public function testPropertyMachineDetectionResult()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(MachineDetectionResult::class, self::$instance->getMachineDetectionResult());
+    }}

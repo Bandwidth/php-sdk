@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ListMessageItem;
+use Bandwidth\Model\MessagesList;
+use Bandwidth\Model\PageInfo;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,18 @@ use PHPUnit\Framework\TestCase;
  */
 class MessagesListTest extends TestCase
 {
+    private static MessagesList $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MessagesList([
+            'total_count' => 1,
+            'page_info' => new PageInfo([]),
+            'messages' => [new ListMessageItem([])]
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class MessagesListTest extends TestCase
      */
     public function testMessagesList()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MessagesList::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class MessagesListTest extends TestCase
      */
     public function testPropertyTotalCount()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getTotalCount());
+        $this->assertEquals(1, self::$instance->getTotalCount());
     }
 
     /**
@@ -92,8 +80,7 @@ class MessagesListTest extends TestCase
      */
     public function testPropertyPageInfo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(PageInfo::class, self::$instance->getPageInfo());
     }
 
     /**
@@ -101,7 +88,6 @@ class MessagesListTest extends TestCase
      */
     public function testPropertyMessages()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getMessages());
+        $this->assertInstanceOf(ListMessageItem::class, self::$instance->getMessages()[0]);
+    }}

@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallTranscription;
+use Bandwidth\Model\CallTranscriptionDetectedLanguageEnum;
+use Bandwidth\Model\CallTranscriptionTrackEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,19 @@ use PHPUnit\Framework\TestCase;
  */
 class CallTranscriptionTest extends TestCase
 {
+    private static CallTranscription $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CallTranscription([
+            'detected_language' => CallTranscriptionDetectedLanguageEnum::EN_US,
+            'track' => CallTranscriptionTrackEnum::INBOUND,
+            'transcript' => 'test_string',
+            'confidence' => 1.5
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class CallTranscriptionTest extends TestCase
      */
     public function testCallTranscription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallTranscription::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class CallTranscriptionTest extends TestCase
      */
     public function testPropertyDetectedLanguage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallTranscriptionDetectedLanguageEnum::class, self::$instance->getDetectedLanguage());
+        $this->assertSame(CallTranscriptionDetectedLanguageEnum::EN_US, self::$instance->getDetectedLanguage());
     }
 
     /**
@@ -92,8 +81,8 @@ class CallTranscriptionTest extends TestCase
      */
     public function testPropertyTrack()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallTranscriptionTrackEnum::class, self::$instance->getTrack());
+        $this->assertSame(CallTranscriptionTrackEnum::INBOUND, self::$instance->getTrack());
     }
 
     /**
@@ -101,8 +90,8 @@ class CallTranscriptionTest extends TestCase
      */
     public function testPropertyTranscript()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTranscript());
+        $this->assertEquals('test_string', self::$instance->getTranscript());
     }
 
     /**
@@ -110,7 +99,6 @@ class CallTranscriptionTest extends TestCase
      */
     public function testPropertyConfidence()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsFloat(self::$instance->getConfidence());
+        $this->assertEquals(1.5, self::$instance->getConfidence());
+    }}

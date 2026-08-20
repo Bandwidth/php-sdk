@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\PageInfo;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,19 @@ use PHPUnit\Framework\TestCase;
  */
 class PageInfoTest extends TestCase
 {
+    private static PageInfo $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new PageInfo([
+            'prev_page' => 'test_string',
+            'next_page' => 'test_string',
+            'prev_page_token' => 'test_string',
+            'next_page_token' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class PageInfoTest extends TestCase
      */
     public function testPageInfo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(PageInfo::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class PageInfoTest extends TestCase
      */
     public function testPropertyPrevPage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPrevPage());
+        $this->assertEquals('test_string', self::$instance->getPrevPage());
     }
 
     /**
@@ -92,8 +79,8 @@ class PageInfoTest extends TestCase
      */
     public function testPropertyNextPage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getNextPage());
+        $this->assertEquals('test_string', self::$instance->getNextPage());
     }
 
     /**
@@ -101,8 +88,8 @@ class PageInfoTest extends TestCase
      */
     public function testPropertyPrevPageToken()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPrevPageToken());
+        $this->assertEquals('test_string', self::$instance->getPrevPageToken());
     }
 
     /**
@@ -110,7 +97,6 @@ class PageInfoTest extends TestCase
      */
     public function testPropertyNextPageToken()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getNextPageToken());
+        $this->assertEquals('test_string', self::$instance->getNextPageToken());
+    }}

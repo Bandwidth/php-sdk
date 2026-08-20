@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\UpdateConferenceMember;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class UpdateConferenceMemberTest extends TestCase
 {
+    private static UpdateConferenceMember $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new UpdateConferenceMember([
+            'mute' => true,
+            'hold' => true,
+            'call_ids_to_coach' => ['test_string']
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class UpdateConferenceMemberTest extends TestCase
      */
     public function testUpdateConferenceMember()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(UpdateConferenceMember::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class UpdateConferenceMemberTest extends TestCase
      */
     public function testPropertyMute()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getMute());
+        $this->assertTrue(self::$instance->getMute());
     }
 
     /**
@@ -92,8 +78,8 @@ class UpdateConferenceMemberTest extends TestCase
      */
     public function testPropertyHold()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getHold());
+        $this->assertTrue(self::$instance->getHold());
     }
 
     /**
@@ -101,7 +87,6 @@ class UpdateConferenceMemberTest extends TestCase
      */
     public function testPropertyCallIdsToCoach()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getCallIdsToCoach());
+        $this->assertEquals(['test_string'], self::$instance->getCallIdsToCoach());
+    }}

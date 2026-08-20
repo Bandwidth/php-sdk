@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RbmActionBase;
+use Bandwidth\Model\RbmMessageContentText;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,17 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmMessageContentTextTest extends TestCase
 {
+    private static RbmMessageContentText $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RbmMessageContentText([
+            'text' => 'test_string',
+            'suggestions' => [new RbmActionBase([])]
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class RbmMessageContentTextTest extends TestCase
      */
     public function testRbmMessageContentText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmMessageContentText::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class RbmMessageContentTextTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -92,7 +78,6 @@ class RbmMessageContentTextTest extends TestCase
      */
     public function testPropertySuggestions()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getSuggestions());
+        $this->assertInstanceOf(RbmActionBase::class, self::$instance->getSuggestions()[0]);
+    }}

@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallDirectionEnum;
+use Bandwidth\Model\DtmfCallback;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,32 @@ use PHPUnit\Framework\TestCase;
  */
 class DtmfCallbackTest extends TestCase
 {
+    private static DtmfCallback $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new DtmfCallback([
+            'event_type' => 'test_string',
+            'event_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'account_id' => 'test_string',
+            'application_id' => 'test_string',
+            'from' => 'test_string',
+            'to' => 'test_string',
+            'call_id' => 'test_string',
+            'direction' => CallDirectionEnum::INBOUND,
+            'digit' => 'test_string',
+            'call_url' => 'test_string',
+            'enqueued_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'start_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'answer_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'parent_call_id' => 'test_string',
+            'transfer_caller_id' => 'test_string',
+            'transfer_to' => 'test_string',
+            'tag' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +76,7 @@ class DtmfCallbackTest extends TestCase
      */
     public function testDtmfCallback()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(DtmfCallback::class, self::$instance);
     }
 
     /**
@@ -83,8 +84,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyEventType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEventType());
+        $this->assertEquals('test_string', self::$instance->getEventType());
     }
 
     /**
@@ -92,8 +93,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyEventTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEventTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEventTime());
     }
 
     /**
@@ -101,8 +102,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -110,8 +111,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyApplicationId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getApplicationId());
+        $this->assertEquals('test_string', self::$instance->getApplicationId());
     }
 
     /**
@@ -119,8 +120,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyFrom()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFrom());
+        $this->assertEquals('test_string', self::$instance->getFrom());
     }
 
     /**
@@ -128,8 +129,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTo());
+        $this->assertEquals('test_string', self::$instance->getTo());
     }
 
     /**
@@ -137,8 +138,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyCallId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallId());
+        $this->assertEquals('test_string', self::$instance->getCallId());
     }
 
     /**
@@ -146,8 +147,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyDirection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallDirectionEnum::class, self::$instance->getDirection());
+        $this->assertSame(CallDirectionEnum::INBOUND, self::$instance->getDirection());
     }
 
     /**
@@ -155,8 +156,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyDigit()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDigit());
+        $this->assertEquals('test_string', self::$instance->getDigit());
     }
 
     /**
@@ -164,8 +165,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyCallUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallUrl());
+        $this->assertEquals('test_string', self::$instance->getCallUrl());
     }
 
     /**
@@ -173,8 +174,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyEnqueuedTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEnqueuedTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEnqueuedTime());
     }
 
     /**
@@ -182,8 +183,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyStartTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getStartTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getStartTime());
     }
 
     /**
@@ -191,8 +192,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyAnswerTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getAnswerTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getAnswerTime());
     }
 
     /**
@@ -200,8 +201,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyParentCallId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getParentCallId());
+        $this->assertEquals('test_string', self::$instance->getParentCallId());
     }
 
     /**
@@ -209,8 +210,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyTransferCallerId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTransferCallerId());
+        $this->assertEquals('test_string', self::$instance->getTransferCallerId());
     }
 
     /**
@@ -218,8 +219,8 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyTransferTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTransferTo());
+        $this->assertEquals('test_string', self::$instance->getTransferTo());
     }
 
     /**
@@ -227,7 +228,6 @@ class DtmfCallbackTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
+    }}

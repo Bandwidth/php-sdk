@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\VerifyCodeRequest;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,19 @@ use PHPUnit\Framework\TestCase;
  */
 class VerifyCodeRequestTest extends TestCase
 {
+    private static VerifyCodeRequest $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new VerifyCodeRequest([
+            'to' => 'test_string',
+            'scope' => 'test_string',
+            'expiration_time_in_minutes' => 1.5,
+            'code' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class VerifyCodeRequestTest extends TestCase
      */
     public function testVerifyCodeRequest()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(VerifyCodeRequest::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class VerifyCodeRequestTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTo());
+        $this->assertEquals('test_string', self::$instance->getTo());
     }
 
     /**
@@ -92,8 +79,8 @@ class VerifyCodeRequestTest extends TestCase
      */
     public function testPropertyScope()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getScope());
+        $this->assertEquals('test_string', self::$instance->getScope());
     }
 
     /**
@@ -101,8 +88,8 @@ class VerifyCodeRequestTest extends TestCase
      */
     public function testPropertyExpirationTimeInMinutes()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getExpirationTimeInMinutes());
+        $this->assertEquals(1.5, self::$instance->getExpirationTimeInMinutes());
     }
 
     /**
@@ -110,7 +97,6 @@ class VerifyCodeRequestTest extends TestCase
      */
     public function testPropertyCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getCode());
+        $this->assertEquals('test_string', self::$instance->getCode());
+    }}

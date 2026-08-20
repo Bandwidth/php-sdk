@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\BrtcError;
+use Bandwidth\Model\BrtcLink;
+use Bandwidth\Model\CreateEndpointResponse;
+use Bandwidth\Model\CreateEndpointResponseData;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,18 @@ use PHPUnit\Framework\TestCase;
  */
 class CreateEndpointResponseTest extends TestCase
 {
+    private static CreateEndpointResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CreateEndpointResponse([
+            'links' => [new BrtcLink([])],
+            'data' => new CreateEndpointResponseData([]),
+            'errors' => [new BrtcError([])]
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class CreateEndpointResponseTest extends TestCase
      */
     public function testCreateEndpointResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateEndpointResponse::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class CreateEndpointResponseTest extends TestCase
      */
     public function testPropertyLinks()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getLinks());
+        $this->assertInstanceOf(BrtcLink::class, self::$instance->getLinks()[0]);
     }
 
     /**
@@ -92,8 +81,7 @@ class CreateEndpointResponseTest extends TestCase
      */
     public function testPropertyData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateEndpointResponseData::class, self::$instance->getData());
     }
 
     /**
@@ -101,7 +89,6 @@ class CreateEndpointResponseTest extends TestCase
      */
     public function testPropertyErrors()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getErrors());
+        $this->assertInstanceOf(BrtcError::class, self::$instance->getErrors()[0]);
+    }}

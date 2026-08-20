@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallDirectionEnum;
+use Bandwidth\Model\Diversion;
+use Bandwidth\Model\InitiateCallback;
+use Bandwidth\Model\StirShaken;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,28 @@ use PHPUnit\Framework\TestCase;
  */
 class InitiateCallbackTest extends TestCase
 {
+    private static InitiateCallback $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new InitiateCallback([
+            'event_type' => 'test_string',
+            'event_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'account_id' => 'test_string',
+            'application_id' => 'test_string',
+            'from' => 'test_string',
+            'to' => 'test_string',
+            'direction' => CallDirectionEnum::INBOUND,
+            'call_id' => 'test_string',
+            'call_url' => 'test_string',
+            'start_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'diversion' => new Diversion([]),
+            'stir_shaken' => new StirShaken([]),
+            'uui' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +74,7 @@ class InitiateCallbackTest extends TestCase
      */
     public function testInitiateCallback()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(InitiateCallback::class, self::$instance);
     }
 
     /**
@@ -83,8 +82,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyEventType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEventType());
+        $this->assertEquals('test_string', self::$instance->getEventType());
     }
 
     /**
@@ -92,8 +91,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyEventTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEventTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEventTime());
     }
 
     /**
@@ -101,8 +100,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -110,8 +109,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyApplicationId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getApplicationId());
+        $this->assertEquals('test_string', self::$instance->getApplicationId());
     }
 
     /**
@@ -119,8 +118,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyFrom()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFrom());
+        $this->assertEquals('test_string', self::$instance->getFrom());
     }
 
     /**
@@ -128,8 +127,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTo());
+        $this->assertEquals('test_string', self::$instance->getTo());
     }
 
     /**
@@ -137,8 +136,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyDirection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallDirectionEnum::class, self::$instance->getDirection());
+        $this->assertSame(CallDirectionEnum::INBOUND, self::$instance->getDirection());
     }
 
     /**
@@ -146,8 +145,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyCallId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallId());
+        $this->assertEquals('test_string', self::$instance->getCallId());
     }
 
     /**
@@ -155,8 +154,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyCallUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallUrl());
+        $this->assertEquals('test_string', self::$instance->getCallUrl());
     }
 
     /**
@@ -164,8 +163,8 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyStartTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getStartTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getStartTime());
     }
 
     /**
@@ -173,8 +172,7 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyDiversion()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Diversion::class, self::$instance->getDiversion());
     }
 
     /**
@@ -182,8 +180,7 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyStirShaken()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(StirShaken::class, self::$instance->getStirShaken());
     }
 
     /**
@@ -191,7 +188,6 @@ class InitiateCallbackTest extends TestCase
      */
     public function testPropertyUui()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getUui());
+        $this->assertEquals('test_string', self::$instance->getUui());
+    }}

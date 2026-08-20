@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\LinkSchema;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class LinkSchemaTest extends TestCase
 {
+    private static LinkSchema $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new LinkSchema([
+            'href' => 'test_string',
+            'rel' => 'test_string',
+            'method' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class LinkSchemaTest extends TestCase
      */
     public function testLinkSchema()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(LinkSchema::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class LinkSchemaTest extends TestCase
      */
     public function testPropertyHref()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getHref());
+        $this->assertEquals('test_string', self::$instance->getHref());
     }
 
     /**
@@ -92,8 +78,8 @@ class LinkSchemaTest extends TestCase
      */
     public function testPropertyRel()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getRel());
+        $this->assertEquals('test_string', self::$instance->getRel());
     }
 
     /**
@@ -101,7 +87,6 @@ class LinkSchemaTest extends TestCase
      */
     public function testPropertyMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getMethod());
+        $this->assertEquals('test_string', self::$instance->getMethod());
+    }}

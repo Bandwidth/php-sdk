@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\AsyncLookupRequest;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,16 @@ use PHPUnit\Framework\TestCase;
  */
 class AsyncLookupRequestTest extends TestCase
 {
+    private static AsyncLookupRequest $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new AsyncLookupRequest([
+            'phone_numbers' => ['test_string']
+        ]);
     }
 
     /**
@@ -74,8 +59,7 @@ class AsyncLookupRequestTest extends TestCase
      */
     public function testAsyncLookupRequest()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(AsyncLookupRequest::class, self::$instance);
     }
 
     /**
@@ -83,7 +67,6 @@ class AsyncLookupRequestTest extends TestCase
      */
     public function testPropertyPhoneNumbers()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getPhoneNumbers());
+        $this->assertEquals(['test_string'], self::$instance->getPhoneNumbers());
+    }}

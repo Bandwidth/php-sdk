@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Contact;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,19 @@ use PHPUnit\Framework\TestCase;
  */
 class ContactTest extends TestCase
 {
+    private static Contact $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Contact([
+            'first_name' => 'test_string',
+            'last_name' => 'test_string',
+            'email' => 'test_string',
+            'phone_number' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class ContactTest extends TestCase
      */
     public function testContact()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Contact::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class ContactTest extends TestCase
      */
     public function testPropertyFirstName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFirstName());
+        $this->assertEquals('test_string', self::$instance->getFirstName());
     }
 
     /**
@@ -92,8 +79,8 @@ class ContactTest extends TestCase
      */
     public function testPropertyLastName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getLastName());
+        $this->assertEquals('test_string', self::$instance->getLastName());
     }
 
     /**
@@ -101,8 +88,8 @@ class ContactTest extends TestCase
      */
     public function testPropertyEmail()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEmail());
+        $this->assertEquals('test_string', self::$instance->getEmail());
     }
 
     /**
@@ -110,7 +97,6 @@ class ContactTest extends TestCase
      */
     public function testPropertyPhoneNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getPhoneNumber());
+        $this->assertEquals('test_string', self::$instance->getPhoneNumber());
+    }}

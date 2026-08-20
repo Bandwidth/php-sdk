@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RbmActionBase;
+use Bandwidth\Model\RbmMessageContentFile;
+use Bandwidth\Model\RbmMessageMedia;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,17 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmMessageMediaTest extends TestCase
 {
+    private static RbmMessageMedia $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RbmMessageMedia([
+            'media' => [new RbmMessageContentFile([])],
+            'suggestions' => [new RbmActionBase([])]
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class RbmMessageMediaTest extends TestCase
      */
     public function testRbmMessageMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmMessageMedia::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class RbmMessageMediaTest extends TestCase
      */
     public function testPropertyMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getMedia());
+        $this->assertInstanceOf(RbmMessageContentFile::class, self::$instance->getMedia()[0]);
     }
 
     /**
@@ -92,7 +79,6 @@ class RbmMessageMediaTest extends TestCase
      */
     public function testPropertySuggestions()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getSuggestions());
+        $this->assertInstanceOf(RbmActionBase::class, self::$instance->getSuggestions()[0]);
+    }}

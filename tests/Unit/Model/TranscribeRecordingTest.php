@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallbackMethodEnum;
+use Bandwidth\Model\TranscribeRecording;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,22 @@ use PHPUnit\Framework\TestCase;
  */
 class TranscribeRecordingTest extends TestCase
 {
+    private static TranscribeRecording $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new TranscribeRecording([
+            'callback_url' => 'test_string',
+            'callback_method' => CallbackMethodEnum::GET,
+            'username' => 'test_string',
+            'password' => 'test_string',
+            'tag' => 'test_string',
+            'callback_timeout' => 1.5,
+            'detect_language' => true
+        ]);
     }
 
     /**
@@ -74,8 +66,7 @@ class TranscribeRecordingTest extends TestCase
      */
     public function testTranscribeRecording()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(TranscribeRecording::class, self::$instance);
     }
 
     /**
@@ -83,8 +74,8 @@ class TranscribeRecordingTest extends TestCase
      */
     public function testPropertyCallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getCallbackUrl());
     }
 
     /**
@@ -92,8 +83,8 @@ class TranscribeRecordingTest extends TestCase
      */
     public function testPropertyCallbackMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallbackMethodEnum::class, self::$instance->getCallbackMethod());
+        $this->assertSame(CallbackMethodEnum::GET, self::$instance->getCallbackMethod());
     }
 
     /**
@@ -101,8 +92,8 @@ class TranscribeRecordingTest extends TestCase
      */
     public function testPropertyUsername()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUsername());
+        $this->assertEquals('test_string', self::$instance->getUsername());
     }
 
     /**
@@ -110,8 +101,8 @@ class TranscribeRecordingTest extends TestCase
      */
     public function testPropertyPassword()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPassword());
+        $this->assertEquals('test_string', self::$instance->getPassword());
     }
 
     /**
@@ -119,8 +110,8 @@ class TranscribeRecordingTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
     }
 
     /**
@@ -128,8 +119,8 @@ class TranscribeRecordingTest extends TestCase
      */
     public function testPropertyCallbackTimeout()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getCallbackTimeout());
+        $this->assertEquals(1.5, self::$instance->getCallbackTimeout());
     }
 
     /**
@@ -137,7 +128,6 @@ class TranscribeRecordingTest extends TestCase
      */
     public function testPropertyDetectLanguage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsBool(self::$instance->getDetectLanguage());
+        $this->assertTrue(self::$instance->getDetectLanguage());
+    }}

@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RbmActionOpenUrl;
+use Bandwidth\Model\RbmActionTypeEnum;
+use Bandwidth\Model\RbmOpenUrlEnum;
+use Bandwidth\Model\RbmWebViewEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,21 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmActionOpenUrlTest extends TestCase
 {
+    private static RbmActionOpenUrl $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RbmActionOpenUrl([
+            'type' => RbmActionTypeEnum::REPLY,
+            'text' => 'test_string',
+            'postback_data' => 'test_string',
+            'url' => 'test_string',
+            'application' => RbmOpenUrlEnum::BROWSER,
+            'webview_view_mode' => RbmWebViewEnum::FULL
+        ]);
     }
 
     /**
@@ -74,8 +67,7 @@ class RbmActionOpenUrlTest extends TestCase
      */
     public function testRbmActionOpenUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmActionOpenUrl::class, self::$instance);
     }
 
     /**
@@ -83,8 +75,8 @@ class RbmActionOpenUrlTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmActionTypeEnum::class, self::$instance->getType());
+        $this->assertSame(RbmActionTypeEnum::REPLY, self::$instance->getType());
     }
 
     /**
@@ -92,8 +84,8 @@ class RbmActionOpenUrlTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -101,8 +93,8 @@ class RbmActionOpenUrlTest extends TestCase
      */
     public function testPropertyPostbackData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPostbackData());
+        $this->assertEquals('test_string', self::$instance->getPostbackData());
     }
 
     /**
@@ -110,8 +102,8 @@ class RbmActionOpenUrlTest extends TestCase
      */
     public function testPropertyUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUrl());
+        $this->assertEquals('test_string', self::$instance->getUrl());
     }
 
     /**
@@ -119,8 +111,8 @@ class RbmActionOpenUrlTest extends TestCase
      */
     public function testPropertyApplication()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmOpenUrlEnum::class, self::$instance->getApplication());
+        $this->assertSame(RbmOpenUrlEnum::BROWSER, self::$instance->getApplication());
     }
 
     /**
@@ -128,7 +120,6 @@ class RbmActionOpenUrlTest extends TestCase
      */
     public function testPropertyWebviewViewMode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(RbmWebViewEnum::class, self::$instance->getWebviewViewMode());
+        $this->assertSame(RbmWebViewEnum::FULL, self::$instance->getWebviewViewMode());
+    }}

@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Page;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,19 @@ use PHPUnit\Framework\TestCase;
  */
 class PageTest extends TestCase
 {
+    private static Page $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Page([
+            'page_size' => 1,
+            'total_elements' => 1,
+            'total_pages' => 1,
+            'page_number' => 1
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class PageTest extends TestCase
      */
     public function testPage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Page::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class PageTest extends TestCase
      */
     public function testPropertyPageSize()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getPageSize());
+        $this->assertEquals(1, self::$instance->getPageSize());
     }
 
     /**
@@ -92,8 +79,8 @@ class PageTest extends TestCase
      */
     public function testPropertyTotalElements()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getTotalElements());
+        $this->assertEquals(1, self::$instance->getTotalElements());
     }
 
     /**
@@ -101,8 +88,8 @@ class PageTest extends TestCase
      */
     public function testPropertyTotalPages()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getTotalPages());
+        $this->assertEquals(1, self::$instance->getTotalPages());
     }
 
     /**
@@ -110,7 +97,6 @@ class PageTest extends TestCase
      */
     public function testPropertyPageNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsInt(self::$instance->getPageNumber());
+        $this->assertEquals(1, self::$instance->getPageNumber());
+    }}

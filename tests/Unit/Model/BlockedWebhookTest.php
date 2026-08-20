@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\BlockedWebhook;
+use Bandwidth\Model\TfvCallbackStatusEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,21 @@ use PHPUnit\Framework\TestCase;
  */
 class BlockedWebhookTest extends TestCase
 {
+    private static BlockedWebhook $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new BlockedWebhook([
+            'account_id' => 'test_string',
+            'phone_number' => 'test_string',
+            'status' => TfvCallbackStatusEnum::VERIFIED,
+            'internal_ticket_number' => 'test_string',
+            'blocked' => true,
+            'blocked_reason' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +65,7 @@ class BlockedWebhookTest extends TestCase
      */
     public function testBlockedWebhook()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(BlockedWebhook::class, self::$instance);
     }
 
     /**
@@ -83,8 +73,8 @@ class BlockedWebhookTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -92,8 +82,8 @@ class BlockedWebhookTest extends TestCase
      */
     public function testPropertyPhoneNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPhoneNumber());
+        $this->assertEquals('test_string', self::$instance->getPhoneNumber());
     }
 
     /**
@@ -101,8 +91,8 @@ class BlockedWebhookTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(TfvCallbackStatusEnum::class, self::$instance->getStatus());
+        $this->assertSame(TfvCallbackStatusEnum::VERIFIED, self::$instance->getStatus());
     }
 
     /**
@@ -110,8 +100,8 @@ class BlockedWebhookTest extends TestCase
      */
     public function testPropertyInternalTicketNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getInternalTicketNumber());
+        $this->assertEquals('test_string', self::$instance->getInternalTicketNumber());
     }
 
     /**
@@ -119,8 +109,8 @@ class BlockedWebhookTest extends TestCase
      */
     public function testPropertyBlocked()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getBlocked());
+        $this->assertTrue(self::$instance->getBlocked());
     }
 
     /**
@@ -128,7 +118,6 @@ class BlockedWebhookTest extends TestCase
      */
     public function testPropertyBlockedReason()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getBlockedReason());
+        $this->assertEquals('test_string', self::$instance->getBlockedReason());
+    }}

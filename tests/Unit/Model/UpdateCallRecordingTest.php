@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RecordingStateEnum;
+use Bandwidth\Model\UpdateCallRecording;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,16 @@ use PHPUnit\Framework\TestCase;
  */
 class UpdateCallRecordingTest extends TestCase
 {
+    private static UpdateCallRecording $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new UpdateCallRecording([
+            'state' => RecordingStateEnum::PAUSED
+        ]);
     }
 
     /**
@@ -74,8 +60,7 @@ class UpdateCallRecordingTest extends TestCase
      */
     public function testUpdateCallRecording()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(UpdateCallRecording::class, self::$instance);
     }
 
     /**
@@ -83,7 +68,6 @@ class UpdateCallRecordingTest extends TestCase
      */
     public function testPropertyState()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(RecordingStateEnum::class, self::$instance->getState());
+        $this->assertSame(RecordingStateEnum::PAUSED, self::$instance->getState());
+    }}

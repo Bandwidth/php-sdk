@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CreateWebRtcConnectionRequest;
+use Bandwidth\Model\EndpointDirectionEnum;
+use Bandwidth\Model\EndpointTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,21 @@ use PHPUnit\Framework\TestCase;
  */
 class CreateWebRtcConnectionRequestTest extends TestCase
 {
+    private static CreateWebRtcConnectionRequest $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CreateWebRtcConnectionRequest([
+            'type' => EndpointTypeEnum::WEBRTC,
+            'direction' => EndpointDirectionEnum::INBOUND,
+            'event_callback_url' => 'test_string',
+            'event_fallback_url' => 'test_string',
+            'tag' => 'test_string',
+            'connection_metadata' => (object) ['key' => 'value']
+        ]);
     }
 
     /**
@@ -74,8 +66,7 @@ class CreateWebRtcConnectionRequestTest extends TestCase
      */
     public function testCreateWebRtcConnectionRequest()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateWebRtcConnectionRequest::class, self::$instance);
     }
 
     /**
@@ -83,8 +74,8 @@ class CreateWebRtcConnectionRequestTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(EndpointTypeEnum::class, self::$instance->getType());
+        $this->assertSame(EndpointTypeEnum::WEBRTC, self::$instance->getType());
     }
 
     /**
@@ -92,8 +83,8 @@ class CreateWebRtcConnectionRequestTest extends TestCase
      */
     public function testPropertyDirection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(EndpointDirectionEnum::class, self::$instance->getDirection());
+        $this->assertSame(EndpointDirectionEnum::INBOUND, self::$instance->getDirection());
     }
 
     /**
@@ -101,8 +92,8 @@ class CreateWebRtcConnectionRequestTest extends TestCase
      */
     public function testPropertyEventCallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEventCallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getEventCallbackUrl());
     }
 
     /**
@@ -110,8 +101,8 @@ class CreateWebRtcConnectionRequestTest extends TestCase
      */
     public function testPropertyEventFallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEventFallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getEventFallbackUrl());
     }
 
     /**
@@ -119,8 +110,8 @@ class CreateWebRtcConnectionRequestTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
     }
 
     /**
@@ -128,7 +119,6 @@ class CreateWebRtcConnectionRequestTest extends TestCase
      */
     public function testPropertyConnectionMetadata()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsObject(self::$instance->getConnectionMetadata());
+        $this->assertEquals((object) ['key' => 'value'], self::$instance->getConnectionMetadata());
+    }}

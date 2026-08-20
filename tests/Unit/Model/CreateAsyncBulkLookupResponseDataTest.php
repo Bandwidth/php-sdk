@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CreateAsyncBulkLookupResponseData;
+use Bandwidth\Model\InProgressLookupStatusEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,17 @@ use PHPUnit\Framework\TestCase;
  */
 class CreateAsyncBulkLookupResponseDataTest extends TestCase
 {
+    private static CreateAsyncBulkLookupResponseData $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CreateAsyncBulkLookupResponseData([
+            'request_id' => 'test_string',
+            'status' => InProgressLookupStatusEnum::IN_PROGRESS
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class CreateAsyncBulkLookupResponseDataTest extends TestCase
      */
     public function testCreateAsyncBulkLookupResponseData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateAsyncBulkLookupResponseData::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class CreateAsyncBulkLookupResponseDataTest extends TestCase
      */
     public function testPropertyRequestId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getRequestId());
+        $this->assertEquals('test_string', self::$instance->getRequestId());
     }
 
     /**
@@ -92,7 +78,6 @@ class CreateAsyncBulkLookupResponseDataTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(InProgressLookupStatusEnum::class, self::$instance->getStatus());
+        $this->assertSame(InProgressLookupStatusEnum::IN_PROGRESS, self::$instance->getStatus());
+    }}

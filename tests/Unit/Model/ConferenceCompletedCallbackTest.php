@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ConferenceCompletedCallback;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,20 @@ use PHPUnit\Framework\TestCase;
  */
 class ConferenceCompletedCallbackTest extends TestCase
 {
+    private static ConferenceCompletedCallback $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new ConferenceCompletedCallback([
+            'event_type' => 'test_string',
+            'event_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'conference_id' => 'test_string',
+            'name' => 'test_string',
+            'tag' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class ConferenceCompletedCallbackTest extends TestCase
      */
     public function testConferenceCompletedCallback()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ConferenceCompletedCallback::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class ConferenceCompletedCallbackTest extends TestCase
      */
     public function testPropertyEventType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEventType());
+        $this->assertEquals('test_string', self::$instance->getEventType());
     }
 
     /**
@@ -92,8 +80,8 @@ class ConferenceCompletedCallbackTest extends TestCase
      */
     public function testPropertyEventTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEventTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEventTime());
     }
 
     /**
@@ -101,8 +89,8 @@ class ConferenceCompletedCallbackTest extends TestCase
      */
     public function testPropertyConferenceId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getConferenceId());
+        $this->assertEquals('test_string', self::$instance->getConferenceId());
     }
 
     /**
@@ -110,8 +98,8 @@ class ConferenceCompletedCallbackTest extends TestCase
      */
     public function testPropertyName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getName());
+        $this->assertEquals('test_string', self::$instance->getName());
     }
 
     /**
@@ -119,7 +107,6 @@ class ConferenceCompletedCallbackTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
+    }}

@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\OptInWorkflow;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class OptInWorkflowTest extends TestCase
 {
+    private static OptInWorkflow $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new OptInWorkflow([
+            'description' => 'test_string',
+            'image_urls' => ['test_string'],
+            'confirmation_response' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class OptInWorkflowTest extends TestCase
      */
     public function testOptInWorkflow()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(OptInWorkflow::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class OptInWorkflowTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
     }
 
     /**
@@ -92,8 +78,8 @@ class OptInWorkflowTest extends TestCase
      */
     public function testPropertyImageUrls()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getImageUrls());
+        $this->assertEquals(['test_string'], self::$instance->getImageUrls());
     }
 
     /**
@@ -101,7 +87,6 @@ class OptInWorkflowTest extends TestCase
      */
     public function testPropertyConfirmationResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getConfirmationResponse());
+        $this->assertEquals('test_string', self::$instance->getConfirmationResponse());
+    }}

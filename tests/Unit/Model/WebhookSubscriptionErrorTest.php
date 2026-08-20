@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\TelephoneNumber;
+use Bandwidth\Model\WebhookSubscriptionError;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,18 @@ use PHPUnit\Framework\TestCase;
  */
 class WebhookSubscriptionErrorTest extends TestCase
 {
+    private static WebhookSubscriptionError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new WebhookSubscriptionError([
+            'code' => 1,
+            'description' => 'test_string',
+            'telephone_numbers' => [new TelephoneNumber([])]
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class WebhookSubscriptionErrorTest extends TestCase
      */
     public function testWebhookSubscriptionError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(WebhookSubscriptionError::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class WebhookSubscriptionErrorTest extends TestCase
      */
     public function testPropertyCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getCode());
+        $this->assertEquals(1, self::$instance->getCode());
     }
 
     /**
@@ -92,8 +79,8 @@ class WebhookSubscriptionErrorTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
     }
 
     /**
@@ -101,7 +88,6 @@ class WebhookSubscriptionErrorTest extends TestCase
      */
     public function testPropertyTelephoneNumbers()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getTelephoneNumbers());
+        $this->assertInstanceOf(TelephoneNumber::class, self::$instance->getTelephoneNumbers()[0]);
+    }}

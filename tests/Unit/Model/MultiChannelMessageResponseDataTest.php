@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MessageDirectionEnum;
+use Bandwidth\Model\MultiChannelChannelListRBMResponseObject;
+use Bandwidth\Model\MultiChannelMessageResponseData;
+use Bandwidth\Model\PriorityEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +45,23 @@ use PHPUnit\Framework\TestCase;
  */
 class MultiChannelMessageResponseDataTest extends TestCase
 {
+    private static MultiChannelMessageResponseData $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MultiChannelMessageResponseData([
+            'id' => 'test_string',
+            'time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'direction' => MessageDirectionEnum::IN,
+            'to' => ['test_string'],
+            'channel_list' => [new MultiChannelChannelListRBMResponseObject([])],
+            'tag' => 'test_string',
+            'priority' => PriorityEnum::_DEFAULT,
+            'expiration' => new \DateTime('2024-01-01T00:00:00+00:00')
+        ]);
     }
 
     /**
@@ -74,8 +69,7 @@ class MultiChannelMessageResponseDataTest extends TestCase
      */
     public function testMultiChannelMessageResponseData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelMessageResponseData::class, self::$instance);
     }
 
     /**
@@ -83,8 +77,8 @@ class MultiChannelMessageResponseDataTest extends TestCase
      */
     public function testPropertyId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getId());
+        $this->assertEquals('test_string', self::$instance->getId());
     }
 
     /**
@@ -92,8 +86,8 @@ class MultiChannelMessageResponseDataTest extends TestCase
      */
     public function testPropertyTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getTime());
     }
 
     /**
@@ -101,8 +95,8 @@ class MultiChannelMessageResponseDataTest extends TestCase
      */
     public function testPropertyDirection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MessageDirectionEnum::class, self::$instance->getDirection());
+        $this->assertSame(MessageDirectionEnum::IN, self::$instance->getDirection());
     }
 
     /**
@@ -110,8 +104,8 @@ class MultiChannelMessageResponseDataTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getTo());
+        $this->assertEquals(['test_string'], self::$instance->getTo());
     }
 
     /**
@@ -119,8 +113,8 @@ class MultiChannelMessageResponseDataTest extends TestCase
      */
     public function testPropertyChannelList()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getChannelList());
+        $this->assertInstanceOf(MultiChannelChannelListRBMResponseObject::class, self::$instance->getChannelList()[0]);
     }
 
     /**
@@ -128,8 +122,8 @@ class MultiChannelMessageResponseDataTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
     }
 
     /**
@@ -137,8 +131,8 @@ class MultiChannelMessageResponseDataTest extends TestCase
      */
     public function testPropertyPriority()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(PriorityEnum::class, self::$instance->getPriority());
+        $this->assertSame(PriorityEnum::_DEFAULT, self::$instance->getPriority());
     }
 
     /**
@@ -146,7 +140,6 @@ class MultiChannelMessageResponseDataTest extends TestCase
      */
     public function testPropertyExpiration()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getExpiration());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getExpiration());
+    }}

@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ConferenceRecordingMetadata;
+use Bandwidth\Model\FileFormatEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,27 @@ use PHPUnit\Framework\TestCase;
  */
 class ConferenceRecordingMetadataTest extends TestCase
 {
+    private static ConferenceRecordingMetadata $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new ConferenceRecordingMetadata([
+            'account_id' => 'test_string',
+            'conference_id' => 'test_string',
+            'name' => 'test_string',
+            'recording_id' => 'test_string',
+            'duration' => 'test_string',
+            'channels' => 1,
+            'start_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'end_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'file_format' => FileFormatEnum::MP3,
+            'status' => 'test_string',
+            'media_url' => 'test_string',
+            'recording_name' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +71,7 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testConferenceRecordingMetadata()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ConferenceRecordingMetadata::class, self::$instance);
     }
 
     /**
@@ -83,8 +79,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -92,8 +88,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyConferenceId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getConferenceId());
+        $this->assertEquals('test_string', self::$instance->getConferenceId());
     }
 
     /**
@@ -101,8 +97,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getName());
+        $this->assertEquals('test_string', self::$instance->getName());
     }
 
     /**
@@ -110,8 +106,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyRecordingId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getRecordingId());
+        $this->assertEquals('test_string', self::$instance->getRecordingId());
     }
 
     /**
@@ -119,8 +115,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyDuration()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDuration());
+        $this->assertEquals('test_string', self::$instance->getDuration());
     }
 
     /**
@@ -128,8 +124,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyChannels()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getChannels());
+        $this->assertEquals(1, self::$instance->getChannels());
     }
 
     /**
@@ -137,8 +133,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyStartTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getStartTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getStartTime());
     }
 
     /**
@@ -146,8 +142,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyEndTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getEndTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEndTime());
     }
 
     /**
@@ -155,8 +151,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyFileFormat()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(FileFormatEnum::class, self::$instance->getFileFormat());
+        $this->assertSame(FileFormatEnum::MP3, self::$instance->getFileFormat());
     }
 
     /**
@@ -164,8 +160,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getStatus());
+        $this->assertEquals('test_string', self::$instance->getStatus());
     }
 
     /**
@@ -173,8 +169,8 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyMediaUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getMediaUrl());
+        $this->assertEquals('test_string', self::$instance->getMediaUrl());
     }
 
     /**
@@ -182,7 +178,6 @@ class ConferenceRecordingMetadataTest extends TestCase
      */
     public function testPropertyRecordingName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getRecordingName());
+        $this->assertEquals('test_string', self::$instance->getRecordingName());
+    }}

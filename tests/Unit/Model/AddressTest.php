@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Address;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,22 @@ use PHPUnit\Framework\TestCase;
  */
 class AddressTest extends TestCase
 {
+    private static Address $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Address([
+            'name' => 'test_string',
+            'addr1' => 'test_string',
+            'addr2' => 'test_string',
+            'city' => 'test_string',
+            'state' => 'test_string',
+            'zip' => 'test_string',
+            'url' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +65,7 @@ class AddressTest extends TestCase
      */
     public function testAddress()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Address::class, self::$instance);
     }
 
     /**
@@ -83,8 +73,8 @@ class AddressTest extends TestCase
      */
     public function testPropertyName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getName());
+        $this->assertEquals('test_string', self::$instance->getName());
     }
 
     /**
@@ -92,8 +82,8 @@ class AddressTest extends TestCase
      */
     public function testPropertyAddr1()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAddr1());
+        $this->assertEquals('test_string', self::$instance->getAddr1());
     }
 
     /**
@@ -101,8 +91,8 @@ class AddressTest extends TestCase
      */
     public function testPropertyAddr2()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAddr2());
+        $this->assertEquals('test_string', self::$instance->getAddr2());
     }
 
     /**
@@ -110,8 +100,8 @@ class AddressTest extends TestCase
      */
     public function testPropertyCity()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCity());
+        $this->assertEquals('test_string', self::$instance->getCity());
     }
 
     /**
@@ -119,8 +109,8 @@ class AddressTest extends TestCase
      */
     public function testPropertyState()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getState());
+        $this->assertEquals('test_string', self::$instance->getState());
     }
 
     /**
@@ -128,8 +118,8 @@ class AddressTest extends TestCase
      */
     public function testPropertyZip()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getZip());
+        $this->assertEquals('test_string', self::$instance->getZip());
     }
 
     /**
@@ -137,7 +127,6 @@ class AddressTest extends TestCase
      */
     public function testPropertyUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getUrl());
+        $this->assertEquals('test_string', self::$instance->getUrl());
+    }}

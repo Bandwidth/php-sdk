@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\SipConnectionMetadata;
+use Bandwidth\Model\SipCredentials;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,19 @@ use PHPUnit\Framework\TestCase;
  */
 class SipConnectionMetadataTest extends TestCase
 {
+    private static SipConnectionMetadata $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new SipConnectionMetadata([
+            'ip_address' => 'test_string',
+            'port' => 1,
+            'credentials' => new SipCredentials([]),
+            'uui_header' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class SipConnectionMetadataTest extends TestCase
      */
     public function testSipConnectionMetadata()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(SipConnectionMetadata::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class SipConnectionMetadataTest extends TestCase
      */
     public function testPropertyIpAddress()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getIpAddress());
+        $this->assertEquals('test_string', self::$instance->getIpAddress());
     }
 
     /**
@@ -92,8 +80,8 @@ class SipConnectionMetadataTest extends TestCase
      */
     public function testPropertyPort()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getPort());
+        $this->assertEquals(1, self::$instance->getPort());
     }
 
     /**
@@ -101,8 +89,7 @@ class SipConnectionMetadataTest extends TestCase
      */
     public function testPropertyCredentials()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(SipCredentials::class, self::$instance->getCredentials());
     }
 
     /**
@@ -110,7 +97,6 @@ class SipConnectionMetadataTest extends TestCase
      */
     public function testPropertyUuiHeader()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getUuiHeader());
+        $this->assertEquals('test_string', self::$instance->getUuiHeader());
+    }}

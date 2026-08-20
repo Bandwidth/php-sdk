@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CreateEndpointRequestBase;
+use Bandwidth\Model\EndpointDirectionEnum;
+use Bandwidth\Model\EndpointTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,20 @@ use PHPUnit\Framework\TestCase;
  */
 class CreateEndpointRequestBaseTest extends TestCase
 {
+    private static CreateEndpointRequestBase $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CreateEndpointRequestBase([
+            'type' => EndpointTypeEnum::WEBRTC,
+            'direction' => EndpointDirectionEnum::INBOUND,
+            'event_callback_url' => 'test_string',
+            'event_fallback_url' => 'test_string',
+            'tag' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +65,7 @@ class CreateEndpointRequestBaseTest extends TestCase
      */
     public function testCreateEndpointRequestBase()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateEndpointRequestBase::class, self::$instance);
     }
 
     /**
@@ -83,8 +73,8 @@ class CreateEndpointRequestBaseTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(EndpointTypeEnum::class, self::$instance->getType());
+        $this->assertSame(EndpointTypeEnum::WEBRTC, self::$instance->getType());
     }
 
     /**
@@ -92,8 +82,8 @@ class CreateEndpointRequestBaseTest extends TestCase
      */
     public function testPropertyDirection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(EndpointDirectionEnum::class, self::$instance->getDirection());
+        $this->assertSame(EndpointDirectionEnum::INBOUND, self::$instance->getDirection());
     }
 
     /**
@@ -101,8 +91,8 @@ class CreateEndpointRequestBaseTest extends TestCase
      */
     public function testPropertyEventCallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEventCallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getEventCallbackUrl());
     }
 
     /**
@@ -110,8 +100,8 @@ class CreateEndpointRequestBaseTest extends TestCase
      */
     public function testPropertyEventFallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getEventFallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getEventFallbackUrl());
     }
 
     /**
@@ -119,7 +109,6 @@ class CreateEndpointRequestBaseTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
+    }}

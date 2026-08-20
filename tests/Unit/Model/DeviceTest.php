@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Device;
+use Bandwidth\Model\DeviceStatusEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,19 @@ use PHPUnit\Framework\TestCase;
  */
 class DeviceTest extends TestCase
 {
+    private static Device $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Device([
+            'device_id' => 'test_string',
+            'device_name' => 'test_string',
+            'status' => DeviceStatusEnum::CONNECTED,
+            'creation_timestamp' => new \DateTime('2024-01-01T00:00:00+00:00')
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class DeviceTest extends TestCase
      */
     public function testDevice()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Device::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class DeviceTest extends TestCase
      */
     public function testPropertyDeviceId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDeviceId());
+        $this->assertEquals('test_string', self::$instance->getDeviceId());
     }
 
     /**
@@ -92,8 +80,8 @@ class DeviceTest extends TestCase
      */
     public function testPropertyDeviceName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDeviceName());
+        $this->assertEquals('test_string', self::$instance->getDeviceName());
     }
 
     /**
@@ -101,8 +89,8 @@ class DeviceTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(DeviceStatusEnum::class, self::$instance->getStatus());
+        $this->assertSame(DeviceStatusEnum::CONNECTED, self::$instance->getStatus());
     }
 
     /**
@@ -110,7 +98,6 @@ class DeviceTest extends TestCase
      */
     public function testPropertyCreationTimestamp()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getCreationTimestamp());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getCreationTimestamp());
+    }}

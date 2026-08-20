@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\ConferenceMember;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,21 @@ use PHPUnit\Framework\TestCase;
  */
 class ConferenceMemberTest extends TestCase
 {
+    private static ConferenceMember $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new ConferenceMember([
+            'call_id' => 'test_string',
+            'conference_id' => 'test_string',
+            'member_url' => 'test_string',
+            'mute' => true,
+            'hold' => true,
+            'call_ids_to_coach' => ['test_string']
+        ]);
     }
 
     /**
@@ -74,8 +64,7 @@ class ConferenceMemberTest extends TestCase
      */
     public function testConferenceMember()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(ConferenceMember::class, self::$instance);
     }
 
     /**
@@ -83,8 +72,8 @@ class ConferenceMemberTest extends TestCase
      */
     public function testPropertyCallId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallId());
+        $this->assertEquals('test_string', self::$instance->getCallId());
     }
 
     /**
@@ -92,8 +81,8 @@ class ConferenceMemberTest extends TestCase
      */
     public function testPropertyConferenceId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getConferenceId());
+        $this->assertEquals('test_string', self::$instance->getConferenceId());
     }
 
     /**
@@ -101,8 +90,8 @@ class ConferenceMemberTest extends TestCase
      */
     public function testPropertyMemberUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getMemberUrl());
+        $this->assertEquals('test_string', self::$instance->getMemberUrl());
     }
 
     /**
@@ -110,8 +99,8 @@ class ConferenceMemberTest extends TestCase
      */
     public function testPropertyMute()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getMute());
+        $this->assertTrue(self::$instance->getMute());
     }
 
     /**
@@ -119,8 +108,8 @@ class ConferenceMemberTest extends TestCase
      */
     public function testPropertyHold()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getHold());
+        $this->assertTrue(self::$instance->getHold());
     }
 
     /**
@@ -128,7 +117,6 @@ class ConferenceMemberTest extends TestCase
      */
     public function testPropertyCallIdsToCoach()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getCallIdsToCoach());
+        $this->assertEquals(['test_string'], self::$instance->getCallIdsToCoach());
+    }}

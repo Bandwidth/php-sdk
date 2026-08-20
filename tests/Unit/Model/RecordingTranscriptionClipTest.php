@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RecordingTranscriptionClip;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,20 @@ use PHPUnit\Framework\TestCase;
  */
 class RecordingTranscriptionClipTest extends TestCase
 {
+    private static RecordingTranscriptionClip $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RecordingTranscriptionClip([
+            'speaker' => 1,
+            'text' => 'test_string',
+            'confidence' => 1.5,
+            'start_time_seconds' => 1.5,
+            'end_time_seconds' => 1.5
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class RecordingTranscriptionClipTest extends TestCase
      */
     public function testRecordingTranscriptionClip()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RecordingTranscriptionClip::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class RecordingTranscriptionClipTest extends TestCase
      */
     public function testPropertySpeaker()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getSpeaker());
+        $this->assertEquals(1, self::$instance->getSpeaker());
     }
 
     /**
@@ -92,8 +80,8 @@ class RecordingTranscriptionClipTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -101,8 +89,8 @@ class RecordingTranscriptionClipTest extends TestCase
      */
     public function testPropertyConfidence()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getConfidence());
+        $this->assertEquals(1.5, self::$instance->getConfidence());
     }
 
     /**
@@ -110,8 +98,8 @@ class RecordingTranscriptionClipTest extends TestCase
      */
     public function testPropertyStartTimeSeconds()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getStartTimeSeconds());
+        $this->assertEquals(1.5, self::$instance->getStartTimeSeconds());
     }
 
     /**
@@ -119,7 +107,6 @@ class RecordingTranscriptionClipTest extends TestCase
      */
     public function testPropertyEndTimeSeconds()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsFloat(self::$instance->getEndTimeSeconds());
+        $this->assertEquals(1.5, self::$instance->getEndTimeSeconds());
+    }}

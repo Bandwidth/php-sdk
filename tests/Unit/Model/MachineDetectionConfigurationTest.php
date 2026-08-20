@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallbackMethodEnum;
+use Bandwidth\Model\MachineDetectionConfiguration;
+use Bandwidth\Model\MachineDetectionModeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,30 @@ use PHPUnit\Framework\TestCase;
  */
 class MachineDetectionConfigurationTest extends TestCase
 {
+    private static MachineDetectionConfiguration $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MachineDetectionConfiguration([
+            'mode' => MachineDetectionModeEnum::SYNC,
+            'detection_timeout' => 1.5,
+            'silence_timeout' => 1.5,
+            'speech_threshold' => 1.5,
+            'speech_end_threshold' => 1.5,
+            'machine_speech_end_threshold' => 1.5,
+            'delay_result' => true,
+            'callback_url' => 'test_string',
+            'callback_method' => CallbackMethodEnum::GET,
+            'username' => 'test_string',
+            'password' => 'test_string',
+            'fallback_url' => 'test_string',
+            'fallback_method' => CallbackMethodEnum::GET,
+            'fallback_username' => 'test_string',
+            'fallback_password' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +75,7 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testMachineDetectionConfiguration()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MachineDetectionConfiguration::class, self::$instance);
     }
 
     /**
@@ -83,8 +83,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyMode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MachineDetectionModeEnum::class, self::$instance->getMode());
+        $this->assertSame(MachineDetectionModeEnum::SYNC, self::$instance->getMode());
     }
 
     /**
@@ -92,8 +92,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyDetectionTimeout()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getDetectionTimeout());
+        $this->assertEquals(1.5, self::$instance->getDetectionTimeout());
     }
 
     /**
@@ -101,8 +101,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertySilenceTimeout()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getSilenceTimeout());
+        $this->assertEquals(1.5, self::$instance->getSilenceTimeout());
     }
 
     /**
@@ -110,8 +110,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertySpeechThreshold()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getSpeechThreshold());
+        $this->assertEquals(1.5, self::$instance->getSpeechThreshold());
     }
 
     /**
@@ -119,8 +119,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertySpeechEndThreshold()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getSpeechEndThreshold());
+        $this->assertEquals(1.5, self::$instance->getSpeechEndThreshold());
     }
 
     /**
@@ -128,8 +128,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyMachineSpeechEndThreshold()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getMachineSpeechEndThreshold());
+        $this->assertEquals(1.5, self::$instance->getMachineSpeechEndThreshold());
     }
 
     /**
@@ -137,8 +137,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyDelayResult()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getDelayResult());
+        $this->assertTrue(self::$instance->getDelayResult());
     }
 
     /**
@@ -146,8 +146,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyCallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getCallbackUrl());
     }
 
     /**
@@ -155,8 +155,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyCallbackMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallbackMethodEnum::class, self::$instance->getCallbackMethod());
+        $this->assertSame(CallbackMethodEnum::GET, self::$instance->getCallbackMethod());
     }
 
     /**
@@ -164,8 +164,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyUsername()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUsername());
+        $this->assertEquals('test_string', self::$instance->getUsername());
     }
 
     /**
@@ -173,8 +173,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyPassword()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPassword());
+        $this->assertEquals('test_string', self::$instance->getPassword());
     }
 
     /**
@@ -182,8 +182,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyFallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getFallbackUrl());
     }
 
     /**
@@ -191,8 +191,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyFallbackMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallbackMethodEnum::class, self::$instance->getFallbackMethod());
+        $this->assertSame(CallbackMethodEnum::GET, self::$instance->getFallbackMethod());
     }
 
     /**
@@ -200,8 +200,8 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyFallbackUsername()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFallbackUsername());
+        $this->assertEquals('test_string', self::$instance->getFallbackUsername());
     }
 
     /**
@@ -209,7 +209,6 @@ class MachineDetectionConfigurationTest extends TestCase
      */
     public function testPropertyFallbackPassword()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getFallbackPassword());
+        $this->assertEquals('test_string', self::$instance->getFallbackPassword());
+    }}

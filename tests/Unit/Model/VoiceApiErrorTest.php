@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\VoiceApiError;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class VoiceApiErrorTest extends TestCase
 {
+    private static VoiceApiError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new VoiceApiError([
+            'type' => 'test_string',
+            'description' => 'test_string',
+            'id' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class VoiceApiErrorTest extends TestCase
      */
     public function testVoiceApiError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(VoiceApiError::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class VoiceApiErrorTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getType());
+        $this->assertEquals('test_string', self::$instance->getType());
     }
 
     /**
@@ -92,8 +78,8 @@ class VoiceApiErrorTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
     }
 
     /**
@@ -101,7 +87,6 @@ class VoiceApiErrorTest extends TestCase
      */
     public function testPropertyId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getId());
+        $this->assertEquals('test_string', self::$instance->getId());
+    }}

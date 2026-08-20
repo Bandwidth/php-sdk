@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RbmSuggestionResponse;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmSuggestionResponseTest extends TestCase
 {
+    private static RbmSuggestionResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RbmSuggestionResponse([
+            'text' => 'test_string',
+            'postback_data' => 'test_string',
+            'paired_message_id' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class RbmSuggestionResponseTest extends TestCase
      */
     public function testRbmSuggestionResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmSuggestionResponse::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class RbmSuggestionResponseTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -92,8 +78,8 @@ class RbmSuggestionResponseTest extends TestCase
      */
     public function testPropertyPostbackData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPostbackData());
+        $this->assertEquals('test_string', self::$instance->getPostbackData());
     }
 
     /**
@@ -101,7 +87,6 @@ class RbmSuggestionResponseTest extends TestCase
      */
     public function testPropertyPairedMessageId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getPairedMessageId());
+        $this->assertEquals('test_string', self::$instance->getPairedMessageId());
+    }}

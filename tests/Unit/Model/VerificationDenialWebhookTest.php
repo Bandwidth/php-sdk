@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\AdditionalDenialReason;
+use Bandwidth\Model\VerificationDenialWebhook;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,25 @@ use PHPUnit\Framework\TestCase;
  */
 class VerificationDenialWebhookTest extends TestCase
 {
+    private static VerificationDenialWebhook $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new VerificationDenialWebhook([
+            'account_id' => 'test_string',
+            'additional_denial_reasons' => [new AdditionalDenialReason([])],
+            'decline_reason_description' => 'test_string',
+            'denial_status_code' => 1,
+            'internal_ticket_number' => 'test_string',
+            'phone_number' => 'test_string',
+            'resubmit_allowed' => true,
+            'status' => 'test_string',
+            'blocked' => true,
+            'blocked_reason' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +69,7 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testVerificationDenialWebhook()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(VerificationDenialWebhook::class, self::$instance);
     }
 
     /**
@@ -83,8 +77,8 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyAccountId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAccountId());
+        $this->assertEquals('test_string', self::$instance->getAccountId());
     }
 
     /**
@@ -92,8 +86,8 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyAdditionalDenialReasons()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getAdditionalDenialReasons());
+        $this->assertInstanceOf(AdditionalDenialReason::class, self::$instance->getAdditionalDenialReasons()[0]);
     }
 
     /**
@@ -101,8 +95,8 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyDeclineReasonDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDeclineReasonDescription());
+        $this->assertEquals('test_string', self::$instance->getDeclineReasonDescription());
     }
 
     /**
@@ -110,8 +104,8 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyDenialStatusCode()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getDenialStatusCode());
+        $this->assertEquals(1, self::$instance->getDenialStatusCode());
     }
 
     /**
@@ -119,8 +113,8 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyInternalTicketNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getInternalTicketNumber());
+        $this->assertEquals('test_string', self::$instance->getInternalTicketNumber());
     }
 
     /**
@@ -128,8 +122,8 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyPhoneNumber()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPhoneNumber());
+        $this->assertEquals('test_string', self::$instance->getPhoneNumber());
     }
 
     /**
@@ -137,8 +131,8 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyResubmitAllowed()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getResubmitAllowed());
+        $this->assertTrue(self::$instance->getResubmitAllowed());
     }
 
     /**
@@ -146,8 +140,8 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getStatus());
+        $this->assertEquals('test_string', self::$instance->getStatus());
     }
 
     /**
@@ -155,8 +149,8 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyBlocked()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getBlocked());
+        $this->assertTrue(self::$instance->getBlocked());
     }
 
     /**
@@ -164,7 +158,6 @@ class VerificationDenialWebhookTest extends TestCase
      */
     public function testPropertyBlockedReason()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getBlockedReason());
+        $this->assertEquals('test_string', self::$instance->getBlockedReason());
+    }}

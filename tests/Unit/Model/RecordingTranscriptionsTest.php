@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RecordingTranscriptionClip;
+use Bandwidth\Model\RecordingTranscriptions;
+use Bandwidth\Model\Transcription;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,17 @@ use PHPUnit\Framework\TestCase;
  */
 class RecordingTranscriptionsTest extends TestCase
 {
+    private static RecordingTranscriptions $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RecordingTranscriptions([
+            'transcripts' => [new Transcription([])],
+            'clips' => [new RecordingTranscriptionClip([])]
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class RecordingTranscriptionsTest extends TestCase
      */
     public function testRecordingTranscriptions()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RecordingTranscriptions::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class RecordingTranscriptionsTest extends TestCase
      */
     public function testPropertyTranscripts()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getTranscripts());
+        $this->assertInstanceOf(Transcription::class, self::$instance->getTranscripts()[0]);
     }
 
     /**
@@ -92,7 +79,6 @@ class RecordingTranscriptionsTest extends TestCase
      */
     public function testPropertyClips()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getClips());
+        $this->assertInstanceOf(RecordingTranscriptionClip::class, self::$instance->getClips()[0]);
+    }}

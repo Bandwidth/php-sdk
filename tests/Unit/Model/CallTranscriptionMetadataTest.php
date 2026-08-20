@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallTranscriptionMetadata;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class CallTranscriptionMetadataTest extends TestCase
 {
+    private static CallTranscriptionMetadata $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CallTranscriptionMetadata([
+            'transcription_id' => 'test_string',
+            'transcription_name' => 'test_string',
+            'transcription_url' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class CallTranscriptionMetadataTest extends TestCase
      */
     public function testCallTranscriptionMetadata()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallTranscriptionMetadata::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class CallTranscriptionMetadataTest extends TestCase
      */
     public function testPropertyTranscriptionId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTranscriptionId());
+        $this->assertEquals('test_string', self::$instance->getTranscriptionId());
     }
 
     /**
@@ -92,8 +78,8 @@ class CallTranscriptionMetadataTest extends TestCase
      */
     public function testPropertyTranscriptionName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTranscriptionName());
+        $this->assertEquals('test_string', self::$instance->getTranscriptionName());
     }
 
     /**
@@ -101,7 +87,6 @@ class CallTranscriptionMetadataTest extends TestCase
      */
     public function testPropertyTranscriptionUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getTranscriptionUrl());
+        $this->assertEquals('test_string', self::$instance->getTranscriptionUrl());
+    }}

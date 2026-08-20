@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MessagingCodeResponse;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,16 @@ use PHPUnit\Framework\TestCase;
  */
 class MessagingCodeResponseTest extends TestCase
 {
+    private static MessagingCodeResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new MessagingCodeResponse([
+            'message_id' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +59,7 @@ class MessagingCodeResponseTest extends TestCase
      */
     public function testMessagingCodeResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MessagingCodeResponse::class, self::$instance);
     }
 
     /**
@@ -83,7 +67,6 @@ class MessagingCodeResponseTest extends TestCase
      */
     public function testPropertyMessageId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getMessageId());
+        $this->assertEquals('test_string', self::$instance->getMessageId());
+    }}

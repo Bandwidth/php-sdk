@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\Media;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class MediaTest extends TestCase
 {
+    private static Media $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new Media([
+            'content' => 'test_string',
+            'content_length' => 1,
+            'media_name' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class MediaTest extends TestCase
      */
     public function testMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(Media::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class MediaTest extends TestCase
      */
     public function testPropertyContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getContent());
+        $this->assertEquals('test_string', self::$instance->getContent());
     }
 
     /**
@@ -92,8 +78,8 @@ class MediaTest extends TestCase
      */
     public function testPropertyContentLength()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getContentLength());
+        $this->assertEquals(1, self::$instance->getContentLength());
     }
 
     /**
@@ -101,7 +87,6 @@ class MediaTest extends TestCase
      */
     public function testPropertyMediaName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getMediaName());
+        $this->assertEquals('test_string', self::$instance->getMediaName());
+    }}

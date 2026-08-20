@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\TfvBasicAuthentication;
+use Bandwidth\Model\WebhookSubscriptionRequestSchema;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,18 @@ use PHPUnit\Framework\TestCase;
  */
 class WebhookSubscriptionRequestSchemaTest extends TestCase
 {
+    private static WebhookSubscriptionRequestSchema $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new WebhookSubscriptionRequestSchema([
+            'basic_authentication' => new TfvBasicAuthentication([]),
+            'callback_url' => 'test_string',
+            'shared_secret_key' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class WebhookSubscriptionRequestSchemaTest extends TestCase
      */
     public function testWebhookSubscriptionRequestSchema()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(WebhookSubscriptionRequestSchema::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,7 @@ class WebhookSubscriptionRequestSchemaTest extends TestCase
      */
     public function testPropertyBasicAuthentication()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(TfvBasicAuthentication::class, self::$instance->getBasicAuthentication());
     }
 
     /**
@@ -92,8 +78,8 @@ class WebhookSubscriptionRequestSchemaTest extends TestCase
      */
     public function testPropertyCallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getCallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getCallbackUrl());
     }
 
     /**
@@ -101,7 +87,6 @@ class WebhookSubscriptionRequestSchemaTest extends TestCase
      */
     public function testPropertySharedSecretKey()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getSharedSecretKey());
+        $this->assertEquals('test_string', self::$instance->getSharedSecretKey());
+    }}

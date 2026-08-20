@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CallbackMethodEnum;
+use Bandwidth\Model\CreateCall;
+use Bandwidth\Model\MachineDetectionConfiguration;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,36 @@ use PHPUnit\Framework\TestCase;
  */
 class CreateCallTest extends TestCase
 {
+    private static CreateCall $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CreateCall([
+            'to' => 'test_string',
+            'from' => 'test_string',
+            'privacy' => true,
+            'display_name' => 'test_string',
+            'uui' => 'test_string',
+            'application_id' => 'test_string',
+            'answer_url' => 'test_string',
+            'answer_method' => CallbackMethodEnum::GET,
+            'username' => 'test_string',
+            'password' => 'test_string',
+            'answer_fallback_url' => 'test_string',
+            'answer_fallback_method' => CallbackMethodEnum::GET,
+            'fallback_username' => 'test_string',
+            'fallback_password' => 'test_string',
+            'disconnect_url' => 'test_string',
+            'disconnect_method' => CallbackMethodEnum::GET,
+            'call_timeout' => 1.5,
+            'callback_timeout' => 1.5,
+            'machine_detection' => new MachineDetectionConfiguration([]),
+            'priority' => 1,
+            'tag' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +81,7 @@ class CreateCallTest extends TestCase
      */
     public function testCreateCall()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateCall::class, self::$instance);
     }
 
     /**
@@ -83,8 +89,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTo());
+        $this->assertEquals('test_string', self::$instance->getTo());
     }
 
     /**
@@ -92,8 +98,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyFrom()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFrom());
+        $this->assertEquals('test_string', self::$instance->getFrom());
     }
 
     /**
@@ -101,8 +107,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyPrivacy()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsBool(self::$instance->getPrivacy());
+        $this->assertTrue(self::$instance->getPrivacy());
     }
 
     /**
@@ -110,8 +116,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyDisplayName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDisplayName());
+        $this->assertEquals('test_string', self::$instance->getDisplayName());
     }
 
     /**
@@ -119,8 +125,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyUui()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUui());
+        $this->assertEquals('test_string', self::$instance->getUui());
     }
 
     /**
@@ -128,8 +134,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyApplicationId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getApplicationId());
+        $this->assertEquals('test_string', self::$instance->getApplicationId());
     }
 
     /**
@@ -137,8 +143,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyAnswerUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAnswerUrl());
+        $this->assertEquals('test_string', self::$instance->getAnswerUrl());
     }
 
     /**
@@ -146,8 +152,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyAnswerMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallbackMethodEnum::class, self::$instance->getAnswerMethod());
+        $this->assertSame(CallbackMethodEnum::GET, self::$instance->getAnswerMethod());
     }
 
     /**
@@ -155,8 +161,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyUsername()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getUsername());
+        $this->assertEquals('test_string', self::$instance->getUsername());
     }
 
     /**
@@ -164,8 +170,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyPassword()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getPassword());
+        $this->assertEquals('test_string', self::$instance->getPassword());
     }
 
     /**
@@ -173,8 +179,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyAnswerFallbackUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAnswerFallbackUrl());
+        $this->assertEquals('test_string', self::$instance->getAnswerFallbackUrl());
     }
 
     /**
@@ -182,8 +188,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyAnswerFallbackMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallbackMethodEnum::class, self::$instance->getAnswerFallbackMethod());
+        $this->assertSame(CallbackMethodEnum::GET, self::$instance->getAnswerFallbackMethod());
     }
 
     /**
@@ -191,8 +197,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyFallbackUsername()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFallbackUsername());
+        $this->assertEquals('test_string', self::$instance->getFallbackUsername());
     }
 
     /**
@@ -200,8 +206,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyFallbackPassword()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFallbackPassword());
+        $this->assertEquals('test_string', self::$instance->getFallbackPassword());
     }
 
     /**
@@ -209,8 +215,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyDisconnectUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDisconnectUrl());
+        $this->assertEquals('test_string', self::$instance->getDisconnectUrl());
     }
 
     /**
@@ -218,8 +224,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyDisconnectMethod()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CallbackMethodEnum::class, self::$instance->getDisconnectMethod());
+        $this->assertSame(CallbackMethodEnum::GET, self::$instance->getDisconnectMethod());
     }
 
     /**
@@ -227,8 +233,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyCallTimeout()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getCallTimeout());
+        $this->assertEquals(1.5, self::$instance->getCallTimeout());
     }
 
     /**
@@ -236,8 +242,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyCallbackTimeout()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsFloat(self::$instance->getCallbackTimeout());
+        $this->assertEquals(1.5, self::$instance->getCallbackTimeout());
     }
 
     /**
@@ -245,8 +251,7 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyMachineDetection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MachineDetectionConfiguration::class, self::$instance->getMachineDetection());
     }
 
     /**
@@ -254,8 +259,8 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyPriority()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getPriority());
+        $this->assertEquals(1, self::$instance->getPriority());
     }
 
     /**
@@ -263,7 +268,6 @@ class CreateCallTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
+    }}

@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\LinkSchema;
+use Bandwidth\Model\LookupErrorResponse;
+use Bandwidth\Model\LookupErrorSchema;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,18 @@ use PHPUnit\Framework\TestCase;
  */
 class LookupErrorResponseTest extends TestCase
 {
+    private static LookupErrorResponse $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new LookupErrorResponse([
+            'links' => [new LinkSchema([])],
+            'data' => (object) ['key' => 'value'],
+            'errors' => [new LookupErrorSchema([])]
+        ]);
     }
 
     /**
@@ -74,8 +63,7 @@ class LookupErrorResponseTest extends TestCase
      */
     public function testLookupErrorResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(LookupErrorResponse::class, self::$instance);
     }
 
     /**
@@ -83,8 +71,8 @@ class LookupErrorResponseTest extends TestCase
      */
     public function testPropertyLinks()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getLinks());
+        $this->assertInstanceOf(LinkSchema::class, self::$instance->getLinks()[0]);
     }
 
     /**
@@ -92,8 +80,8 @@ class LookupErrorResponseTest extends TestCase
      */
     public function testPropertyData()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsObject(self::$instance->getData());
+        $this->assertEquals((object) ['key' => 'value'], self::$instance->getData());
     }
 
     /**
@@ -101,7 +89,6 @@ class LookupErrorResponseTest extends TestCase
      */
     public function testPropertyErrors()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getErrors());
+        $this->assertInstanceOf(LookupErrorSchema::class, self::$instance->getErrors()[0]);
+    }}

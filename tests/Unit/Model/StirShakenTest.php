@@ -28,6 +28,8 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\StirShaken;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +42,18 @@ use PHPUnit\Framework\TestCase;
  */
 class StirShakenTest extends TestCase
 {
+    private static StirShaken $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new StirShaken([
+            'verstat' => 'test_string',
+            'attestation_indicator' => 'test_string',
+            'originating_id' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +61,7 @@ class StirShakenTest extends TestCase
      */
     public function testStirShaken()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(StirShaken::class, self::$instance);
     }
 
     /**
@@ -83,8 +69,8 @@ class StirShakenTest extends TestCase
      */
     public function testPropertyVerstat()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getVerstat());
+        $this->assertEquals('test_string', self::$instance->getVerstat());
     }
 
     /**
@@ -92,8 +78,8 @@ class StirShakenTest extends TestCase
      */
     public function testPropertyAttestationIndicator()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getAttestationIndicator());
+        $this->assertEquals('test_string', self::$instance->getAttestationIndicator());
     }
 
     /**
@@ -101,7 +87,6 @@ class StirShakenTest extends TestCase
      */
     public function testPropertyOriginatingId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getOriginatingId());
+        $this->assertEquals('test_string', self::$instance->getOriginatingId());
+    }}

@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RbmCardContentMedia;
+use Bandwidth\Model\RbmMediaHeightEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,18 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmCardContentMediaTest extends TestCase
 {
+    private static RbmCardContentMedia $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new RbmCardContentMedia([
+            'file_url' => 'test_string',
+            'thumbnail_url' => 'test_string',
+            'height' => RbmMediaHeightEnum::SHORT
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class RbmCardContentMediaTest extends TestCase
      */
     public function testRbmCardContentMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmCardContentMedia::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class RbmCardContentMediaTest extends TestCase
      */
     public function testPropertyFileUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFileUrl());
+        $this->assertEquals('test_string', self::$instance->getFileUrl());
     }
 
     /**
@@ -92,8 +79,8 @@ class RbmCardContentMediaTest extends TestCase
      */
     public function testPropertyThumbnailUrl()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getThumbnailUrl());
+        $this->assertEquals('test_string', self::$instance->getThumbnailUrl());
     }
 
     /**
@@ -101,7 +88,6 @@ class RbmCardContentMediaTest extends TestCase
      */
     public function testPropertyHeight()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(RbmMediaHeightEnum::class, self::$instance->getHeight());
+        $this->assertSame(RbmMediaHeightEnum::SHORT, self::$instance->getHeight());
+    }}

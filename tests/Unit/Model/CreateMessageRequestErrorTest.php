@@ -28,6 +28,9 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\CreateMessageRequestError;
+use Bandwidth\Model\FieldError;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +43,18 @@ use PHPUnit\Framework\TestCase;
  */
 class CreateMessageRequestErrorTest extends TestCase
 {
+    private static CreateMessageRequestError $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new CreateMessageRequestError([
+            'type' => 'test_string',
+            'description' => 'test_string',
+            'field_errors' => [new FieldError([])]
+        ]);
     }
 
     /**
@@ -74,8 +62,7 @@ class CreateMessageRequestErrorTest extends TestCase
      */
     public function testCreateMessageRequestError()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(CreateMessageRequestError::class, self::$instance);
     }
 
     /**
@@ -83,8 +70,8 @@ class CreateMessageRequestErrorTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getType());
+        $this->assertEquals('test_string', self::$instance->getType());
     }
 
     /**
@@ -92,8 +79,8 @@ class CreateMessageRequestErrorTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
     }
 
     /**
@@ -101,7 +88,6 @@ class CreateMessageRequestErrorTest extends TestCase
      */
     public function testPropertyFieldErrors()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsArray(self::$instance->getFieldErrors());
+        $this->assertInstanceOf(FieldError::class, self::$instance->getFieldErrors()[0]);
+    }}

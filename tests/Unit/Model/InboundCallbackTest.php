@@ -28,6 +28,10 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\InboundCallback;
+use Bandwidth\Model\InboundCallbackMessage;
+use Bandwidth\Model\InboundCallbackTypeEnum;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +44,21 @@ use PHPUnit\Framework\TestCase;
  */
 class InboundCallbackTest extends TestCase
 {
+    private static InboundCallback $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new InboundCallback([
+            'time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'type' => InboundCallbackTypeEnum::MESSAGE_RECEIVED,
+            'to' => 'test_string',
+            'description' => 'test_string',
+            'message' => new InboundCallbackMessage([]),
+            'carrier_name' => 'test_string'
+        ]);
     }
 
     /**
@@ -74,8 +66,7 @@ class InboundCallbackTest extends TestCase
      */
     public function testInboundCallback()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(InboundCallback::class, self::$instance);
     }
 
     /**
@@ -83,8 +74,8 @@ class InboundCallbackTest extends TestCase
      */
     public function testPropertyTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getTime());
     }
 
     /**
@@ -92,8 +83,8 @@ class InboundCallbackTest extends TestCase
      */
     public function testPropertyType()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(InboundCallbackTypeEnum::class, self::$instance->getType());
+        $this->assertSame(InboundCallbackTypeEnum::MESSAGE_RECEIVED, self::$instance->getType());
     }
 
     /**
@@ -101,8 +92,8 @@ class InboundCallbackTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTo());
+        $this->assertEquals('test_string', self::$instance->getTo());
     }
 
     /**
@@ -110,8 +101,8 @@ class InboundCallbackTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getDescription());
+        $this->assertEquals('test_string', self::$instance->getDescription());
     }
 
     /**
@@ -119,8 +110,7 @@ class InboundCallbackTest extends TestCase
      */
     public function testPropertyMessage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(InboundCallbackMessage::class, self::$instance->getMessage());
     }
 
     /**
@@ -128,7 +118,6 @@ class InboundCallbackTest extends TestCase
      */
     public function testPropertyCarrierName()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertIsString(self::$instance->getCarrierName());
+        $this->assertEquals('test_string', self::$instance->getCarrierName());
+    }}

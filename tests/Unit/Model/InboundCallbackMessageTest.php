@@ -28,6 +28,14 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\InboundCallbackMessage;
+use Bandwidth\Model\MessageDirectionEnum;
+use Bandwidth\Model\MultiChannelMessageChannelEnum;
+use Bandwidth\Model\MultiChannelMessageContent;
+use Bandwidth\Model\PriorityEnum;
+use Bandwidth\Model\RbmLocationResponse;
+use Bandwidth\Model\RbmSuggestionResponse;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,33 +48,31 @@ use PHPUnit\Framework\TestCase;
  */
 class InboundCallbackMessageTest extends TestCase
 {
+    private static InboundCallbackMessage $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
+        self::$instance = new InboundCallbackMessage([
+            'id' => 'test_string',
+            'owner' => 'test_string',
+            'application_id' => 'test_string',
+            'time' => new \DateTime('2024-01-01T00:00:00+00:00'),
+            'segment_count' => 1,
+            'direction' => MessageDirectionEnum::IN,
+            'to' => ['test_string'],
+            'from' => 'test_string',
+            'text' => 'test_string',
+            'tag' => 'test_string',
+            'media' => ['test_string'],
+            'priority' => PriorityEnum::_DEFAULT,
+            'channel' => MultiChannelMessageChannelEnum::RBM,
+            'content' => new MultiChannelMessageContent([]),
+            'suggestion_response' => new RbmSuggestionResponse([]),
+            'location_response' => new RbmLocationResponse([])
+        ]);
     }
 
     /**
@@ -74,8 +80,7 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testInboundCallbackMessage()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(InboundCallbackMessage::class, self::$instance);
     }
 
     /**
@@ -83,8 +88,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getId());
+        $this->assertEquals('test_string', self::$instance->getId());
     }
 
     /**
@@ -92,8 +97,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyOwner()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getOwner());
+        $this->assertEquals('test_string', self::$instance->getOwner());
     }
 
     /**
@@ -101,8 +106,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyApplicationId()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getApplicationId());
+        $this->assertEquals('test_string', self::$instance->getApplicationId());
     }
 
     /**
@@ -110,8 +115,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyTime()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\DateTime::class, self::$instance->getTime());
+        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getTime());
     }
 
     /**
@@ -119,8 +124,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertySegmentCount()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsInt(self::$instance->getSegmentCount());
+        $this->assertEquals(1, self::$instance->getSegmentCount());
     }
 
     /**
@@ -128,8 +133,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyDirection()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MessageDirectionEnum::class, self::$instance->getDirection());
+        $this->assertSame(MessageDirectionEnum::IN, self::$instance->getDirection());
     }
 
     /**
@@ -137,8 +142,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyTo()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getTo());
+        $this->assertEquals(['test_string'], self::$instance->getTo());
     }
 
     /**
@@ -146,8 +151,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyFrom()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getFrom());
+        $this->assertEquals('test_string', self::$instance->getFrom());
     }
 
     /**
@@ -155,8 +160,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyText()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getText());
+        $this->assertEquals('test_string', self::$instance->getText());
     }
 
     /**
@@ -164,8 +169,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyTag()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsString(self::$instance->getTag());
+        $this->assertEquals('test_string', self::$instance->getTag());
     }
 
     /**
@@ -173,8 +178,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyMedia()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertIsArray(self::$instance->getMedia());
+        $this->assertEquals(['test_string'], self::$instance->getMedia());
     }
 
     /**
@@ -182,8 +187,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyPriority()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(PriorityEnum::class, self::$instance->getPriority());
+        $this->assertSame(PriorityEnum::_DEFAULT, self::$instance->getPriority());
     }
 
     /**
@@ -191,8 +196,8 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyChannel()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelMessageChannelEnum::class, self::$instance->getChannel());
+        $this->assertSame(MultiChannelMessageChannelEnum::RBM, self::$instance->getChannel());
     }
 
     /**
@@ -200,8 +205,7 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(MultiChannelMessageContent::class, self::$instance->getContent());
     }
 
     /**
@@ -209,8 +213,7 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertySuggestionResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(RbmSuggestionResponse::class, self::$instance->getSuggestionResponse());
     }
 
     /**
@@ -218,7 +221,5 @@ class InboundCallbackMessageTest extends TestCase
      */
     public function testPropertyLocationResponse()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-}
+        $this->assertInstanceOf(RbmLocationResponse::class, self::$instance->getLocationResponse());
+    }}
