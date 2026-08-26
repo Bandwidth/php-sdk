@@ -52,4 +52,5 @@ jobs:
             [ "$i" -eq 10 ] && { echo "::error::prism failed to start"; cat prism.log; exit 1; }
             sleep 1
           done
+          ./vendor/bin/phpunit tests/Unit
         shell: bash
