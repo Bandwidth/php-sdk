@@ -28,6 +28,14 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\MultiChannelChannelListRBMObjectAllOfContent;
+use Bandwidth\Model\RbmMessageCarouselCard;
+use Bandwidth\Model\RbmMessageContentRichCard;
+use Bandwidth\Model\RbmMessageContentText;
+use Bandwidth\Model\RbmMessageMedia;
+use Bandwidth\Model\RbmStandaloneCard;
+use Bandwidth\ObjectSerializer;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,41 +48,80 @@ use PHPUnit\Framework\TestCase;
  */
 class MultiChannelChannelListRBMObjectAllOfContentTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
     /**
      * Test "MultiChannelChannelListRBMObjectAllOfContent"
      */
     public function testMultiChannelChannelListRBMObjectAllOfContent()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            [
+                RbmMessageContentText::class,
+                RbmMessageMedia::class,
+                RbmMessageContentRichCard::class
+            ],
+            array_map(
+                fn($type) => ltrim($type, '\\'),
+                MultiChannelChannelListRBMObjectAllOfContent::getOneOfTypes()
+            )
+        );
+        $this->assertNull(MultiChannelChannelListRBMObjectAllOfContent::getOneOfDiscriminator());
+        $this->assertSame([], MultiChannelChannelListRBMObjectAllOfContent::getOneOfDiscriminatorMappings());
+    }
+
+    /**
+     * Test that a payload resolves to the member type its shape matches.
+     *
+     * With no discriminator, resolution walks the member types in declaration order and takes the
+     * first one that deserializes to a valid model. A rich card resolves to the concrete card type
+     * rather than to RbmMessageContentRichCard, since the nested oneOf resolves to its own member.
+     *
+     * @dataProvider payloadProvider
+     */
+    public function testDeserializeResolvesByShape(array $payload, string $expected)
+    {
+        $result = ObjectSerializer::deserialize(
+            (object) $payload,
+            MultiChannelChannelListRBMObjectAllOfContent::class
+        );
+
+        $this->assertInstanceOf($expected, $result);
+    }
+
+    /**
+     * Test that a payload matching no member type is rejected
+     */
+    public function testDeserializeRejectsUnmatchedPayload()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        ObjectSerializer::deserialize(
+            (object) ['notARbmContentField' => 1],
+            MultiChannelChannelListRBMObjectAllOfContent::class
+        );
+    }
+
+    /**
+     * @return array<string, array{0: array<string, mixed>, 1: class-string}>
+     */
+    public static function payloadProvider(): array
+    {
+        return [
+            'text' => [
+                ['text' => 'Hello World!'],
+                RbmMessageContentText::class
+            ],
+            'media' => [
+                ['media' => [['fileUrl' => 'https://example.com/image.png']]],
+                RbmMessageMedia::class
+            ],
+            'standalone card' => [
+                ['orientation' => 'HORIZONTAL', 'cardContent' => (object) []],
+                RbmStandaloneCard::class
+            ],
+            'carousel card' => [
+                ['cardWidth' => 'SMALL', 'cardContents' => [(object) [], (object) []]],
+                RbmMessageCarouselCard::class
+            ]
+        ];
     }
 }

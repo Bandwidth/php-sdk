@@ -28,6 +28,11 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\RbmMessageCarouselCard;
+use Bandwidth\Model\RbmMessageContentRichCard;
+use Bandwidth\Model\RbmStandaloneCard;
+use Bandwidth\ObjectSerializer;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,41 +45,65 @@ use PHPUnit\Framework\TestCase;
  */
 class RbmMessageContentRichCardTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass(): void
-    {
-    }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp(): void
-    {
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown(): void
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
     /**
      * Test "RbmMessageContentRichCard"
      */
     public function testRbmMessageContentRichCard()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->assertSame(
+            [
+                RbmStandaloneCard::class,
+                RbmMessageCarouselCard::class
+            ],
+            array_map(fn($type) => ltrim($type, '\\'), RbmMessageContentRichCard::getOneOfTypes())
+        );
+        $this->assertNull(RbmMessageContentRichCard::getOneOfDiscriminator());
+        $this->assertSame([], RbmMessageContentRichCard::getOneOfDiscriminatorMappings());
+    }
+
+    /**
+     * Test that a payload resolves to the member type its shape matches.
+     *
+     * With no discriminator, resolution walks the member types in declaration order and takes the
+     * first one that deserializes to a valid model. A standalone card requires orientation and
+     * cardContent; a carousel card requires cardWidth and at least two cardContents.
+     *
+     * @dataProvider payloadProvider
+     */
+    public function testDeserializeResolvesByShape(array $payload, string $expected)
+    {
+        $result = ObjectSerializer::deserialize((object) $payload, RbmMessageContentRichCard::class);
+
+        $this->assertInstanceOf($expected, $result);
+    }
+
+    /**
+     * Test that a payload matching no member type is rejected
+     */
+    public function testDeserializeRejectsUnmatchedPayload()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        ObjectSerializer::deserialize(
+            (object) ['notACardField' => 1],
+            RbmMessageContentRichCard::class
+        );
+    }
+
+    /**
+     * @return array<string, array{0: array<string, mixed>, 1: class-string}>
+     */
+    public static function payloadProvider(): array
+    {
+        return [
+            'standalone card' => [
+                ['orientation' => 'HORIZONTAL', 'cardContent' => (object) []],
+                RbmStandaloneCard::class
+            ],
+            'carousel card' => [
+                ['cardWidth' => 'SMALL', 'cardContents' => [(object) [], (object) []]],
+                RbmMessageCarouselCard::class
+            ]
+        ];
     }
 }
