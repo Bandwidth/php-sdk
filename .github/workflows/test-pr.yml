@@ -48,5 +48,10 @@ jobs:
         run: |
           npm install -g @stoplight/prism-cli
           composer install
-          prism mock ./bandwidth.yml & (sleep 6; ./vendor/bin/phpunit tests/Unit)
+          prism mock ./bandwidth.yml > prism.log 2>&1 &
+          for i in $(seq 10); do # wait for prism to start
+            curl -s -o /dev/null http://127.0.0.1:4010 && break
+            [ "$i" -eq 10 ] && { echo "::error::prism failed to start"; cat prism.log; exit 1; }
+            sleep 1
+          done
         shell: bash
