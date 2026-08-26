@@ -269,7 +269,7 @@ class RbmCardContentMedia implements ModelInterface, ArrayAccess, JsonSerializab
         if ($this->container['file_url'] === null) {
             $invalidProperties[] = "'file_url' can't be null";
         }
-        if ((mb_strlen($this->container['file_url']) > 1000)) {
+        if (!is_null($this->container['file_url']) && (mb_strlen($this->container['file_url']) > 1000)) {
             $invalidProperties[] = "invalid value for 'file_url', the character length must be smaller than or equal to 1000.";
         }
 

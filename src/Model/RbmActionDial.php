@@ -279,7 +279,7 @@ class RbmActionDial implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['text'] === null) {
             $invalidProperties[] = "'text' can't be null";
         }
-        if ((mb_strlen($this->container['text']) > 25)) {
+        if (!is_null($this->container['text']) && (mb_strlen($this->container['text']) > 25)) {
             $invalidProperties[] = "invalid value for 'text', the character length must be smaller than or equal to 25.";
         }
 

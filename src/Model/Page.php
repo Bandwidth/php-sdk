@@ -276,7 +276,7 @@ class Page implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['page_size'] === null) {
             $invalidProperties[] = "'page_size' can't be null";
         }
-        if (($this->container['page_size'] < 0)) {
+        if (!is_null($this->container['page_size']) && ($this->container['page_size'] < 0)) {
             $invalidProperties[] = "invalid value for 'page_size', must be bigger than or equal to 0.";
         }
 

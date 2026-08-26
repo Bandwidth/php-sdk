@@ -408,7 +408,7 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['answer_url'] === null) {
             $invalidProperties[] = "'answer_url' can't be null";
         }
-        if ((mb_strlen($this->container['answer_url']) > 2048)) {
+        if (!is_null($this->container['answer_url']) && (mb_strlen($this->container['answer_url']) > 2048)) {
             $invalidProperties[] = "invalid value for 'answer_url', the character length must be smaller than or equal to 2048.";
         }
 

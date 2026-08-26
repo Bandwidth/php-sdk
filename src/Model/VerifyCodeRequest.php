@@ -276,29 +276,29 @@ class VerifyCodeRequest implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['to'] === null) {
             $invalidProperties[] = "'to' can't be null";
         }
-        if (!preg_match("/^\\+[1-9]\\d{1,14}$/", $this->container['to'])) {
+        if (!is_null($this->container['to']) && !preg_match("/^\\+[1-9]\\d{1,14}$/", $this->container['to'])) {
             $invalidProperties[] = "invalid value for 'to', must be conform to the pattern /^\\+[1-9]\\d{1,14}$/.";
         }
 
         if ($this->container['expiration_time_in_minutes'] === null) {
             $invalidProperties[] = "'expiration_time_in_minutes' can't be null";
         }
-        if (($this->container['expiration_time_in_minutes'] > 15)) {
+        if (!is_null($this->container['expiration_time_in_minutes']) && ($this->container['expiration_time_in_minutes'] > 15)) {
             $invalidProperties[] = "invalid value for 'expiration_time_in_minutes', must be smaller than or equal to 15.";
         }
 
-        if (($this->container['expiration_time_in_minutes'] < 1)) {
+        if (!is_null($this->container['expiration_time_in_minutes']) && ($this->container['expiration_time_in_minutes'] < 1)) {
             $invalidProperties[] = "invalid value for 'expiration_time_in_minutes', must be bigger than or equal to 1.";
         }
 
         if ($this->container['code'] === null) {
             $invalidProperties[] = "'code' can't be null";
         }
-        if ((mb_strlen($this->container['code']) > 8)) {
+        if (!is_null($this->container['code']) && (mb_strlen($this->container['code']) > 8)) {
             $invalidProperties[] = "invalid value for 'code', the character length must be smaller than or equal to 8.";
         }
 
-        if ((mb_strlen($this->container['code']) < 4)) {
+        if (!is_null($this->container['code']) && (mb_strlen($this->container['code']) < 4)) {
             $invalidProperties[] = "invalid value for 'code', the character length must be bigger than or equal to 4.";
         }
 

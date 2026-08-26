@@ -262,14 +262,14 @@ class TfvBasicAuthentication implements ModelInterface, ArrayAccess, JsonSeriali
         if ($this->container['username'] === null) {
             $invalidProperties[] = "'username' can't be null";
         }
-        if ((mb_strlen($this->container['username']) > 100)) {
+        if (!is_null($this->container['username']) && (mb_strlen($this->container['username']) > 100)) {
             $invalidProperties[] = "invalid value for 'username', the character length must be smaller than or equal to 100.";
         }
 
         if ($this->container['password'] === null) {
             $invalidProperties[] = "'password' can't be null";
         }
-        if ((mb_strlen($this->container['password']) > 200)) {
+        if (!is_null($this->container['password']) && (mb_strlen($this->container['password']) > 200)) {
             $invalidProperties[] = "invalid value for 'password', the character length must be smaller than or equal to 200.";
         }
 

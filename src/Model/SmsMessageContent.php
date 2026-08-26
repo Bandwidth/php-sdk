@@ -255,7 +255,7 @@ class SmsMessageContent implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['text'] === null) {
             $invalidProperties[] = "'text' can't be null";
         }
-        if ((mb_strlen($this->container['text']) > 2048)) {
+        if (!is_null($this->container['text']) && (mb_strlen($this->container['text']) > 2048)) {
             $invalidProperties[] = "invalid value for 'text', the character length must be smaller than or equal to 2048.";
         }
 

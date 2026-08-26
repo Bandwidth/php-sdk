@@ -269,11 +269,11 @@ class OptInWorkflow implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['description'] === null) {
             $invalidProperties[] = "'description' can't be null";
         }
-        if ((mb_strlen($this->container['description']) > 500)) {
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 500)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['description']) < 1)) {
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) < 1)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 1.";
         }
 

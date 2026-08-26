@@ -276,48 +276,48 @@ class Contact implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['first_name'] === null) {
             $invalidProperties[] = "'first_name' can't be null";
         }
-        if ((mb_strlen($this->container['first_name']) > 500)) {
+        if (!is_null($this->container['first_name']) && (mb_strlen($this->container['first_name']) > 500)) {
             $invalidProperties[] = "invalid value for 'first_name', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['first_name']) < 1)) {
+        if (!is_null($this->container['first_name']) && (mb_strlen($this->container['first_name']) < 1)) {
             $invalidProperties[] = "invalid value for 'first_name', the character length must be bigger than or equal to 1.";
         }
 
         if ($this->container['last_name'] === null) {
             $invalidProperties[] = "'last_name' can't be null";
         }
-        if ((mb_strlen($this->container['last_name']) > 500)) {
+        if (!is_null($this->container['last_name']) && (mb_strlen($this->container['last_name']) > 500)) {
             $invalidProperties[] = "invalid value for 'last_name', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['last_name']) < 1)) {
+        if (!is_null($this->container['last_name']) && (mb_strlen($this->container['last_name']) < 1)) {
             $invalidProperties[] = "invalid value for 'last_name', the character length must be bigger than or equal to 1.";
         }
 
         if ($this->container['email'] === null) {
             $invalidProperties[] = "'email' can't be null";
         }
-        if ((mb_strlen($this->container['email']) > 500)) {
+        if (!is_null($this->container['email']) && (mb_strlen($this->container['email']) > 500)) {
             $invalidProperties[] = "invalid value for 'email', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['email']) < 0)) {
+        if (!is_null($this->container['email']) && (mb_strlen($this->container['email']) < 0)) {
             $invalidProperties[] = "invalid value for 'email', the character length must be bigger than or equal to 0.";
         }
 
-        if (!preg_match("/^(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])$/", $this->container['email'])) {
+        if (!is_null($this->container['email']) && !preg_match("/^(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])$/", $this->container['email'])) {
             $invalidProperties[] = "invalid value for 'email', must be conform to the pattern /^(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])$/.";
         }
 
         if ($this->container['phone_number'] === null) {
             $invalidProperties[] = "'phone_number' can't be null";
         }
-        if ((mb_strlen($this->container['phone_number']) > 500)) {
+        if (!is_null($this->container['phone_number']) && (mb_strlen($this->container['phone_number']) > 500)) {
             $invalidProperties[] = "invalid value for 'phone_number', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['phone_number']) < 1)) {
+        if (!is_null($this->container['phone_number']) && (mb_strlen($this->container['phone_number']) < 1)) {
             $invalidProperties[] = "invalid value for 'phone_number', the character length must be bigger than or equal to 1.";
         }
 

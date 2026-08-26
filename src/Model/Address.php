@@ -297,22 +297,22 @@ class Address implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ((mb_strlen($this->container['name']) > 500)) {
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 500)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['name']) < 1)) {
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) < 1)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
         }
 
         if ($this->container['addr1'] === null) {
             $invalidProperties[] = "'addr1' can't be null";
         }
-        if ((mb_strlen($this->container['addr1']) > 500)) {
+        if (!is_null($this->container['addr1']) && (mb_strlen($this->container['addr1']) > 500)) {
             $invalidProperties[] = "invalid value for 'addr1', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['addr1']) < 1)) {
+        if (!is_null($this->container['addr1']) && (mb_strlen($this->container['addr1']) < 1)) {
             $invalidProperties[] = "invalid value for 'addr1', the character length must be bigger than or equal to 1.";
         }
 
@@ -327,40 +327,40 @@ class Address implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['city'] === null) {
             $invalidProperties[] = "'city' can't be null";
         }
-        if ((mb_strlen($this->container['city']) > 500)) {
+        if (!is_null($this->container['city']) && (mb_strlen($this->container['city']) > 500)) {
             $invalidProperties[] = "invalid value for 'city', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['city']) < 1)) {
+        if (!is_null($this->container['city']) && (mb_strlen($this->container['city']) < 1)) {
             $invalidProperties[] = "invalid value for 'city', the character length must be bigger than or equal to 1.";
         }
 
         if ($this->container['state'] === null) {
             $invalidProperties[] = "'state' can't be null";
         }
-        if ((mb_strlen($this->container['state']) > 500)) {
+        if (!is_null($this->container['state']) && (mb_strlen($this->container['state']) > 500)) {
             $invalidProperties[] = "invalid value for 'state', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['state']) < 1)) {
+        if (!is_null($this->container['state']) && (mb_strlen($this->container['state']) < 1)) {
             $invalidProperties[] = "invalid value for 'state', the character length must be bigger than or equal to 1.";
         }
 
         if ($this->container['zip'] === null) {
             $invalidProperties[] = "'zip' can't be null";
         }
-        if (!preg_match("/[- A-Za-z0-9]{0,500}/", $this->container['zip'])) {
+        if (!is_null($this->container['zip']) && !preg_match("/[- A-Za-z0-9]{0,500}/", $this->container['zip'])) {
             $invalidProperties[] = "invalid value for 'zip', must be conform to the pattern /[- A-Za-z0-9]{0,500}/.";
         }
 
         if ($this->container['url'] === null) {
             $invalidProperties[] = "'url' can't be null";
         }
-        if ((mb_strlen($this->container['url']) > 500)) {
+        if (!is_null($this->container['url']) && (mb_strlen($this->container['url']) > 500)) {
             $invalidProperties[] = "invalid value for 'url', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['url']) < 1)) {
+        if (!is_null($this->container['url']) && (mb_strlen($this->container['url']) < 1)) {
             $invalidProperties[] = "invalid value for 'url', the character length must be bigger than or equal to 1.";
         }
 

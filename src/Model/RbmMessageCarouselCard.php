@@ -272,11 +272,11 @@ class RbmMessageCarouselCard implements ModelInterface, ArrayAccess, JsonSeriali
         if ($this->container['card_contents'] === null) {
             $invalidProperties[] = "'card_contents' can't be null";
         }
-        if ((count($this->container['card_contents']) > 10)) {
+        if (!is_null($this->container['card_contents']) && (count($this->container['card_contents']) > 10)) {
             $invalidProperties[] = "invalid value for 'card_contents', number of items must be less than or equal to 10.";
         }
 
-        if ((count($this->container['card_contents']) < 2)) {
+        if (!is_null($this->container['card_contents']) && (count($this->container['card_contents']) < 2)) {
             $invalidProperties[] = "invalid value for 'card_contents', number of items must be greater than or equal to 2.";
         }
 

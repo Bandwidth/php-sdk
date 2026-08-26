@@ -287,7 +287,7 @@ class MultiChannelMessageRequest implements ModelInterface, ArrayAccess, JsonSer
         if ($this->container['channel_list'] === null) {
             $invalidProperties[] = "'channel_list' can't be null";
         }
-        if ((count($this->container['channel_list']) > 4)) {
+        if (!is_null($this->container['channel_list']) && (count($this->container['channel_list']) > 4)) {
             $invalidProperties[] = "invalid value for 'channel_list', number of items must be less than or equal to 4.";
         }
 

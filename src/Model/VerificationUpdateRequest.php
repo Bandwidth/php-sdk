@@ -387,44 +387,44 @@ class VerificationUpdateRequest implements ModelInterface, ArrayAccess, JsonSeri
         if ($this->container['message_volume'] === null) {
             $invalidProperties[] = "'message_volume' can't be null";
         }
-        if (($this->container['message_volume'] > 10000000)) {
+        if (!is_null($this->container['message_volume']) && ($this->container['message_volume'] > 10000000)) {
             $invalidProperties[] = "invalid value for 'message_volume', must be smaller than or equal to 10000000.";
         }
 
-        if (($this->container['message_volume'] < 10)) {
+        if (!is_null($this->container['message_volume']) && ($this->container['message_volume'] < 10)) {
             $invalidProperties[] = "invalid value for 'message_volume', must be bigger than or equal to 10.";
         }
 
         if ($this->container['use_case'] === null) {
             $invalidProperties[] = "'use_case' can't be null";
         }
-        if ((mb_strlen($this->container['use_case']) > 500)) {
+        if (!is_null($this->container['use_case']) && (mb_strlen($this->container['use_case']) > 500)) {
             $invalidProperties[] = "invalid value for 'use_case', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['use_case']) < 0)) {
+        if (!is_null($this->container['use_case']) && (mb_strlen($this->container['use_case']) < 0)) {
             $invalidProperties[] = "invalid value for 'use_case', the character length must be bigger than or equal to 0.";
         }
 
         if ($this->container['use_case_summary'] === null) {
             $invalidProperties[] = "'use_case_summary' can't be null";
         }
-        if ((mb_strlen($this->container['use_case_summary']) > 500)) {
+        if (!is_null($this->container['use_case_summary']) && (mb_strlen($this->container['use_case_summary']) > 500)) {
             $invalidProperties[] = "invalid value for 'use_case_summary', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['use_case_summary']) < 0)) {
+        if (!is_null($this->container['use_case_summary']) && (mb_strlen($this->container['use_case_summary']) < 0)) {
             $invalidProperties[] = "invalid value for 'use_case_summary', the character length must be bigger than or equal to 0.";
         }
 
         if ($this->container['production_message_content'] === null) {
             $invalidProperties[] = "'production_message_content' can't be null";
         }
-        if ((mb_strlen($this->container['production_message_content']) > 500)) {
+        if (!is_null($this->container['production_message_content']) && (mb_strlen($this->container['production_message_content']) > 500)) {
             $invalidProperties[] = "invalid value for 'production_message_content', the character length must be smaller than or equal to 500.";
         }
 
-        if ((mb_strlen($this->container['production_message_content']) < 0)) {
+        if (!is_null($this->container['production_message_content']) && (mb_strlen($this->container['production_message_content']) < 0)) {
             $invalidProperties[] = "invalid value for 'production_message_content', the character length must be bigger than or equal to 0.";
         }
 

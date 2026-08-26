@@ -290,25 +290,25 @@ class CodeRequest implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['to'] === null) {
             $invalidProperties[] = "'to' can't be null";
         }
-        if (!preg_match("/^\\+[1-9]\\d{1,14}$/", $this->container['to'])) {
+        if (!is_null($this->container['to']) && !preg_match("/^\\+[1-9]\\d{1,14}$/", $this->container['to'])) {
             $invalidProperties[] = "invalid value for 'to', must be conform to the pattern /^\\+[1-9]\\d{1,14}$/.";
         }
 
         if ($this->container['from'] === null) {
             $invalidProperties[] = "'from' can't be null";
         }
-        if ((mb_strlen($this->container['from']) > 32)) {
+        if (!is_null($this->container['from']) && (mb_strlen($this->container['from']) > 32)) {
             $invalidProperties[] = "invalid value for 'from', the character length must be smaller than or equal to 32.";
         }
 
-        if (!preg_match("/^\\+[1-9]\\d{1,14}$/", $this->container['from'])) {
+        if (!is_null($this->container['from']) && !preg_match("/^\\+[1-9]\\d{1,14}$/", $this->container['from'])) {
             $invalidProperties[] = "invalid value for 'from', must be conform to the pattern /^\\+[1-9]\\d{1,14}$/.";
         }
 
         if ($this->container['application_id'] === null) {
             $invalidProperties[] = "'application_id' can't be null";
         }
-        if ((mb_strlen($this->container['application_id']) > 50)) {
+        if (!is_null($this->container['application_id']) && (mb_strlen($this->container['application_id']) > 50)) {
             $invalidProperties[] = "invalid value for 'application_id', the character length must be smaller than or equal to 50.";
         }
 
@@ -319,18 +319,18 @@ class CodeRequest implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['message'] === null) {
             $invalidProperties[] = "'message' can't be null";
         }
-        if ((mb_strlen($this->container['message']) > 2048)) {
+        if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 2048)) {
             $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 2048.";
         }
 
         if ($this->container['digits'] === null) {
             $invalidProperties[] = "'digits' can't be null";
         }
-        if (($this->container['digits'] > 8)) {
+        if (!is_null($this->container['digits']) && ($this->container['digits'] > 8)) {
             $invalidProperties[] = "invalid value for 'digits', must be smaller than or equal to 8.";
         }
 
-        if (($this->container['digits'] < 4)) {
+        if (!is_null($this->container['digits']) && ($this->container['digits'] < 4)) {
             $invalidProperties[] = "invalid value for 'digits', must be bigger than or equal to 4.";
         }
 
