@@ -80,7 +80,7 @@ class MultiChannelApiTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        $config = Configuration::getDefaultConfiguration()
+        $config = (new Configuration())
             ->setUsername(getenv("BW_USERNAME"))
             ->setPassword(getenv("BW_PASSWORD"));
 

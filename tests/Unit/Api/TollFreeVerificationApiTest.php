@@ -72,7 +72,7 @@ class TollFreeVerificationApiTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        $config = Configuration::getDefaultConfiguration()
+        $config = (new Configuration())
             ->setAccessToken("abcd1234")
             ->setIgnoreOperationHosts(true)
             ->setHost("http://127.0.0.1:4010");

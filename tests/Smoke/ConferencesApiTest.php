@@ -72,7 +72,7 @@ class ConferencesApiTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        $config = Configuration::getDefaultConfiguration()
+        $config = (new Configuration())
             ->setClientId(getenv("BW_CLIENT_ID"))
             ->setClientSecret(getenv("BW_CLIENT_SECRET"));
 
