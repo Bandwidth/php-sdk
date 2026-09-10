@@ -1,6 +1,6 @@
 <?php
 /**
- * AnswerCallbackTest
+ * ReferCompleteCallbackTest
  *
  * PHP version 8.1
  *
@@ -28,30 +28,30 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
-use Bandwidth\Model\AnswerCallback;
 use Bandwidth\Model\CallDirectionEnum;
-use Bandwidth\Model\MachineDetectionResult;
+use Bandwidth\Model\ReferCallStatusEnum;
+use Bandwidth\Model\ReferCompleteCallback;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * AnswerCallbackTest Class Doc Comment
+ * ReferCompleteCallbackTest Class Doc Comment
  *
- * @description The Answer event is sent to the answerUrl specified in the createCall request when an outbound call is answered.
+ * @description This event is sent to the referCompleteUrl of a call&#39;s &lt;Refer&gt; verb when the SIP REFER flow completes. On success, the call has been torn down and the BXML returned from this callback is ignored. On failure, the call remains active and the BXML returned from this callback is executed on the call.
  * @package     Bandwidth
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class AnswerCallbackTest extends TestCase
+class ReferCompleteCallbackTest extends TestCase
 {
-    private static AnswerCallback $instance;
+    private static ReferCompleteCallback $instance;
 
     /**
      * Setup before running any test case
      */
     public static function setUpBeforeClass(): void
     {
-        self::$instance = new AnswerCallback([
+        self::$instance = new ReferCompleteCallback([
             'event_type' => 'test_string',
             'event_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
             'account_id' => 'test_string',
@@ -61,21 +61,21 @@ class AnswerCallbackTest extends TestCase
             'direction' => CallDirectionEnum::INBOUND,
             'call_id' => 'test_string',
             'call_url' => 'test_string',
-            'enqueued_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
             'start_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
             'answer_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
             'tag' => 'test_string',
-            'machine_detection_result' => new MachineDetectionResult([]),
-            'sip_call_id' => 'test_string'
+            'refer_call_status' => ReferCallStatusEnum::SUCCESS,
+            'refer_sip_response_code' => 1,
+            'notify_sip_response_code' => 1
         ]);
     }
 
     /**
-     * Test "AnswerCallback"
+     * Test "ReferCompleteCallback"
      */
-    public function testAnswerCallback()
+    public function testReferCompleteCallback()
     {
-        $this->assertInstanceOf(AnswerCallback::class, self::$instance);
+        $this->assertInstanceOf(ReferCompleteCallback::class, self::$instance);
     }
 
     /**
@@ -160,15 +160,6 @@ class AnswerCallbackTest extends TestCase
     }
 
     /**
-     * Test attribute "enqueued_time"
-     */
-    public function testPropertyEnqueuedTime()
-    {
-        $this->assertInstanceOf(\DateTime::class, self::$instance->getEnqueuedTime());
-        $this->assertEquals(new \DateTime('2024-01-01T00:00:00+00:00'), self::$instance->getEnqueuedTime());
-    }
-
-    /**
      * Test attribute "start_time"
      */
     public function testPropertyStartTime()
@@ -196,18 +187,28 @@ class AnswerCallbackTest extends TestCase
     }
 
     /**
-     * Test attribute "machine_detection_result"
+     * Test attribute "refer_call_status"
      */
-    public function testPropertyMachineDetectionResult()
+    public function testPropertyReferCallStatus()
     {
-        $this->assertInstanceOf(MachineDetectionResult::class, self::$instance->getMachineDetectionResult());
+        $this->assertInstanceOf(ReferCallStatusEnum::class, self::$instance->getReferCallStatus());
+        $this->assertSame(ReferCallStatusEnum::SUCCESS, self::$instance->getReferCallStatus());
     }
 
     /**
-     * Test attribute "sip_call_id"
+     * Test attribute "refer_sip_response_code"
      */
-    public function testPropertySipCallId()
+    public function testPropertyReferSipResponseCode()
     {
-        $this->assertIsString(self::$instance->getSipCallId());
-        $this->assertEquals('test_string', self::$instance->getSipCallId());
+        $this->assertIsInt(self::$instance->getReferSipResponseCode());
+        $this->assertEquals(1, self::$instance->getReferSipResponseCode());
+    }
+
+    /**
+     * Test attribute "notify_sip_response_code"
+     */
+    public function testPropertyNotifySipResponseCode()
+    {
+        $this->assertIsInt(self::$instance->getNotifySipResponseCode());
+        $this->assertEquals(1, self::$instance->getNotifySipResponseCode());
     }}
