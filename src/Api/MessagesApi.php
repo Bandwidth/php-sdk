@@ -136,7 +136,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MessageRequest $message_request message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -167,7 +167,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MessageRequest $message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -387,7 +387,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MessageRequest $message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -421,7 +421,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MessageRequest $message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -484,7 +484,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MessageRequest $message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -648,7 +648,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
@@ -731,7 +731,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
@@ -989,7 +989,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
@@ -1075,7 +1075,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
@@ -1190,7 +1190,7 @@ class MessagesApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $message_id The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
      * @param  string|null $source_tn The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)
      * @param  string|null $destination_tn The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)

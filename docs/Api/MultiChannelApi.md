@@ -40,7 +40,7 @@ $apiInstance = new Bandwidth\Api\MultiChannelApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_id = 9900000; // string | Your Bandwidth Account ID.
+$account_id = 9900000; // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
 $multi_channel_message_request = new \Bandwidth\Model\MultiChannelMessageRequest(); // \Bandwidth\Model\MultiChannelMessageRequest
 
 $hostIndex = 0;
@@ -59,7 +59,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| Your Bandwidth Account ID. | |
+| **account_id** | **string**| This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** | |
 | **multi_channel_message_request** | [**\Bandwidth\Model\MultiChannelMessageRequest**](../Model/MultiChannelMessageRequest.md)|  | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |

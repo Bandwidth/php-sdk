@@ -76,7 +76,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'cause' => 'string',
         'error_message' => 'string',
         'error_id' => 'string',
-        'tag' => 'string'
+        'tag' => 'string',
+        'sip_call_id' => 'string',
+        'sip_response_code' => 'int'
     ];
 
     /**
@@ -101,7 +103,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'cause' => null,
         'error_message' => null,
         'error_id' => null,
-        'tag' => null
+        'tag' => null,
+        'sip_call_id' => null,
+        'sip_response_code' => null
     ];
 
     /**
@@ -126,7 +130,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'cause' => false,
         'error_message' => true,
         'error_id' => true,
-        'tag' => true
+        'tag' => true,
+        'sip_call_id' => false,
+        'sip_response_code' => false
     ];
 
     /**
@@ -221,7 +227,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'cause' => 'cause',
         'error_message' => 'errorMessage',
         'error_id' => 'errorId',
-        'tag' => 'tag'
+        'tag' => 'tag',
+        'sip_call_id' => 'sipCallId',
+        'sip_response_code' => 'sipResponseCode'
     ];
 
     /**
@@ -246,7 +254,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'cause' => 'setCause',
         'error_message' => 'setErrorMessage',
         'error_id' => 'setErrorId',
-        'tag' => 'setTag'
+        'tag' => 'setTag',
+        'sip_call_id' => 'setSipCallId',
+        'sip_response_code' => 'setSipResponseCode'
     ];
 
     /**
@@ -271,7 +281,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'cause' => 'getCause',
         'error_message' => 'getErrorMessage',
         'error_id' => 'getErrorId',
-        'tag' => 'getTag'
+        'tag' => 'getTag',
+        'sip_call_id' => 'getSipCallId',
+        'sip_response_code' => 'getSipResponseCode'
     ];
 
     /**
@@ -338,6 +350,8 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         $this->setIfExists('error_message', $data ?? [], null);
         $this->setIfExists('error_id', $data ?? [], null);
         $this->setIfExists('tag', $data ?? [], null);
+        $this->setIfExists('sip_call_id', $data ?? [], null);
+        $this->setIfExists('sip_response_code', $data ?? [], null);
     }
 
     /**
@@ -390,7 +404,7 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets event_type
      *
-     * @param string|null $event_type The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
+     * @param string|null $event_type The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, referComplete, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
      *
      * @return $this
      */
@@ -867,6 +881,60 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
             }
         }
         $this->container['tag'] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Gets sip_call_id
+     *
+     * @return string|null
+     */
+    public function getSipCallId(): ?string
+    {
+        return $this->container['sip_call_id'];
+    }
+
+    /**
+     * Sets sip_call_id
+     *
+     * @param string|null $sip_call_id (optional) The SIP Call-ID of the call's current SIP dialog with Bandwidth's SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.
+     *
+     * @return $this
+     */
+    public function setSipCallId(?string $sip_call_id): static
+    {
+        if (is_null($sip_call_id)) {
+            throw new InvalidArgumentException('non-nullable sip_call_id cannot be null');
+        }
+        $this->container['sip_call_id'] = $sip_call_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets sip_response_code
+     *
+     * @return int|null
+     */
+    public function getSipResponseCode(): ?int
+    {
+        return $this->container['sip_response_code'];
+    }
+
+    /**
+     * Sets sip_response_code
+     *
+     * @param int|null $sip_response_code (optional) The SIP status code returned by Bandwidth's SBC when it rejected an outbound call's INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC.
+     *
+     * @return $this
+     */
+    public function setSipResponseCode(?int $sip_response_code): static
+    {
+        if (is_null($sip_response_code)) {
+            throw new InvalidArgumentException('non-nullable sip_response_code cannot be null');
+        }
+        $this->container['sip_response_code'] = $sip_response_code;
 
         return $this;
     }

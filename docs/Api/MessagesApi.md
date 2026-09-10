@@ -41,7 +41,7 @@ $apiInstance = new Bandwidth\Api\MessagesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_id = 9900000; // string | Your Bandwidth Account ID.
+$account_id = 9900000; // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
 $message_request = new \Bandwidth\Model\MessageRequest(); // \Bandwidth\Model\MessageRequest
 
 $hostIndex = 0;
@@ -60,7 +60,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| Your Bandwidth Account ID. | |
+| **account_id** | **string**| This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** | |
 | **message_request** | [**\Bandwidth\Model\MessageRequest**](../Model/MessageRequest.md)|  | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
@@ -115,7 +115,7 @@ $apiInstance = new Bandwidth\Api\MessagesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_id = 9900000; // string | Your Bandwidth Account ID.
+$account_id = 9900000; // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
 $message_id = 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6; // string | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
 $source_tn = %2B15554443333; // string | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
 $destination_tn = %2B15554443333; // string | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
@@ -160,7 +160,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| Your Bandwidth Account ID. | |
+| **account_id** | **string**| This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** | |
 | **message_id** | **string**| The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. | [optional] |
 | **source_tn** | **string**| The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional] |
 | **destination_tn** | **string**| The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional] |

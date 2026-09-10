@@ -1,6 +1,6 @@
 <?php
 /**
- * ConferenceMemberJoinCallback
+ * ReferCompleteCallback
  *
  * PHP version 8.1
  *
@@ -35,15 +35,15 @@ use ReturnTypeWillChange;
 use Bandwidth\ObjectSerializer;
 
 /**
- * ConferenceMemberJoinCallback Class Doc Comment
+ * ReferCompleteCallback Class Doc Comment
  *
- * @description The Conference Member Join event is fired whenever a caller joins a conference that specified a callbackUrl. The response may be either empty or a BXML document. Only the following verbs are valid for conferences: PlayAudio, SpeakSentence, StartRecording, StopRecording, PauseRecording, ResumeRecording. Audio verbs will be heard by all members of the conference. Recordings capture audio from all members who are not muted or on hold, as well as any audio verbs that are played into the conference.
+ * @description This event is sent to the referCompleteUrl of a call&#39;s &lt;Refer&gt; verb when the SIP REFER flow completes. On success, the call has been torn down and the BXML returned from this callback is ignored. On failure, the call remains active and the BXML returned from this callback is executed on the call.
  * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonSerializable
+class ReferCompleteCallback implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
      *
      * @var string
      */
-    protected static string $openAPIModelName = 'conferenceMemberJoinCallback';
+    protected static string $openAPIModelName = 'referCompleteCallback';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -62,12 +62,19 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
     protected static array $openAPITypes = [
         'event_type' => 'string',
         'event_time' => '\DateTime',
-        'conference_id' => 'string',
-        'name' => 'string',
+        'account_id' => 'string',
+        'application_id' => 'string',
         'from' => 'string',
         'to' => 'string',
+        'direction' => '\Bandwidth\Model\CallDirectionEnum',
         'call_id' => 'string',
-        'tag' => 'string'
+        'call_url' => 'string',
+        'start_time' => '\DateTime',
+        'answer_time' => '\DateTime',
+        'tag' => 'string',
+        'refer_call_status' => '\Bandwidth\Model\ReferCallStatusEnum',
+        'refer_sip_response_code' => 'int',
+        'notify_sip_response_code' => 'int'
     ];
 
     /**
@@ -78,12 +85,19 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
     protected static array $openAPIFormats = [
         'event_type' => null,
         'event_time' => 'date-time',
-        'conference_id' => null,
-        'name' => null,
+        'account_id' => null,
+        'application_id' => null,
         'from' => null,
         'to' => null,
+        'direction' => null,
         'call_id' => null,
-        'tag' => null
+        'call_url' => 'uri',
+        'start_time' => 'date-time',
+        'answer_time' => 'date-time',
+        'tag' => null,
+        'refer_call_status' => null,
+        'refer_sip_response_code' => null,
+        'notify_sip_response_code' => null
     ];
 
     /**
@@ -94,12 +108,19 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
     protected static array $openAPINullables = [
         'event_type' => false,
         'event_time' => false,
-        'conference_id' => false,
-        'name' => false,
+        'account_id' => false,
+        'application_id' => false,
         'from' => false,
         'to' => false,
+        'direction' => false,
         'call_id' => false,
-        'tag' => true
+        'call_url' => false,
+        'start_time' => false,
+        'answer_time' => true,
+        'tag' => true,
+        'refer_call_status' => false,
+        'refer_sip_response_code' => false,
+        'notify_sip_response_code' => false
     ];
 
     /**
@@ -180,12 +201,19 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
     protected static array $attributeMap = [
         'event_type' => 'eventType',
         'event_time' => 'eventTime',
-        'conference_id' => 'conferenceId',
-        'name' => 'name',
+        'account_id' => 'accountId',
+        'application_id' => 'applicationId',
         'from' => 'from',
         'to' => 'to',
+        'direction' => 'direction',
         'call_id' => 'callId',
-        'tag' => 'tag'
+        'call_url' => 'callUrl',
+        'start_time' => 'startTime',
+        'answer_time' => 'answerTime',
+        'tag' => 'tag',
+        'refer_call_status' => 'referCallStatus',
+        'refer_sip_response_code' => 'referSipResponseCode',
+        'notify_sip_response_code' => 'notifySipResponseCode'
     ];
 
     /**
@@ -196,12 +224,19 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
     protected static array $setters = [
         'event_type' => 'setEventType',
         'event_time' => 'setEventTime',
-        'conference_id' => 'setConferenceId',
-        'name' => 'setName',
+        'account_id' => 'setAccountId',
+        'application_id' => 'setApplicationId',
         'from' => 'setFrom',
         'to' => 'setTo',
+        'direction' => 'setDirection',
         'call_id' => 'setCallId',
-        'tag' => 'setTag'
+        'call_url' => 'setCallUrl',
+        'start_time' => 'setStartTime',
+        'answer_time' => 'setAnswerTime',
+        'tag' => 'setTag',
+        'refer_call_status' => 'setReferCallStatus',
+        'refer_sip_response_code' => 'setReferSipResponseCode',
+        'notify_sip_response_code' => 'setNotifySipResponseCode'
     ];
 
     /**
@@ -212,12 +247,19 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
     protected static array $getters = [
         'event_type' => 'getEventType',
         'event_time' => 'getEventTime',
-        'conference_id' => 'getConferenceId',
-        'name' => 'getName',
+        'account_id' => 'getAccountId',
+        'application_id' => 'getApplicationId',
         'from' => 'getFrom',
         'to' => 'getTo',
+        'direction' => 'getDirection',
         'call_id' => 'getCallId',
-        'tag' => 'getTag'
+        'call_url' => 'getCallUrl',
+        'start_time' => 'getStartTime',
+        'answer_time' => 'getAnswerTime',
+        'tag' => 'getTag',
+        'refer_call_status' => 'getReferCallStatus',
+        'refer_sip_response_code' => 'getReferSipResponseCode',
+        'notify_sip_response_code' => 'getNotifySipResponseCode'
     ];
 
     /**
@@ -269,12 +311,19 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
     {
         $this->setIfExists('event_type', $data ?? [], null);
         $this->setIfExists('event_time', $data ?? [], null);
-        $this->setIfExists('conference_id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('application_id', $data ?? [], null);
         $this->setIfExists('from', $data ?? [], null);
         $this->setIfExists('to', $data ?? [], null);
+        $this->setIfExists('direction', $data ?? [], null);
         $this->setIfExists('call_id', $data ?? [], null);
+        $this->setIfExists('call_url', $data ?? [], null);
+        $this->setIfExists('start_time', $data ?? [], null);
+        $this->setIfExists('answer_time', $data ?? [], null);
         $this->setIfExists('tag', $data ?? [], null);
+        $this->setIfExists('refer_call_status', $data ?? [], null);
+        $this->setIfExists('refer_sip_response_code', $data ?? [], null);
+        $this->setIfExists('notify_sip_response_code', $data ?? [], null);
     }
 
     /**
@@ -369,55 +418,55 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
     }
 
     /**
-     * Gets conference_id
+     * Gets account_id
      *
      * @return string|null
      */
-    public function getConferenceId(): ?string
+    public function getAccountId(): ?string
     {
-        return $this->container['conference_id'];
+        return $this->container['account_id'];
     }
 
     /**
-     * Sets conference_id
+     * Sets account_id
      *
-     * @param string|null $conference_id The unique, Bandwidth-generated ID of the conference that was recorded
+     * @param string|null $account_id The user account associated with the call.
      *
      * @return $this
      */
-    public function setConferenceId(?string $conference_id): static
+    public function setAccountId(?string $account_id): static
     {
-        if (is_null($conference_id)) {
-            throw new InvalidArgumentException('non-nullable conference_id cannot be null');
+        if (is_null($account_id)) {
+            throw new InvalidArgumentException('non-nullable account_id cannot be null');
         }
-        $this->container['conference_id'] = $conference_id;
+        $this->container['account_id'] = $account_id;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets application_id
      *
      * @return string|null
      */
-    public function getName(): ?string
+    public function getApplicationId(): ?string
     {
-        return $this->container['name'];
+        return $this->container['application_id'];
     }
 
     /**
-     * Sets name
+     * Sets application_id
      *
-     * @param string|null $name The user-specified name of the conference that was recorded
+     * @param string|null $application_id The id of the application associated with the call.
      *
      * @return $this
      */
-    public function setName(?string $name): static
+    public function setApplicationId(?string $application_id): static
     {
-        if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($application_id)) {
+            throw new InvalidArgumentException('non-nullable application_id cannot be null');
         }
-        $this->container['name'] = $name;
+        $this->container['application_id'] = $application_id;
 
         return $this;
     }
@@ -477,6 +526,33 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
     }
 
     /**
+     * Gets direction
+     *
+     * @return \Bandwidth\Model\CallDirectionEnum|null
+     */
+    public function getDirection(): ?\Bandwidth\Model\CallDirectionEnum
+    {
+        return $this->container['direction'];
+    }
+
+    /**
+     * Sets direction
+     *
+     * @param \Bandwidth\Model\CallDirectionEnum|null $direction direction
+     *
+     * @return $this
+     */
+    public function setDirection(?\Bandwidth\Model\CallDirectionEnum $direction): static
+    {
+        if (is_null($direction)) {
+            throw new InvalidArgumentException('non-nullable direction cannot be null');
+        }
+        $this->container['direction'] = $direction;
+
+        return $this;
+    }
+
+    /**
      * Gets call_id
      *
      * @return string|null
@@ -499,6 +575,94 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
             throw new InvalidArgumentException('non-nullable call_id cannot be null');
         }
         $this->container['call_id'] = $call_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets call_url
+     *
+     * @return string|null
+     */
+    public function getCallUrl(): ?string
+    {
+        return $this->container['call_url'];
+    }
+
+    /**
+     * Sets call_url
+     *
+     * @param string|null $call_url The URL of the call associated with the event.
+     *
+     * @return $this
+     */
+    public function setCallUrl(?string $call_url): static
+    {
+        if (is_null($call_url)) {
+            throw new InvalidArgumentException('non-nullable call_url cannot be null');
+        }
+        $this->container['call_url'] = $call_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets start_time
+     *
+     * @return \DateTime|null
+     */
+    public function getStartTime(): ?\DateTime
+    {
+        return $this->container['start_time'];
+    }
+
+    /**
+     * Sets start_time
+     *
+     * @param \DateTime|null $start_time Time the call was started, in ISO 8601 format.
+     *
+     * @return $this
+     */
+    public function setStartTime(?\DateTime $start_time): static
+    {
+        if (is_null($start_time)) {
+            throw new InvalidArgumentException('non-nullable start_time cannot be null');
+        }
+        $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets answer_time
+     *
+     * @return \DateTime|null
+     */
+    public function getAnswerTime(): ?\DateTime
+    {
+        return $this->container['answer_time'];
+    }
+
+    /**
+     * Sets answer_time
+     *
+     * @param \DateTime|null $answer_time Time the call was answered, in ISO 8601 format.
+     *
+     * @return $this
+     */
+    public function setAnswerTime(?\DateTime $answer_time): static
+    {
+        if (is_null($answer_time)) {
+            array_push($this->openAPINullablesSetToNull, 'answer_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('answer_time', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['answer_time'] = $answer_time;
 
         return $this;
     }
@@ -533,6 +697,87 @@ class ConferenceMemberJoinCallback implements ModelInterface, ArrayAccess, JsonS
             }
         }
         $this->container['tag'] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Gets refer_call_status
+     *
+     * @return \Bandwidth\Model\ReferCallStatusEnum|null
+     */
+    public function getReferCallStatus(): ?\Bandwidth\Model\ReferCallStatusEnum
+    {
+        return $this->container['refer_call_status'];
+    }
+
+    /**
+     * Sets refer_call_status
+     *
+     * @param \Bandwidth\Model\ReferCallStatusEnum|null $refer_call_status refer_call_status
+     *
+     * @return $this
+     */
+    public function setReferCallStatus(?\Bandwidth\Model\ReferCallStatusEnum $refer_call_status): static
+    {
+        if (is_null($refer_call_status)) {
+            throw new InvalidArgumentException('non-nullable refer_call_status cannot be null');
+        }
+        $this->container['refer_call_status'] = $refer_call_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets refer_sip_response_code
+     *
+     * @return int|null
+     */
+    public function getReferSipResponseCode(): ?int
+    {
+        return $this->container['refer_sip_response_code'];
+    }
+
+    /**
+     * Sets refer_sip_response_code
+     *
+     * @param int|null $refer_sip_response_code (optional) The SIP response code returned for the REFER request itself (e.g. 202, 405, 603). Present when a SIP response was received for the REFER.
+     *
+     * @return $this
+     */
+    public function setReferSipResponseCode(?int $refer_sip_response_code): static
+    {
+        if (is_null($refer_sip_response_code)) {
+            throw new InvalidArgumentException('non-nullable refer_sip_response_code cannot be null');
+        }
+        $this->container['refer_sip_response_code'] = $refer_sip_response_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets notify_sip_response_code
+     *
+     * @return int|null
+     */
+    public function getNotifySipResponseCode(): ?int
+    {
+        return $this->container['notify_sip_response_code'];
+    }
+
+    /**
+     * Sets notify_sip_response_code
+     *
+     * @param int|null $notify_sip_response_code (optional) The final SIP response code reported via NOTIFY (message/sipfrag body). Present only when the caller's endpoint sent a final NOTIFY (e.g. 200, 404, 486, 503). Not present on NOTIFY timeout or when the REFER was rejected before a subscription was established.
+     *
+     * @return $this
+     */
+    public function setNotifySipResponseCode(?int $notify_sip_response_code): static
+    {
+        if (is_null($notify_sip_response_code)) {
+            throw new InvalidArgumentException('non-nullable notify_sip_response_code cannot be null');
+        }
+        $this->container['notify_sip_response_code'] = $notify_sip_response_code;
 
         return $this;
     }

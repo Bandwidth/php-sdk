@@ -173,6 +173,8 @@ docs/Model/RecordingTranscriptionMetadata.md
 docs/Model/RecordingTranscriptions.md
 docs/Model/RedirectCallback.md
 docs/Model/RedirectMethodEnum.md
+docs/Model/ReferCallStatusEnum.md
+docs/Model/ReferCompleteCallback.md
 docs/Model/SipConnectionMetadata.md
 docs/Model/SipCredentials.md
 docs/Model/SmsMessageContent.md
@@ -393,6 +395,8 @@ src/Model/RecordingTranscriptionMetadata.php
 src/Model/RecordingTranscriptions.php
 src/Model/RedirectCallback.php
 src/Model/RedirectMethodEnum.php
+src/Model/ReferCallStatusEnum.php
+src/Model/ReferCompleteCallback.php
 src/Model/SipConnectionMetadata.php
 src/Model/SipCredentials.php
 src/Model/SmsMessageContent.php

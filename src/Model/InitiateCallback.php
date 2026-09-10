@@ -72,7 +72,9 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => '\DateTime',
         'diversion' => '\Bandwidth\Model\Diversion',
         'stir_shaken' => '\Bandwidth\Model\StirShaken',
-        'uui' => 'string'
+        'uui' => 'string',
+        'sip_call_id' => 'string',
+        'sip_headers' => 'array<string,string>'
     ];
 
     /**
@@ -93,7 +95,9 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => 'date-time',
         'diversion' => null,
         'stir_shaken' => null,
-        'uui' => null
+        'uui' => null,
+        'sip_call_id' => null,
+        'sip_headers' => null
     ];
 
     /**
@@ -114,7 +118,9 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => false,
         'diversion' => false,
         'stir_shaken' => false,
-        'uui' => false
+        'uui' => false,
+        'sip_call_id' => false,
+        'sip_headers' => false
     ];
 
     /**
@@ -205,7 +211,9 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => 'startTime',
         'diversion' => 'diversion',
         'stir_shaken' => 'stirShaken',
-        'uui' => 'uui'
+        'uui' => 'uui',
+        'sip_call_id' => 'sipCallId',
+        'sip_headers' => 'sipHeaders'
     ];
 
     /**
@@ -226,7 +234,9 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => 'setStartTime',
         'diversion' => 'setDiversion',
         'stir_shaken' => 'setStirShaken',
-        'uui' => 'setUui'
+        'uui' => 'setUui',
+        'sip_call_id' => 'setSipCallId',
+        'sip_headers' => 'setSipHeaders'
     ];
 
     /**
@@ -247,7 +257,9 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => 'getStartTime',
         'diversion' => 'getDiversion',
         'stir_shaken' => 'getStirShaken',
-        'uui' => 'getUui'
+        'uui' => 'getUui',
+        'sip_call_id' => 'getSipCallId',
+        'sip_headers' => 'getSipHeaders'
     ];
 
     /**
@@ -310,6 +322,8 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('diversion', $data ?? [], null);
         $this->setIfExists('stir_shaken', $data ?? [], null);
         $this->setIfExists('uui', $data ?? [], null);
+        $this->setIfExists('sip_call_id', $data ?? [], null);
+        $this->setIfExists('sip_headers', $data ?? [], null);
     }
 
     /**
@@ -366,7 +380,7 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets event_type
      *
-     * @param string|null $event_type The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
+     * @param string|null $event_type The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, referComplete, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
      *
      * @return $this
      */
@@ -704,6 +718,60 @@ class InitiateCallback implements ModelInterface, ArrayAccess, JsonSerializable
         }
 
         $this->container['uui'] = $uui;
+
+        return $this;
+    }
+
+    /**
+     * Gets sip_call_id
+     *
+     * @return string|null
+     */
+    public function getSipCallId(): ?string
+    {
+        return $this->container['sip_call_id'];
+    }
+
+    /**
+     * Sets sip_call_id
+     *
+     * @param string|null $sip_call_id (optional) The SIP Call-ID of the call's current SIP dialog with Bandwidth's SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.
+     *
+     * @return $this
+     */
+    public function setSipCallId(?string $sip_call_id): static
+    {
+        if (is_null($sip_call_id)) {
+            throw new InvalidArgumentException('non-nullable sip_call_id cannot be null');
+        }
+        $this->container['sip_call_id'] = $sip_call_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets sip_headers
+     *
+     * @return array<string,string>|null
+     */
+    public function getSipHeaders(): ?array
+    {
+        return $this->container['sip_headers'];
+    }
+
+    /**
+     * Sets sip_headers
+     *
+     * @param array<string,string>|null $sip_headers (optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth's usual camelCase JSON convention, since these are passthrough values from the caller's SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept.
+     *
+     * @return $this
+     */
+    public function setSipHeaders(?array $sip_headers): static
+    {
+        if (is_null($sip_headers)) {
+            throw new InvalidArgumentException('non-nullable sip_headers cannot be null');
+        }
+        $this->container['sip_headers'] = $sip_headers;
 
         return $this;
     }
