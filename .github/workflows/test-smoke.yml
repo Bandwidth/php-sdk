@@ -1,0 +1,86 @@
+name: Smoke Tests
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  pull_request:
+    paths:
+      - "spec/smoke/*"
+      - ".github/workflows/test-smoke.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  BW_USERNAME: ${{ secrets.BW_USERNAME }}
+  BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
+  BW_CLIENT_ID: ${{ secrets.BW_CLIENT_ID }}
+  BW_CLIENT_SECRET: ${{ secrets.BW_CLIENT_SECRET }}
+  USER_NUMBER: ${{ secrets.USER_NUMBER }}
+  BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+  MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
+
+jobs:
+  test:
+    name: Smoke Test
+    runs-on: ubuntu-latest
+    env:
+      BW_NUMBER: ${{ secrets.BW_NUMBER }}
+      BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+      BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+      BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+      MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
+      MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+      MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.5
+
+      - name: Install Packages and Test
+        run: |
+          composer install
+          ./vendor/bin/phpunit tests/Smoke
+
+  test_up:
+    name: Smoke Test UP Account
+    runs-on: ubuntu-latest
+    env:
+      BW_NUMBER: ${{ secrets.BW_UP_NUMBER }}
+      BW_ACCOUNT_ID: ${{ secrets.BW_UP_ACCOUNT_ID }}
+      BW_VOICE_APPLICATION_ID: ${{ secrets.BW_UP_VOICE_APPLICATION_ID }}
+      BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_UP_MESSAGING_APPLICATION_ID }}
+      MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_UP_ACTIVE_NUMBER }}
+      MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_UP_IDLE_NUMBER }}
+      MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_UP_APPLICATION_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.5
+
+      - name: Install Packages and Test
+        run: |
+          composer install
+          ./vendor/bin/phpunit tests/Smoke
+
+  notify_for_failures:
+    name: Notify for Failures
+    needs: [test, test_up]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack of Failures
+        uses: Bandwidth/build-notify-slack-action@v2
+        with:
+          job-status: failure
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          slack-channel: ${{ secrets.SLACK_CHANNEL }}

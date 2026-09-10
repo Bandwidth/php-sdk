@@ -1,0 +1,57 @@
+name: Test PR
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+  BW_USERNAME: ${{ secrets.BW_USERNAME }}
+  BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
+  BW_CLIENT_ID: ${{ secrets.BW_CLIENT_ID }}
+  BW_CLIENT_SECRET: ${{ secrets.BW_CLIENT_SECRET }}
+  BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+  BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+  BW_NUMBER: ${{ secrets.BW_NUMBER }}
+  USER_NUMBER: ${{ secrets.USER_NUMBER }}
+  BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+  MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
+  MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+  MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
+  MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
+
+jobs:
+  test:
+    name: Test PR
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-2022, windows-2025, ubuntu-22.04, ubuntu-24.04]
+        php-version: [8.2, 8.3, 8.4, 8.5]
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - name: Install Packages and Test
+        run: |
+          npm install -g @stoplight/prism-cli
+          composer install
+          prism mock ./bandwidth.yml > prism.log 2>&1 &
+          for i in $(seq 10); do # wait for prism to start
+            curl -s -o /dev/null http://127.0.0.1:4010 && break
+            [ "$i" -eq 10 ] && { echo "::error::prism failed to start"; cat prism.log; exit 1; }
+            sleep 1
+          done
+          ./vendor/bin/phpunit tests/Unit
+        shell: bash
