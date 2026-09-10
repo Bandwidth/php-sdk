@@ -189,8 +189,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMedia'] to see the possible values for this operation
@@ -220,8 +220,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMedia'] to see the possible values for this operation
@@ -345,8 +345,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMedia'] to see the possible values for this operation
@@ -379,8 +379,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMedia'] to see the possible values for this operation
@@ -429,8 +429,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMedia'] to see the possible values for this operation
@@ -561,8 +561,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMedia'] to see the possible values for this operation
@@ -592,8 +592,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMedia'] to see the possible values for this operation
@@ -798,8 +798,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMedia'] to see the possible values for this operation
@@ -832,8 +832,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMedia'] to see the possible values for this operation
@@ -895,8 +895,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMedia'] to see the possible values for this operation
@@ -1027,7 +1027,7 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $continuation_token Continuation token used to retrieve subsequent media. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -1058,7 +1058,7 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $continuation_token Continuation token used to retrieve subsequent media. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -1264,7 +1264,7 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $continuation_token Continuation token used to retrieve subsequent media. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -1298,7 +1298,7 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $continuation_token Continuation token used to retrieve subsequent media. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -1361,7 +1361,7 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  string|null $continuation_token Continuation token used to retrieve subsequent media. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -1483,8 +1483,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
      * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
@@ -1520,8 +1520,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
      * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
@@ -1651,8 +1651,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
      * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
@@ -1691,8 +1691,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
      * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
@@ -1747,8 +1747,8 @@ class MediaApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
-     * @param  string $media_id Media ID to retrieve. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
+     * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
      * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)

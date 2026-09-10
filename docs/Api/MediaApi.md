@@ -43,8 +43,8 @@ $apiInstance = new Bandwidth\Api\MediaApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_id = 9900000; // string | Your Bandwidth Account ID.
-$media_id = 14762070468292kw2fuqty55yp2b2/0/bw.png; // string | Media ID to retrieve.
+$account_id = 9900000; // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
+$media_id = bw.png; // string | The ID of the media file.
 
 $hostIndex = 0;
 $variables = [
@@ -61,8 +61,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| Your Bandwidth Account ID. | |
-| **media_id** | **string**| Media ID to retrieve. | |
+| **account_id** | **string**| This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** | |
+| **media_id** | **string**| The ID of the media file. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
@@ -116,8 +116,8 @@ $apiInstance = new Bandwidth\Api\MediaApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_id = 9900000; // string | Your Bandwidth Account ID.
-$media_id = 14762070468292kw2fuqty55yp2b2/0/bw.png; // string | Media ID to retrieve.
+$account_id = 9900000; // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
+$media_id = bw.png; // string | The ID of the media file.
 
 $hostIndex = 0;
 $variables = [
@@ -135,8 +135,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| Your Bandwidth Account ID. | |
-| **media_id** | **string**| Media ID to retrieve. | |
+| **account_id** | **string**| This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** | |
+| **media_id** | **string**| The ID of the media file. | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
@@ -190,7 +190,7 @@ $apiInstance = new Bandwidth\Api\MediaApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_id = 9900000; // string | Your Bandwidth Account ID.
+$account_id = 9900000; // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
 $continuation_token = 1XEi2tsFtLo1JbtLwETnM1ZJ+PqAa8w6ENvC5QKvwyrCDYII663Gy5M4s40owR1tjkuWUif6qbWvFtQJR5/ipqbUnfAqL254LKNlPy6tATCzioKSuHuOqgzloDkSwRtX0LtcL2otHS69hK343m+SjdL+vlj71tT39; // string | Continuation token used to retrieve subsequent media.
 
 $hostIndex = 0;
@@ -209,7 +209,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| Your Bandwidth Account ID. | |
+| **account_id** | **string**| This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** | |
 | **continuation_token** | **string**| Continuation token used to retrieve subsequent media. | [optional] |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
@@ -264,8 +264,8 @@ $apiInstance = new Bandwidth\Api\MediaApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_id = 9900000; // string | Your Bandwidth Account ID.
-$media_id = 14762070468292kw2fuqty55yp2b2/0/bw.png; // string | Media ID to retrieve.
+$account_id = 9900000; // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
+$media_id = bw.png; // string | The ID of the media file.
 $body = '/path/to/file.txt'; // \SplFileObject
 $content_type = audio/wav; // string | The media type of the entity-body.
 $cache_control = no-cache; // string | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
@@ -285,8 +285,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| Your Bandwidth Account ID. | |
-| **media_id** | **string**| Media ID to retrieve. | |
+| **account_id** | **string**| This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** | |
+| **media_id** | **string**| The ID of the media file. | |
 | **body** | **\SplFileObject****\SplFileObject**|  | |
 | **content_type** | **string**| The media type of the entity-body. | [optional] |
 | **cache_control** | **string**| General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. | [optional] |

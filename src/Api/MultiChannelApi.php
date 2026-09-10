@@ -133,7 +133,7 @@ class MultiChannelApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -164,7 +164,7 @@ class MultiChannelApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -370,7 +370,7 @@ class MultiChannelApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -404,7 +404,7 @@ class MultiChannelApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
@@ -467,7 +467,7 @@ class MultiChannelApi
      * if needed, use the 'variables' parameter to pass variables to the host.
      * URL: https://messaging.bandwidth.com/api/v2
      *
-     * @param  string $account_id Your Bandwidth Account ID. (required)
+     * @param  string $account_id This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** (required)
      * @param  \Bandwidth\Model\MultiChannelMessageRequest $multi_channel_message_request (required)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.

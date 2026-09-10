@@ -73,7 +73,8 @@ class AnswerCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => '\DateTime',
         'answer_time' => '\DateTime',
         'tag' => 'string',
-        'machine_detection_result' => '\Bandwidth\Model\MachineDetectionResult'
+        'machine_detection_result' => '\Bandwidth\Model\MachineDetectionResult',
+        'sip_call_id' => 'string'
     ];
 
     /**
@@ -95,7 +96,8 @@ class AnswerCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => 'date-time',
         'answer_time' => 'date-time',
         'tag' => null,
-        'machine_detection_result' => null
+        'machine_detection_result' => null,
+        'sip_call_id' => null
     ];
 
     /**
@@ -117,7 +119,8 @@ class AnswerCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => false,
         'answer_time' => true,
         'tag' => true,
-        'machine_detection_result' => true
+        'machine_detection_result' => true,
+        'sip_call_id' => false
     ];
 
     /**
@@ -209,7 +212,8 @@ class AnswerCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => 'startTime',
         'answer_time' => 'answerTime',
         'tag' => 'tag',
-        'machine_detection_result' => 'machineDetectionResult'
+        'machine_detection_result' => 'machineDetectionResult',
+        'sip_call_id' => 'sipCallId'
     ];
 
     /**
@@ -231,7 +235,8 @@ class AnswerCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => 'setStartTime',
         'answer_time' => 'setAnswerTime',
         'tag' => 'setTag',
-        'machine_detection_result' => 'setMachineDetectionResult'
+        'machine_detection_result' => 'setMachineDetectionResult',
+        'sip_call_id' => 'setSipCallId'
     ];
 
     /**
@@ -253,7 +258,8 @@ class AnswerCallback implements ModelInterface, ArrayAccess, JsonSerializable
         'start_time' => 'getStartTime',
         'answer_time' => 'getAnswerTime',
         'tag' => 'getTag',
-        'machine_detection_result' => 'getMachineDetectionResult'
+        'machine_detection_result' => 'getMachineDetectionResult',
+        'sip_call_id' => 'getSipCallId'
     ];
 
     /**
@@ -317,6 +323,7 @@ class AnswerCallback implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('answer_time', $data ?? [], null);
         $this->setIfExists('tag', $data ?? [], null);
         $this->setIfExists('machine_detection_result', $data ?? [], null);
+        $this->setIfExists('sip_call_id', $data ?? [], null);
     }
 
     /**
@@ -369,7 +376,7 @@ class AnswerCallback implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets event_type
      *
-     * @param string|null $event_type The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
+     * @param string|null $event_type The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, referComplete, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
      *
      * @return $this
      */
@@ -758,6 +765,33 @@ class AnswerCallback implements ModelInterface, ArrayAccess, JsonSerializable
             }
         }
         $this->container['machine_detection_result'] = $machine_detection_result;
+
+        return $this;
+    }
+
+    /**
+     * Gets sip_call_id
+     *
+     * @return string|null
+     */
+    public function getSipCallId(): ?string
+    {
+        return $this->container['sip_call_id'];
+    }
+
+    /**
+     * Sets sip_call_id
+     *
+     * @param string|null $sip_call_id (optional) The SIP Call-ID of the call's current SIP dialog with Bandwidth's SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.
+     *
+     * @return $this
+     */
+    public function setSipCallId(?string $sip_call_id): static
+    {
+        if (is_null($sip_call_id)) {
+            throw new InvalidArgumentException('non-nullable sip_call_id cannot be null');
+        }
+        $this->container['sip_call_id'] = $sip_call_id;
 
         return $this;
     }

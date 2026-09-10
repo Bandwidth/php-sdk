@@ -297,6 +297,8 @@ Class | Method | HTTP request | Description
 - [RecordingTranscriptions](docs/Model/RecordingTranscriptions.md)
 - [RedirectCallback](docs/Model/RedirectCallback.md)
 - [RedirectMethodEnum](docs/Model/RedirectMethodEnum.md)
+- [ReferCallStatusEnum](docs/Model/ReferCallStatusEnum.md)
+- [ReferCompleteCallback](docs/Model/ReferCompleteCallback.md)
 - [SipConnectionMetadata](docs/Model/SipConnectionMetadata.md)
 - [SipCredentials](docs/Model/SipCredentials.md)
 - [SmsMessageContent](docs/Model/SmsMessageContent.md)

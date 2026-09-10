@@ -1,4 +1,4 @@
-# TransferDisconnectCallback
+# ReferCompleteCallback
 
 ## Properties
 
@@ -13,16 +13,11 @@ Name | Type | Description | Notes
 **direction** | [**\Bandwidth\Model\CallDirectionEnum**](CallDirectionEnum.md) |  | [optional]
 **call_id** | **string** | The call id associated with the event. | [optional]
 **call_url** | **string** | The URL of the call associated with the event. | [optional]
-**parent_call_id** | **string** | (optional) If the event is related to the B leg of a &lt;Transfer&gt;, the call id of the original call leg that executed the &lt;Transfer&gt;. Otherwise, this field will not be present. | [optional]
-**enqueued_time** | **\DateTime** | (optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format. | [optional]
 **start_time** | **\DateTime** | Time the call was started, in ISO 8601 format. | [optional]
 **answer_time** | **\DateTime** | Time the call was answered, in ISO 8601 format. | [optional]
-**end_time** | **\DateTime** | The time that the recording ended in ISO-8601 format | [optional]
 **tag** | **string** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional]
-**transfer_caller_id** | **string** | The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555). | [optional]
-**transfer_to** | **string** | The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555). | [optional]
-**cause** | **string** | Reason the call failed - hangup, busy, timeout, cancel, rejected, callback-error, invalid-bxml, application-error, account-limit, node-capacity-exceeded, error, or unknown. | [optional]
-**error_message** | **string** | Text explaining the reason that caused the call to fail in case of errors. | [optional]
-**error_id** | **string** | Bandwidth&#39;s internal id that references the error event. | [optional]
+**refer_call_status** | [**\Bandwidth\Model\ReferCallStatusEnum**](ReferCallStatusEnum.md) |  | [optional]
+**refer_sip_response_code** | **int** | (optional) The SIP response code returned for the REFER request itself (e.g. 202, 405, 603). Present when a SIP response was received for the REFER. | [optional]
+**notify_sip_response_code** | **int** | (optional) The final SIP response code reported via NOTIFY (message/sipfrag body). Present only when the caller&#39;s endpoint sent a final NOTIFY (e.g. 200, 404, 486, 503). Not present on NOTIFY timeout or when the REFER was rejected before a subscription was established. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

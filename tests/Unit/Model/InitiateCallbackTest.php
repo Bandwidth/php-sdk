@@ -65,7 +65,9 @@ class InitiateCallbackTest extends TestCase
             'start_time' => new \DateTime('2024-01-01T00:00:00+00:00'),
             'diversion' => new Diversion([]),
             'stir_shaken' => new StirShaken([]),
-            'uui' => 'test_string'
+            'uui' => 'test_string',
+            'sip_call_id' => 'test_string',
+            'sip_headers' => ['x-test-header' => 'test_string']
         ]);
     }
 
@@ -190,4 +192,22 @@ class InitiateCallbackTest extends TestCase
     {
         $this->assertIsString(self::$instance->getUui());
         $this->assertEquals('test_string', self::$instance->getUui());
+    }
+
+    /**
+     * Test attribute "sip_call_id"
+     */
+    public function testPropertySipCallId()
+    {
+        $this->assertIsString(self::$instance->getSipCallId());
+        $this->assertEquals('test_string', self::$instance->getSipCallId());
+    }
+
+    /**
+     * Test attribute "sip_headers"
+     */
+    public function testPropertySipHeaders()
+    {
+        $this->assertIsArray(self::$instance->getSipHeaders());
+        $this->assertEquals(['x-test-header' => 'test_string'], self::$instance->getSipHeaders());
     }}
