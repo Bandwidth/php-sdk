@@ -39,9 +39,8 @@
         "psr-4": { "Bandwidth\\Test\\" : "tests/" }
     },
     "scripts": {
-        "test": [
-            "@phplint"
-        ],
+        "test:unit": "phpunit tests/Unit",
+        "test:smoke": "phpunit tests/Smoke",
         "phplint": "phplint"
     }
 }

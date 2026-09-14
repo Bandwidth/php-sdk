@@ -45,7 +45,7 @@ jobs:
       - name: Install Packages and Test
         run: |
           composer install
-          ./vendor/bin/phpunit tests/Smoke
+          composer test:smoke
 
   test_up:
     name: Smoke Test UP Account
@@ -70,7 +70,7 @@ jobs:
       - name: Install Packages and Test
         run: |
           composer install
-          ./vendor/bin/phpunit tests/Smoke
+          composer test:smoke
 
   notify_for_failures:
     name: Notify for Failures

@@ -44,9 +44,8 @@
         "psr-4": { "{{escapedInvokerPackage}}\\Test\\" : "{{testBasePath}}/" }
     },
     "scripts": {
-        "test": [
-            "@phplint"
-        ],
+        "test:unit": "phpunit tests/Unit",
+        "test:smoke": "phpunit tests/Smoke",
         "phplint": "phplint"
     }
 }
