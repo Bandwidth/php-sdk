@@ -12,23 +12,11 @@ PHP 8.1 and later.
 
 ### Composer
 
-To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
+To install the bindings via [Composer](https://getcomposer.org/), run:
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/bandwidth/php-sdk.git"
-    }
-  ],
-  "require": {
-    "bandwidth/php-sdk": "*@dev"
-  }
-}
+```shell
+composer require bandwidth/sdk
 ```
-
-Then run `composer install`
 
 ### Manual Installation
 
