@@ -1487,7 +1487,7 @@ class MediaApi
      * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
-     * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
+     * @param  string|null $cache_control Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadMedia'] to see the possible values for this operation
@@ -1524,7 +1524,7 @@ class MediaApi
      * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
-     * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
+     * @param  string|null $cache_control Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadMedia'] to see the possible values for this operation
@@ -1655,7 +1655,7 @@ class MediaApi
      * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
-     * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
+     * @param  string|null $cache_control Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadMedia'] to see the possible values for this operation
@@ -1695,7 +1695,7 @@ class MediaApi
      * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
-     * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
+     * @param  string|null $cache_control Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadMedia'] to see the possible values for this operation
@@ -1751,7 +1751,7 @@ class MediaApi
      * @param  string $media_id The ID of the media file. (required)
      * @param  \SplFileObject $body (required)
      * @param  string|null $content_type The media type of the entity-body. (optional)
-     * @param  string|null $cache_control General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
+     * @param  string|null $cache_control Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior. (optional)
      * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadMedia'] to see the possible values for this operation
