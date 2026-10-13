@@ -31,7 +31,7 @@ namespace Bandwidth\Model;
 /**
  * BusinessRegistrationTypeEnum Class Doc Comment
  *
- * @description The type of business registration number.  **Note: As of October 19th, 2026 this field will be required when &#x60;businessRegistrationNumber&#x60; is provided.**
+ * @description The type of business registration number.  **This field is required when &#x60;businessRegistrationNumber&#x60; is provided.**
  * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

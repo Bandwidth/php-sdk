@@ -463,6 +463,9 @@ class VerificationUpdateRequest implements ModelInterface, ArrayAccess, JsonSeri
             $invalidProperties[] = "invalid value for 'business_registration_number', the character length must be smaller than or equal to 500.";
         }
 
+        if ($this->container['business_entity_type'] === null) {
+            $invalidProperties[] = "'business_entity_type' can't be null";
+        }
         if (!is_null($this->container['help_message_response']) && (mb_strlen($this->container['help_message_response']) > 500)) {
             $invalidProperties[] = "invalid value for 'help_message_response', the character length must be smaller than or equal to 500.";
         }
@@ -892,7 +895,7 @@ class VerificationUpdateRequest implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets business_registration_number
      *
-     * @param string|null $business_registration_number Government-issued business identifying number.  **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
+     * @param string|null $business_registration_number Government-issued business identifying number.  **This field is required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
      *
      * @return $this
      */
@@ -954,9 +957,9 @@ class VerificationUpdateRequest implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets business_entity_type
      *
-     * @return \Bandwidth\Model\BusinessEntityTypeEnum|null
+     * @return \Bandwidth\Model\BusinessEntityTypeEnum
      */
-    public function getBusinessEntityType(): ?\Bandwidth\Model\BusinessEntityTypeEnum
+    public function getBusinessEntityType(): \Bandwidth\Model\BusinessEntityTypeEnum
     {
         return $this->container['business_entity_type'];
     }
@@ -964,11 +967,11 @@ class VerificationUpdateRequest implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets business_entity_type
      *
-     * @param \Bandwidth\Model\BusinessEntityTypeEnum|null $business_entity_type business_entity_type
+     * @param \Bandwidth\Model\BusinessEntityTypeEnum $business_entity_type business_entity_type
      *
      * @return $this
      */
-    public function setBusinessEntityType(?\Bandwidth\Model\BusinessEntityTypeEnum $business_entity_type): static
+    public function setBusinessEntityType(\Bandwidth\Model\BusinessEntityTypeEnum $business_entity_type): static
     {
         if (is_null($business_entity_type)) {
             throw new InvalidArgumentException('non-nullable business_entity_type cannot be null');
@@ -991,7 +994,7 @@ class VerificationUpdateRequest implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets business_registration_issuing_country
      *
-     * @param string|null $business_registration_issuing_country The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.  **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**  | Registration Type     | Supported Countries                | |----------------------|------------------------------------| | EIN                  | USA                                | | CBN                  | CAN                                | | NEQ                  | CAN                                | | PROVINCIAL_NUMBER    | CAN                                | | CRN                  | GBR, HKG                           | | VAT                  | GBR, IRL, BRA, NLD                 | | ACN                  | AUS                                | | ABN                  | AUS                                | | BRN                  | HKG                                | | SIREN                | FRA                                | | SIRET                | FRA                                | | NZBN                 | NZL                                | | UST_IDNR             | DEU                                | | CIF                  | ESP                                | | NIF                  | ESP                                | | CNPJ                 | BRA                                | | UID                  | CHE                                | | OTHER                | Must Provide Country Code          |
+     * @param string|null $business_registration_issuing_country The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.  **This field is required when `businessRegistrationNumber` is provided.**  | Registration Type     | Supported Countries                | |----------------------|------------------------------------| | EIN                  | USA                                | | CBN                  | CAN                                | | NEQ                  | CAN                                | | PROVINCIAL_NUMBER    | CAN                                | | CRN                  | GBR, HKG                           | | VAT                  | GBR, IRL, BRA, NLD                 | | ACN                  | AUS                                | | ABN                  | AUS                                | | BRN                  | HKG                                | | SIREN                | FRA                                | | SIRET                | FRA                                | | NZBN                 | NZL                                | | UST_IDNR             | DEU                                | | CIF                  | ESP                                | | NIF                  | ESP                                | | CNPJ                 | BRA                                | | UID                  | CHE                                | | OTHER                | Must Provide Country Code          |
      *
      * @return $this
      */
