@@ -72,7 +72,8 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
         'tag' => 'string',
         'media' => 'string[]',
         'priority' => '\Bandwidth\Model\PriorityEnum',
-        'channel' => '\Bandwidth\Model\MultiChannelMessageChannelEnum'
+        'channel' => '\Bandwidth\Model\MultiChannelMessageChannelEnum',
+        'session' => '\Bandwidth\Model\RbmSession'
     ];
 
     /**
@@ -93,7 +94,8 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
         'tag' => null,
         'media' => 'uri',
         'priority' => null,
-        'channel' => null
+        'channel' => null,
+        'session' => null
     ];
 
     /**
@@ -114,7 +116,8 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
         'tag' => false,
         'media' => false,
         'priority' => false,
-        'channel' => false
+        'channel' => false,
+        'session' => false
     ];
 
     /**
@@ -205,7 +208,8 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
         'tag' => 'tag',
         'media' => 'media',
         'priority' => 'priority',
-        'channel' => 'channel'
+        'channel' => 'channel',
+        'session' => 'session'
     ];
 
     /**
@@ -226,7 +230,8 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
         'tag' => 'setTag',
         'media' => 'setMedia',
         'priority' => 'setPriority',
-        'channel' => 'setChannel'
+        'channel' => 'setChannel',
+        'session' => 'setSession'
     ];
 
     /**
@@ -247,7 +252,8 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
         'tag' => 'getTag',
         'media' => 'getMedia',
         'priority' => 'getPriority',
-        'channel' => 'getChannel'
+        'channel' => 'getChannel',
+        'session' => 'getSession'
     ];
 
     /**
@@ -310,6 +316,7 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
         $this->setIfExists('media', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('channel', $data ?? [], null);
+        $this->setIfExists('session', $data ?? [], null);
     }
 
     /**
@@ -721,6 +728,33 @@ class StatusCallbackMessage implements ModelInterface, ArrayAccess, JsonSerializ
             throw new InvalidArgumentException('non-nullable channel cannot be null');
         }
         $this->container['channel'] = $channel;
+
+        return $this;
+    }
+
+    /**
+     * Gets session
+     *
+     * @return \Bandwidth\Model\RbmSession|null
+     */
+    public function getSession(): ?\Bandwidth\Model\RbmSession
+    {
+        return $this->container['session'];
+    }
+
+    /**
+     * Sets session
+     *
+     * @param \Bandwidth\Model\RbmSession|null $session session
+     *
+     * @return $this
+     */
+    public function setSession(?\Bandwidth\Model\RbmSession $session): static
+    {
+        if (is_null($session)) {
+            throw new InvalidArgumentException('non-nullable session cannot be null');
+        }
+        $this->container['session'] = $session;
 
         return $this;
     }

@@ -72,7 +72,7 @@ class RbmActionBase implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPIFormats = [
         'type' => null,
         'text' => null,
-        'postback_data' => 'byte'
+        'postback_data' => null
     ];
 
     /**
@@ -279,6 +279,10 @@ class RbmActionBase implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['postback_data'] === null) {
             $invalidProperties[] = "'postback_data' can't be null";
         }
+        if (!is_null($this->container['postback_data']) && (mb_strlen($this->container['postback_data']) > 2048)) {
+            $invalidProperties[] = "invalid value for 'postback_data', the character length must be smaller than or equal to 2048.";
+        }
+
         return $invalidProperties;
     }
 
@@ -362,7 +366,7 @@ class RbmActionBase implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets postback_data
      *
-     * @param string $postback_data Base64 payload the customer receives when the reply is clicked.
+     * @param string $postback_data Payload the customer receives when the reply is clicked.
      *
      * @return $this
      */
@@ -370,6 +374,9 @@ class RbmActionBase implements ModelInterface, ArrayAccess, JsonSerializable
     {
         if (is_null($postback_data)) {
             throw new InvalidArgumentException('non-nullable postback_data cannot be null');
+        }
+        if ((mb_strlen($postback_data) > 2048)) {
+            throw new InvalidArgumentException('invalid length for $postback_data when calling RbmActionBase., must be smaller than or equal to 2048.');
         }
 
         $this->container['postback_data'] = $postback_data;

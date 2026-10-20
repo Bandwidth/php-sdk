@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **media** | **string[]** | Optional media, not applicable for sms | [optional]
 **priority** | [**\Bandwidth\Model\PriorityEnum**](PriorityEnum.md) |  | [optional]
 **channel** | [**\Bandwidth\Model\MultiChannelMessageChannelEnum**](MultiChannelMessageChannelEnum.md) |  | [optional]
+**session** | [**\Bandwidth\Model\RbmSession**](RbmSession.md) |  | [optional]
 **content** | [**\Bandwidth\Model\MultiChannelMessageContent**](MultiChannelMessageContent.md) |  | [optional]
 **suggestion_response** | [**\Bandwidth\Model\RbmSuggestionResponse**](RbmSuggestionResponse.md) |  | [optional]
 **location_response** | [**\Bandwidth\Model\RbmLocationResponse**](RbmLocationResponse.md) |  | [optional]

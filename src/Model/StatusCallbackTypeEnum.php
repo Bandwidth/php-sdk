@@ -31,7 +31,7 @@ namespace Bandwidth\Model;
 /**
  * StatusCallbackTypeEnum Class Doc Comment
  *
- * @description The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-sent&#x60; indicates that the message has left the Bandwidth network and is in transit to the provider. - &#x60;message-delivered&#x60; indicates that the message was successfully delivered to handset. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient.
+ * @description The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-sent&#x60; indicates that the message has left the Bandwidth network and is in transit to the provider. - &#x60;message-delivered&#x60; indicates that the message was successfully delivered to handset. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient. - &#x60;session-started&#x60; indicates that a previously exchanged RBM message is now part of an RCS interactive session and is no longer billed individually.
  * @package  Bandwidth
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -47,6 +47,8 @@ enum StatusCallbackTypeEnum: string
     case MESSAGE_FAILED = 'message-failed';
 
     case MESSAGE_READ = 'message-read';
+
+    case SESSION_STARTED = 'session-started';
 }
 
 
