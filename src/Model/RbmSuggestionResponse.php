@@ -71,7 +71,7 @@ class RbmSuggestionResponse implements ModelInterface, ArrayAccess, JsonSerializ
      */
     protected static array $openAPIFormats = [
         'text' => null,
-        'postback_data' => 'byte',
+        'postback_data' => null,
         'paired_message_id' => null
     ];
 
@@ -266,6 +266,10 @@ class RbmSuggestionResponse implements ModelInterface, ArrayAccess, JsonSerializ
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['postback_data']) && (mb_strlen($this->container['postback_data']) > 2048)) {
+            $invalidProperties[] = "invalid value for 'postback_data', the character length must be smaller than or equal to 2048.";
+        }
+
         return $invalidProperties;
     }
 
@@ -291,7 +295,7 @@ class RbmSuggestionResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets text
      *
-     * @param string|null $text The text associated with the suggestion response.
+     * @param string|null $text The text of the suggestion the user tapped.
      *
      * @return $this
      */
@@ -318,7 +322,7 @@ class RbmSuggestionResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets postback_data
      *
-     * @param string|null $postback_data Base64 payload the customer receives when the reply is clicked.
+     * @param string|null $postback_data Payload the customer receives when the reply is clicked.
      *
      * @return $this
      */
@@ -326,6 +330,9 @@ class RbmSuggestionResponse implements ModelInterface, ArrayAccess, JsonSerializ
     {
         if (is_null($postback_data)) {
             throw new InvalidArgumentException('non-nullable postback_data cannot be null');
+        }
+        if ((mb_strlen($postback_data) > 2048)) {
+            throw new InvalidArgumentException('invalid length for $postback_data when calling RbmSuggestionResponse., must be smaller than or equal to 2048.');
         }
 
         $this->container['postback_data'] = $postback_data;
