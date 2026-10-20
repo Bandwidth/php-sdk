@@ -2,6 +2,7 @@
 
 namespace Bandwidth\Test\Unit\Model\Bxml;
 
+use Bandwidth\Model\Bxml\AttestationLevel;
 use Bandwidth\Model\Bxml\DiversionReason;
 use Bandwidth\Model\Bxml\DiversionTreatment;
 use Bandwidth\Model\Bxml\Hangup;
@@ -37,7 +38,8 @@ class TransferTest extends TestCase
             fallbackPassword: 'fallbackPass',
             tag: 'my-tag',
             diversionTreatment: DiversionTreatment::PROPAGATE,
-            diversionReason: DiversionReason::NO_ANSWER
+            diversionReason: DiversionReason::NO_ANSWER,
+            attestationLevel: AttestationLevel::B
         );
 
         $this->assertSame(
@@ -47,7 +49,28 @@ class TransferTest extends TestCase
             . ' transferCompleteFallbackUrl="/completeFallback"'
             . ' transferCompleteFallbackMethod="GET" username="user" password="pass"'
             . ' fallbackUsername="fallbackUser" fallbackPassword="fallbackPass" tag="my-tag"'
-            . ' diversionTreatment="propagate" diversionReason="no-answer"/>',
+            . ' diversionTreatment="propagate" diversionReason="no-answer"'
+            . ' attestationLevel="B"/>',
+            $transfer->toBxml()
+        );
+    }
+
+    public function testAttestationLevel(): void
+    {
+        $this->assertSame(
+            '<Transfer attestationLevel="A"/>',
+            (new Transfer(attestationLevel: AttestationLevel::A))->toBxml()
+        );
+    }
+
+    public function testIdentity(): void
+    {
+        $identity = 'eyJhbGciOiJFUzI1NiJ9.sig;info=<https://example.com/c.pem>;ppt="shaken"';
+        $transfer = new Transfer(identity: $identity);
+
+        $this->assertSame(
+            '<Transfer identity="eyJhbGciOiJFUzI1NiJ9.sig;info=&lt;https://example.com/c.pem&gt;'
+            . ';ppt=&quot;shaken&quot;"/>',
             $transfer->toBxml()
         );
     }

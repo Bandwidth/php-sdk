@@ -21,6 +21,8 @@ class Transfer extends NestableVerb
      * @param string|null             $tag                           Custom string sent with all future callbacks. Max 256 characters.
      * @param DiversionTreatment|null $diversionTreatment            How Diversion headers are handled on the outbound leg.
      * @param DiversionReason|null    $diversionReason               Only considered when diversionTreatment is stack.
+     * @param AttestationLevel|null   $attestationLevel              STIR/SHAKEN attestation level Bandwidth signs at. US outbound only; ignored unless the account uses the Hosted Signing Service. Cannot be combined with identity.
+     * @param string|null             $identity                      Pre-signed SIP Identity header value, passed unmodified and not verified by Bandwidth. Max 2000 characters. Cannot be combined with attestationLevel.
      */
     public function __construct(
         array $transferTo = [],
@@ -39,6 +41,8 @@ class Transfer extends NestableVerb
         public readonly ?string $tag = null,
         public readonly ?DiversionTreatment $diversionTreatment = null,
         public readonly ?DiversionReason $diversionReason = null,
+        public readonly ?AttestationLevel $attestationLevel = null,
+        public readonly ?string $identity = null,
     ) {
         parent::__construct('Transfer', null, $transferTo);
     }
@@ -66,6 +70,8 @@ class Transfer extends NestableVerb
             'tag' => $this->tag,
             'diversionTreatment' => $this->diversionTreatment,
             'diversionReason' => $this->diversionReason,
+            'attestationLevel' => $this->attestationLevel,
+            'identity' => $this->identity,
         ];
     }
 }
