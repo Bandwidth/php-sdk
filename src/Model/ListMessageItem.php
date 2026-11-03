@@ -133,7 +133,7 @@ class ListMessageItem implements ModelInterface, ArrayAccess, JsonSerializable
         'receive_time' => false,
         'carrier_name' => true,
         'message_size' => true,
-        'message_length' => false,
+        'message_length' => true,
         'attachment_count' => true,
         'recipient_count' => true,
         'campaign_class' => true,
@@ -776,7 +776,14 @@ class ListMessageItem implements ModelInterface, ArrayAccess, JsonSerializable
     public function setMessageLength(?int $message_length): static
     {
         if (is_null($message_length)) {
-            throw new InvalidArgumentException('non-nullable message_length cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'message_length');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('message_length', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['message_length'] = $message_length;
 

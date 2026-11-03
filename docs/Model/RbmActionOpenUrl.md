@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**\Bandwidth\Model\RbmActionTypeEnum**](RbmActionTypeEnum.md) |  |
 **text** | **string** | Displayed text for user to click |
-**postback_data** | **string** | Base64 payload the customer receives when the reply is clicked. |
+**postback_data** | **string** | Payload the customer receives when the reply is clicked. |
 **url** | **string** | The URL to open in browser. Must use http:// or https:// scheme. |
 **application** | [**\Bandwidth\Model\RbmOpenUrlEnum**](RbmOpenUrlEnum.md) |  | [optional]
 **webview_view_mode** | [**\Bandwidth\Model\RbmWebViewEnum**](RbmWebViewEnum.md) |  | [optional]

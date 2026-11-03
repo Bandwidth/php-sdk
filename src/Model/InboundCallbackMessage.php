@@ -72,6 +72,7 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
         'media' => 'string[]',
         'priority' => '\Bandwidth\Model\PriorityEnum',
         'channel' => '\Bandwidth\Model\MultiChannelMessageChannelEnum',
+        'session' => '\Bandwidth\Model\RbmSession',
         'content' => '\Bandwidth\Model\MultiChannelMessageContent',
         'suggestion_response' => '\Bandwidth\Model\RbmSuggestionResponse',
         'location_response' => '\Bandwidth\Model\RbmLocationResponse'
@@ -96,6 +97,7 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
         'media' => 'uri',
         'priority' => null,
         'channel' => null,
+        'session' => null,
         'content' => null,
         'suggestion_response' => null,
         'location_response' => null
@@ -120,6 +122,7 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
         'media' => false,
         'priority' => false,
         'channel' => false,
+        'session' => false,
         'content' => false,
         'suggestion_response' => false,
         'location_response' => false
@@ -214,6 +217,7 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
         'media' => 'media',
         'priority' => 'priority',
         'channel' => 'channel',
+        'session' => 'session',
         'content' => 'content',
         'suggestion_response' => 'suggestionResponse',
         'location_response' => 'locationResponse'
@@ -238,6 +242,7 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
         'media' => 'setMedia',
         'priority' => 'setPriority',
         'channel' => 'setChannel',
+        'session' => 'setSession',
         'content' => 'setContent',
         'suggestion_response' => 'setSuggestionResponse',
         'location_response' => 'setLocationResponse'
@@ -262,6 +267,7 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
         'media' => 'getMedia',
         'priority' => 'getPriority',
         'channel' => 'getChannel',
+        'session' => 'getSession',
         'content' => 'getContent',
         'suggestion_response' => 'getSuggestionResponse',
         'location_response' => 'getLocationResponse'
@@ -327,6 +333,7 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
         $this->setIfExists('media', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('channel', $data ?? [], null);
+        $this->setIfExists('session', $data ?? [], null);
         $this->setIfExists('content', $data ?? [], null);
         $this->setIfExists('suggestion_response', $data ?? [], null);
         $this->setIfExists('location_response', $data ?? [], null);
@@ -741,6 +748,33 @@ class InboundCallbackMessage implements ModelInterface, ArrayAccess, JsonSeriali
             throw new InvalidArgumentException('non-nullable channel cannot be null');
         }
         $this->container['channel'] = $channel;
+
+        return $this;
+    }
+
+    /**
+     * Gets session
+     *
+     * @return \Bandwidth\Model\RbmSession|null
+     */
+    public function getSession(): ?\Bandwidth\Model\RbmSession
+    {
+        return $this->container['session'];
+    }
+
+    /**
+     * Sets session
+     *
+     * @param \Bandwidth\Model\RbmSession|null $session session
+     *
+     * @return $this
+     */
+    public function setSession(?\Bandwidth\Model\RbmSession $session): static
+    {
+        if (is_null($session)) {
+            throw new InvalidArgumentException('non-nullable session cannot be null');
+        }
+        $this->container['session'] = $session;
 
         return $this;
     }

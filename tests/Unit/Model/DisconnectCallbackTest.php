@@ -69,7 +69,9 @@ class DisconnectCallbackTest extends TestCase
             'error_id' => 'test_string',
             'tag' => 'test_string',
             'sip_call_id' => 'test_string',
-            'sip_response_code' => 1
+            'sip_response_code' => 1,
+            'sip_status_line' => 'test_string',
+            'sip_headers' => ['x-test-header' => 'test_string']
         ]);
     }
 
@@ -250,4 +252,22 @@ class DisconnectCallbackTest extends TestCase
     {
         $this->assertIsInt(self::$instance->getSipResponseCode());
         $this->assertEquals(1, self::$instance->getSipResponseCode());
+    }
+
+    /**
+     * Test attribute "sip_status_line"
+     */
+    public function testPropertySipStatusLine()
+    {
+        $this->assertIsString(self::$instance->getSipStatusLine());
+        $this->assertEquals('test_string', self::$instance->getSipStatusLine());
+    }
+
+    /**
+     * Test attribute "sip_headers"
+     */
+    public function testPropertySipHeaders()
+    {
+        $this->assertIsArray(self::$instance->getSipHeaders());
+        $this->assertEquals(['x-test-header' => 'test_string'], self::$instance->getSipHeaders());
     }}

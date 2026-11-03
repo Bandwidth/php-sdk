@@ -17,5 +17,6 @@ Name | Type | Description | Notes
 **media** | **string[]** | Optional media, not applicable for sms | [optional]
 **priority** | [**\Bandwidth\Model\PriorityEnum**](PriorityEnum.md) |  | [optional]
 **channel** | [**\Bandwidth\Model\MultiChannelMessageChannelEnum**](MultiChannelMessageChannelEnum.md) |  | [optional]
+**session** | [**\Bandwidth\Model\RbmSession**](RbmSession.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
