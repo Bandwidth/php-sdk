@@ -84,6 +84,7 @@ class Callback implements OneOfInterface
             'message-sending' => '\Bandwidth\Model\StatusCallback',
             'message-sent' => '\Bandwidth\Model\StatusCallback',
             'requested-location-response' => '\Bandwidth\Model\InboundCallback',
+            'session-started' => '\Bandwidth\Model\StatusCallback',
             'suggestion-response' => '\Bandwidth\Model\InboundCallback'
         ];
     }

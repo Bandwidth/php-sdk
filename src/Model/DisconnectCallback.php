@@ -78,7 +78,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'error_id' => 'string',
         'tag' => 'string',
         'sip_call_id' => 'string',
-        'sip_response_code' => 'int'
+        'sip_response_code' => 'int',
+        'sip_status_line' => 'string',
+        'sip_headers' => 'array<string,string>'
     ];
 
     /**
@@ -105,7 +107,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'error_id' => null,
         'tag' => null,
         'sip_call_id' => null,
-        'sip_response_code' => null
+        'sip_response_code' => null,
+        'sip_status_line' => null,
+        'sip_headers' => null
     ];
 
     /**
@@ -132,7 +136,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'error_id' => true,
         'tag' => true,
         'sip_call_id' => false,
-        'sip_response_code' => false
+        'sip_response_code' => false,
+        'sip_status_line' => false,
+        'sip_headers' => false
     ];
 
     /**
@@ -229,7 +235,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'error_id' => 'errorId',
         'tag' => 'tag',
         'sip_call_id' => 'sipCallId',
-        'sip_response_code' => 'sipResponseCode'
+        'sip_response_code' => 'sipResponseCode',
+        'sip_status_line' => 'sipStatusLine',
+        'sip_headers' => 'sipHeaders'
     ];
 
     /**
@@ -256,7 +264,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'error_id' => 'setErrorId',
         'tag' => 'setTag',
         'sip_call_id' => 'setSipCallId',
-        'sip_response_code' => 'setSipResponseCode'
+        'sip_response_code' => 'setSipResponseCode',
+        'sip_status_line' => 'setSipStatusLine',
+        'sip_headers' => 'setSipHeaders'
     ];
 
     /**
@@ -283,7 +293,9 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         'error_id' => 'getErrorId',
         'tag' => 'getTag',
         'sip_call_id' => 'getSipCallId',
-        'sip_response_code' => 'getSipResponseCode'
+        'sip_response_code' => 'getSipResponseCode',
+        'sip_status_line' => 'getSipStatusLine',
+        'sip_headers' => 'getSipHeaders'
     ];
 
     /**
@@ -352,6 +364,8 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
         $this->setIfExists('tag', $data ?? [], null);
         $this->setIfExists('sip_call_id', $data ?? [], null);
         $this->setIfExists('sip_response_code', $data ?? [], null);
+        $this->setIfExists('sip_status_line', $data ?? [], null);
+        $this->setIfExists('sip_headers', $data ?? [], null);
     }
 
     /**
@@ -925,7 +939,7 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets sip_response_code
      *
-     * @param int|null $sip_response_code (optional) The SIP status code returned by Bandwidth's SBC when it rejected an outbound call's INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC.
+     * @param int|null $sip_response_code (optional) The SIP status code of the final response that rejected an outbound call's (or transferred leg's) INVITE (e.g. 486 for busy, 603 for decline). Present only when the call was rejected with a SIP response.
      *
      * @return $this
      */
@@ -935,6 +949,60 @@ class DisconnectCallback implements ModelInterface, ArrayAccess, JsonSerializabl
             throw new InvalidArgumentException('non-nullable sip_response_code cannot be null');
         }
         $this->container['sip_response_code'] = $sip_response_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets sip_status_line
+     *
+     * @return string|null
+     */
+    public function getSipStatusLine(): ?string
+    {
+        return $this->container['sip_status_line'];
+    }
+
+    /**
+     * Sets sip_status_line
+     *
+     * @param string|null $sip_status_line (optional) The full SIP status line, exactly as received, of the final response that rejected an outbound call's INVITE. The reason phrase can help distinguish outcomes that share a status code, such as `603 Network Blocked` and `603 Decline`. Present only when an outbound call was rejected with a SIP response.
+     *
+     * @return $this
+     */
+    public function setSipStatusLine(?string $sip_status_line): static
+    {
+        if (is_null($sip_status_line)) {
+            throw new InvalidArgumentException('non-nullable sip_status_line cannot be null');
+        }
+        $this->container['sip_status_line'] = $sip_status_line;
+
+        return $this;
+    }
+
+    /**
+     * Gets sip_headers
+     *
+     * @return array<string,string>|null
+     */
+    public function getSipHeaders(): ?array
+    {
+        return $this->container['sip_headers'];
+    }
+
+    /**
+     * Sets sip_headers
+     *
+     * @param array<string,string>|null $sip_headers (optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single `reason` key holding the raw, unmodified `Reason` header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a `Reason` header (for example, `v=analytics1` call-analytics block information from a terminating carrier). If the response carries more than one `Reason` header, all values are returned in the order received, separated by `, `. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth's usual camelCase JSON convention, since these are passthrough values from the caller's SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is `reason`.
+     *
+     * @return $this
+     */
+    public function setSipHeaders(?array $sip_headers): static
+    {
+        if (is_null($sip_headers)) {
+            throw new InvalidArgumentException('non-nullable sip_headers cannot be null');
+        }
+        $this->container['sip_headers'] = $sip_headers;
 
         return $this;
     }
