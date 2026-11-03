@@ -36,10 +36,10 @@ Please follow the [installation procedure](#installation--usage) and then run th
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
+// Configure OAuth2 client credentials; access tokens are fetched and refreshed automatically
+$config = Bandwidth\Configuration::getDefaultConfiguration()
+              ->setClientId('YOUR_CLIENT_ID')
+              ->setClientSecret('YOUR_CLIENT_SECRET');
 
 $apiInstance = new Bandwidth\Api\CallsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
