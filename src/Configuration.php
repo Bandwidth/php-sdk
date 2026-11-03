@@ -112,20 +112,6 @@ class Configuration
     protected string $booleanFormatForQueryString = self::BOOLEAN_FORMAT_INT;
 
     /**
-     * Username for HTTP basic authentication
-     *
-     * @var string
-     */
-    protected string $username = '';
-
-    /**
-     * Password for HTTP basic authentication
-     *
-     * @var string
-     */
-    protected string $password = '';
-
-    /**
      * The host
      *
      * @var string
@@ -397,52 +383,6 @@ class Configuration
     public function getBooleanFormatForQueryString(): string
     {
         return $this->booleanFormatForQueryString;
-    }
-
-    /**
-     * Sets the username for HTTP basic authentication
-     *
-     * @param string $username Username for HTTP basic authentication
-     *
-     * @return $this
-     */
-    public function setUsername(string $username): static
-    {
-        $this->username = $username;
-        return $this;
-    }
-
-    /**
-     * Gets the username for HTTP basic authentication
-     *
-     * @return string Username for HTTP basic authentication
-     */
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    /**
-     * Sets the password for HTTP basic authentication
-     *
-     * @param string $password Password for HTTP basic authentication
-     *
-     * @return $this
-     */
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-        return $this;
-    }
-
-    /**
-     * Gets the password for HTTP basic authentication
-     *
-     * @return string Password for HTTP basic authentication
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
     }
 
     /**
