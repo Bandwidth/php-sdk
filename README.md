@@ -37,11 +37,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
@@ -332,11 +327,6 @@ Class | Method | HTTP request | Description
 - [WebhookSubscriptionsListBody](docs/Model/WebhookSubscriptionsListBody.md)
 
 ## Authorization
-
-### Basic
-
-- **Type**: HTTP basic authentication
-
 
 ### OAuth2
 
