@@ -21,8 +21,8 @@ class Transfer extends NestableVerb
      * @param string|null             $tag                           Custom string sent with all future callbacks. Max 256 characters.
      * @param DiversionTreatment|null $diversionTreatment            How Diversion headers are handled on the outbound leg.
      * @param DiversionReason|null    $diversionReason               Only considered when diversionTreatment is stack.
-     * @param AttestationLevel|null   $attestationLevel              STIR/SHAKEN attestation level Bandwidth signs at. US outbound only; ignored unless the account uses the Hosted Signing Service. Cannot be combined with identity.
-     * @param string|null             $identity                      Pre-signed SIP Identity header value, passed unmodified and not verified by Bandwidth. Max 2000 characters. Cannot be combined with attestationLevel.
+     * @param AttestationLevel|null   $attestationLevel              STIR/SHAKEN attestation level to sign the transferred call with. Only applies to accounts using the Hosted Signing Service. Cannot be combined with identity.
+     * @param string|null             $identity                      SIP Identity header value (PASSporT) signed by you, sent unmodified. Max 2000 characters. Cannot be combined with attestationLevel.
      */
     public function __construct(
         array $transferTo = [],
