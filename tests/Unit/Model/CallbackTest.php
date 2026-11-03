@@ -64,6 +64,7 @@ class CallbackTest extends TestCase
                 'message-sending' => StatusCallback::class,
                 'message-sent' => StatusCallback::class,
                 'requested-location-response' => InboundCallback::class,
+                'session-started' => StatusCallback::class,
                 'suggestion-response' => InboundCallback::class
             ],
             array_map(fn($type) => ltrim($type, '\\'), Callback::getOneOfDiscriminatorMappings())
@@ -106,6 +107,7 @@ class CallbackTest extends TestCase
             'message-sending' => ['message-sending', StatusCallback::class],
             'message-sent' => ['message-sent', StatusCallback::class],
             'requested-location-response' => ['requested-location-response', InboundCallback::class],
+            'session-started' => ['session-started', StatusCallback::class],
             'suggestion-response' => ['suggestion-response', InboundCallback::class]
         ];
     }

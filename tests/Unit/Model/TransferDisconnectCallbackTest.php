@@ -70,7 +70,10 @@ class TransferDisconnectCallbackTest extends TestCase
             'transfer_to' => 'test_string',
             'cause' => 'test_string',
             'error_message' => 'test_string',
-            'error_id' => 'test_string'
+            'error_id' => 'test_string',
+            'sip_response_code' => 1,
+            'sip_status_line' => 'test_string',
+            'sip_headers' => ['x-test-header' => 'test_string']
         ]);
     }
 
@@ -260,4 +263,31 @@ class TransferDisconnectCallbackTest extends TestCase
     {
         $this->assertIsString(self::$instance->getErrorId());
         $this->assertEquals('test_string', self::$instance->getErrorId());
+    }
+
+    /**
+     * Test attribute "sip_response_code"
+     */
+    public function testPropertySipResponseCode()
+    {
+        $this->assertIsInt(self::$instance->getSipResponseCode());
+        $this->assertEquals(1, self::$instance->getSipResponseCode());
+    }
+
+    /**
+     * Test attribute "sip_status_line"
+     */
+    public function testPropertySipStatusLine()
+    {
+        $this->assertIsString(self::$instance->getSipStatusLine());
+        $this->assertEquals('test_string', self::$instance->getSipStatusLine());
+    }
+
+    /**
+     * Test attribute "sip_headers"
+     */
+    public function testPropertySipHeaders()
+    {
+        $this->assertIsArray(self::$instance->getSipHeaders());
+        $this->assertEquals(['x-test-header' => 'test_string'], self::$instance->getSipHeaders());
     }}
