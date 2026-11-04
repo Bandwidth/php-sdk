@@ -29,11 +29,6 @@ Creates a new Endpoint for the specified account.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
@@ -74,7 +69,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -102,11 +97,6 @@ Deletes the specified endpoint. If the endpoint is actively streaming media, the
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -147,7 +137,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -175,11 +165,6 @@ Returns information about the specified endpoint.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -221,7 +206,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -249,11 +234,6 @@ Returns a list of endpoints associated with the specified account.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -301,7 +281,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -329,11 +309,6 @@ Updates the BXML for the specified endpoint.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -376,7 +351,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 

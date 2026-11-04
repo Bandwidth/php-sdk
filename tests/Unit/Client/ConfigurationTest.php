@@ -81,6 +81,19 @@ class ConfigurationTest extends TestCase
     }
 
     /**
+     * Test that the HTTP basic authentication accessors are not available.
+     */
+    public function testBasicAuthMethodsAreRemoved()
+    {
+        foreach (['setUsername', 'getUsername', 'setPassword', 'getPassword'] as $method) {
+            $this->assertFalse(
+                method_exists(Configuration::class, $method),
+                "Configuration::{$method}() should not exist"
+            );
+        }
+    }
+
+    /**
      * Test the default configuration singleton is stable and replaceable.
      */
     public function testDefaultConfigurationSingleton()

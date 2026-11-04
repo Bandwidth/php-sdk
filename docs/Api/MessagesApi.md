@@ -26,11 +26,6 @@ Endpoint for sending text messages and picture messages using V2 messaging.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
@@ -71,7 +66,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -99,11 +94,6 @@ Returns a list of messages based on query parameters.  **Rate Limit:** This endp
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -197,7 +187,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 

@@ -13,8 +13,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  BW_USERNAME: ${{ secrets.BW_USERNAME }}
-  BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
   BW_CLIENT_ID: ${{ secrets.BW_CLIENT_ID }}
   BW_CLIENT_SECRET: ${{ secrets.BW_CLIENT_SECRET }}
   USER_NUMBER: ${{ secrets.USER_NUMBER }}
