@@ -34,6 +34,7 @@ use Bandwidth\Model\MessagingCodeResponse;
 use Bandwidth\Model\VerifyCodeRequest;
 use Bandwidth\Model\VerifyCodeResponse;
 use Bandwidth\Model\VoiceCodeResponse;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -48,11 +49,6 @@ class MFAApiTest extends TestCase
 {
 
     private static MFAApi $apiInstance;
-    private static string $account_id;
-    private static string $bw_number;
-    private static string $user_number;
-    private static string $messaging_application_id;
-    private static string $voice_application_id;
 
     private static string $message = 'Your temporary {NAME} {SCOPE} code is {CODE}';
     private static int $digits = 6;
@@ -68,12 +64,6 @@ class MFAApiTest extends TestCase
             ->setHost("http://127.0.0.1:4010");
 
         self::$apiInstance = new MFAApi(config: $config);
-
-        self::$account_id = getenv("BW_ACCOUNT_ID");
-        self::$bw_number = getenv("BW_NUMBER");
-        self::$user_number = getenv("USER_NUMBER");
-        self::$messaging_application_id = getenv("BW_MESSAGING_APPLICATION_ID");
-        self::$voice_application_id = getenv("BW_VOICE_APPLICATION_ID");
     }
 
     /**
@@ -85,15 +75,15 @@ class MFAApiTest extends TestCase
     public function testGenerateMessagingCode()
     {
         $code_request = new CodeRequest([
-            'to' => self::$user_number,
-            'from' => self::$bw_number,
-            'application_id' => self::$messaging_application_id,
+            'to' => TestConstants::USER_NUMBER,
+            'from' => TestConstants::BW_NUMBER,
+            'application_id' => TestConstants::MESSAGING_APPLICATION_ID,
             'message' => self::$message,
             'digits' => self::$digits
         ]);
 
         [$data, $status_code] = self::$apiInstance->generateMessagingCodeWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $code_request
         );
 
@@ -111,15 +101,15 @@ class MFAApiTest extends TestCase
     public function testGenerateVoiceCode()
     {
         $code_request = new CodeRequest([
-            'to' => self::$user_number,
-            'from' => self::$bw_number,
-            'application_id' => self::$voice_application_id,
+            'to' => TestConstants::USER_NUMBER,
+            'from' => TestConstants::BW_NUMBER,
+            'application_id' => TestConstants::VOICE_APPLICATION_ID,
             'message' => self::$message,
             'digits' => self::$digits
         ]);
 
         [$data, $status_code] = self::$apiInstance->generateVoiceCodeWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $code_request
         );
 
@@ -137,14 +127,14 @@ class MFAApiTest extends TestCase
     public function testVerifyCode()
     {
         $verify_code_request = new VerifyCodeRequest([
-            'to' => self::$user_number,
+            'to' => TestConstants::USER_NUMBER,
             'scope' => 'login',
             'expiration_time_in_minutes' => 3.0,
             'code' => '12345'
         ]);
 
         [$data, $status_code] = self::$apiInstance->verifyCodeWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $verify_code_request
         );
 

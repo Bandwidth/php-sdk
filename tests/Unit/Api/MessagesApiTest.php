@@ -39,6 +39,7 @@ use Bandwidth\Model\MessagesList;
 use Bandwidth\Model\MessageTypeEnum;
 use Bandwidth\Model\PageInfo;
 use Bandwidth\Model\PriorityEnum;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -53,9 +54,6 @@ class MessagesApiTest extends TestCase
 {
 
     private static MessagesApi $apiInstance;
-    private static string $account_id;
-    private static string $bw_number;
-    private static string $messaging_application_id;
 
     private static string $message_text = 'PHP SDK Test Message';
     private static PriorityEnum $message_priority = PriorityEnum::HIGH;
@@ -73,10 +71,6 @@ class MessagesApiTest extends TestCase
 
         self::$apiInstance = new MessagesApi(config: $config);
 
-        self::$account_id = getenv("BW_ACCOUNT_ID");
-        self::$bw_number = getenv("BW_NUMBER");
-        self::$messaging_application_id = getenv("BW_MESSAGING_APPLICATION_ID");
-
         self::$expiration = (new \DateTime('@' . strtotime('+1 day')))
             ->setTimezone(new \DateTimeZone('UTC'));
     }
@@ -90,16 +84,16 @@ class MessagesApiTest extends TestCase
     public function testCreateMessage()
     {
         $message_request = new MessageRequest([
-            'application_id' => self::$messaging_application_id,
-            'from' => self::$bw_number,
-            'to' => [self::$bw_number],
+            'application_id' => TestConstants::MESSAGING_APPLICATION_ID,
+            'from' => TestConstants::BW_NUMBER,
+            'to' => [TestConstants::BW_NUMBER],
             'text' => self::$message_text,
             'priority' => self::$message_priority,
             'expiration' => self::$expiration
         ]);
 
         [$data, $status_code] = self::$apiInstance->createMessageWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $message_request
         );
 
@@ -131,7 +125,7 @@ class MessagesApiTest extends TestCase
     public function testListMessages()
     {
         [$data, $status_code] = self::$apiInstance->listMessagesWithHttpInfo(
-            self::$account_id
+            TestConstants::ACCOUNT_ID
         );
 
         $this->assertEquals(200, $status_code);

@@ -38,6 +38,7 @@ use Bandwidth\Model\CreateCallResponse;
 use Bandwidth\Model\MachineDetectionConfiguration;
 use Bandwidth\Model\MachineDetectionModeEnum;
 use Bandwidth\Model\UpdateCall;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -52,17 +53,11 @@ class CallsApiTest extends TestCase
 {
 
     private static CallsApi $apiInstance;
-    private static string $account_id;
-    private static string $bw_number;
-    private static string $user_number;
-    private static string $voice_application_id;
 
     private static string $call_id = 'c-1234';
     private static string $display_name = 'PHP SDK';
     private static CallbackMethodEnum $answer_method = CallbackMethodEnum::POST;
-    private static string $answer_url;
     private static CallbackMethodEnum $disconnect_method = CallbackMethodEnum::GET;
-    private static string $disconnect_url;
     private static float $call_timeout = 30.0;
     private static float $callback_timeout = 15.0;
 
@@ -77,13 +72,6 @@ class CallsApiTest extends TestCase
             ->setHost("http://127.0.0.1:4010");
 
         self::$apiInstance = new CallsApi(config: $config);
-
-        self::$account_id = getenv("BW_ACCOUNT_ID");
-        self::$bw_number = getenv("BW_NUMBER");
-        self::$user_number = getenv("USER_NUMBER");
-        self::$voice_application_id = getenv("BW_VOICE_APPLICATION_ID");
-        self::$answer_url = getenv("BASE_CALLBACK_URL");
-        self::$disconnect_url = getenv("BASE_CALLBACK_URL");
     }
 
     /**
@@ -101,19 +89,19 @@ class CallsApiTest extends TestCase
             'speech_threshold' => 5.0,
             'speech_end_threshold' => 5.0,
             'delay_result' => true,
-            'callback_url' => self::$answer_url,
+            'callback_url' => TestConstants::BASE_CALLBACK_URL,
             'callback_method' => CallbackMethodEnum::POST
         ]);
 
         $create_call = new CreateCall([
-            'application_id' => self::$voice_application_id,
-            'to' => self::$user_number,
-            'from' => self::$bw_number,
+            'application_id' => TestConstants::VOICE_APPLICATION_ID,
+            'to' => TestConstants::USER_NUMBER,
+            'from' => TestConstants::BW_NUMBER,
             'privacy' => false,
             'display_name' => self::$display_name,
-            'answer_url' => self::$answer_url,
+            'answer_url' => TestConstants::BASE_CALLBACK_URL,
             'answer_method' => self::$answer_method,
-            'disconnect_url' => self::$disconnect_url,
+            'disconnect_url' => TestConstants::BASE_CALLBACK_URL,
             'disconnect_method' => self::$disconnect_method,
             'machine_detection' => $machine_detection,
             'call_timeout' => self::$call_timeout,
@@ -121,7 +109,7 @@ class CallsApiTest extends TestCase
         ]);
 
         [$data, $status_code] = self::$apiInstance->createCallWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $create_call
         );
 
@@ -159,7 +147,7 @@ class CallsApiTest extends TestCase
     public function testGetCallState()
     {
         [$data, $status_code] = self::$apiInstance->getCallStateWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id
         );
 
@@ -194,9 +182,9 @@ class CallsApiTest extends TestCase
     public function testListCalls()
     {
         [$data, $status_code] = self::$apiInstance->listCallsWithHttpInfo(
-            self::$account_id,
-            to: self::$user_number,
-            from: self::$bw_number
+            TestConstants::ACCOUNT_ID,
+            to: TestConstants::USER_NUMBER,
+            from: TestConstants::BW_NUMBER
         );
 
         $this->assertEquals(200, $status_code);
@@ -234,7 +222,7 @@ class CallsApiTest extends TestCase
         ]);
 
         [, $status_code] = self::$apiInstance->updateCallWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             $update_call
         );
@@ -253,7 +241,7 @@ class CallsApiTest extends TestCase
         $update_call_bxml = '<Response><Hangup/></Response>';
 
         [, $status_code] = self::$apiInstance->updateCallBxmlWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             $update_call_bxml
         );

@@ -39,6 +39,7 @@ use Bandwidth\Model\RecordingTranscriptions;
 use Bandwidth\Model\TranscribeRecording;
 use Bandwidth\Model\Transcription;
 use Bandwidth\Model\UpdateCallRecording;
+use Bandwidth\Test\Unit\TestConstants;
 use SplFileObject;
 
 use PHPUnit\Framework\TestCase;
@@ -54,7 +55,6 @@ class RecordingsApiTest extends TestCase
 {
 
     private static RecordingsApi $apiInstance;
-    private static string $account_id;
 
     private static string $call_id = 'c-1234';
     private static string $recording_id = 'r-1234';
@@ -70,8 +70,6 @@ class RecordingsApiTest extends TestCase
             ->setHost("http://127.0.0.1:4010");
 
         self::$apiInstance = new RecordingsApi(config: $config);
-
-        self::$account_id = getenv("BW_ACCOUNT_ID");
     }
 
     /**
@@ -83,7 +81,7 @@ class RecordingsApiTest extends TestCase
     public function testDeleteRecording()
     {
         [, $status_code] = self::$apiInstance->deleteRecordingWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             self::$recording_id
         );
@@ -100,7 +98,7 @@ class RecordingsApiTest extends TestCase
     public function testDeleteRecordingMedia()
     {
         [, $status_code] = self::$apiInstance->deleteRecordingMediaWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             self::$recording_id
         );
@@ -117,7 +115,7 @@ class RecordingsApiTest extends TestCase
     public function testDeleteRecordingTranscription()
     {
         [, $status_code] = self::$apiInstance->deleteRecordingTranscriptionWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             self::$recording_id
         );
@@ -136,7 +134,7 @@ class RecordingsApiTest extends TestCase
         self::markTestSkipped("Can't set the correct Accept header for Prism");
 
         [$data, $status_code] = self::$apiInstance->downloadCallRecordingWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             self::$recording_id
         );
@@ -156,7 +154,7 @@ class RecordingsApiTest extends TestCase
         self::markTestSkipped('Prism Error');
 
         [$data, $status_code] = self::$apiInstance->getCallRecordingWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             self::$recording_id
         );
@@ -197,7 +195,7 @@ class RecordingsApiTest extends TestCase
     public function testGetRecordingTranscription()
     {
         [$data, $status_code] = self::$apiInstance->getRecordingTranscriptionWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             self::$recording_id
         );
@@ -227,7 +225,7 @@ class RecordingsApiTest extends TestCase
     public function testListAccountCallRecordings()
     {
         [$data, $status_code] = self::$apiInstance->listAccountCallRecordingsWithHttpInfo(
-            self::$account_id
+            TestConstants::ACCOUNT_ID
         );
 
         $this->assertEquals(200, $status_code);
@@ -266,7 +264,7 @@ class RecordingsApiTest extends TestCase
     public function testListCallRecordings()
     {
         [$data, $status_code] = self::$apiInstance->listCallRecordingsWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id
         );
 
@@ -310,7 +308,7 @@ class RecordingsApiTest extends TestCase
         ]);
 
         [, $status_code] = self::$apiInstance->transcribeCallRecordingWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             self::$recording_id,
             $transcribe_recording
@@ -332,7 +330,7 @@ class RecordingsApiTest extends TestCase
         ]);
 
         [, $status_code] = self::$apiInstance->updateCallRecordingStateWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             $update_call_recording
         );

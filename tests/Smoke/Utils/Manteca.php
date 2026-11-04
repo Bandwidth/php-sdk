@@ -6,7 +6,7 @@
  * @package  Bandwidth
  */
 
-namespace Bandwidth\Test\Utils;
+namespace Bandwidth\Test\Smoke\Utils;
 
 use GuzzleHttp\Client;
 

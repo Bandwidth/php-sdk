@@ -39,8 +39,8 @@ use Bandwidth\Model\FileFormatEnum;
 use Bandwidth\Model\RedirectMethodEnum;
 use Bandwidth\Model\UpdateConference;
 use Bandwidth\Model\UpdateConferenceMember;
-use Bandwidth\Test\Utils\CallCleanup;
-use Bandwidth\Test\Utils\Manteca;
+use Bandwidth\Test\Smoke\Utils\CallCleanup;
+use Bandwidth\Test\Smoke\Utils\Manteca;
 
 use PHPUnit\Framework\TestCase;
 
