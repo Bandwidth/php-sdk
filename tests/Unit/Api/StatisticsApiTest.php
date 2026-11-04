@@ -30,6 +30,7 @@ namespace Bandwidth\Test\Unit\Api;
 use Bandwidth\Configuration;
 use Bandwidth\Api\StatisticsApi;
 use Bandwidth\Model\AccountStatistics;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -44,7 +45,6 @@ class StatisticsApiTest extends TestCase
 {
 
     private static StatisticsApi $apiInstance;
-    private static string $account_id;
 
     /**
      * Setup before running any test cases
@@ -57,8 +57,6 @@ class StatisticsApiTest extends TestCase
             ->setHost("http://127.0.0.1:4010");
 
         self::$apiInstance = new StatisticsApi(config: $config);
-
-        self::$account_id = getenv("BW_ACCOUNT_ID");
     }
 
     /**
@@ -70,7 +68,7 @@ class StatisticsApiTest extends TestCase
     public function testGetStatistics()
     {
         [$data, $status_code] = self::$apiInstance->getStatisticsWithHttpInfo(
-            self::$account_id
+            TestConstants::ACCOUNT_ID
         );
 
         $this->assertEquals(200, $status_code);

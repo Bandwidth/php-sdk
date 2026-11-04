@@ -43,6 +43,7 @@ use Bandwidth\Model\LineTypeEnum;
 use Bandwidth\Model\LinkSchema;
 use Bandwidth\Model\LookupResult;
 use Bandwidth\Model\SyncLookupRequest;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -57,7 +58,6 @@ class PhoneNumberLookupApiTest extends TestCase
 {
 
     private static PhoneNumberLookupApi $apiInstance;
-    private static string $account_id;
 
     private static string $request_id = '123e4567-e89b-12d3-a456-426614174000';
 
@@ -75,8 +75,6 @@ class PhoneNumberLookupApiTest extends TestCase
             ->setHost("http://127.0.0.1:4010");
 
         self::$apiInstance = new PhoneNumberLookupApi(config: $config);
-
-        self::$account_id = getenv("BW_ACCOUNT_ID");
     }
 
     /**
@@ -92,7 +90,7 @@ class PhoneNumberLookupApiTest extends TestCase
         ]);
 
         [$data, $status_code] = self::$apiInstance->createAsyncBulkLookupWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $async_lookup_request
         );
 
@@ -124,7 +122,7 @@ class PhoneNumberLookupApiTest extends TestCase
         ]);
 
         [$data, $status_code] = self::$apiInstance->createSyncLookupWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $sync_lookup_request
         );
 
@@ -170,7 +168,7 @@ class PhoneNumberLookupApiTest extends TestCase
     public function testGetAsyncBulkLookup()
     {
         [$data, $status_code] = self::$apiInstance->getAsyncBulkLookupWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$request_id
         );
 

@@ -30,6 +30,7 @@ namespace Bandwidth\Test\Unit\Api;
 use Bandwidth\Configuration;
 use Bandwidth\Api\MediaApi;
 use Bandwidth\Model\Media;
+use Bandwidth\Test\Unit\TestConstants;
 use SplFileObject;
 
 use PHPUnit\Framework\TestCase;
@@ -45,7 +46,6 @@ class MediaApiTest extends TestCase
 {
 
     private static MediaApi $apiInstance;
-    private static string $account_id;
 
     private static string $media_name = 'php_binary_media';
     private static SplFileObject $media_file;
@@ -62,8 +62,6 @@ class MediaApiTest extends TestCase
 
         self::$apiInstance = new MediaApi(config: $config);
 
-        self::$account_id = getenv("BW_ACCOUNT_ID");
-
         $path = tempnam(sys_get_temp_dir(), 'bw_media_');
         file_put_contents($path, "123456");
         self::$media_file = new SplFileObject($path, 'rb');
@@ -78,7 +76,7 @@ class MediaApiTest extends TestCase
     public function testDeleteMedia()
     {
         [, $status_code] = self::$apiInstance->deleteMediaWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$media_name
         );
 
@@ -96,7 +94,7 @@ class MediaApiTest extends TestCase
         self::markTestSkipped("Can't set the correct Accept header for Prism");
 
         [$data, $status_code] = self::$apiInstance->getMediaWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$media_name
         );
 
@@ -113,7 +111,7 @@ class MediaApiTest extends TestCase
     public function testListMedia()
     {
         [$data, $status_code] = self::$apiInstance->listMediaWithHttpInfo(
-            self::$account_id
+            TestConstants::ACCOUNT_ID
         );
 
         $this->assertEquals(200, $status_code);
@@ -134,7 +132,7 @@ class MediaApiTest extends TestCase
         self::markTestSkipped("Can't set the correct Content-Type and Accept headers for Prism");
 
         [, $status_code] = self::$apiInstance->uploadMediaWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$media_name,
             self::$media_file,
             content_type: 'image/jpeg',

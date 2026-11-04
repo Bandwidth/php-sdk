@@ -5,7 +5,7 @@ on:
     - cron: "0 4 * * *"
   pull_request:
     paths:
-      - "spec/smoke/*"
+      - "tests/Smoke/**"
       - ".github/workflows/test-smoke.yml"
 
 concurrency:

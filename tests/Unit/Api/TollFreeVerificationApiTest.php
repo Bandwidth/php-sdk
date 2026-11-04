@@ -47,6 +47,7 @@ use Bandwidth\Model\WebhookSubscriptionBasicAuthentication;
 use Bandwidth\Model\WebhookSubscriptionRequestSchema;
 use Bandwidth\Model\WebhookSubscriptionsListBody;
 use Bandwidth\Model\WebhookSubscriptionTypeEnum;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -61,7 +62,6 @@ class TollFreeVerificationApiTest extends TestCase
 {
 
     private static TollFreeVerificationApi $apiInstance;
-    private static string $account_id;
 
     private static string $phone_number = '+18005551234';
     private static string $subscription_id = 'test-id-1234';
@@ -78,8 +78,6 @@ class TollFreeVerificationApiTest extends TestCase
             ->setHost("http://127.0.0.1:4010");
 
         self::$apiInstance = new TollFreeVerificationApi(config: $config);
-
-        self::$account_id = getenv("BW_ACCOUNT_ID");
 
         self::$webhook_subscription_request_schema = new WebhookSubscriptionRequestSchema([
             'basic_authentication' => new TfvBasicAuthentication([
@@ -100,7 +98,7 @@ class TollFreeVerificationApiTest extends TestCase
     public function testCreateWebhookSubscription()
     {
         [$data, $status_code] = self::$apiInstance->createWebhookSubscriptionWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$webhook_subscription_request_schema
         );
 
@@ -126,7 +124,7 @@ class TollFreeVerificationApiTest extends TestCase
     public function testDeleteVerificationRequest()
     {
         [, $status_code] = self::$apiInstance->deleteVerificationRequestWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$phone_number
         );
 
@@ -142,7 +140,7 @@ class TollFreeVerificationApiTest extends TestCase
     public function testDeleteWebhookSubscription()
     {
         [, $status_code] = self::$apiInstance->deleteWebhookSubscriptionWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$subscription_id
         );
 
@@ -158,7 +156,7 @@ class TollFreeVerificationApiTest extends TestCase
     public function testGetTollFreeVerificationStatus()
     {
         [$data, $status_code] = self::$apiInstance->getTollFreeVerificationStatusWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$phone_number
         );
 
@@ -200,7 +198,7 @@ class TollFreeVerificationApiTest extends TestCase
     public function testListWebhookSubscriptions()
     {
         [$data, $status_code] = self::$apiInstance->listWebhookSubscriptionsWithHttpInfo(
-            self::$account_id
+            TestConstants::ACCOUNT_ID
         );
 
         $this->assertEquals(200, $status_code);
@@ -281,7 +279,7 @@ class TollFreeVerificationApiTest extends TestCase
         ]);
 
         [, $status_code] = self::$apiInstance->requestTollFreeVerificationWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $verification_request
         );
 
@@ -301,7 +299,7 @@ class TollFreeVerificationApiTest extends TestCase
         ]);
 
         [, $status_code] = self::$apiInstance->updateTollFreeVerificationRequestWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$phone_number,
             $tfv_submission_wrapper
         );
@@ -318,7 +316,7 @@ class TollFreeVerificationApiTest extends TestCase
     public function testUpdateWebhookSubscription()
     {
         [$data, $status_code] = self::$apiInstance->updateWebhookSubscriptionWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$subscription_id,
             self::$webhook_subscription_request_schema
         );
