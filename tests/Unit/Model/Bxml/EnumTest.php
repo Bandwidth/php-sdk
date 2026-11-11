@@ -2,6 +2,7 @@
 
 namespace Bandwidth\Test\Unit\Model\Bxml;
 
+use Bandwidth\Model\Bxml\AttestationLevel;
 use Bandwidth\Model\Bxml\DiversionReason;
 use Bandwidth\Model\Bxml\DiversionTreatment;
 use Bandwidth\Model\Bxml\FileFormat;
@@ -13,6 +14,13 @@ use PHPUnit\Framework\TestCase;
 
 class EnumTest extends TestCase
 {
+    public function testAttestationLevelValues(): void
+    {
+        $this->assertSame('A', AttestationLevel::A->value);
+        $this->assertSame('B', AttestationLevel::B->value);
+        $this->assertSame('C', AttestationLevel::C->value);
+    }
+
     public function testHttpMethodValues(): void
     {
         $this->assertSame('GET', HttpMethod::GET->value);

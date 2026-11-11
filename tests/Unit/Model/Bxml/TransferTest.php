@@ -39,7 +39,8 @@ class TransferTest extends TestCase
             tag: 'my-tag',
             diversionTreatment: DiversionTreatment::PROPAGATE,
             diversionReason: DiversionReason::NO_ANSWER,
-            requestedAttestationLevel: AttestationLevel::B
+            requestedAttestationLevel: AttestationLevel::B,
+            identity: 'eyJhbGciOiJFUzI1NiJ9.sig;info=<https://example.com/c.pem>;ppt="shaken"'
         );
 
         $this->assertSame(
@@ -50,26 +51,8 @@ class TransferTest extends TestCase
             . ' transferCompleteFallbackMethod="GET" username="user" password="pass"'
             . ' fallbackUsername="fallbackUser" fallbackPassword="fallbackPass" tag="my-tag"'
             . ' diversionTreatment="propagate" diversionReason="no-answer"'
-            . ' requestedAttestationLevel="B"/>',
-            $transfer->toBxml()
-        );
-    }
-
-    public function testRequestedAttestationLevel(): void
-    {
-        $this->assertSame(
-            '<Transfer requestedAttestationLevel="A"/>',
-            (new Transfer(requestedAttestationLevel: AttestationLevel::A))->toBxml()
-        );
-    }
-
-    public function testIdentity(): void
-    {
-        $identity = 'eyJhbGciOiJFUzI1NiJ9.sig;info=<https://example.com/c.pem>;ppt="shaken"';
-        $transfer = new Transfer(identity: $identity);
-
-        $this->assertSame(
-            '<Transfer identity="eyJhbGciOiJFUzI1NiJ9.sig;info=&lt;https://example.com/c.pem&gt;'
+            . ' requestedAttestationLevel="B"'
+            . ' identity="eyJhbGciOiJFUzI1NiJ9.sig;info=&lt;https://example.com/c.pem&gt;'
             . ';ppt=&quot;shaken&quot;"/>',
             $transfer->toBxml()
         );
