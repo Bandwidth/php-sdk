@@ -39,7 +39,7 @@ class TransferTest extends TestCase
             tag: 'my-tag',
             diversionTreatment: DiversionTreatment::PROPAGATE,
             diversionReason: DiversionReason::NO_ANSWER,
-            attestationLevel: AttestationLevel::B
+            requestedAttestationLevel: AttestationLevel::B
         );
 
         $this->assertSame(
@@ -50,16 +50,16 @@ class TransferTest extends TestCase
             . ' transferCompleteFallbackMethod="GET" username="user" password="pass"'
             . ' fallbackUsername="fallbackUser" fallbackPassword="fallbackPass" tag="my-tag"'
             . ' diversionTreatment="propagate" diversionReason="no-answer"'
-            . ' attestationLevel="B"/>',
+            . ' requestedAttestationLevel="B"/>',
             $transfer->toBxml()
         );
     }
 
-    public function testAttestationLevel(): void
+    public function testRequestedAttestationLevel(): void
     {
         $this->assertSame(
-            '<Transfer attestationLevel="A"/>',
-            (new Transfer(attestationLevel: AttestationLevel::A))->toBxml()
+            '<Transfer requestedAttestationLevel="A"/>',
+            (new Transfer(requestedAttestationLevel: AttestationLevel::A))->toBxml()
         );
     }
 
