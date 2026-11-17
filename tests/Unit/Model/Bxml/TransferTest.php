@@ -2,6 +2,7 @@
 
 namespace Bandwidth\Test\Unit\Model\Bxml;
 
+use Bandwidth\Model\Bxml\AttestationLevel;
 use Bandwidth\Model\Bxml\DiversionReason;
 use Bandwidth\Model\Bxml\DiversionTreatment;
 use Bandwidth\Model\Bxml\Hangup;
@@ -37,7 +38,9 @@ class TransferTest extends TestCase
             fallbackPassword: 'fallbackPass',
             tag: 'my-tag',
             diversionTreatment: DiversionTreatment::PROPAGATE,
-            diversionReason: DiversionReason::NO_ANSWER
+            diversionReason: DiversionReason::NO_ANSWER,
+            requestedAttestationLevel: AttestationLevel::B,
+            identity: 'eyJhbGciOiJFUzI1NiJ9.sig;info=<https://example.com/c.pem>;ppt="shaken"'
         );
 
         $this->assertSame(
@@ -47,7 +50,10 @@ class TransferTest extends TestCase
             . ' transferCompleteFallbackUrl="/completeFallback"'
             . ' transferCompleteFallbackMethod="GET" username="user" password="pass"'
             . ' fallbackUsername="fallbackUser" fallbackPassword="fallbackPass" tag="my-tag"'
-            . ' diversionTreatment="propagate" diversionReason="no-answer"/>',
+            . ' diversionTreatment="propagate" diversionReason="no-answer"'
+            . ' requestedAttestationLevel="B"'
+            . ' identity="eyJhbGciOiJFUzI1NiJ9.sig;info=&lt;https://example.com/c.pem&gt;'
+            . ';ppt=&quot;shaken&quot;"/>',
             $transfer->toBxml()
         );
     }
