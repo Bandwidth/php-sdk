@@ -34,6 +34,7 @@ use Bandwidth\Model\MultiChannelMessageChannelEnum;
 use Bandwidth\Model\MultiChannelMessageContent;
 use Bandwidth\Model\PriorityEnum;
 use Bandwidth\Model\RbmLocationResponse;
+use Bandwidth\Model\RbmSession;
 use Bandwidth\Model\RbmSuggestionResponse;
 
 use PHPUnit\Framework\TestCase;
@@ -71,7 +72,8 @@ class InboundCallbackMessageTest extends TestCase
             'channel' => MultiChannelMessageChannelEnum::RBM,
             'content' => new MultiChannelMessageContent([]),
             'suggestion_response' => new RbmSuggestionResponse([]),
-            'location_response' => new RbmLocationResponse([])
+            'location_response' => new RbmLocationResponse([]),
+            'session' => new RbmSession([])
         ]);
     }
 
@@ -222,4 +224,12 @@ class InboundCallbackMessageTest extends TestCase
     public function testPropertyLocationResponse()
     {
         $this->assertInstanceOf(RbmLocationResponse::class, self::$instance->getLocationResponse());
+    }
+
+    /**
+     * Test attribute "session"
+     */
+    public function testPropertySession()
+    {
+        $this->assertInstanceOf(RbmSession::class, self::$instance->getSession());
     }}

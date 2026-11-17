@@ -31,6 +31,7 @@ namespace Bandwidth\Test\Unit\Model;
 use Bandwidth\Model\MessageDirectionEnum;
 use Bandwidth\Model\MultiChannelMessageChannelEnum;
 use Bandwidth\Model\PriorityEnum;
+use Bandwidth\Model\RbmSession;
 use Bandwidth\Model\StatusCallbackMessage;
 
 use PHPUnit\Framework\TestCase;
@@ -65,7 +66,8 @@ class StatusCallbackMessageTest extends TestCase
             'tag' => 'test_string',
             'media' => ['test_string'],
             'priority' => PriorityEnum::_DEFAULT,
-            'channel' => MultiChannelMessageChannelEnum::RBM
+            'channel' => MultiChannelMessageChannelEnum::RBM,
+            'session' => new RbmSession([])
         ]);
     }
 
@@ -192,4 +194,12 @@ class StatusCallbackMessageTest extends TestCase
     {
         $this->assertInstanceOf(MultiChannelMessageChannelEnum::class, self::$instance->getChannel());
         $this->assertSame(MultiChannelMessageChannelEnum::RBM, self::$instance->getChannel());
+    }
+
+    /**
+     * Test attribute "session"
+     */
+    public function testPropertySession()
+    {
+        $this->assertInstanceOf(RbmSession::class, self::$instance->getSession());
     }}

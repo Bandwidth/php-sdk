@@ -162,6 +162,7 @@ docs/Model/RbmMessageContentRichCard.md
 docs/Model/RbmMessageContentText.md
 docs/Model/RbmMessageMedia.md
 docs/Model/RbmOpenUrlEnum.md
+docs/Model/RbmSession.md
 docs/Model/RbmStandaloneCard.md
 docs/Model/RbmSuggestionResponse.md
 docs/Model/RbmWebViewEnum.md
@@ -384,6 +385,7 @@ src/Model/RbmMessageContentRichCard.php
 src/Model/RbmMessageContentText.php
 src/Model/RbmMessageMedia.php
 src/Model/RbmOpenUrlEnum.php
+src/Model/RbmSession.php
 src/Model/RbmStandaloneCard.php
 src/Model/RbmSuggestionResponse.php
 src/Model/RbmWebViewEnum.php

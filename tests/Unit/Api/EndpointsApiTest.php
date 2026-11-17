@@ -40,6 +40,7 @@ use Bandwidth\Model\EndpointStatusEnum;
 use Bandwidth\Model\EndpointTypeEnum;
 use Bandwidth\Model\ListEndpointsResponse;
 use Bandwidth\Model\Page;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -54,7 +55,6 @@ class EndpointsApiTest extends TestCase
 {
 
     private static EndpointsApi $apiInstance;
-    private static string $account_id;
 
     private static string $endpoint_id = 'test-endpoint-id';
     private static string $bxml = '<?xml version="1.0" encoding="UTF-8"?><Bxml><SpeakSentence>Hello</SpeakSentence></Bxml>';
@@ -70,8 +70,6 @@ class EndpointsApiTest extends TestCase
             ->setHost("http://127.0.0.1:4010");
 
         self::$apiInstance = new EndpointsApi(config: $config);
-
-        self::$account_id = getenv("BW_ACCOUNT_ID");
     }
 
     /**
@@ -88,7 +86,7 @@ class EndpointsApiTest extends TestCase
         ]);
 
         [$data, $status_code] = self::$apiInstance->createEndpointWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $endpoint_body
         );
 
@@ -116,7 +114,7 @@ class EndpointsApiTest extends TestCase
     public function testDeleteEndpoint()
     {
         [, $status_code] = self::$apiInstance->deleteEndpointWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$endpoint_id
         );
 
@@ -132,7 +130,7 @@ class EndpointsApiTest extends TestCase
     public function testGetEndpoint()
     {
         [$data, $status_code] = self::$apiInstance->getEndpointWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$endpoint_id
         );
 
@@ -159,7 +157,7 @@ class EndpointsApiTest extends TestCase
     public function testListEndpoints()
     {
         [$data, $status_code] = self::$apiInstance->listEndpointsWithHttpInfo(
-            self::$account_id
+            TestConstants::ACCOUNT_ID
         );
 
         $this->assertEquals(200, $status_code);
@@ -186,7 +184,7 @@ class EndpointsApiTest extends TestCase
     public function testUpdateEndpointBxml()
     {
         [, $status_code] = self::$apiInstance->updateEndpointBxmlWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$endpoint_id,
             self::$bxml
         );

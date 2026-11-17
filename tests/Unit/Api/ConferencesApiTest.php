@@ -38,6 +38,7 @@ use Bandwidth\Model\FileFormatEnum;
 use Bandwidth\Model\RedirectMethodEnum;
 use Bandwidth\Model\UpdateConference;
 use Bandwidth\Model\UpdateConferenceMember;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -52,12 +53,10 @@ class ConferencesApiTest extends TestCase
 {
 
     private static ConferencesApi $apiInstance;
-    private static string $account_id;
 
     private static string $call_id = 'c-1234';
     private static string $conference_id = 'c-4321';
     private static string $recording_id = 'r-1234';
-    private static string $callback_url;
 
     /**
      * Setup before running any test cases
@@ -70,9 +69,6 @@ class ConferencesApiTest extends TestCase
             ->setHost("http://127.0.0.1:4010");
 
         self::$apiInstance = new ConferencesApi(config: $config);
-
-        self::$account_id = getenv("BW_ACCOUNT_ID");
-        self::$callback_url = getenv("BASE_CALLBACK_URL");
     }
 
     /**
@@ -86,7 +82,7 @@ class ConferencesApiTest extends TestCase
         self::markTestSkipped("Can't set the correct Accept header for Prism");
 
         [$data, $status_code] = self::$apiInstance->downloadConferenceRecordingWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$conference_id,
             self::$recording_id
         );
@@ -104,7 +100,7 @@ class ConferencesApiTest extends TestCase
     public function testGetConference()
     {
         [$data, $status_code] = self::$apiInstance->getConferenceWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$conference_id
         );
 
@@ -128,7 +124,7 @@ class ConferencesApiTest extends TestCase
     public function testGetConferenceMember()
     {
         [$data, $status_code] = self::$apiInstance->getConferenceMemberWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$conference_id,
             self::$call_id
         );
@@ -152,7 +148,7 @@ class ConferencesApiTest extends TestCase
     public function testGetConferenceRecording()
     {
         [$data, $status_code] = self::$apiInstance->getConferenceRecordingWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$conference_id,
             self::$recording_id
         );
@@ -181,7 +177,7 @@ class ConferencesApiTest extends TestCase
     public function testListConferenceRecordings()
     {
         [$data, $status_code] = self::$apiInstance->listConferenceRecordingsWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$conference_id
         );
 
@@ -209,7 +205,7 @@ class ConferencesApiTest extends TestCase
     public function testListConferences()
     {
         [$data, $status_code] = self::$apiInstance->listConferencesWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             name: self::$conference_id
         );
 
@@ -234,18 +230,18 @@ class ConferencesApiTest extends TestCase
     {
         $update_conference = new UpdateConference([
             'status' => ConferenceStateEnum::ACTIVE,
-            'redirect_url' => self::$callback_url,
+            'redirect_url' => TestConstants::BASE_CALLBACK_URL,
             'redirect_method' => RedirectMethodEnum::POST,
             'username' => 'username',
             'password' => 'password',
-            'redirect_fallback_url' => self::$callback_url,
+            'redirect_fallback_url' => TestConstants::BASE_CALLBACK_URL,
             'redirect_fallback_method' => RedirectMethodEnum::POST,
             'fallback_username' => 'username',
             'fallback_password' => 'password'
         ]);
 
         [, $status_code] = self::$apiInstance->updateConferenceWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$conference_id,
             $update_conference
         );
@@ -264,7 +260,7 @@ class ConferencesApiTest extends TestCase
         $update_conference_bxml = '<Response><Hangup/></Response>';
 
         [, $status_code] = self::$apiInstance->updateConferenceBxmlWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$conference_id,
             $update_conference_bxml
         );
@@ -287,7 +283,7 @@ class ConferencesApiTest extends TestCase
         ]);
 
         [, $status_code] = self::$apiInstance->updateConferenceMemberWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$conference_id,
             self::$call_id,
             $update_conference_member

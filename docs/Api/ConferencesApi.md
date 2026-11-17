@@ -33,11 +33,6 @@ Downloads the specified recording file.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
@@ -80,7 +75,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -108,11 +103,6 @@ Returns information about the specified conference.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -154,7 +144,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -182,11 +172,6 @@ Returns information about the specified conference member.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -230,7 +215,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -258,11 +243,6 @@ Returns metadata for the specified recording.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -306,7 +286,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -334,11 +314,6 @@ Returns a (potentially empty) list of metadata for the recordings that took plac
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -380,7 +355,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -408,11 +383,6 @@ Returns a max of 1000 conferences, sorted by `createdTime` from oldest to newest
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -462,7 +432,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -490,11 +460,6 @@ Update the conference state.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -537,7 +502,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -565,11 +530,6 @@ Update the conference BXML document.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -615,7 +575,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -643,11 +603,6 @@ Updates settings for a particular conference member.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -692,7 +647,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 

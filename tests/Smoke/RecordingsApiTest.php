@@ -38,8 +38,8 @@ use Bandwidth\Model\RecordingTranscriptions;
 use Bandwidth\Model\TranscribeRecording;
 use Bandwidth\Model\UpdateCall;
 use Bandwidth\Model\UpdateCallRecording;
-use Bandwidth\Test\Utils\CallCleanup;
-use Bandwidth\Test\Utils\Manteca;
+use Bandwidth\Test\Smoke\Utils\CallCleanup;
+use Bandwidth\Test\Smoke\Utils\Manteca;
 
 use PHPUnit\Framework\TestCase;
 

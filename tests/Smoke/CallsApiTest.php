@@ -38,7 +38,7 @@ use Bandwidth\Model\CreateCallResponse;
 use Bandwidth\Model\MachineDetectionConfiguration;
 use Bandwidth\Model\MachineDetectionModeEnum;
 use Bandwidth\Model\UpdateCall;
-use Bandwidth\Test\Utils\CallCleanup;
+use Bandwidth\Test\Smoke\Utils\CallCleanup;
 
 use PHPUnit\Framework\TestCase;
 

@@ -34,6 +34,7 @@ use Bandwidth\Model\CallTranscriptionDetectedLanguageEnum;
 use Bandwidth\Model\CallTranscriptionMetadata;
 use Bandwidth\Model\CallTranscriptionResponse;
 use Bandwidth\Model\CallTranscriptionTrackEnum;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -48,7 +49,6 @@ class TranscriptionsApiTest extends TestCase
 {
 
     private static TranscriptionsApi $apiInstance;
-    private static string $account_id;
 
     private static string $call_id = 'c-1234';
     private static string $transcription_id = 't-1234';
@@ -64,8 +64,6 @@ class TranscriptionsApiTest extends TestCase
             ->setHost("http://127.0.0.1:4010");
 
         self::$apiInstance = new TranscriptionsApi(config: $config);
-
-        self::$account_id = getenv("BW_ACCOUNT_ID");
     }
 
     /**
@@ -77,7 +75,7 @@ class TranscriptionsApiTest extends TestCase
     public function testDeleteRealTimeTranscription()
     {
         [, $status_code] = self::$apiInstance->deleteRealTimeTranscriptionWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             self::$transcription_id
         );
@@ -95,7 +93,7 @@ class TranscriptionsApiTest extends TestCase
     public function testGetRealTimeTranscription()
     {
         [$data, $status_code] = self::$apiInstance->getRealTimeTranscriptionWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id,
             self::$transcription_id
         );
@@ -125,7 +123,7 @@ class TranscriptionsApiTest extends TestCase
     public function testListRealTimeTranscriptions()
     {
         [$data, $status_code] = self::$apiInstance->listRealTimeTranscriptionsWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             self::$call_id
         );
 

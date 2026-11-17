@@ -33,11 +33,6 @@ Create a new webhook subscription (this webhook will be called for every update 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
@@ -78,7 +73,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -106,11 +101,6 @@ Delete a toll-free verification submission for a toll-free number.  **Upcoming c
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -151,7 +141,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -179,11 +169,6 @@ Delete a webhook subscription by ID.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -224,7 +209,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -252,11 +237,6 @@ Gets the verification status for a phone number that is provisioned to your acco
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -298,7 +278,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -326,11 +306,6 @@ Lists valid toll-free use cases.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -367,7 +342,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -395,11 +370,6 @@ Lists all webhook subscriptions that are registered to receive status updates fo
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -439,7 +409,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -467,11 +437,6 @@ Submit a request for verification of a toll-free phone number.  **Upcoming chang
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -512,7 +477,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -540,11 +505,6 @@ Updates a toll-free verification request. Submissions are only eligible for resu
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -587,7 +547,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -615,11 +575,6 @@ Update an existing webhook subscription (`callbackUrl` and `basicAuthentication`
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -663,7 +618,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 

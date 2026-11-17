@@ -29,11 +29,6 @@ Creates an outbound phone call.  All calls are initially queued. Your outbound c
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
@@ -74,7 +69,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -102,11 +97,6 @@ Retrieve the current state of a specific call. This information is near-realtime
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -148,7 +138,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -176,11 +166,6 @@ Returns a max of 10000 calls, sorted by `createdTime` from oldest to newest.  **
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -234,7 +219,7 @@ try {
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -262,11 +247,6 @@ Interrupts and redirects a call to a different URL that should return a BXML doc
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -309,7 +289,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -337,11 +317,6 @@ Interrupts and replaces an active call's BXML document.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-// Configure HTTP basic authorization: Basic
-$config = Bandwidth\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: OAuth2
 $config = Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -387,7 +362,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../../README.md#Basic), [OAuth2](../../README.md#OAuth2)
+[OAuth2](../../README.md#OAuth2)
 
 ### HTTP request headers
 

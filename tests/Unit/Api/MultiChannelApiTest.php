@@ -37,6 +37,7 @@ use Bandwidth\Model\MultiChannelMessageRequest;
 use Bandwidth\Model\MultiChannelMessageResponseData;
 use Bandwidth\Model\PriorityEnum;
 use Bandwidth\Model\SmsMessageContent;
+use Bandwidth\Test\Unit\TestConstants;
 
 use PHPUnit\Framework\TestCase;
 
@@ -51,10 +52,6 @@ class MultiChannelApiTest extends TestCase
 {
 
     private static MultiChannelApi $apiInstance;
-    private static string $account_id;
-    private static string $bw_number;
-    private static string $user_number;
-    private static string $messaging_application_id;
     private static \DateTime $expiration;
 
     /**
@@ -69,11 +66,6 @@ class MultiChannelApiTest extends TestCase
 
         self::$apiInstance = new MultiChannelApi(config: $config);
 
-        self::$account_id = getenv("BW_ACCOUNT_ID");
-        self::$bw_number = getenv("BW_NUMBER");
-        self::$user_number = getenv("USER_NUMBER");
-        self::$messaging_application_id = getenv("BW_MESSAGING_APPLICATION_ID");
-
         self::$expiration = (new \DateTime('@' . strtotime('+1 minute')))
             ->setTimezone(new \DateTimeZone('UTC'));
     }
@@ -87,14 +79,14 @@ class MultiChannelApiTest extends TestCase
     public function testCreateMultiChannelMessage()
     {
         $channel_list_object = new MultiChannelChannelListSMSObject([
-            'from' => self::$bw_number,
-            'application_id' => self::$messaging_application_id,
+            'from' => TestConstants::BW_NUMBER,
+            'application_id' => TestConstants::MESSAGING_APPLICATION_ID,
             'channel' => MultiChannelMessageChannelEnum::SMS,
             'content' => new SmsMessageContent(['text' => 'Hello World!'])
         ]);
 
         $multi_channel_message_request = new MultiChannelMessageRequest([
-            'to' => self::$user_number,
+            'to' => TestConstants::USER_NUMBER,
             'tag' => 'tag',
             'priority' => PriorityEnum::HIGH,
             'expiration' => self::$expiration,
@@ -102,7 +94,7 @@ class MultiChannelApiTest extends TestCase
         ]);
 
         [$data, $status_code] = self::$apiInstance->createMultiChannelMessageWithHttpInfo(
-            self::$account_id,
+            TestConstants::ACCOUNT_ID,
             $multi_channel_message_request
         );
 

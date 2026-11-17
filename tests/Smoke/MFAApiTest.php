@@ -59,8 +59,8 @@ class MFAApiTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         $config = (new Configuration())
-            ->setUsername(getenv("BW_USERNAME"))
-            ->setPassword(getenv("BW_PASSWORD"));
+            ->setClientId(getenv("BW_CLIENT_ID"))
+            ->setClientSecret(getenv("BW_CLIENT_SECRET"));
 
         self::$apiInstance = new MFAApi(config: $config);
 
