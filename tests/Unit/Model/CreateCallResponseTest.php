@@ -28,6 +28,7 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\AttestationLevelEnum;
 use Bandwidth\Model\CallbackMethodEnum;
 use Bandwidth\Model\CreateCallResponse;
 
@@ -71,7 +72,9 @@ class CreateCallResponseTest extends TestCase
             'password' => 'test_string',
             'fallback_username' => 'test_string',
             'fallback_password' => 'test_string',
-            'priority' => 1
+            'priority' => 1,
+            'requested_attestation_level' => AttestationLevelEnum::B,
+            'identity' => 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"'
         ]);
     }
 
@@ -270,4 +273,22 @@ class CreateCallResponseTest extends TestCase
     {
         $this->assertIsInt(self::$instance->getPriority());
         $this->assertEquals(1, self::$instance->getPriority());
+    }
+
+    /**
+     * Test attribute "requested_attestation_level"
+     */
+    public function testPropertyRequestedAttestationLevel()
+    {
+        $this->assertInstanceOf(AttestationLevelEnum::class, self::$instance->getRequestedAttestationLevel());
+        $this->assertSame(AttestationLevelEnum::B, self::$instance->getRequestedAttestationLevel());
+    }
+
+    /**
+     * Test attribute "identity"
+     */
+    public function testPropertyIdentity()
+    {
+        $this->assertIsString(self::$instance->getIdentity());
+        $this->assertEquals('eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"', self::$instance->getIdentity());
     }}

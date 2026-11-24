@@ -29,6 +29,7 @@ namespace Bandwidth\Test\Unit\Api;
 
 use Bandwidth\Configuration;
 use Bandwidth\Api\CallsApi;
+use Bandwidth\Model\AttestationLevelEnum;
 use Bandwidth\Model\CallbackMethodEnum;
 use Bandwidth\Model\CallDirectionEnum;
 use Bandwidth\Model\CallState;
@@ -105,7 +106,9 @@ class CallsApiTest extends TestCase
             'disconnect_method' => self::$disconnect_method,
             'machine_detection' => $machine_detection,
             'call_timeout' => self::$call_timeout,
-            'callback_timeout' => self::$callback_timeout
+            'callback_timeout' => self::$callback_timeout,
+            'requested_attestation_level' => AttestationLevelEnum::B,
+            'identity' => 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"'
         ]);
 
         [$data, $status_code] = self::$apiInstance->createCallWithHttpInfo(

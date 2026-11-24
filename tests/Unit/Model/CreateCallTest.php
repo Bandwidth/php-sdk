@@ -28,6 +28,7 @@
 
 namespace Bandwidth\Test\Unit\Model;
 
+use Bandwidth\Model\AttestationLevelEnum;
 use Bandwidth\Model\CallbackMethodEnum;
 use Bandwidth\Model\CreateCall;
 use Bandwidth\Model\MachineDetectionConfiguration;
@@ -57,6 +58,8 @@ class CreateCallTest extends TestCase
             'privacy' => true,
             'display_name' => 'test_string',
             'uui' => 'test_string',
+            'requested_attestation_level' => AttestationLevelEnum::B,
+            'identity' => 'eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"',
             'application_id' => 'test_string',
             'answer_url' => 'test_string',
             'answer_method' => CallbackMethodEnum::GET,
@@ -127,6 +130,24 @@ class CreateCallTest extends TestCase
     {
         $this->assertIsString(self::$instance->getUui());
         $this->assertEquals('test_string', self::$instance->getUui());
+    }
+
+    /**
+     * Test attribute "requested_attestation_level"
+     */
+    public function testPropertyRequestedAttestationLevel()
+    {
+        $this->assertInstanceOf(AttestationLevelEnum::class, self::$instance->getRequestedAttestationLevel());
+        $this->assertSame(AttestationLevelEnum::B, self::$instance->getRequestedAttestationLevel());
+    }
+
+    /**
+     * Test attribute "identity"
+     */
+    public function testPropertyIdentity()
+    {
+        $this->assertIsString(self::$instance->getIdentity());
+        $this->assertEquals('eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt="shaken"', self::$instance->getIdentity());
     }
 
     /**
@@ -270,4 +291,5 @@ class CreateCallTest extends TestCase
     {
         $this->assertIsString(self::$instance->getTag());
         $this->assertEquals('test_string', self::$instance->getTag());
-    }}
+    }
+}
