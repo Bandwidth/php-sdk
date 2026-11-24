@@ -79,7 +79,9 @@ class CreateCallResponse implements ModelInterface, ArrayAccess, JsonSerializabl
         'password' => 'string',
         'fallback_username' => 'string',
         'fallback_password' => 'string',
-        'priority' => 'int'
+        'priority' => 'int',
+        'requested_attestation_level' => '\Bandwidth\Model\AttestationLevelEnum',
+        'identity' => 'string'
     ];
 
     /**
@@ -108,7 +110,9 @@ class CreateCallResponse implements ModelInterface, ArrayAccess, JsonSerializabl
         'password' => null,
         'fallback_username' => null,
         'fallback_password' => null,
-        'priority' => null
+        'priority' => null,
+        'requested_attestation_level' => null,
+        'identity' => null
     ];
 
     /**
@@ -137,7 +141,9 @@ class CreateCallResponse implements ModelInterface, ArrayAccess, JsonSerializabl
         'password' => true,
         'fallback_username' => true,
         'fallback_password' => true,
-        'priority' => true
+        'priority' => true,
+        'requested_attestation_level' => true,
+        'identity' => true
     ];
 
     /**
@@ -236,7 +242,9 @@ class CreateCallResponse implements ModelInterface, ArrayAccess, JsonSerializabl
         'password' => 'password',
         'fallback_username' => 'fallbackUsername',
         'fallback_password' => 'fallbackPassword',
-        'priority' => 'priority'
+        'priority' => 'priority',
+        'requested_attestation_level' => 'requestedAttestationLevel',
+        'identity' => 'identity'
     ];
 
     /**
@@ -265,7 +273,9 @@ class CreateCallResponse implements ModelInterface, ArrayAccess, JsonSerializabl
         'password' => 'setPassword',
         'fallback_username' => 'setFallbackUsername',
         'fallback_password' => 'setFallbackPassword',
-        'priority' => 'setPriority'
+        'priority' => 'setPriority',
+        'requested_attestation_level' => 'setRequestedAttestationLevel',
+        'identity' => 'setIdentity'
     ];
 
     /**
@@ -294,7 +304,9 @@ class CreateCallResponse implements ModelInterface, ArrayAccess, JsonSerializabl
         'password' => 'getPassword',
         'fallback_username' => 'getFallbackUsername',
         'fallback_password' => 'getFallbackPassword',
-        'priority' => 'getPriority'
+        'priority' => 'getPriority',
+        'requested_attestation_level' => 'getRequestedAttestationLevel',
+        'identity' => 'getIdentity'
     ];
 
     /**
@@ -365,6 +377,8 @@ class CreateCallResponse implements ModelInterface, ArrayAccess, JsonSerializabl
         $this->setIfExists('fallback_username', $data ?? [], null);
         $this->setIfExists('fallback_password', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
+        $this->setIfExists('requested_attestation_level', $data ?? [], null);
+        $this->setIfExists('identity', $data ?? [], null);
     }
 
     /**
@@ -1110,6 +1124,74 @@ class CreateCallResponse implements ModelInterface, ArrayAccess, JsonSerializabl
             }
         }
         $this->container['priority'] = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Gets requested_attestation_level
+     *
+     * @return \Bandwidth\Model\AttestationLevelEnum|null
+     */
+    public function getRequestedAttestationLevel(): ?\Bandwidth\Model\AttestationLevelEnum
+    {
+        return $this->container['requested_attestation_level'];
+    }
+
+    /**
+     * Sets requested_attestation_level
+     *
+     * @param \Bandwidth\Model\AttestationLevelEnum|null $requested_attestation_level The `requestedAttestationLevel` provided in the Create Call request, if any. This is the level you requested, which can differ from the level the call is ultimately signed with.
+     *
+     * @return $this
+     */
+    public function setRequestedAttestationLevel(?\Bandwidth\Model\AttestationLevelEnum $requested_attestation_level): static
+    {
+        if (is_null($requested_attestation_level)) {
+            array_push($this->openAPINullablesSetToNull, 'requested_attestation_level');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('requested_attestation_level', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['requested_attestation_level'] = $requested_attestation_level;
+
+        return $this;
+    }
+
+    /**
+     * Gets identity
+     *
+     * @return string|null
+     */
+    public function getIdentity(): ?string
+    {
+        return $this->container['identity'];
+    }
+
+    /**
+     * Sets identity
+     *
+     * @param string|null $identity The `identity` value provided in the Create Call request, if any.
+     *
+     * @return $this
+     */
+    public function setIdentity(?string $identity): static
+    {
+        if (is_null($identity)) {
+            array_push($this->openAPINullablesSetToNull, 'identity');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('identity', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['identity'] = $identity;
 
         return $this;
     }

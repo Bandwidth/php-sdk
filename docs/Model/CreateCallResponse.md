@@ -25,5 +25,7 @@ Name | Type | Description | Notes
 **fallback_username** | **string** | Basic auth username. | [optional]
 **fallback_password** | **string** | Basic auth password. | [optional]
 **priority** | **int** | The priority of this call over other calls from your account. | [optional]
+**requested_attestation_level** | [**\Bandwidth\Model\AttestationLevelEnum**](AttestationLevelEnum.md) | The &#x60;requestedAttestationLevel&#x60; provided in the Create Call request, if any. This is the level you requested, which can differ from the level the call is ultimately signed with. | [optional]
+**identity** | **string** | The &#x60;identity&#x60; value provided in the Create Call request, if any. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

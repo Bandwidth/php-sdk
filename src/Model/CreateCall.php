@@ -64,6 +64,8 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         'privacy' => 'bool',
         'display_name' => 'string',
         'uui' => 'string',
+        'requested_attestation_level' => '\Bandwidth\Model\AttestationLevelEnum',
+        'identity' => 'string',
         'application_id' => 'string',
         'answer_url' => 'string',
         'answer_method' => '\Bandwidth\Model\CallbackMethodEnum',
@@ -93,6 +95,8 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         'privacy' => null,
         'display_name' => null,
         'uui' => null,
+        'requested_attestation_level' => null,
+        'identity' => null,
         'application_id' => null,
         'answer_url' => 'uri',
         'answer_method' => null,
@@ -122,6 +126,8 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         'privacy' => true,
         'display_name' => true,
         'uui' => true,
+        'requested_attestation_level' => true,
+        'identity' => true,
         'application_id' => false,
         'answer_url' => false,
         'answer_method' => true,
@@ -221,6 +227,8 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         'privacy' => 'privacy',
         'display_name' => 'displayName',
         'uui' => 'uui',
+        'requested_attestation_level' => 'requestedAttestationLevel',
+        'identity' => 'identity',
         'application_id' => 'applicationId',
         'answer_url' => 'answerUrl',
         'answer_method' => 'answerMethod',
@@ -250,6 +258,8 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         'privacy' => 'setPrivacy',
         'display_name' => 'setDisplayName',
         'uui' => 'setUui',
+        'requested_attestation_level' => 'setRequestedAttestationLevel',
+        'identity' => 'setIdentity',
         'application_id' => 'setApplicationId',
         'answer_url' => 'setAnswerUrl',
         'answer_method' => 'setAnswerMethod',
@@ -279,6 +289,8 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         'privacy' => 'getPrivacy',
         'display_name' => 'getDisplayName',
         'uui' => 'getUui',
+        'requested_attestation_level' => 'getRequestedAttestationLevel',
+        'identity' => 'getIdentity',
         'application_id' => 'getApplicationId',
         'answer_url' => 'getAnswerUrl',
         'answer_method' => 'getAnswerMethod',
@@ -349,6 +361,8 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         $this->setIfExists('privacy', $data ?? [], null);
         $this->setIfExists('display_name', $data ?? [], null);
         $this->setIfExists('uui', $data ?? [], null);
+        $this->setIfExists('requested_attestation_level', $data ?? [], null);
+        $this->setIfExists('identity', $data ?? [], null);
         $this->setIfExists('application_id', $data ?? [], null);
         $this->setIfExists('answer_url', $data ?? [], null);
         $this->setIfExists('answer_method', $data ?? [], null);
@@ -400,6 +414,18 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
         }
         if (!is_null($this->container['display_name']) && (mb_strlen($this->container['display_name']) > 256)) {
             $invalidProperties[] = "invalid value for 'display_name', the character length must be smaller than or equal to 256.";
+        }
+
+        if (!is_null($this->container['identity']) && (mb_strlen($this->container['identity']) > 2000)) {
+            $invalidProperties[] = "invalid value for 'identity', the character length must be smaller than or equal to 2000.";
+        }
+
+        if (!is_null($this->container['identity']) && (mb_strlen($this->container['identity']) < 1)) {
+            $invalidProperties[] = "invalid value for 'identity', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['identity']) && !preg_match("/^ *[A-Za-z0-9\\-_.+\/=;:<>\"][A-Za-z0-9\\-_.+\/=;:<>\" ]*$/", $this->container['identity'])) {
+            $invalidProperties[] = "invalid value for 'identity', must be conform to the pattern /^ *[A-Za-z0-9\\-_.+\/=;:<>\"][A-Za-z0-9\\-_.+\/=;:<>\" ]*$/.";
         }
 
         if ($this->container['application_id'] === null) {
@@ -632,6 +658,84 @@ class CreateCall implements ModelInterface, ArrayAccess, JsonSerializable
             }
         }
         $this->container['uui'] = $uui;
+
+        return $this;
+    }
+
+    /**
+     * Gets requested_attestation_level
+     *
+     * @return \Bandwidth\Model\AttestationLevelEnum|null
+     */
+    public function getRequestedAttestationLevel(): ?\Bandwidth\Model\AttestationLevelEnum
+    {
+        return $this->container['requested_attestation_level'];
+    }
+
+    /**
+     * Sets requested_attestation_level
+     *
+     * @param \Bandwidth\Model\AttestationLevelEnum|null $requested_attestation_level The STIR/SHAKEN attestation level (`A`, `B`, or `C`) you request Bandwidth sign this call with. Applies to outbound calls to US destinations only, and only to accounts that use the <a href='/docs/voice/stir-shaken/hosted-signing-service'>Hosted Signing Service</a>; it is ignored for all other accounts. If omitted, the attestation policy configured on your account is used.  Cannot be combined with `identity`. A request that includes both is rejected with a `400`, as is any value other than `A`, `B`, or `C`.
+     *
+     * @return $this
+     */
+    public function setRequestedAttestationLevel(?\Bandwidth\Model\AttestationLevelEnum $requested_attestation_level): static
+    {
+        if (is_null($requested_attestation_level)) {
+            array_push($this->openAPINullablesSetToNull, 'requested_attestation_level');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('requested_attestation_level', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['requested_attestation_level'] = $requested_attestation_level;
+
+        return $this;
+    }
+
+    /**
+     * Gets identity
+     *
+     * @return string|null
+     */
+    public function getIdentity(): ?string
+    {
+        return $this->container['identity'];
+    }
+
+    /**
+     * Sets identity
+     *
+     * @param string|null $identity A complete SIP `Identity` header value that you signed yourself. It must be a valid STIR/SHAKEN PASSporT and may not exceed 2000 characters. Bandwidth sends it unmodified on the outbound call and does not sign the call. Bandwidth checks only the format and size of the value, not the signature. Applies to outbound calls to US destinations only.  Cannot be combined with `requestedAttestationLevel`. A request that includes both, or a value that is too long or not in the expected format, is rejected with a `400`.
+     *
+     * @return $this
+     */
+    public function setIdentity(?string $identity): static
+    {
+        if (is_null($identity)) {
+            array_push($this->openAPINullablesSetToNull, 'identity');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('identity', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($identity) && (mb_strlen($identity) > 2000)) {
+            throw new InvalidArgumentException('invalid length for $identity when calling CreateCall., must be smaller than or equal to 2000.');
+        }
+        if (!is_null($identity) && (mb_strlen($identity) < 1)) {
+            throw new InvalidArgumentException('invalid length for $identity when calling CreateCall., must be bigger than or equal to 1.');
+        }
+        if (!is_null($identity) && (!preg_match("/^ *[A-Za-z0-9\\-_.+\/=;:<>\"][A-Za-z0-9\\-_.+\/=;:<>\" ]*$/", ObjectSerializer::toString($identity)))) {
+            throw new InvalidArgumentException("invalid value for \$identity when calling CreateCall., must conform to the pattern /^ *[A-Za-z0-9\\-_.+\/=;:<>\"][A-Za-z0-9\\-_.+\/=;:<>\" ]*$/.");
+        }
+
+        $this->container['identity'] = $identity;
 
         return $this;
     }

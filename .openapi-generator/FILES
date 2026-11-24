@@ -21,6 +21,7 @@ docs/Model/AdditionalDenialReason.md
 docs/Model/Address.md
 docs/Model/AnswerCallback.md
 docs/Model/AsyncLookupRequest.md
+docs/Model/AttestationLevelEnum.md
 docs/Model/BlockedWebhook.md
 docs/Model/BridgeCompleteCallback.md
 docs/Model/BridgeTargetCompleteCallback.md
@@ -242,6 +243,7 @@ src/Model/Address.php
 src/Model/AnswerCallback.php
 src/Model/AnyOfInterface.php
 src/Model/AsyncLookupRequest.php
+src/Model/AttestationLevelEnum.php
 src/Model/BlockedWebhook.php
 src/Model/BridgeCompleteCallback.php
 src/Model/BridgeTargetCompleteCallback.php
