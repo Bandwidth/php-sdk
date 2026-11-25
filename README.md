@@ -128,6 +128,7 @@ Class | Method | HTTP request | Description
 - [Address](docs/Model/Address.md)
 - [AnswerCallback](docs/Model/AnswerCallback.md)
 - [AsyncLookupRequest](docs/Model/AsyncLookupRequest.md)
+- [AttestationLevelEnum](docs/Model/AttestationLevelEnum.md)
 - [BlockedWebhook](docs/Model/BlockedWebhook.md)
 - [BridgeCompleteCallback](docs/Model/BridgeCompleteCallback.md)
 - [BridgeTargetCompleteCallback](docs/Model/BridgeTargetCompleteCallback.md)
